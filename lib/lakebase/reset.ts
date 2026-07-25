@@ -39,9 +39,7 @@ export async function deleteAllData(): Promise<void> {
   try {
     const { cleanupDemoSession } = await import("@/lib/demo/cleanup");
     const { databricksSqlExecutor } = await import("@/lib/ports/defaults/databricks-sql-executor");
-    const sessions = await withPrisma((p) =>
-      p.forgeDemoSession.findMany({ select: { id: true } }),
-    );
+    const sessions = await withPrisma((p) => p.forgeDemoSession.findMany({ select: { id: true } }));
     if (sessions.length > 0) {
       logger.info("[reset] Cleaning up demo session UC objects", { count: sessions.length });
       for (const { id: sessionId } of sessions) {

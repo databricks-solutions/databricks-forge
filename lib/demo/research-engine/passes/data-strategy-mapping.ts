@@ -11,11 +11,7 @@ import type { TaskTier } from "@/lib/dbx/model-registry";
 import type { LLMClient } from "@/lib/ports/llm-client";
 import type { Logger } from "@/lib/ports/logger";
 import type { DemoScope } from "../../types";
-import type {
-  DataStrategyMap,
-  IndustryLandscapeAnalysis,
-  CompanyStrategicProfile,
-} from "../types";
+import type { DataStrategyMap, IndustryLandscapeAnalysis, CompanyStrategicProfile } from "../types";
 import { DATA_STRATEGY_MAPPING_PROMPT } from "../prompts";
 
 export async function runDataStrategyMapping(
@@ -39,8 +35,7 @@ export async function runDataStrategyMapping(
     ? `Division: ${scope.division ?? "Full Enterprise"}\nFunctional Focus: ${scope.functionalFocus?.join(", ") ?? "All"}\nAsset Families: ${scope.functionalFocus?.join(", ") ?? "All"}`
     : "Full Enterprise scope -- all asset families.";
 
-  const prompt = DATA_STRATEGY_MAPPING_PROMPT
-    .replace("{customer_name}", customerName)
+  const prompt = DATA_STRATEGY_MAPPING_PROMPT.replace("{customer_name}", customerName)
     .replace("{division}", division)
     .replace("{scope_context}", scopeContext)
     .replace("{industry_landscape_json}", JSON.stringify(industryLandscape).slice(0, 6_000))

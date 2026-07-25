@@ -9,10 +9,7 @@
  * The industry-enrichment skill reads these to build LLM prompt chunks.
  */
 
-import type {
-  EconomicImpactCategory,
-  EconomicPatternName,
-} from "@/lib/domain/economic-patterns";
+import type { EconomicImpactCategory, EconomicPatternName } from "@/lib/domain/economic-patterns";
 import type { AccessDifficulty, LOELevel } from "@/lib/domain/loe-matrix";
 import type { SystemKind } from "@/lib/domain/tech-to-system";
 

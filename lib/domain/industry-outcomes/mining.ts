@@ -62,7 +62,11 @@ export const MINING: IndustryOutcome = {
                 "Fragmentation Analysis",
                 "Vibration Monitoring",
               ],
-              typicalSourceSystems: ["Drill Control System", "Blast Design Software", "Geotechnical System"],
+              typicalSourceSystems: [
+                "Drill Control System",
+                "Blast Design Software",
+                "Geotechnical System",
+              ],
             },
             {
               name: "Short-Range Mine Scheduling",
@@ -145,7 +149,11 @@ export const MINING: IndustryOutcome = {
             "Truck queue time",
             "Tyre cost per tonne",
           ],
-          personas: ["Head of Mining Operations", "Autonomous Operations Manager", "Chief Operating Officer"],
+          personas: [
+            "Head of Mining Operations",
+            "Autonomous Operations Manager",
+            "Chief Operating Officer",
+          ],
         },
         {
           name: "Processing Plant Optimisation",
@@ -267,7 +275,11 @@ export const MINING: IndustryOutcome = {
                 "Seepage Monitoring",
                 "Weather Data",
               ],
-              typicalSourceSystems: ["Geotechnical Monitoring System", "InSAR Platform", "Weather Station"],
+              typicalSourceSystems: [
+                "Geotechnical Monitoring System",
+                "InSAR Platform",
+                "Weather Station",
+              ],
             },
             {
               name: "Pit Slope Stability Monitoring",
@@ -279,7 +291,11 @@ export const MINING: IndustryOutcome = {
                 "Geological Model",
                 "Rainfall Data",
               ],
-              typicalSourceSystems: ["Slope Stability Radar", "Survey System", "Geotechnical System"],
+              typicalSourceSystems: [
+                "Slope Stability Radar",
+                "Survey System",
+                "Geotechnical System",
+              ],
             },
           ],
           kpis: [
@@ -326,7 +342,11 @@ export const MINING: IndustryOutcome = {
                 "Consist Configuration",
                 "Track Condition Data",
               ],
-              typicalSourceSystems: ["Rail Operations System", "Track Monitoring System", "GPS Platform"],
+              typicalSourceSystems: [
+                "Rail Operations System",
+                "Track Monitoring System",
+                "GPS Platform",
+              ],
             },
             {
               name: "Port & Ship Loading Optimisation",
@@ -384,7 +404,11 @@ export const MINING: IndustryOutcome = {
             "Supplier OTIF (%)",
             "Procurement cost savings",
           ],
-          personas: ["Chief Procurement Officer", "VP Supply Chain", "Head of Warehouse & Logistics"],
+          personas: [
+            "Chief Procurement Officer",
+            "VP Supply Chain",
+            "Head of Warehouse & Logistics",
+          ],
         },
       ],
     },
@@ -406,7 +430,12 @@ export const MINING: IndustryOutcome = {
                 "Process Emissions",
                 "Shipping Emissions",
               ],
-              typicalSourceSystems: ["EMS", "Fleet Management System", "ERP", "Sustainability Platform"],
+              typicalSourceSystems: [
+                "EMS",
+                "Fleet Management System",
+                "ERP",
+                "Sustainability Platform",
+              ],
             },
             {
               name: "Haul Fleet Electrification & Energy Transition",
@@ -418,7 +447,11 @@ export const MINING: IndustryOutcome = {
                 "Charging Infrastructure",
                 "Total Cost of Ownership",
               ],
-              typicalSourceSystems: ["Fleet Management System", "Energy Management System", "Mine Planning System"],
+              typicalSourceSystems: [
+                "Fleet Management System",
+                "Energy Management System",
+                "Mine Planning System",
+              ],
             },
           ],
           kpis: [
@@ -427,7 +460,11 @@ export const MINING: IndustryOutcome = {
             "Renewable energy share (%)",
             "ESG disclosure score",
           ],
-          personas: ["Chief Sustainability Officer", "VP Decarbonisation", "Head of Climate Strategy"],
+          personas: [
+            "Chief Sustainability Officer",
+            "VP Decarbonisation",
+            "Head of Climate Strategy",
+          ],
         },
         {
           name: "Water & Environmental Stewardship",
@@ -466,7 +503,11 @@ export const MINING: IndustryOutcome = {
                 "Flora/Fauna Surveys",
                 "Satellite Imagery",
               ],
-              typicalSourceSystems: ["GIS", "Environmental Management System", "Remote Sensing Platform"],
+              typicalSourceSystems: [
+                "GIS",
+                "Environmental Management System",
+                "Remote Sensing Platform",
+              ],
             },
           ],
           kpis: [
@@ -589,7 +630,11 @@ export const MINING: IndustryOutcome = {
                 "Approval Conditions",
                 "Inspection Records",
               ],
-              typicalSourceSystems: ["GRC Platform", "HSE System", "Environmental Management System"],
+              typicalSourceSystems: [
+                "GRC Platform",
+                "HSE System",
+                "Environmental Management System",
+              ],
             },
             {
               name: "Community & Stakeholder Engagement Analytics",
@@ -601,7 +646,11 @@ export const MINING: IndustryOutcome = {
                 "Social Investment Spend",
                 "Engagement Activities",
               ],
-              typicalSourceSystems: ["Stakeholder Management System", "GRC Platform", "Finance System"],
+              typicalSourceSystems: [
+                "Stakeholder Management System",
+                "GRC Platform",
+                "Finance System",
+              ],
             },
           ],
           kpis: [
@@ -626,7 +675,11 @@ export const MINING: IndustryOutcome = {
                 "Vibration Data",
                 "Work Order History",
               ],
-              typicalSourceSystems: ["Fleet Management System", "CMMS", "Condition Monitoring System"],
+              typicalSourceSystems: [
+                "Fleet Management System",
+                "CMMS",
+                "Condition Monitoring System",
+              ],
             },
             {
               name: "Predictive Maintenance for Fixed Plant",
@@ -648,7 +701,11 @@ export const MINING: IndustryOutcome = {
             "Maintenance cost per tonne",
             "Planned vs unplanned maintenance ratio",
           ],
-          personas: ["VP Maintenance", "Head of Asset Management", "Reliability Engineering Manager"],
+          personas: [
+            "VP Maintenance",
+            "Head of Asset Management",
+            "Reliability Engineering Manager",
+          ],
         },
       ],
     },

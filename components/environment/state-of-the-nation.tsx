@@ -95,13 +95,7 @@ function severityVariant(
   return "secondary";
 }
 
-function EvidenceList({
-  evidence,
-  label,
-}: {
-  evidence: Evidence[];
-  label: string;
-}) {
+function EvidenceList({ evidence, label }: { evidence: Evidence[]; label: string }) {
   const t = useTranslations("estate_intelligence.findings");
   if (!evidence || evidence.length === 0) return null;
   return (
@@ -408,7 +402,9 @@ export function StateOfTheNation({ scanId, onScan }: StateOfTheNationProps) {
                           style={{ width: `${scores[k] ?? 0}%` }}
                         />
                       </div>
-                      <span className={`w-7 text-right text-xs font-semibold ${scoreColor(scores[k] ?? 0)}`}>
+                      <span
+                        className={`w-7 text-right text-xs font-semibold ${scoreColor(scores[k] ?? 0)}`}
+                      >
                         {scores[k] ?? 0}
                       </span>
                     </div>
@@ -426,11 +422,12 @@ export function StateOfTheNation({ scanId, onScan }: StateOfTheNationProps) {
           <CardTitle className="text-base">{t("brief.title")}</CardTitle>
         </CardHeader>
         <CardContent className="space-y-3 text-sm">
-          {brief.estateShape && (
-            <p className="text-muted-foreground">{brief.estateShape}</p>
-          )}
+          {brief.estateShape && <p className="text-muted-foreground">{brief.estateShape}</p>}
           <div className="grid gap-3 md:grid-cols-3">
-            <BriefBlock title={t("brief.situation")} body={brief.situationComplicationResolution?.situation} />
+            <BriefBlock
+              title={t("brief.situation")}
+              body={brief.situationComplicationResolution?.situation}
+            />
             <BriefBlock
               title={t("brief.complication")}
               body={brief.situationComplicationResolution?.complication}
@@ -495,13 +492,7 @@ function BriefBlock({ title, body }: { title: string; body?: string }) {
   );
 }
 
-function FindingGrid({
-  findings,
-  emptyLabel,
-}: {
-  findings: EstateFinding[];
-  emptyLabel: string;
-}) {
+function FindingGrid({ findings, emptyLabel }: { findings: EstateFinding[]; emptyLabel: string }) {
   if (findings.length === 0) {
     return <p className="py-8 text-center text-sm text-muted-foreground">{emptyLabel}</p>;
   }

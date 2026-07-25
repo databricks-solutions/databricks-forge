@@ -56,7 +56,9 @@ export async function getLatestSynthesisForScan(scanId: string): Promise<SavedSy
 }
 
 /** Latest synthesis for an estate roll-up, or null. */
-export async function getLatestSynthesisForEstate(estateId: string): Promise<SavedSynthesis | null> {
+export async function getLatestSynthesisForEstate(
+  estateId: string,
+): Promise<SavedSynthesis | null> {
   return withPrisma(async (prisma) => {
     const row = await prisma.forgeEstateSynthesis.findFirst({
       where: { estateId },

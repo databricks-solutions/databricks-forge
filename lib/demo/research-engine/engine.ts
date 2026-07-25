@@ -64,14 +64,14 @@ export class ResearchCancelledError extends Error {
   }
 }
 
-export async function runResearchEngine(
-  input: ResearchEngineInput,
-): Promise<ResearchEngineResult> {
+export async function runResearchEngine(input: ResearchEngineInput): Promise<ResearchEngineResult> {
   const startTime = Date.now();
   const preset = input.preset ?? "balanced";
   const budget = resolveResearchBudget(preset);
   const llm = input.deps?.llm ?? databricksLLMClient;
-  const log = input.deps?.logger ?? createScopedLogger({ origin: "ResearchEngine", module: "demo/research-engine" });
+  const log =
+    input.deps?.logger ??
+    createScopedLogger({ origin: "ResearchEngine", module: "demo/research-engine" });
   const signal = input.signal;
   const passTimings: Record<string, number> = {};
 
@@ -113,11 +113,13 @@ export async function runResearchEngine(
   const sourceTasks: Array<Promise<{ text: string; sources: ResearchSource[] }>> = [];
   if (budget.sources.includes("strategic-crawl")) {
     progress("source-collection", 5, "Deep scanning website (sitemap + strategic pages)...");
-    sourceTasks.push(runDeepWebsiteScrape(input.websiteUrl, input.scope, {
-      ...sourceOpts,
-      llm,
-      onProgress: (detail) => progress("source-collection", 8, detail),
-    }));
+    sourceTasks.push(
+      runDeepWebsiteScrape(input.websiteUrl, input.scope, {
+        ...sourceOpts,
+        llm,
+        onProgress: (detail) => progress("source-collection", 8, detail),
+      }),
+    );
   } else if (budget.sources.includes("website")) {
     sourceTasks.push(runWebsiteScrape(input.websiteUrl, input.scope, sourceOpts));
   }
@@ -195,7 +197,11 @@ export async function runResearchEngine(
     .join("\n\n---\n\n");
 
   checkCancelled(signal);
-  progress("source-collection", 15, `${allSources.filter((s) => s.status === "ready").length} sources gathered`);
+  progress(
+    "source-collection",
+    15,
+    `${allSources.filter((s) => s.status === "ready").length} sources gathered`,
+  );
 
   // =======================================================================
   // Phase 0.5 + 3.25 + 3.5: Embedding, Classification, Outcome Map
@@ -204,7 +210,11 @@ export async function runResearchEngine(
   const embeddingTask = allSources.some((s) => s.status === "ready")
     ? (async () => {
         const tEmbed = Date.now();
-        progress("embedding", 12, `Embedding ${allSources.filter((s) => s.status === "ready").length} sources for Ask Forge...`);
+        progress(
+          "embedding",
+          12,
+          `Embedding ${allSources.filter((s) => s.status === "ready").length} sources for Ask Forge...`,
+        );
 
         const embedSources: Array<{
           type: string;
@@ -255,15 +265,23 @@ export async function runResearchEngine(
     }
 
     if (!industryIdInner) {
-      progress("industry-classification", 17, `Classifying industry from ${allSources.filter((s) => s.status === "ready").length} sources...`);
+      progress(
+        "industry-classification",
+        17,
+        `Classifying industry from ${allSources.filter((s) => s.status === "ready").length} sources...`,
+      );
       t0 = Date.now();
 
-      const classification = await runIndustryClassification(combinedSourceText, allOutcomeSummaries, {
-        llm,
-        logger: log,
-        signal,
-        modelTier,
-      });
+      const classification = await runIndustryClassification(
+        combinedSourceText,
+        allOutcomeSummaries,
+        {
+          llm,
+          logger: log,
+          signal,
+          modelTier,
+        },
+      );
 
       industryIdInner = classification.industryId;
       industryNameInner = classification.industryName;
@@ -287,20 +305,27 @@ export async function runResearchEngine(
           allOutcomeSummaries,
         );
         const fallback = closest ?? allOutcomeSummaries[0];
-        log.warn("Industry classification produced no canonical match; using closest-match fallback", {
-          rawId: classification.industryId,
-          rawName: classification.industryName,
-          fallback: fallback?.id,
-          fallbackName: fallback?.name,
-          mode: closest ? "closest-match" : "first-registered",
-        });
+        log.warn(
+          "Industry classification produced no canonical match; using closest-match fallback",
+          {
+            rawId: classification.industryId,
+            rawName: classification.industryName,
+            fallback: fallback?.id,
+            fallbackName: fallback?.name,
+            mode: closest ? "closest-match" : "first-registered",
+          },
+        );
         if (fallback) {
           industryIdInner = fallback.id;
           industryNameInner = fallback.name;
         }
       }
 
-      progress("industry-classification", 19, `Classified as ${industryNameInner} (${Math.round(classification.confidence * 100)}% confidence)`);
+      progress(
+        "industry-classification",
+        19,
+        `Classified as ${industryNameInner} (${Math.round(classification.confidence * 100)}% confidence)`,
+      );
       passTimings["industry-classification"] = Date.now() - t0;
     }
 
@@ -433,16 +458,30 @@ export async function runResearchEngine(
 
     progress("industry-landscape", 25, `Analysing ${industryName} market forces and benchmarks...`);
     if (hasReadySources) {
-      progress("key-quotes-extraction", 25, `Extracting key quotes from ${perSourceData.length} sources...`);
+      progress(
+        "key-quotes-extraction",
+        25,
+        `Extracting key quotes from ${perSourceData.length} sources...`,
+      );
       progress("source-summaries", 25, `Summarising ${perSourceData.length} sources...`);
     }
     t0 = Date.now();
 
     const landscapePromise: Promise<IndustryLandscapeAnalysis> = cached
       ? Promise.resolve(cached)
-      : runIndustryLandscape(industryName, outcomeMapContext, benchmarkContext, combinedSourceText, {
-          llm, logger: log, signal, maxTokens: budget.maxTokensPerPass, modelTier,
-        });
+      : runIndustryLandscape(
+          industryName,
+          outcomeMapContext,
+          benchmarkContext,
+          combinedSourceText,
+          {
+            llm,
+            logger: log,
+            signal,
+            maxTokens: budget.maxTokensPerPass,
+            modelTier,
+          },
+        );
 
     const keyQuotesPromise: Promise<KeyQuote[]> = hasReadySources
       ? runKeyQuotesExtraction(input.customerName, perSourceData, { llm, logger: log, signal })
@@ -467,16 +506,24 @@ export async function runResearchEngine(
     }
 
     passTimings["industry-landscape"] = cached ? 0 : Date.now() - t0;
-    progress("industry-landscape", 40, cached
-      ? `Loaded ${industryLandscape.marketForces?.length ?? 0} market forces from cache`
-      : `Identified ${industryLandscape.marketForces?.length ?? 0} market forces, ${industryLandscape.keyBenchmarks?.length ?? 0} benchmarks`);
+    progress(
+      "industry-landscape",
+      40,
+      cached
+        ? `Loaded ${industryLandscape.marketForces?.length ?? 0} market forces from cache`
+        : `Identified ${industryLandscape.marketForces?.length ?? 0} market forces, ${industryLandscape.keyBenchmarks?.length ?? 0} benchmarks`,
+    );
     if (hasReadySources) {
       progress("key-quotes-extraction", 40, `Extracted ${keyQuotes.length} quotes`);
       progress("source-summaries", 40, `Summarised ${sourceSummaries.length} sources`);
     }
 
     checkCancelled(signal);
-    progress("strategy-and-narrative", 45, `Building strategy & demo narrative for ${input.customerName}...`);
+    progress(
+      "strategy-and-narrative",
+      45,
+      `Building strategy & demo narrative for ${input.customerName}...`,
+    );
     t0 = Date.now();
 
     const combined = await runStrategyAndNarrative(
@@ -497,7 +544,11 @@ export async function runResearchEngine(
     nomenclature = dataStrategy?.nomenclature ?? {};
     dataNarratives = demoNarrative?.dataNarratives ?? [];
     passTimings["strategy-and-narrative"] = Date.now() - t0;
-    progress("strategy-and-narrative", 85, `Matched ${matchedDataAssetIds.length} assets, ${demoNarrative?.killerMoments?.length ?? 0} killer moments`);
+    progress(
+      "strategy-and-narrative",
+      85,
+      `Matched ${matchedDataAssetIds.length} assets, ${demoNarrative?.killerMoments?.length ?? 0} killer moments`,
+    );
 
     // --- Phase-5 fan-out: persona-talk-track || evidence-linking ---
     checkCancelled(signal);
@@ -506,7 +557,10 @@ export async function runResearchEngine(
     t0 = Date.now();
 
     const talkTrackPromise = runPersonaTalkTrack(input.customerName, industryName, {
-      llm, logger: log, signal, modelTier: "generation",
+      llm,
+      logger: log,
+      signal,
+      modelTier: "generation",
       executiveBrief,
       companyProfile,
       industryLandscape,
@@ -561,27 +615,48 @@ export async function runResearchEngine(
     }
 
     passTimings["persona-talk-track"] = Date.now() - t0;
-    progress("persona-talk-track", 96, `Produced ${personaTalkTracks?.length ?? 0} persona talk tracks`);
+    progress(
+      "persona-talk-track",
+      96,
+      `Produced ${personaTalkTracks?.length ?? 0} persona talk tracks`,
+    );
     if (hasReadySources) {
-      progress("evidence-linking", 96, `Linked evidence: ${linkResult?.stats.attached ?? 0}/${linkResult?.stats.attempted ?? 0}`);
+      progress(
+        "evidence-linking",
+        96,
+        `Linked evidence: ${linkResult?.stats.attached ?? 0}/${linkResult?.stats.attempted ?? 0}`,
+      );
     }
-
   } else {
     // ----- FULL: Phase-1 fan-out + deep-dive + data-strategy + demo-narrative + Phase-5 fan-out -----
     const cached = getCachedIndustryLandscape(industryId, input.scope?.subVertical);
 
     progress("industry-landscape", 25, `Analysing ${industryName} market forces and benchmarks...`);
     if (hasReadySources) {
-      progress("key-quotes-extraction", 25, `Extracting key quotes from ${perSourceData.length} sources...`);
+      progress(
+        "key-quotes-extraction",
+        25,
+        `Extracting key quotes from ${perSourceData.length} sources...`,
+      );
       progress("source-summaries", 25, `Summarising ${perSourceData.length} sources...`);
     }
     t0 = Date.now();
 
     const landscapePromise: Promise<IndustryLandscapeAnalysis> = cached
       ? Promise.resolve(cached)
-      : runIndustryLandscape(industryName, outcomeMapContext, benchmarkContext, combinedSourceText, {
-          llm, logger: log, signal, maxTokens: budget.maxTokensPerPass, modelTier,
-        });
+      : runIndustryLandscape(
+          industryName,
+          outcomeMapContext,
+          benchmarkContext,
+          combinedSourceText,
+          {
+            llm,
+            logger: log,
+            signal,
+            maxTokens: budget.maxTokensPerPass,
+            modelTier,
+          },
+        );
 
     const keyQuotesPromise: Promise<KeyQuote[]> = hasReadySources
       ? runKeyQuotesExtraction(input.customerName, perSourceData, { llm, logger: log, signal })
@@ -606,16 +681,24 @@ export async function runResearchEngine(
     }
 
     passTimings["industry-landscape"] = cached ? 0 : Date.now() - t0;
-    progress("industry-landscape", 40, cached
-      ? `Loaded ${industryLandscape.marketForces?.length ?? 0} market forces from cache`
-      : `Identified ${industryLandscape.marketForces?.length ?? 0} market forces, ${industryLandscape.keyBenchmarks?.length ?? 0} benchmarks`);
+    progress(
+      "industry-landscape",
+      40,
+      cached
+        ? `Loaded ${industryLandscape.marketForces?.length ?? 0} market forces from cache`
+        : `Identified ${industryLandscape.marketForces?.length ?? 0} market forces, ${industryLandscape.keyBenchmarks?.length ?? 0} benchmarks`,
+    );
     if (hasReadySources) {
       progress("key-quotes-extraction", 40, `Extracted ${keyQuotes.length} quotes`);
       progress("source-summaries", 40, `Summarised ${sourceSummaries.length} sources`);
     }
 
     checkCancelled(signal);
-    progress("company-deep-dive", 45, `Deep-diving ${input.customerName} strategic profile + exec brief...`);
+    progress(
+      "company-deep-dive",
+      45,
+      `Deep-diving ${input.customerName} strategic profile + exec brief...`,
+    );
     t0 = Date.now();
 
     const deepDive = await runCompanyDeepDive(
@@ -629,10 +712,18 @@ export async function runResearchEngine(
     companyProfile = deepDive.profile;
     executiveBrief = deepDive.executiveBrief;
     passTimings["company-deep-dive"] = Date.now() - t0;
-    progress("company-deep-dive", 58, `Found ${companyProfile.statedPriorities?.length ?? 0} stated priorities, exec brief ready`);
+    progress(
+      "company-deep-dive",
+      58,
+      `Found ${companyProfile.statedPriorities?.length ?? 0} stated priorities, exec brief ready`,
+    );
 
     checkCancelled(signal);
-    progress("data-strategy-mapping", 62, `Mapping ${input.customerName} priorities to data assets...`);
+    progress(
+      "data-strategy-mapping",
+      62,
+      `Mapping ${input.customerName} priorities to data assets...`,
+    );
     t0 = Date.now();
 
     dataStrategy = await runDataStrategyMapping(
@@ -644,10 +735,18 @@ export async function runResearchEngine(
       { llm, logger: log, signal, maxTokens: budget.maxTokensPerPass, modelTier },
     );
     passTimings["data-strategy-mapping"] = Date.now() - t0;
-    progress("data-strategy-mapping", 75, `Mapped ${dataStrategy.matchedDataAssetIds?.length ?? 0} assets, maturity: ${dataStrategy.dataMaturityAssessment ?? "unknown"}`);
+    progress(
+      "data-strategy-mapping",
+      75,
+      `Mapped ${dataStrategy.matchedDataAssetIds?.length ?? 0} assets, maturity: ${dataStrategy.dataMaturityAssessment ?? "unknown"}`,
+    );
 
     checkCancelled(signal);
-    progress("demo-narrative", 78, `Designing consultant-grade killer moments for ${input.customerName}...`);
+    progress(
+      "demo-narrative",
+      78,
+      `Designing consultant-grade killer moments for ${input.customerName}...`,
+    );
     t0 = Date.now();
 
     demoNarrative = await runDemoNarrative(
@@ -660,7 +759,11 @@ export async function runResearchEngine(
       { llm, logger: log, signal, maxTokens: budget.maxTokensPerPass, modelTier, keyQuotes },
     );
     passTimings["demo-narrative"] = Date.now() - t0;
-    progress("demo-narrative", 88, `Designed ${demoNarrative.killerMoments?.length ?? 0} killer moments, ${demoNarrative.demoFlow?.length ?? 0}-step demo flow`);
+    progress(
+      "demo-narrative",
+      88,
+      `Designed ${demoNarrative.killerMoments?.length ?? 0} killer moments, ${demoNarrative.demoFlow?.length ?? 0}-step demo flow`,
+    );
 
     matchedDataAssetIds = dataStrategy?.matchedDataAssetIds ?? [];
     nomenclature = dataStrategy?.nomenclature ?? {};
@@ -673,7 +776,10 @@ export async function runResearchEngine(
     t0 = Date.now();
 
     const talkTrackPromise = runPersonaTalkTrack(input.customerName, industryName, {
-      llm, logger: log, signal, modelTier: "generation",
+      llm,
+      logger: log,
+      signal,
+      modelTier: "generation",
       executiveBrief,
       companyProfile,
       industryLandscape,
@@ -728,9 +834,17 @@ export async function runResearchEngine(
     }
 
     passTimings["persona-talk-track"] = Date.now() - t0;
-    progress("persona-talk-track", 97, `Produced ${personaTalkTracks?.length ?? 0} persona talk tracks`);
+    progress(
+      "persona-talk-track",
+      97,
+      `Produced ${personaTalkTracks?.length ?? 0} persona talk tracks`,
+    );
     if (hasReadySources) {
-      progress("evidence-linking", 97, `Linked evidence: ${linkResult?.stats.attached ?? 0}/${linkResult?.stats.attempted ?? 0}`);
+      progress(
+        "evidence-linking",
+        97,
+        `Linked evidence: ${linkResult?.stats.attached ?? 0}/${linkResult?.stats.attempted ?? 0}`,
+      );
     }
   }
 
@@ -739,7 +853,8 @@ export async function runResearchEngine(
   // =======================================================================
   progress("complete", 100, "Research complete");
 
-  const confidence = allSources.filter((s) => s.status === "ready").length / Math.max(allSources.length, 1);
+  const confidence =
+    allSources.filter((s) => s.status === "ready").length / Math.max(allSources.length, 1);
 
   const result: ResearchEngineResult = {
     customerName: input.customerName,

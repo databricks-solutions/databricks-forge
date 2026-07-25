@@ -36,10 +36,7 @@ import {
   formatContextSections,
   buildDomainQuestionPatterns,
 } from "@/lib/skills";
-import {
-  buildProfileGroundingBlock,
-  snapshotsFromEntityCandidates,
-} from "../profile-grounding";
+import { buildProfileGroundingBlock, snapshotsFromEntityCandidates } from "../profile-grounding";
 
 const TEMPERATURE = 0.1;
 const BENCHMARKS_PER_BATCH = 4;

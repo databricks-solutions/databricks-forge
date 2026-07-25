@@ -37,12 +37,18 @@ const PHASE_LABELS: Record<string, { label: string; icon: React.ReactNode }> = {
   "ir-discovery": { label: "Investor Relations", icon: <FileText className="h-4 w-4" /> },
   "doc-parsing": { label: "Parsing Documents", icon: <FileText className="h-4 w-4" /> },
   embedding: { label: "Embedding for Ask Forge", icon: <CircleDot className="h-4 w-4" /> },
-  "industry-classification": { label: "Classifying Industry", icon: <Search className="h-4 w-4" /> },
+  "industry-classification": {
+    label: "Classifying Industry",
+    icon: <Search className="h-4 w-4" />,
+  },
   "quick-synthesis": { label: "Quick Synthesis", icon: <Sparkles className="h-4 w-4" /> },
   "industry-landscape": { label: "Industry Landscape", icon: <BarChart3 className="h-4 w-4" /> },
   "key-quotes-extraction": { label: "Extracting Key Quotes", icon: <Quote className="h-4 w-4" /> },
   "source-summaries": { label: "Summarising Sources", icon: <BookOpen className="h-4 w-4" /> },
-  "strategy-and-narrative": { label: "Strategy & Narrative", icon: <Building2 className="h-4 w-4" /> },
+  "strategy-and-narrative": {
+    label: "Strategy & Narrative",
+    icon: <Building2 className="h-4 w-4" />,
+  },
   "company-deep-dive": { label: "Company Deep-Dive", icon: <Building2 className="h-4 w-4" /> },
   "data-strategy-mapping": { label: "Data Strategy Mapping", icon: <Map className="h-4 w-4" /> },
   "demo-narrative": { label: "Demo Narrative Design", icon: <Sparkles className="h-4 w-4" /> },
@@ -158,7 +164,8 @@ export function ResearchResultsStep({
         <div className="flex items-center justify-between">
           <span className="text-sm font-medium">{status.message}</span>
           <span className="text-xs text-muted-foreground">
-            {elapsed >= 60 ? `${Math.floor(elapsed / 60)}m ${elapsed % 60}s` : `${elapsed}s`} elapsed
+            {elapsed >= 60 ? `${Math.floor(elapsed / 60)}m ${elapsed % 60}s` : `${elapsed}s`}{" "}
+            elapsed
           </span>
         </div>
         <Progress value={status.percent} className="h-2" />
@@ -169,7 +176,10 @@ export function ResearchResultsStep({
 
       <div className="space-y-1.5">
         {activePhases.map((phase) => {
-          const meta = PHASE_LABELS[phase] ?? { label: phase, icon: <CircleDot className="h-4 w-4" /> };
+          const meta = PHASE_LABELS[phase] ?? {
+            label: phase,
+            icon: <CircleDot className="h-4 w-4" />,
+          };
           const isCompleted = completedPhases.has(phase);
           const isActive = phase === status.phase && !isCompleted;
 
@@ -191,9 +201,7 @@ export function ResearchResultsStep({
               ) : (
                 <span className="h-4 w-4 shrink-0">{meta.icon}</span>
               )}
-              <span className={isActive ? "font-medium text-foreground" : ""}>
-                {meta.label}
-              </span>
+              <span className={isActive ? "font-medium text-foreground" : ""}>{meta.label}</span>
             </div>
           );
         })}
@@ -254,7 +262,9 @@ function ResearchSummary({
           >
             <Icon className="mx-auto mb-1 h-3.5 w-3.5 text-muted-foreground/50" />
             <p className="text-lg font-bold leading-none tracking-tight">{value}</p>
-            <p className="mt-0.5 text-[10px] uppercase tracking-wider text-muted-foreground">{label}</p>
+            <p className="mt-0.5 text-[10px] uppercase tracking-wider text-muted-foreground">
+              {label}
+            </p>
           </div>
         ))}
       </div>
@@ -294,7 +304,6 @@ function ResearchSummary({
           </div>
         </div>
       )}
-
     </div>
   );
 }

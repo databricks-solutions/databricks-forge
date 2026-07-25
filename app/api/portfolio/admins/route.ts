@@ -32,10 +32,7 @@ export async function GET(request: NextRequest) {
     if (!guard.ok) return guard.response;
     await ensureMigrated();
     const admins = await listPortfolioAdmins();
-    return NextResponse.json(
-      { admins },
-      { headers: { "Cache-Control": "private, no-store" } },
-    );
+    return NextResponse.json({ admins }, { headers: { "Cache-Control": "private, no-store" } });
   } catch (error) {
     log.error("GET failed", { error: error instanceof Error ? error.message : String(error) });
     return NextResponse.json({ error: safeErrorMessage(error) }, { status: 500 });

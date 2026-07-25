@@ -58,9 +58,7 @@ export async function listProgramDomainOverrides(
       select: { scanId: true, createdAt: true },
     });
     if (scans.length === 0) return [];
-    const rankByScan = new Map<string, number>(
-      scans.map((s) => [s.scanId, s.createdAt.getTime()]),
-    );
+    const rankByScan = new Map<string, number>(scans.map((s) => [s.scanId, s.createdAt.getTime()]));
     const rows = await prisma.forgeDomainOverride.findMany({
       where: { scanId: { in: scans.map((s) => s.scanId) } },
       orderBy: { createdAt: "asc" },
@@ -97,8 +95,8 @@ export interface UpsertOverrideInput {
  */
 export async function upsertDomainOverride(input: UpsertOverrideInput): Promise<DomainOverride> {
   const { scanId, scope, target, action } = input;
-  const newDomain = action === "remap" ? (input.newDomain?.trim() || null) : null;
-  const newSubdomain = action === "remap" ? (input.newSubdomain?.trim() || null) : null;
+  const newDomain = action === "remap" ? input.newDomain?.trim() || null : null;
+  const newSubdomain = action === "remap" ? input.newSubdomain?.trim() || null : null;
   return withPrisma(async (prisma) => {
     const row = await prisma.forgeDomainOverride.upsert({
       where: { scan_override: { scanId, scope, target } },

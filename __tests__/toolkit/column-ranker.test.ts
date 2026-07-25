@@ -123,12 +123,7 @@ describe("rankColumnsViaLLM", () => {
       durationMs: 5,
     });
 
-    const result = await rankColumnsViaLLM(
-      [makeInput("cat.s.t", 2)],
-      "ctx",
-      "ep",
-      silentLog,
-    );
+    const result = await rankColumnsViaLLM([makeInput("cat.s.t", 2)], "ctx", "ep", silentLog);
 
     expect(result.callMade).toBe(true);
     expect(result.llmTables.has("cat.s.t")).toBe(true);
@@ -175,12 +170,7 @@ describe("rankColumnsViaLLM", () => {
   it("falls back to heuristic for every requested table when the LLM call throws", async () => {
     mockExecute.mockRejectedValueOnce(new Error("boom"));
 
-    const result = await rankColumnsViaLLM(
-      [makeInput("cat.s.a", 2)],
-      "ctx",
-      "ep",
-      silentLog,
-    );
+    const result = await rankColumnsViaLLM([makeInput("cat.s.a", 2)], "ctx", "ep", silentLog);
     expect(result.callMade).toBe(true);
     expect(result.heuristicTables.has("cat.s.a")).toBe(true);
   });

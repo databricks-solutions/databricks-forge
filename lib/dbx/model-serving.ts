@@ -23,10 +23,7 @@ import { fetchWithTimeout } from "./fetch-with-timeout";
 import { getPoolRateLimiter, DEFAULT_429_BACKOFF_MS } from "./rate-limiter";
 import { getModelCapabilities, markEndpointUnavailable } from "./model-registry";
 import { logger } from "@/lib/logger";
-import {
-  isMlflowTracingEnabled,
-  recordSpan,
-} from "@/lib/observability/mlflow-tracing";
+import { isMlflowTracingEnabled, recordSpan } from "@/lib/observability/mlflow-tracing";
 
 // ---------------------------------------------------------------------------
 // Types

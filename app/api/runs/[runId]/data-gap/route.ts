@@ -92,10 +92,10 @@ async function compute(
   const ucNameById = new Map(useCases.map((u) => [u.id, u.name]));
   const ucRefByUcId = new Map(useCases.map((u) => [u.id, u.referenceUseCaseName]));
   const ucValueEstimates = estimates.map((e) => {
-    const cat: EconomicImpactCategory | null = e.economicImpactCategory
-      && isEconomicImpactCategory(e.economicImpactCategory)
-      ? e.economicImpactCategory
-      : (LEGACY_VALUE_TYPE_MAP[e.valueType] ?? null);
+    const cat: EconomicImpactCategory | null =
+      e.economicImpactCategory && isEconomicImpactCategory(e.economicImpactCategory)
+        ? e.economicImpactCategory
+        : (LEGACY_VALUE_TYPE_MAP[e.valueType] ?? null);
     return {
       useCaseId: e.useCaseId,
       name: ucNameById.get(e.useCaseId) ?? "",
@@ -179,7 +179,9 @@ export async function GET(
     await saveDataGapAnalysis({ result, runId, ownerEmail: user.email });
     return NextResponse.json({ result, cached: false });
   } catch (err) {
-    logger.error("[data-gap GET] failed", { error: err instanceof Error ? err.message : String(err) });
+    logger.error("[data-gap GET] failed", {
+      error: err instanceof Error ? err.message : String(err),
+    });
     return NextResponse.json({ error: "Internal error" }, { status: 500 });
   }
 }
@@ -217,7 +219,9 @@ export async function POST(
     await saveDataGapAnalysis({ result, runId, ownerEmail: user.email });
     return NextResponse.json({ result, cached: false });
   } catch (err) {
-    logger.error("[data-gap POST] failed", { error: err instanceof Error ? err.message : String(err) });
+    logger.error("[data-gap POST] failed", {
+      error: err instanceof Error ? err.message : String(err),
+    });
     return NextResponse.json({ error: "Internal error" }, { status: 500 });
   }
 }

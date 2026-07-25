@@ -8,7 +8,7 @@ import { FakeScopeDb } from "../helpers/fake-scope-db";
 const db = new FakeScopeDb();
 
 vi.mock("@/lib/prisma", () => ({
-  withPrisma: async <T,>(fn: (prisma: unknown) => Promise<T>) => fn(db.client),
+  withPrisma: async <T>(fn: (prisma: unknown) => Promise<T>) => fn(db.client),
 }));
 
 import { claimNextPlannedScope } from "@/lib/lakebase/estate-programs";

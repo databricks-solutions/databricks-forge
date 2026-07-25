@@ -20,13 +20,13 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 
 type UpdateArg = { data: { generationOptions: string } };
 
-const findUnique = vi.fn<
-  (arg: unknown) => Promise<{ generationOptions: string | null }>
->(async () => ({ generationOptions: null }));
+const findUnique = vi.fn<(arg: unknown) => Promise<{ generationOptions: string | null }>>(
+  async () => ({ generationOptions: null }),
+);
 const update = vi.fn<(arg: UpdateArg) => Promise<void>>(async () => undefined);
 
 vi.mock("@/lib/prisma", () => ({
-  withPrisma: async <T,>(cb: (prisma: unknown) => Promise<T>) => {
+  withPrisma: async <T>(cb: (prisma: unknown) => Promise<T>) => {
     const prisma = {
       forgeRun: { findUnique, update },
     };

@@ -22,11 +22,7 @@ export interface DashboardImproveDiff {
 }
 
 export type DashboardRecommendationClassification = "reuse" | "improve" | "new";
-export type PersistedDashboardRecommendationType =
-  | "reuse"
-  | "new"
-  | "enhancement"
-  | "replacement";
+export type PersistedDashboardRecommendationType = "reuse" | "new" | "enhancement" | "replacement";
 
 export function toPersistedDashboardRecommendationType(
   classification: DashboardRecommendationClassification,
@@ -207,15 +203,12 @@ function same(left: unknown, right: unknown): boolean {
 }
 
 function stable<T>(items: T[], name: (item: T) => string): T[] {
-  return [...items].sort((left, right) => identity(name(left)).localeCompare(identity(name(right))));
+  return [...items].sort((left, right) =>
+    identity(name(left)).localeCompare(identity(name(right))),
+  );
 }
 
-function additive<T>(
-  kind: string,
-  existing: T[],
-  desired: T[],
-  name: (item: T) => string,
-): T[] {
+function additive<T>(kind: string, existing: T[], desired: T[], name: (item: T) => string): T[] {
   const existingByName = new Map(existing.map((item) => [identity(name(item)), item]));
   const desiredByName = new Map<string, T>();
   for (const item of desired) {

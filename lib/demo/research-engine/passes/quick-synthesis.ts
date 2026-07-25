@@ -45,8 +45,7 @@ export async function runQuickSynthesis(
     ? `Division: ${scope.division ?? "Full Enterprise"}\nFunctional Focus: ${scope.functionalFocus?.join(", ") ?? "All"}\nDepartments: ${scope.departments?.join(", ") ?? "All"}\nObjective: ${scope.demoObjective ?? "General demo"}`
     : "Full Enterprise -- no scope restrictions.";
 
-  const prompt = QUICK_SYNTHESIS_PROMPT
-    .replace("{customer_name}", customerName)
+  const prompt = QUICK_SYNTHESIS_PROMPT.replace("{customer_name}", customerName)
     .replace("{industry_name}", industryName)
     .replace("{outcome_map_context}", outcomeMapContext.slice(0, 8_000))
     .replace("{website_text}", websiteText.slice(0, 6_000))

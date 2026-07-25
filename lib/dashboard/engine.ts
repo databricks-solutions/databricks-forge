@@ -869,7 +869,7 @@ function mergeDashboardAdditions(
   existing: DashboardDesignV2,
   generated: DashboardDesignV2,
 ): DashboardDesignV2 {
-  const mergeNamed = <T,>(current: T[], additions: T[], name: (item: T) => string): T[] => {
+  const mergeNamed = <T>(current: T[], additions: T[], name: (item: T) => string): T[] => {
     const byName = new Map(additions.map((item) => [name(item).toLowerCase(), item]));
     return [
       ...current.map((item) => byName.get(name(item).toLowerCase()) ?? item),
@@ -903,10 +903,7 @@ function mergeDashboardAdditions(
     }),
     globalFilters: mergeNamed(
       existing.globalFilters,
-      [
-        ...generated.globalFilters,
-        ...generated.pages.flatMap((page) => page.filters),
-      ],
+      [...generated.globalFilters, ...generated.pages.flatMap((page) => page.filters)],
       (filter) => filter.title,
     ),
   };
@@ -1021,10 +1018,7 @@ async function processDomain(
         desiredMerged,
         existingDashboard.liveSerializedFingerprint,
       );
-      designToValidate = applyDashboardImproveDiff(
-        existingDashboard.dashboardDesign,
-        improveDiff,
-      );
+      designToValidate = applyDashboardImproveDiff(existingDashboard.dashboardDesign, improveDiff);
     } catch (error) {
       const message =
         error instanceof DashboardImproveConflictError
@@ -1036,12 +1030,9 @@ async function processDomain(
         failure: {
           domain: group.domain,
           evidence: [
-            evidenceFailed(
-              "dashboard_improve",
-              "DASHBOARD_IMPROVE_CONFLICT",
-              message,
-              { artifactRef: `dashboard:${existingDashboard.dashboardId}` },
-            ),
+            evidenceFailed("dashboard_improve", "DASHBOARD_IMPROVE_CONFLICT", message, {
+              artifactRef: `dashboard:${existingDashboard.dashboardId}`,
+            }),
           ],
         },
       };

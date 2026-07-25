@@ -60,12 +60,12 @@ vi.mock("@/lib/dashboard/deploy-lifecycle", () => {
     DashboardReadBackValidationError,
     DashboardScopeUnsupportedError,
     DashboardDraftReadBackDisabledError: class DashboardDraftReadBackDisabledError extends Error {
-    readonly code = "DASHBOARD_DRAFT_READBACK_DISABLED";
+      readonly code = "DASHBOARD_DRAFT_READBACK_DISABLED";
     },
     DashboardMutationUntrackableError: class DashboardMutationUntrackableError extends Error {
-    readonly code = "DASHBOARD_MUTATION_OBSERVED_UNTRACKABLE";
-    readonly mutationObserved = true;
-    readonly trackable = false;
+      readonly code = "DASHBOARD_MUTATION_OBSERVED_UNTRACKABLE";
+      readonly mutationObserved = true;
+      readonly trackable = false;
     },
   };
 });
@@ -282,8 +282,7 @@ describe("dashboard deploy route auth and server-owned fields", () => {
 
     expect(response.status).toBe(500);
     expect(body).toMatchObject({
-      error:
-        "Lakeview create dashboard failed (403): Service principal cannot create dashboards",
+      error: "Lakeview create dashboard failed (403): Service principal cannot create dashboards",
     });
     expect(mocks.trackCreated).not.toHaveBeenCalled();
     expect(mocks.updateRecommendationPublication).not.toHaveBeenCalled();
@@ -672,34 +671,21 @@ describe("dashboard deploy route auth and server-owned fields", () => {
       publicationStatus: "publish_failed",
       error: "publish denied",
     });
-    expect(mocks.logActivity).toHaveBeenCalledWith(
-      "dashboard_draft_deployed",
-      expect.any(Object),
-    );
-    expect(mocks.logActivity).toHaveBeenCalledWith(
-      "dashboard_publish_failed",
-      expect.any(Object),
-    );
+    expect(mocks.logActivity).toHaveBeenCalledWith("dashboard_draft_deployed", expect.any(Object));
+    expect(mocks.logActivity).toHaveBeenCalledWith("dashboard_publish_failed", expect.any(Object));
   });
 
   it("records read-back failure only after retaining the draft outcome", async () => {
-    const { DashboardReadBackValidationError } = await import(
-      "@/lib/dashboard/deploy-lifecycle"
-    );
+    const { DashboardReadBackValidationError } = await import("@/lib/dashboard/deploy-lifecycle");
     mocks.deployLifecycle.mockRejectedValueOnce(
-      new DashboardReadBackValidationError(
-        "dash-1",
-        "Sales dashboard",
-        "read-back mismatch",
-        [
-          {
-            stage: "dashboard_read_back",
-            status: "failed",
-            code: "DASHBOARD_READ_BACK_FAILED",
-            message: "read-back mismatch",
-          },
-        ],
-      ),
+      new DashboardReadBackValidationError("dash-1", "Sales dashboard", "read-back mismatch", [
+        {
+          stage: "dashboard_read_back",
+          status: "failed",
+          code: "DASHBOARD_READ_BACK_FAILED",
+          message: "read-back mismatch",
+        },
+      ]),
     );
 
     const response = await POST(
@@ -739,15 +725,10 @@ describe("dashboard deploy route auth and server-owned fields", () => {
     ).toHaveLength(1);
   });
 
-  it.each([
-    ["unexpected-response-id"],
-    [undefined],
-  ])(
+  it.each([["unexpected-response-id"], [undefined]])(
     "anchors partial update tracking to expected ID when observed ID is %s",
     async (observedDashboardId) => {
-      const { DashboardReadBackValidationError } = await import(
-        "@/lib/dashboard/deploy-lifecycle"
-      );
+      const { DashboardReadBackValidationError } = await import("@/lib/dashboard/deploy-lifecycle");
       mocks.listTrackedDashboards.mockResolvedValueOnce([
         {
           id: "tracking-row-1",
@@ -788,9 +769,7 @@ describe("dashboard deploy route auth and server-owned fields", () => {
         expect.objectContaining({ id: "tracking-row-1" }),
       );
       expect(mocks.trackUpdated.mock.calls[0][0]).not.toHaveProperty("dashboardId");
-      expect(JSON.stringify(mocks.trackUpdated.mock.calls)).not.toContain(
-        "unexpected-response-id",
-      );
+      expect(JSON.stringify(mocks.trackUpdated.mock.calls)).not.toContain("unexpected-response-id");
     },
   );
 
@@ -817,8 +796,7 @@ describe("dashboard deploy route auth and server-owned fields", () => {
       success: false,
       dashboardId: "dash-created",
       publicationStatus: "draft",
-      dashboardUrl:
-        "https://example.cloud.databricks.com/sql/dashboardsv3/dash-created",
+      dashboardUrl: "https://example.cloud.databricks.com/sql/dashboardsv3/dash-created",
     });
     expect(mocks.trackCreated).toHaveBeenCalledWith(
       expect.any(String),
@@ -832,13 +810,10 @@ describe("dashboard deploy route auth and server-owned fields", () => {
   });
 
   it("returns an explicit feature-disabled response without persisted outcomes", async () => {
-    const { DashboardDraftReadBackDisabledError } = await import(
-      "@/lib/dashboard/deploy-lifecycle"
-    );
+    const { DashboardDraftReadBackDisabledError } =
+      await import("@/lib/dashboard/deploy-lifecycle");
     mocks.deployLifecycle.mockRejectedValueOnce(
-      new DashboardDraftReadBackDisabledError(
-        "Dashboard publication requires draft read-back.",
-      ),
+      new DashboardDraftReadBackDisabledError("Dashboard publication requires draft read-back."),
     );
 
     const response = await POST(
@@ -861,9 +836,7 @@ describe("dashboard deploy route auth and server-owned fields", () => {
   });
 
   it("reports mutation-observed untrackable failures without claiming no mutation", async () => {
-    const { DashboardMutationUntrackableError } = await import(
-      "@/lib/dashboard/deploy-lifecycle"
-    );
+    const { DashboardMutationUntrackableError } = await import("@/lib/dashboard/deploy-lifecycle");
     mocks.deployLifecycle.mockRejectedValueOnce(
       new DashboardMutationUntrackableError(
         "Dashboard mutation was observed, but its response did not contain dashboard_id.",

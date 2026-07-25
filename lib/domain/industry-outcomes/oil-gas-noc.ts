@@ -196,7 +196,13 @@ export const OIL_GAS_NOC: IndustryOutcome = {
                 "Failure Mode Catalogue",
                 "Remaining Useful Life Predictions",
               ],
-              typicalSourceSystems: ["SCADA", "CMMS", "Historian", "Condition Monitoring", "IoT Platform"],
+              typicalSourceSystems: [
+                "SCADA",
+                "CMMS",
+                "Historian",
+                "Condition Monitoring",
+                "IoT Platform",
+              ],
             },
             {
               name: "Pipeline & Asset Integrity Management",
@@ -225,7 +231,11 @@ export const OIL_GAS_NOC: IndustryOutcome = {
             "Maintenance cost savings",
             "Loss of primary containment events",
           ],
-          personas: ["VP Asset Integrity", "Head of Maintenance & Reliability", "Chief Operating Officer"],
+          personas: [
+            "VP Asset Integrity",
+            "Head of Maintenance & Reliability",
+            "Chief Operating Officer",
+          ],
         },
         {
           name: "Process Safety & Environmental Compliance",
@@ -298,10 +308,20 @@ export const OIL_GAS_NOC: IndustryOutcome = {
                 "Train Availability",
                 "Specific Energy Metrics",
               ],
-              typicalSourceSystems: ["Plant Historian", "DCS", "Digital Twin", "Maintenance System"],
+              typicalSourceSystems: [
+                "Plant Historian",
+                "DCS",
+                "Digital Twin",
+                "Maintenance System",
+              ],
             },
           ],
-          kpis: ["Train availability", "LNG throughput", "Specific energy / tonne", "Unplanned trips"],
+          kpis: [
+            "Train availability",
+            "LNG throughput",
+            "Specific energy / tonne",
+            "Unplanned trips",
+          ],
           personas: ["LNG Plant Manager", "VP LNG", "Head of Operations"],
         },
         {
@@ -328,7 +348,12 @@ export const OIL_GAS_NOC: IndustryOutcome = {
               ],
             },
           ],
-          kpis: ["Fleet utilisation", "Boil-off loss", "Demurrage cost", "Delivered margin / cargo"],
+          kpis: [
+            "Fleet utilisation",
+            "Boil-off loss",
+            "Demurrage cost",
+            "Delivered margin / cargo",
+          ],
           personas: ["VP Shipping", "Head of LNG Marketing & Trading", "Fleet Operations Manager"],
         },
       ],
@@ -370,7 +395,12 @@ export const OIL_GAS_NOC: IndustryOutcome = {
                 "Spares & Materials",
                 "Historical Turnaround Performance",
               ],
-              typicalSourceSystems: ["CMMS / EAM", "Inspection Data Store", "Project Scheduling", "ERP"],
+              typicalSourceSystems: [
+                "CMMS / EAM",
+                "Inspection Data Store",
+                "Project Scheduling",
+                "ERP",
+              ],
             },
           ],
           kpis: [
@@ -455,7 +485,12 @@ export const OIL_GAS_NOC: IndustryOutcome = {
                 "ESG Metrics",
                 "Disclosure Templates",
               ],
-              typicalSourceSystems: ["CEMS", "ERP", "Sustainability Platform", "Supply Chain System"],
+              typicalSourceSystems: [
+                "CEMS",
+                "ERP",
+                "Sustainability Platform",
+                "Supply Chain System",
+              ],
             },
             {
               name: "CCUS & Hydrogen Optimization",
@@ -502,7 +537,12 @@ export const OIL_GAS_NOC: IndustryOutcome = {
                 "Budget Plans",
                 "Scenario Definitions",
               ],
-              typicalSourceSystems: ["ERP", "Trading Platform", "Planning System", "Market Data Feeds"],
+              typicalSourceSystems: [
+                "ERP",
+                "Trading Platform",
+                "Planning System",
+                "Market Data Feeds",
+              ],
             },
             {
               name: "OT/IT Cyber & Critical-Infrastructure Protection",
@@ -517,7 +557,12 @@ export const OIL_GAS_NOC: IndustryOutcome = {
                 "Threat Intelligence",
                 "Asset / Control-System Inventory",
               ],
-              typicalSourceSystems: ["SIEM", "OT Security Platform", "Identity Provider", "Threat Intel Feeds"],
+              typicalSourceSystems: [
+                "SIEM",
+                "OT Security Platform",
+                "Identity Provider",
+                "Threat Intel Feeds",
+              ],
             },
           ],
           kpis: [
@@ -526,7 +571,11 @@ export const OIL_GAS_NOC: IndustryOutcome = {
             "Mean time to detect/respond (cyber)",
             "Critical-infrastructure incidents",
           ],
-          personas: ["Chief Financial Officer", "Chief Information Security Officer", "Chief Digital Officer"],
+          personas: [
+            "Chief Financial Officer",
+            "Chief Information Security Officer",
+            "Chief Digital Officer",
+          ],
         },
       ],
     },

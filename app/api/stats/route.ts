@@ -43,10 +43,7 @@ export async function GET(request: NextRequest) {
     if (!stats) {
       // Run id was supplied but the caller has no read access (or it doesn't
       // exist). 404 keeps the API consistent with the run-detail guard.
-      return NextResponse.json(
-        { error: "Run not found or not accessible" },
-        { status: 404 },
-      );
+      return NextResponse.json({ error: "Run not found or not accessible" }, { status: 404 });
     }
 
     return NextResponse.json(stats, {

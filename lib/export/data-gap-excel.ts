@@ -272,9 +272,7 @@ function buildCoverageSheet(wb: ExcelJS.Workbook, coverage: AssetCoverage[]): vo
   styleHeaderRow(sheet);
   coverage.forEach((row) => {
     const top: IngestionRecommendation | undefined = row.recommendations[0];
-    const sources = (row.resolvedSourceSystems ?? [])
-      .map((s) => renderSourceForCell(s))
-      .join("\n");
+    const sources = (row.resolvedSourceSystems ?? []).map((s) => renderSourceForCell(s)).join("\n");
     const originList = (row.resolvedSourceSystems ?? [])
       .map((s) => ORIGIN_LABEL[s.origin] ?? s.origin)
       .join(", ");
@@ -288,9 +286,7 @@ function buildCoverageSheet(wb: ExcelJS.Workbook, coverage: AssetCoverage[]): vo
       va: row.vaUseCaseCount,
       sources: sources || "--",
       origin: originList || "--",
-      recommended: top
-        ? (STRATEGY_LABEL[top.strategy] ?? top.strategy) + ` (${top.rating})`
-        : "--",
+      recommended: top ? (STRATEGY_LABEL[top.strategy] ?? top.strategy) + ` (${top.rating})` : "--",
       rationale: top?.rationale ?? "",
     });
   });
@@ -298,9 +294,7 @@ function buildCoverageSheet(wb: ExcelJS.Workbook, coverage: AssetCoverage[]): vo
   // Paint Status column green for Present, amber for Missing
   for (let r = 2; r <= (sheet.lastRow?.number ?? 1); r++) {
     const status = sheet.getCell(r, 4).value;
-    paintCells(sheet, [
-      { row: r, col: 4, argb: status === "Present" ? GREEN_FILL : AMBER_FILL },
-    ]);
+    paintCells(sheet, [{ row: r, col: 4, argb: status === "Present" ? GREEN_FILL : AMBER_FILL }]);
   }
 }
 
@@ -401,10 +395,7 @@ function buildSummarySheet(wb: ExcelJS.Workbook, result: DataGapResult): void {
     ["Assets Missing", result.summary.missingAssets],
     ["MC Requirements Satisfied", result.summary.mcCovered],
     ["MC Requirements Missing", result.summary.mcMissing],
-    [
-      "MC Coverage %",
-      `${(result.summary.mcCoveragePct * 100).toFixed(1)}%`,
-    ],
+    ["MC Coverage %", `${(result.summary.mcCoveragePct * 100).toFixed(1)}%`],
     ["VA Requirements Satisfied", result.summary.vaCovered],
     ["VA Requirements Missing", result.summary.vaMissing],
     ["Total Annual Value at Risk (Low)", result.summary.valueAtRiskLow],

@@ -46,13 +46,7 @@ interface RelationshipsResponse {
  * aggregated across ALL of the program's completed member scans (never just the
  * latest/diagnosis scan).
  */
-export function RelationshipsView({
-  scanId,
-  programId,
-}: {
-  scanId?: string;
-  programId?: string;
-}) {
+export function RelationshipsView({ scanId, programId }: { scanId?: string; programId?: string }) {
   const t = useTranslations("estate_explorer.relationships");
   const l10n = useL10n();
   const [data, setData] = useState<RelationshipsResponse | null>(null);
@@ -133,10 +127,30 @@ export function RelationshipsView({
 
   const { summary } = data;
   const stats: Array<{ key: Filter; label: string; value: number; hint: string }> = [
-    { key: "all", label: t("stats.all"), value: summary.total, hint: t("connectedTables", { count: summary.connectedTables }) },
-    { key: "crossDomain", label: t("stats.crossDomain"), value: summary.crossDomain, hint: t("hints.crossDomain") },
-    { key: "crossCatalog", label: t("stats.crossCatalog"), value: summary.crossCatalog, hint: t("hints.crossCatalog") },
-    { key: "crossSchema", label: t("stats.crossSchema"), value: summary.crossSchema, hint: t("hints.crossSchema") },
+    {
+      key: "all",
+      label: t("stats.all"),
+      value: summary.total,
+      hint: t("connectedTables", { count: summary.connectedTables }),
+    },
+    {
+      key: "crossDomain",
+      label: t("stats.crossDomain"),
+      value: summary.crossDomain,
+      hint: t("hints.crossDomain"),
+    },
+    {
+      key: "crossCatalog",
+      label: t("stats.crossCatalog"),
+      value: summary.crossCatalog,
+      hint: t("hints.crossCatalog"),
+    },
+    {
+      key: "crossSchema",
+      label: t("stats.crossSchema"),
+      value: summary.crossSchema,
+      hint: t("hints.crossSchema"),
+    },
   ];
 
   return (
@@ -192,7 +206,10 @@ export function RelationshipsView({
                       )}
                     </TableCell>
                     <TableCell>
-                      <ArrowRight aria-hidden="true" className="h-3.5 w-3.5 text-muted-foreground" />
+                      <ArrowRight
+                        aria-hidden="true"
+                        className="h-3.5 w-3.5 text-muted-foreground"
+                      />
                     </TableCell>
                     <TableCell className="font-mono text-xs">
                       <div className="truncate max-w-[220px]" title={e.target}>

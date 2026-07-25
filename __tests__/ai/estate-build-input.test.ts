@@ -12,7 +12,7 @@ vi.mock("@/lib/lakebase/data-gap-analyses", () => ({
   getLatestDataGapAnalysisForScan: (...a: unknown[]) => getLatestDataGapAnalysisForScan(...a),
 }));
 vi.mock("@/lib/prisma", () => ({
-  withPrisma: async <T,>(cb: (prisma: unknown) => Promise<T>) =>
+  withPrisma: async <T>(cb: (prisma: unknown) => Promise<T>) =>
     cb({
       forgeEstateProgram: { findUnique },
       forgeWafAssessment: { findFirst },
@@ -41,10 +41,19 @@ function baseScan() {
       },
     ],
     histories: [
-      { tableFqn: "main.sales.customer", lastWriteTimestamp: "2026-05-20T00:00:00Z", healthScore: 90 },
+      {
+        tableFqn: "main.sales.customer",
+        lastWriteTimestamp: "2026-05-20T00:00:00Z",
+        healthScore: 90,
+      },
     ],
     insights: [
-      { insightType: "analytics_maturity", tableFqn: null, payloadJson: JSON.stringify({ overallScore: 55 }), severity: "info" },
+      {
+        insightType: "analytics_maturity",
+        tableFqn: null,
+        payloadJson: JSON.stringify({ overallScore: 55 }),
+        severity: "info",
+      },
     ],
   };
 }
@@ -106,7 +115,11 @@ describe("buildSynthesisInputForScan", () => {
       },
     });
     const inp = await buildSynthesisInputForScan("scan-1", "u@x.com");
-    expect(inp!.dataGap).toMatchObject({ industryId: "retail", missingAssets: 4, valueAtRiskMid: 20 });
+    expect(inp!.dataGap).toMatchObject({
+      industryId: "retail",
+      missingAssets: 4,
+      valueAtRiskMid: 20,
+    });
     expect(inp!.industryName).toBe("Retail");
   });
 

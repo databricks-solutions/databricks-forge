@@ -3,15 +3,11 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 const updateMany = vi.fn();
 
 vi.mock("@/lib/prisma", () => ({
-  withPrisma: async <T,>(cb: (prisma: unknown) => Promise<T>) =>
+  withPrisma: async <T>(cb: (prisma: unknown) => Promise<T>) =>
     cb({ forgeEstateProgramScope: { updateMany } }),
 }));
 
-import {
-  pauseScopes,
-  resumeScopes,
-  cancelScopes,
-} from "@/lib/lakebase/estate-programs";
+import { pauseScopes, resumeScopes, cancelScopes } from "@/lib/lakebase/estate-programs";
 
 describe("estate scope state machine", () => {
   beforeEach(() => {

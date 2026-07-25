@@ -19,12 +19,7 @@
 
 import { retrieveContext } from "@/lib/embeddings/retriever";
 import type { Logger } from "@/lib/ports/logger";
-import type {
-  Evidence,
-  ExecutiveBrief,
-  PersonaTalkTrack,
-  ResearchEngineResult,
-} from "../types";
+import type { Evidence, ExecutiveBrief, PersonaTalkTrack, ResearchEngineResult } from "../types";
 
 // Raised from 0.55 -- combined with enforceSourcePriority=true we'd rather
 // downgrade a claim to "inferred" than attach it to a mediocre, stale
@@ -90,13 +85,8 @@ async function tryAttachQuote(
       const top = chunks[0];
       const md = (top.metadata ?? {}) as Record<string, unknown>;
       const sourceTitle =
-        (typeof md.sourceTitle === "string" && md.sourceTitle) ||
-        ev.sourceTitle ||
-        "Source";
-      const sourceUrl =
-        (typeof md.sourceUrl === "string" && md.sourceUrl) ||
-        ev.sourceUrl ||
-        "";
+        (typeof md.sourceTitle === "string" && md.sourceTitle) || ev.sourceTitle || "Source";
+      const sourceUrl = (typeof md.sourceUrl === "string" && md.sourceUrl) || ev.sourceUrl || "";
       const sourcePublishedAt =
         typeof md.publishedAt === "string" ? md.publishedAt : ev.sourcePublishedAt;
       const sourcePublishedYear =

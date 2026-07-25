@@ -7,10 +7,7 @@
  */
 
 import { withPrisma } from "@/lib/prisma";
-import type {
-  MetricViewDefinition,
-  MetricViewProposal,
-} from "@/lib/metric-views/types";
+import type { MetricViewDefinition, MetricViewProposal } from "@/lib/metric-views/types";
 import { proposalToDefinition } from "@/lib/metric-views/legacy-adapter";
 import { parseMetricViewYaml } from "@/lib/metric-views/parser";
 import { serializeMetricViewYaml } from "@/lib/metric-views/serializer";
@@ -27,9 +24,7 @@ import {
   parseMetricViewImproveDiff,
   type MetricViewImproveDiff,
 } from "@/lib/metric-views/improve-diff";
-import {
-  promoteSemanticAssetManifest,
-} from "@/lib/semantic-assets/manifest";
+import { promoteSemanticAssetManifest } from "@/lib/semantic-assets/manifest";
 import { validateFqn } from "@/lib/validation";
 
 // ---------------------------------------------------------------------------
@@ -97,9 +92,7 @@ function parseStoredDefinition(
       throw new Error("Stored metric view definition has no valid name.");
     }
     const definitionName = (unknownDefinition as { name: string }).name;
-    const canonicalYaml = serializeMetricViewYaml(
-      unknownDefinition as MetricViewDefinition,
-    );
+    const canonicalYaml = serializeMetricViewYaml(unknownDefinition as MetricViewDefinition);
     return parseMetricViewYaml(canonicalYaml, definitionName);
   } catch {
     return null;
@@ -119,8 +112,7 @@ function serializeStoredDefinition(
   }
 }
 
-const DEFINITION_INTEGRITY_ISSUE =
-  "Typed metric view definition is unavailable or corrupt.";
+const DEFINITION_INTEGRITY_ISSUE = "Typed metric view definition is unavailable or corrupt.";
 
 type FailClosedStatus = Exclude<MetricViewProposal["validationStatus"], "valid">;
 
@@ -142,9 +134,7 @@ function failClosedValidation(
     validationIssues: [...new Set([...issues, message])],
     validatorVersion: null,
     validationEvidence: [
-      ...evidence.filter(
-        (entry) => entry.status !== "passed" && entry.code !== code,
-      ),
+      ...evidence.filter((entry) => entry.status !== "passed" && entry.code !== code),
       evidenceSkipped("metric_view_integrity", code, message),
     ],
     validatedAt: null,
@@ -166,9 +156,7 @@ function normalizeProposalForPersistence(proposal: MetricViewProposal): {
     const failedClosed = failClosedValidation(
       proposal.validationIssues,
       proposal.validationEvidence ?? [],
-      definitionJson
-        ? "METRIC_VIEW_VALID_PROVENANCE_REQUIRED"
-        : "METRIC_VIEW_DEFINITION_REQUIRED",
+      definitionJson ? "METRIC_VIEW_VALID_PROVENANCE_REQUIRED" : "METRIC_VIEW_DEFINITION_REQUIRED",
       message,
     );
     return {
@@ -273,8 +261,7 @@ function dbRowToStored(row: {
       }
       const recomputed = applyMetricViewImproveDiff(improveBaseDefinition, improveDiff);
       if (
-        fingerprintMetricViewDefinition(recomputed) !==
-        fingerprintMetricViewDefinition(definition)
+        fingerprintMetricViewDefinition(recomputed) !== fingerprintMetricViewDefinition(definition)
       ) {
         throw new Error("artifact drift");
       }
@@ -283,22 +270,23 @@ function dbRowToStored(row: {
       improveDiff = null;
     }
   }
-  const mappedValidation = definition && improvementBindingValid
-    ? {
-        validationStatus: row.validationStatus ?? "pending",
-        validationIssues,
-        validatorVersion: row.validatorVersion,
-        validationEvidence,
-        validatedAt: row.validatedAt?.toISOString() ?? null,
-      }
-    : failClosedValidation(
-        validationIssues,
-        validationEvidence,
-        "METRIC_VIEW_DEFINITION_UNAVAILABLE",
-        improvementBindingValid
-          ? DEFINITION_INTEGRITY_ISSUE
-          : "Metric view improvement binding is unavailable, corrupt, or drifted.",
-      );
+  const mappedValidation =
+    definition && improvementBindingValid
+      ? {
+          validationStatus: row.validationStatus ?? "pending",
+          validationIssues,
+          validatorVersion: row.validatorVersion,
+          validationEvidence,
+          validatedAt: row.validatedAt?.toISOString() ?? null,
+        }
+      : failClosedValidation(
+          validationIssues,
+          validationEvidence,
+          "METRIC_VIEW_DEFINITION_UNAVAILABLE",
+          improvementBindingValid
+            ? DEFINITION_INTEGRITY_ISSUE
+            : "Metric view improvement binding is unavailable, corrupt, or drifted.",
+        );
 
   return {
     id: row.id,
@@ -317,9 +305,7 @@ function dbRowToStored(row: {
     rationale: row.rationale,
     existingFqn: row.existingFqn,
     improveDiff,
-    ...(improvementBindingValid && improveBaseDefinition
-      ? { improveBaseDefinition }
-      : {}),
+    ...(improvementBindingValid && improveBaseDefinition ? { improveBaseDefinition } : {}),
     ...mappedValidation,
     deploymentStatus: row.deploymentStatus,
     deployedFqn: row.deployedFqn,
@@ -369,8 +355,7 @@ export async function saveMetricViewProposals(
 
         await tx.forgeMetricViewProposal.createMany({
           data: proposals.map((inputProposal, idx) => {
-            const { proposal: p, definitionJson } =
-              normalizeProposalForPersistence(inputProposal);
+            const { proposal: p, definitionJson } = normalizeProposalForPersistence(inputProposal);
             return {
               id: runId
                 ? `${runId}_mv_${slug(domain ?? schemaScope)}_${idx}`
@@ -515,9 +500,7 @@ export async function updateDeploymentStatus(
   status: "failed" | "proposed",
 ): Promise<void> {
   if ((status as string) === "deployed") {
-    throw new Error(
-      "Successful metric view deployments must use promoteMetricViewDeployment",
-    );
+    throw new Error("Successful metric view deployments must use promoteMetricViewDeployment");
   }
   await withPrisma(async (prisma) => {
     await prisma.forgeMetricViewProposal.update({
@@ -547,7 +530,9 @@ function promoteManifestAsset(
   },
   deployedFqn: string,
 ): string {
-  const manifest = JSON.parse(manifestJson) as import("@/lib/semantic-assets/types").SemanticAssetManifest;
+  const manifest = JSON.parse(
+    manifestJson,
+  ) as import("@/lib/semantic-assets/types").SemanticAssetManifest;
   if (manifest.version !== "1" || !Array.isArray(manifest.metricViews)) {
     throw new Error("Persisted semantic manifest is missing or malformed");
   }
@@ -587,10 +572,7 @@ function promoteManifestAsset(
  * Atomically marks a successfully-created metric view as deployed and promotes
  * its run/domain semantic manifest to the observed live FQN.
  */
-export async function promoteMetricViewDeployment(
-  id: string,
-  deployedFqn: string,
-): Promise<void> {
+export async function promoteMetricViewDeployment(id: string, deployedFqn: string): Promise<void> {
   const validatedFqn = validateFqn(deployedFqn, "deployed metric view");
   await withPrisma(async (prisma) => {
     await prisma.$transaction(async (tx) => {
@@ -715,39 +697,34 @@ export async function updateMetricViewProposal(
             : (failedClosed?.validationStatus ?? data.validationStatus),
         }),
         ...((data.validationIssues !== undefined || failedClosed) && {
-          validationIssues: JSON.stringify(
-            failedClosed?.validationIssues ?? data.validationIssues,
-          ),
+          validationIssues: JSON.stringify(failedClosed?.validationIssues ?? data.validationIssues),
         }),
         ...((data.validatorVersion !== undefined ||
           failedClosed ||
           definitionMutationInvalidatesProvenance) && {
           validatorVersion:
-            failedClosed || definitionMutationInvalidatesProvenance
-              ? null
-              : data.validatorVersion,
+            failedClosed || definitionMutationInvalidatesProvenance ? null : data.validatorVersion,
         }),
         ...((data.validationEvidence !== undefined ||
           failedClosed ||
           definitionMutationInvalidatesProvenance) && {
-          validationEvidenceJson:
-            definitionMutationInvalidatesProvenance
-              ? null
-              : failedClosed
+          validationEvidenceJson: definitionMutationInvalidatesProvenance
+            ? null
+            : failedClosed
               ? JSON.stringify(compactValidationEvidence(failedClosed.validationEvidence))
               : data.validationEvidence === null
-              ? null
-              : JSON.stringify(compactValidationEvidence(data.validationEvidence)),
+                ? null
+                : JSON.stringify(compactValidationEvidence(data.validationEvidence)),
         }),
         ...((data.validatedAt !== undefined ||
           failedClosed ||
           definitionMutationInvalidatesProvenance) && {
           validatedAt:
             failedClosed || definitionMutationInvalidatesProvenance
-            ? null
-            : data.validatedAt === null
               ? null
-              : new Date(data.validatedAt!),
+              : data.validatedAt === null
+                ? null
+                : new Date(data.validatedAt!),
         }),
       },
     });

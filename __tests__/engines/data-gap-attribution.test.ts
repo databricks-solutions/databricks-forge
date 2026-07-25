@@ -38,11 +38,7 @@ function makeAsset(id: string, family = "F"): ReferenceDataAsset {
   };
 }
 
-function makeRefUc(
-  name: string,
-  mcAssets: string[],
-  vaAssets: string[] = [],
-): MasterRepoUseCase {
+function makeRefUc(name: string, mcAssets: string[], vaAssets: string[] = []): MasterRepoUseCase {
   const dataAssetIds = [...mcAssets, ...vaAssets];
   const dataAssetCriticality: Record<string, "MC" | "VA"> = {};
   for (const id of mcAssets) dataAssetCriticality[id] = "MC";
@@ -80,10 +76,7 @@ describe("findReferenceMatch", () => {
 
   it("matches via substring containment when fuzzy threshold is missed (tier 3)", () => {
     // "Real-Time Fraud Detection" sits inside the longer LLM title.
-    const m = findReferenceMatch(
-      "AI-Powered Real-Time Fraud Detection across Channels",
-      refs,
-    );
+    const m = findReferenceMatch("AI-Powered Real-Time Fraud Detection across Channels", refs);
     expect(m?.name).toBe("Real-Time Fraud Detection");
   });
 
@@ -105,9 +98,7 @@ describe("attributeTablesToAssets", () => {
   it("propagates ALL MC asset ids to every table -- not just the first", () => {
     // The pre-fix implementation kept only the first MC asset per table.
     // Ensure both MC assets now flow through.
-    const enrichment = makeEnrichment([
-      makeRefUc("Demand Forecasting", ["MC1", "MC2"], ["VA1"]),
-    ]);
+    const enrichment = makeEnrichment([makeRefUc("Demand Forecasting", ["MC1", "MC2"], ["VA1"])]);
 
     const out = attributeTablesToAssets({
       useCases: [{ name: "Demand Forecasting", tablesInvolved: ["cat.s.t1"] }],
@@ -123,9 +114,7 @@ describe("attributeTablesToAssets", () => {
   it("dedupes (fqn, assetId) pairs across multiple matched UCs", () => {
     // Two generated UCs hit the same ref UC and share a table; we must not
     // double-count the table on the asset coverage row.
-    const enrichment = makeEnrichment([
-      makeRefUc("Demand Forecasting", ["MC1"]),
-    ]);
+    const enrichment = makeEnrichment([makeRefUc("Demand Forecasting", ["MC1"])]);
 
     const out = attributeTablesToAssets({
       useCases: [
@@ -142,9 +131,7 @@ describe("attributeTablesToAssets", () => {
 
   it("ignores generated UCs that have no Mission-Critical asset in the matched ref", () => {
     // VA-only matches do not contribute to MC coverage attribution.
-    const enrichment = makeEnrichment([
-      makeRefUc("VA-Only Pattern", [], ["VA1"]),
-    ]);
+    const enrichment = makeEnrichment([makeRefUc("VA-Only Pattern", [], ["VA1"])]);
     const out = attributeTablesToAssets({
       useCases: [{ name: "VA-Only Pattern", tablesInvolved: ["cat.s.t1"] }],
       enrichment,
@@ -182,9 +169,7 @@ describe("attributeTablesToAssets", () => {
   it("returns no rows when no generated UC names match any reference", () => {
     const enrichment = makeEnrichment([makeRefUc("Demand Forecasting", ["MC1"])]);
     const out = attributeTablesToAssets({
-      useCases: [
-        { name: "Climate Risk Stress Testing", tablesInvolved: ["cat.s.t1"] },
-      ],
+      useCases: [{ name: "Climate Risk Stress Testing", tablesInvolved: ["cat.s.t1"] }],
       enrichment,
     });
     expect(out).toEqual([]);
@@ -211,9 +196,7 @@ describe("attributeTablesToAssets", () => {
     // The customer-facing name shares NO meaningful tokens with the
     // reference title; the fuzzy ladder would return null. The persisted
     // FK rescues the attribution.
-    const enrichment = makeEnrichment([
-      makeRefUc("Customer Lifetime Value Modeling", ["MC1"]),
-    ]);
+    const enrichment = makeEnrichment([makeRefUc("Customer Lifetime Value Modeling", ["MC1"])]);
     const out = attributeTablesToAssets({
       useCases: [
         {
@@ -228,9 +211,7 @@ describe("attributeTablesToAssets", () => {
   });
 
   it("resolves persisted `referenceUseCaseName` case-insensitively", () => {
-    const enrichment = makeEnrichment([
-      makeRefUc("Customer Lifetime Value Modeling", ["MC1"]),
-    ]);
+    const enrichment = makeEnrichment([makeRefUc("Customer Lifetime Value Modeling", ["MC1"])]);
     const out = attributeTablesToAssets({
       useCases: [
         {
@@ -245,9 +226,7 @@ describe("attributeTablesToAssets", () => {
   });
 
   it("falls back to fuzzy match when `referenceUseCaseName` is null (legacy row)", () => {
-    const enrichment = makeEnrichment([
-      makeRefUc("Customer Lifetime Value Modeling", ["MC1"]),
-    ]);
+    const enrichment = makeEnrichment([makeRefUc("Customer Lifetime Value Modeling", ["MC1"])]);
     const out = attributeTablesToAssets({
       useCases: [
         {
@@ -264,9 +243,7 @@ describe("attributeTablesToAssets", () => {
   it("falls back to fuzzy match when `referenceUseCaseName` points at an unknown title", () => {
     // Defensive: an LLM-emitted name that doesn't exist in this run's
     // master repo should not silently drop attribution.
-    const enrichment = makeEnrichment([
-      makeRefUc("Customer Lifetime Value Modeling", ["MC1"]),
-    ]);
+    const enrichment = makeEnrichment([makeRefUc("Customer Lifetime Value Modeling", ["MC1"])]);
     const out = attributeTablesToAssets({
       useCases: [
         {

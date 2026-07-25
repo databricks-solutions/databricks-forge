@@ -125,7 +125,9 @@ export function buildDashboardDesignPrompt(input: DashboardPromptInput): string 
       sections.push(`- measure: ${measure.id} (${measure.name}, source: ${measure.source})`);
     }
     for (const dimension of semanticManifest.dimensions) {
-      sections.push(`- dimension: ${dimension.id} (${dimension.name}, source: ${dimension.source})`);
+      sections.push(
+        `- dimension: ${dimension.id} (${dimension.name}, source: ${dimension.source})`,
+      );
     }
     sections.push("");
   }

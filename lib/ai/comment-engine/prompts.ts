@@ -41,10 +41,7 @@ export function buildLanguageDirective(language: CommentOutputLanguage): string 
       ].join("\n");
     case "en":
     default:
-      return [
-        "### OUTPUT LANGUAGE",
-        "Write all descriptions in English.",
-      ].join("\n");
+      return ["### OUTPUT LANGUAGE", "Write all descriptions in English."].join("\n");
   }
 }
 

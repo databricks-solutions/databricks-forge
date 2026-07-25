@@ -54,191 +54,210 @@ function resolveOrphanOwner(): string {
 export async function assertOwnerEmailIntegrity(): Promise<void> {
   const orphanOwner = resolveOrphanOwner();
 
-  const { initialCounts, backfilledCounts, residualCounts } = await withPrisma(
-    async (prisma) => {
-      // Each row is a root model that the isolation refactor added an
-      // owner to. Children (use cases, exports, prompt logs, ...) cascade
-      // through their parents via FK and aren't checked directly.
-      const checks: RootTableCheck[] = [
-        {
-          label: "ForgeRun",
-          count: () => prisma.forgeRun.count({ where: { ownerEmail: null } }),
-          backfill: async (owner) =>
-            (await prisma.forgeRun.updateMany({
+  const { initialCounts, backfilledCounts, residualCounts } = await withPrisma(async (prisma) => {
+    // Each row is a root model that the isolation refactor added an
+    // owner to. Children (use cases, exports, prompt logs, ...) cascade
+    // through their parents via FK and aren't checked directly.
+    const checks: RootTableCheck[] = [
+      {
+        label: "ForgeRun",
+        count: () => prisma.forgeRun.count({ where: { ownerEmail: null } }),
+        backfill: async (owner) =>
+          (
+            await prisma.forgeRun.updateMany({
               where: { ownerEmail: null },
               data: { ownerEmail: owner },
-            })).count,
-        },
-        {
-          label: "ForgeEnvironmentScan",
-          count: () => prisma.forgeEnvironmentScan.count({ where: { ownerEmail: null } }),
-          backfill: async (owner) =>
-            (await prisma.forgeEnvironmentScan.updateMany({
+            })
+          ).count,
+      },
+      {
+        label: "ForgeEnvironmentScan",
+        count: () => prisma.forgeEnvironmentScan.count({ where: { ownerEmail: null } }),
+        backfill: async (owner) =>
+          (
+            await prisma.forgeEnvironmentScan.updateMany({
               where: { ownerEmail: null },
               data: { ownerEmail: owner },
-            })).count,
-        },
-        {
-          label: "ForgeGenieSpace",
-          count: () => prisma.forgeGenieSpace.count({ where: { ownerEmail: null } }),
-          backfill: async (owner) =>
-            (await prisma.forgeGenieSpace.updateMany({
+            })
+          ).count,
+      },
+      {
+        label: "ForgeGenieSpace",
+        count: () => prisma.forgeGenieSpace.count({ where: { ownerEmail: null } }),
+        backfill: async (owner) =>
+          (
+            await prisma.forgeGenieSpace.updateMany({
               where: { ownerEmail: null },
               data: { ownerEmail: owner },
-            })).count,
-        },
-        {
-          label: "ForgeMetadataGenieSpace",
-          count: () =>
-            prisma.forgeMetadataGenieSpace.count({ where: { ownerEmail: null } }),
-          backfill: async (owner) =>
-            (await prisma.forgeMetadataGenieSpace.updateMany({
+            })
+          ).count,
+      },
+      {
+        label: "ForgeMetadataGenieSpace",
+        count: () => prisma.forgeMetadataGenieSpace.count({ where: { ownerEmail: null } }),
+        backfill: async (owner) =>
+          (
+            await prisma.forgeMetadataGenieSpace.updateMany({
               where: { ownerEmail: null },
               data: { ownerEmail: owner },
-            })).count,
-        },
-        {
-          label: "ForgeSpaceBenchmarkRun",
-          count: () => prisma.forgeSpaceBenchmarkRun.count({ where: { ownerEmail: null } }),
-          backfill: async (owner) =>
-            (await prisma.forgeSpaceBenchmarkRun.updateMany({
+            })
+          ).count,
+      },
+      {
+        label: "ForgeSpaceBenchmarkRun",
+        count: () => prisma.forgeSpaceBenchmarkRun.count({ where: { ownerEmail: null } }),
+        backfill: async (owner) =>
+          (
+            await prisma.forgeSpaceBenchmarkRun.updateMany({
               where: { ownerEmail: null },
               data: { ownerEmail: owner },
-            })).count,
-        },
-        {
-          label: "ForgeSpaceHealthScore",
-          count: () => prisma.forgeSpaceHealthScore.count({ where: { ownerEmail: null } }),
-          backfill: async (owner) =>
-            (await prisma.forgeSpaceHealthScore.updateMany({
+            })
+          ).count,
+      },
+      {
+        label: "ForgeSpaceHealthScore",
+        count: () => prisma.forgeSpaceHealthScore.count({ where: { ownerEmail: null } }),
+        backfill: async (owner) =>
+          (
+            await prisma.forgeSpaceHealthScore.updateMany({
               where: { ownerEmail: null },
               data: { ownerEmail: owner },
-            })).count,
-        },
-        {
-          label: "ForgeDemoSession",
-          count: () => prisma.forgeDemoSession.count({ where: { ownerEmail: null } }),
-          backfill: async (owner) =>
-            (await prisma.forgeDemoSession.updateMany({
+            })
+          ).count,
+      },
+      {
+        label: "ForgeDemoSession",
+        count: () => prisma.forgeDemoSession.count({ where: { ownerEmail: null } }),
+        backfill: async (owner) =>
+          (
+            await prisma.forgeDemoSession.updateMany({
               where: { ownerEmail: null },
               data: { ownerEmail: owner },
-            })).count,
-        },
-        {
-          label: "ForgeCommentJob",
-          count: () => prisma.forgeCommentJob.count({ where: { ownerEmail: null } }),
-          backfill: async (owner) =>
-            (await prisma.forgeCommentJob.updateMany({
+            })
+          ).count,
+      },
+      {
+        label: "ForgeCommentJob",
+        count: () => prisma.forgeCommentJob.count({ where: { ownerEmail: null } }),
+        backfill: async (owner) =>
+          (
+            await prisma.forgeCommentJob.updateMany({
               where: { ownerEmail: null },
               data: { ownerEmail: owner },
-            })).count,
-        },
-        {
-          label: "ForgeConnection",
-          count: () => prisma.forgeConnection.count({ where: { ownerEmail: null } }),
-          backfill: async (owner) =>
-            (await prisma.forgeConnection.updateMany({
+            })
+          ).count,
+      },
+      {
+        label: "ForgeConnection",
+        count: () => prisma.forgeConnection.count({ where: { ownerEmail: null } }),
+        backfill: async (owner) =>
+          (
+            await prisma.forgeConnection.updateMany({
               where: { ownerEmail: null },
               data: { ownerEmail: owner },
-            })).count,
-        },
-        {
-          label: "ForgeFabricScan",
-          count: () => prisma.forgeFabricScan.count({ where: { ownerEmail: null } }),
-          backfill: async (owner) =>
-            (await prisma.forgeFabricScan.updateMany({
+            })
+          ).count,
+      },
+      {
+        label: "ForgeFabricScan",
+        count: () => prisma.forgeFabricScan.count({ where: { ownerEmail: null } }),
+        backfill: async (owner) =>
+          (
+            await prisma.forgeFabricScan.updateMany({
               where: { ownerEmail: null },
               data: { ownerEmail: owner },
-            })).count,
-        },
-        {
-          label: "ForgeFabricMigration",
-          count: () => prisma.forgeFabricMigration.count({ where: { ownerEmail: null } }),
-          backfill: async (owner) =>
-            (await prisma.forgeFabricMigration.updateMany({
+            })
+          ).count,
+      },
+      {
+        label: "ForgeFabricMigration",
+        count: () => prisma.forgeFabricMigration.count({ where: { ownerEmail: null } }),
+        backfill: async (owner) =>
+          (
+            await prisma.forgeFabricMigration.updateMany({
               where: { ownerEmail: null },
               data: { ownerEmail: owner },
-            })).count,
-        },
-        {
-          label: "ForgeStrategyDocument",
-          count: () => prisma.forgeStrategyDocument.count({ where: { ownerEmail: null } }),
-          backfill: async (owner) =>
-            (await prisma.forgeStrategyDocument.updateMany({
+            })
+          ).count,
+      },
+      {
+        label: "ForgeStrategyDocument",
+        count: () => prisma.forgeStrategyDocument.count({ where: { ownerEmail: null } }),
+        backfill: async (owner) =>
+          (
+            await prisma.forgeStrategyDocument.updateMany({
               where: { ownerEmail: null },
               data: { ownerEmail: owner },
-            })).count,
-        },
-        {
-          label: "ForgeDocument",
-          count: () => prisma.forgeDocument.count({ where: { ownerEmail: null } }),
-          backfill: async (owner) =>
-            (await prisma.forgeDocument.updateMany({
+            })
+          ).count,
+      },
+      {
+        label: "ForgeDocument",
+        count: () => prisma.forgeDocument.count({ where: { ownerEmail: null } }),
+        backfill: async (owner) =>
+          (
+            await prisma.forgeDocument.updateMany({
               where: { ownerEmail: null },
               data: { ownerEmail: owner },
-            })).count,
-        },
-      ];
+            })
+          ).count,
+      },
+    ];
 
-      const initialCounts: Array<{ label: string; count: number }> = [];
-      const backfilledCounts: Array<{ label: string; count: number }> = [];
-      const residualCounts: Array<{ label: string; count: number }> = [];
+    const initialCounts: Array<{ label: string; count: number }> = [];
+    const backfilledCounts: Array<{ label: string; count: number }> = [];
+    const residualCounts: Array<{ label: string; count: number }> = [];
 
-      for (const check of checks) {
-        let initial = 0;
-        try {
-          initial = await check.count();
-        } catch (err) {
-          // Table may not exist yet on a fresh deploy -- skip silently.
-          logger.debug("[isolation-guard] Skipping table (does not exist yet)", {
-            label: check.label,
-            error: err instanceof Error ? err.message : String(err),
-          });
-          continue;
-        }
-        if (initial === 0) continue;
+    for (const check of checks) {
+      let initial = 0;
+      try {
+        initial = await check.count();
+      } catch (err) {
+        // Table may not exist yet on a fresh deploy -- skip silently.
+        logger.debug("[isolation-guard] Skipping table (does not exist yet)", {
+          label: check.label,
+          error: err instanceof Error ? err.message : String(err),
+        });
+        continue;
+      }
+      if (initial === 0) continue;
 
-        initialCounts.push({ label: check.label, count: initial });
+      initialCounts.push({ label: check.label, count: initial });
 
-        // Auto-remediate: backfill with the sentinel owner so the row is
-        // visible only to the (non-existent) sentinel user. The app can
-        // now boot; an admin can re-attribute or delete the rows later.
-        try {
-          const backfilled = await check.backfill(orphanOwner);
-          backfilledCounts.push({ label: check.label, count: backfilled });
-        } catch (err) {
-          logger.error("[isolation-guard] Auto-backfill failed for table", {
-            label: check.label,
-            error: err instanceof Error ? err.message : String(err),
-          });
-        }
-
-        // Re-verify -- a successful backfill returns count 0 here.
-        try {
-          const after = await check.count();
-          if (after > 0) {
-            residualCounts.push({ label: check.label, count: after });
-          }
-        } catch {
-          // Table-missing case already handled above; ignore here.
-        }
+      // Auto-remediate: backfill with the sentinel owner so the row is
+      // visible only to the (non-existent) sentinel user. The app can
+      // now boot; an admin can re-attribute or delete the rows later.
+      try {
+        const backfilled = await check.backfill(orphanOwner);
+        backfilledCounts.push({ label: check.label, count: backfilled });
+      } catch (err) {
+        logger.error("[isolation-guard] Auto-backfill failed for table", {
+          label: check.label,
+          error: err instanceof Error ? err.message : String(err),
+        });
       }
 
-      return { initialCounts, backfilledCounts, residualCounts };
-    },
-  );
+      // Re-verify -- a successful backfill returns count 0 here.
+      try {
+        const after = await check.count();
+        if (after > 0) {
+          residualCounts.push({ label: check.label, count: after });
+        }
+      } catch {
+        // Table-missing case already handled above; ignore here.
+      }
+    }
+
+    return { initialCounts, backfilledCounts, residualCounts };
+  });
 
   if (initialCounts.length === 0) {
     logger.info("[isolation-guard] All root tables have ownerEmail populated.");
     return;
   }
 
-  const initialSummary = initialCounts
-    .map((c) => `  - ${c.label}: ${c.count} rows`)
-    .join("\n");
-  const backfillSummary = backfilledCounts
-    .map((c) => `  - ${c.label}: ${c.count} rows`)
-    .join("\n");
+  const initialSummary = initialCounts.map((c) => `  - ${c.label}: ${c.count} rows`).join("\n");
+  const backfillSummary = backfilledCounts.map((c) => `  - ${c.label}: ${c.count} rows`).join("\n");
 
   // Always log loudly so the orphan event is auditable -- this is exactly
   // the signal we want bubbling into the activity stream / on-call review.
@@ -257,9 +276,7 @@ export async function assertOwnerEmailIntegrity(): Promise<void> {
 
   // Residual NULLs after a backfill attempt indicate something is wrong
   // at the schema level (constraint violation, table-missing race, etc).
-  const residualSummary = residualCounts
-    .map((c) => `  - ${c.label}: ${c.count} rows`)
-    .join("\n");
+  const residualSummary = residualCounts.map((c) => `  - ${c.label}: ${c.count} rows`).join("\n");
   const message =
     `Startup integrity check failed: rows with NULL owner_email remain AFTER auto-backfill.\n${residualSummary}\n\n` +
     `Auto-remediation could not complete. Run a factory reset (deleteAllData()) and\n` +

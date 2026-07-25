@@ -24,10 +24,7 @@ import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
-const SOURCE_PATH = resolve(
-  __dirname,
-  "../../lib/pipeline/steps/business-value-analysis.ts",
-);
+const SOURCE_PATH = resolve(__dirname, "../../lib/pipeline/steps/business-value-analysis.ts");
 
 function loadSource(): string {
   return readFileSync(SOURCE_PATH, "utf8");

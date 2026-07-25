@@ -11,16 +11,14 @@ describe("deployAsset identifier validation", () => {
   it.each(["catalog", "catalog.schema.extra"])(
     "requires target schema to be exactly catalog.schema: %s",
     (targetSchema) => {
-      expect(() => rewriteDdlTarget(asset.ddl, targetSchema)).toThrow(
-        /exactly catalog\.schema/,
-      );
+      expect(() => rewriteDdlTarget(asset.ddl, targetSchema)).toThrow(/exactly catalog\.schema/);
     },
   );
 
   it("rejects unsafe rewrite identifiers at the shared DDL boundary", () => {
-    expect(() =>
-      rewriteDdlTarget(asset.ddl, "main.sales", "safe_`; DROP TABLE users; --"),
-    ).toThrow(/invalid characters/);
+    expect(() => rewriteDdlTarget(asset.ddl, "main.sales", "safe_`; DROP TABLE users; --")).toThrow(
+      /invalid characters/,
+    );
   });
 
   it.each([

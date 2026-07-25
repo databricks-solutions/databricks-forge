@@ -32,8 +32,7 @@ export async function runSchemaDesign(
 
   const dataAssetsContext = JSON.stringify(research.matchedDataAssetIds);
 
-  const prompt = SCHEMA_DESIGN_PROMPT
-    .replace("{customer_name}", research.customerName)
+  const prompt = SCHEMA_DESIGN_PROMPT.replace("{customer_name}", research.customerName)
     .replace("{industry_name}", research.industryId)
     .replace("{data_assets_context}", dataAssetsContext)
     .replace("{narratives_json}", JSON.stringify(narratives))

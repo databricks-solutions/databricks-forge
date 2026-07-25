@@ -77,8 +77,7 @@ export const DEFAULT_COMMENT_OUTPUT_LANGUAGE: CommentOutputLanguage = "en";
 
 export function isCommentOutputLanguage(value: unknown): value is CommentOutputLanguage {
   return (
-    typeof value === "string" &&
-    (COMMENT_OUTPUT_LANGUAGES as readonly string[]).includes(value)
+    typeof value === "string" && (COMMENT_OUTPUT_LANGUAGES as readonly string[]).includes(value)
   );
 }
 

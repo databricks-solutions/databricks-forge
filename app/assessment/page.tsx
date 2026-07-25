@@ -19,13 +19,7 @@ import { useLocale, useMessages, useTranslations } from "next-intl";
 import { useL10n } from "@/i18n/format";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
@@ -508,7 +502,11 @@ export default function AssessmentPage() {
         </div>
         <div className="flex flex-wrap items-center gap-2">
           <Button onClick={runAssessment} disabled={running}>
-            {running ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Play className="mr-2 h-4 w-4" />}
+            {running ? (
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            ) : (
+              <Play className="mr-2 h-4 w-4" />
+            )}
             {latest ? tPage("rerun_assessment") : tPage("run_assessment")}
           </Button>
           {dashboardUrl && (
@@ -525,9 +523,7 @@ export default function AssessmentPage() {
             variant="outline"
             onClick={generateDashboard}
             disabled={deployingDashboard}
-            title={tPage(
-              dashboardUrl ? "regenerate_dashboard_title" : "generate_dashboard_title",
-            )}
+            title={tPage(dashboardUrl ? "regenerate_dashboard_title" : "generate_dashboard_title")}
           >
             {deployingDashboard ? (
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -684,10 +680,7 @@ export default function AssessmentPage() {
             </TabsContent>
 
             <TabsContent value="history" className="mt-4">
-              <HistoryTable
-                history={data?.history ?? []}
-                latestId={latest.assessmentId}
-              />
+              <HistoryTable history={data?.history ?? []} latestId={latest.assessmentId} />
             </TabsContent>
           </Tabs>
         </>
@@ -797,8 +790,7 @@ function ScoreOverview({
               met: summary.metControls,
               total: summary.totalControls,
             })}{" "}
-            · {tOverview("last_run_pre")}{" "}
-            {l10n.dateTime(summary.completedAt ?? summary.createdAt)}
+            · {tOverview("last_run_pre")} {l10n.dateTime(summary.completedAt ?? summary.createdAt)}
           </p>
         </CardContent>
       </Card>
@@ -874,9 +866,7 @@ function PillarHeader({
             {tHeader("controls_met", { met, total })}
           </div>
           {total > met && (
-            <div className="mt-1 text-xs">
-              {tHeader("failing_sorted", { count: total - met })}
-            </div>
+            <div className="mt-1 text-xs">{tHeader("failing_sorted", { count: total - met })}</div>
           )}
         </div>
       </CardContent>
@@ -922,9 +912,7 @@ function ResultsTable({
             return (
               <TableRow key={r.wafId}>
                 <TableCell className="font-mono text-xs">{r.wafId}</TableCell>
-                {showPillar && (
-                  <TableCell className="text-sm">{tShortPillar(r.pillar)}</TableCell>
-                )}
+                {showPillar && <TableCell className="text-sm">{tShortPillar(r.pillar)}</TableCell>}
                 <TableCell className="text-sm">
                   <div className="font-medium">{ct.bestPractice}</div>
                   <div className="text-xs text-muted-foreground">{ct.principle}</div>

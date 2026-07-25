@@ -30,16 +30,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { SlidersHorizontal, Trash2, ArrowRightLeft } from "lucide-react";
-import {
-  catalogOf,
-  schemaOf,
-  shortName,
-  UNCLASSIFIED,
-} from "@/lib/environment/domain-explorer";
-import type {
-  DomainOverride,
-  OverrideScope,
-} from "@/lib/environment/domain-overrides";
+import { catalogOf, schemaOf, shortName, UNCLASSIFIED } from "@/lib/environment/domain-explorer";
+import type { DomainOverride, OverrideScope } from "@/lib/environment/domain-overrides";
 
 const NEW_DOMAIN = "__new__";
 
@@ -159,9 +151,15 @@ export function DomainOverrideMenu({
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="table" className="text-xs">This table</SelectItem>
-            <SelectItem value="schema" className="text-xs">This schema ({schemaOf(fqn)})</SelectItem>
-            <SelectItem value="catalog" className="text-xs">This catalog ({catalogOf(fqn)})</SelectItem>
+            <SelectItem value="table" className="text-xs">
+              This table
+            </SelectItem>
+            <SelectItem value="schema" className="text-xs">
+              This schema ({schemaOf(fqn)})
+            </SelectItem>
+            <SelectItem value="catalog" className="text-xs">
+              This catalog ({catalogOf(fqn)})
+            </SelectItem>
           </SelectContent>
         </Select>
         <Button size="sm" variant="outline" className="h-8" disabled={busy} onClick={evict}>
@@ -191,9 +189,12 @@ export function AdjustmentsButton({
     if (!id) return;
     setBusyId(id);
     try {
-      const resp = await fetch(`/api/environment/${scanId}/overrides?id=${encodeURIComponent(id)}`, {
-        method: "DELETE",
-      });
+      const resp = await fetch(
+        `/api/environment/${scanId}/overrides?id=${encodeURIComponent(id)}`,
+        {
+          method: "DELETE",
+        },
+      );
       if (!resp.ok) throw new Error();
       toast.success("Adjustment removed");
       onChanged();
@@ -227,7 +228,8 @@ export function AdjustmentsButton({
         </DialogHeader>
         {overrides.length === 0 ? (
           <p className="py-6 text-center text-sm text-muted-foreground">
-            No adjustments yet. Open a table and use “Move to domain” or “Remove” to correct the map.
+            No adjustments yet. Open a table and use “Move to domain” or “Remove” to correct the
+            map.
           </p>
         ) : (
           <ul className="max-h-80 space-y-2 overflow-auto">

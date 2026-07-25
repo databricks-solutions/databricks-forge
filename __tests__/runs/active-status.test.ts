@@ -24,22 +24,19 @@ describe("hasActiveRunStatuses", () => {
     expect(hasActiveRunStatuses([])).toBe(false);
   });
 
-  it.each([
-    ["running"],
-    ["pending"],
-    ["queued"],
-  ])("returns true when a run has status %s", (status) => {
-    expect(hasActiveRunStatuses([{ status }])).toBe(true);
-  });
+  it.each([["running"], ["pending"], ["queued"]])(
+    "returns true when a run has status %s",
+    (status) => {
+      expect(hasActiveRunStatuses([{ status }])).toBe(true);
+    },
+  );
 
-  it.each([
-    ["completed"],
-    ["failed"],
-    ["cancelled"],
-    ["unknown"],
-  ])("returns false when the only run has terminal status %s", (status) => {
-    expect(hasActiveRunStatuses([{ status }])).toBe(false);
-  });
+  it.each([["completed"], ["failed"], ["cancelled"], ["unknown"]])(
+    "returns false when the only run has terminal status %s",
+    (status) => {
+      expect(hasActiveRunStatuses([{ status }])).toBe(false);
+    },
+  );
 
   it("returns true when any one of many runs is active", () => {
     expect(

@@ -19,12 +19,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "capital-markets",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "capital-markets", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Financial Services."
@@ -47,12 +42,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "capital-markets",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "capital-markets", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Financial Services."
@@ -75,12 +65,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "capital-markets",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "capital-markets", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Financial Services."
@@ -103,12 +88,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "capital-markets",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "capital-markets", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Financial Services."
@@ -131,12 +111,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "capital-markets",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "capital-markets", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Financial Services."
@@ -159,12 +134,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "capital-markets",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "capital-markets", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Financial Services."
@@ -187,12 +157,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "capital-markets",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "capital-markets", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Cross-Industry."
@@ -215,12 +180,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "capital-markets",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "capital-markets", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Financial Services."
@@ -243,12 +203,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "capital-markets",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "capital-markets", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Financial Services."
@@ -271,12 +226,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "capital-markets",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "capital-markets", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Financial Services."
@@ -299,12 +249,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "capital-markets",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "capital-markets", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Financial Services."
@@ -327,12 +272,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "capital-markets",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "capital-markets", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Financial Services."
@@ -355,12 +295,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "capital-markets",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "capital-markets", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- SmartDev -- AI Credit Evaluation (Zest AI case)."
@@ -383,12 +318,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "capital-markets",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "capital-markets", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Financial Services."
@@ -411,12 +341,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "capital-markets",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "capital-markets", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Cross-Industry."
@@ -439,12 +364,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "capital-markets",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "capital-markets", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Cross-Industry."
@@ -467,12 +387,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "capital-markets",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "capital-markets", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Cross-Industry."
@@ -495,12 +410,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "capital-markets",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "capital-markets", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Verizon -- DBIR Insights (Phishing)."
@@ -523,12 +433,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "capital-markets",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "capital-markets", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Rapid7 -- AI in Security Operations."
@@ -551,12 +456,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "capital-markets",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "capital-markets", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Cognizant -- AI Check Fraud Case Study."
@@ -579,12 +479,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "capital-markets",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "capital-markets", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Cognizant -- AI Check Fraud Case Study."
@@ -607,12 +502,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "capital-markets",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "capital-markets", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Financial Services."
@@ -635,12 +525,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "capital-markets",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "capital-markets", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Financial Services."
@@ -663,12 +548,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "capital-markets",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "capital-markets", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Financial Services."
@@ -691,12 +571,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "capital-markets",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "capital-markets", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Financial Services."
@@ -719,12 +594,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "capital-markets",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "capital-markets", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Cross-Industry."
@@ -747,12 +617,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "capital-markets",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "capital-markets", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- FEI Daily -- Accelerating the Close Cycle."
@@ -775,12 +640,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "capital-markets",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "capital-markets", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Cross-Industry."
@@ -803,12 +663,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "capital-markets",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "capital-markets", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Financial Services."
@@ -831,12 +686,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "capital-markets",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "capital-markets", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Cross-Industry."
@@ -859,12 +709,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "capital-markets",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "capital-markets", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Nividous -- IDP Automation Stats."
@@ -887,12 +732,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "capital-markets",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "capital-markets", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Encompass/Chartis -- Reducing Client Onboarding Time."
@@ -915,12 +755,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "capital-markets",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "capital-markets", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- IBM (via MokaHR) -- Predictive Turnover Analytics."

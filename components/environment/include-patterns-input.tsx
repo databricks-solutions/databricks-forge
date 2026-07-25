@@ -82,7 +82,12 @@ export function IncludePatternsInput({
         </Button>
       </div>
       {error && (
-        <p id="estate-include-pattern-error" role="alert" aria-live="polite" className="text-xs text-destructive">
+        <p
+          id="estate-include-pattern-error"
+          role="alert"
+          aria-live="polite"
+          className="text-xs text-destructive"
+        >
           {error}
         </p>
       )}

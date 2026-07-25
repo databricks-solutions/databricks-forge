@@ -6,23 +6,15 @@ const store = new Map<string, UseCaseRow>();
 
 const prismaMock = {
   forgeUseCase: {
-    update: vi.fn(
-      async ({ where, data }: { where: { id: string }; data: Partial<UseCaseRow> }) => {
-        const existing = store.get(where.id);
-        if (!existing) throw new Error(`row not found: ${where.id}`);
-        const updated = { ...existing, ...data };
-        store.set(where.id, updated);
-        return updated;
-      },
-    ),
+    update: vi.fn(async ({ where, data }: { where: { id: string }; data: Partial<UseCaseRow> }) => {
+      const existing = store.get(where.id);
+      if (!existing) throw new Error(`row not found: ${where.id}`);
+      const updated = { ...existing, ...data };
+      store.set(where.id, updated);
+      return updated;
+    }),
     updateMany: vi.fn(
-      async ({
-        where,
-        data,
-      }: {
-        where: { runId: string };
-        data: Partial<UseCaseRow>;
-      }) => {
+      async ({ where, data }: { where: { runId: string }; data: Partial<UseCaseRow> }) => {
         let count = 0;
         for (const [id, row] of store) {
           if (row.runId === where.runId) {
@@ -57,7 +49,7 @@ const prismaMock = {
 };
 
 vi.mock("@/lib/prisma", () => ({
-  withPrisma: async <T,>(fn: (p: typeof prismaMock) => Promise<T>) => fn(prismaMock),
+  withPrisma: async <T>(fn: (p: typeof prismaMock) => Promise<T>) => fn(prismaMock),
 }));
 
 import {

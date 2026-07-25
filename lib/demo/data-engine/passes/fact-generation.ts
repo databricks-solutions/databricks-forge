@@ -28,15 +28,12 @@ function buildFactPrompt(
   extraConstraints?: string,
   genieMode = false,
 ): string {
-  const relatedNarratives = narratives.filter((n) =>
-    n.affectedTables.includes(table.name),
-  );
+  const relatedNarratives = narratives.filter((n) => n.affectedTables.includes(table.name));
   const dimensionContext = dims
     .map((d) => `${d.name}: ${d.columns.map((c) => `${c.name} ${c.dataType}`).join(", ")}`)
     .join("\n");
 
-  let prompt = FACT_TABLE_PROMPT
-    .replace("{catalog}", catalog)
+  let prompt = FACT_TABLE_PROMPT.replace("{catalog}", catalog)
     .replace("{schema}", schema)
     .replace("{table_name}", table.name)
     .replace("{description}", table.description)
@@ -84,7 +81,17 @@ export async function runFactGeneration(
 
   onPhase?.("generating-sql");
 
-  const prompt = buildFactPrompt(table, catalog, schema, dimensionTables, narratives, research, dateWindow, undefined, genieMode);
+  const prompt = buildFactPrompt(
+    table,
+    catalog,
+    schema,
+    dimensionTables,
+    narratives,
+    research,
+    dateWindow,
+    undefined,
+    genieMode,
+  );
   const endpoint = resolveEndpoint("sql");
 
   const response = await llm.chat({
@@ -125,16 +132,27 @@ export async function runFactGeneration(
         if (missingTable) excludedTables.add(missingTable);
 
         const filteredDims = dimensionTables.filter((d) => !excludedTables.has(d.name));
-        const constraint = excludedTables.size > 0
-          ? `IMPORTANT: These tables do NOT exist -- do NOT reference them: ${[...excludedTables].join(", ")}. Generate all date/time values inline using DATE_ADD(CURRENT_DATE(), ...) and built-in functions.`
-          : undefined;
+        const constraint =
+          excludedTables.size > 0
+            ? `IMPORTANT: These tables do NOT exist -- do NOT reference them: ${[...excludedTables].join(", ")}. Generate all date/time values inline using DATE_ADD(CURRENT_DATE(), ...) and built-in functions.`
+            : undefined;
 
         log.info("Re-generating SQL excluding missing tables", {
           table: table.name,
           excluded: [...excludedTables],
         });
 
-        const retryPrompt = buildFactPrompt(table, catalog, schema, filteredDims, narratives, research, dateWindow, constraint, genieMode);
+        const retryPrompt = buildFactPrompt(
+          table,
+          catalog,
+          schema,
+          filteredDims,
+          narratives,
+          research,
+          dateWindow,
+          constraint,
+          genieMode,
+        );
         const retryResponse = await llm.chat({
           endpoint,
           messages: [{ role: "user", content: retryPrompt }],

@@ -55,8 +55,7 @@ function optionalSemanticMetadata(value: Record<string, unknown>): void {
   }
   if (
     value.synonyms !== undefined &&
-    (!Array.isArray(value.synonyms) ||
-      value.synonyms.some((item) => typeof item !== "string"))
+    (!Array.isArray(value.synonyms) || value.synonyms.some((item) => typeof item !== "string"))
   ) {
     throw new MetricViewImproveConflictError("Metric view field synonyms are invalid.");
   }
@@ -65,13 +64,7 @@ function optionalSemanticMetadata(value: Record<string, unknown>): void {
 function parseJoin(value: unknown): MetricViewJoin {
   const item = record(value);
   const kind = item.kind;
-  assertKeys(item, [
-    "kind",
-    "name",
-    "source",
-    "joins",
-    ...(kind === "on" ? ["on"] : ["using"]),
-  ]);
+  assertKeys(item, ["kind", "name", "source", "joins", ...(kind === "on" ? ["on"] : ["using"])]);
   requiredString(item.name, "join name");
   requiredString(item.source, "join source");
   if (!Array.isArray(item.joins)) {
@@ -198,11 +191,7 @@ export function parseMetricViewImproveDiff(value: unknown): MetricViewImproveDif
   const commentUpdates = input.commentUpdates.map((value) => {
     const update = record(value);
     assertKeys(update, ["target", "name", "comment"]);
-    if (
-      update.target !== "view" &&
-      update.target !== "dimension" &&
-      update.target !== "measure"
-    ) {
+    if (update.target !== "view" && update.target !== "dimension" && update.target !== "measure") {
       throw new MetricViewImproveConflictError("Metric view comment target is invalid.");
     }
     requiredString(update.comment, "comment");
@@ -342,7 +331,9 @@ export function buildMetricViewImproveDiff(
   const commentUpdates: MetricViewImproveDiff["commentUpdates"] = [];
   if (existing.comment !== desired.comment) {
     if (desired.comment === undefined) {
-      throw new MetricViewImproveConflictError("Improvement cannot remove the metric view comment.");
+      throw new MetricViewImproveConflictError(
+        "Improvement cannot remove the metric view comment.",
+      );
     }
     commentUpdates.push({ target: "view", comment: desired.comment });
   }

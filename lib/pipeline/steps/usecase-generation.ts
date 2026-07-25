@@ -472,7 +472,7 @@ export async function runUsecaseGeneration(
     // this concurrent group can rank in parallel during Phase B.
     // ----------------------------------------------------------------
     interface BatchPrep {
-      batch: typeof concurrentBatches[number];
+      batch: (typeof concurrentBatches)[number];
       batchColumns: typeof columns;
       batchColsByTable: Map<string, typeof columns>;
       batchSampleSection: string;
@@ -534,28 +534,22 @@ export async function runUsecaseGeneration(
 
       if (adaptiveResult.correctivePassApplied) {
         adaptiveStats.correctivePassBatches++;
-        log.warn(
-          "Adaptive budget corrective pass shaved columns to stay under token budget",
-          {
-            fn: "runUsecaseGeneration",
-            batchGroupIndex: batchGroupIdx,
-            availableSchemaTokens,
-            totalColumnsAfter: adaptiveResult.totalAfter,
-          },
-        );
+        log.warn("Adaptive budget corrective pass shaved columns to stay under token budget", {
+          fn: "runUsecaseGeneration",
+          batchGroupIndex: batchGroupIdx,
+          availableSchemaTokens,
+          totalColumnsAfter: adaptiveResult.totalAfter,
+        });
       }
       if (adaptiveResult.budgetImpossible) {
         adaptiveStats.budgetImpossibleBatches++;
-        log.warn(
-          "Adaptive budget impossible: floor-only limits exceed availableSchemaTokens",
-          {
-            fn: "runUsecaseGeneration",
-            batchGroupIndex: batchGroupIdx,
-            availableSchemaTokens,
-            totalColumnsAfter: adaptiveResult.totalAfter,
-            tableCount: batch.length,
-          },
-        );
+        log.warn("Adaptive budget impossible: floor-only limits exceed availableSchemaTokens", {
+          fn: "runUsecaseGeneration",
+          batchGroupIndex: batchGroupIdx,
+          availableSchemaTokens,
+          totalColumnsAfter: adaptiveResult.totalAfter,
+          tableCount: batch.length,
+        });
       }
 
       // Decide whether to consult the LLM for column ranking.
@@ -660,9 +654,7 @@ export async function runUsecaseGeneration(
         `Adaptive column budgeting active — ${groupTablesTrimmed} tables trimmed from ${groupColumnsBefore} to ${groupColumnsAfter} total columns`,
       ];
       if (groupLLMTables > 0 || groupHeuristicTables > 0) {
-        parts.push(
-          `${groupLLMTables} ranked by LLM, ${groupHeuristicTables} by heuristic`,
-        );
+        parts.push(`${groupLLMTables} ranked by LLM, ${groupHeuristicTables} by heuristic`);
       }
       if (groupTrivialSkipped > 0) {
         parts.push(`${groupTrivialSkipped} trivial trims skipped LLM`);

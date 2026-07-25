@@ -29,8 +29,14 @@ function fallbackBrief(research: ResearchEngineResult): ExecutiveBrief {
     : `A ${research.industryId} organisation analysed from ${research.sources?.length ?? 0} research sources.`;
 
   const whatTheyCareAbout =
-    profile?.inferredPriorities?.slice(0, 3).map((p) => p.priority).join("; ") ??
-    profile?.statedPriorities?.slice(0, 3).map((p) => p.priority).join("; ") ??
+    profile?.inferredPriorities
+      ?.slice(0, 3)
+      .map((p) => p.priority)
+      .join("; ") ??
+    profile?.statedPriorities
+      ?.slice(0, 3)
+      .map((p) => p.priority)
+      .join("; ") ??
     "Data-driven transformation and operational efficiency.";
 
   const whatsLikelyBroken =
@@ -78,8 +84,10 @@ const SECTIONS: Array<{
 ];
 
 function evidenceBadgeClass(tier: Evidence["tier"]): string {
-  if (tier === "sourced") return "bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border-emerald-500/20";
-  if (tier === "benchmark") return "bg-blue-500/10 text-blue-700 dark:text-blue-400 border-blue-500/20";
+  if (tier === "sourced")
+    return "bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border-emerald-500/20";
+  if (tier === "benchmark")
+    return "bg-blue-500/10 text-blue-700 dark:text-blue-400 border-blue-500/20";
   return "bg-amber-500/10 text-amber-700 dark:text-amber-400 border-amber-500/20";
 }
 

@@ -21,10 +21,7 @@ export function parseMetricViewDdlEnvelope(ddl: string): MetricViewDdlEnvelope {
   }
 
   const closingDelimiterOffset = ddl.indexOf("$$", header[0].length);
-  if (
-    closingDelimiterOffset === -1 ||
-    !/^\s*;?\s*$/.test(ddl.slice(closingDelimiterOffset + 2))
-  ) {
+  if (closingDelimiterOffset === -1 || !/^\s*;?\s*$/.test(ddl.slice(closingDelimiterOffset + 2))) {
     throw new Error("Metric view DDL envelope is malformed");
   }
 
@@ -49,8 +46,6 @@ export function replaceMetricViewDdlYaml(ddl: string, yaml: string): string {
   }
   const envelope = parseMetricViewDdlEnvelope(ddl);
   return (
-    ddl.slice(0, envelope.bodyStart) +
-    `\n${yaml}` +
-    ddl.slice(envelope.closingDelimiterOffset)
+    ddl.slice(0, envelope.bodyStart) + `\n${yaml}` + ddl.slice(envelope.closingDelimiterOffset)
   );
 }

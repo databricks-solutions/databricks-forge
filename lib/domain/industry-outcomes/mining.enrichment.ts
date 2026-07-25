@@ -139,8 +139,7 @@ export const MINING_USE_CASES: MasterRepoUseCase[] = [
     kpiTarget: "Haulage productivity",
     benchmarkImpact: "+20%",
     benchmarkSource: "Fortescue -- Autonomous Haulage Results",
-    benchmarkUrl:
-      "https://www.fortescue.com/news-and-media",
+    benchmarkUrl: "https://www.fortescue.com/news-and-media",
     strategicImperative: "Optimize Mine Operations",
     strategicPillar: "Fleet Management & Autonomous Operations",
     dataAssetIds: ["A29", "A02", "A01", "A09", "A05"],

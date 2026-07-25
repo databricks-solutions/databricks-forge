@@ -35,14 +35,29 @@ test.describe("Estate Programs — owner lifecycle", () => {
       name: "Acme Corp",
       description: null,
       industryId: null,
-      scopes: [{ id: "s1", label: "cat.sales", ucMetadata: "cat.sales", status: "planned", scanId: null, sequence: 0, errorMessage: null, inclusionPatterns: null, workspaceId: null, teamLabel: null }],
+      scopes: [
+        {
+          id: "s1",
+          label: "cat.sales",
+          ucMetadata: "cat.sales",
+          status: "planned",
+          scanId: null,
+          sequence: 0,
+          errorMessage: null,
+          inclusionPatterns: null,
+          workspaceId: null,
+          teamLabel: null,
+        },
+      ],
     };
     await mockCommonApis(page, { programs: [program] });
     await page.route("**/api/estate-programs/p1/aggregate", (r) =>
       jsonRoute(r, { program, aggregate: emptyAggregate(), permission: "owner" }),
     );
     await page.route("**/api/estate-programs/p1/synthesis", (r) => jsonRoute(r, {}, 404));
-    await page.route("**/api/estate-programs/p1", (r) => jsonRoute(r, { program, permission: "owner" }));
+    await page.route("**/api/estate-programs/p1", (r) =>
+      jsonRoute(r, { program, permission: "owner" }),
+    );
     await page.route("**/api/estate-programs/p1/run", (r) =>
       jsonRoute(r, { status: "started", scopeId: "s1", label: "cat.sales", scanId: "scan1" }, 202),
     );
@@ -84,7 +99,20 @@ test.describe("Estate Programs — owner lifecycle", () => {
       name: "Acme Corp",
       description: null,
       industryId: null,
-      scopes: [{ id: "failed-1", label: "cat.finance", ucMetadata: "cat.finance", status: "failed", scanId: null, sequence: 0, errorMessage: "Warehouse stopped", inclusionPatterns: null, workspaceId: "w1", teamLabel: null }],
+      scopes: [
+        {
+          id: "failed-1",
+          label: "cat.finance",
+          ucMetadata: "cat.finance",
+          status: "failed",
+          scanId: null,
+          sequence: 0,
+          errorMessage: "Warehouse stopped",
+          inclusionPatterns: null,
+          workspaceId: "w1",
+          teamLabel: null,
+        },
+      ],
     };
     await mockCommonApis(page, { programs: [program] });
     await page.route("**/api/estate-programs/p1/aggregate", (r) =>

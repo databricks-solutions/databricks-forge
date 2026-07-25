@@ -80,7 +80,9 @@ export function computeEstateScores(input: EstateSynthesisInput, now = Date.now(
   // neutral-leaning proxy from quality (operational hygiene correlates).
   const cost =
     input.costWasteUsd != null
-      ? clamp(100 - Math.min((input.costWasteUsd / Math.max(input.tables.length, 1) / 50) * 100, 100))
+      ? clamp(
+          100 - Math.min((input.costWasteUsd / Math.max(input.tables.length, 1) / 50) * 100, 100),
+        )
       : clamp(quality * 0.8 + 20);
 
   const overall = clamp(
@@ -124,10 +126,7 @@ function ev(tier: Evidence["tier"], fields: Partial<Evidence>): Evidence {
  * Each finding carries tiered evidence and a next-best-action. The LLM brief
  * later narrates around these; findings themselves are reproducible.
  */
-export function buildFindings(
-  input: EstateSynthesisInput,
-  scores: EstateScores,
-): EstateFinding[] {
+export function buildFindings(input: EstateSynthesisInput, scores: EstateScores): EstateFinding[] {
   const findings: EstateFinding[] = [];
   const { scanId, tables } = input;
   const total = tables.length;

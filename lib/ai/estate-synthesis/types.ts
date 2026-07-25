@@ -14,13 +14,7 @@ import type {
   Evidence,
 } from "@/lib/domain/estate-synthesis-types";
 
-export type {
-  EstateSynthesisResult,
-  EstateScores,
-  EstateFinding,
-  ExecutiveBrief,
-  Evidence,
-};
+export type { EstateSynthesisResult, EstateScores, EstateFinding, ExecutiveBrief, Evidence };
 
 /** A single table as the synthesis engine sees it (subset of TableDetail). */
 export interface SynthTable {

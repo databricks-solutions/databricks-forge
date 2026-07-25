@@ -35,9 +35,8 @@ export async function GET(
     ]);
 
     const apiRuns =
-      apiRunsResponse.status === "fulfilled" ? apiRunsResponse.value.eval_runs ?? [] : [];
-    const lakebaseData =
-      lakebaseRuns.status === "fulfilled" ? lakebaseRuns.value : [];
+      apiRunsResponse.status === "fulfilled" ? (apiRunsResponse.value.eval_runs ?? []) : [];
+    const lakebaseData = lakebaseRuns.status === "fulfilled" ? lakebaseRuns.value : [];
 
     if (apiRunsResponse.status === "rejected") {
       logger.warn("Failed to fetch eval runs from API, falling back to Lakebase", {

@@ -89,9 +89,10 @@ export async function runKeyQuotesExtraction(
     })
     .join("\n");
 
-  const prompt = KEY_QUOTES_PROMPT
-    .replace("{customer_name}", customerName)
-    .replace("{source_manifest}", manifest);
+  const prompt = KEY_QUOTES_PROMPT.replace("{customer_name}", customerName).replace(
+    "{source_manifest}",
+    manifest,
+  );
 
   const endpoint = resolveResearchEndpoint(modelTier ?? "classification");
 
@@ -120,7 +121,8 @@ export async function runKeyQuotesExtraction(
     if (!quote || quote.length < 20) continue;
     const sourceUrl = typeof q?.sourceUrl === "string" ? q.sourceUrl.trim() : "";
     if (!sourceUrl) continue;
-    const sourceTitle = urlToTitle.get(sourceUrl) ?? (typeof q?.sourceTitle === "string" ? q.sourceTitle : "Source");
+    const sourceTitle =
+      urlToTitle.get(sourceUrl) ?? (typeof q?.sourceTitle === "string" ? q.sourceTitle : "Source");
 
     const tags = Array.isArray(q?.tags)
       ? (q.tags

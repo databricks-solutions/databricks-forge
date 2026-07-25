@@ -130,7 +130,10 @@ export async function runIRDiscovery(
     return true;
   });
   uniqueLinks.sort((a, b) => b.score - a.score);
-  log.info("PDF links found across IR pages", { count: uniqueLinks.length, pagesScanned: allIRPages.length });
+  log.info("PDF links found across IR pages", {
+    count: uniqueLinks.length,
+    pagesScanned: allIRPages.length,
+  });
 
   // Step 3: Download and parse top PDFs
   const parsePdf = opts.parsePdf ?? defaultParsePdf;
@@ -250,7 +253,12 @@ function extractPdfLinks(html: string, pageUrl: string): PdfLink[] {
 
 async function trySecEdgar(
   websiteUrl: string,
-  opts: { fetchFn?: typeof fetch; logger: Logger; signal?: AbortSignal; onSourceReady?: (source: ResearchSource) => void },
+  opts: {
+    fetchFn?: typeof fetch;
+    logger: Logger;
+    signal?: AbortSignal;
+    onSourceReady?: (source: ResearchSource) => void;
+  },
 ): Promise<{ text: string; sources: ResearchSource[] }> {
   const { fetchFn = fetch, logger: log, signal, onSourceReady } = opts;
   const sources: ResearchSource[] = [];
@@ -271,7 +279,11 @@ async function trySecEdgar(
     }
 
     // Try company tickers endpoint for CIK lookup
-    const tickerResp = await timedFetch(fetchFn, "https://www.sec.gov/files/company_tickers.json", signal);
+    const tickerResp = await timedFetch(
+      fetchFn,
+      "https://www.sec.gov/files/company_tickers.json",
+      signal,
+    );
     if (!tickerResp?.ok) return { text: "", sources };
 
     const tickerData = (await tickerResp.json()) as Record<
@@ -363,7 +375,10 @@ async function trySecEdgar(
 
     const html = await filingResp.text();
     // Strip HTML tags for plain text extraction
-    const text = html.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+    const text = html
+      .replace(/<[^>]+>/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
     const truncated = text.slice(0, 80_000);
 
     source.charCount = truncated.length;
@@ -384,10 +399,53 @@ async function trySecEdgar(
 
 // Country-code TLDs and compound ccTLDs (e.g. .co.uk, .com.au) indicate non-US companies.
 const NON_US_TLDS = new Set([
-  "au", "uk", "de", "fr", "jp", "cn", "in", "br", "ca", "nz", "za", "sg",
-  "hk", "kr", "tw", "it", "es", "nl", "se", "no", "dk", "fi", "ch", "at",
-  "be", "ie", "pt", "pl", "cz", "ru", "mx", "ar", "cl", "co", "pe", "il",
-  "ae", "sa", "th", "my", "ph", "id", "vn", "ng", "ke", "eg", "tr",
+  "au",
+  "uk",
+  "de",
+  "fr",
+  "jp",
+  "cn",
+  "in",
+  "br",
+  "ca",
+  "nz",
+  "za",
+  "sg",
+  "hk",
+  "kr",
+  "tw",
+  "it",
+  "es",
+  "nl",
+  "se",
+  "no",
+  "dk",
+  "fi",
+  "ch",
+  "at",
+  "be",
+  "ie",
+  "pt",
+  "pl",
+  "cz",
+  "ru",
+  "mx",
+  "ar",
+  "cl",
+  "co",
+  "pe",
+  "il",
+  "ae",
+  "sa",
+  "th",
+  "my",
+  "ph",
+  "id",
+  "vn",
+  "ng",
+  "ke",
+  "eg",
+  "tr",
 ]);
 
 function isNonUsDomain(domain: string): boolean {
@@ -400,8 +458,14 @@ function isNonUsDomain(domain: string): boolean {
   // Compound ccTLDs: .com.au, .co.uk, .co.nz, etc.
   if (parts.length >= 3) {
     const secondLevel = parts[parts.length - 2].toLowerCase();
-    if ((secondLevel === "com" || secondLevel === "co" || secondLevel === "org" || secondLevel === "net") &&
-        tld.length === 2 && !genericTwoLetter.has(tld)) {
+    if (
+      (secondLevel === "com" ||
+        secondLevel === "co" ||
+        secondLevel === "org" ||
+        secondLevel === "net") &&
+      tld.length === 2 &&
+      !genericTwoLetter.has(tld)
+    ) {
       return true;
     }
   }
@@ -423,7 +487,7 @@ function findBestEdgarMatch(
   const cnNorm = normalize(cn);
 
   // Collect scored candidates instead of returning first hit
-  const candidates: { entry: typeof entries[0]; score: number }[] = [];
+  const candidates: { entry: (typeof entries)[0]; score: number }[] = [];
 
   for (const e of entries) {
     const titleNorm = normalize(e.title);
@@ -451,9 +515,7 @@ async function timedFetch(
   try {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), timeoutMs);
-    const combined = signal
-      ? AbortSignal.any([signal, controller.signal])
-      : controller.signal;
+    const combined = signal ? AbortSignal.any([signal, controller.signal]) : controller.signal;
 
     const resp = await fetchFn(url, {
       headers: { "User-Agent": "DatabricksForge/1.0" },
@@ -500,7 +562,7 @@ async function defaultParsePdf(buffer: Buffer): Promise<string> {
   try {
     const mod = await import("pdf-parse");
     const pdfParse = ((mod as Record<string, unknown>).default ?? mod) as (
-      buf: Buffer
+      buf: Buffer,
     ) => Promise<{ text: string }>;
     const result = await pdfParse(buffer);
     return result.text;

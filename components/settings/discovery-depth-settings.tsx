@@ -104,9 +104,7 @@ export function DiscoveryDepthSettings({
                     </span>
                   )}
                 </div>
-                <p className="text-xs text-muted-foreground">
-                  {t(`options.${value}.description`)}
-                </p>
+                <p className="text-xs text-muted-foreground">{t(`options.${value}.description`)}</p>
 
                 <div className="space-y-3">
                   <div className="space-y-1">

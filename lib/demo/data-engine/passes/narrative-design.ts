@@ -48,14 +48,14 @@ export async function runNarrativeDesign(
     nomenclature: research.nomenclature,
   }).slice(0, 8_000);
 
-  const existingNarratives = research.dataNarratives.length > 0
-    ? JSON.stringify(research.dataNarratives)
-    : "None from research -- generate fresh narratives.";
+  const existingNarratives =
+    research.dataNarratives.length > 0
+      ? JSON.stringify(research.dataNarratives)
+      : "None from research -- generate fresh narratives.";
 
   const dateRangeMonths = Math.max(1, Math.ceil(dateWindow.dateRangeDays / 30));
 
-  const prompt = NARRATIVE_DESIGN_PROMPT
-    .replace("{customer_name}", research.customerName)
+  const prompt = NARRATIVE_DESIGN_PROMPT.replace("{customer_name}", research.customerName)
     .replace("{industry_name}", research.industryId)
     .replace("{research_summary}", researchSummary)
     .replace("{existing_narratives}", existingNarratives)

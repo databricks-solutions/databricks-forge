@@ -46,10 +46,7 @@ interface OwnerLookup {
  * Look up the owner of a resource. Returns `exists=false` for unknown
  * resources and `ownerEmail=null` for legacy rows that pre-date isolation.
  */
-async function lookupOwner(
-  resourceType: ResourceType,
-  resourceId: string,
-): Promise<OwnerLookup> {
+async function lookupOwner(resourceType: ResourceType, resourceId: string): Promise<OwnerLookup> {
   return withPrisma(async (prisma) => {
     switch (resourceType) {
       case "run": {
@@ -57,84 +54,108 @@ async function lookupOwner(
           where: { runId: resourceId },
           select: { ownerEmail: true },
         });
-        return row ? { ownerEmail: row.ownerEmail, exists: true } : { ownerEmail: null, exists: false };
+        return row
+          ? { ownerEmail: row.ownerEmail, exists: true }
+          : { ownerEmail: null, exists: false };
       }
       case "scan": {
         const row = await prisma.forgeEnvironmentScan.findUnique({
           where: { scanId: resourceId },
           select: { ownerEmail: true },
         });
-        return row ? { ownerEmail: row.ownerEmail, exists: true } : { ownerEmail: null, exists: false };
+        return row
+          ? { ownerEmail: row.ownerEmail, exists: true }
+          : { ownerEmail: null, exists: false };
       }
       case "genie_space": {
         const row = await prisma.forgeGenieSpace.findUnique({
           where: { id: resourceId },
           select: { ownerEmail: true },
         });
-        return row ? { ownerEmail: row.ownerEmail, exists: true } : { ownerEmail: null, exists: false };
+        return row
+          ? { ownerEmail: row.ownerEmail, exists: true }
+          : { ownerEmail: null, exists: false };
       }
       case "demo_session": {
         const row = await prisma.forgeDemoSession.findUnique({
           where: { id: resourceId },
           select: { ownerEmail: true },
         });
-        return row ? { ownerEmail: row.ownerEmail, exists: true } : { ownerEmail: null, exists: false };
+        return row
+          ? { ownerEmail: row.ownerEmail, exists: true }
+          : { ownerEmail: null, exists: false };
       }
       case "comment_job": {
         const row = await prisma.forgeCommentJob.findUnique({
           where: { id: resourceId },
           select: { ownerEmail: true },
         });
-        return row ? { ownerEmail: row.ownerEmail, exists: true } : { ownerEmail: null, exists: false };
+        return row
+          ? { ownerEmail: row.ownerEmail, exists: true }
+          : { ownerEmail: null, exists: false };
       }
       case "strategy_document": {
         const row = await prisma.forgeStrategyDocument.findUnique({
           where: { id: resourceId },
           select: { ownerEmail: true },
         });
-        return row ? { ownerEmail: row.ownerEmail, exists: true } : { ownerEmail: null, exists: false };
+        return row
+          ? { ownerEmail: row.ownerEmail, exists: true }
+          : { ownerEmail: null, exists: false };
       }
       case "document": {
         const row = await prisma.forgeDocument.findUnique({
           where: { id: resourceId },
           select: { ownerEmail: true },
         });
-        return row ? { ownerEmail: row.ownerEmail, exists: true } : { ownerEmail: null, exists: false };
+        return row
+          ? { ownerEmail: row.ownerEmail, exists: true }
+          : { ownerEmail: null, exists: false };
       }
       case "fabric_scan": {
         const row = await prisma.forgeFabricScan.findUnique({
           where: { id: resourceId },
           select: { ownerEmail: true },
         });
-        return row ? { ownerEmail: row.ownerEmail, exists: true } : { ownerEmail: null, exists: false };
+        return row
+          ? { ownerEmail: row.ownerEmail, exists: true }
+          : { ownerEmail: null, exists: false };
       }
       case "fabric_migration": {
         const row = await prisma.forgeFabricMigration.findUnique({
           where: { id: resourceId },
           select: { ownerEmail: true },
         });
-        return row ? { ownerEmail: row.ownerEmail, exists: true } : { ownerEmail: null, exists: false };
+        return row
+          ? { ownerEmail: row.ownerEmail, exists: true }
+          : { ownerEmail: null, exists: false };
       }
       case "waf_assessment": {
         const row = await prisma.forgeWafAssessment.findUnique({
           where: { assessmentId: resourceId },
           select: { ownerEmail: true },
         });
-        return row ? { ownerEmail: row.ownerEmail, exists: true } : { ownerEmail: null, exists: false };
+        return row
+          ? { ownerEmail: row.ownerEmail, exists: true }
+          : { ownerEmail: null, exists: false };
       }
       case "estate_program": {
         const row = await prisma.forgeEstateProgram.findUnique({
           where: { id: resourceId },
           select: { ownerEmail: true },
         });
-        return row ? { ownerEmail: row.ownerEmail, exists: true } : { ownerEmail: null, exists: false };
+        return row
+          ? { ownerEmail: row.ownerEmail, exists: true }
+          : { ownerEmail: null, exists: false };
       }
       case "metric_view_proposal": {
         const row = await prisma.forgeMetricViewProposal.findUnique({
           where: { id: resourceId },
           select: { ownerEmail: true },
         });
-        return row ? { ownerEmail: row.ownerEmail, exists: true } : { ownerEmail: null, exists: false };
+        return row
+          ? { ownerEmail: row.ownerEmail, exists: true }
+          : { ownerEmail: null, exists: false };
       }
       default:
         // Other resource types are not yet shareable.

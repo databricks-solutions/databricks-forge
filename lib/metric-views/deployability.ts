@@ -23,10 +23,7 @@ export function isMetricViewValidationDeployable(
 ): boolean {
   if (provenance.validationStatus !== "valid") return false;
   if (provenance.validatorVersion !== METRIC_VIEW_PROBE_VALIDATOR_VERSION) return false;
-  if (
-    !provenance.validatedAt ||
-    !Number.isFinite(Date.parse(provenance.validatedAt))
-  ) {
+  if (!provenance.validatedAt || !Number.isFinite(Date.parse(provenance.validatedAt))) {
     return false;
   }
 
@@ -35,10 +32,7 @@ export function isMetricViewValidationDeployable(
 
   return REQUIRED_PASSED_EVIDENCE.every(([stage, code]) =>
     evidence.some(
-      (entry) =>
-        entry.stage === stage &&
-        entry.code === code &&
-        entry.status === "passed",
+      (entry) => entry.stage === stage && entry.code === code && entry.status === "passed",
     ),
   );
 }

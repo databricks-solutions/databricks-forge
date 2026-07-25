@@ -7,7 +7,9 @@ import { logger } from "@/lib/logger";
 import { assembleLakeviewDashboard } from "./assembler";
 import { fingerprintSerializedDashboard } from "./live-artifact";
 
-export function invertTrustedDashboardDesign(serialized: string | undefined): DashboardDesignV2 | null {
+export function invertTrustedDashboardDesign(
+  serialized: string | undefined,
+): DashboardDesignV2 | null {
   if (!serialized) return null;
   try {
     const payload: unknown = JSON.parse(serialized);
@@ -45,9 +47,7 @@ export async function enrichDiscoveredDashboardsWithDesigns(
           mode: "user",
           oboToken,
         });
-        const liveSerializedFingerprint = fingerprintSerializedDashboard(
-          live.serialized_dashboard,
-        );
+        const liveSerializedFingerprint = fingerprintSerializedDashboard(live.serialized_dashboard);
         const trackedDesign = trustedById.get(dashboard.dashboardId);
         if (
           trackedDesign &&

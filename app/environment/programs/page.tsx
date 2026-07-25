@@ -13,13 +13,7 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -176,7 +170,10 @@ export default function EstateProgramsPage() {
             </div>
             <div className="space-y-1">
               <label className="text-sm font-medium">{t("form.industryLabel")}</label>
-              <Select value={industryId || "__none__"} onValueChange={(v) => setIndustryId(v === "__none__" ? "" : v)}>
+              <Select
+                value={industryId || "__none__"}
+                onValueChange={(v) => setIndustryId(v === "__none__" ? "" : v)}
+              >
                 <SelectTrigger>
                   <SelectValue placeholder={t("form.industryPlaceholder")} />
                 </SelectTrigger>

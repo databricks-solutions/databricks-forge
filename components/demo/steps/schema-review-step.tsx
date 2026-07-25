@@ -16,7 +16,11 @@ export function SchemaReviewStep({ research }: SchemaReviewStepProps) {
     <div className="space-y-5 px-1">
       {/* Data Assets */}
       <section>
-        <SectionHeader icon={Layers} title="Data Assets" subtitle={`${research.matchedDataAssetIds.length} matched`} />
+        <SectionHeader
+          icon={Layers}
+          title="Data Assets"
+          subtitle={`${research.matchedDataAssetIds.length} matched`}
+        />
         <div className="mt-2 flex flex-wrap gap-1.5">
           {research.matchedDataAssetIds.map((id) => (
             <span
@@ -32,19 +36,32 @@ export function SchemaReviewStep({ research }: SchemaReviewStepProps) {
       {/* Data Narratives */}
       {research.dataNarratives.length > 0 && (
         <section>
-          <SectionHeader icon={BookText} title="Data Narratives" subtitle="Patterns embedded in generated data" />
+          <SectionHeader
+            icon={BookText}
+            title="Data Narratives"
+            subtitle="Patterns embedded in generated data"
+          />
           <div className="mt-2.5 space-y-2">
             {research.dataNarratives.map((n, i) => (
               <div key={i} className="rounded-lg border bg-card p-3">
                 <div className="flex items-start justify-between gap-2">
                   <p className="text-sm font-semibold leading-snug">{n.title}</p>
-                  <Badge variant="secondary" className="shrink-0 text-[10px] px-1.5 py-0">{n.pattern}</Badge>
+                  <Badge variant="secondary" className="shrink-0 text-[10px] px-1.5 py-0">
+                    {n.pattern}
+                  </Badge>
                 </div>
-                <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{n.description}</p>
+                <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                  {n.description}
+                </p>
                 {n.affectedTables.length > 0 && (
                   <div className="mt-2 flex flex-wrap gap-1">
                     {n.affectedTables.map((t) => (
-                      <span key={t} className="rounded bg-muted px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">{t}</span>
+                      <span
+                        key={t}
+                        className="rounded bg-muted px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground"
+                      >
+                        {t}
+                      </span>
                     ))}
                   </div>
                 )}
@@ -80,7 +97,11 @@ export function SchemaReviewStep({ research }: SchemaReviewStepProps) {
       {/* Demo Highlights */}
       {killerMoments.length > 0 && (
         <section>
-          <SectionHeader icon={Sparkles} title="Demo Highlights" subtitle="Key moments to showcase" />
+          <SectionHeader
+            icon={Sparkles}
+            title="Demo Highlights"
+            subtitle="Key moments to showcase"
+          />
           <div className="mt-2.5 space-y-2">
             {killerMoments.map((m, i) => (
               <div

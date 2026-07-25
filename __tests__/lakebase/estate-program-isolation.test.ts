@@ -7,7 +7,7 @@ const mocks = vi.hoisted(() => ({
 }));
 
 vi.mock("@/lib/prisma", () => ({
-  withPrisma: async <T,>(
+  withPrisma: async <T>(
     callback: (prisma: {
       forgeEstateProgram: { findMany: typeof mocks.findMany };
       forgeEstateProgramScope: {
@@ -22,10 +22,7 @@ vi.mock("@/lib/prisma", () => ({
     }),
 }));
 
-import {
-  deleteProgramScope,
-  listEstatePrograms,
-} from "@/lib/lakebase/estate-programs";
+import { deleteProgramScope, listEstatePrograms } from "@/lib/lakebase/estate-programs";
 
 beforeEach(() => {
   vi.clearAllMocks();
@@ -40,10 +37,7 @@ describe("estate program data isolation", () => {
     expect(mocks.findMany).toHaveBeenCalledWith(
       expect.objectContaining({
         where: {
-          OR: [
-            { ownerEmail: "owner@example.com" },
-            { id: { in: ["shared-program"] } },
-          ],
+          OR: [{ ownerEmail: "owner@example.com" }, { id: { in: ["shared-program"] } }],
         },
         take: 25,
       }),

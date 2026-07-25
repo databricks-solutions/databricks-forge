@@ -21,8 +21,22 @@ import ptBR from "@/messages/pt-BR.json";
 vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: false, json: async () => ({}) }));
 
 const details = [
-  { tableFqn: "cat.fin.ledger", dataDomain: "Finance", dataSubdomain: "GL", numRows: 1000, sizeInBytes: 5000, dataTier: "gold" },
-  { tableFqn: "cat.sales.orders", dataDomain: "Sales", dataSubdomain: "Orders", numRows: 2000, sizeInBytes: 9000, dataTier: "silver" },
+  {
+    tableFqn: "cat.fin.ledger",
+    dataDomain: "Finance",
+    dataSubdomain: "GL",
+    numRows: 1000,
+    sizeInBytes: 5000,
+    dataTier: "gold",
+  },
+  {
+    tableFqn: "cat.sales.orders",
+    dataDomain: "Sales",
+    dataSubdomain: "Orders",
+    numRows: 2000,
+    sizeInBytes: 9000,
+    dataTier: "silver",
+  },
 ] as unknown as TableDetailRow[];
 
 const humanNumber = (v: string | number | null) => String(v ?? "—");

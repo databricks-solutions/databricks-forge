@@ -131,7 +131,9 @@ export function ReadinessPanel(props: ReadinessPanelProps) {
             <SummaryBadge verdict="answerable" count={report.summary.answerable} />
             <SummaryBadge verdict="partial" count={report.summary.partial} />
             <SummaryBadge verdict="not_answerable" count={report.summary.notAnswerable} />
-            <span className={`ml-auto font-medium ${report.ready ? "text-emerald-600" : "text-amber-600"}`}>
+            <span
+              className={`ml-auto font-medium ${report.ready ? "text-emerald-600" : "text-amber-600"}`}
+            >
               {report.ready ? "Ready to generate" : "Some gaps detected"}
             </span>
           </div>
@@ -164,8 +166,10 @@ export function ReadinessPanel(props: ReadinessPanelProps) {
 }
 
 function VerdictIcon({ verdict }: { verdict: ReadinessVerdict }) {
-  if (verdict === "answerable") return <CheckCircle2 className="mt-0.5 size-3.5 shrink-0 text-emerald-500" />;
-  if (verdict === "partial") return <AlertTriangle className="mt-0.5 size-3.5 shrink-0 text-amber-500" />;
+  if (verdict === "answerable")
+    return <CheckCircle2 className="mt-0.5 size-3.5 shrink-0 text-emerald-500" />;
+  if (verdict === "partial")
+    return <AlertTriangle className="mt-0.5 size-3.5 shrink-0 text-amber-500" />;
   return <XCircle className="mt-0.5 size-3.5 shrink-0 text-red-500" />;
 }
 

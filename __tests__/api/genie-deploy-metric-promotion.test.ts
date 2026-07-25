@@ -56,10 +56,7 @@ vi.mock("@/lib/logger", () => ({
   })),
 }));
 
-import {
-  GET,
-  POST,
-} from "@/app/api/runs/[runId]/genie-deploy/route";
+import { GET, POST } from "@/app/api/runs/[runId]/genie-deploy/route";
 
 const runId = "run-1";
 
@@ -94,12 +91,9 @@ async function startDeploy() {
 }
 
 async function job(jobId: string) {
-  return GET(
-    new NextRequest(
-      `http://localhost/api/runs/${runId}/genie-deploy?jobId=${jobId}`,
-    ),
-    { params: Promise.resolve({ runId }) },
-  );
+  return GET(new NextRequest(`http://localhost/api/runs/${runId}/genie-deploy?jobId=${jobId}`), {
+    params: Promise.resolve({ runId }),
+  });
 }
 
 beforeEach(() => {
@@ -138,10 +132,7 @@ describe("pipeline Genie metric view promotion", () => {
       "CREATE VIEW prod.metrics.sales_metrics AS SELECT 1",
       "request-obo-token",
     );
-    expect(mocks.promote).toHaveBeenCalledWith(
-      "proposal-1",
-      "prod.metrics.sales_metrics",
-    );
+    expect(mocks.promote).toHaveBeenCalledWith("proposal-1", "prod.metrics.sales_metrics");
     expect(mocks.updateStatus).not.toHaveBeenCalledWith(
       "proposal-1",
       "deployed",

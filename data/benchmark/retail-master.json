@@ -19,12 +19,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "retail",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "retail", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- BCG -- What Consumers Want from Personalization."
@@ -47,12 +42,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "retail",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "retail", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Experian -- AI-Powered Identity Resolution."
@@ -75,12 +65,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "retail",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "retail", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Retail."
@@ -103,12 +88,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "retail",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "retail", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- BCG -- What Consumers Want from Personalization."
@@ -131,12 +111,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "retail",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "retail", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- BCG -- What Consumers Want from Personalization."
@@ -159,12 +134,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "retail",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "retail", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- BCG -- What Consumers Want from Personalization."
@@ -187,12 +157,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "retail",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "retail", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Harvard Business Review -- The Economic Potential of Generative AI."
@@ -215,12 +180,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "retail",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "retail", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- BCG -- How Retailers Can Improve Promotion Effectiveness."
@@ -243,12 +203,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "retail",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "retail", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Retail."
@@ -271,12 +226,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "retail",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "retail", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Retail."
@@ -299,12 +249,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "retail",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "retail", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- SHRM -- AI Hiring and Time-to-Fill Study."
@@ -327,12 +272,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "retail",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "retail", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- Smart Scheduling with AI."
@@ -355,12 +295,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "retail",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "retail", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Accenture -- GenAI at Work Survey."
@@ -383,12 +318,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "retail",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "retail", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Pecan AI -- How and Why to Calculate and Predict Customer Churn."
@@ -411,12 +341,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "retail",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "retail", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The State of AI 2024 (GenAI and Onboarding)."
@@ -439,12 +364,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "retail",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "retail", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Business Insider -- McKinsey’s Lilli AI Assistant."
@@ -467,12 +387,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "retail",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "retail", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The economic potential of generative AI."
@@ -495,12 +410,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "retail",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "retail", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- IBM -- AIOps in Retail IT – Case Study."
@@ -523,12 +433,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "retail",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "retail", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Resilinc -- Supply Chain Disruption Stats."
@@ -551,12 +456,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "retail",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "retail", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Deloitte -- Future of Freight 2025."
@@ -579,12 +479,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "retail",
-        "Cash / Working Capital"
-      ],
+      "tags": ["master-repo", "kpi", "retail", "Cash / Working Capital"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Retail."
@@ -607,12 +502,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "retail",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "retail", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- NIST -- AI Risk Management Framework."
@@ -635,12 +525,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "retail",
-        "Cash / Working Capital"
-      ],
+      "tags": ["master-repo", "kpi", "retail", "Cash / Working Capital"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Retail."
@@ -663,12 +548,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "retail",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "retail", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- MIT -- Smart Inventory Optimization at Zara."
@@ -691,12 +571,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "retail",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "retail", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Retail."
@@ -719,12 +594,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "retail",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "retail", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- BCG -- Retail Media Networks – Margin Impact."
@@ -747,12 +617,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "retail",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "retail", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Retail."

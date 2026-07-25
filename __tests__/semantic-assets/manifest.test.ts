@@ -196,15 +196,13 @@ describe("buildSemanticAssetManifest", () => {
     expect(new Set(manifest.measures.map((measure) => measure.id)).size).toBe(
       manifest.measures.length,
     );
-    expect(manifest.measures.filter((measure) => measure.source === "metric_view")).toHaveLength(
-      1,
-    );
+    expect(manifest.measures.filter((measure) => measure.source === "metric_view")).toHaveLength(1);
     expect(
       manifest.measures.filter((measure) => measure.source === "genie_expression"),
     ).toHaveLength(1);
-    expect(manifest.measures.find((measure) => measure.source === "genie_expression")).toMatchObject(
-      { fallback: true, sql: "SUM(amount)" },
-    );
+    expect(
+      manifest.measures.find((measure) => measure.source === "genie_expression"),
+    ).toMatchObject({ fallback: true, sql: "SUM(amount)" });
   });
 
   it("retains canonical fields, source tables, and representative metric queries", () => {
@@ -275,12 +273,10 @@ describe("buildSemanticAssetManifest", () => {
     expect(forward.metricViews).toHaveLength(1);
     const selectedPrefix = forward.metricViews[0].measures[0].name.split("_")[0];
     expect(forward.metricViews[0].dimensions[0].name).toBe(`${selectedPrefix}_dimension`);
-    expect(
-      forward.filters.find((filter) => filter.source === "metric_view")?.sql,
-    ).toBe(`${selectedPrefix}_filter = true`);
-    expect(forward.metricViews[0].sourceTables).toEqual([
-      `main.sales.${selectedPrefix}_orders`,
-    ]);
+    expect(forward.filters.find((filter) => filter.source === "metric_view")?.sql).toBe(
+      `${selectedPrefix}_filter = true`,
+    );
+    expect(forward.metricViews[0].sourceTables).toEqual([`main.sales.${selectedPrefix}_orders`]);
   });
 
   it("trims whitespace before deduplicating canonical string collections", () => {
@@ -310,9 +306,9 @@ describe("buildSemanticAssetManifest", () => {
     });
 
     expect(manifest.subdomains).toEqual(["Orders", "Revenue"]);
-    expect(
-      manifest.measures.find((measure) => measure.source === "metric_view")?.synonyms,
-    ).toEqual(["net revenue", "revenue"]);
+    expect(manifest.measures.find((measure) => measure.source === "metric_view")?.synonyms).toEqual(
+      ["net revenue", "revenue"],
+    );
     expect(
       manifest.dimensions.find((dimension) => dimension.source === "metric_view")?.synonyms,
     ).toEqual(["fiscal month", "month"]);

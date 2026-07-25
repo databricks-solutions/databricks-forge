@@ -295,9 +295,7 @@ export async function updateUseCaseReferenceLinks(
  * Returns `null` when no use case in the run has ever had its reference
  * link resolved.
  */
-export async function getNewestReferenceUseCaseResolvedAt(
-  runId: string,
-): Promise<Date | null> {
+export async function getNewestReferenceUseCaseResolvedAt(runId: string): Promise<Date | null> {
   return withPrisma(async (prisma) => {
     const row = await prisma.forgeUseCase.findFirst({
       where: { runId, referenceUseCaseResolvedAt: { not: null } },

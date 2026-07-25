@@ -2,11 +2,10 @@ const REDACTED_CREDENTIAL = "[redacted credential]";
 const REDACTED_CONTENT = "[redacted content]";
 const REDACTED_SQL = "[redacted SQL]";
 
-const AUTHORIZATION_HEADER =
-  /\bauthorization\s*[:=]\s*[a-z][a-z0-9._~-]*\s+[^\s;,]+/gi;
+const AUTHORIZATION_HEADER = /\bauthorization\s*[:=]\s*[a-z][a-z0-9._~-]*\s+[^\s;,]+/gi;
 const SECRET_ASSIGNMENT =
   /(\b(?:x[-_])?(?:access[_-]?token|refresh[_-]?token|client[_-]?secret|api[_-]?key|password)\b["']?\s*[:=]\s*)(?:"[^"]*"|'[^']*'|[^\s&;,}]+)/gi;
-const IDENTIFIER_PART = "(?:`[^`]+`|\"[^\"]+\"|[a-zA-Z_][a-zA-Z0-9_-]*)";
+const IDENTIFIER_PART = '(?:`[^`]+`|"[^"]+"|[a-zA-Z_][a-zA-Z0-9_-]*)';
 const QUALIFIED_IDENTIFIER = `${IDENTIFIER_PART}(?:\\s*\\.\\s*${IDENTIFIER_PART}){0,2}`;
 const SELECT_EXPRESSION_EVIDENCE = [
   "'[^']*'",
@@ -18,8 +17,7 @@ const SELECT_EXPRESSION_EVIDENCE = [
   "\\s+AS\\s+",
   "\\s+(?:\\+|-|/|%|=|<>|!=|<=|>=)\\s+",
 ].join("|");
-const OBJECT_TYPE =
-  "(?:TABLE|VIEW|MATERIALIZED\\s+VIEW|FUNCTION|SCHEMA|DATABASE|CATALOG)";
+const OBJECT_TYPE = "(?:TABLE|VIEW|MATERIALIZED\\s+VIEW|FUNCTION|SCHEMA|DATABASE|CATALOG)";
 const STATEMENT_END = "(?=;|$)";
 const SQL_STATEMENT = new RegExp(
   [

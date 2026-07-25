@@ -3,9 +3,11 @@ import { retryEstateScope } from "@/lib/domain/estate-scope-retry";
 
 describe("retryEstateScope", () => {
   it("posts the selected scope and accepts a 202 response", async () => {
-    const fetcher = vi.fn().mockResolvedValue(
-      new Response(JSON.stringify({ status: "retried", scopeId: "s1" }), { status: 202 }),
-    );
+    const fetcher = vi
+      .fn()
+      .mockResolvedValue(
+        new Response(JSON.stringify({ status: "retried", scopeId: "s1" }), { status: 202 }),
+      );
 
     await expect(retryEstateScope("p1", "s1", fetcher)).resolves.toEqual({
       ok: true,
@@ -22,9 +24,9 @@ describe("retryEstateScope", () => {
     [409, "active_work"],
     [422, "max_attempts"],
   ] as const)("preserves the precise %s rejection reason", async (status, reason) => {
-    const fetcher = vi.fn().mockResolvedValue(
-      new Response(JSON.stringify({ status: "rejected", reason }), { status }),
-    );
+    const fetcher = vi
+      .fn()
+      .mockResolvedValue(new Response(JSON.stringify({ status: "rejected", reason }), { status }));
 
     await expect(retryEstateScope("p1", "s1", fetcher)).resolves.toEqual({
       ok: false,

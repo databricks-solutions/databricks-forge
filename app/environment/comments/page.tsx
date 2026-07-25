@@ -107,12 +107,9 @@ export default function AICommentsPage() {
     typeof window !== "undefined"
       ? loadSettings().aiCommentLanguage
       : DEFAULT_COMMENT_OUTPUT_LANGUAGE;
-  const [selectedIndustry, setSelectedIndustry] = useState<string>(
-    settingsIndustry || "none",
-  );
-  const [selectedLanguage, setSelectedLanguage] = useState<CommentOutputLanguage>(
-    settingsAiCommentLanguage,
-  );
+  const [selectedIndustry, setSelectedIndustry] = useState<string>(settingsIndustry || "none");
+  const [selectedLanguage, setSelectedLanguage] =
+    useState<CommentOutputLanguage>(settingsAiCommentLanguage);
   const [genProgress, setGenProgress] = useState<CommentProgressData | null>(null);
   const [pollTimerRef, setPollTimerRef] = useState<ReturnType<typeof setInterval> | null>(null);
 
@@ -144,35 +141,38 @@ export default function AICommentsPage() {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // -- Load job data --
-  const loadJobData = useCallback(async (jobId: string) => {
-    try {
-      const res = await fetch(`/api/environment/comments/${jobId}`);
-      if (!res.ok) throw new Error("Failed to load job");
-      const data = await res.json();
-      setProposals(data.proposals ?? []);
-      setTableSummary(data.tableSummary ?? []);
+  const loadJobData = useCallback(
+    async (jobId: string) => {
+      try {
+        const res = await fetch(`/api/environment/comments/${jobId}`);
+        if (!res.ok) throw new Error("Failed to load job");
+        const data = await res.json();
+        setProposals(data.proposals ?? []);
+        setTableSummary(data.tableSummary ?? []);
 
-      if (data.tableSummary?.length > 0) {
-        setSelectedTable((prev) => prev ?? data.tableSummary[0].tableFqn);
-      }
+        if (data.tableSummary?.length > 0) {
+          setSelectedTable((prev) => prev ?? data.tableSummary[0].tableFqn);
+        }
 
-      const fqns = (data.tableSummary ?? []).map((t: TableSummary) => t.tableFqn);
-      if (fqns.length > 0) {
-        fetch("/api/environment/comments/check-permissions", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ tableFqns: fqns }),
-        })
-          .then((r) => (r.ok ? r.json() : null))
-          .then((data) => {
-            if (data?.permissions) setPermissions(data.permissions);
+        const fqns = (data.tableSummary ?? []).map((t: TableSummary) => t.tableFqn);
+        if (fqns.length > 0) {
+          fetch("/api/environment/comments/check-permissions", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ tableFqns: fqns }),
           })
-          .catch(() => {});
+            .then((r) => (r.ok ? r.json() : null))
+            .then((data) => {
+              if (data?.permissions) setPermissions(data.permissions);
+            })
+            .catch(() => {});
+        }
+      } catch {
+        toast.error(tToasts("load_failed"));
       }
-    } catch {
-      toast.error(tToasts("load_failed"));
-    }
-  }, [tToasts]);
+    },
+    [tToasts],
+  );
 
   // -- Generate comments (from modal) --
   const handleGenerate = useCallback(async () => {
@@ -494,15 +494,18 @@ export default function AICommentsPage() {
   );
 
   // -- Delete job --
-  const handleDeleteJob = useCallback(async (jobId: string) => {
-    try {
-      await fetch(`/api/environment/comments/${jobId}`, { method: "DELETE" });
-      setJobs((prev) => prev.filter((j) => j.id !== jobId));
-      toast.success(tToasts("job_deleted"));
-    } catch {
-      toast.error(tToasts("delete_failed"));
-    }
-  }, [tToasts]);
+  const handleDeleteJob = useCallback(
+    async (jobId: string) => {
+      try {
+        await fetch(`/api/environment/comments/${jobId}`, { method: "DELETE" });
+        setJobs((prev) => prev.filter((j) => j.id !== jobId));
+        toast.success(tToasts("job_deleted"));
+      } catch {
+        toast.error(tToasts("delete_failed"));
+      }
+    },
+    [tToasts],
+  );
 
   // -- Derived state --
   const currentTableProposals = useMemo(
@@ -675,7 +678,9 @@ export default function AICommentsPage() {
             <Card className="border-blue-200 bg-blue-50/30 dark:border-blue-900 dark:bg-blue-950/10">
               <CardContent className="py-8 flex items-center justify-center gap-3">
                 <Loader2 className="h-5 w-5 animate-spin text-blue-500" />
-                <span className="text-sm text-muted-foreground">{tReview("starting_generation")}</span>
+                <span className="text-sm text-muted-foreground">
+                  {tReview("starting_generation")}
+                </span>
               </CardContent>
             </Card>
           )}
@@ -709,9 +714,7 @@ export default function AICommentsPage() {
                 />
               ) : (
                 <div className="flex h-full items-center justify-center text-sm text-muted-foreground">
-                  {tableSummary.length > 0
-                    ? tReview("select_table")
-                    : tReview("no_proposals")}
+                  {tableSummary.length > 0 ? tReview("select_table") : tReview("no_proposals")}
                 </div>
               )}
             </div>
@@ -750,9 +753,7 @@ export default function AICommentsPage() {
           <div className="flex-1 min-h-0 overflow-y-auto space-y-6 pt-2">
             <div>
               <h3 className="text-sm font-medium mb-2">{tDialog("scope_title")}</h3>
-              <p className="text-xs text-muted-foreground mb-3">
-                {tDialog("scope_description")}
-              </p>
+              <p className="text-xs text-muted-foreground mb-3">{tDialog("scope_description")}</p>
               <CatalogBrowser
                 selectedSources={selectedSources}
                 excludedSources={excludedSources}
@@ -783,10 +784,7 @@ export default function AICommentsPage() {
                   </div>
                   <p className="text-xs text-muted-foreground mt-2">
                     {tDialog("industry_set_globally_pre")}{" "}
-                    <Link
-                      href="/settings"
-                      className="underline text-primary hover:text-primary/80"
-                    >
+                    <Link href="/settings" className="underline text-primary hover:text-primary/80">
                       {tDialog("industry_set_globally_settings")}
                     </Link>
                     .

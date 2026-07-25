@@ -173,9 +173,7 @@ export function DemoWizard({ open, onOpenChange }: DemoWizardProps) {
           <div className="flex items-center gap-1 pt-2">
             {STEPS.map((s, idx) => (
               <span key={s.key} className="flex items-center gap-1">
-                {idx > 0 && (
-                  <ChevronRight className="h-3 w-3 text-muted-foreground" />
-                )}
+                {idx > 0 && <ChevronRight className="h-3 w-3 text-muted-foreground" />}
                 <StepIndicator
                   label={s.label}
                   active={s.key === step}
@@ -230,9 +228,7 @@ export function DemoWizard({ open, onOpenChange }: DemoWizardProps) {
             />
           )}
 
-          {step === "schema-review" && research && (
-            <SchemaReviewStep research={research} />
-          )}
+          {step === "schema-review" && research && <SchemaReviewStep research={research} />}
 
           {step === "progress" && (
             <GenerationProgressStep
@@ -270,53 +266,33 @@ export function DemoWizard({ open, onOpenChange }: DemoWizardProps) {
           )}
 
           {step === "company-info" && (
-            <Button
-              disabled={!customerName.trim()}
-              onClick={handleStartResearch}
-            >
+            <Button disabled={!customerName.trim()} onClick={handleStartResearch}>
               Start Research
             </Button>
           )}
 
           {step === "research" && research && (
-            <Button onClick={() => setStep("catalog")}>
-              Continue to Catalog
-            </Button>
+            <Button onClick={() => setStep("catalog")}>Continue to Catalog</Button>
           )}
 
           {step === "catalog" && (
-            <Button
-              disabled={!catalog || !schema}
-              onClick={() => setStep("schema-review")}
-            >
+            <Button disabled={!catalog || !schema} onClick={() => setStep("schema-review")}>
               Review Schema
             </Button>
           )}
 
           {step === "schema-review" && (
-            <Button onClick={handleStartGeneration}>
-              Generate Data
-            </Button>
+            <Button onClick={handleStartGeneration}>Generate Data</Button>
           )}
 
-          {step === "complete" && (
-            <Button onClick={handleClose}>Close</Button>
-          )}
+          {step === "complete" && <Button onClick={handleClose}>Close</Button>}
         </DialogFooter>
       </DialogContent>
     </Dialog>
   );
 }
 
-function StepIndicator({
-  label,
-  active,
-  done,
-}: {
-  label: string;
-  active: boolean;
-  done: boolean;
-}) {
+function StepIndicator({ label, active, done }: { label: string; active: boolean; done: boolean }) {
   return (
     <span
       className={`rounded-full px-2 py-0.5 text-[10px] font-medium ${

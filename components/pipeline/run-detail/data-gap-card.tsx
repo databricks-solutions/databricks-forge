@@ -209,9 +209,9 @@ function OnboardingPlanPanel({ result }: { result: DataGapResult }) {
         <div>
           <h3 className="text-sm font-semibold">Sales-Ready Onboarding Plan</h3>
           <p className="text-xs text-muted-foreground">
-            Each row is an upstream system to chase down. Confirm the owner with the customer,
-            then onboard it to Databricks via the recommended path to unlock the listed use
-            cases and value.
+            Each row is an upstream system to chase down. Confirm the owner with the customer, then
+            onboard it to Databricks via the recommended path to unlock the listed use cases and
+            value.
           </p>
         </div>
       </div>
@@ -291,17 +291,11 @@ function OnboardingPlanPanel({ result }: { result: DataGapResult }) {
                           )}
                         </span>
                       ) : (
-                        <span className="text-muted-foreground">
-                          Confirm source with customer
-                        </span>
+                        <span className="text-muted-foreground">Confirm source with customer</span>
                       )}
                     </td>
-                    <td className="px-3 py-2 text-right tabular-nums">
-                      {row.assetCount}
-                    </td>
-                    <td className="px-3 py-2 text-right tabular-nums">
-                      {row.useCaseCount}
-                    </td>
+                    <td className="px-3 py-2 text-right tabular-nums">{row.assetCount}</td>
+                    <td className="px-3 py-2 text-right tabular-nums">{row.useCaseCount}</td>
                     <td className="px-3 py-2 text-right font-medium">
                       {fmtUsd(row.valueMid)}
                       <div className="text-xs text-muted-foreground">
@@ -380,50 +374,44 @@ function OriginBadge({ origin }: { origin: OnboardingPlanRow["origin"] }) {
 function OnboardingPlanDetail({ row }: { row: OnboardingPlanRow }) {
   return (
     <div className="space-y-3 text-xs">
-      {row.origin === "master-repo" &&
-        row.exampleVendors &&
-        row.exampleVendors.length > 0 && (
-          <div>
-            <div className="mb-1 font-medium text-muted-foreground">
-              Common vendors in this category
-            </div>
-            <div className="flex flex-wrap gap-1">
-              {row.exampleVendors.map((v) => (
-                <Badge key={v} variant="secondary">
-                  {v}
-                </Badge>
-              ))}
-            </div>
-            <p className="mt-1 text-[11px] text-muted-foreground">
-              Ask the customer which one they run so we can pick the right Lakeflow connector.
-            </p>
-          </div>
-        )}
-      {row.origin === "unknown" &&
-        row.likelyCategories &&
-        row.likelyCategories.length > 0 && (
-          <div>
-            <div className="mb-1 font-medium text-muted-foreground">
-              Likely categories (based on the missing assets)
-            </div>
-            <div className="flex flex-wrap gap-1">
-              {row.likelyCategories.map((k) => (
-                <Badge key={k} variant="outline">
-                  {k}
-                </Badge>
-              ))}
-            </div>
-            <p className="mt-1 text-[11px] text-muted-foreground">
-              Use these as discovery prompts — ask the customer which systems own this kind of
-              data so we can confirm the ingestion path.
-            </p>
-          </div>
-        )}
-      {row.assets.length > 0 && (
+      {row.origin === "master-repo" && row.exampleVendors && row.exampleVendors.length > 0 && (
         <div>
           <div className="mb-1 font-medium text-muted-foreground">
-            Top assets unlocked
+            Common vendors in this category
           </div>
+          <div className="flex flex-wrap gap-1">
+            {row.exampleVendors.map((v) => (
+              <Badge key={v} variant="secondary">
+                {v}
+              </Badge>
+            ))}
+          </div>
+          <p className="mt-1 text-[11px] text-muted-foreground">
+            Ask the customer which one they run so we can pick the right Lakeflow connector.
+          </p>
+        </div>
+      )}
+      {row.origin === "unknown" && row.likelyCategories && row.likelyCategories.length > 0 && (
+        <div>
+          <div className="mb-1 font-medium text-muted-foreground">
+            Likely categories (based on the missing assets)
+          </div>
+          <div className="flex flex-wrap gap-1">
+            {row.likelyCategories.map((k) => (
+              <Badge key={k} variant="outline">
+                {k}
+              </Badge>
+            ))}
+          </div>
+          <p className="mt-1 text-[11px] text-muted-foreground">
+            Use these as discovery prompts — ask the customer which systems own this kind of data so
+            we can confirm the ingestion path.
+          </p>
+        </div>
+      )}
+      {row.assets.length > 0 && (
+        <div>
+          <div className="mb-1 font-medium text-muted-foreground">Top assets unlocked</div>
           <ul className="space-y-1">
             {row.assets.map((a) => (
               <li
@@ -433,9 +421,7 @@ function OnboardingPlanDetail({ row }: { row: OnboardingPlanRow }) {
                 <span>
                   <span className="font-medium">{a.assetId}</span>: {a.assetName}
                 </span>
-                <span className="tabular-nums text-muted-foreground">
-                  {fmtUsd(a.valueMid)}
-                </span>
+                <span className="tabular-nums text-muted-foreground">{fmtUsd(a.valueMid)}</span>
               </li>
             ))}
           </ul>
@@ -542,9 +528,7 @@ function CoverageMatrix({ coverage }: { coverage: AssetCoverage[] }) {
   const sorted = useMemo(() => coverage.slice(), [coverage]);
   const visible = showAll ? sorted : sorted.slice(0, 12);
   const missing = coverage.filter((c) => !c.present);
-  const presentRatio = coverage.length
-    ? (coverage.length - missing.length) / coverage.length
-    : 0;
+  const presentRatio = coverage.length ? (coverage.length - missing.length) / coverage.length : 0;
 
   return (
     <div className="space-y-2">
@@ -569,58 +553,59 @@ function CoverageMatrix({ coverage }: { coverage: AssetCoverage[] }) {
           <tbody>
             {visible.map((c) => {
               const masterRepoSource = c.resolvedSourceSystems?.find(
-                (s) => s.origin === "master-repo" && s.exampleVendors && s.exampleVendors.length > 0,
+                (s) =>
+                  s.origin === "master-repo" && s.exampleVendors && s.exampleVendors.length > 0,
               );
               return (
-              <tr key={c.assetId} className="border-t">
-                <td className="px-3 py-2">
-                  <div className="font-medium">
-                    {c.assetId}: {c.assetName}
-                  </div>
-                  {c.systemLocation && (
-                    <div className="text-xs text-muted-foreground">{c.systemLocation}</div>
-                  )}
-                  {masterRepoSource && masterRepoSource.exampleVendors && (
-                    <div className="text-[10px] text-muted-foreground">
-                      e.g. {masterRepoSource.exampleVendors.slice(0, 3).join(", ")}
+                <tr key={c.assetId} className="border-t">
+                  <td className="px-3 py-2">
+                    <div className="font-medium">
+                      {c.assetId}: {c.assetName}
                     </div>
-                  )}
-                </td>
-                <td className="px-3 py-2 text-xs">{c.assetFamily}</td>
-                <td className="px-3 py-2">
-                  {c.present ? (
-                    <Badge
-                      variant="outline"
-                      className="gap-1 border-emerald-300 text-emerald-700 dark:border-emerald-700 dark:text-emerald-400"
-                    >
-                      <CheckCircle2 className="h-3 w-3" /> Present ({c.matchedTables.length})
-                    </Badge>
-                  ) : (
-                    <Badge
-                      variant="outline"
-                      className="gap-1 border-amber-300 text-amber-700 dark:border-amber-700 dark:text-amber-400"
-                    >
-                      <AlertTriangle className="h-3 w-3" /> Missing
-                    </Badge>
-                  )}
-                </td>
-                <td className="px-3 py-2 text-xs">
-                  {c.mcUseCaseCount > 0 ? (
-                    <span title={c.mcUseCaseNames.join("\n")}>{c.mcUseCaseCount}</span>
-                  ) : (
-                    <span className="text-muted-foreground">--</span>
-                  )}
-                </td>
-                <td className="px-3 py-2 text-xs">
-                  {c.recommendations[0] && c.recommendations[0].rating === "High" ? (
-                    <span className="font-medium">
-                      <StrategyLabel strategy={c.recommendations[0].strategy} />
-                    </span>
-                  ) : (
-                    <span className="text-muted-foreground">No high-confidence path</span>
-                  )}
-                </td>
-              </tr>
+                    {c.systemLocation && (
+                      <div className="text-xs text-muted-foreground">{c.systemLocation}</div>
+                    )}
+                    {masterRepoSource && masterRepoSource.exampleVendors && (
+                      <div className="text-[10px] text-muted-foreground">
+                        e.g. {masterRepoSource.exampleVendors.slice(0, 3).join(", ")}
+                      </div>
+                    )}
+                  </td>
+                  <td className="px-3 py-2 text-xs">{c.assetFamily}</td>
+                  <td className="px-3 py-2">
+                    {c.present ? (
+                      <Badge
+                        variant="outline"
+                        className="gap-1 border-emerald-300 text-emerald-700 dark:border-emerald-700 dark:text-emerald-400"
+                      >
+                        <CheckCircle2 className="h-3 w-3" /> Present ({c.matchedTables.length})
+                      </Badge>
+                    ) : (
+                      <Badge
+                        variant="outline"
+                        className="gap-1 border-amber-300 text-amber-700 dark:border-amber-700 dark:text-amber-400"
+                      >
+                        <AlertTriangle className="h-3 w-3" /> Missing
+                      </Badge>
+                    )}
+                  </td>
+                  <td className="px-3 py-2 text-xs">
+                    {c.mcUseCaseCount > 0 ? (
+                      <span title={c.mcUseCaseNames.join("\n")}>{c.mcUseCaseCount}</span>
+                    ) : (
+                      <span className="text-muted-foreground">--</span>
+                    )}
+                  </td>
+                  <td className="px-3 py-2 text-xs">
+                    {c.recommendations[0] && c.recommendations[0].rating === "High" ? (
+                      <span className="font-medium">
+                        <StrategyLabel strategy={c.recommendations[0].strategy} />
+                      </span>
+                    ) : (
+                      <span className="text-muted-foreground">No high-confidence path</span>
+                    )}
+                  </td>
+                </tr>
               );
             })}
           </tbody>
@@ -704,9 +689,7 @@ function ValueAtRiskTable({
                       )}
                     </td>
                     <td className="px-3 py-2 text-xs">
-                      <SourceSystemChips
-                        systems={cov?.resolvedSourceSystems ?? []}
-                      />
+                      <SourceSystemChips systems={cov?.resolvedSourceSystems ?? []} />
                     </td>
                     <td className="px-3 py-2 text-xs">
                       {row.blockedUseCases.length > 0 ? (
@@ -797,11 +780,7 @@ function SourceSystemChips({
   );
 }
 
-function ImpactedUseCaseList({
-  impacted,
-}: {
-  impacted: AssetValueAtRisk["impactedUseCases"];
-}) {
+function ImpactedUseCaseList({ impacted }: { impacted: AssetValueAtRisk["impactedUseCases"] }) {
   return (
     <div className="space-y-2">
       <p className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
@@ -826,7 +805,11 @@ function ImpactedUseCaseList({
                 </td>
                 <td className="px-3 py-1.5 text-foreground">{u.name}</td>
                 <td className="px-3 py-1.5 text-right font-medium tabular-nums">
-                  {u.valueMid > 0 ? fmtUsd(u.valueMid) : <span className="text-muted-foreground">—</span>}
+                  {u.valueMid > 0 ? (
+                    fmtUsd(u.valueMid)
+                  ) : (
+                    <span className="text-muted-foreground">—</span>
+                  )}
                 </td>
                 <td className="px-3 py-1.5 text-xs text-muted-foreground">
                   {u.valueLow > 0 || u.valueHigh > 0

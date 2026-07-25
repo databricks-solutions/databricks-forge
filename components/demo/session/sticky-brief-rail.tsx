@@ -8,14 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import {
-  Rocket,
-  ScanSearch,
-  Download,
-  ChevronDown,
-  FileText,
-  Loader2,
-} from "lucide-react";
+import { Rocket, ScanSearch, Download, ChevronDown, FileText, Loader2 } from "lucide-react";
 import type { ResearchEngineResult } from "@/lib/demo/research-engine/types";
 
 interface StickyBriefRailProps {
@@ -156,9 +149,7 @@ export function StickyBriefRail({
           </div>
           <div className="flex items-center justify-between text-xs">
             <span className="text-muted-foreground">Data Assets</span>
-            <span className="font-medium">
-              {research.dataStrategy?.assetDetails?.length ?? 0}
-            </span>
+            <span className="font-medium">{research.dataStrategy?.assetDetails?.length ?? 0}</span>
           </div>
           <div className="flex items-center justify-between text-xs">
             <span className="text-muted-foreground">Opportunities</span>

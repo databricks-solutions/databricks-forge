@@ -1,20 +1,14 @@
 import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 
-const files = execFileSync("git", [
-  "ls-files",
-  "-co",
-  "--exclude-standard",
-  "-z",
-])
+const files = execFileSync("git", ["ls-files", "-co", "--exclude-standard", "-z"])
   .toString("utf8")
   .split("\0")
   .filter(Boolean);
 
 const forbiddenPaths = [".superpowers/", ".claude/", "docs/superpowers/"];
 const historicalPrefix = "docs/release-notes/";
-const activeTextExtensions =
-  /\.(?:md|json|ya?ml|mjs|cjs|js|jsx|ts|tsx|sh|txt)$/;
+const activeTextExtensions = /\.(?:md|json|ya?ml|mjs|cjs|js|jsx|ts|tsx|sh|txt)$/;
 const internalRegistry = ["npm-proxy.dev", "databricks.com"].join(".");
 const personalValues = [
   ["github.com", "althrussell", "databricks-forge"].join("/"),

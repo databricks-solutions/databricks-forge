@@ -30,14 +30,11 @@ describe("estate program form payload helpers", () => {
   });
 
   it("applies optional advanced scope fields to every selected UC scope", () => {
-    const result = buildEstateScopeCreateInputs(
-      ["energy.upstream", "energy.downstream"],
-      {
-        inclusionPatterns: "fact_*, dim_*",
-        workspaceId: "123456789",
-        teamLabel: "Energy Data",
-      },
-    );
+    const result = buildEstateScopeCreateInputs(["energy.upstream", "energy.downstream"], {
+      inclusionPatterns: "fact_*, dim_*",
+      workspaceId: "123456789",
+      teamLabel: "Energy Data",
+    });
 
     expect(result.ok).toBe(true);
     expect(result.scopes).toEqual([

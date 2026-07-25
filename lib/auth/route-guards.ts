@@ -14,11 +14,7 @@
  */
 
 import { NextResponse } from "next/server";
-import {
-  requireUser,
-  ForgeAuthError,
-  type ForgeUser,
-} from "@/lib/auth/route-user";
+import { requireUser, ForgeAuthError, type ForgeUser } from "@/lib/auth/route-user";
 import { canRead, canEdit, type ResourceType, type AclPermission } from "@/lib/lakebase/acl";
 import { getRunById } from "@/lib/lakebase/runs";
 import {
@@ -34,10 +30,9 @@ export type GuardResult<T> =
 
 type Mode = "read" | "edit";
 
-async function authenticate(request: Request): Promise<
-  | { ok: true; user: ForgeUser }
-  | { ok: false; response: NextResponse }
-> {
+async function authenticate(
+  request: Request,
+): Promise<{ ok: true; user: ForgeUser } | { ok: false; response: NextResponse }> {
   try {
     const user = await requireUser(request);
     return { ok: true, user };
@@ -66,7 +61,9 @@ async function authorizeAcl(
   resourceId: string,
   ownerEmail: string | null | undefined,
   mode: Mode,
-): Promise<{ ok: true; permission: "owner" | AclPermission } | { ok: false; response: NextResponse }> {
+): Promise<
+  { ok: true; permission: "owner" | AclPermission } | { ok: false; response: NextResponse }
+> {
   if (mode === "edit") {
     const allowed = await canEdit({ userEmail: user.email, resourceType, resourceId, ownerEmail });
     if (!allowed) return { ok: false, response: forbidden() };

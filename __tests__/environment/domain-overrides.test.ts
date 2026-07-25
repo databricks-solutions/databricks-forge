@@ -40,10 +40,16 @@ const DETAILS = [
 
 describe("domain overrides", () => {
   it("matchesOverride respects scope", () => {
-    expect(matchesOverride("a.b.c", { scope: "table", target: "a.b.c", action: "evict" })).toBe(true);
-    expect(matchesOverride("a.b.c", { scope: "schema", target: "a.b", action: "evict" })).toBe(true);
+    expect(matchesOverride("a.b.c", { scope: "table", target: "a.b.c", action: "evict" })).toBe(
+      true,
+    );
+    expect(matchesOverride("a.b.c", { scope: "schema", target: "a.b", action: "evict" })).toBe(
+      true,
+    );
     expect(matchesOverride("a.b.c", { scope: "catalog", target: "a", action: "evict" })).toBe(true);
-    expect(matchesOverride("a.b.c", { scope: "table", target: "a.b.x", action: "evict" })).toBe(false);
+    expect(matchesOverride("a.b.c", { scope: "table", target: "a.b.x", action: "evict" })).toBe(
+      false,
+    );
   });
 
   it("remap rewrites domain; evict drops table", () => {
@@ -74,8 +80,20 @@ describe("domain overrides", () => {
 
   it("recency breaks ties within a scope", () => {
     const overrides: DomainOverride[] = [
-      { scope: "table", target: "x.y.z", action: "remap", newDomain: "Old", createdAt: "2026-01-01" },
-      { scope: "table", target: "x.y.z", action: "remap", newDomain: "New", createdAt: "2026-06-01" },
+      {
+        scope: "table",
+        target: "x.y.z",
+        action: "remap",
+        newDomain: "Old",
+        createdAt: "2026-01-01",
+      },
+      {
+        scope: "table",
+        target: "x.y.z",
+        action: "remap",
+        newDomain: "New",
+        createdAt: "2026-06-01",
+      },
     ];
     expect(resolveOverride("x.y.z", overrides)?.newDomain).toBe("New");
   });

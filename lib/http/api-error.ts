@@ -60,10 +60,7 @@ const CATEGORY_DEFAULT: Record<HttpErrorCategory, string> = {
  * (already-sanitised) server-supplied message; otherwise falls back to a stable
  * per-category default.
  */
-export function describeHttpError(
-  status: number,
-  serverMessage?: string | null,
-): string {
+export function describeHttpError(status: number, serverMessage?: string | null): string {
   const trimmed = serverMessage?.trim();
   if (trimmed) return trimmed;
   const { category } = classifyHttpStatus(status);

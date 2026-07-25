@@ -56,9 +56,7 @@ export async function GET(
       completedPassNames: job.completedPassNames,
       degradedPassNames: job.degradedPassNames,
       error: job.error,
-      elapsedMs: job.completedAt
-        ? job.completedAt - job.startedAt
-        : Date.now() - job.startedAt,
+      elapsedMs: job.completedAt ? job.completedAt - job.startedAt : Date.now() - job.startedAt,
     });
   } catch (error) {
     return NextResponse.json({ error: safeErrorMessage(error) }, { status: 500 });

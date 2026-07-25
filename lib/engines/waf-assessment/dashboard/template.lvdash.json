@@ -7281,9 +7281,7 @@
           "widget": {
             "name": "warehouse_efficiency_header",
             "multilineTextboxSpec": {
-              "lines": [
-                "## Warehouse Efficiency"
-              ]
+              "lines": ["## Warehouse Efficiency"]
             }
           },
           "position": {
@@ -7904,9 +7902,7 @@
           "widget": {
             "name": "query_performance_header",
             "multilineTextboxSpec": {
-              "lines": [
-                "## Query Performance"
-              ]
+              "lines": ["## Query Performance"]
             }
           },
           "position": {
@@ -8272,9 +8268,7 @@
           "widget": {
             "name": "infra_analysis_header",
             "multilineTextboxSpec": {
-              "lines": [
-                "## Infrastructure & Wait Time Analysis"
-              ]
+              "lines": ["## Infrastructure & Wait Time Analysis"]
             }
           },
           "position": {
@@ -9163,9 +9157,7 @@
           "widget": {
             "name": "802f4158",
             "multilineTextboxSpec": {
-              "lines": [
-                ""
-              ]
+              "lines": [""]
             }
           },
           "position": {

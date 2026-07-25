@@ -152,7 +152,7 @@ export function classifySqlError(message: string): ErrorClass {
   const lower = message.toLowerCase();
   if (
     lower.includes("metric_view_unbound_parameter") ||
-    lower.includes("metric view") && lower.includes("parameter")
+    (lower.includes("metric view") && lower.includes("parameter"))
   ) {
     return "metric_view_unbound_param";
   }
@@ -213,7 +213,8 @@ export function buildTestQuery(item: ValidateAndRepairItem): string | null {
     case "join": {
       if (!item.leftTable || !item.rightTable) return null;
       const leftAlias = pickAlias(item.leftTable, "a");
-      const rightAlias = pickAlias(item.rightTable, "b") === leftAlias ? "b2" : pickAlias(item.rightTable, "b");
+      const rightAlias =
+        pickAlias(item.rightTable, "b") === leftAlias ? "b2" : pickAlias(item.rightTable, "b");
       const onClause = stripTrailingSemi(sql);
       return `SELECT ${leftAlias}.* FROM ${item.leftTable} ${leftAlias} INNER JOIN ${item.rightTable} ${rightAlias} ON ${onClause} LIMIT 1`;
     }

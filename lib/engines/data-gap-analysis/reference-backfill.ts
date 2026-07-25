@@ -69,7 +69,10 @@ export async function mapUseCasesToMasterRepo(
   );
 
   const referenceList = enrichment.useCases
-    .map((uc, i) => `${i + 1}. ${uc.name}${uc.description ? ` -- ${uc.description.split("\n")[0]}` : ""}`)
+    .map(
+      (uc, i) =>
+        `${i + 1}. ${uc.name}${uc.description ? ` -- ${uc.description.split("\n")[0]}` : ""}`,
+    )
     .join("\n");
   const customerList = useCases
     .map(

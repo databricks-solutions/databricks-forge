@@ -4,10 +4,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Plus } from "lucide-react";
-import {
-  DashboardContent,
-  type DashboardStats,
-} from "@/components/dashboard/dashboard-content";
+import { DashboardContent, type DashboardStats } from "@/components/dashboard/dashboard-content";
 import { logger } from "@/lib/logger";
 import { requireUser } from "@/lib/auth/route-user";
 import { listAccessibleIds } from "@/lib/lakebase/acl";

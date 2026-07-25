@@ -42,10 +42,34 @@ function row(p: Partial<TableDetailRow> & { tableFqn: string }): TableDetailRow 
 }
 
 const DETAILS: TableDetailRow[] = [
-  row({ tableFqn: "main.sales.orders", dataDomain: "Sales", dataSubdomain: "Orders", numRows: "1000", sizeInBytes: "5000" }),
-  row({ tableFqn: "main.sales.order_lines", dataDomain: "Sales", dataSubdomain: "Orders", numRows: "5000", sizeInBytes: "9000" }),
-  row({ tableFqn: "main.sales.customers", dataDomain: "Sales", dataSubdomain: "Customers", numRows: "200", sizeInBytes: "800" }),
-  row({ tableFqn: "fin.gl.ledger", dataDomain: "Finance", dataSubdomain: null, numRows: "300", sizeInBytes: "1200" }),
+  row({
+    tableFqn: "main.sales.orders",
+    dataDomain: "Sales",
+    dataSubdomain: "Orders",
+    numRows: "1000",
+    sizeInBytes: "5000",
+  }),
+  row({
+    tableFqn: "main.sales.order_lines",
+    dataDomain: "Sales",
+    dataSubdomain: "Orders",
+    numRows: "5000",
+    sizeInBytes: "9000",
+  }),
+  row({
+    tableFqn: "main.sales.customers",
+    dataDomain: "Sales",
+    dataSubdomain: "Customers",
+    numRows: "200",
+    sizeInBytes: "800",
+  }),
+  row({
+    tableFqn: "fin.gl.ledger",
+    dataDomain: "Finance",
+    dataSubdomain: null,
+    numRows: "300",
+    sizeInBytes: "1200",
+  }),
   row({ tableFqn: "main.tmp.scratch", dataDomain: null, numRows: "10", sizeInBytes: "50" }),
 ];
 

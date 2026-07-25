@@ -10,10 +10,8 @@ const failScope = vi.fn(async (..._a: unknown[]) => true);
 const getEstateProgramContext = vi.fn(async (..._a: unknown[]): Promise<unknown> => null);
 vi.mock("@/lib/lakebase/estate-programs", () => ({
   claimNextPlannedScope: (a: unknown, b: unknown, c: unknown) => claimNextPlannedScope(a, b, c),
-  promoteQueuedToRunning: (a: unknown, b: unknown, c: unknown) =>
-    promoteQueuedToRunning(a, b, c),
-  heartbeatQueuedScope: (a: unknown, b: unknown, c: unknown) =>
-    heartbeatQueuedScope(a, b, c),
+  promoteQueuedToRunning: (a: unknown, b: unknown, c: unknown) => promoteQueuedToRunning(a, b, c),
+  heartbeatQueuedScope: (a: unknown, b: unknown, c: unknown) => heartbeatQueuedScope(a, b, c),
   heartbeatScope: (a: unknown, b: unknown) => heartbeatScope(a, b),
   completeScopeAndFinalizeScan: (a: unknown, b: unknown, c: unknown) =>
     completeScopeAndFinalizeScan(a, b, c),

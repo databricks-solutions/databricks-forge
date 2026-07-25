@@ -34,7 +34,9 @@ const MAX_YEAR = CURRENT_YEAR + 1;
  * Extract a publication date from a structured high-confidence signal.
  * Returns undefined if input is not a parseable date.
  */
-export function fromStructuredDate(input: string | undefined | null): DateExtractionResult | undefined {
+export function fromStructuredDate(
+  input: string | undefined | null,
+): DateExtractionResult | undefined {
   if (!input || typeof input !== "string") return undefined;
   const ts = Date.parse(input.trim());
   if (!Number.isFinite(ts)) return undefined;

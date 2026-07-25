@@ -184,7 +184,10 @@ async function resolveAccessibleSourceIds(
   email: string,
   parent: "document" | "demo_session",
 ): Promise<string[]> {
-  const shared = await listAccessibleIds(email, parent === "document" ? "document" : "demo_session");
+  const shared = await listAccessibleIds(
+    email,
+    parent === "document" ? "document" : "demo_session",
+  );
   const owned = await withPrisma(async (prisma) => {
     if (parent === "document") {
       return prisma.forgeDocument.findMany({

@@ -62,7 +62,10 @@ describe("insightDedupKey", () => {
   });
 
   it("preserves every distinct PII finding on the same table", () => {
-    const a = ins({ insightType: "pii_detection", payloadJson: JSON.stringify({ column: "email" }) });
+    const a = ins({
+      insightType: "pii_detection",
+      payloadJson: JSON.stringify({ column: "email" }),
+    });
     const b = ins({ insightType: "pii_detection", payloadJson: JSON.stringify({ column: "ssn" }) });
     expect(insightDedupKey(a)).not.toBe(insightDedupKey(b));
   });
@@ -80,8 +83,14 @@ describe("insightDedupKey", () => {
   });
 
   it("keeps governance_gap as one-per-table (latest wins)", () => {
-    const a = ins({ insightType: "governance_gap", payloadJson: JSON.stringify({ overallScore: 10 }) });
-    const b = ins({ insightType: "governance_gap", payloadJson: JSON.stringify({ overallScore: 90 }) });
+    const a = ins({
+      insightType: "governance_gap",
+      payloadJson: JSON.stringify({ overallScore: 10 }),
+    });
+    const b = ins({
+      insightType: "governance_gap",
+      payloadJson: JSON.stringify({ overallScore: 90 }),
+    });
     expect(insightDedupKey(a)).toBe(insightDedupKey(b));
   });
 });

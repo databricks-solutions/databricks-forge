@@ -907,9 +907,7 @@ export function ConfigForm({
                     className={`mt-0.5 h-4 w-4 shrink-0 ${businessValueEnabled ? "text-amber-500" : "text-muted-foreground"}`}
                   />
                   <div>
-                    <p className="text-sm font-medium">
-                      Business Value Analysis
-                    </p>
+                    <p className="text-sm font-medium">Business Value Analysis</p>
                     <p className="text-xs text-muted-foreground">
                       Run financial quantification, roadmap phasing, executive synthesis, and
                       stakeholder analysis as part of this pipeline run. Can also be run

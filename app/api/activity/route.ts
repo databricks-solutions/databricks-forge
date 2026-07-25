@@ -20,10 +20,7 @@ export async function GET(request: NextRequest) {
 
     const activities = await getRecentActivity(limit, { userEmail: user.email });
 
-    return NextResponse.json(
-      { activities },
-      { headers: { "Cache-Control": "private, no-store" } },
-    );
+    return NextResponse.json({ activities }, { headers: { "Cache-Control": "private, no-store" } });
   } catch (error) {
     if (error instanceof ForgeAuthError) {
       return NextResponse.json({ error: error.message }, { status: error.status });

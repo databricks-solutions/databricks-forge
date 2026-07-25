@@ -24,16 +24,10 @@ export async function GET(request: NextRequest) {
       }
       throw e;
     }
-    const view = (request.nextUrl.searchParams.get("view") ?? "all") as
-      | "all"
-      | "owned"
-      | "shared";
+    const view = (request.nextUrl.searchParams.get("view") ?? "all") as "all" | "owned" | "shared";
     const sharedIds = view === "owned" ? [] : await listAccessibleIds(user.email, "comment_job");
     const jobs = await listCommentJobs(user.email, view, sharedIds);
-    return NextResponse.json(
-      { jobs },
-      { headers: { "Cache-Control": "private, no-store" } },
-    );
+    return NextResponse.json({ jobs }, { headers: { "Cache-Control": "private, no-store" } });
   } catch (error) {
     return NextResponse.json({ error: safeErrorMessage(error) }, { status: 500 });
   }

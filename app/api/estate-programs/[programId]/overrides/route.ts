@@ -28,10 +28,7 @@ export async function GET(
     if (!guard.ok) return guard.response;
 
     const overrides = await listProgramDomainOverrides(programId);
-    return NextResponse.json(
-      { overrides },
-      { headers: { "Cache-Control": "private, no-store" } },
-    );
+    return NextResponse.json({ overrides }, { headers: { "Cache-Control": "private, no-store" } });
   } catch (error) {
     log.error("GET failed", { error: error instanceof Error ? error.message : String(error) });
     return NextResponse.json({ error: safeErrorMessage(error) }, { status: 500 });

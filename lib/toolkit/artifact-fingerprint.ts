@@ -14,5 +14,7 @@ function canonicalize(value: unknown): unknown {
 }
 
 export function artifactFingerprint(value: unknown): string {
-  return createHash("sha256").update(JSON.stringify(canonicalize(value))).digest("hex");
+  return createHash("sha256")
+    .update(JSON.stringify(canonicalize(value)))
+    .digest("hex");
 }

@@ -53,9 +53,7 @@ describe("explicit-FQN request validation", () => {
   });
 
   it("accepts quoted hyphenated FQNs and passes only the validated form", async () => {
-    const response = await POST(
-      request(["`sales-catalog`.`analytics-schema`.`revenue-metrics`"]),
-    );
+    const response = await POST(request(["`sales-catalog`.`analytics-schema`.`revenue-metrics`"]));
 
     expect(response.status).toBe(200);
     expect(mocks.checkDependencies).toHaveBeenCalledWith(

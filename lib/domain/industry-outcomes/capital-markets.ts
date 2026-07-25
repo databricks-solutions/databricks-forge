@@ -13,9 +13,22 @@ import type { IndustryOutcome } from "./index";
 export const CAPITAL_MARKETS: IndustryOutcome = {
   id: "capital-markets",
   name: "Capital Markets",
-  subVerticals: ["Investment Banks","Asset Managers","Hedge Funds","Broker-Dealers","Custody & Clearing"],
-  suggestedDomains: ["Trading","Risk","Compliance","Investment Research","Operations","Treasury"],
-  suggestedPriorities: ["Drive Growth","Protect the Firm","Be More Efficient"],
+  subVerticals: [
+    "Investment Banks",
+    "Asset Managers",
+    "Hedge Funds",
+    "Broker-Dealers",
+    "Custody & Clearing",
+  ],
+  suggestedDomains: [
+    "Trading",
+    "Risk",
+    "Compliance",
+    "Investment Research",
+    "Operations",
+    "Treasury",
+  ],
+  suggestedPriorities: ["Drive Growth", "Protect the Firm", "Be More Efficient"],
   objectives: [
     {
       name: "Drive Growth",
@@ -252,12 +265,7 @@ export const CAPITAL_MARKETS: IndustryOutcome = {
                 "Realised vs Predicted Outcomes",
                 "Backtest Records",
               ],
-              typicalSourceSystems: [
-                "Model Serving",
-                "Feature Store",
-                "Lakehouse",
-                "Risk System",
-              ],
+              typicalSourceSystems: ["Model Serving", "Feature Store", "Lakehouse", "Risk System"],
             },
             {
               name: "Algorithmic Trading",
@@ -399,7 +407,12 @@ export const CAPITAL_MARKETS: IndustryOutcome = {
                 "Indicator Catalogs",
                 "Detection Rules",
               ],
-              typicalSourceSystems: ["Security Data Lake", "SIEM", "EDR", "Threat Intelligence Platform"],
+              typicalSourceSystems: [
+                "Security Data Lake",
+                "SIEM",
+                "EDR",
+                "Threat Intelligence Platform",
+              ],
             },
             {
               name: "Network Analysis & Inventory",
@@ -413,14 +426,18 @@ export const CAPITAL_MARKETS: IndustryOutcome = {
                 "Dependency Maps",
                 "Exposure Records",
               ],
-              typicalSourceSystems: ["CMDB", "Network Monitoring", "Cloud Provider", "Asset Discovery"],
+              typicalSourceSystems: [
+                "CMDB",
+                "Network Monitoring",
+                "Cloud Provider",
+                "Asset Discovery",
+              ],
             },
             {
               name: "Phishing & Email Security",
               description:
                 "Detect and remediate phishing, BEC, and credential-harvest emails using ML on email content, sender reputation, and user-reporting signals -- with automated takedown and user-coaching loops.",
-              businessValue:
-                "Lower successful-phishing rate; reduced incident-response cost.",
+              businessValue: "Lower successful-phishing rate; reduced incident-response cost.",
               typicalDataEntities: [
                 "Email Headers",
                 "URL Reputation",
@@ -444,7 +461,12 @@ export const CAPITAL_MARKETS: IndustryOutcome = {
               typicalSourceSystems: ["SIEM", "SOAR", "Threat Intelligence Platform", "LLM Service"],
             },
           ],
-          kpis: ["Time-to-detect", "Mean time to respond", "Phishing success rate", "Critical alert backlog"],
+          kpis: [
+            "Time-to-detect",
+            "Mean time to respond",
+            "Phishing success rate",
+            "Critical alert backlog",
+          ],
           personas: ["CISO", "Head of Detection & Response", "Head of Threat Intelligence"],
         },
         {
@@ -587,7 +609,12 @@ export const CAPITAL_MARKETS: IndustryOutcome = {
               ],
             },
           ],
-          kpis: ["AML alert turnaround", "False positive rate", "CECL forecast accuracy", "MRM cycle time"],
+          kpis: [
+            "AML alert turnaround",
+            "False positive rate",
+            "CECL forecast accuracy",
+            "MRM cycle time",
+          ],
           personas: [
             "Chief Compliance Officer",
             "Head of Financial Crime",
@@ -665,11 +692,20 @@ export const CAPITAL_MARKETS: IndustryOutcome = {
                 "Spend by Category",
                 "Renewal Schedules",
               ],
-              typicalSourceSystems: ["Vendor Management", "ERP / Finance", "Telemetry / Usage Logs"],
+              typicalSourceSystems: [
+                "Vendor Management",
+                "ERP / Finance",
+                "Telemetry / Usage Logs",
+              ],
             },
           ],
           kpis: ["Cost-to-income ratio", "Forecast accuracy", "Vendor spend reduction"],
-          personas: ["Chief Operating Officer", "Chief Financial Officer", "Head of Treasury", "Head of Procurement"],
+          personas: [
+            "Chief Operating Officer",
+            "Chief Financial Officer",
+            "Head of Treasury",
+            "Head of Procurement",
+          ],
         },
         {
           name: "Back- Middle office automation",
@@ -728,8 +764,18 @@ export const CAPITAL_MARKETS: IndustryOutcome = {
               typicalSourceSystems: ["HRIS", "Learning Management", "Performance Management"],
             },
           ],
-          kpis: ["Cost-to-income ratio", "Reconciliation breaks", "STP rate", "Onboarding cycle time"],
-          personas: ["Chief Operating Officer", "Head of Operations", "Head of HR", "Head of Onboarding"],
+          kpis: [
+            "Cost-to-income ratio",
+            "Reconciliation breaks",
+            "STP rate",
+            "Onboarding cycle time",
+          ],
+          personas: [
+            "Chief Operating Officer",
+            "Head of Operations",
+            "Head of HR",
+            "Head of Onboarding",
+          ],
         },
       ],
     },

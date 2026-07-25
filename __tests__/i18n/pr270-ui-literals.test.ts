@@ -33,15 +33,7 @@ const USER_VISIBLE_ATTRIBUTES = new Set([
 ]);
 
 // Product names and terse technical codes are intentionally not translated.
-const ALLOWLIST = new Set([
-  "Databricks",
-  "Forge",
-  "Unity Catalog",
-  "CDF",
-  "PDF",
-  "Excel",
-  "ERD",
-]);
+const ALLOWLIST = new Set(["Databricks", "Forge", "Unity Catalog", "CDF", "PDF", "Excel", "ERD"]);
 
 function isAllowed(value: string): boolean {
   const normalized = value.replace(/\s+/g, " ").trim();
@@ -70,7 +62,9 @@ function scanSource(file: string, sourceText: string): string[] {
     if (reported.has(node.getStart(source))) return;
     reported.add(node.getStart(source));
     const { line } = source.getLineAndCharacterOfPosition(node.getStart(source));
-    findings.push(`${file}:${line + 1} ${kind}: ${JSON.stringify(value.replace(/\s+/g, " ").trim())}`);
+    findings.push(
+      `${file}:${line + 1} ${kind}: ${JSON.stringify(value.replace(/\s+/g, " ").trim())}`,
+    );
   };
 
   const isTranslationCall = (node: ts.CallExpression): boolean => {
@@ -189,7 +183,10 @@ function scanSource(file: string, sourceText: string): string[] {
       if (ts.isStringLiteral(node.initializer)) {
         report(node, node.name.getText(source), node.initializer.text);
       } else if (ts.isJsxExpression(node.initializer) && node.initializer.expression) {
-        reportExpressionLiterals(node.initializer.expression, `${node.name.getText(source)} expression`);
+        reportExpressionLiterals(
+          node.initializer.expression,
+          `${node.name.getText(source)} expression`,
+        );
       }
     } else if (
       ts.isJsxExpression(node) &&
@@ -222,15 +219,7 @@ describe("PR #270 UI strings", () => {
 });
 
 describe("literal scanner mutation fixtures", () => {
-  const translatableWords = [
-    "rows",
-    "tables",
-    "size",
-    "tier",
-    "catalog",
-    "sourced",
-    "benchmark",
-  ];
+  const translatableWords = ["rows", "tables", "size", "tier", "catalog", "sourced", "benchmark"];
 
   it.each(translatableWords)("rejects visible JSX text %j", (word) => {
     expect(scanSource("fixture.tsx", `export const X = () => <div>${word}</div>`)).not.toEqual([]);

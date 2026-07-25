@@ -64,11 +64,7 @@ describe("resolveAssetSourceSystems — master-repo fallback (category + example
     expect(out[0]?.name).toBe("CRM systems");
     expect(out[0]?.systemKind).toBe("CRM");
     expect(out[0]?.preferredStrategy).toBe("lakeflow_connect");
-    expect(out[0]?.exampleVendors).toEqual([
-      "Salesforce",
-      "HubSpot",
-      "Microsoft Dynamics 365",
-    ]);
+    expect(out[0]?.exampleVendors).toEqual(["Salesforce", "HubSpot", "Microsoft Dynamics 365"]);
   });
 
   it("emits 'Cloud data warehouse' for Data Warehouse assets (preferredStrategy: uc_federation)", () => {
@@ -121,9 +117,7 @@ describe("resolveAssetSourceSystems — master-repo fallback (category + example
     });
     expect(out[0]?.name).toBe("ITSM platforms");
     expect(out[0]?.preferredStrategy).toBe("lakeflow_connect");
-    expect(out[0]?.exampleVendors).toEqual(
-      expect.arrayContaining(["ServiceNow"]),
-    );
+    expect(out[0]?.exampleVendors).toEqual(expect.arrayContaining(["ServiceNow"]));
   });
 
   it("emits 'Customer Data Platforms' for CDP assets (previously fell through to Unknown)", () => {

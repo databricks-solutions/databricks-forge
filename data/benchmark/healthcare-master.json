@@ -19,12 +19,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "healthcare",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "healthcare", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- Generative AI and the Future of Work."
@@ -47,12 +42,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "healthcare",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "healthcare", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Healthcare."
@@ -75,12 +65,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "healthcare",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "healthcare", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- Generative AI and the Future of Work."
@@ -103,12 +88,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "healthcare",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "healthcare", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Healthcare."
@@ -131,12 +111,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "healthcare",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "healthcare", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- AHIMA -- AI in Medical Coding ROI."
@@ -159,12 +134,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "healthcare",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "healthcare", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Healthcare."
@@ -187,12 +157,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "healthcare",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "healthcare", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- OpenAI -- GPT-4 in Data De-identification Study."
@@ -215,12 +180,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "healthcare",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "healthcare", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- Generative AI and the Future of Work."
@@ -243,12 +203,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "healthcare",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "healthcare", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Change Healthcare -- AI Prior Auth Case Study."
@@ -271,12 +226,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "healthcare",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "healthcare", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Accenture -- AI in Payer Underwriting Case."
@@ -299,12 +249,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "healthcare",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "healthcare", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- SuperAGI -- AI Fraud Detection Tools Analysis."
@@ -327,12 +272,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "healthcare",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "healthcare", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- HIMSS -- AI in RCM Benchmark."
@@ -355,12 +295,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "healthcare",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "healthcare", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Healthcare."
@@ -383,12 +318,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "healthcare",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "healthcare", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Healthcare."
@@ -411,12 +341,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "healthcare",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "healthcare", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Healthcare."
@@ -439,12 +364,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "healthcare",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "healthcare", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Stanford Medicine -- AI Nurse Handoff Pilot."
@@ -467,12 +387,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "healthcare",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "healthcare", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Healthcare."
@@ -495,12 +410,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "healthcare",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "healthcare", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Healthcare."
@@ -523,12 +433,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "healthcare",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "healthcare", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Healthcare."
@@ -551,12 +456,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "healthcare",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "healthcare", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Healthcare."
@@ -579,12 +479,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "healthcare",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "healthcare", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Healthcare."
@@ -607,12 +502,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "healthcare",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "healthcare", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Healthcare."
@@ -635,12 +525,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "healthcare",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "healthcare", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Nature Medicine -- AI Adherence Nudges Study."
@@ -663,12 +548,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "healthcare",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "healthcare", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Gartner -- Agentic AI in Customer Service (Press Release)."
@@ -691,12 +571,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "healthcare",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "healthcare", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Nature Medicine -- AI Adherence Nudges Study."
@@ -719,12 +594,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "healthcare",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "healthcare", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Pecan AI -- How and Why to Calculate and Predict Customer Churn."
@@ -747,12 +617,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "healthcare",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "healthcare", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Forrester -- TEI of AI Sentiment in Call Centers."
@@ -775,12 +640,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "healthcare",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "healthcare", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Healthcare."

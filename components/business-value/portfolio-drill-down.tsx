@@ -192,7 +192,8 @@ export function PortfolioDrillDown({
                       {g.useCases.map((uc) => {
                         const expandable = hasRationale(uc);
                         const isUcOpen = expandedUseCase === uc.id;
-                        const colSpan = 7 + (mode === "domain" || mode === "phase" ? 1 : 0) + (runId ? 1 : 0);
+                        const colSpan =
+                          7 + (mode === "domain" || mode === "phase" ? 1 : 0) + (runId ? 1 : 0);
                         return (
                           <Fragment key={uc.id}>
                             <TableRow
@@ -251,7 +252,10 @@ export function PortfolioDrillDown({
                                 {formatCurrency(uc.valueMid)}
                               </TableCell>
                               {runId && (
-                                <TableCell className="text-center" onClick={(e) => e.stopPropagation()}>
+                                <TableCell
+                                  className="text-center"
+                                  onClick={(e) => e.stopPropagation()}
+                                >
                                   <VoteButton
                                     runId={runId}
                                     useCaseId={uc.id}
@@ -291,12 +295,8 @@ export function UseCaseRationale({
   uc: PortfolioUseCase;
   useCaseNameById: Map<string, string>;
 }) {
-  const formulaEntries = uc.economicFormulaVars
-    ? Object.entries(uc.economicFormulaVars)
-    : [];
-  const valueTypeLabel = uc.valueType
-    ? (VALUE_TYPE_LABELS[uc.valueType] ?? uc.valueType)
-    : null;
+  const formulaEntries = uc.economicFormulaVars ? Object.entries(uc.economicFormulaVars) : [];
+  const valueTypeLabel = uc.valueType ? (VALUE_TYPE_LABELS[uc.valueType] ?? uc.valueType) : null;
   const dependencyNames = uc.dependencies
     .map((depId) => useCaseNameById.get(depId) ?? depId)
     .filter(Boolean);

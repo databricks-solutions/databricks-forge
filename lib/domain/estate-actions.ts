@@ -27,13 +27,15 @@ export const ESTATE_ACTION_REGISTRY: Record<EstateFindingKind, ActionDefinition>
     engine: "opportunities",
     label: "Generate opportunities",
     href: (scanId) => `/configure?fromScan=${encodeURIComponent(scanId)}`,
-    description: "Run discovery grounded in this estate to produce a scored, SQL-ready use-case backlog.",
+    description:
+      "Run discovery grounded in this estate to produce a scored, SQL-ready use-case backlog.",
   },
   documentation_gap: {
     engine: "comments",
     label: "Document with AI Comments",
     href: (scanId) => `/environment/comments?scan=${encodeURIComponent(scanId)}`,
-    description: "Generate industry-aware table + column descriptions to make the estate Genie-ready.",
+    description:
+      "Generate industry-aware table + column descriptions to make the estate Genie-ready.",
   },
   query_ready_domain: {
     engine: "genie",
@@ -45,7 +47,8 @@ export const ESTATE_ACTION_REGISTRY: Record<EstateFindingKind, ActionDefinition>
     engine: "data-gap",
     label: "Close the data gaps",
     href: (scanId) => `/environment?scan=${encodeURIComponent(scanId)}&tab=data-gap`,
-    description: "Review missing reference data assets and the recommended ingestion path for each.",
+    description:
+      "Review missing reference data assets and the recommended ingestion path for each.",
   },
   well_architected_gap: {
     engine: "waf",

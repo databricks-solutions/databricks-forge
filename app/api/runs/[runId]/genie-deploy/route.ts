@@ -264,12 +264,7 @@ async function runPipelineDeploy(
       }
 
       for (const mv of domainReq.metricViews) {
-        const result = await deployAsset(
-          mv,
-          body.targetSchema,
-          body.resourcePrefix,
-          deploySql,
-        );
+        const result = await deployAsset(mv, body.targetSchema, body.resourcePrefix, deploySql);
         if (result.deployed) {
           deployedMvs.push({ fqn: result.fqn, description: mv.description });
           log.info("Metric view deployed", {

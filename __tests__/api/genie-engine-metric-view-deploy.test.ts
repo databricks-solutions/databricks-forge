@@ -22,7 +22,7 @@ vi.mock("@/lib/lakebase/metric-view-proposals", () => ({
   updateDeploymentStatus: mocks.updateStatus,
 }));
 vi.mock("@/lib/prisma", () => ({
-  withPrisma: async <T,>(
+  withPrisma: async <T>(
     callback: (prisma: {
       forgeGenieRecommendation: {
         findFirst: typeof mocks.findRecommendation;
@@ -47,16 +47,13 @@ const runId = "run-1";
 
 function post() {
   return POST(
-    new Request(
-      `http://localhost/api/runs/${runId}/genie-engine/Sales/metric-views`,
-      {
-        method: "POST",
-        body: JSON.stringify({
-          name: "sales_metrics",
-          ddl: "CREATE VIEW `main`.`sales`.`sales_metrics` AS SELECT 1",
-        }),
-      },
-    ) as never,
+    new Request(`http://localhost/api/runs/${runId}/genie-engine/Sales/metric-views`, {
+      method: "POST",
+      body: JSON.stringify({
+        name: "sales_metrics",
+        ddl: "CREATE VIEW `main`.`sales`.`sales_metrics` AS SELECT 1",
+      }),
+    }) as never,
     { params: Promise.resolve({ runId, domain: "Sales" }) },
   );
 }
@@ -87,10 +84,7 @@ describe("Genie engine metric view deployment", () => {
       "request-obo-token",
     );
     expect(mocks.executeSp).not.toHaveBeenCalled();
-    expect(mocks.promote).toHaveBeenCalledWith(
-      "proposal-1",
-      "main.sales.sales_metrics",
-    );
+    expect(mocks.promote).toHaveBeenCalledWith("proposal-1", "main.sales.sales_metrics");
     expect(mocks.updateStatus).not.toHaveBeenCalledWith(
       "proposal-1",
       "deployed",

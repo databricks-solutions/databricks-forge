@@ -53,19 +53,13 @@ export function matchesOverride(fqn: string, o: DomainOverride): boolean {
  * Resolve the single winning override for a table — the most specific one. Ties
  * within a scope are broken by recency (later `createdAt` wins).
  */
-export function resolveOverride(
-  fqn: string,
-  overrides: DomainOverride[],
-): DomainOverride | null {
+export function resolveOverride(fqn: string, overrides: DomainOverride[]): DomainOverride | null {
   let best: DomainOverride | null = null;
   let bestRank = -1;
   for (const o of overrides) {
     if (!matchesOverride(fqn, o)) continue;
     const rank = SCOPE_RANK[o.scope];
-    if (
-      rank > bestRank ||
-      (rank === bestRank && (o.createdAt ?? "") > (best?.createdAt ?? ""))
-    ) {
+    if (rank > bestRank || (rank === bestRank && (o.createdAt ?? "") > (best?.createdAt ?? ""))) {
       best = o;
       bestRank = rank;
     }

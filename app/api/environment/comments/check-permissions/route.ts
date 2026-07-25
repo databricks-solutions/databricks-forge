@@ -5,10 +5,7 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
-import {
-  ForgeAuthError,
-  requireUser,
-} from "@/lib/auth/route-user";
+import { ForgeAuthError, requireUser } from "@/lib/auth/route-user";
 import { safeErrorMessage } from "@/lib/error-utils";
 import { checkPermissions } from "@/lib/ai/comment-applier";
 

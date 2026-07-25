@@ -146,7 +146,13 @@ export async function POST(
 // ---------------------------------------------------------------------------
 
 function extractFromResponses(
-  responses: Array<{ response?: string; response_type?: string; sql_execution_result?: SqlExecutionResult }> | undefined,
+  responses:
+    | Array<{
+        response?: string;
+        response_type?: string;
+        sql_execution_result?: SqlExecutionResult;
+      }>
+    | undefined,
   type: "SQL" | "TEXT",
 ): string | undefined {
   if (!responses) return undefined;
@@ -155,7 +161,13 @@ function extractFromResponses(
 }
 
 function extractExecutionResult(
-  responses: Array<{ response?: string; response_type?: string; sql_execution_result?: SqlExecutionResult }> | undefined,
+  responses:
+    | Array<{
+        response?: string;
+        response_type?: string;
+        sql_execution_result?: SqlExecutionResult;
+      }>
+    | undefined,
 ): SqlExecutionResult | undefined {
   if (!responses) return undefined;
   const match = responses.find((r) => r.response_type === "SQL");

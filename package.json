@@ -41,7 +41,7 @@
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "test:e2e:install": "playwright install --with-deps chromium",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "prisma generate && tsc --noEmit",
     "seed:benchmarks": "node scripts/seed-benchmarks.mjs",
     "seed:benchmarks:all-industries": "FORGE_SEED_BENCHMARKS_ALL_INDUSTRIES=true node scripts/seed-benchmarks.mjs",
     "seed:benchmarks:industries": "FORGE_SEED_BENCHMARKS=true FORGE_SEED_BENCHMARK_INDUSTRIES=${FORGE_SEED_BENCHMARK_INDUSTRIES:-banking} node scripts/seed-benchmarks.mjs",

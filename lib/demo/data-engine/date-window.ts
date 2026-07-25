@@ -67,14 +67,8 @@ export function computeDemoDateWindow(
   const nowUtc = toUtcMidnight(now);
 
   const currentFyStart = fyStartContaining(nowUtc, month);
-  const currentFyStartTs = Date.UTC(
-    currentFyStart.year,
-    currentFyStart.month - 1,
-    1,
-  );
-  const elapsedDaysInCurrentFy = Math.floor(
-    (nowUtc.getTime() - currentFyStartTs) / ONE_DAY_MS,
-  );
+  const currentFyStartTs = Date.UTC(currentFyStart.year, currentFyStart.month - 1, 1);
+  const elapsedDaysInCurrentFy = Math.floor((nowUtc.getTime() - currentFyStartTs) / ONE_DAY_MS);
 
   // Most recently completed FY starts one year before the current FY start.
   let startYear = currentFyStart.year - 1;
@@ -88,8 +82,7 @@ export function computeDemoDateWindow(
   const startTs = Date.UTC(startYear, month - 1, 1);
   const startDate = formatIsoDate(startTs);
   const endDate = formatIsoDate(nowUtc.getTime());
-  const dateRangeDays =
-    Math.floor((nowUtc.getTime() - startTs) / ONE_DAY_MS) + 1;
+  const dateRangeDays = Math.floor((nowUtc.getTime() - startTs) / ONE_DAY_MS) + 1;
 
   const fyLabel = buildFyLabel(
     startYear,
@@ -121,19 +114,14 @@ function clampMonth(m: number): number {
 }
 
 function toUtcMidnight(d: Date): Date {
-  return new Date(
-    Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()),
-  );
+  return new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()));
 }
 
 /**
  * Return the {year, month} of the FY start that contains `date`.
  * Fiscal year is labelled by the calendar year of its start.
  */
-function fyStartContaining(
-  date: Date,
-  fyStartMonth: number,
-): { year: number; month: number } {
+function fyStartContaining(date: Date, fyStartMonth: number): { year: number; month: number } {
   const y = date.getUTCFullYear();
   const m = date.getUTCMonth() + 1; // 1-12
   const year = m >= fyStartMonth ? y : y - 1;
@@ -161,9 +149,7 @@ function buildFyLabel(
   for (let y = startYear; y < currentFyYear; y++) {
     parts.push(`FY${y}`);
   }
-  const ytdLabel = fullFyComplete
-    ? `YTD FY${currentFyYear}`
-    : `YTD FY${currentFyYear}`;
+  const ytdLabel = fullFyComplete ? `YTD FY${currentFyYear}` : `YTD FY${currentFyYear}`;
   parts.push(ytdLabel);
 
   const suffix = fyStartMonth === 1 ? "" : ` (FY starts month ${fyStartMonth})`;

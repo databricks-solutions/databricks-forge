@@ -7,7 +7,11 @@
  */
 
 import { createScopedLogger } from "@/lib/logger";
-import { getDemoSession, getDemoSessionTables, deleteDemoSession } from "@/lib/lakebase/demo-sessions";
+import {
+  getDemoSession,
+  getDemoSessionTables,
+  deleteDemoSession,
+} from "@/lib/lakebase/demo-sessions";
 import { logActivity } from "@/lib/lakebase/activity-log";
 import { deleteEmbeddingsBySource } from "@/lib/embeddings/store";
 import type { SqlExecutor } from "@/lib/ports/sql-executor";

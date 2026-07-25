@@ -1,8 +1,5 @@
 import { describe, it, expect } from "vitest";
-import {
-  matchesIncludePatterns,
-  shouldKeepTable,
-} from "@/lib/domain/scope-selection";
+import { matchesIncludePatterns, shouldKeepTable } from "@/lib/domain/scope-selection";
 
 describe("inclusion patterns", () => {
   it("keeps everything when no include patterns", () => {

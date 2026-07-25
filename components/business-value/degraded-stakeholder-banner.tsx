@@ -52,20 +52,16 @@ export function DegradedStakeholderBanner({ runId, runLabel }: DegradedStakehold
     <Card className="border-amber-500/40 bg-amber-500/5">
       <CardContent className="flex flex-col gap-3 py-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-start gap-3">
-          <AlertTriangle
-            className="mt-0.5 h-5 w-5 shrink-0 text-amber-500"
-            aria-hidden="true"
-          />
+          <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-amber-500" aria-hidden="true" />
           <div className="space-y-1">
             <p className="text-sm font-semibold text-amber-700 dark:text-amber-300">
               Stakeholder profiles were not generated
             </p>
             <p className="text-xs leading-relaxed text-amber-700/80 dark:text-amber-200/80">
               {runLabel ? <span className="font-medium">{runLabel}: </span> : null}
-              The stakeholder-analysis pass returned no profiles after primary and
-              fallback endpoint attempts. Click <em>Rerun Business Value</em> to
-              regenerate them. The retry uses the premium reasoning endpoint
-              (Opus 4-7) with automatic fallback to GPT-5.
+              The stakeholder-analysis pass returned no profiles after primary and fallback endpoint
+              attempts. Click <em>Rerun Business Value</em> to regenerate them. The retry uses the
+              premium reasoning endpoint (Opus 4-7) with automatic fallback to GPT-5.
             </p>
           </div>
         </div>

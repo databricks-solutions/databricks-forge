@@ -20,12 +20,7 @@
  * Dependencies are injectable so this is unit-testable without Prisma.
  */
 
-import type {
-  MetadataSnapshot,
-  LineageGraph,
-  TableInfo,
-  ColumnInfo,
-} from "@/lib/domain/types";
+import type { MetadataSnapshot, LineageGraph, TableInfo, ColumnInfo } from "@/lib/domain/types";
 import type { SchemaSnapshot } from "@/lib/lakebase/runs";
 import { logger } from "@/lib/logger";
 

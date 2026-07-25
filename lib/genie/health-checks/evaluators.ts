@@ -787,9 +787,11 @@ function evaluateMaturityTier(space: SpaceJson, check: CheckDefinition): CheckRe
   const trustedAssets = (space?.instructions?.example_question_sqls ?? []) as Array<{
     sql?: unknown;
   }>;
-  const tablesDescribed = ((space?.data_sources?.tables ?? []) as Array<{
-    description?: unknown;
-  }>).filter((t) => {
+  const tablesDescribed = (
+    (space?.data_sources?.tables ?? []) as Array<{
+      description?: unknown;
+    }>
+  ).filter((t) => {
     const d = t.description;
     if (Array.isArray(d)) return d.some((s) => typeof s === "string" && s.trim().length > 0);
     return typeof d === "string" && d.trim().length > 0;

@@ -69,11 +69,7 @@ export function FeatureFlagsSettings() {
       }
       const data = await resp.json();
       setDemoModeEnabled(Boolean(data?.demoModeEnabled));
-      toast.success(
-        next
-          ? t("demo_mode.toast_enabled")
-          : t("demo_mode.toast_disabled"),
-      );
+      toast.success(next ? t("demo_mode.toast_enabled") : t("demo_mode.toast_disabled"));
       // Reload so the sidebar nav and the conditional <DemoModeSettings>
       // card pick up the new value (both read from /api/health on mount).
       startTransition(() => {

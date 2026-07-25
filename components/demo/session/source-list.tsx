@@ -36,9 +36,7 @@ export function SourceList({ sources, summaries }: SourceListProps) {
 
   if (sources.length === 0) {
     return (
-      <div className="py-12 text-center text-sm text-muted-foreground">
-        No sources collected.
-      </div>
+      <div className="py-12 text-center text-sm text-muted-foreground">No sources collected.</div>
     );
   }
 
@@ -75,7 +73,7 @@ export function SourceList({ sources, summaries }: SourceListProps) {
       <div className="divide-y rounded-lg border">
         {sources.map((s, i) => {
           const linkUrl = s.url ?? (s.title?.startsWith("http") ? s.title : undefined);
-          const label = s.url && s.title !== s.url ? s.title : s.title ?? s.url;
+          const label = s.url && s.title !== s.url ? s.title : (s.title ?? s.url);
           const summary = findSummary(s, summaries);
           const isOpen = openIndex === i;
 
@@ -89,7 +87,11 @@ export function SourceList({ sources, summaries }: SourceListProps) {
                     onClick={() => setOpenIndex(isOpen ? null : i)}
                     aria-label={isOpen ? "Collapse summary" : "Expand summary"}
                   >
-                    {isOpen ? <ChevronDown className="h-3.5 w-3.5" /> : <ChevronRight className="h-3.5 w-3.5" />}
+                    {isOpen ? (
+                      <ChevronDown className="h-3.5 w-3.5" />
+                    ) : (
+                      <ChevronRight className="h-3.5 w-3.5" />
+                    )}
                   </button>
                 ) : (
                   <span className="w-3.5" />
@@ -108,11 +110,7 @@ export function SourceList({ sources, summaries }: SourceListProps) {
                     <Badge
                       variant={stale ? "destructive" : "outline"}
                       className="text-[10px] shrink-0"
-                      title={
-                        stale
-                          ? "More than 3 years old -- prefer newer sources"
-                          : undefined
-                      }
+                      title={stale ? "More than 3 years old -- prefer newer sources" : undefined}
                     >
                       {stale ? `Stale: ${year}` : year}
                     </Badge>

@@ -34,8 +34,11 @@ export function GenieBuildProgress({
         const isActive =
           (idx === currentIdx && status === "generating" && progressPct < step.pct) ||
           (pctFallback && idx === nextPendingIdx);
-        const isFailed = status === "failed" && (idx === currentIdx || (currentIdx < 0 && idx === nextPendingIdx));
-        const isCancelled = status === "cancelled" && (idx === currentIdx || (currentIdx < 0 && idx === nextPendingIdx));
+        const isFailed =
+          status === "failed" && (idx === currentIdx || (currentIdx < 0 && idx === nextPendingIdx));
+        const isCancelled =
+          status === "cancelled" &&
+          (idx === currentIdx || (currentIdx < 0 && idx === nextPendingIdx));
         const isPending = !isCompleted && !isActive && !isFailed && !isCancelled;
 
         return (

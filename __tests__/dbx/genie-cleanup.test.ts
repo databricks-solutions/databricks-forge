@@ -147,9 +147,7 @@ describe("cleanConfig -- string truncation", () => {
     };
     const result = cleanConfig(space);
     expect(result.stringsTruncated).toBe(1);
-    const truncated = (
-      space.instructions.text_instructions[0] as { content: string[] }
-    ).content[0];
+    const truncated = (space.instructions.text_instructions[0] as { content: string[] }).content[0];
     expect(truncated).toHaveLength(MAX_STRING_FIELD_CHARS);
   });
 
@@ -169,8 +167,20 @@ describe("cleanConfig -- relationship_type normalization", () => {
     const space = {
       instructions: {
         join_specs: [
-          { id: "j1", left: { identifier: "a" }, right: { identifier: "b" }, sql: ["..."], relationship_type: "many to one" },
-          { id: "j2", left: { identifier: "c" }, right: { identifier: "d" }, sql: ["..."], relationship_type: "one_to_many" },
+          {
+            id: "j1",
+            left: { identifier: "a" },
+            right: { identifier: "b" },
+            sql: ["..."],
+            relationship_type: "many to one",
+          },
+          {
+            id: "j2",
+            left: { identifier: "c" },
+            right: { identifier: "d" },
+            sql: ["..."],
+            relationship_type: "one_to_many",
+          },
         ],
       },
     };

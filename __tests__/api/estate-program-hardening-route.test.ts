@@ -42,7 +42,10 @@ vi.mock("@/lib/logger", () => ({
   logger: { info: vi.fn(), warn: vi.fn(), error: vi.fn(), debug: vi.fn() },
 }));
 
-import { GET as getProgram, DELETE as deleteProgram } from "@/app/api/estate-programs/[programId]/route";
+import {
+  GET as getProgram,
+  DELETE as deleteProgram,
+} from "@/app/api/estate-programs/[programId]/route";
 import { GET as getAggregate } from "@/app/api/estate-programs/[programId]/aggregate/route";
 
 const caller = { email: "owner@example.com", oboToken: null };

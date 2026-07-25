@@ -64,8 +64,16 @@ function getWhyNow(research: ResearchEngineResult | null): string {
 
 function getConfidence(research: ResearchEngineResult | null): { label: string; color: string } {
   const c = research?.confidence ?? 0;
-  if (c >= 0.75) return { label: "High", color: "text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border-emerald-500/20" };
-  if (c >= 0.45) return { label: "Medium", color: "text-amber-600 dark:text-amber-400 bg-amber-500/10 border-amber-500/20" };
+  if (c >= 0.75)
+    return {
+      label: "High",
+      color: "text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
+    };
+  if (c >= 0.45)
+    return {
+      label: "Medium",
+      color: "text-amber-600 dark:text-amber-400 bg-amber-500/10 border-amber-500/20",
+    };
   return { label: "Low", color: "text-red-600 dark:text-red-400 bg-red-500/10 border-red-500/20" };
 }
 
@@ -150,9 +158,7 @@ export function ResearchHeader({
       <h1 className="text-3xl font-bold tracking-tight">{customerName}</h1>
 
       {/* Account thesis */}
-      <p className="mt-2 text-[15px] text-muted-foreground leading-relaxed max-w-3xl">
-        {thesis}
-      </p>
+      <p className="mt-2 text-[15px] text-muted-foreground leading-relaxed max-w-3xl">{thesis}</p>
 
       {/* Wedge + Why Now inline */}
       <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:gap-6">

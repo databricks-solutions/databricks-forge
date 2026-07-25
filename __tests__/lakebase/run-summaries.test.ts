@@ -28,7 +28,7 @@ type FindManyArg = {
 const findMany = vi.fn<(arg: FindManyArg) => Promise<unknown[]>>(async () => []);
 
 vi.mock("@/lib/prisma", () => ({
-  withPrisma: async <T,>(cb: (prisma: unknown) => Promise<T>) => {
+  withPrisma: async <T>(cb: (prisma: unknown) => Promise<T>) => {
     const prisma = {
       forgeRun: { findMany },
     };
@@ -107,10 +107,9 @@ describe("listRunSummaries", () => {
     const arg = findMany.mock.calls[0]?.[0] as FindManyArg;
     const selected = Object.keys(arg.select ?? {});
     for (const forbidden of FORBIDDEN_HEAVY_COLUMNS) {
-      expect(
-        selected,
-        `summary select must not include heavy column "${forbidden}"`,
-      ).not.toContain(forbidden);
+      expect(selected, `summary select must not include heavy column "${forbidden}"`).not.toContain(
+        forbidden,
+      );
     }
   });
 
@@ -122,10 +121,9 @@ describe("listRunSummaries", () => {
     const arg = findMany.mock.calls[0]?.[0] as FindManyArg;
     const selected = Object.keys(arg.select ?? {});
     for (const col of selected) {
-      expect(
-        ALLOWED_SUMMARY_COLUMNS.has(col),
-        `unexpected column "${col}" in summary select`,
-      ).toBe(true);
+      expect(ALLOWED_SUMMARY_COLUMNS.has(col), `unexpected column "${col}" in summary select`).toBe(
+        true,
+      );
     }
   });
 
@@ -146,10 +144,7 @@ describe("listRunSummaries", () => {
 
     const arg = findMany.mock.calls[0]?.[0] as FindManyArg;
     expect(arg.where).toEqual({
-      OR: [
-        { ownerEmail: "user@example.com" },
-        { runId: { in: ["run-shared-1"] } },
-      ],
+      OR: [{ ownerEmail: "user@example.com" }, { runId: { in: ["run-shared-1"] } }],
     });
   });
 

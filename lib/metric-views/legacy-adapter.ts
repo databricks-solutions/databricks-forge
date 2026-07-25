@@ -1,9 +1,6 @@
 import { parseMetricViewYaml } from "./parser";
 import { validateIdentifier } from "@/lib/validation";
-import {
-  buildMetricViewDdlFromDefinition,
-  serializeMetricViewYaml,
-} from "./serializer";
+import { buildMetricViewDdlFromDefinition, serializeMetricViewYaml } from "./serializer";
 import type { MetricViewDefinition } from "./definition";
 import type { MetricViewProposal } from "./types";
 import { replaceMetricViewDdlYaml } from "./ddl-envelope";
@@ -13,9 +10,7 @@ export interface MetricViewDeploymentTarget {
   schema: string;
 }
 
-export type LegacyMetricViewTarget =
-  | MetricViewDeploymentTarget
-  | { originalDdl: string };
+export type LegacyMetricViewTarget = MetricViewDeploymentTarget | { originalDdl: string };
 
 export function deploymentTargetFromSchemaScope(
   schemaScope: string,
@@ -59,9 +54,7 @@ export function definitionToLegacyText(
     };
   }
 
-  const deploymentTarget = deploymentTargetFromSchemaScope(
-    `${target.catalog}.${target.schema}`,
-  );
+  const deploymentTarget = deploymentTargetFromSchemaScope(`${target.catalog}.${target.schema}`);
   if (!deploymentTarget) {
     throw new Error("An explicit metric view deployment target must be catalog.schema.");
   }

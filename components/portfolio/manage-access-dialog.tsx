@@ -124,21 +124,23 @@ export function ManageAccessDialog() {
           <div className="flex-1 space-y-1.5">
             <Label htmlFor="portfolio-admin-email">{t("email_label")}</Label>
             <Input
-            id="portfolio-admin-email"
-            type="email"
-            placeholder={t("email_placeholder")}
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                e.preventDefault();
-                add();
-              }
-            }}
-            disabled={adding}
-            aria-describedby="portfolio-admin-email-help"
-          />
-            <p id="portfolio-admin-email-help" className="sr-only">{t("email_help")}</p>
+              id="portfolio-admin-email"
+              type="email"
+              placeholder={t("email_placeholder")}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  add();
+                }
+              }}
+              disabled={adding}
+              aria-describedby="portfolio-admin-email-help"
+            />
+            <p id="portfolio-admin-email-help" className="sr-only">
+              {t("email_help")}
+            </p>
           </div>
           <Button className="min-h-11" onClick={add} disabled={adding || !email.trim()}>
             {adding ? (

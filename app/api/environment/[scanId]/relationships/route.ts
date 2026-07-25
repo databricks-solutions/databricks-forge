@@ -63,7 +63,10 @@ export async function GET(request: NextRequest, ctx: { params: Promise<{ scanId:
     for (const d of details) {
       const o = resolveOverride(d.tableFqn, overrides);
       if (o?.action === "evict") continue;
-      domainByFqn.set(d.tableFqn, o?.action === "remap" ? (o.newDomain ?? d.dataDomain) : d.dataDomain);
+      domainByFqn.set(
+        d.tableFqn,
+        o?.action === "remap" ? (o.newDomain ?? d.dataDomain) : d.dataDomain,
+      );
     }
 
     // Lineage edges (table → table).

@@ -85,7 +85,11 @@ export async function runSitemapDiscovery(
     if (/<sitemapindex/i.test(xml)) {
       const subUrls = parseSitemapIndex(xml);
       for (const subUrl of subUrls) {
-        if (subSitemapsFetched >= MAX_SUB_SITEMAPS || allEntries.length >= MAX_URLS || signal?.aborted)
+        if (
+          subSitemapsFetched >= MAX_SUB_SITEMAPS ||
+          allEntries.length >= MAX_URLS ||
+          signal?.aborted
+        )
           break;
         const subResp = await timedFetch(fetchFn, subUrl, signal, FETCH_TIMEOUT_MS);
         if (!subResp?.ok) continue;

@@ -101,7 +101,8 @@ export function ShareDialog({
       setEntries(
         data.acl.map((e) => ({
           ...e,
-          createdAt: typeof e.createdAt === "string" ? e.createdAt : new Date(e.createdAt).toISOString(),
+          createdAt:
+            typeof e.createdAt === "string" ? e.createdAt : new Date(e.createdAt).toISOString(),
         })),
       );
       setOwnerEmail(data.owner.email);

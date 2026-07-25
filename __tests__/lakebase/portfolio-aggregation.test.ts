@@ -59,7 +59,13 @@ function synthRow(partial: Partial<PortfolioSynthesisRow>): PortfolioSynthesisRo
 describe("aggregatePortfolio", () => {
   it("rolls program scans into one estate and standalone scans into estates-of-one", () => {
     const programs: PortfolioProgramRow[] = [
-      { id: "p1", name: "Sales Estate", industryId: "retail", ownerEmail: "a@x.com", subVertical: null },
+      {
+        id: "p1",
+        name: "Sales Estate",
+        industryId: "retail",
+        ownerEmail: "a@x.com",
+        subVertical: null,
+      },
     ];
     const scans: PortfolioScanRow[] = [
       scan({ scanId: "s1", programId: "p1", tableCount: 10 }),
@@ -95,7 +101,12 @@ describe("aggregatePortfolio", () => {
       synthRow({
         estateId: "p1",
         scoresJson: JSON.stringify(scores(90)),
-        valueAtRiskJson: JSON.stringify({ low: 1, mid: 100, high: 200, currency: "USD" } as EstateValueAtRisk),
+        valueAtRiskJson: JSON.stringify({
+          low: 1,
+          mid: 100,
+          high: 200,
+          currency: "USD",
+        } as EstateValueAtRisk),
       }),
     ];
     const out = aggregatePortfolio({ programs, scans, syntheses });
@@ -114,8 +125,30 @@ describe("aggregatePortfolio", () => {
 
   it("aggregates the enterprise inventory across all scans", () => {
     const scans: PortfolioScanRow[] = [
-      scan({ scanId: "s1", programId: null, ucPath: "a", domainCount: 2, dataProductCount: 1, piiTablesCount: 3, genieSpaceCount: 1, dashboardCount: 2, metricViewCount: 1, modelCount: 4 }),
-      scan({ scanId: "s2", programId: null, ucPath: "b", domainCount: 3, dataProductCount: 2, piiTablesCount: 1, genieSpaceCount: 0, dashboardCount: 1, metricViewCount: 4, modelCount: 3 }),
+      scan({
+        scanId: "s1",
+        programId: null,
+        ucPath: "a",
+        domainCount: 2,
+        dataProductCount: 1,
+        piiTablesCount: 3,
+        genieSpaceCount: 1,
+        dashboardCount: 2,
+        metricViewCount: 1,
+        modelCount: 4,
+      }),
+      scan({
+        scanId: "s2",
+        programId: null,
+        ucPath: "b",
+        domainCount: 3,
+        dataProductCount: 2,
+        piiTablesCount: 1,
+        genieSpaceCount: 0,
+        dashboardCount: 1,
+        metricViewCount: 4,
+        modelCount: 3,
+      }),
     ];
     const out = aggregatePortfolio({ programs: [], scans, syntheses: [] });
     expect(out.inventory.domains).toBe(5);

@@ -1575,13 +1575,27 @@
       "emptyTitle": "No se encontraron relaciones",
       "emptyDescription": "Este escaneo no capturó linaje ni relaciones inferidas. Ejecútalo de nuevo con mayor profundidad de linaje.",
       "connectedTables": "{count, plural, one {# tabla conectada} other {# tablas conectadas}}",
-      "stats": {"all": "Relaciones", "crossDomain": "Entre dominios", "crossCatalog": "Entre catálogos", "crossSchema": "Entre esquemas"},
-      "hints": {"crossDomain": "Abarcan dos dominios de negocio", "crossCatalog": "Abarcan dos catálogos", "crossSchema": "Abarcan dos esquemas"},
+      "stats": {
+        "all": "Relaciones",
+        "crossDomain": "Entre dominios",
+        "crossCatalog": "Entre catálogos",
+        "crossSchema": "Entre esquemas"
+      },
+      "hints": {
+        "crossDomain": "Abarcan dos dominios de negocio",
+        "crossCatalog": "Abarcan dos catálogos",
+        "crossSchema": "Abarcan dos esquemas"
+      },
       "allRelationships": "Todas las relaciones",
       "shown": "{count, plural, one {# mostrada} other {# mostradas}}{capped, select, yes { (límite de 1000)} other {}}",
-      "columns": {"source": "Origen", "target": "Destino", "via": "Vía", "boundaries": "Límites"},
-      "boundary": {"domain": "dominio", "catalog": "catálogo", "schema": "esquema"},
-      "via": {"lineage": "Linaje", "foreign_key": "Clave foránea", "inferred": "Inferida", "relationship": "Relación"},
+      "columns": { "source": "Origen", "target": "Destino", "via": "Vía", "boundaries": "Límites" },
+      "boundary": { "domain": "dominio", "catalog": "catálogo", "schema": "esquema" },
+      "via": {
+        "lineage": "Linaje",
+        "foreign_key": "Clave foránea",
+        "inferred": "Inferida",
+        "relationship": "Relación"
+      },
       "noMatches": "Ninguna relación coincide con este filtro.",
       "showingLimit": "Mostrando {shown} de {total}."
     },
@@ -1592,14 +1606,18 @@
       "domainsDescription": "Cada burbuja representa un dominio de datos, dimensionado por {metric}. Selecciona una para ampliar.",
       "subdomainsDescription": "Subdominios de {domain}, dimensionados por {metric}. Selecciona uno para ver las tablas.",
       "tablesDescription": "Tablas en {group}, de mayor a menor. Selecciona una para ver sus detalles.",
-      "metric": {"rows": "volumen de filas", "tables": "cantidad de tablas", "size": "almacenamiento"},
-      "metricControl": {"rows": "Filas", "tables": "Tablas", "size": "Tamaño"},
-      "color": {"tier": "Capa", "catalog": "Catálogo"},
+      "metric": {
+        "rows": "volumen de filas",
+        "tables": "cantidad de tablas",
+        "size": "almacenamiento"
+      },
+      "metricControl": { "rows": "Filas", "tables": "Tablas", "size": "Tamaño" },
+      "color": { "tier": "Capa", "catalog": "Catálogo" },
       "rowsCount": "{count, plural, one {# fila} other {# filas}}",
       "tablesCount": "{count, plural, one {# tabla} other {# tablas}}",
       "groupTooltip": "{name}\n{tables, plural, one {# tabla} other {# tablas}} · {rows, plural, one {# fila} other {# filas}} · {size}",
       "storageSize": "{value} {unit}",
-      "units": {"B": "B", "KB": "KB", "MB": "MB", "GB": "GB", "TB": "TB"},
+      "units": { "B": "B", "KB": "KB", "MB": "MB", "GB": "GB", "TB": "TB" },
       "mapView": "Vista de mapa",
       "listView": "Vista de lista",
       "breadcrumb": "Ruta de navegación",
@@ -1614,9 +1632,35 @@
       "largest": "Mayor",
       "ungrouped": "Sin agrupar",
       "adjustGrouping": "Ajustar agrupación",
-      "columns": {"group": "Grupo", "tables": "Tablas", "metric": "Métrica", "table": "Tabla", "rows": "Filas", "size": "Tamaño", "tier": "Capa"},
-      "fields": {"domain": "Dominio", "subdomain": "Subdominio", "tier": "Capa", "type": "Tipo", "rows": "Filas", "size": "Tamaño", "files": "Archivos", "format": "Formato", "owner": "Propietario", "updated": "Actualizada", "lastUpdated": "Última actualización", "sensitivity": "Sensibilidad"},
-      "features": {"liquidClustering": "Clustering líquido", "deletionVectors": "Vectores de eliminación", "changeDataFeed": "Fuente de datos de cambios", "autoOptimize": "Optimización automática"}
+      "columns": {
+        "group": "Grupo",
+        "tables": "Tablas",
+        "metric": "Métrica",
+        "table": "Tabla",
+        "rows": "Filas",
+        "size": "Tamaño",
+        "tier": "Capa"
+      },
+      "fields": {
+        "domain": "Dominio",
+        "subdomain": "Subdominio",
+        "tier": "Capa",
+        "type": "Tipo",
+        "rows": "Filas",
+        "size": "Tamaño",
+        "files": "Archivos",
+        "format": "Formato",
+        "owner": "Propietario",
+        "updated": "Actualizada",
+        "lastUpdated": "Última actualización",
+        "sensitivity": "Sensibilidad"
+      },
+      "features": {
+        "liquidClustering": "Clustering líquido",
+        "deletionVectors": "Vectores de eliminación",
+        "changeDataFeed": "Fuente de datos de cambios",
+        "autoOptimize": "Optimización automática"
+      }
     }
   },
   "estateRoot": {
@@ -1631,7 +1675,13 @@
       "manage": "Administrar programas del entorno",
       "manageDescription": "Agrupe varios análisis en una vista empresarial y ejecútelos por área."
     },
-    "actions": { "exporting": "Exportando…", "report": "Informe del entorno", "newScan": "Nuevo análisis", "scanning": "Analizando…", "scan": "Analizar entorno" },
+    "actions": {
+      "exporting": "Exportando…",
+      "report": "Informe del entorno",
+      "newScan": "Nuevo análisis",
+      "scanning": "Analizando…",
+      "scan": "Analizar entorno"
+    },
     "toast": {
       "loadDetailsFailed": "No se pudieron cargar los detalles del análisis",
       "deleted": "Análisis eliminado",
@@ -1650,7 +1700,17 @@
       "focused": "Enfoque en <strong>{focus}</strong>, según la evaluación WAF más reciente.",
       "back": "Volver a la evaluación",
       "reasons": {
-        "lineage": "cobertura de linaje", "tags": "etiquetado de tablas", "format": "formatos de tabla", "managedTables": "tablas administradas", "accessControl": "control de acceso", "quality": "calidad de datos", "dltExpectations": "expectativas DLT", "constraints": "restricciones de tabla", "runtimeVersions": "versiones de runtime", "photon": "uso de Photon", "costAttributionTags": "etiquetado para atribución de costos"
+        "lineage": "cobertura de linaje",
+        "tags": "etiquetado de tablas",
+        "format": "formatos de tabla",
+        "managedTables": "tablas administradas",
+        "accessControl": "control de acceso",
+        "quality": "calidad de datos",
+        "dltExpectations": "expectativas DLT",
+        "constraints": "restricciones de tabla",
+        "runtimeVersions": "versiones de runtime",
+        "photon": "uso de Photon",
+        "costAttributionTags": "etiquetado para atribución de costos"
       }
     },
     "newScan": {
@@ -1673,12 +1733,31 @@
       "erd": "No hay datos de DER disponibles."
     },
     "tabs": {
-      "state": "Estado del entorno", "summary": "Resumen", "domains": "Dominios", "relationships": "Relaciones", "tables": "Tablas ({count})", "coverage": "Cobertura de tablas", "governance": "Gobernanza", "export": "Exportar", "portfolio": "Cartera",
+      "state": "Estado del entorno",
+      "summary": "Resumen",
+      "domains": "Dominios",
+      "relationships": "Relaciones",
+      "tables": "Tablas ({count})",
+      "coverage": "Cobertura de tablas",
+      "governance": "Gobernanza",
+      "export": "Exportar",
+      "portfolio": "Cartera",
       "portfolioHelp": "Consolidación ejecutiva entre entornos: inventario empresarial, fragmentación y plan federado de mejora."
     },
     "tables": {
       "filter": "Filtrar por nombre de tabla o dominio…",
-      "headers": { "table": "Tabla", "domain": "Dominio", "tier": "Capa", "size": "Tamaño", "rows": "Filas", "owner": "Propietario", "governance": "Gob.", "sensitivity": "Sensibilidad", "modified": "Modificada", "via": "Origen" },
+      "headers": {
+        "table": "Tabla",
+        "domain": "Dominio",
+        "tier": "Capa",
+        "size": "Tamaño",
+        "rows": "Filas",
+        "owner": "Propietario",
+        "governance": "Gob.",
+        "sensitivity": "Sensibilidad",
+        "modified": "Modificada",
+        "via": "Origen"
+      },
       "help": {
         "table": "Nombre completo de la tabla y su descripción, si existe.",
         "domain": "Dominio empresarial asignado por el análisis de IA.",
@@ -1760,32 +1839,75 @@
       },
       "deleteConfirm": "¿Eliminar este programa de patrimonio? Se eliminarán el programa y su secuencia. Los escaneos de entorno seguirán disponibles en la Vista general del patrimonio.",
       "states": {
-        "notFoundTitle": "Programa no encontrado", "notFoundDescription": "Este programa no existe o se ha eliminado.", "forbiddenTitle": "No tienes acceso", "forbiddenDescription": "No tienes permiso para ver este programa.",
-        "back": "Volver a Programas de patrimonio", "errorTitle": "No se pudo cargar este programa", "errorDescription": "Se produjo un error al cargar el programa de patrimonio.", "retry": "Intentar de nuevo"
+        "notFoundTitle": "Programa no encontrado",
+        "notFoundDescription": "Este programa no existe o se ha eliminado.",
+        "forbiddenTitle": "No tienes acceso",
+        "forbiddenDescription": "No tienes permiso para ver este programa.",
+        "back": "Volver a Programas de patrimonio",
+        "errorTitle": "No se pudo cargar este programa",
+        "errorDescription": "Se produjo un error al cargar el programa de patrimonio.",
+        "retry": "Intentar de nuevo"
       },
       "next": {
-        "planTitle": "Paso 2: planifica la secuencia de escaneo", "planBody": "Añade un ámbito por área de negocio en la pestaña Secuencia de escaneo y ejecútalos.",
-        "scanningTitle": "Escaneando… {complete} de {total} completados", "scanningBody": "Forge está escaneando cada ámbito en secuencia. Esta vista se actualiza automáticamente.",
+        "planTitle": "Paso 2: planifica la secuencia de escaneo",
+        "planBody": "Añade un ámbito por área de negocio en la pestaña Secuencia de escaneo y ejecútalos.",
+        "scanningTitle": "Escaneando… {complete} de {total} completados",
+        "scanningBody": "Forge está escaneando cada ámbito en secuencia. Esta vista se actualiza automáticamente.",
         "runTitle": "{count, plural, one {Paso 2: ejecuta la secuencia (# ámbito planificado)} other {Paso 2: ejecuta la secuencia (# ámbitos planificados)}}",
         "runBody": "Ejecuta la secuencia para escanear la siguiente área planificada. Los ámbitos se procesan de uno en uno.",
-        "reviewTitle": "Paso 3: revisa el patrimonio", "reviewBody": "Todos los ámbitos están escaneados. Explora la ontología, revisa la calidad y exporta el paquete ejecutivo."
+        "reviewTitle": "Paso 3: revisa el patrimonio",
+        "reviewBody": "Todos los ámbitos están escaneados. Explora la ontología, revisa la calidad y exporta el paquete ejecutivo."
       },
       "actions": {
-        "run": "Ejecutar secuencia", "scanning": "Escaneando…", "pause": "pausar", "resume": "reanudar", "cancel": "cancelar",
-        "resumeCount": "Reanudar ({count})", "pauseTitle": "Retener ámbitos que aún no han comenzado", "cancelTitle": "Cancelar ámbitos restantes", "delete": "Eliminar este programa"
+        "run": "Ejecutar secuencia",
+        "scanning": "Escaneando…",
+        "pause": "pausar",
+        "resume": "reanudar",
+        "cancel": "cancelar",
+        "resumeCount": "Reanudar ({count})",
+        "pauseTitle": "Retener ámbitos que aún no han comenzado",
+        "cancelTitle": "Cancelar ámbitos restantes",
+        "delete": "Eliminar este programa"
       },
-      "exports": {"pdf": "Paquete ejecutivo (PDF)", "pdfTitle": "Paquete ejecutivo en PDF", "excel": "Datos detallados", "excelTitle": "Libro detallado por tabla"},
+      "exports": {
+        "pdf": "Paquete ejecutivo (PDF)",
+        "pdfTitle": "Paquete ejecutivo en PDF",
+        "excel": "Datos detallados",
+        "excelTitle": "Libro detallado por tabla"
+      },
       "explainer": "Un <strong>programa de patrimonio</strong> agrupa varios <link>escaneos de entorno</link> en una vista de empresa. Cada ámbito produce un escaneo normal y lo vincula al programa. Eliminar el programa conserva esos escaneos y quita solo la agrupación y la secuencia planificada.",
       "progress": "Escaneando {label} · {complete} de {total} completados",
-      "views": {"executive": "Resumen ejecutivo", "detail": "Detalle"},
+      "views": { "executive": "Resumen ejecutivo", "detail": "Detalle" },
       "executiveEmpty": "El resumen ejecutivo aparece después de completar el primer escaneo. Ve a <detail>Detalle</detail> para planificar y ejecutar la secuencia.",
-      "tabs": {"sequence": "{count, plural, =0 {Secuencia de escaneo} other {Secuencia de escaneo (#)}}", "ontology": "Ontología", "relationships": "Relaciones", "coverage": "Cobertura del escaneo", "quality": "Calidad y capas"},
-      "empty": {"ontology": "Aún no hay escaneos. Añade ámbitos en la secuencia y ejecútalos para crear la ontología.", "relationships": "Aún no hay escaneos. Las relaciones aparecen después de completar un ámbito."},
-      "coverage": {"title": "Áreas de negocio escaneadas", "empty": "Aún no hay escaneos vinculados a este programa.", "row": "{count, plural, one {# tabla} other {# tablas}} · {date}"},
+      "tabs": {
+        "sequence": "{count, plural, =0 {Secuencia de escaneo} other {Secuencia de escaneo (#)}}",
+        "ontology": "Ontología",
+        "relationships": "Relaciones",
+        "coverage": "Cobertura del escaneo",
+        "quality": "Calidad y capas"
+      },
+      "empty": {
+        "ontology": "Aún no hay escaneos. Añade ámbitos en la secuencia y ejecútalos para crear la ontología.",
+        "relationships": "Aún no hay escaneos. Las relaciones aparecen después de completar un ámbito."
+      },
+      "coverage": {
+        "title": "Áreas de negocio escaneadas",
+        "empty": "Aún no hay escaneos vinculados a este programa.",
+        "row": "{count, plural, one {# tabla} other {# tablas}} · {date}"
+      },
       "quality": {
-        "tierTitle": "Distribución por capa", "metadataTitle": "Cobertura de calidad de metadatos", "tier": "{tier} {count}",
-        "bronze": "Bronce", "silver": "Plata", "gold": "Oro", "system": "Sistema", "untiered": "Sin capa",
-        "description": "Tablas con descripción", "owner": "Tablas con propietario", "tierCoverage": "Tablas con capa", "domain": "Tablas con dominio"
+        "tierTitle": "Distribución por capa",
+        "metadataTitle": "Cobertura de calidad de metadatos",
+        "tier": "{tier} {count}",
+        "bronze": "Bronce",
+        "silver": "Plata",
+        "gold": "Oro",
+        "system": "Sistema",
+        "untiered": "Sin capa",
+        "description": "Tablas con descripción",
+        "owner": "Tablas con propietario",
+        "tierCoverage": "Tablas con capa",
+        "domain": "Tablas con dominio"
       },
       "readOnly": "Tienes acceso de solo lectura. El propietario gestiona los ámbitos y los controles de ejecución.",
       "retry": {
@@ -1799,15 +1921,37 @@
         "failed": "No se pudo reintentar este ámbito."
       },
       "sequence": {
-        "title": "Secuencia de escaneo", "addTitle": "1. Añade ámbitos de escaneo", "addDescription": "Selecciona uno o más catálogos o esquemas de Unity Catalog. Cada selección se convierte en un paso de la secuencia.",
-        "advanced": "Opciones avanzadas del ámbito", "includeLabel": "Patrones de inclusión (opcional)", "includePlaceholder": "fact_*, dim_*", "includeHelp": "Solo se escanean las tablas coincidentes; las exclusiones siguen teniendo prioridad.",
-        "workspaceLabel": "ID del workspace (opcional)", "workspacePlaceholder": "ID del workspace de Databricks", "teamLabel": "Etiqueta del equipo (opcional)", "teamPlaceholder": "p. ej., Datos upstream",
-        "addButton": "{count, plural, =0 {Añadir a la secuencia} one {Añadir # a la secuencia} other {Añadir # a la secuencia}}", "selected": "{count, plural, one {# seleccionado} other {# seleccionados}}",
-        "runTitle": "2. Ejecuta la secuencia", "runPlanned": "{count, plural, one {Ejecutar # ámbito planificado} other {Ejecutar # ámbitos planificados}}",
+        "title": "Secuencia de escaneo",
+        "addTitle": "1. Añade ámbitos de escaneo",
+        "addDescription": "Selecciona uno o más catálogos o esquemas de Unity Catalog. Cada selección se convierte en un paso de la secuencia.",
+        "advanced": "Opciones avanzadas del ámbito",
+        "includeLabel": "Patrones de inclusión (opcional)",
+        "includePlaceholder": "fact_*, dim_*",
+        "includeHelp": "Solo se escanean las tablas coincidentes; las exclusiones siguen teniendo prioridad.",
+        "workspaceLabel": "ID del workspace (opcional)",
+        "workspacePlaceholder": "ID del workspace de Databricks",
+        "teamLabel": "Etiqueta del equipo (opcional)",
+        "teamPlaceholder": "p. ej., Datos upstream",
+        "addButton": "{count, plural, =0 {Añadir a la secuencia} one {Añadir # a la secuencia} other {Añadir # a la secuencia}}",
+        "selected": "{count, plural, one {# seleccionado} other {# seleccionados}}",
+        "runTitle": "2. Ejecuta la secuencia",
+        "runPlanned": "{count, plural, one {Ejecutar # ámbito planificado} other {Ejecutar # ámbitos planificados}}",
         "empty": "Aún no hay ámbitos. Añade al menos uno y ejecuta la secuencia. Forge procesa uno cada vez automáticamente.",
-        "includeValue": "incluir: {value}", "workspaceValue": "workspace: {value}", "teamValue": "equipo: {value}", "remove": "Quitar de la secuencia", "removeLabel": "Quitar {label} de la secuencia"
+        "includeValue": "incluir: {value}",
+        "workspaceValue": "workspace: {value}",
+        "teamValue": "equipo: {value}",
+        "remove": "Quitar de la secuencia",
+        "removeLabel": "Quitar {label} de la secuencia"
       },
-      "status": {"planned": "Planificado", "queued": "En cola", "running": "En ejecución", "complete": "Completado", "failed": "Falló", "paused": "Pausado", "cancelled": "Cancelado"}
+      "status": {
+        "planned": "Planificado",
+        "queued": "En cola",
+        "running": "En ejecución",
+        "complete": "Completado",
+        "failed": "Falló",
+        "paused": "Pausado",
+        "cancelled": "Cancelado"
+      }
     },
     "empty": "Aún no hay programas de patrimonio. Crea uno para empezar a integrar escaneos en un patrimonio de empresa.",
     "emptyCtaHint": "Haz clic en Nuevo programa para empezar.",

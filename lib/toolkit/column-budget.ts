@@ -473,10 +473,7 @@ export function computeAdaptiveColumnLimits(
     // Guard against pathological loops: bound by the maximum possible shave count.
     let shaveBudget =
       tableCols.reduce((sum, t) => sum + (limits.get(t.fqn) ?? t.count), 0) -
-      tableCols.reduce(
-        (sum, t) => sum + Math.min(MIN_COLUMNS_PER_TABLE, t.count),
-        0,
-      );
+      tableCols.reduce((sum, t) => sum + Math.min(MIN_COLUMNS_PER_TABLE, t.count), 0);
 
     while (totalTokens > availableSchemaTokens && shaveBudget > 0) {
       // Find the table with the highest current limit that is still above its floor.

@@ -204,10 +204,7 @@ export default function SettingsPage() {
 
   return (
     <div className="mx-auto max-w-[1400px] space-y-8">
-      <PageHeader
-        title={tPage("title")}
-        subtitle={tPage("subtitle")}
-      />
+      <PageHeader title={tPage("title")} subtitle={tPage("subtitle")} />
 
       <ProfileSettings profile={profile} />
 

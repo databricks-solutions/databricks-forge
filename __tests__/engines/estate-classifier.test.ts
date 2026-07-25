@@ -38,7 +38,11 @@ describe("classifyEstateTablesToAssets", () => {
       },
     );
     expect(out).toEqual([
-      { fqn: "main.sales.customer", dataAssetId: "customer_master", dataAssetName: "Customer Master" },
+      {
+        fqn: "main.sales.customer",
+        dataAssetId: "customer_master",
+        dataAssetName: "Customer Master",
+      },
     ]);
   });
 
@@ -57,35 +61,31 @@ describe("classifyEstateTablesToAssets", () => {
   });
 
   it("falls back to token overlap when the LLM yields nothing", async () => {
-    const out = await classifyEstateTablesToAssets(
-      [{ fqn: "main.sales.customer_dim" }],
-      assets,
-      { callLLM: async () => JSON.stringify({ mappings: [] }) },
-    );
+    const out = await classifyEstateTablesToAssets([{ fqn: "main.sales.customer_dim" }], assets, {
+      callLLM: async () => JSON.stringify({ mappings: [] }),
+    });
     expect(out).toEqual([
-      { fqn: "main.sales.customer_dim", dataAssetId: "customer_master", dataAssetName: "Customer Master" },
+      {
+        fqn: "main.sales.customer_dim",
+        dataAssetId: "customer_master",
+        dataAssetName: "Customer Master",
+      },
     ]);
   });
 
   it("falls back to token overlap when the LLM throws", async () => {
-    const out = await classifyEstateTablesToAssets(
-      [{ fqn: "main.sales.transactions" }],
-      assets,
-      {
-        callLLM: async () => {
-          throw new Error("model down");
-        },
+    const out = await classifyEstateTablesToAssets([{ fqn: "main.sales.transactions" }], assets, {
+      callLLM: async () => {
+        throw new Error("model down");
       },
-    );
+    });
     expect(out[0].dataAssetId).toBe("transactions");
   });
 
   it("omits tables with no token overlap in the fallback", async () => {
-    const out = await classifyEstateTablesToAssets(
-      [{ fqn: "main.sales.zzz_unrelated" }],
-      assets,
-      { callLLM: async () => "not json at all" },
-    );
+    const out = await classifyEstateTablesToAssets([{ fqn: "main.sales.zzz_unrelated" }], assets, {
+      callLLM: async () => "not json at all",
+    });
     expect(out).toEqual([]);
   });
 });

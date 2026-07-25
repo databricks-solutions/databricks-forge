@@ -17,13 +17,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -63,7 +57,10 @@ import {
   type ExplorerLevel,
   type GroupNode,
 } from "@/lib/environment/domain-explorer";
-import { DomainOverrideMenu, AdjustmentsButton } from "@/components/environment/domain-override-menu";
+import {
+  DomainOverrideMenu,
+  AdjustmentsButton,
+} from "@/components/environment/domain-override-menu";
 import type { DomainOverride } from "@/lib/environment/domain-overrides";
 import { useL10n } from "@/i18n/format";
 
@@ -207,7 +204,8 @@ export function DomainExplorer({
   }
 
   // What are we drawing at this level?
-  const groupNodes: GroupNode[] = level === "domains" ? domains : level === "subdomains" ? subdomains : [];
+  const groupNodes: GroupNode[] =
+    level === "domains" ? domains : level === "subdomains" ? subdomains : [];
   const groupColors = level === "domains" ? domainColors : subColors;
   // At table level the metric "tables" is meaningless for a single table; size by rows then size.
   const leafMetric: Metric = metric === "tables" ? "rows" : metric;
@@ -235,10 +233,19 @@ export function DomainExplorer({
                 <>{t("domainsDescription", { metric: metricLabel(metric) })}</>
               )}
               {level === "subdomains" && (
-                <>{t("subdomainsDescription", { domain: domain ?? "", metric: metricLabel(metric) })}</>
+                <>
+                  {t("subdomainsDescription", {
+                    domain: domain ?? "",
+                    metric: metricLabel(metric),
+                  })}
+                </>
               )}
               {level === "tables" && (
-                <>{t("tablesDescription", { group: `${domain}${subdomain ? ` › ${subdomain}` : ""}` })}</>
+                <>
+                  {t("tablesDescription", {
+                    group: `${domain}${subdomain ? ` › ${subdomain}` : ""}`,
+                  })}
+                </>
               )}
             </CardDescription>
           </div>
@@ -557,12 +564,13 @@ function TableBubbles({
   const tr = useTranslations("estate_explorer.domain");
   const byFqn = useMemo(() => new Map(tables.map((t) => [t.tableFqn, t])), [tables]);
   const catalogColors = useMemo(() => colorMap(tables.map((t) => catalogOf(t.tableFqn))), [tables]);
-  const value = (t: TableDetailRow) => (metric === "size" ? toNum(t.sizeInBytes) : toNum(t.numRows));
+  const value = (t: TableDetailRow) =>
+    metric === "size" ? toNum(t.sizeInBytes) : toNum(t.numRows);
   const hasSignal = tables.some((t) => value(t) > 0);
   const colorFor = (t: TableDetailRow): string =>
     colorBy === "tier"
-      ? TIER_COLOR[(t.dataTier ?? "").toLowerCase()] ?? "#64748b"
-      : catalogColors.get(catalogOf(t.tableFqn)) ?? PALETTE[0];
+      ? (TIER_COLOR[(t.dataTier ?? "").toLowerCase()] ?? "#64748b")
+      : (catalogColors.get(catalogOf(t.tableFqn)) ?? PALETTE[0]);
 
   const circles = useMemo(
     () =>
@@ -698,32 +706,57 @@ function TableHoverCard({
       role="tooltip"
     >
       <p className="truncate text-sm font-semibold">{shortName(table.tableFqn)}</p>
-      <p className="mt-0.5 break-all text-[11px] text-muted-foreground">{schemaOf(table.tableFqn)}</p>
+      <p className="mt-0.5 break-all text-[11px] text-muted-foreground">
+        {schemaOf(table.tableFqn)}
+      </p>
 
       <dl className="mt-2 grid grid-cols-2 gap-x-3 gap-y-1 text-[11px]">
         <HoverStat label={t("fields.rows")} value={humanNumber(table.numRows)} />
         <HoverStat label={t("fields.size")} value={humanSize(table.sizeInBytes)} />
-        {table.numFiles != null && <HoverStat label={t("fields.files")} value={humanNumber(table.numFiles)} />}
-        {table.dataTier && <HoverStat label={t("fields.tier")} value={table.dataTier} className="capitalize" />}
-        {table.owner && <HoverStat label={t("fields.owner")} value={table.owner} className="col-span-2 truncate" />}
-        {updated && <HoverStat label={t("fields.updated")} value={updated} className="col-span-2" />}
+        {table.numFiles != null && (
+          <HoverStat label={t("fields.files")} value={humanNumber(table.numFiles)} />
+        )}
+        {table.dataTier && (
+          <HoverStat label={t("fields.tier")} value={table.dataTier} className="capitalize" />
+        )}
+        {table.owner && (
+          <HoverStat
+            label={t("fields.owner")}
+            value={table.owner}
+            className="col-span-2 truncate"
+          />
+        )}
+        {updated && (
+          <HoverStat label={t("fields.updated")} value={updated} className="col-span-2" />
+        )}
         {table.format && <HoverStat label={t("fields.format")} value={table.format} />}
-        {table.tableType && <HoverStat label={t("fields.type")} value={table.tableType} className="truncate" />}
+        {table.tableType && (
+          <HoverStat label={t("fields.type")} value={table.tableType} className="truncate" />
+        )}
       </dl>
 
       {(feat.liquidClustering || feat.deletionVectors || feat.cdf || feat.autoOptimize) && (
         <div className="mt-2 flex flex-wrap gap-1">
           {feat.liquidClustering && (
             <Badge variant="secondary" className="text-[10px]">
-              {t("features.liquidClustering")}{feat.clusterKeys.length > 0 ? `: ${feat.clusterKeys.join(", ")}` : ""}
+              {t("features.liquidClustering")}
+              {feat.clusterKeys.length > 0 ? `: ${feat.clusterKeys.join(", ")}` : ""}
             </Badge>
           )}
           {feat.deletionVectors && (
-            <Badge variant="secondary" className="text-[10px]">{t("features.deletionVectors")}</Badge>
+            <Badge variant="secondary" className="text-[10px]">
+              {t("features.deletionVectors")}
+            </Badge>
           )}
-          {feat.cdf && <Badge variant="secondary" className="text-[10px]">CDF</Badge>}
+          {feat.cdf && (
+            <Badge variant="secondary" className="text-[10px]">
+              CDF
+            </Badge>
+          )}
           {feat.autoOptimize && (
-            <Badge variant="secondary" className="text-[10px]">{t("features.autoOptimize")}</Badge>
+            <Badge variant="secondary" className="text-[10px]">
+              {t("features.autoOptimize")}
+            </Badge>
           )}
         </div>
       )}
@@ -793,12 +826,19 @@ function GroupList({
             >
               <TableCell>
                 <span className="flex items-center gap-2">
-                  <span className="h-3 w-3 shrink-0 rounded-full" style={{ backgroundColor: colors.get(n.name) }} />
+                  <span
+                    className="h-3 w-3 shrink-0 rounded-full"
+                    style={{ backgroundColor: colors.get(n.name) }}
+                  />
                   <span className="font-medium">{n.name}</span>
                 </span>
               </TableCell>
-              <TableCell className="text-right tabular-nums">{l10n.integer(n.tableCount)}</TableCell>
-              <TableCell className="text-right tabular-nums text-muted-foreground">{formatGroup(n)}</TableCell>
+              <TableCell className="text-right tabular-nums">
+                {l10n.integer(n.tableCount)}
+              </TableCell>
+              <TableCell className="text-right tabular-nums text-muted-foreground">
+                {formatGroup(n)}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -848,7 +888,9 @@ function TableList({
                 <div className="flex items-center gap-2">
                   <span className="truncate font-medium">{shortName(t.tableFqn)}</span>
                   {i === 0 && tables.length > 1 && toNum(t.numRows) > 0 && (
-                    <Badge variant="secondary" className="shrink-0 text-[10px]">{tr("largest")}</Badge>
+                    <Badge variant="secondary" className="shrink-0 text-[10px]">
+                      {tr("largest")}
+                    </Badge>
                   )}
                 </div>
                 <div className="truncate text-xs text-muted-foreground">{t.tableFqn}</div>
@@ -857,7 +899,9 @@ function TableList({
               <TableCell className="text-right tabular-nums">{humanSize(t.sizeInBytes)}</TableCell>
               <TableCell>
                 {t.dataTier ? (
-                  <Badge variant="outline" className="text-[10px] capitalize">{t.dataTier}</Badge>
+                  <Badge variant="outline" className="text-[10px] capitalize">
+                    {t.dataTier}
+                  </Badge>
                 ) : (
                   <span className="text-muted-foreground">—</span>
                 )}
@@ -913,18 +957,27 @@ function TableDetailSheet({
               <Field label={t("fields.type")} value={table.tableType ?? "—"} />
               <Field label={t("fields.rows")} value={humanNumber(table.numRows)} />
               <Field label={t("fields.size")} value={humanSize(table.sizeInBytes)} />
-              <Field label={t("fields.files")} value={table.numFiles != null ? humanNumber(table.numFiles) : "—"} />
+              <Field
+                label={t("fields.files")}
+                value={table.numFiles != null ? humanNumber(table.numFiles) : "—"}
+              />
               <Field label={t("fields.format")} value={table.format ?? "—"} />
               <Field label={t("fields.owner")} value={table.owner ?? "—"} />
               <Field label={t("fields.sensitivity")} value={table.sensitivityLevel ?? "—"} />
               <Field
                 label={t("fields.lastUpdated")}
-                value={table.lastModified ? `${l10n.date(table.lastModified)} (${l10n.relative(table.lastModified)})` : "—"}
+                value={
+                  table.lastModified
+                    ? `${l10n.date(table.lastModified)} (${l10n.relative(table.lastModified)})`
+                    : "—"
+                }
               />
             </dl>
             <StorageFeatureBadges table={table} />
             {(table.comment || table.generatedDescription) && (
-              <p className="text-sm text-muted-foreground">{table.comment || table.generatedDescription}</p>
+              <p className="text-sm text-muted-foreground">
+                {table.comment || table.generatedDescription}
+              </p>
             )}
             {canEdit && scanId && (
               <div className="border-t pt-3">
@@ -969,12 +1022,25 @@ function StorageFeatureBadges({ table }: { table: TableDetailRow }) {
     <div className="flex flex-wrap gap-1.5">
       {feat.liquidClustering && (
         <Badge variant="secondary" className="text-[10px]">
-          {t("features.liquidClustering")}{feat.clusterKeys.length > 0 ? `: ${feat.clusterKeys.join(", ")}` : ""}
+          {t("features.liquidClustering")}
+          {feat.clusterKeys.length > 0 ? `: ${feat.clusterKeys.join(", ")}` : ""}
         </Badge>
       )}
-      {feat.deletionVectors && <Badge variant="secondary" className="text-[10px]">{t("features.deletionVectors")}</Badge>}
-      {feat.cdf && <Badge variant="secondary" className="text-[10px]">{t("features.changeDataFeed")}</Badge>}
-      {feat.autoOptimize && <Badge variant="secondary" className="text-[10px]">{t("features.autoOptimize")}</Badge>}
+      {feat.deletionVectors && (
+        <Badge variant="secondary" className="text-[10px]">
+          {t("features.deletionVectors")}
+        </Badge>
+      )}
+      {feat.cdf && (
+        <Badge variant="secondary" className="text-[10px]">
+          {t("features.changeDataFeed")}
+        </Badge>
+      )}
+      {feat.autoOptimize && (
+        <Badge variant="secondary" className="text-[10px]">
+          {t("features.autoOptimize")}
+        </Badge>
+      )}
     </div>
   );
 }

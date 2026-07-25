@@ -112,12 +112,7 @@ function ScoreReasonChips({ reasons }: { reasons: ScoreReason[] }) {
   return (
     <div className="mt-2 flex flex-wrap gap-1">
       {reasons.map((reason) => (
-        <Badge
-          key={reason}
-          variant="outline"
-          className="text-[10px] font-normal"
-          title={reason}
-        >
+        <Badge key={reason} variant="outline" className="text-[10px] font-normal" title={reason}>
           {SCORE_REASON_LABELS[reason] ?? reason}
         </Badge>
       ))}
@@ -227,7 +222,9 @@ function ExecutionResultTable({ result }: { result?: SqlExecutionResult }) {
           {truncated ? " (truncated)" : ""}
         </span>
         {columns.length > 0 && (
-          <span>&middot; {columns.length} col{columns.length !== 1 ? "s" : ""}</span>
+          <span>
+            &middot; {columns.length} col{columns.length !== 1 ? "s" : ""}
+          </span>
         )}
       </div>
       <div className="max-h-52 overflow-auto rounded border">
@@ -608,14 +605,12 @@ export default function BenchmarkPage() {
 
       setImproveResult({
         updatedSerializedSpace: mergeData.mergedSerializedSpace,
-        changes: data.suggestions.map(
-          (s: { category: string; rationale: string }) => ({
-            section: s.category,
-            description: s.rationale,
-            added: 0,
-            modified: 1,
-          }),
-        ),
+        changes: data.suggestions.map((s: { category: string; rationale: string }) => ({
+          section: s.category,
+          description: s.rationale,
+          added: 0,
+          modified: 1,
+        })),
         strategiesRun: ["llm_field_optimization"],
         originalSerializedSpace: data.originalSerializedSpace,
       });
@@ -678,8 +673,7 @@ export default function BenchmarkPage() {
   const goodCount = results.filter((r) => r.assessment === "GOOD").length;
   const badCount = results.filter((r) => r.assessment === "BAD").length;
   const needsReviewCount = results.filter((r) => r.assessment === "NEEDS_REVIEW").length;
-  const accuracy =
-    results.length > 0 ? Math.round((goodCount / results.length) * 100) : 0;
+  const accuracy = results.length > 0 ? Math.round((goodCount / results.length) * 100) : 0;
   const hasFailures = badCount > 0 || needsReviewCount > 0;
   const previousRun = history.length > 0 ? history[0] : null;
 
@@ -827,37 +821,37 @@ export default function BenchmarkPage() {
                     {questions.map((q) => {
                       const isLocal = q.id.startsWith("_local-");
                       return (
-                      <div
-                        key={q.id}
-                        className="flex items-start gap-3 rounded-md px-2 py-2 hover:bg-muted/50"
-                      >
-                        <label className="flex min-w-0 flex-1 cursor-pointer items-start gap-3">
-                          <Checkbox
-                            checked={selectedIds.has(q.id)}
-                            onCheckedChange={() => toggleSelection(q.id)}
-                            disabled={isLocal}
-                            className="mt-0.5"
-                          />
-                          <div className="min-w-0 flex-1">
-                            <div className="text-sm">{q.question}</div>
-                            {q.expectedSql && (
-                              <Badge variant="outline" className="mt-1 text-[10px]">
-                                Has expected SQL
-                              </Badge>
-                            )}
-                          </div>
-                        </label>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="h-7 shrink-0 px-2"
-                          disabled={running || isLocal}
-                          onClick={() => runBenchmarks([q.id])}
-                          title={`Run "${q.question}"`}
+                        <div
+                          key={q.id}
+                          className="flex items-start gap-3 rounded-md px-2 py-2 hover:bg-muted/50"
                         >
-                          <Play className="size-3" />
-                        </Button>
-                      </div>
+                          <label className="flex min-w-0 flex-1 cursor-pointer items-start gap-3">
+                            <Checkbox
+                              checked={selectedIds.has(q.id)}
+                              onCheckedChange={() => toggleSelection(q.id)}
+                              disabled={isLocal}
+                              className="mt-0.5"
+                            />
+                            <div className="min-w-0 flex-1">
+                              <div className="text-sm">{q.question}</div>
+                              {q.expectedSql && (
+                                <Badge variant="outline" className="mt-1 text-[10px]">
+                                  Has expected SQL
+                                </Badge>
+                              )}
+                            </div>
+                          </label>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-7 shrink-0 px-2"
+                            disabled={running || isLocal}
+                            onClick={() => runBenchmarks([q.id])}
+                            title={`Run "${q.question}"`}
+                          >
+                            <Play className="size-3" />
+                          </Button>
+                        </div>
                       );
                     })}
                   </CardContent>
@@ -891,9 +885,7 @@ export default function BenchmarkPage() {
                             </Button>
                             <Button
                               size="sm"
-                              variant={
-                                result.userAssessment === "BAD" ? "destructive" : "outline"
-                              }
+                              variant={result.userAssessment === "BAD" ? "destructive" : "outline"}
                               className="h-7 px-2"
                               onClick={() => setUserAssessment(idx, "BAD")}
                               title="Mark as Bad"
@@ -943,9 +935,7 @@ export default function BenchmarkPage() {
                       }
                       variant="outline"
                     >
-                      {submittingFeedback ? (
-                        <Loader2 className="mr-2 size-4 animate-spin" />
-                      ) : null}
+                      {submittingFeedback ? <Loader2 className="mr-2 size-4 animate-spin" /> : null}
                       Save Feedback
                     </Button>
                     {hasFailures && currentRunId && (

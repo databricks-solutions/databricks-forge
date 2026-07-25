@@ -38,10 +38,7 @@ beforeEach(() => {
     return { columns: [], rows: [], totalRowCount: 0 };
   });
   mocks.findProposals.mockImplementation(
-    async (
-      _fqns: string[],
-      access: { ownerEmail: string; sharedIds: string[] },
-    ) => {
+    async (_fqns: string[], access: { ownerEmail: string; sharedIds: string[] }) => {
       if (access.ownerEmail === ownedProposal.ownerEmail) return [ownedProposal];
       if (access.sharedIds.includes(sharedProposal.id)) return [sharedProposal];
       return [];
@@ -52,10 +49,10 @@ beforeEach(() => {
 describe("explicit-FQN metric-view dependency authorization", () => {
   it("rejects an unsafe FQN before DESCRIBE or proposal lookup", async () => {
     await expect(
-      checkMetricViewDependencies(
-        ["main.sales.revenue_metrics; DROP VIEW main.sales.secret"],
-        { ownerEmail: "owner@example.com", sharedIds: [] },
-      ),
+      checkMetricViewDependencies(["main.sales.revenue_metrics; DROP VIEW main.sales.secret"], {
+        ownerEmail: "owner@example.com",
+        sharedIds: [],
+      }),
     ).rejects.toMatchObject({ name: "IdentifierValidationError" });
 
     expect(mocks.executeSQL).not.toHaveBeenCalled();

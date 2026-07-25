@@ -19,12 +19,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "digital-natives",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "digital-natives", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Technology."
@@ -47,12 +42,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "digital-natives",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "digital-natives", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Technology."
@@ -75,12 +65,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "digital-natives",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "digital-natives", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The value of getting personalization right."
@@ -103,12 +88,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "digital-natives",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "digital-natives", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Google -- Data Center Optimization Case."
@@ -131,12 +111,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "digital-natives",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "digital-natives", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- Unlocking Targeted Promotions."
@@ -159,12 +134,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "digital-natives",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "digital-natives", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Think with Google -- Marketing Mix Modeling Case."
@@ -187,12 +157,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "digital-natives",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "digital-natives", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Technology."
@@ -215,12 +180,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "digital-natives",
-        "Cash / Working Capital"
-      ],
+      "tags": ["master-repo", "kpi", "digital-natives", "Cash / Working Capital"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- BCG -- Inventory & On-Shelf Availability Gains."
@@ -243,12 +203,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "digital-natives",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "digital-natives", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Microsoft -- GitHub Copilot Field Study."
@@ -271,12 +226,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "digital-natives",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "digital-natives", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- HBR -- Cost of Poor Data Quality."
@@ -299,12 +249,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "digital-natives",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "digital-natives", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Medium -- Airbnb Minerva Metrics Platform."
@@ -327,12 +272,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "digital-natives",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "digital-natives", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Microsoft -- GitHub Copilot Field Study."
@@ -355,12 +295,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "digital-natives",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "digital-natives", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- Next in Personalization Report."
@@ -383,12 +318,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "digital-natives",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "digital-natives", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- HBS -- Customer Lifetime Value Course."
@@ -411,12 +341,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "digital-natives",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "digital-natives", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- Telco Techco Transformation."
@@ -439,12 +364,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "digital-natives",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "digital-natives", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Facebook -- Conversion Lift & MMM Guide."
@@ -467,12 +387,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "digital-natives",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "digital-natives", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Snowflake -- Data Marketplace Impact Study."
@@ -495,12 +410,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "digital-natives",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "digital-natives", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Harvard Business Review -- Cost of Poor Data Quality."
@@ -523,12 +433,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "digital-natives",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "digital-natives", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Amazon AWS -- QuickSight Embedded Analytics Case."
@@ -551,12 +456,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "digital-natives",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "digital-natives", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Technology."
@@ -579,12 +479,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "digital-natives",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "digital-natives", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Technology."
@@ -607,12 +502,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "digital-natives",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "digital-natives", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Nucleus Research -- Embedded Analytics ROI Report."
@@ -635,12 +525,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "digital-natives",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "digital-natives", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- Next in Personalization Report."
@@ -663,12 +548,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "digital-natives",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "digital-natives", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Verizon -- DBIR 2025 Highlights."

@@ -130,17 +130,14 @@ describe("buildIngestionRecommendations — Phase 3.4 source-system override", (
 
   it("ignores resolved entries with no preferredStrategy", () => {
     // Resolver returned a row but couldn't pick a strategy (rare).
-    const out = buildIngestionRecommendations(
-      makeAsset({ ucFederation: "High" }),
-      [
-        {
-          name: "WeirdVendor",
-          origin: "lineage",
-          systemKind: null,
-          preferredStrategy: null,
-        },
-      ],
-    );
+    const out = buildIngestionRecommendations(makeAsset({ ucFederation: "High" }), [
+      {
+        name: "WeirdVendor",
+        origin: "lineage",
+        systemKind: null,
+        preferredStrategy: null,
+      },
+    ]);
     expect(out[0]?.strategy).toBe("uc_federation");
   });
 

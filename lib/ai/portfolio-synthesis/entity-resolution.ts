@@ -50,15 +50,15 @@ export function normaliseEntityName(name: string): string {
     .replace(/[^a-z0-9]+/g, " ")
     .trim();
   // Drop common qualifier tokens that don't change the entity identity.
-  n = n.replace(/\b(master|dim|dimension|fact|table|data|the|a|an)\b/g, " ").replace(/\s+/g, " ").trim();
+  n = n
+    .replace(/\b(master|dim|dimension|fact|table|data|the|a|an)\b/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
   // Naive singularisation of the final token.
   const parts = n.split(" ").filter(Boolean);
   if (parts.length) {
     const last = parts[parts.length - 1];
-    parts[parts.length - 1] = last
-      .replace(/ies$/, "y")
-      .replace(/ses$/, "s")
-      .replace(/s$/, "");
+    parts[parts.length - 1] = last.replace(/ies$/, "y").replace(/ses$/, "s").replace(/s$/, "");
   }
   return parts.join(" ");
 }
@@ -115,7 +115,8 @@ function buildCluster(members: PortfolioEntity[]): EntityCluster {
     cur.count += 1;
     freq.set(key, cur);
   }
-  const label = [...freq.entries()].sort((a, b) => b[1].count - a[1].count)[0]?.[1].display ?? members[0].name;
+  const label =
+    [...freq.entries()].sort((a, b) => b[1].count - a[1].count)[0]?.[1].display ?? members[0].name;
   // Distinct estates (by id), displayed by name, that independently model this entity.
   const estateNames = new Map<string, string>();
   for (const m of members) estateNames.set(m.estateId, m.estateName);
@@ -167,7 +168,8 @@ function clusterByEmbedding(
 
   for (let i = 0; i < n; i++) {
     for (let j = i + 1; j < n; j++) {
-      const sameName = normaliseEntityName(entities[i].name) === normaliseEntityName(entities[j].name);
+      const sameName =
+        normaliseEntityName(entities[i].name) === normaliseEntityName(entities[j].name);
       if (sameName || cosine(vectors[i], vectors[j]) >= threshold) {
         union(i, j);
       }

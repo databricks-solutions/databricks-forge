@@ -113,9 +113,7 @@ function extractText(responses?: GenieEvalResponse[]): string | undefined {
   return textResponse?.response ?? undefined;
 }
 
-function extractExecutionResult(
-  responses?: GenieEvalResponse[],
-): SqlExecutionResult | undefined {
+function extractExecutionResult(responses?: GenieEvalResponse[]): SqlExecutionResult | undefined {
   if (!responses) return undefined;
   const sqlResponse = responses.find((r) => r.response_type === "SQL");
   return sqlResponse?.sql_execution_result ?? undefined;
@@ -133,10 +131,7 @@ function extractExecutionResult(
  * 3. Fetches all results with full details (paginated)
  * 4. Returns structured results with assessment and score reasons
  */
-export async function runEval(
-  spaceId: string,
-  options?: RunEvalOptions,
-): Promise<EvalRunResult> {
+export async function runEval(spaceId: string, options?: RunEvalOptions): Promise<EvalRunResult> {
   const oboToken = options?.oboToken;
   const questionIds = options?.questionIds;
   const timeoutMs = options?.timeoutMs;
@@ -200,8 +195,7 @@ export async function runEval(
     numDone: finalRun.num_done ?? numQuestions,
     numCorrect,
     numNeedsReview:
-      finalRun.num_needs_review ??
-      details.filter((d) => d.assessment === "NEEDS_REVIEW").length,
+      finalRun.num_needs_review ?? details.filter((d) => d.assessment === "NEEDS_REVIEW").length,
     accuracy: numQuestions > 0 ? Math.round((numCorrect / numQuestions) * 100) : 0,
     results: details,
   };
@@ -221,11 +215,7 @@ export async function runEval(
 /**
  * Paginate through all eval results for a run.
  */
-async function fetchAllEvalResults(
-  spaceId: string,
-  evalRunId: string,
-  oboToken?: string,
-) {
+async function fetchAllEvalResults(spaceId: string, evalRunId: string, oboToken?: string) {
   const allResults: Array<{
     result_id: string;
     question?: string;

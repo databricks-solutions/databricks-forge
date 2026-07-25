@@ -58,10 +58,7 @@ export async function POST(request: Request) {
 
     const research = await getDemoSessionResearch(sessionId);
     if (!research) {
-      return NextResponse.json(
-        { error: "Research not found for session" },
-        { status: 404 },
-      );
+      return NextResponse.json({ error: "Research not found for session" }, { status: 404 });
     }
 
     // Genie Mode widens the default row + table bands so the resulting

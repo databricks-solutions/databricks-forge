@@ -59,9 +59,7 @@ function unsupportedScopeResponse(partial?: {
       publicationStatus: partial?.dashboardId ? "draft" : null,
       ...(partial?.dashboardId ? { dashboardId: partial.dashboardId } : {}),
       ...(partial?.displayName ? { displayName: partial.displayName } : {}),
-      ...(partial?.validationEvidence
-        ? { validationEvidence: partial.validationEvidence }
-        : {}),
+      ...(partial?.validationEvidence ? { validationEvidence: partial.validationEvidence } : {}),
     },
     { status: 501 },
   );
@@ -117,8 +115,7 @@ export async function POST(
         }
         const recomputed = applyDashboardImproveDiff(rec.improveBaseDesign, diff);
         if (
-          fingerprintDashboardDesign(recomputed) !==
-          fingerprintDashboardDesign(rec.dashboardDesign)
+          fingerprintDashboardDesign(recomputed) !== fingerprintDashboardDesign(rec.dashboardDesign)
         ) {
           throw new Error("design drift");
         }

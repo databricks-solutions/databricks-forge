@@ -118,7 +118,7 @@ export default function EstatePage() {
   const scanParam = useMemo(() => searchParams?.get("scan") ?? "", [searchParams]);
   const reasonParam = useMemo(() => searchParams?.get("reason") ?? "", [searchParams]);
   const wafReason = useMemo(
-    () => (reasonParam ? WAF_REASON_TO_TAB[reasonParam] ?? null : null),
+    () => (reasonParam ? (WAF_REASON_TO_TAB[reasonParam] ?? null) : null),
     [reasonParam],
   );
 
@@ -231,22 +231,25 @@ export default function EstatePage() {
   }, []);
 
   // Load a single scan's detail
-  const loadSingleScan = useCallback(async (scanId: string) => {
-    try {
-      const resp = await fetch(`/api/environment-scan/${scanId}`);
-      if (!resp.ok) throw new Error("Not found");
-      const scan = await resp.json();
-      setSelectedScan(scan);
-      setViewMode("single-scan");
+  const loadSingleScan = useCallback(
+    async (scanId: string) => {
+      try {
+        const resp = await fetch(`/api/environment-scan/${scanId}`);
+        if (!resp.ok) throw new Error("Not found");
+        const scan = await resp.json();
+        setSelectedScan(scan);
+        setViewMode("single-scan");
 
-      const erdResp = await fetch(`/api/environment-scan/${scanId}/erd?format=json`);
-      if (erdResp.ok) {
-        setSelectedErdGraph(await erdResp.json());
+        const erdResp = await fetch(`/api/environment-scan/${scanId}/erd?format=json`);
+        if (erdResp.ok) {
+          setSelectedErdGraph(await erdResp.json());
+        }
+      } catch {
+        toast.error(t("toast.loadDetailsFailed"));
       }
-    } catch {
-      toast.error(t("toast.loadDetailsFailed"));
-    }
-  }, [t]);
+    },
+    [t],
+  );
 
   useEffect(() => {
     if (scanParam) loadSingleScan(scanParam);
@@ -441,25 +444,28 @@ export default function EstatePage() {
 
   const [exporting, setExporting] = useState(false);
 
-  const downloadExcel = useCallback(async (url: string, filename: string) => {
-    setExporting(true);
-    try {
-      const resp = await fetch(url);
-      if (!resp.ok) throw new Error("Export failed");
-      const blob = await resp.blob();
-      const blobUrl = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = blobUrl;
-      a.download = filename;
-      a.click();
-      URL.revokeObjectURL(blobUrl);
-      toast.success(t("toast.exported"));
-    } catch {
-      toast.error(t("toast.exportFailed"));
-    } finally {
-      setExporting(false);
-    }
-  }, [t]);
+  const downloadExcel = useCallback(
+    async (url: string, filename: string) => {
+      setExporting(true);
+      try {
+        const resp = await fetch(url);
+        if (!resp.ok) throw new Error("Export failed");
+        const blob = await resp.blob();
+        const blobUrl = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = blobUrl;
+        a.download = filename;
+        a.click();
+        URL.revokeObjectURL(blobUrl);
+        toast.success(t("toast.exported"));
+      } catch {
+        toast.error(t("toast.exportFailed"));
+      } finally {
+        setExporting(false);
+      }
+    },
+    [t],
+  );
 
   const handleExport = useCallback(() => {
     if (viewMode === "single-scan" && selectedScan) {
@@ -574,9 +580,7 @@ export default function EstatePage() {
                     </Badge>
                   )}
                 </div>
-                <p className="mt-1 text-muted-foreground">
-                  {t("header.subtitle")}
-                </p>
+                <p className="mt-1 text-muted-foreground">{t("header.subtitle")}</p>
               </>
             ) : viewMode === "single-scan" && selectedScan ? (
               <>
@@ -642,10 +646,7 @@ export default function EstatePage() {
                 strong: (chunks) => <span className="font-medium">{chunks}</span>,
               })}
             </span>
-            <Link
-              href="/assessment"
-              className="text-primary underline-offset-2 hover:underline"
-            >
+            <Link href="/assessment" className="text-primary underline-offset-2 hover:underline">
               {t("waf.back")}
             </Link>
           </div>
@@ -660,9 +661,7 @@ export default function EstatePage() {
               <Database className="h-5 w-5" />
               {t("newScan.title")}
             </CardTitle>
-            <CardDescription>
-              {t("newScan.description")}
-            </CardDescription>
+            <CardDescription>{t("newScan.description")}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <CatalogBrowser
@@ -755,9 +754,7 @@ export default function EstatePage() {
           <CardContent className="flex flex-col items-center justify-center py-16 text-center">
             <Globe className="h-12 w-12 text-muted-foreground/50 mb-4" />
             <h2 className="text-xl font-semibold">{t("empty.estateTitle")}</h2>
-            <p className="mt-2 max-w-md text-muted-foreground">
-              {t("empty.estateDescription")}
-            </p>
+            <p className="mt-2 max-w-md text-muted-foreground">{t("empty.estateDescription")}</p>
             <Button className="mt-6" onClick={() => setViewMode("new-scan")}>
               <Plus className="mr-2 h-4 w-4" />
               {t("empty.start")}
@@ -772,14 +769,22 @@ export default function EstatePage() {
             <TabsTrigger value="summary">{t("tabs.summary")}</TabsTrigger>
             <TabsTrigger value="domains">{t("tabs.domains")}</TabsTrigger>
             <TabsTrigger value="relationships">{t("tabs.relationships")}</TabsTrigger>
-            <TabsTrigger value="tables">{t("tabs.tables", { count: activeDetails.length })}</TabsTrigger>
+            <TabsTrigger value="tables">
+              {t("tabs.tables", { count: activeDetails.length })}
+            </TabsTrigger>
             <TabsTrigger value="erd" className="gap-1">
               ERD
               <InfoTip tip={ENVIRONMENT.erdView} />
             </TabsTrigger>
-            {viewMode === "aggregate" && <TabsTrigger value="coverage">{t("tabs.coverage")}</TabsTrigger>}
-            {viewMode === "aggregate" && <TabsTrigger value="governance">{t("tabs.governance")}</TabsTrigger>}
-            {viewMode === "single-scan" && <TabsTrigger value="export">{t("tabs.export")}</TabsTrigger>}
+            {viewMode === "aggregate" && (
+              <TabsTrigger value="coverage">{t("tabs.coverage")}</TabsTrigger>
+            )}
+            {viewMode === "aggregate" && (
+              <TabsTrigger value="governance">{t("tabs.governance")}</TabsTrigger>
+            )}
+            {viewMode === "single-scan" && (
+              <TabsTrigger value="export">{t("tabs.export")}</TabsTrigger>
+            )}
             {portfolioAllowed && (
               <TabsTrigger value="portfolio" className="gap-1">
                 {t("tabs.portfolio")}
@@ -791,10 +796,7 @@ export default function EstatePage() {
           {/* State of the Nation (consultant-grade synthesis) */}
           <TabsContent value="state" className="space-y-4">
             {diagnosisScanId ? (
-              <StateOfTheNation
-                scanId={diagnosisScanId}
-                onScan={() => setViewMode("new-scan")}
-              />
+              <StateOfTheNation scanId={diagnosisScanId} onScan={() => setViewMode("new-scan")} />
             ) : (
               <Card className="border-dashed">
                 <CardContent className="flex flex-col items-center justify-center py-16 text-center">
@@ -890,22 +892,13 @@ export default function EstatePage() {
                       />
                     </TableHead>
                     <TableHead>
-                      <LabelWithTip
-                        label={t("tables.headers.tier")}
-                        tip={t("tables.help.tier")}
-                      />
+                      <LabelWithTip label={t("tables.headers.tier")} tip={t("tables.help.tier")} />
                     </TableHead>
                     <TableHead>
-                      <LabelWithTip
-                        label={t("tables.headers.size")}
-                        tip={t("tables.help.size")}
-                      />
+                      <LabelWithTip label={t("tables.headers.size")} tip={t("tables.help.size")} />
                     </TableHead>
                     <TableHead>
-                      <LabelWithTip
-                        label={t("tables.headers.rows")}
-                        tip={t("tables.help.rows")}
-                      />
+                      <LabelWithTip label={t("tables.headers.rows")} tip={t("tables.help.rows")} />
                     </TableHead>
                     <TableHead>
                       <LabelWithTip
@@ -932,10 +925,7 @@ export default function EstatePage() {
                       />
                     </TableHead>
                     <TableHead>
-                      <LabelWithTip
-                        label={t("tables.headers.via")}
-                        tip={t("tables.help.via")}
-                      />
+                      <LabelWithTip label={t("tables.headers.via")} tip={t("tables.help.via")} />
                     </TableHead>
                   </TableRow>
                 </TableHeader>
@@ -1095,9 +1085,7 @@ export default function EstatePage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <p className="text-sm text-muted-foreground">
-                    {t("export.description")}
-                  </p>
+                  <p className="text-sm text-muted-foreground">{t("export.description")}</p>
                   <Button disabled={exporting} onClick={handleExport}>
                     {exporting ? (
                       <>

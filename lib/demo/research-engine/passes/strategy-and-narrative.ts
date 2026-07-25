@@ -55,12 +55,12 @@ export async function runStrategyAndNarrative(
     ? `Division: ${scope.division ?? "Full Enterprise"}\nFunctional Focus: ${scope.functionalFocus?.join(", ") ?? "All"}\nObjective: ${scope.demoObjective ?? "General demo"}`
     : "Full Enterprise scope.";
 
-  const keyQuotesJson = keyQuotes && keyQuotes.length > 0
-    ? JSON.stringify(keyQuotes.slice(0, 20), null, 2).slice(0, 8_000)
-    : "[]  // No pre-extracted quotes available.";
+  const keyQuotesJson =
+    keyQuotes && keyQuotes.length > 0
+      ? JSON.stringify(keyQuotes.slice(0, 20), null, 2).slice(0, 8_000)
+      : "[]  // No pre-extracted quotes available.";
 
-  const prompt = STRATEGY_AND_NARRATIVE_PROMPT
-    .replace("{customer_name}", customerName)
+  const prompt = STRATEGY_AND_NARRATIVE_PROMPT.replace("{customer_name}", customerName)
     .replace("{industry_name}", industryName)
     .replace("{scope_context}", scopeContext)
     .replace("{industry_landscape_json}", JSON.stringify(industryLandscape).slice(0, 6_000))

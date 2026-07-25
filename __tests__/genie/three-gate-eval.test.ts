@@ -18,7 +18,10 @@ afterEach(() => {
   mockedRunEval.mockReset();
 });
 
-function buildEvalResult(opts: { accuracy: number; results?: EvalRunResult["results"] }): EvalRunResult {
+function buildEvalResult(opts: {
+  accuracy: number;
+  results?: EvalRunResult["results"];
+}): EvalRunResult {
   return {
     evalRunId: "run-1",
     spaceId: "space-1",
@@ -122,7 +125,12 @@ describe("pickHardestQuestionIds", () => {
       results: [
         { benchmarkQuestionId: "g1", question: "x", assessment: "GOOD", assessmentReasons: [] },
         { benchmarkQuestionId: "b1", question: "x", assessment: "BAD", assessmentReasons: [] },
-        { benchmarkQuestionId: "n1", question: "x", assessment: "NEEDS_REVIEW", assessmentReasons: [] },
+        {
+          benchmarkQuestionId: "n1",
+          question: "x",
+          assessment: "NEEDS_REVIEW",
+          assessmentReasons: [],
+        },
         { benchmarkQuestionId: "b2", question: "x", assessment: "BAD", assessmentReasons: [] },
       ] as unknown as EvalRunResult["results"],
     });

@@ -249,9 +249,7 @@ export async function searchByVector(
     }
 
     if (scope.accessibleScanIds.length > 0) {
-      const placeholders = scope.accessibleScanIds.map(
-        (_, idx) => `$${params.length + idx + 1}`,
-      );
+      const placeholders = scope.accessibleScanIds.map((_, idx) => `$${params.length + idx + 1}`);
       orParts.push(`scan_id IN (${placeholders.join(",")})`);
       params.push(...scope.accessibleScanIds);
     }

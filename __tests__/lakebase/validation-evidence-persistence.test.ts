@@ -319,12 +319,7 @@ describe("validation evidence persistence", () => {
 
   it("round-trips dashboard reuse faithfully with a bound empty typed diff", async () => {
     const base = dashboardRecommendation().dashboardDesign;
-    const improveDiff = buildDashboardImproveDiff(
-      "dash-existing",
-      base,
-      base,
-      "a".repeat(64),
-    );
+    const improveDiff = buildDashboardImproveDiff("dash-existing", base, base, "a".repeat(64));
     await saveDashboardRecommendations("run-1", [
       dashboardRecommendation({
         classification: "reuse",
@@ -359,12 +354,7 @@ describe("validation evidence persistence", () => {
         recommendationType: "reuse",
         existingAssetId: "dash-existing",
         improveBaseDesign: base,
-        improveDiff: buildDashboardImproveDiff(
-          "dash-existing",
-          base,
-          base,
-          "a".repeat(64),
-        ),
+        improveDiff: buildDashboardImproveDiff("dash-existing", base, base, "a".repeat(64)),
       }),
     ]);
     dashboardRows[0].improveDiffJson = '{"existingAssetId":"dash-existing"}';

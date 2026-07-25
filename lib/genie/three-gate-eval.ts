@@ -41,8 +41,19 @@ export interface ThreeGateOptions {
 }
 
 export type ThreeGateOutcome =
-  | { status: "abandoned"; gate: "slice" | "p0"; reason: string; sliceResult?: EvalRunResult; p0Result?: EvalRunResult }
-  | { status: "complete"; sliceResult: EvalRunResult; p0Result?: EvalRunResult; fullResult: EvalRunResult };
+  | {
+      status: "abandoned";
+      gate: "slice" | "p0";
+      reason: string;
+      sliceResult?: EvalRunResult;
+      p0Result?: EvalRunResult;
+    }
+  | {
+      status: "complete";
+      sliceResult: EvalRunResult;
+      p0Result?: EvalRunResult;
+      fullResult: EvalRunResult;
+    };
 
 // ---------------------------------------------------------------------------
 // Helpers

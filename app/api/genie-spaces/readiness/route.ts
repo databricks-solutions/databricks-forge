@@ -18,7 +18,11 @@
  *   ReadinessReport (see lib/genie/readiness.ts)
  */
 import { NextRequest, NextResponse } from "next/server";
-import { assessReadiness, type ReadinessQuestion, type ReadinessTableSummary } from "@/lib/genie/readiness";
+import {
+  assessReadiness,
+  type ReadinessQuestion,
+  type ReadinessTableSummary,
+} from "@/lib/genie/readiness";
 import { requireUser, ForgeAuthError } from "@/lib/auth/route-user";
 import { logger } from "@/lib/logger";
 
@@ -44,8 +48,15 @@ export async function POST(request: NextRequest) {
     }
 
     const tables: ReadinessTableSummary[] = (body.tables ?? [])
-      .filter((t): t is { fqn: string; description?: string | null; columnNames?: string[]; columnDescriptions?: Record<string, string> } =>
-        Boolean(t && typeof t.fqn === "string" && t.fqn.trim().length > 0),
+      .filter(
+        (
+          t,
+        ): t is {
+          fqn: string;
+          description?: string | null;
+          columnNames?: string[];
+          columnDescriptions?: Record<string, string>;
+        } => Boolean(t && typeof t.fqn === "string" && t.fqn.trim().length > 0),
       )
       .map((t) => ({
         fqn: t.fqn,

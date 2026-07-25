@@ -4,7 +4,7 @@ import { FakeScopeDb } from "../helpers/fake-scope-db";
 const db = new FakeScopeDb();
 
 vi.mock("@/lib/prisma", () => ({
-  withPrisma: async <T,>(fn: (prisma: unknown) => Promise<T>) => fn(db.client),
+  withPrisma: async <T>(fn: (prisma: unknown) => Promise<T>) => fn(db.client),
 }));
 
 import { addProgramScope, addProgramScopes } from "@/lib/lakebase/estate-programs";
@@ -32,7 +32,13 @@ describe("addProgramScope persists estate-context scope fields", () => {
 
   it("writes the fields on bulk insert too", async () => {
     const count = await addProgramScopes("p1", [
-      { label: "a", ucMetadata: "cat.a", inclusionPatterns: "dim_*", workspaceId: "ws-a", teamLabel: "A" },
+      {
+        label: "a",
+        ucMetadata: "cat.a",
+        inclusionPatterns: "dim_*",
+        workspaceId: "ws-a",
+        teamLabel: "A",
+      },
       { label: "b", ucMetadata: "cat.b" },
     ]);
     expect(count).toBe(2);

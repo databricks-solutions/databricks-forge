@@ -12,10 +12,7 @@ import { toJsonSafe } from "@/lib/json-safe";
 import { safeErrorMessage } from "@/lib/error-utils";
 import { apiLogger } from "@/lib/logger";
 import { loadScanOrRespond } from "@/lib/auth/route-guards";
-import {
-  getLatestSynthesisForScan,
-  saveEstateSynthesis,
-} from "@/lib/lakebase/estate-synthesis";
+import { getLatestSynthesisForScan, saveEstateSynthesis } from "@/lib/lakebase/estate-synthesis";
 import { buildSynthesisInputForScan } from "@/lib/ai/estate-synthesis/build-input";
 import { runEstateSynthesis } from "@/lib/ai/estate-synthesis/engine";
 import { logActivity } from "@/lib/lakebase/activity-log";

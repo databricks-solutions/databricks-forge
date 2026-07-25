@@ -111,11 +111,7 @@ export const REAL_MONEY_GAMING: IndustryOutcome = {
                 "Content Catalog",
                 "Session Telemetry",
               ],
-              typicalSourceSystems: [
-                "Betting Platform / PAM",
-                "CRM",
-                "Content Management System",
-              ],
+              typicalSourceSystems: ["Betting Platform / PAM", "CRM", "Content Management System"],
             },
             {
               name: "Journey Analytics",
@@ -186,11 +182,7 @@ export const REAL_MONEY_GAMING: IndustryOutcome = {
                 "Engagement Scores",
                 "VIP Tier Assignments",
               ],
-              typicalSourceSystems: [
-                "Betting Platform / PAM",
-                "CRM",
-                "VIP Management System",
-              ],
+              typicalSourceSystems: ["Betting Platform / PAM", "CRM", "VIP Management System"],
             },
           ],
           kpis: [
@@ -257,11 +249,7 @@ export const REAL_MONEY_GAMING: IndustryOutcome = {
                 "Measure cohorts (by join date, product, promo) over time to understand retention, revenue, and behaviour trends and inform LTV models.",
               businessValue:
                 "Better-allocated acquisition spend; cleaner LTV reporting for finance and investor communications.",
-              typicalDataEntities: [
-                "Cohort Definitions",
-                "Retention Curves",
-                "Revenue by Cohort",
-              ],
+              typicalDataEntities: ["Cohort Definitions", "Retention Curves", "Revenue by Cohort"],
               typicalSourceSystems: [
                 "Analytics Platform",
                 "Betting Platform / PAM",
@@ -274,16 +262,8 @@ export const REAL_MONEY_GAMING: IndustryOutcome = {
                 "Identify rising-value bettors and trigger host outreach early using propensity models on stake, frequency, and engagement trajectories.",
               businessValue:
                 "Higher VIP-tier conversion; protected revenue base in the high-value cohort.",
-              typicalDataEntities: [
-                "Bet History",
-                "VIP Propensity Scores",
-                "Host Outreach Logs",
-              ],
-              typicalSourceSystems: [
-                "Betting Platform / PAM",
-                "CRM",
-                "VIP Management System",
-              ],
+              typicalDataEntities: ["Bet History", "VIP Propensity Scores", "Host Outreach Logs"],
+              typicalSourceSystems: ["Betting Platform / PAM", "CRM", "VIP Management System"],
             },
             {
               name: "Promotions",
@@ -386,8 +366,7 @@ export const REAL_MONEY_GAMING: IndustryOutcome = {
               name: "Detect Fraud During Bet",
               description:
                 "Stop account/device abuse and arbitrage during bet placement using device-fingerprint, velocity, and behavioural anomaly models running on the bet-placement event stream.",
-              businessValue:
-                "Reduced fraud loss bps; protected margin against arbing rings.",
+              businessValue: "Reduced fraud loss bps; protected margin against arbing rings.",
               typicalDataEntities: [
                 "Bet Events",
                 "Device Fingerprints",
@@ -404,8 +383,7 @@ export const REAL_MONEY_GAMING: IndustryOutcome = {
               name: "Detect Fraud At Withdrawal",
               description:
                 "Catch mule accounts, bonus abuse, and AML signals before payout using a combination of identity, transaction-pattern, and graph models.",
-              businessValue:
-                "Higher payment-integrity savings; lower bonus-abuse cost.",
+              businessValue: "Higher payment-integrity savings; lower bonus-abuse cost.",
               typicalDataEntities: [
                 "Withdrawal Requests",
                 "KYC Records",
@@ -422,17 +400,9 @@ export const REAL_MONEY_GAMING: IndustryOutcome = {
               name: "Toxicity Mitigation",
               description:
                 "Classify and act on abusive chat, voice, and text in social/community surfaces using moderation models with human-in-the-loop review.",
-              businessValue:
-                "Lower toxic-content exposure; better community health metrics.",
-              typicalDataEntities: [
-                "Chat Logs",
-                "Moderation Decisions",
-                "Toxicity Scores",
-              ],
-              typicalSourceSystems: [
-                "Community Platform",
-                "Moderation Tooling",
-              ],
+              businessValue: "Lower toxic-content exposure; better community health metrics.",
+              typicalDataEntities: ["Chat Logs", "Moderation Decisions", "Toxicity Scores"],
+              typicalSourceSystems: ["Community Platform", "Moderation Tooling"],
             },
             {
               name: "Churn Prediction",
@@ -462,11 +432,7 @@ export const REAL_MONEY_GAMING: IndustryOutcome = {
             "Self-exclusion violations",
             "Fraud loss bps",
           ],
-          personas: [
-            "VP Player Protection",
-            "Head of Responsible Gaming",
-            "Head of Fraud",
-          ],
+          personas: ["VP Player Protection", "Head of Responsible Gaming", "Head of Fraud"],
         },
       ],
     },
@@ -580,8 +546,7 @@ export const REAL_MONEY_GAMING: IndustryOutcome = {
               name: "Bet Lines Optimization",
               description:
                 "Optimise pricing and limits to balance hold vs handle using AI on historical bettor behaviour, market liquidity, and competitor positioning.",
-              businessValue:
-                "Higher achieved margin without measurable impact on turnover.",
+              businessValue: "Higher achieved margin without measurable impact on turnover.",
               typicalDataEntities: [
                 "Bet History",
                 "Liability Positions",
@@ -598,8 +563,7 @@ export const REAL_MONEY_GAMING: IndustryOutcome = {
               name: "Information Summarization",
               description:
                 "Summarise stats, rules, and promotions into bite-size explainers using LLMs grounded in the live form/event corpus -- so bettors get context without leaving the bet slip.",
-              businessValue:
-                "Higher engagement; reduced cognitive load on complex markets.",
+              businessValue: "Higher engagement; reduced cognitive load on complex markets.",
               typicalDataEntities: [
                 "Form Data",
                 "Event Stats",
@@ -616,8 +580,7 @@ export const REAL_MONEY_GAMING: IndustryOutcome = {
               name: "Risk Profiling",
               description:
                 "Assess bettor and market risk to set limits and monitoring policies using ML on bet pattern, deposit, and outcome data.",
-              businessValue:
-                "Lower fraud / arbing loss; better-allocated trader attention.",
+              businessValue: "Lower fraud / arbing loss; better-allocated trader attention.",
               typicalDataEntities: [
                 "Bettor Risk Scores",
                 "Market Risk Profiles",
@@ -633,18 +596,14 @@ export const REAL_MONEY_GAMING: IndustryOutcome = {
               name: "Rated Play",
               description:
                 "Compute ADT/TTD/handle-per-hour equivalents digitally to rate bettors and tier loyalty programs the way casinos rate land-based play.",
-              businessValue:
-                "Cleaner VIP tiering; better-targeted loyalty offers.",
+              businessValue: "Cleaner VIP tiering; better-targeted loyalty offers.",
               typicalDataEntities: [
                 "Bet Volumes",
                 "Time-On-Site",
                 "Handle Per Hour",
                 "Rated Play Tier",
               ],
-              typicalSourceSystems: [
-                "Betting Platform / PAM",
-                "Loyalty Platform",
-              ],
+              typicalSourceSystems: ["Betting Platform / PAM", "Loyalty Platform"],
             },
             {
               name: "Game Data",
@@ -676,24 +635,11 @@ export const REAL_MONEY_GAMING: IndustryOutcome = {
                 "Pricing Strategy",
                 "Limit Configurations",
               ],
-              typicalSourceSystems: [
-                "Betting Platform / PAM",
-                "Trading Engine",
-                "Finance System",
-              ],
+              typicalSourceSystems: ["Betting Platform / PAM", "Trading Engine", "Finance System"],
             },
           ],
-          kpis: [
-            "Handle",
-            "Gross gaming revenue",
-            "In-play bet share",
-            "Hold %",
-          ],
-          personas: [
-            "Head of Trading",
-            "VP Sportsbook Product",
-            "Head of Pricing",
-          ],
+          kpis: ["Handle", "Gross gaming revenue", "In-play bet share", "Hold %"],
+          personas: ["Head of Trading", "VP Sportsbook Product", "Head of Pricing"],
         },
         {
           name: "Offers",
@@ -704,11 +650,7 @@ export const REAL_MONEY_GAMING: IndustryOutcome = {
                 "Streamed pricing based on live state -- score, time, momentum, and liability -- delivered as sub-second updates on the bet slip.",
               businessValue:
                 "Higher in-play turnover share; protected margin against fast-moving market events.",
-              typicalDataEntities: [
-                "Live Match State",
-                "Streaming Odds",
-                "In-Play Liability",
-              ],
+              typicalDataEntities: ["Live Match State", "Streaming Odds", "In-Play Liability"],
               typicalSourceSystems: [
                 "Sports Data Provider",
                 "In-Play Trading Engine",
@@ -719,8 +661,7 @@ export const REAL_MONEY_GAMING: IndustryOutcome = {
               name: "Bet Carousels",
               description:
                 "Rank and order markets on home and league pages using personalisation models that incorporate bettor preferences, current event state, and content recommendations.",
-              businessValue:
-                "Higher click-through and conversion on featured markets.",
+              businessValue: "Higher click-through and conversion on featured markets.",
               typicalDataEntities: [
                 "Bettor Preferences",
                 "Market Inventory",
@@ -744,11 +685,7 @@ export const REAL_MONEY_GAMING: IndustryOutcome = {
                 "Bettor Segments",
                 "Incremental Revenue Models",
               ],
-              typicalSourceSystems: [
-                "CRM",
-                "Marketing Platform",
-                "Betting Platform / PAM",
-              ],
+              typicalSourceSystems: ["CRM", "Marketing Platform", "Betting Platform / PAM"],
             },
             {
               name: "Informed Bets",
@@ -774,15 +711,8 @@ export const REAL_MONEY_GAMING: IndustryOutcome = {
                 "Explain pricing, hold, and vig to bettors simply -- using LLM-generated explainers grounded in the actual market and trading rules.",
               businessValue:
                 "Improved bettor education; reduced complaint volume on perceived pricing fairness.",
-              typicalDataEntities: [
-                "Pricing Rules",
-                "Hold Calculations",
-                "Generated Explanations",
-              ],
-              typicalSourceSystems: [
-                "Trading Engine",
-                "Content Management System",
-              ],
+              typicalDataEntities: ["Pricing Rules", "Hold Calculations", "Generated Explanations"],
+              typicalSourceSystems: ["Trading Engine", "Content Management System"],
             },
             {
               name: "Parlay Optimization",
@@ -802,17 +732,8 @@ export const REAL_MONEY_GAMING: IndustryOutcome = {
               ],
             },
           ],
-          kpis: [
-            "Handle",
-            "Gross gaming revenue",
-            "In-play bet share",
-            "Hold %",
-          ],
-          personas: [
-            "Head of Trading",
-            "VP Sportsbook Product",
-            "Head of Pricing",
-          ],
+          kpis: ["Handle", "Gross gaming revenue", "In-play bet share", "Hold %"],
+          personas: ["Head of Trading", "VP Sportsbook Product", "Head of Pricing"],
         },
         {
           name: "Revenue & Yield Management",
@@ -898,11 +819,7 @@ export const REAL_MONEY_GAMING: IndustryOutcome = {
             "Bonus bet ROI",
             "Wagering turnover growth (%)",
           ],
-          personas: [
-            "Chief Commercial Officer",
-            "Head of Revenue",
-            "VP Trading",
-          ],
+          personas: ["Chief Commercial Officer", "Head of Revenue", "VP Trading"],
         },
       ],
     },
@@ -1053,8 +970,7 @@ export const REAL_MONEY_GAMING: IndustryOutcome = {
               name: "Fraud Reporting",
               description:
                 "Generate SAR/CTR and case packages with auditable workflow for AUSTRAC/FinCEN/equivalent submissions -- automated from transaction-monitoring outputs.",
-              businessValue:
-                "Cleaner regulator submissions; lower per-case investigator cost.",
+              businessValue: "Cleaner regulator submissions; lower per-case investigator cost.",
               typicalDataEntities: [
                 "Suspicious Activity Indicators",
                 "SMR Reports",
@@ -1072,20 +988,14 @@ export const REAL_MONEY_GAMING: IndustryOutcome = {
               name: "Cyber Security DASL/Behavior",
               description:
                 "Detect anomalous access and risky user/system behaviours via a security data lake combining identity, endpoint, and network telemetry with ML-based anomaly scoring.",
-              businessValue:
-                "Faster threat detection; lower MTTR on identity-based attacks.",
+              businessValue: "Faster threat detection; lower MTTR on identity-based attacks.",
               typicalDataEntities: [
                 "Identity Events",
                 "Endpoint Logs",
                 "Network Logs",
                 "Anomaly Scores",
               ],
-              typicalSourceSystems: [
-                "SIEM",
-                "Identity Provider",
-                "EDR",
-                "Security Data Lake",
-              ],
+              typicalSourceSystems: ["SIEM", "Identity Provider", "EDR", "Security Data Lake"],
             },
             {
               name: "DSPM Integration",
@@ -1093,16 +1003,8 @@ export const REAL_MONEY_GAMING: IndustryOutcome = {
                 "Classify sensitive data, monitor posture, and auto-remediate misconfigurations across the gaming data estate using a Data Security Posture Management platform integrated with Unity Catalog.",
               businessValue:
                 "Lower PII exposure risk; cleaner audit posture; automated remediation of high-risk findings.",
-              typicalDataEntities: [
-                "Data Classifications",
-                "Posture Findings",
-                "Remediation Logs",
-              ],
-              typicalSourceSystems: [
-                "DSPM Platform",
-                "Unity Catalog",
-                "Cloud Provider",
-              ],
+              typicalDataEntities: ["Data Classifications", "Posture Findings", "Remediation Logs"],
+              typicalSourceSystems: ["DSPM Platform", "Unity Catalog", "Cloud Provider"],
             },
             {
               name: "Banned Players",
@@ -1396,11 +1298,7 @@ export const REAL_MONEY_GAMING: IndustryOutcome = {
             "Revenue per terminal",
             "Omnichannel NPS",
           ],
-          personas: [
-            "Head of Retail Operations",
-            "VP Omnichannel",
-            "Head of Content",
-          ],
+          personas: ["Head of Retail Operations", "VP Omnichannel", "Head of Content"],
         },
       ],
     },
@@ -1611,11 +1509,7 @@ export const REAL_MONEY_GAMING: IndustryOutcome = {
                 "Governed sharing of curated data across teams and domains via Delta Sharing or equivalent, with access policies and lineage transparency for every consumer.",
               businessValue:
                 "Faster cross-team analytics; lower data-platform cost through deduplicated access.",
-              typicalDataEntities: [
-                "Curated Data Products",
-                "Access Policies",
-                "Lineage Records",
-              ],
+              typicalDataEntities: ["Curated Data Products", "Access Policies", "Lineage Records"],
               typicalSourceSystems: [
                 "Data Sharing Platform",
                 "Data Catalog",
@@ -1628,16 +1522,8 @@ export const REAL_MONEY_GAMING: IndustryOutcome = {
                 "Natural-language analytics on KPIs, content, and journeys via Genie/NL2SQL surfaces -- so business stakeholders can ask 'why did handle drop on Saturday?' and get a grounded answer.",
               businessValue:
                 "Faster decision cycles; broader analytic coverage of long-tail business questions.",
-              typicalDataEntities: [
-                "Curated Data Products",
-                "Semantic Models",
-                "User Query Logs",
-              ],
-              typicalSourceSystems: [
-                "Genie / NL2SQL",
-                "BI Platform",
-                "Data Catalog",
-              ],
+              typicalDataEntities: ["Curated Data Products", "Semantic Models", "User Query Logs"],
+              typicalSourceSystems: ["Genie / NL2SQL", "BI Platform", "Data Catalog"],
             },
             {
               name: "Data Discovery",
@@ -1659,11 +1545,7 @@ export const REAL_MONEY_GAMING: IndustryOutcome = {
                 "Privacy-safe partner measurement and activation via clean rooms or governed shares -- enabling regulatory partner reporting, retail-media-style measurement, and joint analytics without exposing raw PII.",
               businessValue:
                 "New partner-revenue lines; cleaner regulator submissions; faster partner-onboarding cycles.",
-              typicalDataEntities: [
-                "Partner Datasets",
-                "Aggregate Audiences",
-                "Consent Records",
-              ],
+              typicalDataEntities: ["Partner Datasets", "Aggregate Audiences", "Consent Records"],
               typicalSourceSystems: [
                 "Clean Room",
                 "Data Sharing Platform",
@@ -1674,8 +1556,7 @@ export const REAL_MONEY_GAMING: IndustryOutcome = {
               name: "Empower Your Team",
               description:
                 "Copilots for ops, trading, and customer-service teams with governed data access -- summarising customer cases, draft trader notes, and operations dashboards.",
-              businessValue:
-                "Higher per-FTE productivity; faster issue resolution.",
+              businessValue: "Higher per-FTE productivity; faster issue resolution.",
               typicalDataEntities: [
                 "Internal Knowledge Articles",
                 "Case Records",
@@ -1693,11 +1574,7 @@ export const REAL_MONEY_GAMING: IndustryOutcome = {
                 "Forecast and optimise staffing for customer service, trading desks, and VIP teams using ML on call/chat volumes, event calendars, and bettor-base activity patterns.",
               businessValue:
                 "Lower staffing cost as % of revenue; better service-level attainment.",
-              typicalDataEntities: [
-                "Volume Forecasts",
-                "Roster History",
-                "Skill Availability",
-              ],
+              typicalDataEntities: ["Volume Forecasts", "Roster History", "Skill Availability"],
               typicalSourceSystems: [
                 "Workforce Management",
                 "Customer Service Platform",
@@ -1708,13 +1585,8 @@ export const REAL_MONEY_GAMING: IndustryOutcome = {
               name: "Procurement Analysis",
               description:
                 "Optimise vendor spend, renewals, and SLA risk using analytics on contract terms, vendor performance, and total-cost-of-ownership data.",
-              businessValue:
-                "Lower vendor cost; improved leverage on renewal negotiations.",
-              typicalDataEntities: [
-                "Contract Terms",
-                "Vendor Performance",
-                "Spend by Category",
-              ],
+              businessValue: "Lower vendor cost; improved leverage on renewal negotiations.",
+              typicalDataEntities: ["Contract Terms", "Vendor Performance", "Spend by Category"],
               typicalSourceSystems: ["Vendor Management System", "ERP"],
             },
           ],
@@ -1723,11 +1595,7 @@ export const REAL_MONEY_GAMING: IndustryOutcome = {
             "Data-product reuse rate",
             "Operations cost per active bettor",
           ],
-          personas: [
-            "Chief Operating Officer",
-            "Head of Data Platform",
-            "VP Operations",
-          ],
+          personas: ["Chief Operating Officer", "Head of Data Platform", "VP Operations"],
         },
       ],
     },

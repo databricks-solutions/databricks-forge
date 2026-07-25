@@ -150,9 +150,8 @@ export function computeValueAtRisk(
         // VA-only link: reduced impact unless any MC is also missing for the
         // same UC (in which case it's already counted as blocked). Compute by
         // checking the UC's full MC set.
-        const ucMcAssets = link.uc.dataAssetIds?.filter(
-          (id) => link.uc.dataAssetCriticality?.[id] === "MC",
-        ) ?? [];
+        const ucMcAssets =
+          link.uc.dataAssetIds?.filter((id) => link.uc.dataAssetCriticality?.[id] === "MC") ?? [];
         const anyMcMissing = ucMcAssets.some((id) => missingAssetIds.has(id));
         if (!anyMcMissing) reducedUcs.add(ucName);
       }
@@ -252,12 +251,10 @@ export function computeSummaryValueAtRisk(
   for (const descriptor of assetDescriptors) {
     for (const link of descriptor.useCases) {
       const ucName = link.uc.name;
-      const mcIds = link.uc.dataAssetIds?.filter(
-        (id) => link.uc.dataAssetCriticality?.[id] === "MC",
-      ) ?? [];
-      const vaIds = link.uc.dataAssetIds?.filter(
-        (id) => link.uc.dataAssetCriticality?.[id] === "VA",
-      ) ?? [];
+      const mcIds =
+        link.uc.dataAssetIds?.filter((id) => link.uc.dataAssetCriticality?.[id] === "MC") ?? [];
+      const vaIds =
+        link.uc.dataAssetIds?.filter((id) => link.uc.dataAssetCriticality?.[id] === "VA") ?? [];
       const anyMcMissing = mcIds.some((id) => missingAssetIds.has(id));
       const anyVaMissing = vaIds.some((id) => missingAssetIds.has(id));
 

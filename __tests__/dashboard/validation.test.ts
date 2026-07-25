@@ -240,10 +240,7 @@ describe("validateMetricViewSql", () => {
       "GROUP BY ALL",
       "LIMIT 1000",
     ].join("\n");
-    const invalidSql = validSql.replace(
-      "MEASURE(`total_txn_amount`) AS",
-      "`total_txn_amount` AS",
-    );
+    const invalidSql = validSql.replace("MEASURE(`total_txn_amount`) AS", "`total_txn_amount` AS");
 
     expect(validateMetricViewSql(validSql, mvFqns, mvMeasures)).toEqual({
       valid: true,
@@ -284,38 +281,20 @@ describe("validateSelectedMetricViewBinding", () => {
   });
 
   it.each([
-    [
-      "unmatched opening backtick",
-      "`retail_banking.demo_data.transaction_anomaly_metrics",
-    ],
-    [
-      "unmatched closing backtick",
-      "retail_banking`.demo_data.transaction_anomaly_metrics",
-    ],
-    [
-      "partially quoted segment",
-      "retail_banking.`demo_data.transaction_anomaly_metrics",
-    ],
+    ["unmatched opening backtick", "`retail_banking.demo_data.transaction_anomaly_metrics"],
+    ["unmatched closing backtick", "retail_banking`.demo_data.transaction_anomaly_metrics"],
+    ["partially quoted segment", "retail_banking.`demo_data.transaction_anomaly_metrics"],
   ])("rejects a selected FQN with %s", (_name, malformedFqn) => {
     expectInvalid(
-      validSql.replace(
-        "`retail_banking`.`demo_data`.`transaction_anomaly_metrics`",
-        malformedFqn,
-      ),
+      validSql.replace("`retail_banking`.`demo_data`.`transaction_anomaly_metrics`", malformedFqn),
     );
   });
 
   it.each([
-    [
-      "fully quoted",
-      "`retail_banking`.`demo_data`.`transaction_anomaly_metrics`",
-    ],
+    ["fully quoted", "`retail_banking`.`demo_data`.`transaction_anomaly_metrics`"],
     ["fully bare", "retail_banking.demo_data.transaction_anomaly_metrics"],
   ])("accepts a %s selected FQN", (_name, fqn) => {
-    const sql = validSql.replace(
-      "`retail_banking`.`demo_data`.`transaction_anomaly_metrics`",
-      fqn,
-    );
+    const sql = validSql.replace("`retail_banking`.`demo_data`.`transaction_anomaly_metrics`", fqn);
     expect(validateSelectedMetricViewBinding(sql, binding)).toEqual({
       valid: true,
       issues: [],
@@ -395,10 +374,7 @@ describe("validateSelectedMetricViewBinding", () => {
     ],
     [
       "unqualified JOIN source",
-      validSql.replace(
-        "GROUP BY ALL",
-        "JOIN rogue ON 1 = 1\nGROUP BY ALL",
-      ),
+      validSql.replace("GROUP BY ALL", "JOIN rogue ON 1 = 1\nGROUP BY ALL"),
     ],
     [
       "comma source",

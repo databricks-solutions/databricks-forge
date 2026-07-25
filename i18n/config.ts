@@ -13,10 +13,7 @@ export const LOCALE_NATIVE_LABELS: Record<Locale, string> = {
 };
 
 export function isLocale(value: unknown): value is Locale {
-  return (
-    typeof value === "string" &&
-    (SUPPORTED_LOCALES as readonly string[]).includes(value)
-  );
+  return typeof value === "string" && (SUPPORTED_LOCALES as readonly string[]).includes(value);
 }
 
 export function pickLocaleFromAcceptLanguage(header: string | null): Locale {

@@ -3,12 +3,7 @@ import { profileCasing, casingNoteFor } from "@/lib/metadata/casing-profile";
 
 describe("profileCasing", () => {
   it("identifies titlecase dominance", () => {
-    const result = profileCasing([
-      "Acme Corp",
-      "Globex Inc",
-      "Initech Co",
-      "Pied Piper",
-    ]);
+    const result = profileCasing(["Acme Corp", "Globex Inc", "Initech Co", "Pied Piper"]);
     expect(result.titleCount).toBe(4);
     expect(result.dominant).toBe("title");
     expect(result.dominantCoverage).toBeGreaterThanOrEqual(0.7);
@@ -46,10 +41,7 @@ describe("profileCasing", () => {
   it("respects a custom threshold", () => {
     const result = profileCasing(["Acme", "Globex", "INITECH", "VANDELAY"], 0.6);
     expect(result.dominant).toBe("mixed");
-    const stricter = profileCasing(
-      ["Acme", "Globex", "Initech", "Vandelay", "INITECH"],
-      0.6,
-    );
+    const stricter = profileCasing(["Acme", "Globex", "Initech", "Vandelay", "INITECH"], 0.6);
     expect(stricter.dominant).toBe("title");
   });
 });

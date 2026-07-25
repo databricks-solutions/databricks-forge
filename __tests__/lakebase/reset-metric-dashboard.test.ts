@@ -15,7 +15,7 @@ vi.mock("@/lib/logger", () => ({
   logger: { info: vi.fn(), warn: vi.fn(), error: vi.fn(), debug: vi.fn() },
 }));
 vi.mock("@/lib/prisma", () => ({
-  withPrisma: async <T,>(callback: (prisma: unknown) => Promise<T>) => {
+  withPrisma: async <T>(callback: (prisma: unknown) => Promise<T>) => {
     const delegate = new Proxy(
       {},
       {

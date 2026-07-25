@@ -189,8 +189,7 @@ export async function trackExactDashboardUpdate(input: {
   if (input.publicationStatus === "published" && !input.publishedAt) {
     throw new Error("Published dashboard tracking requires an observed publishedAt");
   }
-  const publishedAt =
-    input.publicationStatus === "published" ? input.publishedAt : null;
+  const publishedAt = input.publicationStatus === "published" ? input.publishedAt : null;
   return withPrisma(async (prisma) => {
     const row = await prisma.forgeDashboard.upsert({
       where: { runId_domain: { runId: input.runId, domain: input.domain } },

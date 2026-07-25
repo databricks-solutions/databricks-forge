@@ -9,13 +9,7 @@ import { loadSettings, saveSettings } from "@/lib/settings";
 import { TOGGLEABLE_NAV_ITEMS } from "@/components/pipeline/sidebar-nav";
 import { useTranslations } from "next-intl";
 
-function Toggle({
-  enabled,
-  onClick,
-}: {
-  enabled: boolean;
-  onClick: () => void;
-}) {
+function Toggle({ enabled, onClick }: { enabled: boolean; onClick: () => void }) {
   return (
     <button
       type="button"

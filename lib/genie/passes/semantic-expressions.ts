@@ -403,12 +403,14 @@ async function generateLLMExpressions(
     ? `Industry: ${businessContext.industries}\nPriorities: ${businessContext.businessPriorities}\nGoals: ${businessContext.strategicGoals}`
     : "";
 
-  const profileSnapshots = entityCandidates && entityCandidates.length > 0
-    ? snapshotsFromEntityCandidates(entityCandidates)
-    : sampleData && sampleData.size > 0
-      ? snapshotsFromSampleCache(sampleData)
-      : [];
-  const profileBlock = profileSnapshots.length > 0 ? buildProfileGroundingBlock(profileSnapshots) : "";
+  const profileSnapshots =
+    entityCandidates && entityCandidates.length > 0
+      ? snapshotsFromEntityCandidates(entityCandidates)
+      : sampleData && sampleData.size > 0
+        ? snapshotsFromSampleCache(sampleData)
+        : [];
+  const profileBlock =
+    profileSnapshots.length > 0 ? buildProfileGroundingBlock(profileSnapshots) : "";
 
   const contextBlock = `${schemaBlock}${profileBlock ? `\n\n${profileBlock}` : ""}\n\n${bizContext ? `### BUSINESS CONTEXT\n${bizContext}\n` : ""}${glossaryBlock}\n\n### USE CASE SQL EXAMPLES\n${sqlExamples || "(no SQL examples available)"}\n\n${buildSemanticSkillBlock(industryId)}`;
 
@@ -611,16 +613,82 @@ function dedup<T>(items: T[], keyFn: (item: T) => string): T[] {
  * likely owning table for `EXPLAIN`-wrapping (Codex P2).
  */
 const SQL_RESERVED_WORDS = new Set([
-  "select", "from", "where", "group", "by", "order", "having", "as", "and",
-  "or", "not", "in", "on", "is", "null", "true", "false", "case", "when",
-  "then", "else", "end", "distinct", "limit", "offset", "asc", "desc",
-  "between", "like", "ilike", "with", "union", "all", "any", "exists",
-  "join", "left", "right", "inner", "outer", "cross", "full",
-  "sum", "count", "avg", "min", "max", "coalesce", "nullif", "cast",
-  "try_cast", "try_divide", "current_date", "current_timestamp", "now",
-  "interval", "date", "timestamp", "string", "int", "bigint", "double",
-  "boolean", "year", "month", "day", "quarter", "week", "hour", "minute",
-  "extract", "date_trunc", "datediff", "if", "ifnull", "concat",
+  "select",
+  "from",
+  "where",
+  "group",
+  "by",
+  "order",
+  "having",
+  "as",
+  "and",
+  "or",
+  "not",
+  "in",
+  "on",
+  "is",
+  "null",
+  "true",
+  "false",
+  "case",
+  "when",
+  "then",
+  "else",
+  "end",
+  "distinct",
+  "limit",
+  "offset",
+  "asc",
+  "desc",
+  "between",
+  "like",
+  "ilike",
+  "with",
+  "union",
+  "all",
+  "any",
+  "exists",
+  "join",
+  "left",
+  "right",
+  "inner",
+  "outer",
+  "cross",
+  "full",
+  "sum",
+  "count",
+  "avg",
+  "min",
+  "max",
+  "coalesce",
+  "nullif",
+  "cast",
+  "try_cast",
+  "try_divide",
+  "current_date",
+  "current_timestamp",
+  "now",
+  "interval",
+  "date",
+  "timestamp",
+  "string",
+  "int",
+  "bigint",
+  "double",
+  "boolean",
+  "year",
+  "month",
+  "day",
+  "quarter",
+  "week",
+  "hour",
+  "minute",
+  "extract",
+  "date_trunc",
+  "datediff",
+  "if",
+  "ifnull",
+  "concat",
 ]);
 
 export function extractColumnRefs(sql: string): { qualified: string[]; bare: string[] } {
@@ -629,9 +697,7 @@ export function extractColumnRefs(sql: string): { qualified: string[]; bare: str
   const qualified: string[] = [];
   const bare: string[] = [];
   // Strip string literals so identifiers inside them aren't picked up.
-  const stripped = lower
-    .replace(/'[^']*'/g, "''")
-    .replace(/"[^"]*"/g, '""');
+  const stripped = lower.replace(/'[^']*'/g, "''").replace(/"[^"]*"/g, '""');
   // Qualified: `table.column` -- record the table portion only.
   const qRegex = /\b([a-z_][\w]*)\.([a-z_][\w]*)\b/g;
   let m: RegExpExecArray | null;

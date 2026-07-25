@@ -51,7 +51,9 @@ describe("estate ontology context grounding", () => {
     await runEstateOntology(
       {
         details: [detail],
-        domains: [{ domain: "Upstream", subdomain: "Wells", tables: [detail.fqn], description: "" }],
+        domains: [
+          { domain: "Upstream", subdomain: "Wells", tables: [detail.fqn], description: "" },
+        ],
         dataProducts: [],
         implicitRelationships: [],
         foreignKeys: [],

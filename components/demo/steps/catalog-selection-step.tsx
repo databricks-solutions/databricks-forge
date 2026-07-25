@@ -209,7 +209,9 @@ export function CatalogSelectionStep({
       <div className="rounded-md bg-muted p-3">
         <p className="text-xs text-muted-foreground">
           Demo data will be created at:{" "}
-          <code className="text-foreground">{catalog || "..."}.{schema || "..."}</code>
+          <code className="text-foreground">
+            {catalog || "..."}.{schema || "..."}
+          </code>
         </p>
       </div>
     </div>

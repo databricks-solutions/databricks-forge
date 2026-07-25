@@ -58,10 +58,7 @@ import { resolveEndpoint } from "@/lib/dbx/client";
 import "@/lib/skills/content";
 import { resolveForPipelineStep, formatContextSections } from "@/lib/skills/resolver";
 import { PipelineCancelledError } from "@/lib/ai/agent";
-import {
-  markUseCasesSqlPending,
-  updateUseCaseSql,
-} from "@/lib/lakebase/usecases";
+import { markUseCasesSqlPending, updateUseCaseSql } from "@/lib/lakebase/usecases";
 
 /**
  * Options for `runSqlGeneration` when invoked as a background job. All
@@ -412,8 +409,7 @@ export async function runSqlGeneration(
         // Map per-use-case completion to a 0-100 scale for the SQL
         // engine status banner (independent of the main pipeline's
         // PROGRESS_START/PROGRESS_END window).
-        const pct =
-          totalUseCases > 0 ? Math.round((completed / totalUseCases) * 100) : 0;
+        const pct = totalUseCases > 0 ? Math.round((completed / totalUseCases) * 100) : 0;
         opts.onProgress(
           `SQL generation: ${completed}/${totalUseCases} complete${
             failed > 0 ? ` (${failed} failed)` : ""
@@ -615,9 +611,7 @@ async function generateSqlForUseCase(
     if (adaptiveResult.trimmed) {
       adaptiveStats.useCasesTrimmed++;
       const keepRatio =
-        adaptiveResult.totalBefore > 0
-          ? adaptiveResult.totalAfter / adaptiveResult.totalBefore
-          : 1;
+        adaptiveResult.totalBefore > 0 ? adaptiveResult.totalAfter / adaptiveResult.totalBefore : 1;
 
       if (keepRatio >= MIN_TRIM_RATIO_FOR_LLM_RANKING) {
         // Trim is marginal -- heuristic scoring in buildAdaptiveSchemaMarkdown

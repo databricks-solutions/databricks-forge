@@ -4,11 +4,7 @@ import { useMemo } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { StatCard } from "@/components/environment/stat-card";
-import type {
-  GovernanceQualityStats,
-  TableDetailRow,
-  InsightRow,
-} from "@/app/environment/types";
+import type { GovernanceQualityStats, TableDetailRow, InsightRow } from "@/app/environment/types";
 import type { GovernanceGap } from "@/lib/domain/types";
 import { BarChart3, Clock, Search, ShieldAlert } from "lucide-react";
 
@@ -81,7 +77,9 @@ export function GovernanceQualityView({ quality, details, insights }: Governance
       worst.push({
         fqn: parsed.tableFqn ?? row.tableFqn ?? "—",
         score: parsed.overallScore ?? 0,
-        topGap: topGap ? `${GAP_CATEGORY_LABEL[topGap.category] ?? topGap.category}: ${topGap.detail}` : "",
+        topGap: topGap
+          ? `${GAP_CATEGORY_LABEL[topGap.category] ?? topGap.category}: ${topGap.detail}`
+          : "",
       });
     }
     worst.sort((a, b) => a.score - b.score);
@@ -168,7 +166,10 @@ export function GovernanceQualityView({ quality, details, insights }: Governance
                     </span>
                   </div>
                   {w.topGap && (
-                    <p className="mt-0.5 truncate text-[11px] text-muted-foreground" title={w.topGap}>
+                    <p
+                      className="mt-0.5 truncate text-[11px] text-muted-foreground"
+                      title={w.topGap}
+                    >
                       {w.topGap}
                     </p>
                   )}

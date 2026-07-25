@@ -1,8 +1,5 @@
 import { describe, expect, it } from "vitest";
-import {
-  selectDatasetSource,
-  summarizeDatasetSourceKind,
-} from "@/lib/dashboard/source-policy";
+import { selectDatasetSource, summarizeDatasetSourceKind } from "@/lib/dashboard/source-policy";
 import type {
   GovernedDimension,
   GovernedMeasure,
@@ -59,9 +56,7 @@ const expressionDimension: GovernedDimension = {
   fallback: true,
 };
 
-function metricView(
-  overrides: Partial<VerifiedMetricViewAsset> = {},
-): VerifiedMetricViewAsset {
+function metricView(overrides: Partial<VerifiedMetricViewAsset> = {}): VerifiedMetricViewAsset {
   return {
     id: "metric_view:sales",
     intendedFqn: "catalog.schema.sales_metrics",
@@ -75,9 +70,7 @@ function metricView(
   };
 }
 
-function manifest(
-  overrides: Partial<SemanticAssetManifest> = {},
-): SemanticAssetManifest {
+function manifest(overrides: Partial<SemanticAssetManifest> = {}): SemanticAssetManifest {
   return {
     version: "1",
     domain: "Sales",

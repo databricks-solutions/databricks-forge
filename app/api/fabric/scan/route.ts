@@ -28,10 +28,7 @@ export async function GET(request: NextRequest) {
       throw e;
     }
     const connectionId = request.nextUrl.searchParams.get("connectionId") ?? undefined;
-    const view = (request.nextUrl.searchParams.get("view") ?? "all") as
-      | "all"
-      | "owned"
-      | "shared";
+    const view = (request.nextUrl.searchParams.get("view") ?? "all") as "all" | "owned" | "shared";
     const sharedIds = view === "owned" ? [] : await listAccessibleIds(user.email, "scan");
     const scans = await listFabricScans(connectionId, user.email, view, sharedIds);
     return NextResponse.json(scans, {

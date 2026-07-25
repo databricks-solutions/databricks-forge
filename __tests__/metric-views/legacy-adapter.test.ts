@@ -55,14 +55,10 @@ describe("legacy metric view adapter", () => {
     });
 
     expect(legacy.yaml).toContain("measures:");
-    expect(legacy.ddl.split("\n")[0]).toBe(
-      "CREATE OR REPLACE VIEW `governed`.`metrics`.`sales`",
-    );
+    expect(legacy.ddl.split("\n")[0]).toBe("CREATE OR REPLACE VIEW `governed`.`metrics`.`sales`");
     expect(legacy.ddl).not.toContain("CREATE OR REPLACE VIEW `main`.`sales`");
     expect(legacy.ddl).toContain(`AS $$\n${legacy.yaml}$$`);
-    expect(proposalToDefinition({ name: definition!.name, yaml: legacy.yaml })).toEqual(
-      definition,
-    );
+    expect(proposalToDefinition({ name: definition!.name, yaml: legacy.yaml })).toEqual(definition);
   });
 
   it("leaves unparseable persisted proposals readable without a definition", () => {
@@ -107,9 +103,7 @@ measures:
       "CREATE OR REPLACE VIEW `governed`.`metrics`.`query_metrics`",
     );
     expect(legacy.ddl).not.toContain("CREATE OR REPLACE VIEW `main`.`sales`");
-    expect(proposalToDefinition({ name: definition!.name, yaml: legacy.yaml })).toEqual(
-      definition,
-    );
+    expect(proposalToDefinition({ name: definition!.name, yaml: legacy.yaml })).toEqual(definition);
   });
 
   it.each(["CREATE VIEW", "CREATE OR REPLACE VIEW"])(

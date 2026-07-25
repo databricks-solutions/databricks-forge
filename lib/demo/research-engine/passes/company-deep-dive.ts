@@ -54,12 +54,12 @@ export async function runCompanyDeepDive(
     ? `Division: ${scope.division ?? "Full Enterprise"}\nFunctional Focus: ${scope.functionalFocus?.join(", ") ?? "All"}\nObjective: ${scope.demoObjective ?? "General demo"}`
     : "Full Enterprise scope.";
 
-  const keyQuotesJson = keyQuotes && keyQuotes.length > 0
-    ? JSON.stringify(keyQuotes.slice(0, 25), null, 2).slice(0, 10_000)
-    : "[]  // No pre-extracted quotes available.";
+  const keyQuotesJson =
+    keyQuotes && keyQuotes.length > 0
+      ? JSON.stringify(keyQuotes.slice(0, 25), null, 2).slice(0, 10_000)
+      : "[]  // No pre-extracted quotes available.";
 
-  const prompt = COMPANY_DEEP_DIVE_PROMPT
-    .replace("{customer_name}", customerName)
+  const prompt = COMPANY_DEEP_DIVE_PROMPT.replace("{customer_name}", customerName)
     .replace("{industry_name}", industryName)
     .replace("{division}", division)
     .replace("{scope_context}", scopeContext)

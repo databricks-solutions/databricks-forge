@@ -28,7 +28,13 @@ describe("metric view improvement diffs", () => {
     const desired = definition({
       comment: "Curated sales metrics",
       joins: [
-        { kind: "on", name: "store", source: "catalog.sales.stores", on: "source.store_id = store.id", joins: [] },
+        {
+          kind: "on",
+          name: "store",
+          source: "catalog.sales.stores",
+          on: "source.store_id = store.id",
+          joins: [],
+        },
       ],
       dimensions: [
         ...existing.dimensions,

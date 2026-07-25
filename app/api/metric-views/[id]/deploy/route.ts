@@ -16,11 +16,7 @@ import { logger } from "@/lib/logger";
 import { loadMetricViewProposalOrRespond } from "@/lib/auth/route-guards";
 import { logActivity } from "@/lib/lakebase/activity-log";
 import { isMetricViewValidationDeployable } from "@/lib/metric-views/deployability";
-import {
-  IdentifierValidationError,
-  validateFqn,
-  validateIdentifier,
-} from "@/lib/validation";
+import { IdentifierValidationError, validateFqn, validateIdentifier } from "@/lib/validation";
 import { executeSQLWithToken } from "@/lib/dbx/sql";
 import {
   applyMetricViewImproveDiff,
@@ -107,10 +103,7 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
         ) {
           throw new Error("missing binding");
         }
-        const recomputed = applyMetricViewImproveDiff(
-          proposal.improveBaseDefinition,
-          improveDiff,
-        );
+        const recomputed = applyMetricViewImproveDiff(proposal.improveBaseDefinition, improveDiff);
         if (
           fingerprintMetricViewDefinition(recomputed) !==
           fingerprintMetricViewDefinition(proposal.definition)
@@ -137,9 +130,7 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
       try {
         const showCreate = await deploySql(`SHOW CREATE TABLE ${quotedExistingFqn}`);
         const liveDefinition = parseMetricViewShowCreate(showCreate, proposal.existingFqn);
-        if (
-          fingerprintMetricViewDefinition(liveDefinition) !== improveDiff.baseFingerprint
-        ) {
+        if (fingerprintMetricViewDefinition(liveDefinition) !== improveDiff.baseFingerprint) {
           throw new Error("The live metric view changed after this improvement was generated.");
         }
       } catch {
@@ -148,22 +139,18 @@ export async function POST(request: NextRequest, { params }: { params: Promise<{
           { status: 409 },
         );
       }
-      const alter = buildMetricViewAlterStatement(
-        proposal.existingFqn,
-        proposal.definition!,
-      );
+      const alter = buildMetricViewAlterStatement(proposal.existingFqn, proposal.definition!);
       try {
         await deploySql(alter);
       } catch {
         return NextResponse.json(
-          { error: "Metric view update conflicted because the exact target changed or disappeared" },
+          {
+            error: "Metric view update conflicted because the exact target changed or disappeared",
+          },
           { status: 409 },
         );
       }
-      const promotionFailure = await promoteDeploymentOrPartialResponse(
-        id,
-        proposal.existingFqn,
-      );
+      const promotionFailure = await promoteDeploymentOrPartialResponse(id, proposal.existingFqn);
       if (promotionFailure) return promotionFailure;
       await logActivity("metric_view_deployed", {
         userId: guard.user.email,

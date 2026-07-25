@@ -80,8 +80,20 @@ describe("estate-synthesis scoring", () => {
     const scores = computeEstateScores(
       input({
         tables: [
-          table({ fqn: "a", governanceScore: 90, healthScore: 90, comment: "x", lastWriteAt: recent }),
-          table({ fqn: "b", governanceScore: 80, healthScore: 80, comment: "y", lastWriteAt: recent }),
+          table({
+            fqn: "a",
+            governanceScore: 90,
+            healthScore: 90,
+            comment: "x",
+            lastWriteAt: recent,
+          }),
+          table({
+            fqn: "b",
+            governanceScore: 80,
+            healthScore: 80,
+            comment: "y",
+            lastWriteAt: recent,
+          }),
         ],
         analyticsMaturityScore: 70,
       }),
@@ -106,7 +118,10 @@ describe("estate-synthesis scoring", () => {
 
 describe("estate-synthesis findings", () => {
   it("emits a documentation gap when coverage is low", () => {
-    const scores = computeEstateScores(input({ tables: [table({ fqn: "a" }), table({ fqn: "b" })] }), NOW);
+    const scores = computeEstateScores(
+      input({ tables: [table({ fqn: "a" }), table({ fqn: "b" })] }),
+      NOW,
+    );
     const findings = buildFindings(
       input({ tables: [table({ fqn: "a" }), table({ fqn: "b" })] }),
       scores,
@@ -119,7 +134,15 @@ describe("estate-synthesis findings", () => {
 
   it("emits coverage_gap + opportunity from a data-gap signal with opportunities href", () => {
     const inp = input({
-      tables: [table({ fqn: "a", comment: "x", governanceScore: 90, healthScore: 90, lastWriteAt: recent })],
+      tables: [
+        table({
+          fqn: "a",
+          comment: "x",
+          governanceScore: 90,
+          healthScore: 90,
+          lastWriteAt: recent,
+        }),
+      ],
       dataGap: {
         industryId: "retail",
         industryName: "Retail",
@@ -169,14 +192,11 @@ describe("runEstateSynthesis engine (DI)", () => {
   });
 
   it("falls back to a deterministic brief when the LLM throws", async () => {
-    const result = await runEstateSynthesis(
-      input({ tables: [table({ fqn: "a" })] }),
-      {
-        callLLM: async () => {
-          throw new Error("model down");
-        },
+    const result = await runEstateSynthesis(input({ tables: [table({ fqn: "a" })] }), {
+      callLLM: async () => {
+        throw new Error("model down");
       },
-    );
+    });
     expect(result.passResults.executiveBrief).toBe("failed");
     expect(result.brief.estateShape.length).toBeGreaterThan(0);
     expect(result.findings.length).toBeGreaterThan(0);

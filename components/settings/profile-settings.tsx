@@ -27,9 +27,7 @@ export function ProfileSettings({ profile }: ProfileSettingsProps) {
         <div className="grid gap-4 md:grid-cols-2">
           <div>
             <Label className="text-xs text-muted-foreground">{t("email_label")}</Label>
-            <p className="mt-0.5 text-sm font-medium">
-              {profile?.email ?? t("email_unavailable")}
-            </p>
+            <p className="mt-0.5 text-sm font-medium">{profile?.email ?? t("email_unavailable")}</p>
           </div>
           <div>
             <Label className="text-xs text-muted-foreground">{t("host_label")}</Label>

@@ -19,12 +19,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "banking",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "banking", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The value of getting personalization right—or wrong—is multiplying."
@@ -47,12 +42,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "banking",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "banking", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- BCG -- What Consumers Want from Personalization."
@@ -75,12 +65,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "banking",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "banking", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The value of getting personalization right—or wrong—is multiplying."
@@ -103,12 +88,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "banking",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "banking", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Pecan AI -- How and Why to Calculate and Predict Customer Churn."
@@ -131,12 +111,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "banking",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "banking", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Banking & Payments."
@@ -159,12 +134,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "banking",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "banking", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Banking & Payments."
@@ -187,12 +157,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "banking",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "banking", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Banking & Payments."
@@ -215,12 +180,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "banking",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "banking", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Gartner -- What Is Data Monetization."
@@ -243,12 +203,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "banking",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "banking", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- Reinventing Collections to Lower Bad Debt."
@@ -271,12 +226,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "banking",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "banking", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Banking & Payments."
@@ -299,12 +249,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "banking",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "banking", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- HBR -- The New M&A Playbook."
@@ -327,12 +272,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "banking",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "banking", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- SuperAGI -- AI Fraud Detection Tools Analysis."
@@ -355,12 +295,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "banking",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "banking", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- LexisNexis -- True Cost of Fraud Study."
@@ -383,12 +318,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "banking",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "banking", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- FTC -- Identity Theft Data Spotlight."
@@ -411,12 +341,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "banking",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "banking", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- NIST -- SP 800-53 Rev.5 Security Controls."
@@ -439,12 +364,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "banking",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "banking", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- MITRE -- ATT&CK Evaluations Insights."
@@ -467,12 +387,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "banking",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "banking", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- NIST -- SP 800-137 Continuous Monitoring Guide."
@@ -495,12 +410,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "banking",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "banking", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Verizon -- Data Breach Investigations Report (DBIR)."
@@ -523,12 +433,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "banking",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "banking", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- NIST -- SP 800-61 Rev.2 Incident Handling Guide."
@@ -551,12 +456,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "banking",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "banking", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- FATF -- FATF Recommendations Guidance."
@@ -579,12 +479,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "banking",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "banking", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Banking & Payments."
@@ -607,12 +502,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "banking",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "banking", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Federal Reserve -- SR 11-7 Guidance on Model Risk."
@@ -635,12 +525,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "banking",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "banking", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Avatier -- Case Study (Financial services)."
@@ -663,12 +548,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "banking",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "banking", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Avatier -- Case Study: Financial firm compliance automation."
@@ -691,12 +571,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "banking",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "banking", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- BCG -- Pricing in transformations (via Sifted)."
@@ -719,12 +594,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "banking",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "banking", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- SmartDev -- AI Credit Evaluation (Zest AI case)."
@@ -747,12 +617,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "banking",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "banking", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- SmartDev -- AI Credit Evaluation (Zest AI case)."
@@ -775,12 +640,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "banking",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "banking", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- Gen AI for credit collections."
@@ -803,12 +663,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "banking",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "banking", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- FEI Daily -- Accelerating the Close Cycle."
@@ -831,12 +686,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "banking",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "banking", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Microsoft -- GitHub Copilot Field Study."
@@ -859,12 +709,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "banking",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "banking", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Financial Services."
@@ -887,12 +732,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "banking",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "banking", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- FEI Daily -- Accelerating the Close Cycle."
@@ -915,12 +755,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "banking",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "banking", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Bain (American Banker) -- Four Ways to Save the Dying Bank Branch."
@@ -943,12 +778,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "banking",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "banking", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Medium -- ROI of AI in CX."
@@ -971,12 +801,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "banking",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "banking", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Forrester -- TEI of Azure OpenAI Service."
@@ -999,12 +824,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "banking",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "banking", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Nividous -- IDP Automation Stats."
@@ -1027,12 +847,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "banking",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "banking", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Encompass/Chartis -- Reducing Client Onboarding Time."
@@ -1055,12 +870,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "banking",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "banking", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- IBM (via MokaHR) -- Predictive Turnover Analytics."

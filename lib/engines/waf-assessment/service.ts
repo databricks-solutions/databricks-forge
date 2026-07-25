@@ -28,11 +28,7 @@ import type {
   WafQualitativeAnswer,
   WafQualitativeResponse,
 } from "./types";
-import {
-  QUALITATIVE_SCORE,
-  QUALITATIVE_THRESHOLD,
-  WAF_PILLARS,
-} from "./types";
+import { QUALITATIVE_SCORE, QUALITATIVE_THRESHOLD, WAF_PILLARS } from "./types";
 
 const QUALITATIVE_ANSWERS: ReadonlySet<WafQualitativeAnswer> = new Set([
   "yes",
@@ -83,7 +79,10 @@ function toSummary(row: {
   };
 }
 
-function pillarScore(metByPillar: Map<WafPillar, { met: number; total: number }>, pillar: WafPillar): number | null {
+function pillarScore(
+  metByPillar: Map<WafPillar, { met: number; total: number }>,
+  pillar: WafPillar,
+): number | null {
   const entry = metByPillar.get(pillar);
   if (!entry || entry.total === 0) return null;
   return Math.round((entry.met / entry.total) * 1000) / 10;
@@ -130,9 +129,7 @@ export async function runAssessment(opts: {
     // Materialize qualitative results from saved responses. Only "yes/partial/no"
     // produce a row; "not_applicable" excludes the control from totals.
     const qualitativeResults: WafControlResult[] = [];
-    const responses = await withPrisma((prisma) =>
-      prisma.forgeWafQualitativeResponse.findMany(),
-    );
+    const responses = await withPrisma((prisma) => prisma.forgeWafQualitativeResponse.findMany());
     for (const r of responses) {
       const meta = catalogIndex.get(r.wafId);
       if (!meta || meta.evaluationType !== "qualitative") continue;
@@ -375,8 +372,7 @@ export async function getAssessmentDetail(
           recommendationIfNotMet: r.control.recommendationIfNotMet,
           fixActionEngine: r.control.fixActionEngine,
           fixActionParamsJson: r.control.fixActionParamsJson,
-          evaluationType:
-            r.control.evaluationType === "qualitative" ? "qualitative" : "automatic",
+          evaluationType: r.control.evaluationType === "qualitative" ? "qualitative" : "automatic",
         },
       }),
     ),
@@ -492,9 +488,7 @@ export async function saveQualitativeResponse(input: {
 
 /** Delete a qualitative response (returns to "Pending response" state). */
 export async function deleteQualitativeResponse(wafId: string): Promise<void> {
-  await withPrisma((prisma) =>
-    prisma.forgeWafQualitativeResponse.deleteMany({ where: { wafId } }),
-  );
+  await withPrisma((prisma) => prisma.forgeWafQualitativeResponse.deleteMany({ where: { wafId } }));
 }
 
 function toIgnoredResource(row: {
@@ -575,7 +569,5 @@ export async function addIgnoredResource(input: {
 
 /** Remove a workspace exclusion by primary key. */
 export async function deleteIgnoredResource(id: string): Promise<void> {
-  await withPrisma((prisma) =>
-    prisma.forgeWafIgnoredResource.deleteMany({ where: { id } }),
-  );
+  await withPrisma((prisma) => prisma.forgeWafIgnoredResource.deleteMany({ where: { id } }));
 }

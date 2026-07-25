@@ -18,5 +18,7 @@ export function buildEstateContextBlock(context: EstatePromptContext): string {
     // this field, but prompt builders must remain safe for pre-existing rows.
     lines.push(`Organisation context: ${context.orgContext.trim().slice(0, 2_000)}`);
   }
-  return lines.length > 0 ? `## Estate context\n${lines.map((line) => `- ${line}`).join("\n")}` : "";
+  return lines.length > 0
+    ? `## Estate context\n${lines.map((line) => `- ${line}`).join("\n")}`
+    : "";
 }

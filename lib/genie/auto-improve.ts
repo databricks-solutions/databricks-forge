@@ -23,11 +23,7 @@ import {
 } from "@/lib/dbx/genie";
 import { logger } from "@/lib/logger";
 import type { GenieEvalAssessment } from "./eval-types";
-import {
-  runThreeGateEval,
-  pickHardestQuestionIds,
-  type ThreeGateOutcome,
-} from "./three-gate-eval";
+import { runThreeGateEval, pickHardestQuestionIds, type ThreeGateOutcome } from "./three-gate-eval";
 import {
   computePatchSignature,
   filterCandidatesByDoa,
@@ -690,10 +686,7 @@ export async function runAutoImproveLoop(
  * to the previous iteration's `hardestQuestionIds`. When neither is
  * available the slice will be empty and the gate degrades to "always pass".
  */
-function collectQuestionIds(
-  evalOptions: RunEvalOptions,
-  hardest: ReadonlyArray<string>,
-): string[] {
+function collectQuestionIds(evalOptions: RunEvalOptions, hardest: ReadonlyArray<string>): string[] {
   if (evalOptions.questionIds && evalOptions.questionIds.length > 0) {
     return [...evalOptions.questionIds];
   }
@@ -739,15 +732,14 @@ async function maybePersistIteration(opts: {
     p0Score: opts.iter.p0Score ?? null,
     fullScore: opts.iter.passRate,
     judgeScores: opts.iter.judgeByAxis ?? null,
-    patchesApplied: opts.iter.fixCheckIds.length > 0
-      ? opts.iter.fixCheckIds.map((id, idx) => ({
-          checkId: id,
-          strategy: opts.iter.strategiesApplied[idx] ?? null,
-        }))
-      : null,
-    patchesDropped: opts.iter.patchesDropped
-      ? [{ count: opts.iter.patchesDropped }]
-      : null,
+    patchesApplied:
+      opts.iter.fixCheckIds.length > 0
+        ? opts.iter.fixCheckIds.map((id, idx) => ({
+            checkId: id,
+            strategy: opts.iter.strategiesApplied[idx] ?? null,
+          }))
+        : null,
+    patchesDropped: opts.iter.patchesDropped ? [{ count: opts.iter.patchesDropped }] : null,
     reasonStopped: opts.iter.gateAbandoned
       ? `gate:${opts.iter.gateAbandoned.gate}:${opts.iter.gateAbandoned.reason}`
       : opts.reasonStopped,
@@ -785,11 +777,7 @@ export async function applyFixesSequentially(
   onProgress?: AutoImproveProgressCallback,
   signal?: AbortSignal,
 ): Promise<SequentialFixResult> {
-  const {
-    checkIds,
-    evalOptions,
-    indexingWaitMs = DEFAULT_INDEXING_WAIT_MS,
-  } = config;
+  const { checkIds, evalOptions, indexingWaitMs = DEFAULT_INDEXING_WAIT_MS } = config;
   const startTime = Date.now();
   const fixResults: SequentialFixResult["fixResults"] = [];
 

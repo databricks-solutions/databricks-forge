@@ -16,13 +16,7 @@ import type { IndustryOutcome } from "./index";
 export const LIFE_SCIENCES: IndustryOutcome = {
   id: "life-sciences",
   name: "Life Sciences",
-  subVerticals: [
-    "Pharma",
-    "Biotech",
-    "Medical Devices",
-    "Diagnostics",
-    "CRO/CMO",
-  ],
+  subVerticals: ["Pharma", "Biotech", "Medical Devices", "Diagnostics", "CRO/CMO"],
   suggestedDomains: [
     "R&D",
     "Clinical Development",
@@ -82,11 +76,7 @@ export const LIFE_SCIENCES: IndustryOutcome = {
                 "Chemical Properties",
                 "ADMET Profiles",
               ],
-              typicalSourceSystems: [
-                "ELN",
-                "Compound Management",
-                "Research Data Lake",
-              ],
+              typicalSourceSystems: ["ELN", "Compound Management", "Research Data Lake"],
             },
             {
               name: "Geneformer Modeling (Gene Expressions & Network Biology)",
@@ -118,11 +108,7 @@ export const LIFE_SCIENCES: IndustryOutcome = {
                 "Clinical Outcomes",
                 "Biomarker Data",
               ],
-              typicalSourceSystems: [
-                "PACS",
-                "LIMS",
-                "Electronic Health Records",
-              ],
+              typicalSourceSystems: ["PACS", "LIMS", "Electronic Health Records"],
             },
             {
               name: "Chromatography Insights",
@@ -136,11 +122,7 @@ export const LIFE_SCIENCES: IndustryOutcome = {
                 "Sample Metadata",
                 "QC Standards",
               ],
-              typicalSourceSystems: [
-                "Chromatography Data System",
-                "LIMS",
-                "ELN",
-              ],
+              typicalSourceSystems: ["Chromatography Data System", "LIMS", "ELN"],
             },
           ],
           kpis: [
@@ -149,11 +131,7 @@ export const LIFE_SCIENCES: IndustryOutcome = {
             "Protocol amendments",
             "FAIR data coverage",
           ],
-          personas: [
-            "Chief Scientific Officer",
-            "VP Discovery",
-            "Head of Computational Biology",
-          ],
+          personas: ["Chief Scientific Officer", "VP Discovery", "Head of Computational Biology"],
         },
         {
           name: "Streamline Clinical Development",
@@ -240,11 +218,7 @@ export const LIFE_SCIENCES: IndustryOutcome = {
                 "Clinical Trial Data",
                 "Lineage Records",
               ],
-              typicalSourceSystems: [
-                "Clinical Data Warehouse",
-                "EDC",
-                "OMOP CDM",
-              ],
+              typicalSourceSystems: ["Clinical Data Warehouse", "EDC", "OMOP CDM"],
             },
           ],
           kpis: [
@@ -295,11 +269,7 @@ export const LIFE_SCIENCES: IndustryOutcome = {
                 "De-Identification Logs",
                 "Annotations",
               ],
-              typicalSourceSystems: [
-                "PACS",
-                "VNA",
-                "Research Imaging Platform",
-              ],
+              typicalSourceSystems: ["PACS", "VNA", "Research Imaging Platform"],
             },
             {
               name: "Omics Data Management",
@@ -313,11 +283,7 @@ export const LIFE_SCIENCES: IndustryOutcome = {
                 "Proteomics",
                 "FAIR Metadata",
               ],
-              typicalSourceSystems: [
-                "Genomics Platform",
-                "LIMS",
-                "Research Data Lake",
-              ],
+              typicalSourceSystems: ["Genomics Platform", "LIMS", "Research Data Lake"],
             },
             {
               name: "Research Assistant",
@@ -422,42 +388,24 @@ export const LIFE_SCIENCES: IndustryOutcome = {
                 "Inventory Levels",
                 "Prescription Trends",
               ],
-              typicalSourceSystems: [
-                "ERP",
-                "Demand Planning",
-                "Market Intelligence",
-              ],
+              typicalSourceSystems: ["ERP", "Demand Planning", "Market Intelligence"],
             },
             {
               name: "Distribution Optimization",
               description:
                 "Plan shipments, routes, and allocations across cold-chain and ambient distribution networks -- including last-mile to specialty pharmacies and hospitals -- using AI on demand, capacity, and lane-cost data.",
-              businessValue:
-                "Lower distribution cost; improved cold-chain compliance.",
+              businessValue: "Lower distribution cost; improved cold-chain compliance.",
               typicalDataEntities: [
                 "Lane Definitions",
                 "Capacity",
                 "Demand Forecasts",
                 "Cold-Chain Telemetry",
               ],
-              typicalSourceSystems: [
-                "TMS",
-                "WMS",
-                "Carrier APIs",
-                "Cold-Chain IoT",
-              ],
+              typicalSourceSystems: ["TMS", "WMS", "Carrier APIs", "Cold-Chain IoT"],
             },
           ],
-          kpis: [
-            "Forecast accuracy",
-            "OTIF delivery rate",
-            "Inventory carrying cost",
-          ],
-          personas: [
-            "VP Supply Chain",
-            "Head of Manufacturing",
-            "Chief Operating Officer",
-          ],
+          kpis: ["Forecast accuracy", "OTIF delivery rate", "Inventory carrying cost"],
+          personas: ["VP Supply Chain", "Head of Manufacturing", "Chief Operating Officer"],
         },
         {
           name: "Implement Smart Manufacturing",
@@ -488,11 +436,7 @@ export const LIFE_SCIENCES: IndustryOutcome = {
                 "Quality Metrics",
                 "Downtime Events",
               ],
-              typicalSourceSystems: [
-                "MES",
-                "SCADA",
-                "Quality Management System",
-              ],
+              typicalSourceSystems: ["MES", "SCADA", "Quality Management System"],
             },
             {
               name: "Predictive Maintenance",
@@ -540,12 +484,7 @@ export const LIFE_SCIENCES: IndustryOutcome = {
                 "Map heterogeneous clinical and real-world data to OMOP common data model to enable cross-institutional analysis, evidence generation, and regulatory submission.",
               businessValue:
                 "Faster RWE generation cycles; reusable analytics across therapeutic areas; lower per-study integration cost.",
-              typicalDataEntities: [
-                "Clinical Data",
-                "EHR Data",
-                "Claims Data",
-                "OMOP Mappings",
-              ],
+              typicalDataEntities: ["Clinical Data", "EHR Data", "Claims Data", "OMOP Mappings"],
               typicalSourceSystems: [
                 "Electronic Health Records",
                 "Claims Adjudication",
@@ -655,11 +594,7 @@ export const LIFE_SCIENCES: IndustryOutcome = {
                 "Prescribing Data",
                 "Engagement History",
               ],
-              typicalSourceSystems: [
-                "CRM",
-                "Sales Force Automation",
-                "Reference Data Provider",
-              ],
+              typicalSourceSystems: ["CRM", "Sales Force Automation", "Reference Data Provider"],
             },
             {
               name: "Brand Analytics (Provider Segmentation, Sales Forecasting)",
@@ -673,11 +608,7 @@ export const LIFE_SCIENCES: IndustryOutcome = {
                 "Engagement History",
                 "Market Share",
               ],
-              typicalSourceSystems: [
-                "Sales Force Automation",
-                "Claims Data",
-                "CRM",
-              ],
+              typicalSourceSystems: ["Sales Force Automation", "Claims Data", "CRM"],
             },
             {
               name: "Sales Rep / Medical Science Assistant",
@@ -692,11 +623,7 @@ export const LIFE_SCIENCES: IndustryOutcome = {
                 "Call History",
                 "Approved Content",
               ],
-              typicalSourceSystems: [
-                "Sales Force Automation",
-                "CRM",
-                "Medical Information System",
-              ],
+              typicalSourceSystems: ["Sales Force Automation", "CRM", "Medical Information System"],
             },
             {
               name: "Next-Best-Action Recommendations / Omnichannel",
@@ -710,11 +637,7 @@ export const LIFE_SCIENCES: IndustryOutcome = {
                 "Propensity Scores",
                 "Channel Preferences",
               ],
-              typicalSourceSystems: [
-                "Sales Force Automation",
-                "CRM",
-                "Marketing Automation",
-              ],
+              typicalSourceSystems: ["Sales Force Automation", "CRM", "Marketing Automation"],
             },
           ],
           kpis: [
@@ -746,11 +669,7 @@ export const LIFE_SCIENCES: IndustryOutcome = {
                 "Adherence Logs",
                 "Care Plans",
               ],
-              typicalSourceSystems: [
-                "Patient Services Platform",
-                "Device Cloud",
-                "CRM",
-              ],
+              typicalSourceSystems: ["Patient Services Platform", "Device Cloud", "CRM"],
             },
             {
               name: "Support Patient Services (eg., Scheduling, Chatbot)",
@@ -758,11 +677,7 @@ export const LIFE_SCIENCES: IndustryOutcome = {
                 "Automate case intake, triage, and scheduling through compliant conversational interfaces -- routing high-risk cases to nurses and clinical pharmacists with full transcript audit.",
               businessValue:
                 "Higher patient-service throughput; lower per-case cost; consistent script and disclosure compliance.",
-              typicalDataEntities: [
-                "Case Records",
-                "Conversation Logs",
-                "Triage Outcomes",
-              ],
+              typicalDataEntities: ["Case Records", "Conversation Logs", "Triage Outcomes"],
               typicalSourceSystems: [
                 "Patient Services Platform",
                 "CRM",
@@ -781,11 +696,7 @@ export const LIFE_SCIENCES: IndustryOutcome = {
                 "Patient Profiles",
                 "Engagement Logs",
               ],
-              typicalSourceSystems: [
-                "Patient Services Platform",
-                "CRM",
-                "Marketing Automation",
-              ],
+              typicalSourceSystems: ["Patient Services Platform", "CRM", "Marketing Automation"],
             },
             {
               name: "Digital Patient 360",
@@ -808,16 +719,8 @@ export const LIFE_SCIENCES: IndustryOutcome = {
               ],
             },
           ],
-          kpis: [
-            "HCP engagement rate",
-            "Patient adherence",
-            "Speed to launch peak",
-          ],
-          personas: [
-            "Chief Commercial Officer",
-            "VP Medical Affairs",
-            "VP Patient Services",
-          ],
+          kpis: ["HCP engagement rate", "Patient adherence", "Speed to launch peak"],
+          personas: ["Chief Commercial Officer", "VP Medical Affairs", "VP Patient Services"],
         },
       ],
     },

@@ -83,13 +83,12 @@ function deriveRelationships(
 ): EntityRelationship[] {
   const tableToEntity = buildTableToEntity(entities);
   // key: "source||target||via" -> count
-  const counts = new Map<string, { source: string; target: string; via: EntityRelationship["via"]; count: number }>();
+  const counts = new Map<
+    string,
+    { source: string; target: string; via: EntityRelationship["via"]; count: number }
+  >();
 
-  const add = (
-    sourceFqn: string,
-    targetFqn: string,
-    via: EntityRelationship["via"],
-  ) => {
+  const add = (sourceFqn: string, targetFqn: string, via: EntityRelationship["via"]) => {
     const s = tableToEntity.get(sourceFqn.toLowerCase());
     const t = tableToEntity.get(targetFqn.toLowerCase());
     if (!s || !t || s === t) return;

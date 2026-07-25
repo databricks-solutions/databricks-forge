@@ -97,7 +97,8 @@ function narrative(d: ExecSummaryData): string[] {
   );
   const aiBits: string[] = [];
   if (a.models > 0) aiBits.push(`${a.models} ML model${a.models === 1 ? "" : "s"}`);
-  if (a.genieSpaces > 0) aiBits.push(`${a.genieSpaces} Genie space${a.genieSpaces === 1 ? "" : "s"}`);
+  if (a.genieSpaces > 0)
+    aiBits.push(`${a.genieSpaces} Genie space${a.genieSpaces === 1 ? "" : "s"}`);
   if (a.dashboards > 0) aiBits.push(`${a.dashboards} dashboard${a.dashboards === 1 ? "" : "s"}`);
   if (aiBits.length > 0) {
     lines.push(`Active analytics & AI footprint: ${aiBits.join(", ")}.`);
@@ -137,8 +138,16 @@ export function EstateExecSummary({ data }: { data: ExecSummaryData }) {
           Estate at a glance
         </h3>
         <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-          <Hero label="Tables" value={data.totalTables.toLocaleString()} icon={<Database className="h-4 w-4" />} />
-          <Hero label="Data size" value={formatBytes(data.totalSizeBytes)} icon={<HardDrive className="h-4 w-4" />} />
+          <Hero
+            label="Tables"
+            value={data.totalTables.toLocaleString()}
+            icon={<Database className="h-4 w-4" />}
+          />
+          <Hero
+            label="Data size"
+            value={formatBytes(data.totalSizeBytes)}
+            icon={<HardDrive className="h-4 w-4" />}
+          />
           <Hero label="Domains" value={data.domainCount} icon={<Network className="h-4 w-4" />} />
           <Hero
             label="Readiness"
@@ -156,10 +165,22 @@ export function EstateExecSummary({ data }: { data: ExecSummaryData }) {
         </h3>
         <div className="grid grid-cols-2 gap-3 md:grid-cols-5">
           <Hero label="ML models" value={a.models} icon={<BrainCircuit className="h-4 w-4" />} />
-          <Hero label="Genie spaces" value={a.genieSpaces} icon={<MessagesSquare className="h-4 w-4" />} />
-          <Hero label="Dashboards" value={a.dashboards} icon={<LayoutDashboard className="h-4 w-4" />} />
+          <Hero
+            label="Genie spaces"
+            value={a.genieSpaces}
+            icon={<MessagesSquare className="h-4 w-4" />}
+          />
+          <Hero
+            label="Dashboards"
+            value={a.dashboards}
+            icon={<LayoutDashboard className="h-4 w-4" />}
+          />
           <Hero label="Metric views" value={a.metricViews} icon={<Boxes className="h-4 w-4" />} />
-          <Hero label="UC functions" value={a.functions} icon={<FunctionSquare className="h-4 w-4" />} />
+          <Hero
+            label="UC functions"
+            value={a.functions}
+            icon={<FunctionSquare className="h-4 w-4" />}
+          />
         </div>
       </div>
 

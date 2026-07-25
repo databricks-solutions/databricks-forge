@@ -19,12 +19,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Gartner -- Top Customer Service Automation Trends."
@@ -47,12 +42,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Pecan AI -- How and Why to Calculate and Predict Customer Churn."
@@ -75,12 +65,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Communications."
@@ -103,12 +88,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- Reinventing Customer Onboarding with AI."
@@ -131,12 +111,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The value of getting personalization right—or wrong—is multiplying."
@@ -159,12 +134,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- BCG -- What Consumers Want from Personalization."
@@ -187,12 +157,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Webex -- Call Deflection Tactics in an AI World."
@@ -215,12 +180,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Qualtrics -- ROI of Sentiment Analysis in Telecom."
@@ -243,12 +203,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- Next Best Offer in Telecom."
@@ -271,12 +226,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Power of Dynamic Pricing in Telecom."
@@ -299,12 +249,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- Generative AI and the Future of Work."
@@ -327,12 +272,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- Reinventing Customer Service with Generative AI."
@@ -355,12 +295,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The value of getting personalization right—or wrong—is multiplying."
@@ -383,12 +318,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Communications."
@@ -411,12 +341,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Pecan AI -- How and Why to Calculate and Predict Customer Churn."
@@ -439,12 +364,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- IBM -- Telecom Revenue Assurance Case Study."
@@ -467,12 +387,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Cognizant -- Automation in Telecom Operations."
@@ -495,12 +410,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Capgemini -- Order Entry Error Reduction via AI."
@@ -523,12 +433,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Cash / Working Capital"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Cash / Working Capital"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- IT/OT Convergence in Scaling Operations."
@@ -551,12 +456,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Five Fifty: Scaling Operations and Maintenance."
@@ -579,12 +479,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- Manufacturing Analytics Unleashes Productivity and Profitability."
@@ -607,12 +502,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Communications."
@@ -635,12 +525,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Cash / Working Capital"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Cash / Working Capital"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Communications."
@@ -663,12 +548,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Cash / Working Capital"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Cash / Working Capital"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- Reinventing Collections to Lower Bad Debt."
@@ -691,12 +571,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Communications."
@@ -719,12 +594,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Communications."
@@ -747,12 +617,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Cash / Working Capital"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Cash / Working Capital"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Communications."
@@ -775,12 +640,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- Manufacturing Analytics Unleashes Productivity and Profitability."
@@ -803,12 +663,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Communications."
@@ -831,12 +686,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Communications."
@@ -859,12 +709,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Communications."
@@ -887,12 +732,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Communications."
@@ -915,12 +755,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Accenture -- Energy Management Trends in Telecom."
@@ -943,12 +778,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Communications."
@@ -971,12 +801,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Communications."
@@ -999,12 +824,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- Manufacturing Analytics Unleashes Productivity and Profitability."
@@ -1027,12 +847,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Microsoft -- How Copilots Boost Developer Productivity."
@@ -1055,12 +870,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- Smart Scheduling with AI."
@@ -1083,12 +893,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- Manufacturing Analytics Unleashes Productivity and Profitability."
@@ -1111,12 +916,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Communications."
@@ -1139,12 +939,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Mastercard -- Using AI to Fight SSIM Swap Fraud."
@@ -1167,12 +962,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- SuperAGI -- AI Fraud Detection Tools Analysis."
@@ -1195,12 +985,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Verizon -- Data Breach Investigations Report (DBIR)."
@@ -1223,12 +1008,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Mastercard -- AI-Powered Fraud Detection Impact."
@@ -1251,12 +1031,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Mastercard -- AI-Powered Fraud Detection Impact."
@@ -1279,12 +1054,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Communications."
@@ -1307,12 +1077,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- SuperAGI -- AI Fraud Detection Tools Analysis."
@@ -1335,12 +1100,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- JPMorgan Chase -- AI in AML and KYC."
@@ -1363,12 +1123,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Communications."
@@ -1391,12 +1146,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- SailPoint -- Automated Offboarding Case Study."
@@ -1419,12 +1169,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Communications."
@@ -1447,12 +1192,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Communications."
@@ -1475,12 +1215,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- IBM -- Threat Intelligence Platform Results."
@@ -1503,12 +1238,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Elastic -- AI in Cyber Incident Response."
@@ -1531,12 +1261,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "communications",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "communications", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- IBM -- Threat Intelligence Platform Results."

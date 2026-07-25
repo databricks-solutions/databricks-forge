@@ -51,9 +51,7 @@ describe("classifyHttpStatus", () => {
 
 describe("describeHttpError", () => {
   it("prefers a server-supplied message when present", () => {
-    expect(describeHttpError(409, "Cancel the sequence first.")).toBe(
-      "Cancel the sequence first.",
-    );
+    expect(describeHttpError(409, "Cancel the sequence first.")).toBe("Cancel the sequence first.");
   });
 
   it("falls back to a category default when no server message", () => {

@@ -11,7 +11,11 @@ export async function POST(request: Request) {
 
   try {
     const body = await request.json();
-    const { catalog, schema, createCatalog = false } = body as {
+    const {
+      catalog,
+      schema,
+      createCatalog = false,
+    } = body as {
       catalog: string;
       schema: string;
       createCatalog?: boolean;
@@ -69,7 +73,8 @@ export async function POST(request: Request) {
       } catch (err) {
         const msg = err instanceof Error ? err.message : String(err);
         if (msg.includes("INSUFFICIENT_PERMISSIONS") || msg.includes("PERMISSION_DENIED")) {
-          result.error = "You don't have permission to create catalogs. Please select an existing catalog or ask your admin to grant CREATE CATALOG permission.";
+          result.error =
+            "You don't have permission to create catalogs. Please select an existing catalog or ask your admin to grant CREATE CATALOG permission.";
         } else {
           result.error = `Cannot create catalog: ${msg}`;
         }
@@ -80,9 +85,7 @@ export async function POST(request: Request) {
     // Check schema
     if (result.catalogAccessible) {
       try {
-        const schemas = await executeSQL(
-          `SHOW SCHEMAS IN \`${catalog}\` LIKE '${schema}'`,
-        );
+        const schemas = await executeSQL(`SHOW SCHEMAS IN \`${catalog}\` LIKE '${schema}'`);
         result.schemaExists = schemas.rows.length > 0;
       } catch {
         // Schema list failed -- might not have USE CATALOG
@@ -90,9 +93,7 @@ export async function POST(request: Request) {
 
       // Check create schema permission
       try {
-        await executeSQL(
-          `CREATE SCHEMA IF NOT EXISTS \`${catalog}\`.\`${schema}\``,
-        );
+        await executeSQL(`CREATE SCHEMA IF NOT EXISTS \`${catalog}\`.\`${schema}\``);
         result.canCreateSchema = true;
         result.schemaExists = true;
       } catch (err) {

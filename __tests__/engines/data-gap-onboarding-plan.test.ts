@@ -163,10 +163,7 @@ describe("buildOnboardingPlan — single-source attribution", () => {
 
 describe("buildOnboardingPlan — multi-source attribution split", () => {
   it("splits an asset's value evenly across N resolved systems", () => {
-    const result = makeResult(
-      [makeCoverage("a1", [SALESFORCE, SAP])],
-      [makeVar("a1", 100_000)],
-    );
+    const result = makeResult([makeCoverage("a1", [SALESFORCE, SAP])], [makeVar("a1", 100_000)]);
     const plan = buildOnboardingPlan(result);
     // 100K / 2 = 50K to each
     expect(plan.find((p) => p.systemName === "Salesforce")?.valueMid).toBe(50_000);
@@ -239,11 +236,7 @@ describe("buildOnboardingPlan — master-repo CRM rollup (honesty refresh)", () 
     expect(plan[0]?.valueMid).toBe(240_000);
     expect(plan[0]?.origin).toBe("master-repo");
     expect(plan[0]?.preferredStrategy).toBe("lakeflow_connect");
-    expect(plan[0]?.exampleVendors).toEqual([
-      "Salesforce",
-      "HubSpot",
-      "Microsoft Dynamics 365",
-    ]);
+    expect(plan[0]?.exampleVendors).toEqual(["Salesforce", "HubSpot", "Microsoft Dynamics 365"]);
   });
 
   it("keeps a lineage-confirmed Salesforce row separate from the rolled-up 'CRM systems' row", () => {
@@ -264,10 +257,7 @@ describe("buildOnboardingPlan — master-repo CRM rollup (honesty refresh)", () 
 describe("buildOnboardingPlan — sorting & truncation", () => {
   it("sorts rows by valueMid descending (excluding Unknown)", () => {
     const result = makeResult(
-      [
-        makeCoverage("a1", [SALESFORCE]),
-        makeCoverage("a2", [SAP]),
-      ],
+      [makeCoverage("a1", [SALESFORCE]), makeCoverage("a2", [SAP])],
       [makeVar("a1", 250_000), makeVar("a2", 750_000)],
     );
     const plan = buildOnboardingPlan(result);
@@ -302,10 +292,7 @@ describe("buildOnboardingPlan — sorting & truncation", () => {
 describe("buildOnboardingPlan — origin escalation", () => {
   it("upgrades origin to 'lineage' when at least one contributor is lineage", () => {
     const result = makeResult(
-      [
-        makeCoverage("a1", [SAP]),
-        makeCoverage("a2", [{ ...SAP, origin: "lineage" }]),
-      ],
+      [makeCoverage("a1", [SAP]), makeCoverage("a2", [{ ...SAP, origin: "lineage" }])],
       [makeVar("a1", 100_000), makeVar("a2", 50_000)],
     );
     const plan = buildOnboardingPlan(result);

@@ -41,12 +41,12 @@ export async function runDemoNarrative(
   const division = scope?.division ?? "the company";
   const demoObjective = scope?.demoObjective ?? "Demonstrate the power of their data estate.";
 
-  const keyQuotesJson = keyQuotes && keyQuotes.length > 0
-    ? JSON.stringify(keyQuotes.slice(0, 15), null, 2).slice(0, 6_000)
-    : "[]  // No pre-extracted quotes available.";
+  const keyQuotesJson =
+    keyQuotes && keyQuotes.length > 0
+      ? JSON.stringify(keyQuotes.slice(0, 15), null, 2).slice(0, 6_000)
+      : "[]  // No pre-extracted quotes available.";
 
-  const prompt = DEMO_NARRATIVE_PROMPT
-    .replace("{customer_name}", customerName)
+  const prompt = DEMO_NARRATIVE_PROMPT.replace("{customer_name}", customerName)
     .replace("{industry_name}", industryName)
     .replace("{division}", division)
     .replace("{demo_objective}", demoObjective)

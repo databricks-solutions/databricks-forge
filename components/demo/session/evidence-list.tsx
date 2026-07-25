@@ -94,7 +94,10 @@ function collectEvidence(research: ResearchEngineResult): EvidenceEntry[] {
   return entries;
 }
 
-const tierMeta: Record<EvidenceTier, { label: string; icon: React.ComponentType<{ className?: string }>; badge: string }> = {
+const tierMeta: Record<
+  EvidenceTier,
+  { label: string; icon: React.ComponentType<{ className?: string }>; badge: string }
+> = {
   sourced: {
     label: "Sourced",
     icon: QuoteIcon,
@@ -128,7 +131,8 @@ export function EvidenceList({ research }: EvidenceListProps) {
     [allEntries],
   );
 
-  const filtered = filter === "all" ? allEntries : allEntries.filter((e) => e.evidence.tier === filter);
+  const filtered =
+    filter === "all" ? allEntries : allEntries.filter((e) => e.evidence.tier === filter);
 
   const grouped = useMemo(() => {
     const byTier: Record<EvidenceTier, EvidenceEntry[]> = {

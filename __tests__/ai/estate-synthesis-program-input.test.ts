@@ -16,7 +16,7 @@ vi.mock("@/lib/lakebase/data-gap-analyses", () => ({
   getLatestDataGapAnalysisForScan: mocks.getLatestDataGapAnalysisForScan,
 }));
 vi.mock("@/lib/prisma", () => ({
-  withPrisma: async <T,>(
+  withPrisma: async <T>(
     cb: (p: {
       forgeEstateProgram: { findUnique: typeof mocks.findUnique };
       forgeWafAssessment: { findFirst: typeof mocks.wafFindFirst };
@@ -65,10 +65,22 @@ describe("buildSynthesisInputForProgram", () => {
           lastModified: "2026-01-01T00:00:00Z",
         },
       ],
-      histories: [{ tableFqn: "cat.up.wells", lastWriteTimestamp: "2026-02-01T00:00:00Z", healthScore: 88 }],
+      histories: [
+        { tableFqn: "cat.up.wells", lastWriteTimestamp: "2026-02-01T00:00:00Z", healthScore: 88 },
+      ],
       insights: [
-        { insightType: "analytics_maturity", tableFqn: null, payloadJson: JSON.stringify({ overallScore: 55 }), severity: "info" },
-        { insightType: "canonical_entity", tableFqn: null, payloadJson: JSON.stringify({ name: "Well" }), severity: "info" },
+        {
+          insightType: "analytics_maturity",
+          tableFqn: null,
+          payloadJson: JSON.stringify({ overallScore: 55 }),
+          severity: "info",
+        },
+        {
+          insightType: "canonical_entity",
+          tableFqn: null,
+          payloadJson: JSON.stringify({ name: "Well" }),
+          severity: "info",
+        },
       ],
     });
 
@@ -87,11 +99,25 @@ describe("buildSynthesisInputForProgram", () => {
   it("honours an explicit industryId override", async () => {
     mocks.findUnique.mockResolvedValue({ name: "E", industryId: "retail" });
     mocks.getAggregateForExcel.mockResolvedValue({
-      details: [{ tableFqn: "a", dataDomain: null, dataTier: null, comment: null, generatedDescription: null, governanceScore: null, sensitivityLevel: null, owner: null, lastModified: null }],
+      details: [
+        {
+          tableFqn: "a",
+          dataDomain: null,
+          dataTier: null,
+          comment: null,
+          generatedDescription: null,
+          governanceScore: null,
+          sensitivityLevel: null,
+          owner: null,
+          lastModified: null,
+        },
+      ],
       histories: [],
       insights: [],
     });
-    const input = await buildSynthesisInputForProgram("p1", "owner@x.com", { industryId: "manufacturing" });
+    const input = await buildSynthesisInputForProgram("p1", "owner@x.com", {
+      industryId: "manufacturing",
+    });
     expect(input!.industryId).toBe("manufacturing");
   });
 });

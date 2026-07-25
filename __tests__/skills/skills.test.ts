@@ -57,7 +57,9 @@ describe("Skill Registry", () => {
 
   it("documents GRID_V1 as the dashboard layout contract", () => {
     const dashboardSkill = getAllSkills().find((skill) => skill.id === "databricks-dashboard-sql")!;
-    const layoutRules = dashboardSkill.chunks.find((chunk) => chunk.id === "dash-layout-rules")!.content;
+    const layoutRules = dashboardSkill.chunks.find(
+      (chunk) => chunk.id === "dash-layout-rules",
+    )!.content;
 
     expect(layoutRules).toContain("12-Column GRID_V1");
     expect(layoutRules).toContain("width=12");

@@ -214,15 +214,12 @@ describe("deploy.sh app.yaml restoration ownership", () => {
     expect(flow.localYaml).toBe(flow.baseline);
   });
 
-  it.each(["error", "signal"] as const)(
-    "restores the working tree on %s exit",
-    (exitMode) => {
-      const flow = runYamlTrapFlow(exitMode);
+  it.each(["error", "signal"] as const)("restores the working tree on %s exit", (exitMode) => {
+    const flow = runYamlTrapFlow(exitMode);
 
-      expect(flow.result.status).not.toBe(0);
-      expect(flow.localYaml).toBe(flow.baseline);
-    },
-  );
+    expect(flow.result.status).not.toBe(0);
+    expect(flow.localYaml).toBe(flow.baseline);
+  });
 });
 
 describe("deploy.sh zero-egress archive portability", () => {
@@ -260,9 +257,7 @@ describe("deploy.sh post-deploy readiness", () => {
 
     expect(result.status).toBe(0);
     expect(result.stdout).toContain("running");
-    expect(result.calls).toContain(
-      "CALL:apps get-deployment forge-pr270 dep-123 --output json",
-    );
+    expect(result.calls).toContain("CALL:apps get-deployment forge-pr270 dep-123 --output json");
     expect(result.calls).toContain("CALL:apps get forge-pr270 --output json");
   });
 

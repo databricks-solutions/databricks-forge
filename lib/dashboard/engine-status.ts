@@ -14,10 +14,7 @@ import {
   getPersistedJobStatus,
 } from "@/lib/lakebase/background-jobs";
 import type { DashboardValidationFailure } from "./types";
-import {
-  compactValidationEvidence,
-  type ValidationEvidence,
-} from "@/lib/validation/evidence";
+import { compactValidationEvidence, type ValidationEvidence } from "@/lib/validation/evidence";
 
 export interface DashboardJobStatus {
   runId: string;
@@ -50,8 +47,9 @@ function parseValidationFailures(detailsJson: string | null): DashboardValidatio
       validationFailures?: Array<{ domain?: unknown; evidence?: ValidationEvidence[] }>;
     };
     return (details.validationFailures ?? [])
-      .filter((failure): failure is { domain: string; evidence?: ValidationEvidence[] } =>
-        typeof failure.domain === "string",
+      .filter(
+        (failure): failure is { domain: string; evidence?: ValidationEvidence[] } =>
+          typeof failure.domain === "string",
       )
       .map((failure) => ({
         domain: failure.domain,

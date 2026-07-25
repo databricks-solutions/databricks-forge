@@ -35,7 +35,13 @@ function fmtUsd(n: number): string {
   }).format(n);
 }
 
-function drawLogo(doc: PDFKit.PDFDocument, x: number, y: number, h: number, color: string = PDF.DB_RED) {
+function drawLogo(
+  doc: PDFKit.PDFDocument,
+  x: number,
+  y: number,
+  h: number,
+  color: string = PDF.DB_RED,
+) {
   const s = h / DB_LOGO_VB_H;
   doc.save().translate(x, y).scale(s).path(DB_LOGO_PATH).fill(color);
   doc.restore();
@@ -55,7 +61,12 @@ function footer(doc: PDFKit.PDFDocument) {
 
 function sectionTitle(doc: PDFKit.PDFDocument, text: string, y: number): number {
   doc.fontSize(15).fillColor(PDF.DB_DARK).font("Helvetica-Bold").text(text, M, y);
-  doc.moveTo(M, y + 22).lineTo(PAGE_W - M, y + 22).lineWidth(1).strokeColor(PDF.BORDER_COLOR).stroke();
+  doc
+    .moveTo(M, y + 22)
+    .lineTo(PAGE_W - M, y + 22)
+    .lineWidth(1)
+    .strokeColor(PDF.BORDER_COLOR)
+    .stroke();
   return y + 34;
 }
 
@@ -69,15 +80,29 @@ function kpiBox(
   label: string,
   accent = false,
 ) {
-  doc.save().roundedRect(x, y, w, h, 4).lineWidth(1).strokeColor(PDF.BORDER_COLOR).stroke().restore();
-  doc.fontSize(18).fillColor(accent ? PDF.DB_RED : PDF.DB_DARK).font("Helvetica-Bold").text(value, x + 4, y + 10, {
-    width: w - 8,
-    align: "center",
-  });
-  doc.fontSize(8).fillColor(PDF.MID_GRAY).font("Helvetica").text(label, x + 4, y + 34, {
-    width: w - 8,
-    align: "center",
-  });
+  doc
+    .save()
+    .roundedRect(x, y, w, h, 4)
+    .lineWidth(1)
+    .strokeColor(PDF.BORDER_COLOR)
+    .stroke()
+    .restore();
+  doc
+    .fontSize(18)
+    .fillColor(accent ? PDF.DB_RED : PDF.DB_DARK)
+    .font("Helvetica-Bold")
+    .text(value, x + 4, y + 10, {
+      width: w - 8,
+      align: "center",
+    });
+  doc
+    .fontSize(8)
+    .fillColor(PDF.MID_GRAY)
+    .font("Helvetica")
+    .text(label, x + 4, y + 34, {
+      width: w - 8,
+      align: "center",
+    });
 }
 
 function kpiRow(
@@ -110,9 +135,13 @@ export async function generatePortfolioBoardPackPdf(data: PortfolioBoardPackData
     doc.rect(0, 0, PAGE_W, PAGE_H).fill(PDF.DB_DARK);
     drawLogo(doc, M, 60, 34, PDF.TEXT_LIGHT);
     doc.fontSize(13).fillColor(PDF.TEXT_LIGHT).font("Helvetica").text("DATABRICKS FORGE", M, 110);
-    doc.fontSize(34).fillColor(PDF.TEXT_LIGHT).font("Helvetica-Bold").text("Data Estate Portfolio", M, 210, {
-      width: CW,
-    });
+    doc
+      .fontSize(34)
+      .fillColor(PDF.TEXT_LIGHT)
+      .font("Helvetica-Bold")
+      .text("Data Estate Portfolio", M, 210, {
+        width: CW,
+      });
     doc.fontSize(20).fillColor(PDF.TEXT_LIGHT).font("Helvetica").text("CDO Board Pack", M, 256);
     doc
       .fontSize(11)
@@ -141,16 +170,24 @@ export async function generatePortfolioBoardPackPdf(data: PortfolioBoardPackData
       { value: `${overview.inventory.workloads.genie_space ?? 0}`, label: "GENIE SPACES" },
       { value: `${overview.inventory.workloads.dashboard ?? 0}`, label: "DASHBOARDS" },
     ]);
-    doc.fontSize(11).fillColor(PDF.DB_DARK).font("Helvetica").text(synthesis.headline, M, y, { width: CW });
+    doc
+      .fontSize(11)
+      .fillColor(PDF.DB_DARK)
+      .font("Helvetica")
+      .text(synthesis.headline, M, y, { width: CW });
     footer(doc);
 
     // ---- Fragmentation + opportunities -------------------------------------
     doc.addPage();
     y = sectionTitle(doc, "Cross-estate fragmentation", M);
     if (synthesis.fragmentation.length === 0) {
-      doc.fontSize(10).fillColor(PDF.MID_GRAY).font("Helvetica").text("No cross-estate fragmentation detected.", M, y, {
-        width: CW,
-      });
+      doc
+        .fontSize(10)
+        .fillColor(PDF.MID_GRAY)
+        .font("Helvetica")
+        .text("No cross-estate fragmentation detected.", M, y, {
+          width: CW,
+        });
       y = doc.y + 10;
     } else {
       doc.fontSize(10);
@@ -160,9 +197,13 @@ export async function generatePortfolioBoardPackPdf(data: PortfolioBoardPackData
           doc.addPage();
           y = sectionTitle(doc, "Cross-estate fragmentation (cont.)", M);
         }
-        doc.font("Helvetica-Bold").fillColor(PDF.DB_DARK).fontSize(11).text(`"${c.label}" — ${c.estates.length} estates`, M, y, {
-          width: CW,
-        });
+        doc
+          .font("Helvetica-Bold")
+          .fillColor(PDF.DB_DARK)
+          .fontSize(11)
+          .text(`"${c.label}" — ${c.estates.length} estates`, M, y, {
+            width: CW,
+          });
         y = doc.y + 2;
         doc
           .font("Helvetica")
@@ -185,9 +226,15 @@ export async function generatePortfolioBoardPackPdf(data: PortfolioBoardPackData
         .font("Helvetica-Bold")
         .fillColor(PDF.DB_DARK)
         .fontSize(10)
-        .text(`[${o.severity.toUpperCase()}] ${o.title} — ${fmtUsd(o.valueUsd)}`, M, y, { width: CW });
+        .text(`[${o.severity.toUpperCase()}] ${o.title} — ${fmtUsd(o.valueUsd)}`, M, y, {
+          width: CW,
+        });
       y = doc.y + 2;
-      doc.font("Helvetica").fillColor(PDF.MID_GRAY).fontSize(9).text(o.summary, M, y, { width: CW });
+      doc
+        .font("Helvetica")
+        .fillColor(PDF.MID_GRAY)
+        .fontSize(9)
+        .text(o.summary, M, y, { width: CW });
       y = doc.y + 8;
     }
     footer(doc);
@@ -208,7 +255,11 @@ export async function generatePortfolioBoardPackPdf(data: PortfolioBoardPackData
         .fontSize(11)
         .text(`Phase ${a.phase} · ${a.title}`, M, y, { width: CW });
       y = doc.y + 2;
-      doc.font("Helvetica").fillColor(PDF.DB_DARK).fontSize(9).text(a.rationale, M, y, { width: CW });
+      doc
+        .font("Helvetica")
+        .fillColor(PDF.DB_DARK)
+        .fontSize(9)
+        .text(a.rationale, M, y, { width: CW });
       y = doc.y + 2;
       doc
         .font("Helvetica-Oblique")

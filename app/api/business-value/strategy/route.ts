@@ -35,7 +35,8 @@ export async function GET(req: NextRequest) {
       throw e;
     }
     const view = (req.nextUrl.searchParams.get("view") ?? "all") as "all" | "owned" | "shared";
-    const sharedIds = view === "owned" ? [] : await listAccessibleIds(user.email, "strategy_document");
+    const sharedIds =
+      view === "owned" ? [] : await listAccessibleIds(user.email, "strategy_document");
     const docs = await listStrategyDocuments(user.email, view, sharedIds);
     return NextResponse.json(docs, {
       headers: { "Cache-Control": "private, no-store" },

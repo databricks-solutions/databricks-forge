@@ -152,7 +152,8 @@ WHERE rn = 1
 ORDER BY name`,
   },
   {
-    question: "Average CPU and memory utilisation per day for the last 30 days, by driver vs workers",
+    question:
+      "Average CPU and memory utilisation per day for the last 30 days, by driver vs workers",
     sql: `SELECT
   date_trunc('day', start_time)                                AS day,
   CASE WHEN driver THEN 'driver' ELSE 'workers' END             AS node_role,

@@ -44,20 +44,15 @@ function classify(snap: SystemLoadSnapshot): {
 } {
   const anyBlocked = snap.llm.perEndpoint.some((e) => e.blocked);
   if (anyBlocked) {
-    const longest = Math.max(
-      0,
-      ...snap.llm.perEndpoint.map((e) => e.retryInMs ?? 0),
-    );
+    const longest = Math.max(0, ...snap.llm.perEndpoint.map((e) => e.retryInMs ?? 0));
     return {
       level: "throttled",
       primary: "Model endpoint is rate-limiting briefly — retries will continue automatically.",
-      secondary:
-        longest > 0 ? `Backoff ~${Math.ceil(longest / 1000)}s` : undefined,
+      secondary: longest > 0 ? `Backoff ~${Math.ceil(longest / 1000)}s` : undefined,
     };
   }
 
-  const heavyQueue =
-    snap.llm.totalQueued > 8 || snap.active.queued > 0 || snap.llm.yourQueued > 2;
+  const heavyQueue = snap.llm.totalQueued > 8 || snap.active.queued > 0 || snap.llm.yourQueued > 2;
   if (heavyQueue) {
     const yourPart =
       snap.llm.yourQueued > 0
@@ -141,9 +136,7 @@ export function SystemLoadBanner() {
           )}
           <span className="truncate font-medium">{status.primary}</span>
           {status.secondary && (
-            <span className="hidden truncate opacity-70 md:inline">
-              · {status.secondary}
-            </span>
+            <span className="hidden truncate opacity-70 md:inline">· {status.secondary}</span>
           )}
         </div>
         <button

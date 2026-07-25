@@ -1,8 +1,5 @@
 import { describe, expect, it } from "vitest";
-import {
-  DEFAULT_MENU_VISIBILITY,
-  normalizeMenuVisibility,
-} from "@/lib/settings";
+import { DEFAULT_MENU_VISIBILITY, normalizeMenuVisibility } from "@/lib/settings";
 import { TOGGLEABLE_NAV_ITEMS } from "@/components/pipeline/sidebar-nav";
 
 describe("menu visibility defaults", () => {
@@ -17,9 +14,7 @@ describe("menu visibility defaults", () => {
   });
 
   it("ignores invalid persisted visibility values", () => {
-    expect(
-      normalizeMenuVisibility({ "/ask-forge": "yes", "/runs": false }),
-    ).toEqual({
+    expect(normalizeMenuVisibility({ "/ask-forge": "yes", "/runs": false })).toEqual({
       "/ask-forge": false,
       "/runs": false,
     });

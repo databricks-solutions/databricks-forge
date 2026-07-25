@@ -1,9 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-import type {
-  GenieEnginePassOutputs,
-  GenieSpaceRecommendation,
-} from "@/lib/genie/types";
+import type { GenieEnginePassOutputs, GenieSpaceRecommendation } from "@/lib/genie/types";
 import type { SemanticAssetManifest } from "@/lib/semantic-assets/types";
 
 let rows: Array<Record<string, unknown>> = [];
@@ -18,7 +15,7 @@ const recommendationTable = {
 };
 
 vi.mock("@/lib/prisma", () => ({
-  withPrisma: async <T,>(
+  withPrisma: async <T>(
     callback: (prisma: {
       $transaction: (callback: (tx: unknown) => Promise<T>) => Promise<T>;
       forgeGenieRecommendation: typeof recommendationTable;

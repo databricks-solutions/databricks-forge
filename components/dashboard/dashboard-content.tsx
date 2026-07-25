@@ -176,9 +176,7 @@ export function DashboardContent({
   const fetchStats = useCallback(async (runId: string | null) => {
     setRefreshing(true);
     try {
-      const url = runId
-        ? `/api/stats?runId=${encodeURIComponent(runId)}`
-        : "/api/stats";
+      const url = runId ? `/api/stats?runId=${encodeURIComponent(runId)}` : "/api/stats";
       const res = await resilientFetch(url);
       if (!res.ok) throw new Error("Failed to fetch stats");
       const data = (await res.json()) as DashboardStats;
@@ -256,9 +254,7 @@ export function DashboardContent({
     stats.totalRuns > 0 ? Math.round((stats.completedRuns / stats.totalRuns) * 100) : 0;
 
   // KPI tile click-throughs are scoped to the selected run when available.
-  const usecasesHref = scopedRunId
-    ? `/runs/${scopedRunId}?tab=usecases`
-    : "/runs";
+  const usecasesHref = scopedRunId ? `/runs/${scopedRunId}?tab=usecases` : "/runs";
   const overviewHref = scopedRunId ? `/runs/${scopedRunId}?tab=overview` : "/runs";
   const runHomeHref = scopedRunId ? `/runs/${scopedRunId}` : "/runs";
   const businessValueHref = scopedRunId
@@ -415,10 +411,7 @@ export function DashboardContent({
       {/* ── Charts ── */}
       {stats.totalUseCases > 0 && (
         <motion.div variants={staggerItem} className="grid gap-6 md:grid-cols-3">
-          <ChartLink
-            href={usecasesHref}
-            ariaLabel="View use cases sorted by score"
-          >
+          <ChartLink href={usecasesHref} ariaLabel="View use cases sorted by score">
             <ScoreDistributionChart scores={stats.scores} />
           </ChartLink>
           <ChartLink href={usecasesHref} ariaLabel="View use cases by domain">
@@ -543,9 +536,7 @@ function RunSelector({
               Showing widgets for
             </p>
             <p className="text-sm font-semibold">
-              {selected
-                ? selected.businessName
-                : "Select a run to scope the dashboard"}
+              {selected ? selected.businessName : "Select a run to scope the dashboard"}
             </p>
           </div>
         </div>
@@ -556,10 +547,7 @@ function RunSelector({
               aria-label="Refreshing"
             />
           )}
-          <Select
-            value={value ?? undefined}
-            onValueChange={onChange}
-          >
+          <Select value={value ?? undefined} onValueChange={onChange}>
             <SelectTrigger className="w-full sm:w-[320px]" aria-label="Select run">
               <SelectValue placeholder="Pick a run" />
             </SelectTrigger>
@@ -568,9 +556,7 @@ function RunSelector({
                 <SelectItem key={r.runId} value={r.runId}>
                   <span className="flex items-center gap-2">
                     <span className="truncate font-medium">{r.businessName}</span>
-                    <span className="text-xs text-muted-foreground">
-                      · {timeAgo(r.createdAt)}
-                    </span>
+                    <span className="text-xs text-muted-foreground">· {timeAgo(r.createdAt)}</span>
                     <Badge
                       variant="secondary"
                       className={cn("text-[10px]", STATUS_STYLES[r.status])}
@@ -643,9 +629,7 @@ function KPITile({
             {tip && <InfoTip tip={tip} />}
           </div>
         </div>
-        <p className={cn("mt-2 text-2xl font-bold tracking-tight", valueClassName)}>
-          {value}
-        </p>
+        <p className={cn("mt-2 text-2xl font-bold tracking-tight", valueClassName)}>{value}</p>
         {detail && <p className="mt-0.5 text-xs text-muted-foreground">{detail}</p>}
       </CardContent>
     </Card>
@@ -653,7 +637,10 @@ function KPITile({
 
   if (href) {
     return (
-      <Link href={href} className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-xl">
+      <Link
+        href={href}
+        className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-xl"
+      >
         {card}
       </Link>
     );

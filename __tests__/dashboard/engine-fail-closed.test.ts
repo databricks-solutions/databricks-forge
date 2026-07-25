@@ -517,7 +517,9 @@ describe("runDashboardEngine fail-closed validation", () => {
       .fn()
       .mockResolvedValueOnce({ columns: [], rows: [], totalRowCount: 0 })
       .mockRejectedValueOnce(
-        new Error("[AMBIGUOUS_REFERENCE] Reference `amount` is ambiguous, could be: p.amount, w.amount"),
+        new Error(
+          "[AMBIGUOUS_REFERENCE] Reference `amount` is ambiguous, could be: p.amount, w.amount",
+        ),
       )
       .mockResolvedValueOnce({ columns: [], rows: [], totalRowCount: 0 })
       .mockResolvedValueOnce(result);
@@ -560,7 +562,8 @@ describe("runDashboardEngine fail-closed validation", () => {
 
   it("fails closed after one unsuccessful execution repair attempt", async () => {
     const { logger } = loggerWithEvidence();
-    const stillInvalidSql = "SELECT amount AS total FROM main.sales.orders p JOIN main.sales.orders w";
+    const stillInvalidSql =
+      "SELECT amount AS total FROM main.sales.orders p JOIN main.sales.orders w";
     const execute = vi
       .fn()
       .mockResolvedValueOnce({ columns: [], rows: [], totalRowCount: 0 })
@@ -1034,9 +1037,7 @@ describe("runDashboardEngine fail-closed validation", () => {
     expect(prompt).toContain("- Total Revenue: SUM(main.sales.orders.amount)");
     expect(prompt).toContain("- Order Category: main.sales.orders.category");
     expect(prompt).toContain("- Order Date: main.sales.orders.event_date");
-    expect(prompt).toContain(
-      "- Order Date (`main.sales.orders.event_date` in , type: STRING)",
-    );
+    expect(prompt).toContain("- Order Date (`main.sales.orders.event_date` in , type: STRING)");
     expect(prompt).not.toContain("malformed");
     expect(prompt).not.toContain("undefined");
   });

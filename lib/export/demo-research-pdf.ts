@@ -13,9 +13,13 @@ function sectionHeading(doc: PDFKit.PDFDocument, y: number, title: string): numb
     y = M;
   }
   doc.save().rect(0, y, 5, 24).fill(PDF.DB_RED).restore();
-  doc.fontSize(16).fillColor(PDF.DB_DARK).font("Helvetica-Bold").text(title, M, y + 2, {
-    width: CW - 10,
-  });
+  doc
+    .fontSize(16)
+    .fillColor(PDF.DB_DARK)
+    .font("Helvetica-Bold")
+    .text(title, M, y + 2, {
+      width: CW - 10,
+    });
   return doc.y + 12;
 }
 
@@ -131,21 +135,37 @@ export async function generateDemoResearchPdf(
       ];
       for (const [label, value] of sections) {
         if (!value) continue;
-        doc.fontSize(11).fillColor(PDF.DB_DARK).font("Helvetica-Bold").text(label, M, y, { width: CW });
+        doc
+          .fontSize(11)
+          .fillColor(PDF.DB_DARK)
+          .font("Helvetica-Bold")
+          .text(label, M, y, { width: CW });
         y = doc.y + 2;
-        doc.fontSize(10).fillColor(PDF.TEXT_COLOR).font("Helvetica").text(value, M + 10, y, { width: CW - 20, lineGap: 2 });
+        doc
+          .fontSize(10)
+          .fillColor(PDF.TEXT_COLOR)
+          .font("Helvetica")
+          .text(value, M + 10, y, { width: CW - 20, lineGap: 2 });
         y = doc.y + 6;
       }
       const scr = brief.situationComplicationResolution;
       if (scr && (scr.situation || scr.complication || scr.resolution)) {
-        doc.fontSize(11).fillColor(PDF.DB_DARK).font("Helvetica-Bold").text("Situation -> Complication -> Resolution", M, y, { width: CW });
+        doc
+          .fontSize(11)
+          .fillColor(PDF.DB_DARK)
+          .font("Helvetica-Bold")
+          .text("Situation -> Complication -> Resolution", M, y, { width: CW });
         y = doc.y + 2;
         const parts = [
           scr.situation ? `Situation. ${scr.situation}` : null,
           scr.complication ? `Complication. ${scr.complication}` : null,
           scr.resolution ? `Resolution. ${scr.resolution}` : null,
         ].filter((x): x is string => Boolean(x));
-        doc.fontSize(10).fillColor(PDF.TEXT_COLOR).font("Helvetica-Oblique").text(parts.join(" "), M + 10, y, { width: CW - 20, lineGap: 2 });
+        doc
+          .fontSize(10)
+          .fillColor(PDF.TEXT_COLOR)
+          .font("Helvetica-Oblique")
+          .text(parts.join(" "), M + 10, y, { width: CW - 20, lineGap: 2 });
         y = doc.y + 10;
       }
       y += 4;
@@ -155,28 +175,54 @@ export async function generateDemoResearchPdf(
     if (companyProfile) {
       y = sectionHeading(doc, y, "Company Overview");
       if (companyProfile.statedPriorities?.length) {
-        doc.fontSize(12).fillColor(PDF.DB_DARK).font("Helvetica-Bold").text("Stated Priorities", M, y);
+        doc
+          .fontSize(12)
+          .fillColor(PDF.DB_DARK)
+          .font("Helvetica-Bold")
+          .text("Stated Priorities", M, y);
         y = doc.y + 4;
         for (const p of companyProfile.statedPriorities) {
-          doc.fontSize(10).fillColor(PDF.TEXT_COLOR).font("Helvetica").text(`• ${p.priority} (${p.source})`, M + 10, y, { width: CW - 20 });
+          doc
+            .fontSize(10)
+            .fillColor(PDF.TEXT_COLOR)
+            .font("Helvetica")
+            .text(`• ${p.priority} (${p.source})`, M + 10, y, { width: CW - 20 });
           y = doc.y + 4;
         }
         y += 4;
       }
       if (companyProfile.inferredPriorities?.length) {
-        doc.fontSize(12).fillColor(PDF.DB_DARK).font("Helvetica-Bold").text("Inferred Priorities", M, y);
+        doc
+          .fontSize(12)
+          .fillColor(PDF.DB_DARK)
+          .font("Helvetica-Bold")
+          .text("Inferred Priorities", M, y);
         y = doc.y + 4;
         for (const p of companyProfile.inferredPriorities) {
-          doc.fontSize(10).fillColor(PDF.TEXT_COLOR).font("Helvetica").text(`• ${p.priority}: ${p.evidence}`, M + 10, y, { width: CW - 20 });
+          doc
+            .fontSize(10)
+            .fillColor(PDF.TEXT_COLOR)
+            .font("Helvetica")
+            .text(`• ${p.priority}: ${p.evidence}`, M + 10, y, { width: CW - 20 });
           y = doc.y + 4;
         }
         y += 4;
       }
       if (companyProfile.urgencySignals?.length) {
-        doc.fontSize(12).fillColor(PDF.DB_DARK).font("Helvetica-Bold").text("Urgency Signals", M, y);
+        doc
+          .fontSize(12)
+          .fillColor(PDF.DB_DARK)
+          .font("Helvetica-Bold")
+          .text("Urgency Signals", M, y);
         y = doc.y + 4;
         for (const s of companyProfile.urgencySignals) {
-          doc.fontSize(10).fillColor(PDF.TEXT_COLOR).font("Helvetica").text(`• ${s.signal} (${s.type}${s.date ? `, ${s.date}` : ""})`, M + 10, y, { width: CW - 20 });
+          doc
+            .fontSize(10)
+            .fillColor(PDF.TEXT_COLOR)
+            .font("Helvetica")
+            .text(`• ${s.signal} (${s.type}${s.date ? `, ${s.date}` : ""})`, M + 10, y, {
+              width: CW - 20,
+            });
           y = doc.y + 4;
         }
         y += 4;
@@ -189,10 +235,16 @@ export async function generateDemoResearchPdf(
       y = sectionHeading(doc, y, "SWOT Analysis");
       doc.fontSize(10).fillColor(PDF.TEXT_COLOR).font("Helvetica");
       doc.text(`Strengths: ${(swot.strengths ?? []).join("; ")}`, M, y, { width: CW / 2 - 10 });
-      doc.text(`Weaknesses: ${(swot.weaknesses ?? []).join("; ")}`, M + CW / 2 + 5, y, { width: CW / 2 - 10 });
+      doc.text(`Weaknesses: ${(swot.weaknesses ?? []).join("; ")}`, M + CW / 2 + 5, y, {
+        width: CW / 2 - 10,
+      });
       y = doc.y + 8;
-      doc.text(`Opportunities: ${(swot.opportunities ?? []).join("; ")}`, M, y, { width: CW / 2 - 10 });
-      doc.text(`Threats: ${(swot.threats ?? []).join("; ")}`, M + CW / 2 + 5, y, { width: CW / 2 - 10 });
+      doc.text(`Opportunities: ${(swot.opportunities ?? []).join("; ")}`, M, y, {
+        width: CW / 2 - 10,
+      });
+      doc.text(`Threats: ${(swot.threats ?? []).join("; ")}`, M + CW / 2 + 5, y, {
+        width: CW / 2 - 10,
+      });
       y = doc.y + 12;
     }
 
@@ -211,9 +263,17 @@ export async function generateDemoResearchPdf(
         y += 8;
       }
       if (industryLandscape.competitiveDynamics) {
-        doc.fontSize(12).fillColor(PDF.DB_DARK).font("Helvetica-Bold").text("Competitive Dynamics", M, y);
+        doc
+          .fontSize(12)
+          .fillColor(PDF.DB_DARK)
+          .font("Helvetica-Bold")
+          .text("Competitive Dynamics", M, y);
         y = doc.y + 4;
-        doc.fontSize(10).fillColor(PDF.TEXT_COLOR).font("Helvetica").text(industryLandscape.competitiveDynamics, M, y, { width: CW, lineGap: 2 });
+        doc
+          .fontSize(10)
+          .fillColor(PDF.TEXT_COLOR)
+          .font("Helvetica")
+          .text(industryLandscape.competitiveDynamics, M, y, { width: CW, lineGap: 2 });
         y = doc.y + 12;
       }
     }
@@ -254,9 +314,17 @@ export async function generateDemoResearchPdf(
     if (demoNarrative?.demoFlow && demoNarrative.demoFlow.length > 0) {
       y = sectionHeading(doc, y, "Demo Flow");
       for (const step of demoNarrative.demoFlow) {
-        doc.fontSize(11).fillColor(PDF.DB_DARK).font("Helvetica-Bold").text(`${step.step}. ${step.moment} (${step.assetId})`, M, y);
+        doc
+          .fontSize(11)
+          .fillColor(PDF.DB_DARK)
+          .font("Helvetica-Bold")
+          .text(`${step.step}. ${step.moment} (${step.assetId})`, M, y);
         y = doc.y + 2;
-        doc.fontSize(10).fillColor(PDF.TEXT_COLOR).font("Helvetica").text(step.talkingPoint, M + 15, y, { width: CW - 25 });
+        doc
+          .fontSize(10)
+          .fillColor(PDF.TEXT_COLOR)
+          .font("Helvetica")
+          .text(step.talkingPoint, M + 15, y, { width: CW - 25 });
         y = doc.y + 8;
       }
       y += 4;
@@ -273,7 +341,11 @@ export async function generateDemoResearchPdf(
         const writeLine = (label: string, value: string) => {
           doc.fontSize(10).fillColor(PDF.DB_DARK).font("Helvetica-Bold").text(label, M, y);
           y = doc.y + 2;
-          doc.fontSize(10).fillColor(PDF.TEXT_COLOR).font("Helvetica").text(value, M + 10, y, { width: CW - 20, lineGap: 1 });
+          doc
+            .fontSize(10)
+            .fillColor(PDF.TEXT_COLOR)
+            .font("Helvetica")
+            .text(value, M + 10, y, { width: CW - 20, lineGap: 1 });
           y = doc.y + 6;
         };
 
@@ -289,20 +361,36 @@ export async function generateDemoResearchPdf(
         if (m.kpiDelta) writeLine("KPI Delta", m.kpiDelta);
 
         if (m.hypothesisTree && m.hypothesisTree.length > 0) {
-          doc.fontSize(10).fillColor(PDF.DB_DARK).font("Helvetica-Bold").text("Hypothesis Tree", M, y);
+          doc
+            .fontSize(10)
+            .fillColor(PDF.DB_DARK)
+            .font("Helvetica-Bold")
+            .text("Hypothesis Tree", M, y);
           y = doc.y + 2;
           for (const h of m.hypothesisTree) {
-            doc.fontSize(10).fillColor(PDF.TEXT_COLOR).font("Helvetica").text(`• ${h}`, M + 10, y, { width: CW - 20 });
+            doc
+              .fontSize(10)
+              .fillColor(PDF.TEXT_COLOR)
+              .font("Helvetica")
+              .text(`• ${h}`, M + 10, y, { width: CW - 20 });
             y = doc.y + 2;
           }
           y += 4;
         }
 
         if (m.discoveryQuestions && m.discoveryQuestions.length > 0) {
-          doc.fontSize(10).fillColor(PDF.DB_DARK).font("Helvetica-Bold").text("Discovery Questions", M, y);
+          doc
+            .fontSize(10)
+            .fillColor(PDF.DB_DARK)
+            .font("Helvetica-Bold")
+            .text("Discovery Questions", M, y);
           y = doc.y + 2;
           for (const q of m.discoveryQuestions) {
-            doc.fontSize(10).fillColor(PDF.TEXT_COLOR).font("Helvetica").text(`• ${q}`, M + 10, y, { width: CW - 20 });
+            doc
+              .fontSize(10)
+              .fillColor(PDF.TEXT_COLOR)
+              .font("Helvetica")
+              .text(`• ${q}`, M + 10, y, { width: CW - 20 });
             y = doc.y + 2;
           }
           y += 4;
@@ -321,7 +409,11 @@ export async function generateDemoResearchPdf(
                 : e.tier === "benchmark"
                   ? `[Benchmark] ${e.benchmarkLabel ?? ""} ${e.benchmarkRange ?? ""}`
                   : `[Inferred] ${e.rationale ?? e.claim ?? ""}`;
-            doc.fontSize(9).fillColor(PDF.TEXT_COLOR).font("Helvetica-Oblique").text(line, M + 10, y, { width: CW - 20 });
+            doc
+              .fontSize(9)
+              .fillColor(PDF.TEXT_COLOR)
+              .font("Helvetica-Oblique")
+              .text(line, M + 10, y, { width: CW - 20 });
             y = doc.y + 2;
           }
           y += 4;
@@ -344,25 +436,45 @@ export async function generateDemoResearchPdf(
           doc.fontSize(10).fillColor(PDF.DB_DARK).font("Helvetica-Bold").text("Cares about", M, y);
           y = doc.y + 2;
           for (const c of track.caresAbout) {
-            doc.fontSize(10).fillColor(PDF.TEXT_COLOR).font("Helvetica").text(`• ${c}`, M + 10, y, { width: CW - 20 });
+            doc
+              .fontSize(10)
+              .fillColor(PDF.TEXT_COLOR)
+              .font("Helvetica")
+              .text(`• ${c}`, M + 10, y, { width: CW - 20 });
             y = doc.y + 2;
           }
           y += 4;
         }
         if (track.provocativeOpening) {
-          doc.fontSize(10).fillColor(PDF.DB_DARK).font("Helvetica-Bold").text("Provocative opening", M, y);
+          doc
+            .fontSize(10)
+            .fillColor(PDF.DB_DARK)
+            .font("Helvetica-Bold")
+            .text("Provocative opening", M, y);
           y = doc.y + 2;
-          doc.fontSize(10).fillColor(PDF.TEXT_COLOR).font("Helvetica-Oblique").text(track.provocativeOpening, M + 10, y, { width: CW - 20 });
+          doc
+            .fontSize(10)
+            .fillColor(PDF.TEXT_COLOR)
+            .font("Helvetica-Oblique")
+            .text(track.provocativeOpening, M + 10, y, { width: CW - 20 });
           y = doc.y + 6;
         }
         if (track.whatToSay) {
           doc.fontSize(10).fillColor(PDF.DB_DARK).font("Helvetica-Bold").text("What to say", M, y);
           y = doc.y + 2;
-          doc.fontSize(10).fillColor(PDF.TEXT_COLOR).font("Helvetica").text(track.whatToSay, M + 10, y, { width: CW - 20 });
+          doc
+            .fontSize(10)
+            .fillColor(PDF.TEXT_COLOR)
+            .font("Helvetica")
+            .text(track.whatToSay, M + 10, y, { width: CW - 20 });
           y = doc.y + 6;
         }
         if (track.threeObjections.length > 0) {
-          doc.fontSize(10).fillColor(PDF.DB_DARK).font("Helvetica-Bold").text("Objections + responses", M, y);
+          doc
+            .fontSize(10)
+            .fillColor(PDF.DB_DARK)
+            .font("Helvetica-Bold")
+            .text("Objections + responses", M, y);
           y = doc.y + 2;
           for (const o of track.threeObjections) {
             doc
@@ -375,10 +487,18 @@ export async function generateDemoResearchPdf(
           y += 4;
         }
         if (track.discoveryTrack.length > 0) {
-          doc.fontSize(10).fillColor(PDF.DB_DARK).font("Helvetica-Bold").text("Discovery ladder", M, y);
+          doc
+            .fontSize(10)
+            .fillColor(PDF.DB_DARK)
+            .font("Helvetica-Bold")
+            .text("Discovery ladder", M, y);
           y = doc.y + 2;
           for (const q of track.discoveryTrack) {
-            doc.fontSize(10).fillColor(PDF.TEXT_COLOR).font("Helvetica").text(`• ${q}`, M + 10, y, { width: CW - 20 });
+            doc
+              .fontSize(10)
+              .fillColor(PDF.TEXT_COLOR)
+              .font("Helvetica")
+              .text(`• ${q}`, M + 10, y, { width: CW - 20 });
             y = doc.y + 2;
           }
           y += 4;
@@ -386,7 +506,11 @@ export async function generateDemoResearchPdf(
         if (track.closeSignal) {
           doc.fontSize(10).fillColor(PDF.DB_DARK).font("Helvetica-Bold").text("Close signal", M, y);
           y = doc.y + 2;
-          doc.fontSize(10).fillColor(PDF.TEXT_COLOR).font("Helvetica").text(track.closeSignal, M + 10, y, { width: CW - 20 });
+          doc
+            .fontSize(10)
+            .fillColor(PDF.TEXT_COLOR)
+            .font("Helvetica")
+            .text(track.closeSignal, M + 10, y, { width: CW - 20 });
           y = doc.y + 8;
         }
       }
@@ -408,9 +532,17 @@ export async function generateDemoResearchPdf(
     if (demoNarrative?.executiveTalkingPoints && demoNarrative.executiveTalkingPoints.length > 0) {
       y = sectionHeading(doc, y, "Executive Talking Points");
       for (const tp of demoNarrative.executiveTalkingPoints) {
-        doc.fontSize(11).fillColor(PDF.DB_DARK).font("Helvetica-Bold").text(`${tp.assetId}: ${tp.headline}`, M, y);
+        doc
+          .fontSize(11)
+          .fillColor(PDF.DB_DARK)
+          .font("Helvetica-Bold")
+          .text(`${tp.assetId}: ${tp.headline}`, M, y);
         y = doc.y + 2;
-        doc.fontSize(10).fillColor(PDF.TEXT_COLOR).font("Helvetica").text(tp.benchmarkTieIn, M + 15, y, { width: CW - 25 });
+        doc
+          .fontSize(10)
+          .fillColor(PDF.TEXT_COLOR)
+          .font("Helvetica")
+          .text(tp.benchmarkTieIn, M + 15, y, { width: CW - 25 });
         y = doc.y + 8;
       }
       y += 4;
@@ -421,9 +553,17 @@ export async function generateDemoResearchPdf(
       for (const n of research.dataNarratives) {
         doc.fontSize(11).fillColor(PDF.DB_DARK).font("Helvetica-Bold").text(n.title, M, y);
         y = doc.y + 2;
-        doc.fontSize(10).fillColor(PDF.TEXT_COLOR).font("Helvetica").text(n.description, M, y, { width: CW });
+        doc
+          .fontSize(10)
+          .fillColor(PDF.TEXT_COLOR)
+          .font("Helvetica")
+          .text(n.description, M, y, { width: CW });
         y = doc.y + 2;
-        doc.fontSize(9).fillColor(PDF.MID_GRAY).font("Helvetica").text(`Pattern: ${n.pattern}`, M, y);
+        doc
+          .fontSize(9)
+          .fillColor(PDF.MID_GRAY)
+          .font("Helvetica")
+          .text(`Pattern: ${n.pattern}`, M, y);
         y = doc.y + 10;
       }
       y += 4;

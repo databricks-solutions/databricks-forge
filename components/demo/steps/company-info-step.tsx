@@ -142,7 +142,10 @@ export function CompanyInfoStep({
       {/* Industry (optional) */}
       <div className="space-y-2">
         <Label>Industry (optional -- auto-detected if blank)</Label>
-        <Select value={industryId || "__auto__"} onValueChange={(v) => onIndustryIdChange(v === "__auto__" ? "" : v)}>
+        <Select
+          value={industryId || "__auto__"}
+          onValueChange={(v) => onIndustryIdChange(v === "__auto__" ? "" : v)}
+        >
           <SelectTrigger>
             <SelectValue placeholder="Auto-detect from website" />
           </SelectTrigger>
@@ -228,11 +231,10 @@ export function CompanyInfoStep({
                 }`}
               />
               <div>
-                <div className="text-sm font-medium">
-                  Bias for Genie Space demos
-                </div>
+                <div className="text-sm font-medium">Bias for Genie Space demos</div>
                 <p className="mt-0.5 text-xs text-muted-foreground">
-                  Wider row counts, more fact tables, richer dimensions. Auto-deploys a Genie Space bound to the generated schema.
+                  Wider row counts, more fact tables, richer dimensions. Auto-deploys a Genie Space
+                  bound to the generated schema.
                 </p>
               </div>
             </div>

@@ -1,8 +1,5 @@
 import { describe, expect, it } from "vitest";
-import {
-  buildMetricViewProbes,
-  extractMetricViewProbeInputs,
-} from "@/lib/metric-views/probes";
+import { buildMetricViewProbes, extractMetricViewProbeInputs } from "@/lib/metric-views/probes";
 
 describe("buildMetricViewProbes", () => {
   it("builds atomic, categorical, temporal, complex, and joined probes", () => {
@@ -13,10 +10,7 @@ describe("buildMetricViewProbes", () => {
         { name: "order_month", kind: "temporal" },
         { name: "customer_segment", kind: "categorical", joined: true },
       ],
-      measures: [
-        { name: "total_revenue" },
-        { name: "revenue_per_customer", complex: true },
-      ],
+      measures: [{ name: "total_revenue" }, { name: "revenue_per_customer", complex: true }],
       hasJoins: true,
     });
 

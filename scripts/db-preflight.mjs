@@ -99,9 +99,7 @@ async function main() {
   const decision = decideMigrationDiffGate(gate, process.env);
   if (!gate.ok) {
     if (decision.bypassed) {
-      log(
-        `WARNING: migrate-diff failed (${gate.reason}); explicit local-only bypass accepted.`,
-      );
+      log(`WARNING: migrate-diff failed (${gate.reason}); explicit local-only bypass accepted.`);
       process.exit(0);
     }
     errlog(`FATAL: could not compute schema delta (${gate.reason}).`);

@@ -12,15 +12,28 @@ describe("live dashboard artifact fingerprints", () => {
         { name: "a", displayName: "A", queryLines: ["SELECT 2 "] },
       ],
       pages: [
-        { name: "z", displayName: "Z", pageType: "PAGE_TYPE_CANVAS", layoutVersion: "GRID_V1", layout: [] },
-        { name: "a", displayName: "A", pageType: "PAGE_TYPE_CANVAS", layoutVersion: "GRID_V1", layout: [] },
+        {
+          name: "z",
+          displayName: "Z",
+          pageType: "PAGE_TYPE_CANVAS",
+          layoutVersion: "GRID_V1",
+          layout: [],
+        },
+        {
+          name: "a",
+          displayName: "A",
+          pageType: "PAGE_TYPE_CANVAS",
+          layoutVersion: "GRID_V1",
+          layout: [],
+        },
       ],
     };
     const right = {
       pages: [...left.pages].reverse(),
-      datasets: [...left.datasets]
-        .reverse()
-        .map((dataset) => ({ ...dataset, queryLines: dataset.queryLines.map((line) => line.trim()) })),
+      datasets: [...left.datasets].reverse().map((dataset) => ({
+        ...dataset,
+        queryLines: dataset.queryLines.map((line) => line.trim()),
+      })),
     };
 
     expect(fingerprintSerializedDashboard(JSON.stringify(left))).toBe(

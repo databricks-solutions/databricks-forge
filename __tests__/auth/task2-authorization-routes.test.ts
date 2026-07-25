@@ -51,7 +51,7 @@ vi.mock("@/lib/lakebase/estate-programs", () => ({
   deleteProgramScope: mocks.deleteProgramScope,
 }));
 vi.mock("@/lib/prisma", () => ({
-  withPrisma: async <T,>(
+  withPrisma: async <T>(
     callback: (prisma: {
       forgeEnvironmentScan: {
         findMany: typeof mocks.findManyScans;
@@ -219,9 +219,7 @@ describe("GET /api/environment/trends isolation", () => {
       response: NextResponse.json({ error: "Forbidden" }, { status: 403 }),
     });
 
-    const response = await getTrends(
-      request("/api/environment/trends?estateId=another-program"),
-    );
+    const response = await getTrends(request("/api/environment/trends?estateId=another-program"));
 
     expect(response.status).toBe(403);
     expect(mocks.loadEstateProgramOrRespond).toHaveBeenCalledWith(
@@ -242,11 +240,7 @@ describe("estate program isolation", () => {
 
     expect(response.status).toBe(200);
     expect(mocks.listAccessibleIds).toHaveBeenCalledWith(caller.email, "estate_program");
-    expect(mocks.listEstatePrograms).toHaveBeenCalledWith(
-      caller.email,
-      25,
-      ["shared-program"],
-    );
+    expect(mocks.listEstatePrograms).toHaveBeenCalledWith(caller.email, 25, ["shared-program"]);
   });
 
   it("does not let an edit-share recipient delete the program", async () => {

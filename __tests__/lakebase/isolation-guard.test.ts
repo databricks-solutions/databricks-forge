@@ -32,7 +32,7 @@ function makeTableStub(label: string) {
 }
 
 vi.mock("@/lib/prisma", () => ({
-  withPrisma: async <T,>(cb: (prisma: unknown) => Promise<T>) => {
+  withPrisma: async <T>(cb: (prisma: unknown) => Promise<T>) => {
     const prisma = {
       forgeRun: makeTableStub("ForgeRun"),
       forgeEnvironmentScan: makeTableStub("ForgeEnvironmentScan"),
@@ -79,9 +79,7 @@ beforeEach(() => {
 
 describe("assertOwnerEmailIntegrity", () => {
   it("returns cleanly when all tables have ownerEmail populated", async () => {
-    const { assertOwnerEmailIntegrity } = await import(
-      "@/lib/lakebase/isolation-guard"
-    );
+    const { assertOwnerEmailIntegrity } = await import("@/lib/lakebase/isolation-guard");
 
     await expect(assertOwnerEmailIntegrity()).resolves.toBeUndefined();
 
@@ -94,15 +92,11 @@ describe("assertOwnerEmailIntegrity", () => {
   it("auto-backfills orphans with the default sentinel and does not throw", async () => {
     nullCounts.ForgeCommentJob = 1;
 
-    const { assertOwnerEmailIntegrity } = await import(
-      "@/lib/lakebase/isolation-guard"
-    );
+    const { assertOwnerEmailIntegrity } = await import("@/lib/lakebase/isolation-guard");
 
     await expect(assertOwnerEmailIntegrity()).resolves.toBeUndefined();
 
-    expect(backfillCalls).toEqual([
-      { table: "ForgeCommentJob", owner: "orphan@forge.local" },
-    ]);
+    expect(backfillCalls).toEqual([{ table: "ForgeCommentJob", owner: "orphan@forge.local" }]);
     expect(loggerMock.warn).toHaveBeenCalledTimes(1);
     const warning = loggerMock.warn.mock.calls[0]?.[0] as string;
     expect(warning).toContain("Auto-backfilled NULL owner_email orphans");
@@ -116,9 +110,7 @@ describe("assertOwnerEmailIntegrity", () => {
     nullCounts.ForgeRun = 2;
     nullCounts.ForgeCommentJob = 3;
 
-    const { assertOwnerEmailIntegrity } = await import(
-      "@/lib/lakebase/isolation-guard"
-    );
+    const { assertOwnerEmailIntegrity } = await import("@/lib/lakebase/isolation-guard");
 
     await expect(assertOwnerEmailIntegrity()).resolves.toBeUndefined();
 
@@ -135,9 +127,7 @@ describe("assertOwnerEmailIntegrity", () => {
     nullCounts.ForgeCommentJob = 1;
     nullCounts.ForgeEnvironmentScan = 2;
 
-    const { assertOwnerEmailIntegrity } = await import(
-      "@/lib/lakebase/isolation-guard"
-    );
+    const { assertOwnerEmailIntegrity } = await import("@/lib/lakebase/isolation-guard");
 
     await expect(assertOwnerEmailIntegrity()).resolves.toBeUndefined();
 
@@ -147,8 +137,6 @@ describe("assertOwnerEmailIntegrity", () => {
       "ForgeRun",
     ]);
     // Every backfill received the same sentinel.
-    expect(new Set(backfillCalls.map((c) => c.owner))).toEqual(
-      new Set(["orphan@forge.local"]),
-    );
+    expect(new Set(backfillCalls.map((c) => c.owner))).toEqual(new Set(["orphan@forge.local"]));
   });
 });

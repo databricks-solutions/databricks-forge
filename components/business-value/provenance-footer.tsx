@@ -47,14 +47,11 @@ export function ProvenanceFooter({
     : null;
 
   return (
-    <div
-      className={`flex items-center gap-2 text-[11px] ${
-        muted ? "text-muted-foreground" : ""
-      }`}
-    >
+    <div className={`flex items-center gap-2 text-[11px] ${muted ? "text-muted-foreground" : ""}`}>
       <Cpu className="h-3 w-3" aria-hidden="true" />
       <span>
-        {label} by <code className="rounded bg-muted px-1 py-0.5 font-mono text-[10px]">{modelLabel}</code>
+        {label} by{" "}
+        <code className="rounded bg-muted px-1 py-0.5 font-mono text-[10px]">{modelLabel}</code>
         {timeLabel ? <> · {timeLabel}</> : null}
       </span>
     </div>

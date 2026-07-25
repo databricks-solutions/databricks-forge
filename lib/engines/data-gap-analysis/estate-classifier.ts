@@ -34,7 +34,10 @@ function buildPrompt(tables: ClassifierTable[], assets: ReferenceDataAsset[]): s
     .join("\n");
   const tableLines = tables
     .slice(0, MAX_TABLES)
-    .map((t) => `- ${t.fqn}${t.dataDomain ? ` [domain=${t.dataDomain}]` : ""}${t.comment ? ` -- ${t.comment.slice(0, 120)}` : ""}`)
+    .map(
+      (t) =>
+        `- ${t.fqn}${t.dataDomain ? ` [domain=${t.dataDomain}]` : ""}${t.comment ? ` -- ${t.comment.slice(0, 120)}` : ""}`,
+    )
     .join("\n");
 
   return `You are a data architect mapping a customer's physical tables onto a canonical industry reference data-asset model. For each table, choose the SINGLE best-matching reference asset id, or omit the table entirely if none is a reasonable match. Do not invent asset ids.
@@ -61,7 +64,10 @@ function fallbackClassify(
         .split(/[^a-z0-9]+/)
         .filter((w) => w.length > 2),
     );
-  const assetTokens = assets.map((a) => ({ asset: a, tokens: tokenize(`${a.name} ${a.assetFamily}`) }));
+  const assetTokens = assets.map((a) => ({
+    asset: a,
+    tokens: tokenize(`${a.name} ${a.assetFamily}`),
+  }));
   const out: ClassifiedAsset[] = [];
   for (const t of tables) {
     const name = t.fqn.split(".").pop() ?? t.fqn;

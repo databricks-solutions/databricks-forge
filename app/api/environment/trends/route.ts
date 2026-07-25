@@ -27,8 +27,7 @@ export async function GET(request: NextRequest) {
       throw error;
     }
     const estateId =
-      request.nextUrl.searchParams.get("estateId") ??
-      request.nextUrl.searchParams.get("programId");
+      request.nextUrl.searchParams.get("estateId") ?? request.nextUrl.searchParams.get("programId");
 
     let scanWhere;
     if (estateId) {
@@ -38,10 +37,7 @@ export async function GET(request: NextRequest) {
     } else {
       const sharedScanIds = await listAccessibleIds(user.email, "scan");
       scanWhere = {
-        OR: [
-          { ownerEmail: user.email },
-          { scanId: { in: sharedScanIds } },
-        ],
+        OR: [{ ownerEmail: user.email }, { scanId: { in: sharedScanIds } }],
       };
     }
 

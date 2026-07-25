@@ -86,10 +86,7 @@ export function StakeholderDrillDown({
     );
   }, [profiles]);
 
-  const useCaseById = useMemo(
-    () => new Map(useCases.map((uc) => [uc.id, uc])),
-    [useCases],
-  );
+  const useCaseById = useMemo(() => new Map(useCases.map((uc) => [uc.id, uc])), [useCases]);
 
   function hasDetail(p: ProfileData): boolean {
     return (

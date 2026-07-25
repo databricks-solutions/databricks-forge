@@ -40,7 +40,10 @@ import { CatalogBrowser } from "@/components/pipeline/catalog-browser";
 import { EstateTreeView } from "@/components/environment/estate-tree-view";
 import { RelationshipsView } from "@/components/environment/relationships-view";
 import { ScanProgressCard } from "@/components/environment/scan-progress-card";
-import { EstateExecSummary, type ExecSummaryData } from "@/components/environment/estate-exec-summary";
+import {
+  EstateExecSummary,
+  type ExecSummaryData,
+} from "@/components/environment/estate-exec-summary";
 import { ScopeRetryButton } from "@/components/environment/scope-retry-button";
 import type { ScanProgressData } from "@/app/environment/types";
 import {
@@ -128,9 +131,10 @@ export default function EstateProgramDetailPage() {
   } | null>(null);
   const [loading, setLoading] = useState(true);
   const [permission, setPermission] = useState<string | null>(null);
-  const [loadError, setLoadError] = useState<
-    { kind: "not_found" | "forbidden" | "error"; message: string } | null
-  >(null);
+  const [loadError, setLoadError] = useState<{
+    kind: "not_found" | "forbidden" | "error";
+    message: string;
+  } | null>(null);
   const [running, setRunning] = useState(false);
   const [scanProgress, setScanProgress] = useState<ScanProgressData | null>(null);
   const [view, setView] = useState<"exec" | "detail">("exec");
@@ -250,12 +254,7 @@ export default function EstateProgramDetailPage() {
       toast.error(t("errors.deleteActive"));
       return;
     }
-    if (
-      !window.confirm(
-        t("deleteConfirm"),
-      )
-    )
-      return;
+    if (!window.confirm(t("deleteConfirm"))) return;
     try {
       const resp = await fetch(`/api/estate-programs/${programId}`, { method: "DELETE" });
       if (!resp.ok) {
@@ -302,7 +301,11 @@ export default function EstateProgramDetailPage() {
         toast.success(t(`toast.${action}` as "toast.pause"));
         await load();
       } catch (error) {
-        toast.error(error instanceof Error ? error.message : t("errors.control", { action: t(`actions.${action}` as "actions.pause") }));
+        toast.error(
+          error instanceof Error
+            ? error.message
+            : t("errors.control", { action: t(`actions.${action}` as "actions.pause") }),
+        );
       }
     },
     [programId, load, t],
@@ -451,7 +454,9 @@ export default function EstateProgramDetailPage() {
             <CardContent className="flex flex-col items-center gap-3 py-16 text-center">
               <Building2 aria-hidden="true" className="text-muted-foreground/50 h-10 w-10" />
               <h2 className="text-lg font-semibold">{t("states.notFoundTitle")}</h2>
-              <p className="text-muted-foreground max-w-md text-sm">{t("states.notFoundDescription")}</p>
+              <p className="text-muted-foreground max-w-md text-sm">
+                {t("states.notFoundDescription")}
+              </p>
               <Button asChild variant="outline">
                 <Link href="/environment/programs">{t("states.back")}</Link>
               </Button>
@@ -597,7 +602,11 @@ export default function EstateProgramDetailPage() {
           <p className="text-muted-foreground text-xs leading-relaxed">
             {t.rich("explainer", {
               strong: (chunks) => <strong>{chunks}</strong>,
-              link: (chunks) => <Link href="/environment" className="text-primary underline">{chunks}</Link>,
+              link: (chunks) => (
+                <Link href="/environment" className="text-primary underline">
+                  {chunks}
+                </Link>
+              ),
             })}
           </p>
         </CardContent>
@@ -656,7 +665,10 @@ export default function EstateProgramDetailPage() {
             <CardContent className="text-muted-foreground py-10 text-center text-sm">
               {t.rich("executiveEmpty", {
                 detail: (chunks) => (
-                  <button className="min-h-11 text-primary underline" onClick={() => setView("detail")}>
+                  <button
+                    className="min-h-11 text-primary underline"
+                    onClick={() => setView("detail")}
+                  >
                     {chunks}
                   </button>
                 ),
@@ -667,237 +679,291 @@ export default function EstateProgramDetailPage() {
 
       {/* DETAIL VIEW */}
       {view === "detail" && (
-      <Tabs defaultValue={defaultTab}>
-        <TabsList>
-          <TabsTrigger value="sequence">
-            {t("tabs.sequence", { count: scopes.length })}
-          </TabsTrigger>
-          <TabsTrigger value="tree">{t("tabs.ontology")}</TabsTrigger>
-          <TabsTrigger value="relationships">{t("tabs.relationships")}</TabsTrigger>
-          <TabsTrigger value="coverage">{t("tabs.coverage")}</TabsTrigger>
-          <TabsTrigger value="quality">{t("tabs.quality")}</TabsTrigger>
-        </TabsList>
+        <Tabs defaultValue={defaultTab}>
+          <TabsList>
+            <TabsTrigger value="sequence">
+              {t("tabs.sequence", { count: scopes.length })}
+            </TabsTrigger>
+            <TabsTrigger value="tree">{t("tabs.ontology")}</TabsTrigger>
+            <TabsTrigger value="relationships">{t("tabs.relationships")}</TabsTrigger>
+            <TabsTrigger value="coverage">{t("tabs.coverage")}</TabsTrigger>
+            <TabsTrigger value="quality">{t("tabs.quality")}</TabsTrigger>
+          </TabsList>
 
-        <TabsContent value="tree" className="mt-4">
-          {hasScans && tree ? (
-            <EstateTreeView tree={tree} />
-          ) : (
-            <p className="text-muted-foreground py-8 text-center text-sm">{t("empty.ontology")}</p>
-          )}
-        </TabsContent>
+          <TabsContent value="tree" className="mt-4">
+            {hasScans && tree ? (
+              <EstateTreeView tree={tree} />
+            ) : (
+              <p className="text-muted-foreground py-8 text-center text-sm">
+                {t("empty.ontology")}
+              </p>
+            )}
+          </TabsContent>
 
-        <TabsContent value="relationships" className="mt-4">
-          {hasScans ? (
-            <RelationshipsView programId={programId} />
-          ) : (
-            <p className="text-muted-foreground py-8 text-center text-sm">{t("empty.relationships")}</p>
-          )}
-        </TabsContent>
+          <TabsContent value="relationships" className="mt-4">
+            {hasScans ? (
+              <RelationshipsView programId={programId} />
+            ) : (
+              <p className="text-muted-foreground py-8 text-center text-sm">
+                {t("empty.relationships")}
+              </p>
+            )}
+          </TabsContent>
 
-        <TabsContent value="coverage" className="mt-4">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-base">{t("coverage.title")}</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-1 text-sm">
-              {(aggregate?.stats.coverageByScope ?? []).length === 0 ? (
-                <p className="text-muted-foreground">{t("coverage.empty")}</p>
-              ) : (
-                aggregate!.stats.coverageByScope.map((c) => (
-                  <div key={c.scanId} className="flex items-center justify-between border-b py-1">
-                    <span className="font-mono">{c.ucPath}</span>
-                    <span className="text-muted-foreground">
-                      {t("coverage.row", {
-                        count: c.tableCount,
-                        date: l10n.date(c.scannedAt),
-                      })}
-                    </span>
-                  </div>
-                ))
-              )}
-            </CardContent>
-          </Card>
-        </TabsContent>
-
-        <TabsContent value="quality" className="mt-4 space-y-4">
-          {rollups && (
-            <>
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-base">{t("quality.tierTitle")}</CardTitle>
-                </CardHeader>
-                <CardContent className="flex flex-wrap gap-3 text-sm">
-                  <Badge variant="outline">{t("quality.tier", { tier: t("quality.bronze"), count: rollups.tiers.bronze })}</Badge>
-                  <Badge variant="outline">{t("quality.tier", { tier: t("quality.silver"), count: rollups.tiers.silver })}</Badge>
-                  <Badge variant="outline">{t("quality.tier", { tier: t("quality.gold"), count: rollups.tiers.gold })}</Badge>
-                  <Badge variant="outline">{t("quality.tier", { tier: t("quality.system"), count: rollups.tiers.system })}</Badge>
-                  <Badge variant="outline">{t("quality.tier", { tier: t("quality.untiered"), count: rollups.tiers.unknown })}</Badge>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-base">{t("quality.metadataTitle")}</CardTitle>
-                </CardHeader>
-                <CardContent className="grid grid-cols-2 gap-2 text-sm md:grid-cols-3">
-                  <Coverage label={t("quality.description")} value={l10n.percent(rollups.coverage.tablesWithCommentPct / 100)} />
-                  <Coverage label={t("quality.owner")} value={l10n.percent(rollups.coverage.tablesWithOwnerPct / 100)} />
-                  <Coverage label={t("quality.tierCoverage")} value={l10n.percent(rollups.coverage.tablesWithTierPct / 100)} />
-                  <Coverage label={t("quality.domain")} value={l10n.percent(rollups.coverage.tablesWithDomainPct / 100)} />
-                </CardContent>
-              </Card>
-            </>
-          )}
-        </TabsContent>
-
-        <TabsContent value="sequence" className="mt-4 space-y-4">
-          {!caps.canManageScopes && (
-            <Card className="bg-muted/30">
-              <CardContent className="text-muted-foreground py-3 text-xs">
-                {t("readOnly")}
+          <TabsContent value="coverage" className="mt-4">
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-base">{t("coverage.title")}</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-1 text-sm">
+                {(aggregate?.stats.coverageByScope ?? []).length === 0 ? (
+                  <p className="text-muted-foreground">{t("coverage.empty")}</p>
+                ) : (
+                  aggregate!.stats.coverageByScope.map((c) => (
+                    <div key={c.scanId} className="flex items-center justify-between border-b py-1">
+                      <span className="font-mono">{c.ucPath}</span>
+                      <span className="text-muted-foreground">
+                        {t("coverage.row", {
+                          count: c.tableCount,
+                          date: l10n.date(c.scannedAt),
+                        })}
+                      </span>
+                    </div>
+                  ))
+                )}
               </CardContent>
             </Card>
-          )}
-          {caps.canManageScopes && (
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-base">{t("sequence.addTitle")}</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <p className="text-muted-foreground text-sm">{t("sequence.addDescription")}</p>
-              <CatalogBrowser
-                selectedSources={pickerSources}
-                onSelectionChange={(sources) => setPickerSources(sources)}
-              />
-              <details className="rounded-md border p-3">
-                <summary className="cursor-pointer text-sm font-medium">
-                  {t("sequence.advanced")}
-                </summary>
-                <div className="mt-3 grid gap-3 md:grid-cols-3">
-                  <div className="space-y-1">
-                    <label htmlFor="program-inclusion-patterns" className="text-sm font-medium">{t("sequence.includeLabel")}</label>
-                    <Input
-                      id="program-inclusion-patterns"
-                      placeholder={t("sequence.includePlaceholder")}
-                      value={inclusionPatterns}
-                      maxLength={1000}
-                      onChange={(e) => setInclusionPatterns(e.target.value)}
-                    />
-                    <p className="text-muted-foreground text-xs">{t("sequence.includeHelp")}</p>
-                  </div>
-                  <div className="space-y-1">
-                    <label htmlFor="program-workspace-id" className="text-sm font-medium">{t("sequence.workspaceLabel")}</label>
-                    <Input
-                      id="program-workspace-id"
-                      placeholder={t("sequence.workspacePlaceholder")}
-                      value={workspaceId}
-                      maxLength={200}
-                      onChange={(e) => setWorkspaceId(e.target.value)}
-                    />
-                  </div>
-                  <div className="space-y-1">
-                    <label htmlFor="program-team-label" className="text-sm font-medium">{t("sequence.teamLabel")}</label>
-                    <Input
-                      id="program-team-label"
-                      placeholder={t("sequence.teamPlaceholder")}
-                      value={teamLabel}
-                      maxLength={200}
-                      onChange={(e) => setTeamLabel(e.target.value)}
-                    />
-                  </div>
-                </div>
-              </details>
-              <div className="flex items-center gap-3">
-                <Button onClick={addScope} disabled={pickerSources.length === 0}>
-                  <Plus aria-hidden="true" className="mr-1 h-4 w-4" />
-                  {t("sequence.addButton", { count: pickerSources.length })}
-                </Button>
-                {pickerSources.length > 0 && (
-                  <span className="text-muted-foreground text-xs">
-                    {t("sequence.selected", { count: pickerSources.length })}
-                  </span>
-                )}
-              </div>
-            </CardContent>
-          </Card>
-          )}
+          </TabsContent>
 
-          <Card>
-            <CardHeader>
-              <div className="flex items-center justify-between">
-                <CardTitle className="text-base">
-                  {caps.canRunSequence ? t("sequence.runTitle") : t("sequence.title")}
-                </CardTitle>
-                {caps.canRunSequence && (
-                  <Button
-                    size="sm"
-                    onClick={runSequence}
-                    disabled={running || isActive || plannedCount === 0}
-                  >
-                    <Play aria-hidden="true" className="mr-1 h-4 w-4" />
-                    {running || isActive ? t("actions.scanning") : t("sequence.runPlanned", { count: plannedCount })}
-                  </Button>
-                )}
-              </div>
-            </CardHeader>
-            <CardContent className="space-y-1 text-sm">
-              {scopes.length === 0 ? (
-                <p className="text-muted-foreground">{t("sequence.empty")}</p>
-              ) : (
-                scopes.map((s, i) => (
-                  <div key={s.id} className="flex items-center gap-3 border-b py-1.5">
-                    <span className="text-muted-foreground w-5 shrink-0 text-xs">{i + 1}.</span>
-                    <div className="min-w-0">
-                      <span className="font-mono">{s.label}</span>
-                      {(s.inclusionPatterns || s.workspaceId || s.teamLabel) && (
-                        <div className="text-muted-foreground mt-0.5 flex flex-wrap gap-2 text-xs">
-                          {s.inclusionPatterns && <span>{t("sequence.includeValue", { value: s.inclusionPatterns })}</span>}
-                          {s.workspaceId && <span>{t("sequence.workspaceValue", { value: s.workspaceId })}</span>}
-                          {s.teamLabel && <span>{t("sequence.teamValue", { value: s.teamLabel })}</span>}
-                        </div>
-                      )}
+          <TabsContent value="quality" className="mt-4 space-y-4">
+            {rollups && (
+              <>
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-base">{t("quality.tierTitle")}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="flex flex-wrap gap-3 text-sm">
+                    <Badge variant="outline">
+                      {t("quality.tier", {
+                        tier: t("quality.bronze"),
+                        count: rollups.tiers.bronze,
+                      })}
+                    </Badge>
+                    <Badge variant="outline">
+                      {t("quality.tier", {
+                        tier: t("quality.silver"),
+                        count: rollups.tiers.silver,
+                      })}
+                    </Badge>
+                    <Badge variant="outline">
+                      {t("quality.tier", { tier: t("quality.gold"), count: rollups.tiers.gold })}
+                    </Badge>
+                    <Badge variant="outline">
+                      {t("quality.tier", {
+                        tier: t("quality.system"),
+                        count: rollups.tiers.system,
+                      })}
+                    </Badge>
+                    <Badge variant="outline">
+                      {t("quality.tier", {
+                        tier: t("quality.untiered"),
+                        count: rollups.tiers.unknown,
+                      })}
+                    </Badge>
+                  </CardContent>
+                </Card>
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-base">{t("quality.metadataTitle")}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="grid grid-cols-2 gap-2 text-sm md:grid-cols-3">
+                    <Coverage
+                      label={t("quality.description")}
+                      value={l10n.percent(rollups.coverage.tablesWithCommentPct / 100)}
+                    />
+                    <Coverage
+                      label={t("quality.owner")}
+                      value={l10n.percent(rollups.coverage.tablesWithOwnerPct / 100)}
+                    />
+                    <Coverage
+                      label={t("quality.tierCoverage")}
+                      value={l10n.percent(rollups.coverage.tablesWithTierPct / 100)}
+                    />
+                    <Coverage
+                      label={t("quality.domain")}
+                      value={l10n.percent(rollups.coverage.tablesWithDomainPct / 100)}
+                    />
+                  </CardContent>
+                </Card>
+              </>
+            )}
+          </TabsContent>
+
+          <TabsContent value="sequence" className="mt-4 space-y-4">
+            {!caps.canManageScopes && (
+              <Card className="bg-muted/30">
+                <CardContent className="text-muted-foreground py-3 text-xs">
+                  {t("readOnly")}
+                </CardContent>
+              </Card>
+            )}
+            {caps.canManageScopes && (
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-base">{t("sequence.addTitle")}</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  <p className="text-muted-foreground text-sm">{t("sequence.addDescription")}</p>
+                  <CatalogBrowser
+                    selectedSources={pickerSources}
+                    onSelectionChange={(sources) => setPickerSources(sources)}
+                  />
+                  <details className="rounded-md border p-3">
+                    <summary className="cursor-pointer text-sm font-medium">
+                      {t("sequence.advanced")}
+                    </summary>
+                    <div className="mt-3 grid gap-3 md:grid-cols-3">
+                      <div className="space-y-1">
+                        <label htmlFor="program-inclusion-patterns" className="text-sm font-medium">
+                          {t("sequence.includeLabel")}
+                        </label>
+                        <Input
+                          id="program-inclusion-patterns"
+                          placeholder={t("sequence.includePlaceholder")}
+                          value={inclusionPatterns}
+                          maxLength={1000}
+                          onChange={(e) => setInclusionPatterns(e.target.value)}
+                        />
+                        <p className="text-muted-foreground text-xs">{t("sequence.includeHelp")}</p>
+                      </div>
+                      <div className="space-y-1">
+                        <label htmlFor="program-workspace-id" className="text-sm font-medium">
+                          {t("sequence.workspaceLabel")}
+                        </label>
+                        <Input
+                          id="program-workspace-id"
+                          placeholder={t("sequence.workspacePlaceholder")}
+                          value={workspaceId}
+                          maxLength={200}
+                          onChange={(e) => setWorkspaceId(e.target.value)}
+                        />
+                      </div>
+                      <div className="space-y-1">
+                        <label htmlFor="program-team-label" className="text-sm font-medium">
+                          {t("sequence.teamLabel")}
+                        </label>
+                        <Input
+                          id="program-team-label"
+                          placeholder={t("sequence.teamPlaceholder")}
+                          value={teamLabel}
+                          maxLength={200}
+                          onChange={(e) => setTeamLabel(e.target.value)}
+                        />
+                      </div>
                     </div>
-                    {s.status === "failed" && s.errorMessage && (
-                      <span
-                        className="text-destructive ml-2 max-w-[16rem] truncate text-xs"
-                        title={s.errorMessage}
-                      >
-                        {s.errorMessage}
+                  </details>
+                  <div className="flex items-center gap-3">
+                    <Button onClick={addScope} disabled={pickerSources.length === 0}>
+                      <Plus aria-hidden="true" className="mr-1 h-4 w-4" />
+                      {t("sequence.addButton", { count: pickerSources.length })}
+                    </Button>
+                    {pickerSources.length > 0 && (
+                      <span className="text-muted-foreground text-xs">
+                        {t("sequence.selected", { count: pickerSources.length })}
                       </span>
                     )}
-                    <Badge
-                      variant={STATUS_VARIANT[s.status] ?? "outline"}
-                      className="ml-auto shrink-0"
-                    >
-                      {t(`status.${s.status}` as "status.planned")}
-                    </Badge>
-                    {caps.canRunSequence && s.status === "failed" && (
-                      <ScopeRetryButton
-                        programId={programId}
-                        scopeId={s.id}
-                        label={s.label}
-                        disabled={isActive}
-                        onRetried={load}
-                      />
-                    )}
-                    {/* Remove is allowed for scopes that aren't mid-scan. */}
-                    {caps.canManageScopes && s.status !== "queued" && s.status !== "running" && (
-                      <button
-                        type="button"
-                        onClick={() => removeScope(s.id)}
-                        title={t("sequence.remove")}
-                        aria-label={t("sequence.removeLabel", { label: s.label })}
-                        className="text-muted-foreground hover:text-destructive inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                      >
-                        <X aria-hidden="true" className="h-4 w-4" />
-                      </button>
-                    )}
                   </div>
-                ))
-              )}
-            </CardContent>
-          </Card>
-        </TabsContent>
-      </Tabs>
+                </CardContent>
+              </Card>
+            )}
+
+            <Card>
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <CardTitle className="text-base">
+                    {caps.canRunSequence ? t("sequence.runTitle") : t("sequence.title")}
+                  </CardTitle>
+                  {caps.canRunSequence && (
+                    <Button
+                      size="sm"
+                      onClick={runSequence}
+                      disabled={running || isActive || plannedCount === 0}
+                    >
+                      <Play aria-hidden="true" className="mr-1 h-4 w-4" />
+                      {running || isActive
+                        ? t("actions.scanning")
+                        : t("sequence.runPlanned", { count: plannedCount })}
+                    </Button>
+                  )}
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-1 text-sm">
+                {scopes.length === 0 ? (
+                  <p className="text-muted-foreground">{t("sequence.empty")}</p>
+                ) : (
+                  scopes.map((s, i) => (
+                    <div key={s.id} className="flex items-center gap-3 border-b py-1.5">
+                      <span className="text-muted-foreground w-5 shrink-0 text-xs">{i + 1}.</span>
+                      <div className="min-w-0">
+                        <span className="font-mono">{s.label}</span>
+                        {(s.inclusionPatterns || s.workspaceId || s.teamLabel) && (
+                          <div className="text-muted-foreground mt-0.5 flex flex-wrap gap-2 text-xs">
+                            {s.inclusionPatterns && (
+                              <span>
+                                {t("sequence.includeValue", { value: s.inclusionPatterns })}
+                              </span>
+                            )}
+                            {s.workspaceId && (
+                              <span>{t("sequence.workspaceValue", { value: s.workspaceId })}</span>
+                            )}
+                            {s.teamLabel && (
+                              <span>{t("sequence.teamValue", { value: s.teamLabel })}</span>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                      {s.status === "failed" && s.errorMessage && (
+                        <span
+                          className="text-destructive ml-2 max-w-[16rem] truncate text-xs"
+                          title={s.errorMessage}
+                        >
+                          {s.errorMessage}
+                        </span>
+                      )}
+                      <Badge
+                        variant={STATUS_VARIANT[s.status] ?? "outline"}
+                        className="ml-auto shrink-0"
+                      >
+                        {t(`status.${s.status}` as "status.planned")}
+                      </Badge>
+                      {caps.canRunSequence && s.status === "failed" && (
+                        <ScopeRetryButton
+                          programId={programId}
+                          scopeId={s.id}
+                          label={s.label}
+                          disabled={isActive}
+                          onRetried={load}
+                        />
+                      )}
+                      {/* Remove is allowed for scopes that aren't mid-scan. */}
+                      {caps.canManageScopes && s.status !== "queued" && s.status !== "running" && (
+                        <button
+                          type="button"
+                          onClick={() => removeScope(s.id)}
+                          title={t("sequence.remove")}
+                          aria-label={t("sequence.removeLabel", { label: s.label })}
+                          className="text-muted-foreground hover:text-destructive inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                        >
+                          <X aria-hidden="true" className="h-4 w-4" />
+                        </button>
+                      )}
+                    </div>
+                  ))
+                )}
+              </CardContent>
+            </Card>
+          </TabsContent>
+        </Tabs>
       )}
     </div>
   );

@@ -10,10 +10,7 @@
  */
 
 import { NextResponse } from "next/server";
-import {
-  isDemoModeEnabled,
-  setDemoModeEnabled,
-} from "@/lib/demo/config";
+import { isDemoModeEnabled, setDemoModeEnabled } from "@/lib/demo/config";
 import { requireUser, ForgeAuthError } from "@/lib/auth/route-user";
 import { logActivity } from "@/lib/lakebase/activity-log";
 import { logger } from "@/lib/logger";
@@ -60,14 +57,8 @@ export async function PATCH(request: Request) {
 
   const patch = (body ?? {}) as { demoModeEnabled?: unknown };
 
-  if (
-    patch.demoModeEnabled !== undefined &&
-    typeof patch.demoModeEnabled !== "boolean"
-  ) {
-    return NextResponse.json(
-      { error: "demoModeEnabled must be a boolean" },
-      { status: 400 },
-    );
+  if (patch.demoModeEnabled !== undefined && typeof patch.demoModeEnabled !== "boolean") {
+    return NextResponse.json({ error: "demoModeEnabled must be a boolean" }, { status: 400 });
   }
 
   try {

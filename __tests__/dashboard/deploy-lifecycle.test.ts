@@ -124,19 +124,17 @@ describe("deployDashboardDraftAndVerify", () => {
     const { deps } = dependencies();
 
     const deployment = deployDashboardDraftAndVerify(
-        {
-          mode: "create",
-          displayName: "Sales",
-          serializedDashboard: serializedDashboard(),
-          warehouseId: "warehouse-1",
-          publish: true,
-          auth: { mode: "user", oboToken: OBO_TOKEN },
-        },
-        deps,
-      );
-    await expect(deployment).rejects.toBeInstanceOf(
-      DashboardDraftReadBackDisabledError,
+      {
+        mode: "create",
+        displayName: "Sales",
+        serializedDashboard: serializedDashboard(),
+        warehouseId: "warehouse-1",
+        publish: true,
+        auth: { mode: "user", oboToken: OBO_TOKEN },
+      },
+      deps,
     );
+    await expect(deployment).rejects.toBeInstanceOf(DashboardDraftReadBackDisabledError);
     await expect(deployment).rejects.toMatchObject({
       code: "DASHBOARD_DRAFT_READBACK_DISABLED",
     });
@@ -168,9 +166,7 @@ describe("deployDashboardDraftAndVerify", () => {
       publicationStatus: "published",
       readBack: { datasetCount: 1, widgetCount: 1, contractOk: true },
     });
-    expect(deps.createDashboard).toHaveBeenCalledWith(
-      expect.objectContaining({ auth }),
-    );
+    expect(deps.createDashboard).toHaveBeenCalledWith(expect.objectContaining({ auth }));
     expect(deps.getDashboard).toHaveBeenCalledWith("dash-1", auth);
     expect(deps.publishDashboard).toHaveBeenCalledWith("dash-1", "warehouse-1", false, auth);
     expect(deps.getPublishedDashboard).toHaveBeenCalledWith("dash-1", auth);
@@ -325,17 +321,17 @@ describe("deployDashboardDraftAndVerify", () => {
     });
 
     const deployment = deployDashboardDraftAndVerify(
-        {
-          mode: "update",
-          dashboardId: "dash-1",
-          displayName: "Sales",
-          serializedDashboard: serializedDashboard(),
-          warehouseId: "warehouse-1",
-          publish: false,
-          auth: { mode: "user", oboToken: OBO_TOKEN },
-        },
-        deps,
-      );
+      {
+        mode: "update",
+        dashboardId: "dash-1",
+        displayName: "Sales",
+        serializedDashboard: serializedDashboard(),
+        warehouseId: "warehouse-1",
+        publish: false,
+        auth: { mode: "user", oboToken: OBO_TOKEN },
+      },
+      deps,
+    );
     await expect(deployment).rejects.toBeInstanceOf(DashboardReadBackValidationError);
     await expect(deployment).rejects.toMatchObject({
       dashboardId: "dash-1",

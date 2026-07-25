@@ -71,7 +71,8 @@ export async function POST(request: NextRequest) {
       typeof body.lineageDepth === "number"
         ? Math.min(Math.max(Math.round(body.lineageDepth), 1), 10)
         : undefined;
-    const lineageEnabled = typeof body.lineageEnabled === "boolean" ? body.lineageEnabled : undefined;
+    const lineageEnabled =
+      typeof body.lineageEnabled === "boolean" ? body.lineageEnabled : undefined;
     const lineageDirection =
       body.lineageDirection === "upstream" ||
       body.lineageDirection === "both" ||

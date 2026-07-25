@@ -18,13 +18,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
   Table,
@@ -44,10 +38,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { PILLAR_LABEL } from "@/lib/engines/waf-assessment/types";
-import type {
-  WafAssessmentDetail,
-  WafPillar,
-} from "@/lib/engines/waf-assessment/types";
+import type { WafAssessmentDetail, WafPillar } from "@/lib/engines/waf-assessment/types";
 
 const PILLAR_ORDER: WafPillar[] = [
   "governance",
@@ -163,8 +154,11 @@ function CompareInner() {
             <CardTitle>Missing assessments</CardTitle>
             <CardDescription>
               The compare view needs a <code>from</code> and a <code>to</code> assessment ID. Pick a
-              past run from the <Link href="/assessment" className="underline">History tab</Link> to
-              compare against the latest.
+              past run from the{" "}
+              <Link href="/assessment" className="underline">
+                History tab
+              </Link>{" "}
+              to compare against the latest.
             </CardDescription>
           </CardHeader>
         </Card>
@@ -240,13 +234,7 @@ function BackLink() {
   );
 }
 
-function ScoreCompare({
-  from,
-  to,
-}: {
-  from: WafAssessmentDetail;
-  to: WafAssessmentDetail;
-}) {
+function ScoreCompare({ from, to }: { from: WafAssessmentDetail; to: WafAssessmentDetail }) {
   const rows: Array<{ label: string; from: number | null; to: number | null }> = [
     { label: "Overall", from: from.overallScore, to: to.overallScore },
     ...PILLAR_ORDER.map((p) => ({
@@ -260,9 +248,9 @@ function ScoreCompare({
       <CardHeader className="pb-2">
         <CardTitle className="text-sm font-medium">Score deltas</CardTitle>
         <CardDescription>
-          <span className="font-medium">Baseline</span> {fmtDate(from.completedAt ?? from.createdAt)}{" "}
-          → <span className="font-medium">Comparison</span>{" "}
-          {fmtDate(to.completedAt ?? to.createdAt)}
+          <span className="font-medium">Baseline</span>{" "}
+          {fmtDate(from.completedAt ?? from.createdAt)} →{" "}
+          <span className="font-medium">Comparison</span> {fmtDate(to.completedAt ?? to.createdAt)}
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -296,10 +284,7 @@ function ScoreDeltaCard({
         </Badge>
       </div>
       <div className="mt-1 text-xs text-muted-foreground">
-        Was {fmtScore(from)}{" "}
-        {delta != null && delta !== 0 && (
-          <DeltaBadge delta={delta} />
-        )}
+        Was {fmtScore(from)} {delta != null && delta !== 0 && <DeltaBadge delta={delta} />}
       </div>
     </div>
   );
@@ -337,11 +322,7 @@ function DriftSummary({ diff }: { diff: DiffRow[] }) {
       <SummaryCell label="Score moved" value={counts.moved} tone="neutral" />
       <SummaryCell label="Unchanged" value={counts.unchanged} tone="neutral" />
       {(counts.added > 0 || counts.removed > 0) && (
-        <SummaryCell
-          label="Catalog Δ"
-          value={counts.added + counts.removed}
-          tone="neutral"
-        />
+        <SummaryCell label="Catalog Δ" value={counts.added + counts.removed} tone="neutral" />
       )}
     </div>
   );
@@ -484,10 +465,7 @@ function StatusPill({ row }: { row: DiffRow }) {
   );
 }
 
-function buildDiff(
-  from: WafAssessmentDetail | null,
-  to: WafAssessmentDetail | null,
-): DiffRow[] {
+function buildDiff(from: WafAssessmentDetail | null, to: WafAssessmentDetail | null): DiffRow[] {
   if (!from || !to) return [];
   const fromMap = new Map(from.results.map((r) => [r.wafId, r]));
   const toMap = new Map(to.results.map((r) => [r.wafId, r]));
@@ -529,7 +507,8 @@ function buildDiff(
     const da = order.indexOf(a.category);
     const db = order.indexOf(b.category);
     if (da !== db) return da - db;
-    if (a.pillar !== b.pillar) return PILLAR_ORDER.indexOf(a.pillar) - PILLAR_ORDER.indexOf(b.pillar);
+    if (a.pillar !== b.pillar)
+      return PILLAR_ORDER.indexOf(a.pillar) - PILLAR_ORDER.indexOf(b.pillar);
     return a.wafId.localeCompare(b.wafId);
   });
   return rows;

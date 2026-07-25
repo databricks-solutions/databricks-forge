@@ -14,12 +14,7 @@ vi.mock("@/lib/lakebase/auth-errors", () => ({
   isAuthErrorMessage: vi.fn(() => false),
 }));
 
-import {
-  cancelJob,
-  getJobController,
-  getJobStatus,
-  startJob,
-} from "@/lib/genie/engine-status";
+import { cancelJob, getJobController, getJobStatus, startJob } from "@/lib/genie/engine-status";
 
 describe("Genie engine-status cancellation", () => {
   beforeEach(() => vi.clearAllMocks());

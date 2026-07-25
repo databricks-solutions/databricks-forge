@@ -51,12 +51,7 @@ export function ShareButton({
 
   return (
     <>
-      <Button
-        variant={variant}
-        size={size}
-        onClick={() => setOpen(true)}
-        className="gap-1.5"
-      >
+      <Button variant={variant} size={size} onClick={() => setOpen(true)} className="gap-1.5">
         <Share2 className="h-4 w-4" />
         <span>Share</span>
       </Button>
@@ -77,11 +72,7 @@ export function ShareButton({
  * the viewer (vs owned by them). Drop this next to the title on detail
  * pages.
  */
-export function SharedByBadge({
-  ownerEmail,
-}: {
-  ownerEmail: string | null | undefined;
-}) {
+export function SharedByBadge({ ownerEmail }: { ownerEmail: string | null | undefined }) {
   const { email, isolationEnabled } = useCurrentUser();
   if (!isolationEnabled) return null;
   if (!email || !ownerEmail) return null;

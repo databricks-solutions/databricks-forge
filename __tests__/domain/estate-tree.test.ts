@@ -7,7 +7,13 @@ import {
 import type { CanonicalEntity } from "@/lib/domain/types";
 
 const details: AggregateDetailRow[] = [
-  { tableFqn: "main.sales.customer", dataDomain: "Sales", dataTier: "gold", comment: "c", governanceScore: 80 },
+  {
+    tableFqn: "main.sales.customer",
+    dataDomain: "Sales",
+    dataTier: "gold",
+    comment: "c",
+    governanceScore: 80,
+  },
   { tableFqn: "main.sales.orders", dataDomain: "Sales", dataTier: "silver", governanceScore: 40 },
   { tableFqn: "main.ops.events", dataDomain: "Operations", generatedDescription: "g" },
   { tableFqn: "main.misc.scratch" }, // no domain -> Uncategorised, ungrouped

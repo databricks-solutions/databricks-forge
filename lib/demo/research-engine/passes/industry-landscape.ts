@@ -28,8 +28,7 @@ export async function runIndustryLandscape(
 ): Promise<IndustryLandscapeAnalysis> {
   const { llm, logger: log, signal, maxTokens, modelTier } = opts;
 
-  const prompt = INDUSTRY_LANDSCAPE_PROMPT
-    .replace("{industry_name}", industryName)
+  const prompt = INDUSTRY_LANDSCAPE_PROMPT.replace("{industry_name}", industryName)
     .replace("{outcome_map_context}", outcomeMapContext.slice(0, 8_000))
     .replace("{benchmark_context}", benchmarkContext.slice(0, 4_000))
     .replace("{source_text}", sourceText.slice(0, 12_000));

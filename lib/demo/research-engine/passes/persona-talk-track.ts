@@ -75,12 +75,12 @@ export async function runPersonaTalkTrack(
     ? JSON.stringify(industryLandscape, null, 2).slice(0, 4_000)
     : "null";
   const killerMomentsJson = JSON.stringify(killerMoments.slice(0, 5), null, 2).slice(0, 6_000);
-  const keyQuotesJson = keyQuotes && keyQuotes.length > 0
-    ? JSON.stringify(keyQuotes.slice(0, 15), null, 2).slice(0, 6_000)
-    : "[]  // No pre-extracted quotes available.";
+  const keyQuotesJson =
+    keyQuotes && keyQuotes.length > 0
+      ? JSON.stringify(keyQuotes.slice(0, 15), null, 2).slice(0, 6_000)
+      : "[]  // No pre-extracted quotes available.";
 
-  const prompt = PERSONA_TALK_TRACK_PROMPT
-    .replace("{customer_name}", customerName)
+  const prompt = PERSONA_TALK_TRACK_PROMPT.replace("{customer_name}", customerName)
     .replace("{industry_name}", industryName)
     .replace("{executive_brief_json}", execBriefJson)
     .replace("{company_profile_json}", companyProfileJson)

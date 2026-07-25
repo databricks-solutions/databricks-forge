@@ -125,7 +125,9 @@ export async function recordSpan(input: TraceSpanInput): Promise<void> {
         span_type: input.spanType,
         start_time_ns: start * 1_000_000,
         end_time_ns: end * 1_000_000,
-        status: input.errorMessage ? { status_code: "ERROR", description: input.errorMessage } : { status_code: "OK" },
+        status: input.errorMessage
+          ? { status_code: "ERROR", description: input.errorMessage }
+          : { status_code: "OK" },
         inputs: sanitize(input.inputs),
         outputs: sanitize(input.outputs),
         attributes: sanitize(input.attributes ?? {}),

@@ -5,10 +5,8 @@ const mocks = vi.hoisted(() => ({
 }));
 
 vi.mock("@/lib/prisma", () => ({
-  withPrisma: async <T,>(
-    callback: (prisma: {
-      forgeBackgroundJob: { upsert: typeof mocks.upsert };
-    }) => Promise<T>,
+  withPrisma: async <T>(
+    callback: (prisma: { forgeBackgroundJob: { upsert: typeof mocks.upsert } }) => Promise<T>,
   ) => callback({ forgeBackgroundJob: { upsert: mocks.upsert } }),
 }));
 

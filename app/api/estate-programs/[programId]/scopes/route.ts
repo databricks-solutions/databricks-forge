@@ -39,7 +39,8 @@ export async function POST(
       // caller learns why instead of silently dropping the row.
       if (!result.ok) {
         const hasUc =
-          raw && typeof raw === "object" &&
+          raw &&
+          typeof raw === "object" &&
           typeof (raw as Record<string, unknown>).ucMetadata === "string" &&
           ((raw as Record<string, unknown>).ucMetadata as string).trim();
         if (hasUc) {

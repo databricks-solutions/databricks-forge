@@ -106,10 +106,7 @@ function quotedMetricReference(name: string, label: string): string {
 }
 
 function executableFqn(fqn: string): string {
-  return validateFqn(fqn, "temporary metric view")
-    .split(".")
-    .map(quoteIdent)
-    .join(".");
+  return validateFqn(fqn, "temporary metric view").split(".").map(quoteIdent).join(".");
 }
 
 function quotedUcIdentifier(name: string, label: string): string {
@@ -157,7 +154,9 @@ interface CurrentMetricViewYaml {
 
 function currentYamlEntries(value: unknown): CurrentYamlEntry[] {
   return Array.isArray(value)
-    ? value.filter((entry): entry is CurrentYamlEntry => Boolean(entry && typeof entry === "object"))
+    ? value.filter((entry): entry is CurrentYamlEntry =>
+        Boolean(entry && typeof entry === "object"),
+      )
     : [];
 }
 
@@ -211,8 +210,7 @@ export function extractMetricViewProbeInputs(yaml: string): MetricViewProbeInput
     const expression = String(entry.expr ?? "");
     return {
       name: String(entry.name ?? ""),
-      complex:
-        /\/|\bFILTER\s*\(|\bMEASURE\s*\(/i.test(expression) || entry.window !== undefined,
+      complex: /\/|\bFILTER\s*\(|\bMEASURE\s*\(/i.test(expression) || entry.window !== undefined,
     };
   });
 
@@ -365,7 +363,10 @@ export async function runMetricViewProbes(
   };
 }
 
-function prepareTempMetricView(ddl: string, resourcePrefix: string): {
+function prepareTempMetricView(
+  ddl: string,
+  resourcePrefix: string,
+): {
   handle: TempMetricViewHandle;
   tempDdl: string;
 } {
@@ -413,12 +414,7 @@ export async function dropTempMetricView(
   const fqn = [handle.catalog, handle.schema, handle.tempName]
     .map((part) => quotedUcIdentifier(part, "temporary metric view identifier"))
     .join(".");
-  await sqlExecutor.execute(
-    `DROP VIEW IF EXISTS ${fqn}`,
-    undefined,
-    undefined,
-    EXECUTE_TIMEOUT,
-  );
+  await sqlExecutor.execute(`DROP VIEW IF EXISTS ${fqn}`, undefined, undefined, EXECUTE_TIMEOUT);
 }
 
 export async function dryRunMetricViewDdlWithProbes(input: {
@@ -463,11 +459,7 @@ export async function dryRunMetricViewDdlWithProbes(input: {
     probesOk = probeResult.ok;
     evidence.push(...probeResult.evidence);
   } catch (error) {
-    if (
-      error instanceof Error &&
-      error.name === "TempMetricViewCreateError" &&
-      "handle" in error
-    ) {
+    if (error instanceof Error && error.name === "TempMetricViewCreateError" && "handle" in error) {
       handle = (error as TempMetricViewCreateError).handle;
     }
     unverified = isPermissionError(error);

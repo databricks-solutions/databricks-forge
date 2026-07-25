@@ -1,9 +1,5 @@
 import { describe, it, expect } from "vitest";
-import {
-  buildTestQuery,
-  classifySqlError,
-  isSqlRepairEnabled,
-} from "@/lib/genie/sql-validator";
+import { buildTestQuery, classifySqlError, isSqlRepairEnabled } from "@/lib/genie/sql-validator";
 
 describe("buildTestQuery", () => {
   it("returns the trusted_asset SQL unchanged", () => {

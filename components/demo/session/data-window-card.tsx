@@ -49,10 +49,7 @@ export function DataWindowCard({
     .sort((a, b) => a.tableName.localeCompare(b.tableName));
 
   return (
-    <section
-      className="rounded-lg border bg-card p-4"
-      aria-label="Demo data window"
-    >
+    <section className="rounded-lg border bg-card p-4" aria-label="Demo data window">
       <header className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-2">
           <Calendar className="h-4 w-4 text-muted-foreground" aria-hidden="true" />
@@ -65,9 +62,7 @@ export function DataWindowCard({
           <span className="text-muted-foreground">
             {formatDate(dateWindow.startDate)} &rarr; {formatDate(dateWindow.endDate)}
           </span>
-          <span className="text-muted-foreground/80">
-            ({dateWindow.dateRangeDays} days)
-          </span>
+          <span className="text-muted-foreground/80">({dateWindow.dateRangeDays} days)</span>
         </div>
       </header>
 
@@ -91,15 +86,11 @@ export function DataWindowCard({
                 return (
                   <tr key={row.tableName} className="border-t">
                     <td className="px-2 py-1.5 font-mono">{row.tableName}</td>
-                    <td className="px-2 py-1.5 font-mono text-muted-foreground">
-                      {dc.columnName}
-                    </td>
+                    <td className="px-2 py-1.5 font-mono text-muted-foreground">{dc.columnName}</td>
                     <td className="px-2 py-1.5 font-mono">
                       {formatDate(dc.minDate)} &rarr; {formatDate(dc.maxDate)}
                     </td>
-                    <td className="px-2 py-1.5 tabular-nums">
-                      {dc.rowsLast90d.toLocaleString()}
-                    </td>
+                    <td className="px-2 py-1.5 tabular-nums">{dc.rowsLast90d.toLocaleString()}</td>
                     <td className="px-2 py-1.5">
                       {stale ? (
                         <span className="inline-flex items-center gap-1 rounded-full bg-red-100 px-2 py-0.5 font-medium text-red-700 dark:bg-red-950 dark:text-red-300">

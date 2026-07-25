@@ -1697,7 +1697,13 @@
       "manage": "Gerenciar programas de ambiente",
       "manageDescription": "Agrupe várias varreduras em uma visão corporativa e execute-as por área."
     },
-    "actions": { "exporting": "Exportando…", "report": "Relatório do ambiente", "newScan": "Nova varredura", "scanning": "Varrendo…", "scan": "Varrer ambiente" },
+    "actions": {
+      "exporting": "Exportando…",
+      "report": "Relatório do ambiente",
+      "newScan": "Nova varredura",
+      "scanning": "Varrendo…",
+      "scan": "Varrer ambiente"
+    },
     "toast": {
       "loadDetailsFailed": "Não foi possível carregar os detalhes da varredura",
       "deleted": "Varredura excluída",
@@ -1716,7 +1722,17 @@
       "focused": "Foco em <strong>{focus}</strong> — com base na avaliação WAF mais recente.",
       "back": "Voltar à avaliação",
       "reasons": {
-        "lineage": "cobertura de linhagem", "tags": "marcação de tabelas", "format": "formatos de tabela", "managedTables": "tabelas gerenciadas", "accessControl": "controle de acesso", "quality": "qualidade de dados", "dltExpectations": "expectativas DLT", "constraints": "restrições de tabela", "runtimeVersions": "versões de runtime", "photon": "uso do Photon", "costAttributionTags": "marcação para atribuição de custos"
+        "lineage": "cobertura de linhagem",
+        "tags": "marcação de tabelas",
+        "format": "formatos de tabela",
+        "managedTables": "tabelas gerenciadas",
+        "accessControl": "controle de acesso",
+        "quality": "qualidade de dados",
+        "dltExpectations": "expectativas DLT",
+        "constraints": "restrições de tabela",
+        "runtimeVersions": "versões de runtime",
+        "photon": "uso do Photon",
+        "costAttributionTags": "marcação para atribuição de custos"
       }
     },
     "newScan": {
@@ -1739,12 +1755,31 @@
       "erd": "Não há dados de DER disponíveis."
     },
     "tabs": {
-      "state": "Estado do ambiente", "summary": "Resumo", "domains": "Domínios", "relationships": "Relacionamentos", "tables": "Tabelas ({count})", "coverage": "Cobertura de tabelas", "governance": "Governança", "export": "Exportar", "portfolio": "Portfólio",
+      "state": "Estado do ambiente",
+      "summary": "Resumo",
+      "domains": "Domínios",
+      "relationships": "Relacionamentos",
+      "tables": "Tabelas ({count})",
+      "coverage": "Cobertura de tabelas",
+      "governance": "Governança",
+      "export": "Exportar",
+      "portfolio": "Portfólio",
       "portfolioHelp": "Consolidação executiva entre ambientes: inventário corporativo, fragmentação e plano federado de evolução."
     },
     "tables": {
       "filter": "Filtrar por nome da tabela ou domínio…",
-      "headers": { "table": "Tabela", "domain": "Domínio", "tier": "Camada", "size": "Tamanho", "rows": "Linhas", "owner": "Proprietário", "governance": "Gov.", "sensitivity": "Sensibilidade", "modified": "Modificada", "via": "Origem" },
+      "headers": {
+        "table": "Tabela",
+        "domain": "Domínio",
+        "tier": "Camada",
+        "size": "Tamanho",
+        "rows": "Linhas",
+        "owner": "Proprietário",
+        "governance": "Gov.",
+        "sensitivity": "Sensibilidade",
+        "modified": "Modificada",
+        "via": "Origem"
+      },
       "help": {
         "table": "Nome totalmente qualificado da tabela e sua descrição, quando disponível.",
         "domain": "Domínio de negócio atribuído pela análise de IA.",
@@ -1846,21 +1881,55 @@
         "reviewBody": "Todos os escopos foram varridos. Navegue pela ontologia, revise a qualidade e exporte o pacote executivo."
       },
       "actions": {
-        "run": "Executar sequência", "scanning": "Varrendo…", "pause": "pausar", "resume": "retomar", "cancel": "cancelar",
-        "resumeCount": "Retomar ({count})", "pauseTitle": "Reter escopos ainda não iniciados", "cancelTitle": "Cancelar escopos restantes", "delete": "Excluir este programa"
+        "run": "Executar sequência",
+        "scanning": "Varrendo…",
+        "pause": "pausar",
+        "resume": "retomar",
+        "cancel": "cancelar",
+        "resumeCount": "Retomar ({count})",
+        "pauseTitle": "Reter escopos ainda não iniciados",
+        "cancelTitle": "Cancelar escopos restantes",
+        "delete": "Excluir este programa"
       },
-      "exports": {"pdf": "Pacote executivo (PDF)", "pdfTitle": "Pacote executivo em PDF", "excel": "Dados detalhados", "excelTitle": "Pasta detalhada por tabela"},
+      "exports": {
+        "pdf": "Pacote executivo (PDF)",
+        "pdfTitle": "Pacote executivo em PDF",
+        "excel": "Dados detalhados",
+        "excelTitle": "Pasta detalhada por tabela"
+      },
       "explainer": "Um <strong>programa de patrimônio</strong> agrupa várias <link>varreduras de ambiente</link> em uma visão da empresa. Cada escopo produz uma varredura normal e a vincula ao programa. Excluir o programa preserva essas varreduras e remove somente o agrupamento e a sequência planejada.",
       "progress": "Varrendo {label} · {complete} de {total} concluídos",
-      "views": {"executive": "Resumo executivo", "detail": "Detalhes"},
+      "views": { "executive": "Resumo executivo", "detail": "Detalhes" },
       "executiveEmpty": "O resumo executivo aparece após a conclusão da primeira varredura. Acesse <detail>Detalhes</detail> para planejar e executar a sequência.",
-      "tabs": {"sequence": "{count, plural, =0 {Sequência de varredura} other {Sequência de varredura (#)}}", "ontology": "Ontologia", "relationships": "Relacionamentos", "coverage": "Cobertura da varredura", "quality": "Qualidade e camadas"},
-      "empty": {"ontology": "Ainda não há varreduras. Adicione escopos na sequência e execute-os para criar a ontologia.", "relationships": "Ainda não há varreduras. Os relacionamentos aparecem após a conclusão de um escopo."},
-      "coverage": {"title": "Áreas de negócio varridas", "empty": "Ainda não há varreduras vinculadas a este programa.", "row": "{count, plural, one {# tabela} other {# tabelas}} · {date}"},
+      "tabs": {
+        "sequence": "{count, plural, =0 {Sequência de varredura} other {Sequência de varredura (#)}}",
+        "ontology": "Ontologia",
+        "relationships": "Relacionamentos",
+        "coverage": "Cobertura da varredura",
+        "quality": "Qualidade e camadas"
+      },
+      "empty": {
+        "ontology": "Ainda não há varreduras. Adicione escopos na sequência e execute-os para criar a ontologia.",
+        "relationships": "Ainda não há varreduras. Os relacionamentos aparecem após a conclusão de um escopo."
+      },
+      "coverage": {
+        "title": "Áreas de negócio varridas",
+        "empty": "Ainda não há varreduras vinculadas a este programa.",
+        "row": "{count, plural, one {# tabela} other {# tabelas}} · {date}"
+      },
       "quality": {
-        "tierTitle": "Distribuição por camada", "metadataTitle": "Cobertura da qualidade de metadados", "tier": "{tier} {count}",
-        "bronze": "Bronze", "silver": "Prata", "gold": "Ouro", "system": "Sistema", "untiered": "Sem camada",
-        "description": "Tabelas com descrição", "owner": "Tabelas com proprietário", "tierCoverage": "Tabelas com camada", "domain": "Tabelas com domínio"
+        "tierTitle": "Distribuição por camada",
+        "metadataTitle": "Cobertura da qualidade de metadados",
+        "tier": "{tier} {count}",
+        "bronze": "Bronze",
+        "silver": "Prata",
+        "gold": "Ouro",
+        "system": "Sistema",
+        "untiered": "Sem camada",
+        "description": "Tabelas com descrição",
+        "owner": "Tabelas com proprietário",
+        "tierCoverage": "Tabelas com camada",
+        "domain": "Tabelas com domínio"
       },
       "readOnly": "Você tem acesso somente para visualização. O proprietário gerencia os escopos e os controles de execução.",
       "retry": {
@@ -1874,15 +1943,37 @@
         "failed": "Não foi possível tentar este escopo novamente."
       },
       "sequence": {
-        "title": "Sequência de varredura", "addTitle": "1. Adicione escopos", "addDescription": "Selecione um ou mais catálogos ou esquemas do Unity Catalog. Cada seleção vira uma etapa da sequência.",
-        "advanced": "Opções avançadas do escopo", "includeLabel": "Padrões de inclusão (opcional)", "includePlaceholder": "fact_*, dim_*", "includeHelp": "Somente tabelas correspondentes são varridas; exclusões continuam tendo precedência.",
-        "workspaceLabel": "ID do workspace (opcional)", "workspacePlaceholder": "ID do workspace Databricks", "teamLabel": "Rótulo da equipe (opcional)", "teamPlaceholder": "ex.: Dados de upstream",
-        "addButton": "{count, plural, =0 {Adicionar à sequência} one {Adicionar # à sequência} other {Adicionar # à sequência}}", "selected": "{count, plural, one {# selecionado} other {# selecionados}}",
-        "runTitle": "2. Execute a sequência", "runPlanned": "{count, plural, one {Executar # escopo planejado} other {Executar # escopos planejados}}",
+        "title": "Sequência de varredura",
+        "addTitle": "1. Adicione escopos",
+        "addDescription": "Selecione um ou mais catálogos ou esquemas do Unity Catalog. Cada seleção vira uma etapa da sequência.",
+        "advanced": "Opções avançadas do escopo",
+        "includeLabel": "Padrões de inclusão (opcional)",
+        "includePlaceholder": "fact_*, dim_*",
+        "includeHelp": "Somente tabelas correspondentes são varridas; exclusões continuam tendo precedência.",
+        "workspaceLabel": "ID do workspace (opcional)",
+        "workspacePlaceholder": "ID do workspace Databricks",
+        "teamLabel": "Rótulo da equipe (opcional)",
+        "teamPlaceholder": "ex.: Dados de upstream",
+        "addButton": "{count, plural, =0 {Adicionar à sequência} one {Adicionar # à sequência} other {Adicionar # à sequência}}",
+        "selected": "{count, plural, one {# selecionado} other {# selecionados}}",
+        "runTitle": "2. Execute a sequência",
+        "runPlanned": "{count, plural, one {Executar # escopo planejado} other {Executar # escopos planejados}}",
         "empty": "Ainda não há escopos. Adicione pelo menos um e execute a sequência. O Forge processa um por vez automaticamente.",
-        "includeValue": "incluir: {value}", "workspaceValue": "workspace: {value}", "teamValue": "equipe: {value}", "remove": "Remover da sequência", "removeLabel": "Remover {label} da sequência"
+        "includeValue": "incluir: {value}",
+        "workspaceValue": "workspace: {value}",
+        "teamValue": "equipe: {value}",
+        "remove": "Remover da sequência",
+        "removeLabel": "Remover {label} da sequência"
       },
-      "status": {"planned": "Planejado", "queued": "Na fila", "running": "Em execução", "complete": "Concluído", "failed": "Falhou", "paused": "Pausado", "cancelled": "Cancelado"}
+      "status": {
+        "planned": "Planejado",
+        "queued": "Na fila",
+        "running": "Em execução",
+        "complete": "Concluído",
+        "failed": "Falhou",
+        "paused": "Pausado",
+        "cancelled": "Cancelado"
+      }
     },
     "empty": "Nenhum programa de patrimônio ainda. Crie um para começar a reunir varreduras em um patrimônio de empresa.",
     "emptyCtaHint": "Clique em Novo programa para começar.",

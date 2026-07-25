@@ -17,7 +17,10 @@ import { withPrisma } from "@/lib/prisma";
 import { parseCsv } from "./csv";
 import type { WafEvaluationType, WafPillar } from "./types";
 
-const CATALOG_PATH = path.join(process.cwd(), "lib/engines/waf-assessment/data/waf-controls-catalog.csv");
+const CATALOG_PATH = path.join(
+  process.cwd(),
+  "lib/engines/waf-assessment/data/waf-controls-catalog.csv",
+);
 
 /**
  * Fix-action map: tells the UI which Forge engine (or doc) can remediate a control.

@@ -69,7 +69,10 @@ function pct(n: number, d: number): number {
  */
 export function computeMetadataQualityCoverage(
   details: Array<
-    Pick<TableDetail, "fqn" | "comment" | "generatedDescription" | "owner" | "dataTier" | "dataDomain">
+    Pick<
+      TableDetail,
+      "fqn" | "comment" | "generatedDescription" | "owner" | "dataTier" | "dataDomain"
+    >
   >,
   opts: {
     hasTags?: (fqn: string) => boolean;

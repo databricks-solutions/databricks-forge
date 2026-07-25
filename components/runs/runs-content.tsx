@@ -35,7 +35,15 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Progress } from "@/components/ui/progress";
 import { toast } from "sonner";
-import { Trash2, Search, ChevronLeft, ChevronRight, ArrowUpDown, Square, Users } from "lucide-react";
+import {
+  Trash2,
+  Search,
+  ChevronLeft,
+  ChevronRight,
+  ArrowUpDown,
+  Square,
+  Users,
+} from "lucide-react";
 import { LabelWithTip } from "@/components/ui/info-tip";
 import { RUNS_LIST } from "@/lib/help-text";
 import type { PipelineRunSummary } from "@/lib/lakebase/runs";

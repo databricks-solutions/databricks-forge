@@ -203,14 +203,12 @@ export const TECH_TO_SYSTEM_MAP: readonly TechMapping[] = [
   {
     tech: "Snowflake",
     systemKinds: ["Data Warehouse"],
-    rationale:
-      "Snowflake is a cloud data platform widely used as a data warehouse for analytics.",
+    rationale: "Snowflake is a cloud data platform widely used as a data warehouse for analytics.",
   },
   {
     tech: "Teradata",
     systemKinds: ["Data Warehouse"],
-    rationale:
-      "Teradata is an enterprise data warehouse platform for large-scale analytics.",
+    rationale: "Teradata is an enterprise data warehouse platform for large-scale analytics.",
   },
   {
     tech: "Workday Reports",
@@ -234,7 +232,10 @@ const LOCATION_HEURISTICS: ReadonlyArray<{ kind: SystemKind; needles: RegExp[] }
     needles: [/identity graph/i, /clean ?room/i],
   },
   { kind: "Lakehouse", needles: [/lakehouse/i, /unity catalog/i] },
-  { kind: "Data Warehouse", needles: [/data ?warehouse/i, /\bdwh\b/i, /redshift|snowflake|bigquery|synapse|teradata/i] },
+  {
+    kind: "Data Warehouse",
+    needles: [/data ?warehouse/i, /\bdwh\b/i, /redshift|snowflake|bigquery|synapse|teradata/i],
+  },
   { kind: "Data Lake", needles: [/data ?lake/i, /\bs3\b/i, /adls/i, /\bgcs\b/i] },
   { kind: "Data Catalog", needles: [/data ?catalog/i, /metastore/i] },
   { kind: "Order Management", needles: [/\boms\b/i, /order management/i] },
@@ -285,5 +286,7 @@ export function classifySystemLocation(location: string): SystemKind | null {
 export function findTechMapping(needle: string): TechMapping | undefined {
   if (!needle) return undefined;
   const lower = needle.toLowerCase();
-  return TECH_TO_SYSTEM_MAP.find((m) => m.tech.toLowerCase().includes(lower) || lower.includes(m.tech.toLowerCase()));
+  return TECH_TO_SYSTEM_MAP.find(
+    (m) => m.tech.toLowerCase().includes(lower) || lower.includes(m.tech.toLowerCase()),
+  );
 }

@@ -78,7 +78,6 @@ const KIND_ICON: Record<string, React.ReactNode> = {
   document_chunk: <FileText className="size-4 text-gray-400" />,
 };
 
-
 // ---------------------------------------------------------------------------
 // Provenance
 // ---------------------------------------------------------------------------
@@ -132,9 +131,7 @@ function buildSubtitle(
       return [
         (m.filename as string) || fallback("document"),
         m.category,
-        m.chunkIndex != null
-          ? fallback("chunk", { index: Number(m.chunkIndex) + 1 })
-          : null,
+        m.chunkIndex != null ? fallback("chunk", { index: Number(m.chunkIndex) + 1 }) : null,
       ]
         .filter(Boolean)
         .join(" · ");
@@ -380,11 +377,7 @@ export function SearchBar() {
         title={t("dialog_title")}
         description={t("dialog_description")}
       >
-        <CommandInput
-          placeholder={t("placeholder")}
-          value={query}
-          onValueChange={setQuery}
-        />
+        <CommandInput placeholder={t("placeholder")} value={query} onValueChange={setQuery} />
 
         {/* Scope tabs */}
         <div className="flex items-center gap-1 border-b px-3 py-1.5">

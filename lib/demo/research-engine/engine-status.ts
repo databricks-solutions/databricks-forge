@@ -111,9 +111,7 @@ export function cancelResearchJob(sessionId: string): boolean {
   return true;
 }
 
-export function getResearchJobStatus(
-  sessionId: string,
-): ResearchJobStatus | null {
+export function getResearchJobStatus(sessionId: string): ResearchJobStatus | null {
   evictStaleJobs();
   return jobs.get(sessionId) ?? null;
 }

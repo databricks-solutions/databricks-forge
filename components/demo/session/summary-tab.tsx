@@ -2,18 +2,8 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
-import {
-  ChevronRight,
-  ChevronDown,
-  Zap,
-  TrendingUp,
-  Globe,
-} from "lucide-react";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { ChevronRight, ChevronDown, Zap, TrendingUp, Globe } from "lucide-react";
 import type { ResearchEngineResult } from "@/lib/demo/research-engine/types";
 import { ExecutiveBriefCard } from "./executive-brief-card";
 import { CompactSwot } from "./compact-swot";
@@ -75,7 +65,9 @@ function IndustryTrends({ research }: { research: ResearchEngineResult }) {
                     {f.urgency}
                   </span>
                 </div>
-                <p className="mt-1 text-xs text-muted-foreground leading-relaxed">{f.description}</p>
+                <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
+                  {f.description}
+                </p>
               </div>
             ))}
           </CollapsibleContent>
@@ -132,9 +124,7 @@ function PrioritiesCard({ research }: { research: ResearchEngineResult }) {
                   <ChevronRight className="mt-0.5 h-3.5 w-3.5 shrink-0 text-blue-500/50" />
                   <span>
                     <span className="font-medium">{p.priority}</span>
-                    {p.evidence && (
-                      <span className="text-muted-foreground"> — {p.evidence}</span>
-                    )}
+                    {p.evidence && <span className="text-muted-foreground"> — {p.evidence}</span>}
                   </span>
                 </li>
               ))}

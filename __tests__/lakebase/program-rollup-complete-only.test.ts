@@ -14,7 +14,7 @@ const mocks = vi.hoisted(() => ({
 }));
 
 vi.mock("@/lib/prisma", () => ({
-  withPrisma: async <T,>(cb: (p: unknown) => Promise<T>) =>
+  withPrisma: async <T>(cb: (p: unknown) => Promise<T>) =>
     cb({
       forgeEnvironmentScan: { findMany: mocks.scanFindMany },
       forgeTableLineage: { findMany: mocks.lineageFindMany },
@@ -33,9 +33,7 @@ beforeEach(() => {
 
 describe("getProgramRelationshipInputs", () => {
   it("scopes member scans to scanStatus=complete", async () => {
-    mocks.scanFindMany.mockResolvedValue([
-      { scanId: "s1", createdAt: new Date("2026-01-01") },
-    ]);
+    mocks.scanFindMany.mockResolvedValue([{ scanId: "s1", createdAt: new Date("2026-01-01") }]);
     mocks.lineageFindMany.mockResolvedValue([]);
     mocks.detailFindMany.mockResolvedValue([]);
     mocks.insightFindMany.mockResolvedValue([]);
@@ -79,7 +77,9 @@ describe("getProgramRelationshipInputs", () => {
         payloadJson: JSON.stringify({ name: "Order", tables: ["c.s.orders"] }),
       },
     ];
-    mocks.detailFindMany.mockResolvedValueOnce(details).mockResolvedValueOnce([...details].reverse());
+    mocks.detailFindMany
+      .mockResolvedValueOnce(details)
+      .mockResolvedValueOnce([...details].reverse());
     mocks.insightFindMany
       .mockResolvedValueOnce(entities)
       .mockResolvedValueOnce([])
@@ -101,7 +101,12 @@ describe("getProgramRelationshipInputs", () => {
   it("short-circuits with empty inputs when no completed scans exist", async () => {
     mocks.scanFindMany.mockResolvedValue([]);
     const out = await getProgramRelationshipInputs("p1");
-    expect(out).toEqual({ lineage: [], details: [], canonicalEntities: [], entityRelationships: [] });
+    expect(out).toEqual({
+      lineage: [],
+      details: [],
+      canonicalEntities: [],
+      entityRelationships: [],
+    });
     expect(mocks.lineageFindMany).not.toHaveBeenCalled();
   });
 });

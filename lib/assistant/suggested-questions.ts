@@ -20,7 +20,12 @@ import {
 } from "./suggested-question-defaults";
 
 // Re-export client-safe constants so existing server-side imports still work.
-export { FALLBACK_QUESTIONS, FALLBACK_QUESTIONS_ANALYST, FALLBACK_QUESTIONS_TECH, FALLBACK_QUESTIONS_STRATEGIC };
+export {
+  FALLBACK_QUESTIONS,
+  FALLBACK_QUESTIONS_ANALYST,
+  FALLBACK_QUESTIONS_TECH,
+  FALLBACK_QUESTIONS_STRATEGIC,
+};
 
 const TARGET_COUNT = 6;
 
@@ -165,7 +170,9 @@ export async function buildSuggestedQuestions(
       }
     } else if (persona === "strategic") {
       // --- C-level / board-level strategic questions ---
-      candidates.push(`What is the total estimated business value across all discovered use cases?`);
+      candidates.push(
+        `What is the total estimated business value across all discovered use cases?`,
+      );
       candidates.push(`Which strategic investments should we prioritise and why?`);
 
       if (run?.industry) {
@@ -202,7 +209,9 @@ export async function buildSuggestedQuestions(
         candidates.push(`Give me a board-ready overview of our data estate maturity`);
         if (scan.avgGovernanceScore > 0) {
           const score = Math.round(scan.avgGovernanceScore);
-          candidates.push(`Our governance score is ${score}/100 — what executive actions are needed?`);
+          candidates.push(
+            `Our governance score is ${score}/100 — what executive actions are needed?`,
+          );
         }
       }
     } else {

@@ -162,7 +162,9 @@ export class FakeScopeDb {
   }
 
   private makeP2002(): Error {
-    const e = new Error("Unique constraint failed on the fields: (`programId`,`sequence`)") as Error & {
+    const e = new Error(
+      "Unique constraint failed on the fields: (`programId`,`sequence`)",
+    ) as Error & {
       code: string;
     };
     e.code = "P2002";

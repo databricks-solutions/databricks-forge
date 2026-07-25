@@ -24,10 +24,7 @@ export async function GET(request: NextRequest) {
       }
       throw e;
     }
-    const view = (request.nextUrl.searchParams.get("view") ?? "all") as
-      | "all"
-      | "owned"
-      | "shared";
+    const view = (request.nextUrl.searchParams.get("view") ?? "all") as "all" | "owned" | "shared";
     const sharedIds = view === "owned" ? [] : await listAccessibleIds(user.email, "connection");
     const connections = await listConnections(user.email, view, sharedIds);
     return NextResponse.json(connections, {

@@ -20,7 +20,12 @@ export async function runSeedGeneration(
   table: TableDesign,
   catalog: string,
   schema: string,
-  research: { customerName: string; industryId: string; nomenclature: Record<string, string>; scope?: { division?: string } },
+  research: {
+    customerName: string;
+    industryId: string;
+    nomenclature: Record<string, string>;
+    scope?: { division?: string };
+  },
   dateWindow: DemoDateWindow,
   opts: {
     llm: LLMClient;
@@ -36,8 +41,7 @@ export async function runSeedGeneration(
 
   onPhase?.("generating-sql");
 
-  const prompt = SEED_TABLE_PROMPT
-    .replace("{catalog}", catalog)
+  const prompt = SEED_TABLE_PROMPT.replace("{catalog}", catalog)
     .replace("{schema}", schema)
     .replace("{table_name}", table.name)
     .replace("{description}", table.description)

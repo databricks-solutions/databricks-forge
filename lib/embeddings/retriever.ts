@@ -12,12 +12,7 @@ import type { EmbeddingKind, RetrievedChunk, SearchResult } from "./types";
 import { SEARCH_SCOPES } from "./types";
 import { isEmbeddingEnabled } from "./config";
 import { logger } from "@/lib/logger";
-import {
-  GLOBAL_KINDS,
-  KIND_SCOPE,
-  SOURCE_PARENT,
-  SOURCE_SCOPED_KINDS,
-} from "./kind-scope";
+import { GLOBAL_KINDS, KIND_SCOPE, SOURCE_PARENT, SOURCE_SCOPED_KINDS } from "./kind-scope";
 import { listAccessibleIds, type ResourceType } from "@/lib/lakebase/acl";
 import { withPrisma } from "@/lib/prisma";
 
@@ -64,7 +59,8 @@ async function buildUserScope(
   userEmail: string,
   kinds: readonly EmbeddingKind[] | undefined,
 ): Promise<UserScope> {
-  const wantedKinds = kinds && kinds.length > 0 ? kinds : (Object.keys(KIND_SCOPE) as EmbeddingKind[]);
+  const wantedKinds =
+    kinds && kinds.length > 0 ? kinds : (Object.keys(KIND_SCOPE) as EmbeddingKind[]);
 
   const needsRunIds = wantedKinds.some((k) => KIND_SCOPE[k] === "run");
   const needsScanIds = wantedKinds.some((k) => KIND_SCOPE[k] === "scan");

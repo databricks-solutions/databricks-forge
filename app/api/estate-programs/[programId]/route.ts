@@ -106,7 +106,8 @@ export async function DELETE(
     if (active > 0) {
       return NextResponse.json(
         {
-          error: "Cannot delete a program while a scan is queued or running. Cancel the sequence first.",
+          error:
+            "Cannot delete a program while a scan is queued or running. Cancel the sequence first.",
           reason: "active_work",
         },
         { status: 409 },

@@ -322,7 +322,8 @@ export function fitCircleLabel(
     second = name.slice(mid);
   }
 
-  const clamp = (s: string) => (s.length > maxChars ? `${s.slice(0, Math.max(1, maxChars - 1))}…` : s);
+  const clamp = (s: string) =>
+    s.length > maxChars ? `${s.slice(0, Math.max(1, maxChars - 1))}…` : s;
   return { lines: [clamp(first), clamp(second)], fontSize };
 }
 

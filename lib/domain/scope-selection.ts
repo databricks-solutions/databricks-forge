@@ -281,11 +281,7 @@ const PATTERN_REGEX = /^[a-zA-Z0-9_\-.*?]+$/;
  * Stable validation codes let translated UI surfaces map validation failures
  * through their own message catalog without parsing English text.
  */
-export type PatternValidationErrorCode =
-  | "empty"
-  | "match_all"
-  | "invalid_characters"
-  | "too_long";
+export type PatternValidationErrorCode = "empty" | "match_all" | "invalid_characters" | "too_long";
 
 export function validatePatternCode(pattern: string): PatternValidationErrorCode | null {
   const trimmed = pattern?.trim() ?? "";

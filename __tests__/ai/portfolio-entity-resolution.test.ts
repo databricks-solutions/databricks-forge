@@ -29,9 +29,27 @@ describe("normaliseEntityName", () => {
 describe("resolveEntityClusters (name fallback)", () => {
   it("clusters same-named entities across estates and flags fragmentation", async () => {
     const entities: PortfolioEntity[] = [
-      ent({ id: "e1:Customer", estateId: "e1", name: "Customer", estateName: "Sales Estate", tableCount: 3 }),
-      ent({ id: "e2:Customers", estateId: "e2", name: "Customers", estateName: "Marketing Estate", tableCount: 2 }),
-      ent({ id: "e1:Order", estateId: "e1", name: "Order", estateName: "Sales Estate", tableCount: 5 }),
+      ent({
+        id: "e1:Customer",
+        estateId: "e1",
+        name: "Customer",
+        estateName: "Sales Estate",
+        tableCount: 3,
+      }),
+      ent({
+        id: "e2:Customers",
+        estateId: "e2",
+        name: "Customers",
+        estateName: "Marketing Estate",
+        tableCount: 2,
+      }),
+      ent({
+        id: "e1:Order",
+        estateId: "e1",
+        name: "Order",
+        estateName: "Sales Estate",
+        tableCount: 5,
+      }),
     ];
     const clusters = await resolveEntityClusters(entities);
 
@@ -82,7 +100,9 @@ describe("resolveEntityClusters (embedding)", () => {
       });
 
     const clusters = await resolveEntityClusters(entities, { embed, threshold: 0.9 });
-    const merged = clusters.find((c) => c.estates.includes("Estate A") && c.estates.includes("Estate B"));
+    const merged = clusters.find(
+      (c) => c.estates.includes("Estate A") && c.estates.includes("Estate B"),
+    );
     expect(merged).toBeTruthy();
     expect(merged?.fragmented).toBe(true);
     expect(clusters.some((c) => c.estates.length === 1 && c.label === "Widget")).toBe(true);

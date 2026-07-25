@@ -2,12 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -82,9 +77,7 @@ export default function DemoPage() {
       });
       const data = await res.json();
       if (res.ok && data?.lakebaseDeleted !== false) {
-        setSessions((prev) =>
-          prev ? prev.filter((s) => s.sessionId !== sessionId) : []
-        );
+        setSessions((prev) => (prev ? prev.filter((s) => s.sessionId !== sessionId) : []));
         toast.success("Session deleted");
       } else {
         toast.error(data?.error ?? "Failed to delete session");
@@ -129,14 +122,9 @@ export default function DemoPage() {
               <div className="flex flex-col items-center justify-center py-12 text-center">
                 <Clock className="mb-4 h-12 w-12 text-muted-foreground" />
                 <p className="text-muted-foreground">
-                  No demo sessions yet. Launch the wizard to create your first
-                  demo.
+                  No demo sessions yet. Launch the wizard to create your first demo.
                 </p>
-                <Button
-                  className="mt-4"
-                  variant="outline"
-                  onClick={() => setWizardOpen(true)}
-                >
+                <Button className="mt-4" variant="outline" onClick={() => setWizardOpen(true)}>
                   <Wand2 className="mr-2 h-4 w-4" />
                   Launch Demo Wizard
                 </Button>
@@ -160,20 +148,14 @@ export default function DemoPage() {
                     <TableRow
                       key={s.sessionId}
                       className="cursor-pointer"
-                      onClick={() =>
-                        router.push(`/demo/sessions/${s.sessionId}`)
-                      }
+                      onClick={() => router.push(`/demo/sessions/${s.sessionId}`)}
                     >
-                      <TableCell className="font-medium">
-                        {s.customerName}
-                      </TableCell>
+                      <TableCell className="font-medium">{s.customerName}</TableCell>
                       <TableCell>
                         <Badge variant="secondary">{s.industryId}</Badge>
                       </TableCell>
                       <TableCell>
-                        <Badge variant={statusBadgeVariant(s.status)}>
-                          {s.status}
-                        </Badge>
+                        <Badge variant={statusBadgeVariant(s.status)}>{s.status}</Badge>
                       </TableCell>
                       <TableCell className="text-muted-foreground">
                         {s.catalogName}.{s.schemaName}
@@ -192,18 +174,10 @@ export default function DemoPage() {
                               </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
-                              <DropdownMenuItem
-                                onClick={() =>
-                                  handleExport(s.sessionId, "pptx")
-                                }
-                              >
+                              <DropdownMenuItem onClick={() => handleExport(s.sessionId, "pptx")}>
                                 PPTX
                               </DropdownMenuItem>
-                              <DropdownMenuItem
-                                onClick={() =>
-                                  handleExport(s.sessionId, "pdf")
-                                }
-                              >
+                              <DropdownMenuItem onClick={() => handleExport(s.sessionId, "pdf")}>
                                 PDF
                               </DropdownMenuItem>
                             </DropdownMenuContent>
@@ -233,8 +207,8 @@ export default function DemoPage() {
           <AlertDialogHeader>
             <AlertDialogTitle>Delete demo session?</AlertDialogTitle>
             <AlertDialogDescription>
-              This will drop all tables in the demo schema and remove the
-              session. This action cannot be undone.
+              This will drop all tables in the demo schema and remove the session. This action
+              cannot be undone.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>

@@ -148,7 +148,8 @@ function isBenchmarkQuestionAnswerable(item: unknown): boolean {
   if (!isObject(item)) return false;
   const question = item.question;
   const hasQuestion =
-    (Array.isArray(question) && question.some((q) => typeof q === "string" && q.trim().length > 0)) ||
+    (Array.isArray(question) &&
+      question.some((q) => typeof q === "string" && q.trim().length > 0)) ||
     (typeof question === "string" && question.trim().length > 0);
   if (!hasQuestion) return false;
 
@@ -303,7 +304,10 @@ function normalizeRelationshipTypes(space: Record<string, unknown>): void {
     if (!isObject(js)) continue;
     const rt = js.relationship_type;
     if (typeof rt === "string") {
-      js.relationship_type = rt.trim().toUpperCase().replace(/[^A-Z_]/g, "_");
+      js.relationship_type = rt
+        .trim()
+        .toUpperCase()
+        .replace(/[^A-Z_]/g, "_");
     }
   }
 }

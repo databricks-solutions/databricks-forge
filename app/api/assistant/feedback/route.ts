@@ -29,10 +29,7 @@ export async function POST(req: NextRequest) {
       }),
     );
     if (!owned) {
-      return Response.json(
-        { error: "Log not found or you do not have access" },
-        { status: 404 },
-      );
+      return Response.json({ error: "Log not found or you do not have access" }, { status: 404 });
     }
 
     await updateAssistantLog(logId, {

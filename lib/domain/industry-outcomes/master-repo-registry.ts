@@ -12,7 +12,10 @@
 import type { MasterRepoEnrichment } from "./master-repo-types";
 
 import { BANKING_USE_CASES, BANKING_DATA_ASSETS } from "./banking.enrichment";
-import { CAPITAL_MARKETS_USE_CASES, CAPITAL_MARKETS_DATA_ASSETS } from "./capital-markets.enrichment";
+import {
+  CAPITAL_MARKETS_USE_CASES,
+  CAPITAL_MARKETS_DATA_ASSETS,
+} from "./capital-markets.enrichment";
 import { INSURANCE_USE_CASES, INSURANCE_DATA_ASSETS } from "./insurance.enrichment";
 import { LIFE_SCIENCES_USE_CASES, LIFE_SCIENCES_DATA_ASSETS } from "./life-sciences.enrichment";
 import { HEALTHCARE_USE_CASES, HEALTHCARE_DATA_ASSETS } from "./healthcare.enrichment";
@@ -47,21 +50,45 @@ import { MINING_USE_CASES, MINING_DATA_ASSETS } from "./mining.enrichment";
 const REGISTRY = new Map<string, MasterRepoEnrichment>([
   // Canonical v2 industries (15)
   ["banking", { useCases: BANKING_USE_CASES, dataAssets: BANKING_DATA_ASSETS }],
-  ["capital-markets", { useCases: CAPITAL_MARKETS_USE_CASES, dataAssets: CAPITAL_MARKETS_DATA_ASSETS }],
+  [
+    "capital-markets",
+    { useCases: CAPITAL_MARKETS_USE_CASES, dataAssets: CAPITAL_MARKETS_DATA_ASSETS },
+  ],
   ["insurance", { useCases: INSURANCE_USE_CASES, dataAssets: INSURANCE_DATA_ASSETS }],
   ["life-sciences", { useCases: LIFE_SCIENCES_USE_CASES, dataAssets: LIFE_SCIENCES_DATA_ASSETS }],
   ["healthcare", { useCases: HEALTHCARE_USE_CASES, dataAssets: HEALTHCARE_DATA_ASSETS }],
   ["retail", { useCases: RETAIL_USE_CASES, dataAssets: RETAIL_DATA_ASSETS }],
-  ["consumer-goods", { useCases: CONSUMER_GOODS_USE_CASES, dataAssets: CONSUMER_GOODS_DATA_ASSETS }],
+  [
+    "consumer-goods",
+    { useCases: CONSUMER_GOODS_USE_CASES, dataAssets: CONSUMER_GOODS_DATA_ASSETS },
+  ],
   ["manufacturing", { useCases: MANUFACTURING_USE_CASES, dataAssets: MANUFACTURING_DATA_ASSETS }],
-  ["energy-utilities", { useCases: ENERGY_UTILITIES_USE_CASES, dataAssets: ENERGY_UTILITIES_DATA_ASSETS }],
+  [
+    "energy-utilities",
+    { useCases: ENERGY_UTILITIES_USE_CASES, dataAssets: ENERGY_UTILITIES_DATA_ASSETS },
+  ],
   ["oil-gas-noc", { useCases: OIL_GAS_NOC_USE_CASES, dataAssets: OIL_GAS_NOC_DATA_ASSETS }],
-  ["communications", { useCases: COMMUNICATIONS_USE_CASES, dataAssets: COMMUNICATIONS_DATA_ASSETS }],
-  ["media-advertising", { useCases: MEDIA_ADVERTISING_USE_CASES, dataAssets: MEDIA_ADVERTISING_DATA_ASSETS }],
-  ["digital-natives", { useCases: DIGITAL_NATIVES_USE_CASES, dataAssets: DIGITAL_NATIVES_DATA_ASSETS }],
+  [
+    "communications",
+    { useCases: COMMUNICATIONS_USE_CASES, dataAssets: COMMUNICATIONS_DATA_ASSETS },
+  ],
+  [
+    "media-advertising",
+    { useCases: MEDIA_ADVERTISING_USE_CASES, dataAssets: MEDIA_ADVERTISING_DATA_ASSETS },
+  ],
+  [
+    "digital-natives",
+    { useCases: DIGITAL_NATIVES_USE_CASES, dataAssets: DIGITAL_NATIVES_DATA_ASSETS },
+  ],
   ["games", { useCases: GAMES_USE_CASES, dataAssets: GAMES_DATA_ASSETS }],
-  ["casinos-resorts", { useCases: CASINOS_RESORTS_USE_CASES, dataAssets: CASINOS_RESORTS_DATA_ASSETS }],
-  ["real-money-gaming", { useCases: REAL_MONEY_GAMING_USE_CASES, dataAssets: REAL_MONEY_GAMING_DATA_ASSETS }],
+  [
+    "casinos-resorts",
+    { useCases: CASINOS_RESORTS_USE_CASES, dataAssets: CASINOS_RESORTS_DATA_ASSETS },
+  ],
+  [
+    "real-money-gaming",
+    { useCases: REAL_MONEY_GAMING_USE_CASES, dataAssets: REAL_MONEY_GAMING_DATA_ASSETS },
+  ],
   // Handcrafted (non-master-repo) industry
   ["mining", { useCases: MINING_USE_CASES, dataAssets: MINING_DATA_ASSETS }],
 ]);

@@ -6,7 +6,7 @@ import { FakeScopeDb } from "../helpers/fake-scope-db";
 const db = new FakeScopeDb();
 
 vi.mock("@/lib/prisma", () => ({
-  withPrisma: async <T,>(fn: (prisma: unknown) => Promise<T>) => fn(db.client),
+  withPrisma: async <T>(fn: (prisma: unknown) => Promise<T>) => fn(db.client),
 }));
 
 import {
@@ -33,7 +33,13 @@ beforeEach(() => {
 
 describe("claimNextPlannedScope", () => {
   it("claims ONLY the lowest-sequence planned scope, never a failed one", async () => {
-    db.seedScope({ id: "failed-0", programId: "p1", sequence: 0, status: "failed", attemptCount: 1 });
+    db.seedScope({
+      id: "failed-0",
+      programId: "p1",
+      sequence: 0,
+      status: "failed",
+      attemptCount: 1,
+    });
     db.seedScope({ id: "planned-1", programId: "p1", sequence: 1, status: "planned" });
 
     const claimed = await claimNextPlannedScope("p1", "scan-1");
@@ -91,7 +97,14 @@ describe("claimNextPlannedScope", () => {
 
 describe("retryFailedScope", () => {
   it("moves one failed scope back to planned when no active work conflicts", async () => {
-    db.seedScope({ id: "f", programId: "p1", sequence: 0, status: "failed", attemptCount: 1, scanId: "old" });
+    db.seedScope({
+      id: "f",
+      programId: "p1",
+      sequence: 0,
+      status: "failed",
+      attemptCount: 1,
+      scanId: "old",
+    });
     const res = await retryFailedScope("p1");
     expect(res).toEqual({ ok: true, scopeId: "f" });
     const row = db.get("f")!;
@@ -385,7 +398,10 @@ describe("sequence allocation + uniqueness", () => {
       { label: "c", ucMetadata: "cat.c" },
     ]);
     expect(count).toBe(2);
-    const seqs = db.scopes.filter((s) => s.programId === "p1").map((s) => s.sequence).sort();
+    const seqs = db.scopes
+      .filter((s) => s.programId === "p1")
+      .map((s) => s.sequence)
+      .sort();
     expect(seqs).toEqual([0, 1, 2]);
   });
 

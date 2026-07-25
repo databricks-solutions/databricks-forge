@@ -180,14 +180,14 @@ export function mergeProgramRelationshipInputs(
           const nameOf = (value: string): string => {
             try {
               const parsed = JSON.parse(value) as { name?: unknown };
-              return typeof parsed.name === "string"
-                ? normalizeSemanticName(parsed.name)
-                : value;
+              return typeof parsed.name === "string" ? normalizeSemanticName(parsed.name) : value;
             } catch {
               return value;
             }
           };
-          return nameOf(a.payloadJson).localeCompare(nameOf(b.payloadJson)) || a.id.localeCompare(b.id);
+          return (
+            nameOf(a.payloadJson).localeCompare(nameOf(b.payloadJson)) || a.id.localeCompare(b.id)
+          );
         }
         return a.payloadJson.localeCompare(b.payloadJson) || a.id.localeCompare(b.id);
       })

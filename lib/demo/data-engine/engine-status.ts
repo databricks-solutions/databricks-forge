@@ -17,8 +17,7 @@ const JOB_TTL_MS = 30 * 60 * 1000;
 function evictStaleJobs(): void {
   const now = Date.now();
   for (const [id, job] of jobs) {
-    const completedAt =
-      job.status === "completed" || job.status === "failed" ? now : null;
+    const completedAt = job.status === "completed" || job.status === "failed" ? now : null;
     if (completedAt && now - completedAt > JOB_TTL_MS) {
       jobs.delete(id);
     }
@@ -50,10 +49,7 @@ export function getDataJobController(sessionId: string): AbortController | null 
   return controllers.get(sessionId) ?? null;
 }
 
-export function initTableList(
-  sessionId: string,
-  tables: Array<{ tableName: string }>,
-): void {
+export function initTableList(sessionId: string, tables: Array<{ tableName: string }>): void {
   const job = jobs.get(sessionId);
   if (!job || job.status !== "generating") return;
   job.totalTables = tables.length;

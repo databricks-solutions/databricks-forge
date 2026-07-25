@@ -20,13 +20,13 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 // and we only care about the encoded JSON string written to `data`.
 type UpdateArg = { data: { degradedStepsJson: string | null } };
 
-const findUnique = vi.fn<
-  (arg: unknown) => Promise<{ degradedStepsJson: string | null }>
->(async () => ({ degradedStepsJson: null }));
+const findUnique = vi.fn<(arg: unknown) => Promise<{ degradedStepsJson: string | null }>>(
+  async () => ({ degradedStepsJson: null }),
+);
 const update = vi.fn<(arg: UpdateArg) => Promise<void>>(async () => undefined);
 
 vi.mock("@/lib/prisma", () => ({
-  withPrisma: async <T,>(cb: (prisma: unknown) => Promise<T>) => {
+  withPrisma: async <T>(cb: (prisma: unknown) => Promise<T>) => {
     const prisma = {
       forgeRun: {
         findUnique,
@@ -54,11 +54,7 @@ vi.mock("@/lib/logger", () => {
   };
 });
 
-import {
-  getDegradedSteps,
-  markRunStepDegraded,
-  clearRunStepDegraded,
-} from "@/lib/lakebase/runs";
+import { getDegradedSteps, markRunStepDegraded, clearRunStepDegraded } from "@/lib/lakebase/runs";
 
 beforeEach(() => {
   findUnique.mockReset();
@@ -93,9 +89,7 @@ describe("markRunStepDegraded", () => {
     await markRunStepDegraded("run-1", "financial-quantification");
     expect(update).toHaveBeenCalledTimes(1);
     const arg = update.mock.calls[0]?.[0] as UpdateArg;
-    expect(JSON.parse(arg.data.degradedStepsJson as string)).toEqual([
-      "financial-quantification",
-    ]);
+    expect(JSON.parse(arg.data.degradedStepsJson as string)).toEqual(["financial-quantification"]);
   });
 
   it("is idempotent: does not write when the step is already flagged", async () => {
@@ -123,10 +117,7 @@ describe("markRunStepDegraded", () => {
 describe("clearRunStepDegraded", () => {
   it("removes the step from the list when present", async () => {
     findUnique.mockResolvedValue({
-      degradedStepsJson: JSON.stringify([
-        "financial-quantification",
-        "executive-synthesis",
-      ]),
+      degradedStepsJson: JSON.stringify(["financial-quantification", "executive-synthesis"]),
     });
     await clearRunStepDegraded("run-1", "financial-quantification");
     expect(update).toHaveBeenCalledTimes(1);

@@ -73,8 +73,7 @@ function canonicalProposalKey(proposal: MetricViewProposal): string {
 function canonicalValidProposals(proposals: MetricViewProposal[]): MetricViewProposal[] {
   const sorted = proposals
     .filter(
-      (proposal) =>
-        proposal.definition !== undefined && isMetricViewValidationDeployable(proposal),
+      (proposal) => proposal.definition !== undefined && isMetricViewValidationDeployable(proposal),
     )
     .sort(
       (a, b) =>
@@ -89,10 +88,7 @@ function canonicalValidProposals(proposals: MetricViewProposal[]): MetricViewPro
   );
 }
 
-function metricViewMeasures(
-  assetId: string,
-  proposal: MetricViewProposal,
-): GovernedMeasure[] {
+function metricViewMeasures(assetId: string, proposal: MetricViewProposal): GovernedMeasure[] {
   return (proposal.definition?.measures ?? []).map((definition) => ({
     id: stableId("measure", assetId, definition.name),
     name: definition.name,
@@ -105,10 +101,7 @@ function metricViewMeasures(
   }));
 }
 
-function metricViewDimensions(
-  assetId: string,
-  proposal: MetricViewProposal,
-): GovernedDimension[] {
+function metricViewDimensions(assetId: string, proposal: MetricViewProposal): GovernedDimension[] {
   return (proposal.definition?.dimensions ?? []).map((definition) => ({
     id: stableId("dimension", assetId, definition.name),
     name: definition.name,
@@ -121,10 +114,7 @@ function metricViewDimensions(
   }));
 }
 
-function metricViewFilter(
-  assetId: string,
-  proposal: MetricViewProposal,
-): GovernedFilter[] {
+function metricViewFilter(assetId: string, proposal: MetricViewProposal): GovernedFilter[] {
   const sql = proposal.definition?.filter?.trim();
   if (!sql) return [];
   return [
@@ -159,9 +149,7 @@ function verifiedMetricView(proposal: MetricViewProposal): VerifiedMetricViewAss
     validationState: "valid",
     measures,
     dimensions,
-    representativeQueries: measures.map(
-      (measure) => `SELECT MEASURE(${measure.name}) FROM ${fqn}`,
-    ),
+    representativeQueries: measures.map((measure) => `SELECT MEASURE(${measure.name}) FROM ${fqn}`),
     deploymentState: isVerifiedReuse ? "deployed" : "proposal",
     sourceTables: uniqueSorted([
       ...proposal.sourceTables,
@@ -192,8 +180,7 @@ export function promoteSemanticAssetManifest(input: {
   if (candidates.length === 0) {
     candidates = input.manifest.metricViews.filter(
       (asset) =>
-        asset.intendedFqn.split(".").at(-1)?.toLowerCase() ===
-        input.proposal.name.toLowerCase(),
+        asset.intendedFqn.split(".").at(-1)?.toLowerCase() === input.proposal.name.toLowerCase(),
     );
   }
   if (candidates.length !== 1) {
@@ -203,7 +190,9 @@ export function promoteSemanticAssetManifest(input: {
   }
 
   const existing = candidates[0];
-  const measures = dedupeById(metricViewMeasures(existing.id, input.proposal as MetricViewProposal));
+  const measures = dedupeById(
+    metricViewMeasures(existing.id, input.proposal as MetricViewProposal),
+  );
   const dimensions = dedupeById(
     metricViewDimensions(existing.id, input.proposal as MetricViewProposal),
   );
@@ -233,22 +222,19 @@ export function promoteSemanticAssetManifest(input: {
     ),
     measures: dedupeById([
       ...input.manifest.measures.filter(
-        (measure) =>
-          measure.source !== "metric_view" || measure.metricViewId !== existing.id,
+        (measure) => measure.source !== "metric_view" || measure.metricViewId !== existing.id,
       ),
       ...measures,
     ]),
     dimensions: dedupeById([
       ...input.manifest.dimensions.filter(
-        (dimension) =>
-          dimension.source !== "metric_view" || dimension.metricViewId !== existing.id,
+        (dimension) => dimension.source !== "metric_view" || dimension.metricViewId !== existing.id,
       ),
       ...dimensions,
     ]),
     filters: dedupeById([
       ...input.manifest.filters.filter(
-        (filter) =>
-          filter.source !== "metric_view" || filter.metricViewId !== existing.id,
+        (filter) => filter.source !== "metric_view" || filter.metricViewId !== existing.id,
       ),
       ...filters,
     ]),
@@ -256,10 +242,7 @@ export function promoteSemanticAssetManifest(input: {
   };
 }
 
-function genieMeasures(
-  domain: string,
-  measures: EnrichedSqlSnippetMeasure[],
-): GovernedMeasure[] {
+function genieMeasures(domain: string, measures: EnrichedSqlSnippetMeasure[]): GovernedMeasure[] {
   return measures.map((measure) => ({
     id: stableId("measure", "genie", domain, measure.name),
     name: measure.name.trim(),
@@ -287,10 +270,7 @@ function genieDimensions(
   }));
 }
 
-function genieFilters(
-  domain: string,
-  filters: EnrichedSqlSnippetFilter[],
-): GovernedFilter[] {
+function genieFilters(domain: string, filters: EnrichedSqlSnippetFilter[]): GovernedFilter[] {
   return filters.map((filter) => ({
     id: stableId("filter", "genie", domain, filter.name),
     name: filter.name.trim(),
@@ -331,10 +311,9 @@ export function buildSemanticAssetManifest(input: {
       ...genieDimensions(input.domain, input.genieDimensions),
     ]),
     filters: dedupeById([
-      ...selectedProposals
-        .flatMap((proposal) =>
-          metricViewFilter(stableId("metric_view", intendedFqn(proposal)), proposal),
-        ),
+      ...selectedProposals.flatMap((proposal) =>
+        metricViewFilter(stableId("metric_view", intendedFqn(proposal)), proposal),
+      ),
       ...genieFilters(input.domain, input.genieFilters),
     ]),
     generatedAt: (input.now ?? new Date()).toISOString(),
@@ -351,7 +330,9 @@ interface PersistedSnippet {
 }
 
 function strings(value: unknown): string[] {
-  return Array.isArray(value) ? value.filter((item): item is string => typeof item === "string") : [];
+  return Array.isArray(value)
+    ? value.filter((item): item is string => typeof item === "string")
+    : [];
 }
 
 function snippets(value: unknown): PersistedSnippet[] {

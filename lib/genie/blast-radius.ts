@@ -141,9 +141,12 @@ export function evaluateBlastRadius(opts: {
  * returns `kept` / `dropped`. The caller decides what to do with the
  * dropped patches (typically: log the reason and skip apply).
  */
-export function gateByBlastRadius<T>(
-  opts: { before: SpaceJson; after: SpaceJson; payload: T; spaceId?: string },
-): { allowed: boolean; report: BlastRadiusReport; payload: T | null } {
+export function gateByBlastRadius<T>(opts: {
+  before: SpaceJson;
+  after: SpaceJson;
+  payload: T;
+  spaceId?: string;
+}): { allowed: boolean; report: BlastRadiusReport; payload: T | null } {
   const report = evaluateBlastRadius({ before: opts.before, after: opts.after });
   if (report.exceeded) {
     logger.warn("[blast-radius] dropping fix that exceeds threshold", {

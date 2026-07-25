@@ -62,12 +62,7 @@ import {
   completeDashboardJob,
   failDashboardJob,
 } from "@/lib/dashboard/engine-status";
-import {
-  startBvJob,
-  updateBvJob,
-  completeBvJob,
-  failBvJob,
-} from "@/lib/pipeline/bv-engine-status";
+import { startBvJob, updateBvJob, completeBvJob, failBvJob } from "@/lib/pipeline/bv-engine-status";
 import {
   startSqlJob,
   updateSqlJob,
@@ -245,10 +240,7 @@ export interface PipelineRunOptions {
  *
  * Progress is tracked in Lakebase so the frontend can poll.
  */
-export async function startPipeline(
-  runId: string,
-  opts: PipelineRunOptions = {},
-): Promise<void> {
+export async function startPipeline(runId: string, opts: PipelineRunOptions = {}): Promise<void> {
   const controller = new AbortController();
   activePipelineRuns.set(runId, controller);
   const log = createScopedLogger({ origin: "DiscoveryRun", module: "pipeline/engine", runId });
@@ -854,10 +846,7 @@ export async function startPipeline(
  * Restores persisted context (business context, metadata, filtered tables)
  * so that expensive early steps are not re-run.
  */
-export async function resumePipeline(
-  runId: string,
-  opts: PipelineRunOptions = {},
-): Promise<void> {
+export async function resumePipeline(runId: string, opts: PipelineRunOptions = {}): Promise<void> {
   const controller = new AbortController();
   activePipelineRuns.set(runId, controller);
   const log = createScopedLogger({
@@ -1320,8 +1309,7 @@ export async function resumePipeline(
       // the main pipeline marks the run "completed". See startBackgroundJobs.
       // We still respect the resumeIndex check: if BV had already completed
       // in a prior attempt (resumeIndex > 8), we don't re-queue it.
-      const includeBv =
-        resumeIndex <= 8 && ctx.run.config.businessValueEnabled;
+      const includeBv = resumeIndex <= 8 && ctx.run.config.businessValueEnabled;
 
       // Step 9: Genie Recommendations (handled by the background engine below)
       if (resumeIndex <= 9) {
@@ -1471,9 +1459,7 @@ function startBackgroundJobs(
       // check, but invalidating here means the very first read after BV
       // finishes is correct.
       try {
-        const { deleteDataGapAnalysesForRun } = await import(
-          "@/lib/lakebase/data-gap-analyses"
-        );
+        const { deleteDataGapAnalysesForRun } = await import("@/lib/lakebase/data-gap-analyses");
         await deleteDataGapAnalysesForRun(runId);
       } catch (cacheErr) {
         bvLog.warn("Data gap cache invalidation failed (non-fatal)", {
@@ -1488,9 +1474,8 @@ function startBackgroundJobs(
         const { embedBusinessValueResults } = await import("@/lib/embeddings/embed-pipeline");
         const { getValueEstimatesForRun } = await import("@/lib/lakebase/value-estimates");
         const { getRoadmapPhasesForRun } = await import("@/lib/lakebase/roadmap-phases");
-        const { getStakeholderProfilesForRun } = await import(
-          "@/lib/lakebase/stakeholder-profiles"
-        );
+        const { getStakeholderProfilesForRun } =
+          await import("@/lib/lakebase/stakeholder-profiles");
         const { withPrisma } = await import("@/lib/prisma");
         const [bvEstimates, bvPhases, bvStakeholders] = await Promise.all([
           getValueEstimatesForRun(runId),
@@ -1512,13 +1497,7 @@ function startBackgroundJobs(
             /* ignore */
           }
         }
-        await embedBusinessValueResults(
-          runId,
-          bvEstimates,
-          bvPhases,
-          bvStakeholders,
-          bvSynthesis,
-        );
+        await embedBusinessValueResults(runId, bvEstimates, bvPhases, bvStakeholders, bvSynthesis);
       } catch (embedErr) {
         bvLog.warn("Business value embedding failed (non-fatal)", {
           errorCategory: "data",
@@ -1713,13 +1692,7 @@ function startBackgroundJobs(
   //     half-empty dataset and contradict the user's stop intent.
   // Fire-and-forget the whole graph. The production helper absorbs all branch
   // rejections after each task has routed status/activity updates.
-  void runBackgroundJobGraph(
-    sqlTask,
-    bvTask,
-    genieTask,
-    dashboardTask,
-    opts.includeBv,
-  );
+  void runBackgroundJobGraph(sqlTask, bvTask, genieTask, dashboardTask, opts.includeBv);
 }
 
 /**

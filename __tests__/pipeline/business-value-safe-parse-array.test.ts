@@ -35,10 +35,7 @@ describe("safeParseArray", () => {
     const raw = JSON.stringify({
       stakeholders: [{ role: "CDO" }, { role: "VP Marketing" }],
     });
-    expect(safeParseArray<Profile>(raw)).toEqual([
-      { role: "CDO" },
-      { role: "VP Marketing" },
-    ]);
+    expect(safeParseArray<Profile>(raw)).toEqual([{ role: "CDO" }, { role: "VP Marketing" }]);
   });
 
   it("unwraps {profiles: [...]} (alternate Opus phrasing)", () => {
@@ -85,12 +82,12 @@ describe("safeParseArray", () => {
   });
 
   it("strips ```json fences before parsing", () => {
-    const raw = "```json\n[{\"role\":\"CIO\"}]\n```";
+    const raw = '```json\n[{"role":"CIO"}]\n```';
     expect(safeParseArray<Profile>(raw)).toEqual([{ role: "CIO" }]);
   });
 
   it("strips ```json fences around a wrapped object", () => {
-    const raw = "```json\n{\"stakeholders\":[{\"role\":\"CIO\"}]}\n```";
+    const raw = '```json\n{"stakeholders":[{"role":"CIO"}]}\n```';
     expect(safeParseArray<Profile>(raw)).toEqual([{ role: "CIO" }]);
   });
 });

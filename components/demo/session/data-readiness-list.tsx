@@ -10,12 +10,19 @@ interface DataReadinessListProps {
 }
 
 function relevanceColor(score: number): string {
-  if (score >= 8) return "text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border-emerald-500/20";
+  if (score >= 8)
+    return "text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border-emerald-500/20";
   if (score >= 5) return "text-amber-600 dark:text-amber-400 bg-amber-500/10 border-amber-500/20";
   return "text-red-600 dark:text-red-400 bg-red-500/10 border-red-500/20";
 }
 
-function AssetRow({ asset, useCases }: { asset: DataAssetDetail; useCases: DataStrategyMap["prioritisedUseCases"] }) {
+function AssetRow({
+  asset,
+  useCases,
+}: {
+  asset: DataAssetDetail;
+  useCases: DataStrategyMap["prioritisedUseCases"];
+}) {
   const linkedUcs = useCases.filter((uc) => uc.dataAssetIds?.includes(asset.id));
 
   return (

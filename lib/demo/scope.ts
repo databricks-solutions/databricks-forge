@@ -48,8 +48,7 @@ export const SCOPE_PRESETS: Record<ScopePreset, ScopePresetConfig> = {
   },
   "department-deep-dive": {
     label: "Department Deep-Dive",
-    description:
-      "Focus on specific departments (e.g., HR, Finance). Deeper tables, fewer breadth.",
+    description: "Focus on specific departments (e.g., HR, Finance). Deeper tables, fewer breadth.",
   },
   custom: {
     label: "Custom",
@@ -97,10 +96,7 @@ export function resolveScope(scope?: DemoScope): ResolvedDemoScope {
  * Generate a schema name from scope components.
  * E.g., "rio_tinto_aluminium_ops_demo" or "anz_commercial_fraud_demo".
  */
-export function buildSchemaName(
-  customerName: string,
-  scope?: DemoScope,
-): string {
+export function buildSchemaName(customerName: string, scope?: DemoScope): string {
   const parts = [slugify(customerName)];
 
   if (scope?.division) parts.push(slugify(scope.division));

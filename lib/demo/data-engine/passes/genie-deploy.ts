@@ -16,10 +16,7 @@ import { createGenieSpace } from "@/lib/dbx/genie";
 import { getConfig } from "@/lib/dbx/client";
 import { runFastGenieEngine } from "@/lib/genie/adhoc-engine";
 import { runHealthCheck } from "@/lib/genie/space-health-check";
-import {
-  upsertCachedSpaces,
-  updateCachedSpaceDiscovery,
-} from "@/lib/lakebase/genie-space-cache";
+import { upsertCachedSpaces, updateCachedSpaceDiscovery } from "@/lib/lakebase/genie-space-cache";
 import { trackGenieSpaceCreated } from "@/lib/lakebase/genie-spaces";
 import { randomUUID } from "crypto";
 import type { Logger } from "@/lib/ports/logger";
@@ -48,9 +45,7 @@ export interface GenieDeployResult {
   title: string;
 }
 
-export async function runGenieDeploy(
-  input: GenieDeployInput,
-): Promise<GenieDeployResult> {
+export async function runGenieDeploy(input: GenieDeployInput): Promise<GenieDeployResult> {
   const {
     sessionId,
     catalog,
@@ -76,17 +71,10 @@ export async function runGenieDeploy(
 
   // Only deploy with fact tables that actually loaded rows. A Genie Space
   // bound to failed tables would be useless to a demo audience.
-  const successfulTableFqns = buildSuccessfulTableFqns(
-    catalog,
-    schema,
-    tableDesigns,
-    tableResults,
-  );
+  const successfulTableFqns = buildSuccessfulTableFqns(catalog, schema, tableDesigns, tableResults);
 
   if (successfulTableFqns.length === 0) {
-    throw new Error(
-      "No successfully generated tables to bind to the Genie Space",
-    );
+    throw new Error("No successfully generated tables to bind to the Genie Space");
   }
 
   onProgress?.("Generating Genie Space configuration...", 5);
@@ -235,10 +223,7 @@ function buildSpaceTitle(customerName: string, scope: string): string {
   return `${customerName} -- ${clean} Demo`;
 }
 
-function buildSpaceDescription(
-  research: ResearchEngineResult,
-  schema: string,
-): string {
+function buildSpaceDescription(research: ResearchEngineResult, schema: string): string {
   const industry = research.industryId;
   const division = research.scope?.division ?? "full enterprise";
   return (
@@ -259,10 +244,9 @@ function buildConversationSummary(research: ResearchEngineResult): string {
     .filter(Boolean)
     .join("; ");
 
-  const focus =
-    research.scope?.division
-      ? `business unit ${research.scope.division}`
-      : `full enterprise view`;
+  const focus = research.scope?.division
+    ? `business unit ${research.scope.division}`
+    : `full enterprise view`;
 
   return (
     `Demo Genie Space for ${research.customerName} in the ${research.industryId} ` +

@@ -102,7 +102,9 @@ export async function buildSynthesisInputForScan(
       }),
     );
     if (latestWaf && typeof latestWaf.overallScore === "number") {
-      waf = { overallScore: Math.round(latestWaf.overallScore * (latestWaf.overallScore <= 1 ? 100 : 1)) };
+      waf = {
+        overallScore: Math.round(latestWaf.overallScore * (latestWaf.overallScore <= 1 ? 100 : 1)),
+      };
     }
   } catch {
     /* WAF optional */
@@ -196,9 +198,7 @@ export async function buildSynthesisInputForProgram(
     );
     if (latestWaf && typeof latestWaf.overallScore === "number") {
       waf = {
-        overallScore: Math.round(
-          latestWaf.overallScore * (latestWaf.overallScore <= 1 ? 100 : 1),
-        ),
+        overallScore: Math.round(latestWaf.overallScore * (latestWaf.overallScore <= 1 ? 100 : 1)),
       };
     }
   } catch {

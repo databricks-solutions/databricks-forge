@@ -358,16 +358,14 @@ function MaturityTierChip({ tier }: { tier: SpaceHealthReport["maturityTier"] })
       ? {
           label: "Trusted",
           icon: <CheckCircle2 className="size-3.5" />,
-          className:
-            "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300",
+          className: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300",
           subtitle: "Production-ready: meets all maturity criteria.",
         }
       : tier === "ready_to_optimize"
         ? {
             label: "Ready to Optimize",
             icon: <Sparkles className="size-3.5" />,
-            className:
-              "bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300",
+            className: "bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300",
             subtitle: "Usable today; optimization will unlock more value.",
           }
         : {

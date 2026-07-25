@@ -46,8 +46,9 @@ export type RetryScopeResult =
 
 function isUniqueViolation(e: unknown): boolean {
   return (
-    e instanceof Prisma.PrismaClientKnownRequestError && e.code === "P2002"
-  ) || (typeof e === "object" && e !== null && (e as { code?: string }).code === "P2002");
+    (e instanceof Prisma.PrismaClientKnownRequestError && e.code === "P2002") ||
+    (typeof e === "object" && e !== null && (e as { code?: string }).code === "P2002")
+  );
 }
 
 function isSerializationConflict(e: unknown): boolean {
@@ -189,10 +190,7 @@ export async function listEstatePrograms(
     const programs = await prisma.forgeEstateProgram.findMany({
       where: normalisedOwner
         ? {
-            OR: [
-              { ownerEmail: normalisedOwner },
-              { id: { in: sharedIds } },
-            ],
+            OR: [{ ownerEmail: normalisedOwner }, { id: { in: sharedIds } }],
           }
         : sharedIds.length > 0
           ? { id: { in: sharedIds } }
@@ -207,9 +205,7 @@ export async function listEstatePrograms(
 
 /** Fetch just the owner email for a program (for ACL guards). Returns
  *  `undefined` when the program does not exist. */
-export async function getEstateProgramOwner(
-  programId: string,
-): Promise<string | null | undefined> {
+export async function getEstateProgramOwner(programId: string): Promise<string | null | undefined> {
   return withPrisma(async (prisma) => {
     const row = await prisma.forgeEstateProgram.findUnique({
       where: { id: programId },
@@ -307,10 +303,7 @@ export async function addProgramScope(programId: string, input: ScopeInput): Pro
  * honoured but any collision (with existing rows or within the batch) rejects
  * the whole insert as `DuplicateSequenceError`.
  */
-export async function addProgramScopes(
-  programId: string,
-  inputs: ScopeInput[],
-): Promise<number> {
+export async function addProgramScopes(programId: string, inputs: ScopeInput[]): Promise<number> {
   if (inputs.length === 0) return 0;
   return withPrisma((prisma) =>
     runSerializable(prisma, async (tx) => {

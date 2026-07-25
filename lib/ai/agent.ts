@@ -538,11 +538,7 @@ async function executeAIQueryOnce(
     // Treat as a typed, retryable, fallback-eligible error so the retry loop
     // can rotate to the next-priority endpoint instead of hammering the same
     // model. See lib/dbx/model-serving.ts -> EmptyContentError.
-    throw new EmptyContentError(
-      options.promptKey,
-      options.modelEndpoint,
-      response.finishReason,
-    );
+    throw new EmptyContentError(options.promptKey, options.modelEndpoint, response.finishReason);
   }
 
   const honestyScore = extractHonestyScore(rawResponse);

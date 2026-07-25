@@ -18,7 +18,15 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
-import { AlertTriangle, Building2, Download, Loader2, Network, RefreshCw, ShieldAlert } from "lucide-react";
+import {
+  AlertTriangle,
+  Building2,
+  Download,
+  Loader2,
+  Network,
+  RefreshCw,
+  ShieldAlert,
+} from "lucide-react";
 import type { PortfolioOverview } from "@/lib/lakebase/portfolio-estate";
 import type { PortfolioSynthesisResult } from "@/lib/ai/portfolio-synthesis/types";
 import { ManageAccessDialog } from "@/components/portfolio/manage-access-dialog";
@@ -130,7 +138,9 @@ export function PortfolioStateOfTheNation() {
         <CardContent className="flex flex-col items-center justify-center py-16 text-center">
           <ShieldAlert aria-hidden="true" className="mb-3 h-10 w-10 text-destructive/70" />
           <h3 className="text-lg font-semibold">{t("forbidden_title")}</h3>
-          <p className="mt-1 max-w-md text-sm text-muted-foreground">{t("forbidden_description")}</p>
+          <p className="mt-1 max-w-md text-sm text-muted-foreground">
+            {t("forbidden_description")}
+          </p>
         </CardContent>
       </Card>
     );
@@ -205,11 +215,19 @@ export function PortfolioStateOfTheNation() {
 
       {/* Totals */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-        <KpiCard label={t("kpi.avg_readiness")} value={l10n.integer(totals.avgReadiness)} valueClass={scoreColor(totals.avgReadiness)} />
+        <KpiCard
+          label={t("kpi.avg_readiness")}
+          value={l10n.integer(totals.avgReadiness)}
+          valueClass={scoreColor(totals.avgReadiness)}
+        />
         <KpiCard label={t("kpi.estates")} value={l10n.integer(totals.estates)} />
         <KpiCard label={t("kpi.scans")} value={l10n.integer(totals.scans)} />
         <KpiCard label={t("kpi.tables")} value={l10n.integer(totals.tables)} />
-        <KpiCard label={t("kpi.value_at_risk")} value={fmtUsd(totals.totalValueAtRisk)} valueClass="text-red-600" />
+        <KpiCard
+          label={t("kpi.value_at_risk")}
+          value={fmtUsd(totals.totalValueAtRisk)}
+          valueClass="text-red-600"
+        />
       </div>
 
       {/* Enterprise inventory */}
@@ -224,9 +242,15 @@ export function PortfolioStateOfTheNation() {
             <Stat label={t("inventory.data_products")} value={inventory.dataProducts} />
             <Stat label={t("inventory.ai_models")} value={inventory.workloads.model ?? 0} />
             <Stat label={t("inventory.pii_tables")} value={inventory.piiTables} />
-            <Stat label={t("inventory.genie_spaces")} value={inventory.workloads.genie_space ?? 0} />
+            <Stat
+              label={t("inventory.genie_spaces")}
+              value={inventory.workloads.genie_space ?? 0}
+            />
             <Stat label={t("inventory.dashboards")} value={inventory.workloads.dashboard ?? 0} />
-            <Stat label={t("inventory.metric_views")} value={inventory.workloads.metric_view ?? 0} />
+            <Stat
+              label={t("inventory.metric_views")}
+              value={inventory.workloads.metric_view ?? 0}
+            />
           </div>
         </CardContent>
       </Card>
@@ -256,11 +280,16 @@ export function PortfolioStateOfTheNation() {
                 synthesis.fragmentation.map((c) => (
                   <div key={c.label} className="rounded-md border bg-muted/20 p-3">
                     <div className="flex items-center justify-between gap-2">
-                      <p className="font-medium">{t("fragmentation.quoted_entity", { label: c.label })}</p>
-                      <Badge variant="secondary">{t("fragmentation.estate_count", { count: c.estates.length })}</Badge>
+                      <p className="font-medium">
+                        {t("fragmentation.quoted_entity", { label: c.label })}
+                      </p>
+                      <Badge variant="secondary">
+                        {t("fragmentation.estate_count", { count: c.estates.length })}
+                      </Badge>
                     </div>
                     <p className="mt-1 text-xs text-muted-foreground">
-                      {c.estates.join(" · ")} — {t("fragmentation.tables", { count: c.totalTables })}
+                      {c.estates.join(" · ")} —{" "}
+                      {t("fragmentation.tables", { count: c.totalTables })}
                     </p>
                   </div>
                 ))
@@ -284,7 +313,9 @@ export function PortfolioStateOfTheNation() {
                         <Badge variant={severityVariant(o.severity)} className="capitalize">
                           {t(`severity.${o.severity}` as "severity.high")}
                         </Badge>
-                        <span className="text-sm font-semibold text-red-600">{fmtUsd(o.valueUsd)}</span>
+                        <span className="text-sm font-semibold text-red-600">
+                          {fmtUsd(o.valueUsd)}
+                        </span>
                       </div>
                     </div>
                     <p className="mt-1 text-sm text-muted-foreground">{o.summary}</p>
@@ -311,8 +342,9 @@ export function PortfolioStateOfTheNation() {
                     </div>
                     <p className="mt-1 text-sm text-muted-foreground">{a.rationale}</p>
                     <p className="mt-1 text-xs text-muted-foreground">
-                      {t("uplift.owner")}: {a.owner} · {t("uplift.effort")}: {a.effort.toUpperCase()} ·{" "}
-                      {t("uplift.cost")}: {fmtUsd(a.costUsd)} · {t("uplift.value")}: {fmtUsd(a.valueUsd)}
+                      {t("uplift.owner")}: {a.owner} · {t("uplift.effort")}:{" "}
+                      {a.effort.toUpperCase()} · {t("uplift.cost")}: {fmtUsd(a.costUsd)} ·{" "}
+                      {t("uplift.value")}: {fmtUsd(a.valueUsd)}
                     </p>
                   </div>
                 ))
@@ -325,7 +357,9 @@ export function PortfolioStateOfTheNation() {
           <CardContent className="flex flex-col items-center justify-center py-12 text-center">
             <Network aria-hidden="true" className="mb-3 h-10 w-10 text-muted-foreground/50" />
             <h3 className="text-base font-semibold">{t("synthesis_empty_title")}</h3>
-            <p className="mt-1 max-w-md text-sm text-muted-foreground">{t("synthesis_empty_description")}</p>
+            <p className="mt-1 max-w-md text-sm text-muted-foreground">
+              {t("synthesis_empty_description")}
+            </p>
             <Button className="mt-4" onClick={runSynthesis} disabled={synthLoading}>
               <Network aria-hidden="true" className="mr-2 h-4 w-4" />
               {t("run_synthesis")}
@@ -337,7 +371,15 @@ export function PortfolioStateOfTheNation() {
   );
 }
 
-function KpiCard({ label, value, valueClass }: { label: string; value: string; valueClass?: string }) {
+function KpiCard({
+  label,
+  value,
+  valueClass,
+}: {
+  label: string;
+  value: string;
+  valueClass?: string;
+}) {
   return (
     <Card>
       <CardContent className="py-4">

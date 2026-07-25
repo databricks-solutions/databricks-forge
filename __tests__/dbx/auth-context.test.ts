@@ -1,8 +1,5 @@
 import { describe, expect, it } from "vitest";
-import {
-  getDatabricksAuthContext,
-  runWithDatabricksAuthContext,
-} from "@/lib/dbx/auth-context";
+import { getDatabricksAuthContext, runWithDatabricksAuthContext } from "@/lib/dbx/auth-context";
 
 describe("Databricks auth context", () => {
   it("survives awaits and nested async calls", async () => {

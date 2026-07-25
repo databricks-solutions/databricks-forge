@@ -20,10 +20,7 @@ import type {
   ExecutiveSynthesis,
 } from "@/lib/domain/types";
 import { executeAIQuery } from "@/lib/ai/agent";
-import {
-  resolvePremiumReasoningEndpoint,
-  getFallbacksForTier,
-} from "@/lib/dbx/client";
+import { resolvePremiumReasoningEndpoint, getFallbacksForTier } from "@/lib/dbx/client";
 import { logger as fallbackLogger } from "@/lib/logger";
 import { upsertValueEstimates, getValueEstimatesForRun } from "@/lib/lakebase/value-estimates";
 import {
@@ -37,11 +34,7 @@ import { resolveIndustryId } from "@/lib/domain/industry-outcomes";
 import { upsertRoadmapPhases } from "@/lib/lakebase/roadmap-phases";
 import { replaceStakeholderProfiles } from "@/lib/lakebase/stakeholder-profiles";
 import { bulkInitTracking } from "@/lib/lakebase/use-case-tracking";
-import {
-  updateRunMessage,
-  markRunStepDegraded,
-  clearRunStepDegraded,
-} from "@/lib/lakebase/runs";
+import { updateRunMessage, markRunStepDegraded, clearRunStepDegraded } from "@/lib/lakebase/runs";
 import { logActivity } from "@/lib/lakebase/activity-log";
 import { withPrisma } from "@/lib/prisma";
 import { buildStrategyAlignmentPrompt } from "@/lib/domain/strategy-alignment";
@@ -78,9 +71,8 @@ function summariseCasesForLLM(useCases: UseCase[]): string {
       // `blast_radius` reflects downstream consumption (P3.2). Both are
       // omitted (undefined → JSON drops them) when not yet resolved so we
       // don't burn prompt tokens on null fields.
-      source_systems: uc.sourceSystems && uc.sourceSystems.length > 0
-        ? uc.sourceSystems
-        : undefined,
+      source_systems:
+        uc.sourceSystems && uc.sourceSystems.length > 0 ? uc.sourceSystems : undefined,
       source_systems_origin: uc.sourceSystemsOrigin ?? undefined,
       blast_radius: uc.blastRadius
         ? {
@@ -246,9 +238,7 @@ export function buildIndustryReferenceCases(opts: {
       const kpi = uc.kpiTarget ? ` ${uc.kpiTarget}` : "";
       const bench = uc.benchmarkImpact ?? "";
       const pattern = uc.economicPatternName ?? "";
-      blocks.push(
-        `  * ${uc.name} -> ${pattern} | formula: ${formula} | benchmark:${kpi} ${bench}`,
-      );
+      blocks.push(`  * ${uc.name} -> ${pattern} | formula: ${formula} | benchmark:${kpi} ${bench}`);
     }
     blocks.push("");
   }
@@ -266,7 +256,10 @@ export function buildIndustryReferenceCases(opts: {
     .filter(Boolean);
   for (const token of tokens) {
     if (seen.size >= maxIndustries) break;
-    const normalized = token.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
+    const normalized = token
+      .toLowerCase()
+      .replace(/\s+/g, "-")
+      .replace(/[^a-z0-9-]/g, "");
     if (normalized) pushIndustry(normalized, token);
   }
 
@@ -340,7 +333,12 @@ export async function halveBatchRetry<T extends { id: string }, R extends { use_
   executor: (sub: T[], depth: number) => Promise<R[]>,
   options: {
     maxHalvings?: number;
-    onHalving?: (info: { from: number; to: [number, number]; depth: number; error: string }) => void;
+    onHalving?: (info: {
+      from: number;
+      to: [number, number];
+      depth: number;
+      error: string;
+    }) => void;
     onGiveUp?: (info: { subBatchSize: number; depth: number; error: string }) => void;
   } = {},
 ): Promise<{ estimates: R[]; missingItemIds: string[] }> {
@@ -374,17 +372,12 @@ export async function halveBatchRetry<T extends { id: string }, R extends { use_
         depth: depth + 1,
         error: errMsg,
       });
-      queue.unshift(
-        { batch: left, depth: depth + 1 },
-        { batch: right, depth: depth + 1 },
-      );
+      queue.unshift({ batch: left, depth: depth + 1 }, { batch: right, depth: depth + 1 });
     }
   }
 
   const collectedIds = new Set(collected.map((r) => r.use_case_id));
-  const missingItemIds = initialBatch
-    .filter((u) => !collectedIds.has(u.id))
-    .map((u) => u.id);
+  const missingItemIds = initialBatch.filter((u) => !collectedIds.has(u.id)).map((u) => u.id);
 
   return { estimates: collected, missingItemIds };
 }
@@ -828,9 +821,7 @@ async function runStakeholderAnalysis(
     // Phase 3.5: surface the source systems each use case touches so the
     // change-management LLM can identify the *true* organisational owners
     // (e.g. "Salesforce" → CRO / Sales Ops, "SAP" → CFO / Supply Chain).
-    source_systems: uc.sourceSystems && uc.sourceSystems.length > 0
-      ? uc.sourceSystems
-      : undefined,
+    source_systems: uc.sourceSystems && uc.sourceSystems.length > 0 ? uc.sourceSystems : undefined,
   }));
 
   const variables: Record<string, string> = {

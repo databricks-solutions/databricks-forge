@@ -55,10 +55,7 @@ function computeGrade(score: number): Grade {
  *                          no critical findings
  * - `not_ready`         -- anything else
  */
-export function computeMaturityTier(
-  space: SpaceJson,
-  checks: CheckResult[],
-): MaturityTier {
+export function computeMaturityTier(space: SpaceJson, checks: CheckResult[]): MaturityTier {
   const hasCriticalFailure = checks.some((c) => c.severity === "critical" && !c.passed);
 
   const tables = (space?.data_sources?.tables ?? []) as Array<{
@@ -80,8 +77,7 @@ export function computeMaturityTier(
   }>;
   const trustedAssetsWithSql = trustedAssets.filter((t) => {
     const sql = t.sql;
-    if (Array.isArray(sql))
-      return sql.some((s) => typeof s === "string" && s.trim().length > 0);
+    if (Array.isArray(sql)) return sql.some((s) => typeof s === "string" && s.trim().length > 0);
     return typeof sql === "string" && sql.trim().length > 0;
   }).length;
 
@@ -292,9 +288,7 @@ export async function enrichSpaceWithUcMetadata(
     return (n ?? "").toString().trim().toLowerCase();
   };
 
-  const fqns = tables
-    .map(tableFqn)
-    .filter((f): f is string => f.length > 0);
+  const fqns = tables.map(tableFqn).filter((f): f is string => f.length > 0);
   if (fqns.length === 0) return { space: enriched, tablesEnriched: 0, columnsEnriched: 0 };
 
   const isDescriptionEmpty = (d: unknown): boolean => {

@@ -76,9 +76,7 @@ describe("snapshotsFromSampleCache", () => {
       columnTypes: ["STRING", "STRING"],
       rows: [["x", "y"]],
     });
-    const filtered = snapshotsFromSampleCache(cache, [
-      { tableFqn: "c.s.t", columnName: "a" },
-    ]);
+    const filtered = snapshotsFromSampleCache(cache, [{ tableFqn: "c.s.t", columnName: "a" }]);
     expect(filtered).toHaveLength(1);
     expect(filtered[0].columnName).toBe("a");
   });

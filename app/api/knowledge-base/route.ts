@@ -58,10 +58,7 @@ export async function DELETE(request: NextRequest) {
     });
     if (!guard.ok) return guard.response;
     if (guard.permission !== "owner") {
-      return NextResponse.json(
-        { error: "Only the owner can delete a document." },
-        { status: 403 },
-      );
+      return NextResponse.json({ error: "Only the owner can delete a document." }, { status: 403 });
     }
 
     const deleted = await deleteDocument(id);

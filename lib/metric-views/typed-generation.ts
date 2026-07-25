@@ -17,7 +17,9 @@ type TypedRunner = (input: MetricViewEngineV2Input) => Promise<MetricViewEngineV
 function targetOf(tableFqn: string): MetricViewDeploymentTarget {
   const parts = tableFqn.replaceAll("`", "").split(".");
   if (parts.length !== 3 || parts.some((part) => part.length === 0)) {
-    throw new Error(`Typed metric-view generation requires a catalog.schema.table FQN: ${tableFqn}`);
+    throw new Error(
+      `Typed metric-view generation requires a catalog.schema.table FQN: ${tableFqn}`,
+    );
   }
   return { catalog: parts[0], schema: parts[1] };
 }
@@ -41,9 +43,7 @@ function metadataForPartition(
 ): MetadataSnapshot {
   const schemaKey = targetKey(target);
   const tables = metadata.tables.filter((table) => tableSet.has(table.fqn.toLowerCase()));
-  const columns = metadata.columns.filter((column) =>
-    tableSet.has(column.tableFqn.toLowerCase()),
-  );
+  const columns = metadata.columns.filter((column) => tableSet.has(column.tableFqn.toLowerCase()));
   return {
     ...metadata,
     cacheKey: `${metadata.cacheKey}:${schemaKey}`,
@@ -218,10 +218,7 @@ function expressionTarget(sql: string, grounding: ExpressionGrounding): string |
     const column = chain[chain.length - 1].value;
     const previous = tokens[index - 1]?.value;
     const nextChar = sql.slice(chain[chain.length - 1].end).trimStart()[0];
-    if (
-      chain.length === 1 &&
-      (SQL_KEYWORDS.has(column) || previous === "as" || nextChar === "(")
-    ) {
+    if (chain.length === 1 && (SQL_KEYWORDS.has(column) || previous === "as" || nextChar === "(")) {
       index = cursor;
       continue;
     }
@@ -276,9 +273,7 @@ function quarantinePartitionEscapes(
     }
     const referencedTables = [
       ...proposal.sourceTables,
-      ...(proposal.definition?.source.kind === "table"
-        ? [proposal.definition.source.table]
-        : []),
+      ...(proposal.definition?.source.kind === "table" ? [proposal.definition.source.table] : []),
       ...joinedSources(proposal),
     ];
     const escapesPartition =
@@ -313,11 +308,7 @@ function quarantinePartitionEscapes(
       validationIssues: [...proposal.validationIssues, message],
       validationEvidence: [
         ...(proposal.validationEvidence ?? []),
-        evidenceFailed(
-          "metric_view_static",
-          code,
-          message,
-        ),
+        evidenceFailed("metric_view_static", code, message),
       ],
       validatorVersion: undefined,
       validatedAt: undefined,
@@ -338,7 +329,10 @@ export async function runTypedMetricViewEngineV2BySchema(
 ): Promise<MetricViewEngineV2Output> {
   if (input.deploymentTarget) return runner(input);
 
-  const tablesByTarget = new Map<string, { target: MetricViewDeploymentTarget; tables: string[] }>();
+  const tablesByTarget = new Map<
+    string,
+    { target: MetricViewDeploymentTarget; tables: string[] }
+  >();
   for (const tableFqn of sourceTables(input)) {
     const target = targetOf(tableFqn);
     const key = targetKey(target);
@@ -398,8 +392,7 @@ export async function runTypedMetricViewEngineV2BySchema(
             .filter((dataDomain) => dataDomain.tables.length > 0),
           existingMetricViews: input.existingMetricViews.filter(
             (view) =>
-              view.sourceTable !== null &&
-              targetKey(targetOf(view.sourceTable)) === schemaKey,
+              view.sourceTable !== null && targetKey(targetOf(view.sourceTable)) === schemaKey,
           ),
           joinSpecs: input.joinSpecs.filter(
             (join) =>
@@ -422,6 +415,9 @@ export async function runTypedMetricViewEngineV2BySchema(
   return {
     proposals: outputs.flatMap((output) => output.proposals),
     subdomainGroups: outputs.flatMap((output) => output.subdomainGroups),
-    planSummary: outputs.map((output) => output.planSummary).filter(Boolean).join(" | "),
+    planSummary: outputs
+      .map((output) => output.planSummary)
+      .filter(Boolean)
+      .join(" | "),
   };
 }

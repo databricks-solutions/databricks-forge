@@ -14,7 +14,18 @@ test("view-only recipient sees no mutating controls, keeps exports", async ({ pa
     description: null,
     industryId: null,
     scopes: [
-      { id: "s1", label: "cat.sales", ucMetadata: "cat.sales", status: "complete", scanId: "scan1", sequence: 0, errorMessage: null, inclusionPatterns: null, workspaceId: null, teamLabel: null },
+      {
+        id: "s1",
+        label: "cat.sales",
+        ucMetadata: "cat.sales",
+        status: "complete",
+        scanId: "scan1",
+        sequence: 0,
+        errorMessage: null,
+        inclusionPatterns: null,
+        workspaceId: null,
+        teamLabel: null,
+      },
     ],
   };
   const aggregate = emptyAggregate();
@@ -25,7 +36,9 @@ test("view-only recipient sees no mutating controls, keeps exports", async ({ pa
     jsonRoute(r, { program, aggregate, permission: "view" }),
   );
   await page.route("**/api/estate-programs/p1/synthesis", (r) => jsonRoute(r, {}, 404));
-  await page.route("**/api/estate-programs/p1", (r) => jsonRoute(r, { program, permission: "view" }));
+  await page.route("**/api/estate-programs/p1", (r) =>
+    jsonRoute(r, { program, permission: "view" }),
+  );
 
   await page.goto("/environment/programs/p1");
   await expect(page.getByRole("heading", { name: "Shared Estate" })).toBeVisible();

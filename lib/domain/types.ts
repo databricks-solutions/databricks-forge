@@ -812,7 +812,13 @@ export interface EstateScanSummary {
     tablesWithTierPct: number;
     tablesWithDomainPct: number;
   };
-  tierDistribution?: { bronze: number; silver: number; gold: number; system?: number; unknown: number };
+  tierDistribution?: {
+    bronze: number;
+    silver: number;
+    gold: number;
+    system?: number;
+    unknown: number;
+  };
   ontology?: {
     entityCount: number;
     relationshipCount: number;

@@ -15,12 +15,7 @@ vi.mock("@/lib/prisma", () => ({
     }),
 }));
 
-import {
-  getSession,
-  putSession,
-  deleteSession,
-  clearL1,
-} from "@/lib/genie/session-cache";
+import { getSession, putSession, deleteSession, clearL1 } from "@/lib/genie/session-cache";
 
 beforeEach(() => {
   clearL1();

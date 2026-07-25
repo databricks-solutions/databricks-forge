@@ -198,10 +198,7 @@ describe("metric-view repair validation freshness", () => {
       "metric_view_validation_unverified",
       expect.anything(),
     );
-    expect(mocks.logActivity).not.toHaveBeenCalledWith(
-      "metric_view_validated",
-      expect.anything(),
-    );
+    expect(mocks.logActivity).not.toHaveBeenCalledWith("metric_view_validated", expect.anything());
   });
 
   it("persists failed probes as error and logs validation failure", async () => {
@@ -234,10 +231,7 @@ describe("metric-view repair validation freshness", () => {
       "metric_view_validation_failed",
       expect.anything(),
     );
-    expect(mocks.logActivity).not.toHaveBeenCalledWith(
-      "metric_view_validated",
-      expect.anything(),
-    );
+    expect(mocks.logActivity).not.toHaveBeenCalledWith("metric_view_validated", expect.anything());
   });
 
   it("does not log validation success for incomplete provenance", async () => {
@@ -255,10 +249,7 @@ describe("metric-view repair validation freshness", () => {
       "metric_view_validation_failed",
       expect.anything(),
     );
-    expect(mocks.logActivity).not.toHaveBeenCalledWith(
-      "metric_view_validated",
-      expect.anything(),
-    );
+    expect(mocks.logActivity).not.toHaveBeenCalledWith("metric_view_validated", expect.anything());
   });
 
   it("fails closed before runtime validation when repaired YAML cannot parse", async () => {

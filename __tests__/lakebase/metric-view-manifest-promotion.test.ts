@@ -16,9 +16,7 @@ const metricRow: Record<string, unknown> = {
     name: "sales_metrics",
     source: { kind: "table", table: "main.sales.orders" },
     joins: [],
-    dimensions: [
-      { kind: "local", name: "order_date", expr: "order_date" },
-    ],
+    dimensions: [{ kind: "local", name: "order_date", expr: "order_date" }],
     measures: [
       { kind: "expression", name: "revenue", expr: "SUM(amount)" },
       { kind: "expression", name: "orders", expr: "SUM(quantity)" },
@@ -93,9 +91,7 @@ const manifest: SemanticAssetManifest = {
         },
       ],
       dimensions: [],
-      representativeQueries: [
-        "SELECT MEASURE(revenue) FROM draft.metrics.sales_metrics",
-      ],
+      representativeQueries: ["SELECT MEASURE(revenue) FROM draft.metrics.sales_metrics"],
       deploymentState: "proposal",
       sourceTables: ["main.sales.orders"],
     },
@@ -159,7 +155,7 @@ const transaction = vi.fn(async (callback: (tx: unknown) => Promise<unknown>) =>
 );
 
 vi.mock("@/lib/prisma", () => ({
-  withPrisma: async <T,>(
+  withPrisma: async <T>(
     callback: (prisma: {
       $transaction: typeof transaction;
       forgeMetricViewProposal: typeof metricTable;

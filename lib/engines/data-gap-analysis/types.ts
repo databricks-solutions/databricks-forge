@@ -9,7 +9,10 @@
  * missing Mission-Critical assets.
  */
 
-import type { ReferenceDataAsset, MasterRepoUseCase } from "@/lib/domain/industry-outcomes/master-repo-types";
+import type {
+  ReferenceDataAsset,
+  MasterRepoUseCase,
+} from "@/lib/domain/industry-outcomes/master-repo-types";
 import type { EconomicImpactCategory } from "@/lib/domain/economic-patterns";
 import type { ResolvedSourceSystem } from "./source-systems";
 
@@ -101,7 +104,9 @@ export interface AssetValueAtRisk {
     valueHigh: number;
   }>;
   /** Aggregate annualized $ value at risk, by impact category. */
-  byImpactCategory: Partial<Record<EconomicImpactCategory, { low: number; mid: number; high: number }>>;
+  byImpactCategory: Partial<
+    Record<EconomicImpactCategory, { low: number; mid: number; high: number }>
+  >;
   totalLow: number;
   totalMid: number;
   totalHigh: number;

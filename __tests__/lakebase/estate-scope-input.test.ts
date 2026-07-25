@@ -40,7 +40,9 @@ describe("normalizeScopeInput", () => {
   });
 
   it("clamps lineageDepth into the [1,10] bound", () => {
-    expect(normalizeScopeInput({ ucMetadata: "c.s", lineageDepth: 99 }).scope!.lineageDepth).toBe(10);
+    expect(normalizeScopeInput({ ucMetadata: "c.s", lineageDepth: 99 }).scope!.lineageDepth).toBe(
+      10,
+    );
     expect(normalizeScopeInput({ ucMetadata: "c.s", lineageDepth: 0 }).scope!.lineageDepth).toBe(1);
     expect(normalizeScopeInput({ ucMetadata: "c.s", lineageDepth: 4 }).scope!.lineageDepth).toBe(4);
   });
@@ -54,7 +56,12 @@ describe("normalizeScopeInput", () => {
   });
 
   it("normalises lineageDirection to a valid enum only", () => {
-    expect(normalizeScopeInput({ ucMetadata: "c.s", lineageDirection: "both" }).scope!.lineageDirection).toBe("both");
-    expect(normalizeScopeInput({ ucMetadata: "c.s", lineageDirection: "sideways" }).scope!.lineageDirection).toBeUndefined();
+    expect(
+      normalizeScopeInput({ ucMetadata: "c.s", lineageDirection: "both" }).scope!.lineageDirection,
+    ).toBe("both");
+    expect(
+      normalizeScopeInput({ ucMetadata: "c.s", lineageDirection: "sideways" }).scope!
+        .lineageDirection,
+    ).toBeUndefined();
   });
 });

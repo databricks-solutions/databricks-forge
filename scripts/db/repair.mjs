@@ -105,9 +105,7 @@ export async function runRepair(connectionString, opts = {}) {
           `[db-repair] removed ${report.lineageDuplicatesRemoved} duplicate lineage edge(s)`,
         );
       }
-      const normalized = await client.query(backfillLineageEntityTypeSql(), [
-        NULL_ENTITY_SENTINEL,
-      ]);
+      const normalized = await client.query(backfillLineageEntityTypeSql(), [NULL_ENTITY_SENTINEL]);
       report.lineageEntityTypesBackfilled = normalized.rowCount ?? 0;
       if (report.lineageEntityTypesBackfilled > 0) {
         logger.log(

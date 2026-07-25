@@ -23,6 +23,9 @@ const eslintConfig = defineConfig([
     "**/*.lvdash.json",
     ".deploy-pkg/**",
     ".deploy-pkg-ze/**",
+    ".venv-docs/**",
+    "site/**",
+    "lib/generated/**",
   ]),
 ]);
 

@@ -10,7 +10,10 @@ const trimmedRequiredName = z
   .string()
   .trim()
   .min(1, "Program name is required")
-  .max(MAX_ESTATE_NAME_LENGTH, `Program name must be ${MAX_ESTATE_NAME_LENGTH} characters or fewer`);
+  .max(
+    MAX_ESTATE_NAME_LENGTH,
+    `Program name must be ${MAX_ESTATE_NAME_LENGTH} characters or fewer`,
+  );
 
 const trimmedDescription = z
   .string()

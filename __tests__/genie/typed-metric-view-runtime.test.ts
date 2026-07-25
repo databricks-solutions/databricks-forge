@@ -6,7 +6,9 @@ const mocks = vi.hoisted(() => ({
 }));
 
 vi.mock("@/lib/genie/passes/table-selection", () => ({
-  runTableSelection: (useCases: Array<{ domain: string; subdomain: string; tablesInvolved: string[] }>) => [
+  runTableSelection: (
+    useCases: Array<{ domain: string; subdomain: string; tablesInvolved: string[] }>,
+  ) => [
     {
       domain: "Commercial",
       subdomains: ["Orders", "Billing"],
@@ -320,19 +322,21 @@ describe("Genie typed metric-view runtime path", () => {
   });
 
   it("does not retarget reuse or improve proposals away from their discovered FQN", async () => {
-    const runner = vi.fn(async (input: {
-      existingMetricViews: Array<{ name: string; fqn: string; sourceTable: string | null }>;
-    }) => ({
-      proposals: input.existingMetricViews.map((view, index: number) => ({
-        name: view.name,
-        sourceTables: [view.sourceTable],
-        classification: index === 0 ? "reuse" : "improve",
-        existingFqn: view.fqn,
-        ddl: `ALTER VIEW ${view.fqn}`,
-      })),
-      subdomainGroups: [],
-      planSummary: "existing",
-    }));
+    const runner = vi.fn(
+      async (input: {
+        existingMetricViews: Array<{ name: string; fqn: string; sourceTable: string | null }>;
+      }) => ({
+        proposals: input.existingMetricViews.map((view, index: number) => ({
+          name: view.name,
+          sourceTables: [view.sourceTable],
+          classification: index === 0 ? "reuse" : "improve",
+          existingFqn: view.fqn,
+          ddl: `ALTER VIEW ${view.fqn}`,
+        })),
+        subdomainGroups: [],
+        planSummary: "existing",
+      }),
+    );
 
     const result = await runTypedMetricViewEngineV2BySchema(
       {
@@ -387,10 +391,7 @@ describe("Genie typed metric-view runtime path", () => {
         metadata: {
           cacheKey: "global",
           ucPath: "main.sales,main.finance",
-          tables: [
-            { fqn: "main.sales.orders" },
-            { fqn: "main.finance.invoices" },
-          ],
+          tables: [{ fqn: "main.sales.orders" }, { fqn: "main.finance.invoices" }],
           columns: [
             { tableFqn: "main.sales.orders", columnName: "amount", dataType: "decimal" },
             { tableFqn: "main.finance.invoices", columnName: "balance", dataType: "decimal" },
@@ -475,7 +476,11 @@ describe("Genie typed metric-view runtime path", () => {
       const target = `${runnerInput.deploymentTarget.catalog}.${runnerInput.deploymentTarget.schema}`;
       expect(runnerInput.metadata.ucPath).toBe(target);
       expect(runnerInput.metadata.schemaMarkdown).toBeUndefined();
-      expect(runnerInput.metadata.tables.every((table: { fqn: string }) => table.fqn.startsWith(`${target}.`))).toBe(true);
+      expect(
+        runnerInput.metadata.tables.every((table: { fqn: string }) =>
+          table.fqn.startsWith(`${target}.`),
+        ),
+      ).toBe(true);
       expect(
         runnerInput.metadata.columns.every((column: { tableFqn: string }) =>
           column.tableFqn.startsWith(`${target}.`),
@@ -514,7 +519,7 @@ describe("Genie typed metric-view runtime path", () => {
             yaml: 'version: "1.1"',
             ddl:
               `CREATE VIEW \`${target.catalog}\`.\`${target.schema}\`.\`${target.schema}_legitimate\`\n` +
-              "WITH METRICS\nLANGUAGE YAML\nAS $$\nversion: \"1.1\"\n$$",
+              'WITH METRICS\nLANGUAGE YAML\nAS $$\nversion: "1.1"\n$$',
             sourceTables: [localTable],
             hasJoins: false,
             hasFilteredMeasures: false,
@@ -575,7 +580,7 @@ describe("Genie typed metric-view runtime path", () => {
             yaml: 'version: "1.1"',
             ddl:
               `CREATE VIEW \`${target.catalog}\`.\`${target.schema}\`.\`${target.schema}_escaped\`\n` +
-              "WITH METRICS\nLANGUAGE YAML\nAS $$\nversion: \"1.1\"\n$$",
+              'WITH METRICS\nLANGUAGE YAML\nAS $$\nversion: "1.1"\n$$',
             sourceTables: [localTable, "main.other.secret_dimension"],
             hasJoins: true,
             hasFilteredMeasures: false,
@@ -603,10 +608,7 @@ describe("Genie typed metric-view runtime path", () => {
           { ...useCases[1], tablesInvolved: ["main.finance.finance_facts"] },
         ] as never,
         metadata: {
-          tables: [
-            { fqn: "main.sales.sales_facts" },
-            { fqn: "main.finance.finance_facts" },
-          ],
+          tables: [{ fqn: "main.sales.sales_facts" }, { fqn: "main.finance.finance_facts" }],
           columns: [],
           foreignKeys: [],
           metricViews: [],
@@ -658,7 +660,7 @@ describe("Genie typed metric-view runtime path", () => {
         yaml: 'version: "1.1"',
         ddl:
           `CREATE OR REPLACE VIEW ${ddlTarget}\n` +
-          "WITH METRICS\nLANGUAGE YAML\nAS $$\nversion: \"1.1\"\n$$",
+          'WITH METRICS\nLANGUAGE YAML\nAS $$\nversion: "1.1"\n$$',
         sourceTables: [localTable],
         hasJoins: false,
         hasFilteredMeasures: false,
@@ -698,10 +700,7 @@ describe("Genie typed metric-view runtime path", () => {
       });
       return {
         proposals: [
-          proposal(
-            "sales_metrics",
-            `\`${target.catalog}\`.\`${target.schema}\`.\`sales_metrics\``,
-          ),
+          proposal("sales_metrics", `\`${target.catalog}\`.\`${target.schema}\`.\`sales_metrics\``),
           proposal("foreign_metrics", "`other_catalog`.`other_schema`.`foreign_metrics`"),
         ],
         subdomainGroups: [],

@@ -123,7 +123,12 @@ export function EstateTreeView({ tree }: { tree: EstateTree }) {
         {tree.unassignedTableCount > 0 ? ` · ${tree.unassignedTableCount} ungrouped` : ""}
       </p>
       {tree.domains.map((d) => (
-        <DomainNode key={d.domain} domain={d.domain} entities={d.entities} tableCount={d.tableCount} />
+        <DomainNode
+          key={d.domain}
+          domain={d.domain}
+          entities={d.entities}
+          tableCount={d.tableCount}
+        />
       ))}
     </div>
   );

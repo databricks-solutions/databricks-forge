@@ -69,7 +69,9 @@ describe("fetchJoinHintsFromQueryHistory", () => {
       catalog: "main",
       tableFqns: ["main.sales.orders"],
     });
-    expect(hints.every((h) => h.left.includes("main.sales") || h.right.includes("main.sales"))).toBe(true);
+    expect(
+      hints.every((h) => h.left.includes("main.sales") || h.right.includes("main.sales")),
+    ).toBe(true);
   });
 });
 
@@ -105,8 +107,11 @@ describe("fetchTableImportance", () => {
       edges: [
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         { sourceTableFqn: "main.sales.orders", targetTableFqn: "main.sales.orders_summary" } as any,
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        { sourceTableFqn: "main.sales.orders", targetTableFqn: "main.analytics.daily_revenue" } as any,
+        {
+          sourceTableFqn: "main.sales.orders",
+          targetTableFqn: "main.analytics.daily_revenue",
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } as any,
       ],
       seedTables: ["main.sales.orders"],
       discoveredTables: ["main.sales.orders_summary", "main.analytics.daily_revenue"],

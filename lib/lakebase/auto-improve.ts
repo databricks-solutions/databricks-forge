@@ -70,9 +70,7 @@ export async function recordAutoImproveIteration(
   }
 }
 
-export async function listAutoImproveIterations(
-  sessionId: string,
-): Promise<
+export async function listAutoImproveIterations(sessionId: string): Promise<
   Array<{
     iteration: number;
     sliceScore: number | null;

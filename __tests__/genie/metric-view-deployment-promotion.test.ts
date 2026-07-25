@@ -59,10 +59,7 @@ describe("metric view dependency deployment promotion", () => {
       undefined,
       deploySql,
     );
-    expect(mocks.promote).toHaveBeenCalledWith(
-      "proposal-1",
-      "prod.metrics.sales_metrics",
-    );
+    expect(mocks.promote).toHaveBeenCalledWith("proposal-1", "prod.metrics.sales_metrics");
     expect(mocks.updateStatus).not.toHaveBeenCalledWith(
       "proposal-1",
       "deployed",

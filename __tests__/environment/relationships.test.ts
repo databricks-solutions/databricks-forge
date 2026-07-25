@@ -1,10 +1,5 @@
 import { describe, it, expect } from "vitest";
-import {
-  deriveEdges,
-  summarize,
-  dedupeEdges,
-  type RawEdge,
-} from "@/lib/environment/relationships";
+import { deriveEdges, summarize, dedupeEdges, type RawEdge } from "@/lib/environment/relationships";
 
 const DOMAINS = new Map<string, string | null>([
   ["main.sales.orders", "Sales"],
@@ -24,7 +19,11 @@ describe("relationships derivation", () => {
     ];
     const derived = deriveEdges(edges, DOMAINS);
 
-    expect(derived[0]).toMatchObject({ crossCatalog: false, crossSchema: false, crossDomain: false });
+    expect(derived[0]).toMatchObject({
+      crossCatalog: false,
+      crossSchema: false,
+      crossDomain: false,
+    });
     expect(derived[1]).toMatchObject({ crossCatalog: false, crossSchema: true, crossDomain: true });
     expect(derived[2]).toMatchObject({ crossCatalog: true, crossSchema: true, crossDomain: false });
     expect(derived[3]).toMatchObject({ crossSchema: true, crossDomain: false });

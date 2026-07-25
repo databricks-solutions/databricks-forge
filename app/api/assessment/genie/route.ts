@@ -69,10 +69,7 @@ export async function POST(request: NextRequest) {
       try {
         const liveSpace = await getGenieSpace(existing.space_id);
         if (liveSpace.serialized_space) {
-          serializedSpace = mergeWafGenieSerializedSpace(
-            builtSpace,
-            liveSpace.serialized_space,
-          );
+          serializedSpace = mergeWafGenieSerializedSpace(builtSpace, liveSpace.serialized_space);
         }
       } catch (err) {
         logger.warn("WAF Genie space fetch-before-merge failed; using built space as-is", {

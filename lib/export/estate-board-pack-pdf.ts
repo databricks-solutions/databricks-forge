@@ -56,7 +56,13 @@ export interface BoardPackData {
   synthesis?: EstateSynthesisResult | null;
 }
 
-function drawLogo(doc: PDFKit.PDFDocument, x: number, y: number, h: number, color: string = PDF.DB_RED) {
+function drawLogo(
+  doc: PDFKit.PDFDocument,
+  x: number,
+  y: number,
+  h: number,
+  color: string = PDF.DB_RED,
+) {
   const s = h / DB_LOGO_VB_H;
   doc.save().translate(x, y).scale(s).path(DB_LOGO_PATH).fill(color);
   doc.restore();
@@ -95,7 +101,13 @@ function kpiBox(
   label: string,
   accent = false,
 ) {
-  doc.save().roundedRect(x, y, w, h, 4).lineWidth(1).strokeColor(PDF.BORDER_COLOR).stroke().restore();
+  doc
+    .save()
+    .roundedRect(x, y, w, h, 4)
+    .lineWidth(1)
+    .strokeColor(PDF.BORDER_COLOR)
+    .stroke()
+    .restore();
   doc
     .fontSize(20)
     .fillColor(accent ? PDF.DB_RED : PDF.DB_DARK)
@@ -148,7 +160,11 @@ function renderSynthesisPage(doc: PDFKit.PDFDocument, synthesis: EstateSynthesis
     doc,
     y,
     [
-      { value: `${scores.overall}`, label: `READINESS · ${String(scores.band).toUpperCase()}`, accent: true },
+      {
+        value: `${scores.overall}`,
+        label: `READINESS · ${String(scores.band).toUpperCase()}`,
+        accent: true,
+      },
       { value: `${scores.governance}`, label: "GOVERNANCE" },
       { value: `${scores.quality}`, label: "QUALITY" },
       { value: `${scores.freshness}`, label: "FRESHNESS" },
@@ -198,11 +214,19 @@ function renderSynthesisPage(doc: PDFKit.PDFDocument, synthesis: EstateSynthesis
         y = sectionTitle(doc, "Key findings (cont.)", M);
       }
       const sev = String(f.severity).toUpperCase();
-      doc.font("Helvetica-Bold").fillColor(PDF.DB_DARK).fontSize(11).text(`[${sev}] ${f.title}`, M, y, {
-        width: CW,
-      });
+      doc
+        .font("Helvetica-Bold")
+        .fillColor(PDF.DB_DARK)
+        .fontSize(11)
+        .text(`[${sev}] ${f.title}`, M, y, {
+          width: CW,
+        });
       y = doc.y + 2;
-      doc.font("Helvetica").fillColor(PDF.MID_GRAY).fontSize(10).text(f.summary, M, y, { width: CW });
+      doc
+        .font("Helvetica")
+        .fillColor(PDF.MID_GRAY)
+        .fontSize(10)
+        .text(f.summary, M, y, { width: CW });
       y = doc.y + 4;
       if (f.action?.label) {
         doc
@@ -235,11 +259,7 @@ export async function generateEstateBoardPackPdf(data: BoardPackData): Promise<B
     // ---- Cover --------------------------------------------------------------
     doc.rect(0, 0, PAGE_W, PAGE_H).fill(PDF.DB_DARK);
     drawLogo(doc, M, 60, 34, PDF.TEXT_LIGHT);
-    doc
-      .fontSize(13)
-      .fillColor(PDF.TEXT_LIGHT)
-      .font("Helvetica")
-      .text("DATABRICKS FORGE", M, 110);
+    doc.fontSize(13).fillColor(PDF.TEXT_LIGHT).font("Helvetica").text("DATABRICKS FORGE", M, 110);
     doc
       .fontSize(34)
       .fillColor(PDF.TEXT_LIGHT)
@@ -346,7 +366,11 @@ export async function generateEstateBoardPackPdf(data: BoardPackData): Promise<B
         width: 200,
         ellipsis: true,
       });
-      doc.save().rect(M + 210, y + 1, barW, 10).fill(PDF.DB_RED).restore();
+      doc
+        .save()
+        .rect(M + 210, y + 1, barW, 10)
+        .fill(PDF.DB_RED)
+        .restore();
       doc
         .font("Helvetica")
         .fillColor(PDF.MID_GRAY)

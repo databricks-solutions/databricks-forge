@@ -85,9 +85,7 @@ export async function getDashboardStats(
       scopedRun = { status: access.status, progressPct: access.progressPct };
     }
 
-    const runScopeForUseCases = runId
-      ? { runId, ...visibility }
-      : visibility;
+    const runScopeForUseCases = runId ? { runId, ...visibility } : visibility;
     const useCaseVisibility = { run: runScopeForUseCases };
 
     const [runStatusGroups, recentRunRows] = await Promise.all([
@@ -170,13 +168,10 @@ export async function getDashboardStats(
         : Promise.resolve(null),
     ]);
 
-    const statusLookup = new Map(
-      runStatusGroups.map((g) => [g.status, g._count._all]),
-    );
+    const statusLookup = new Map(runStatusGroups.map((g) => [g.status, g._count._all]));
     const completedRuns = statusLookup.get("completed") ?? 0;
     const failedRuns = statusLookup.get("failed") ?? 0;
-    const runningRuns =
-      (statusLookup.get("running") ?? 0) + (statusLookup.get("pending") ?? 0);
+    const runningRuns = (statusLookup.get("running") ?? 0) + (statusLookup.get("pending") ?? 0);
     const totalRuns = runStatusGroups.reduce((sum, g) => sum + g._count._all, 0);
 
     const typeLookup = new Map(typeGroups.map((g) => [g.type, g._count._all]));
@@ -187,9 +182,7 @@ export async function getDashboardStats(
 
     const scores = scoreRows.map((r) => r.overallScore!);
     const avgScore =
-      scores.length > 0
-        ? Math.round((scores.reduce((a, b) => a + b, 0) / scores.length) * 100)
-        : 0;
+      scores.length > 0 ? Math.round((scores.reduce((a, b) => a + b, 0) / scores.length) * 100) : 0;
 
     const domainBreakdown = domainGroups.map((g) => ({
       domain: g.domain ?? "Unknown",
@@ -200,24 +193,19 @@ export async function getDashboardStats(
       (m) => m.metricType === "run" && m.metricName === "consultant_readiness",
     );
     const assistantRows = qualityRows.filter(
-      (m) =>
-        m.metricType === "assistant" &&
-        m.metricName === "assistant_overall_score",
+      (m) => m.metricType === "assistant" && m.metricName === "assistant_overall_score",
     );
     const avgConsultantReadiness =
       consultantRows.length > 0
-        ? consultantRows.reduce((s, m) => s + m.metricValue, 0) /
-          consultantRows.length
+        ? consultantRows.reduce((s, m) => s + m.metricValue, 0) / consultantRows.length
         : null;
     const avgAssistantScore =
       assistantRows.length > 0
-        ? assistantRows.reduce((s, m) => s + m.metricValue, 0) /
-          assistantRows.length
+        ? assistantRows.reduce((s, m) => s + m.metricValue, 0) / assistantRows.length
         : null;
     const releaseGatePassRate =
       consultantRows.length > 0
-        ? consultantRows.filter((m) => m.passed === true).length /
-          consultantRows.length
+        ? consultantRows.filter((m) => m.passed === true).length / consultantRows.length
         : null;
 
     const now = Date.now();
@@ -227,9 +215,7 @@ export async function getDashboardStats(
       return expiry >= now;
     });
     const benchmarkFreshnessRate =
-      benchmarkRows.length > 0
-        ? freshBenchmarks.length / benchmarkRows.length
-        : null;
+      benchmarkRows.length > 0 ? freshBenchmarks.length / benchmarkRows.length : null;
     const benchmarkIndustryCoverage = new Set(
       benchmarkRows.map((r) => (r.industry ?? "").trim()).filter(Boolean),
     ).size;

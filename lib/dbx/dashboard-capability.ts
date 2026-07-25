@@ -85,9 +85,7 @@ export function dashboardApiError(
   const missingDashboardScope =
     authMode === "user" && status === 403 && hasExactMissingDashboardScope(diagnostic.message);
   const diagnosticCode =
-    diagnostic.code && TRUSTED_DIAGNOSTIC_CODES.has(diagnostic.code)
-      ? diagnostic.code
-      : undefined;
+    diagnostic.code && TRUSTED_DIAGNOSTIC_CODES.has(diagnostic.code) ? diagnostic.code : undefined;
   const diagnosticMessage = sanitizeBoundedDiagnostic(diagnostic.message);
   return missingDashboardScope
     ? new DashboardScopeUnsupportedError(operation)

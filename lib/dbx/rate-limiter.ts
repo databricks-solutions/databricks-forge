@@ -248,9 +248,7 @@ class PoolRateLimiter {
           const { getRunStepContext } = await import("@/lib/pipeline/run-context");
           const ctx = getRunStepContext();
           if (ctx) {
-            const { recordThrottleMs } = await import(
-              "@/lib/pipeline/step-instrumentation"
-            );
+            const { recordThrottleMs } = await import("@/lib/pipeline/step-instrumentation");
             recordThrottleMs(ctx.runId, ctx.step, escalatedMs);
           }
         } catch {

@@ -119,7 +119,13 @@ export async function assessReadiness(input: ReadinessInput): Promise<ReadinessR
 
   for (let i = 0; i < input.questions.length; i += MAX_QUESTIONS_PER_BATCH) {
     const batch = input.questions.slice(i, i + MAX_QUESTIONS_PER_BATCH);
-    const batchResults = await assessBatch(endpoint, scopeOf(input), tableBlock, batch, input.signal);
+    const batchResults = await assessBatch(
+      endpoint,
+      scopeOf(input),
+      tableBlock,
+      batch,
+      input.signal,
+    );
     results.push(...batchResults);
   }
 
@@ -176,7 +182,7 @@ async function assessBatch(
       content: [
         "You audit whether a Unity Catalog schema can answer a list of business questions.",
         "Return JSON only -- a top-level array, one object per question, in the SAME order.",
-        "Each object: { \"verdict\": \"answerable\"|\"partial\"|\"not_answerable\", \"rationale\": string, \"requiredTables\": string[] }.",
+        'Each object: { "verdict": "answerable"|"partial"|"not_answerable", "rationale": string, "requiredTables": string[] }.',
         "rationale must be one short sentence.",
         "verdict 'answerable' means every required table+column exists, 'partial' means missing columns or ambiguous joins, 'not_answerable' means the schema would need new tables.",
       ].join("\n"),

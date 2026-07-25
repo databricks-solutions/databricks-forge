@@ -29,10 +29,7 @@ export async function GET(
     const guard = await loadRunOrRespond(request, runId, "read");
     if (!guard.ok) return guard.response;
 
-    const [job, counts] = await Promise.all([
-      getSqlJobStatus(runId),
-      getSqlStatusCounts(runId),
-    ]);
+    const [job, counts] = await Promise.all([getSqlJobStatus(runId), getSqlStatusCounts(runId)]);
 
     if (!job) {
       // No job has been started yet. The counts table still tells us
@@ -58,9 +55,7 @@ export async function GET(
       total: job.total || counts.total,
       counts,
       error: job.error,
-      elapsedMs: job.completedAt
-        ? job.completedAt - job.startedAt
-        : Date.now() - job.startedAt,
+      elapsedMs: job.completedAt ? job.completedAt - job.startedAt : Date.now() - job.startedAt,
     });
   } catch (error) {
     return NextResponse.json({ error: safeErrorMessage(error) }, { status: 500 });

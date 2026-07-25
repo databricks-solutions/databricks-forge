@@ -144,9 +144,7 @@ function sourceAwareRationale(
  */
 function friendlyCategoryNoun(categoryName: string): string {
   // Strip a trailing " systems" / " platforms" / " platform" suffix.
-  let s = categoryName
-    .replace(/\s+systems$/i, "")
-    .replace(/\s+platforms?$/i, "");
+  let s = categoryName.replace(/\s+systems$/i, "").replace(/\s+platforms?$/i, "");
   // Slash-separated category labels: pick the most concise alternative.
   if (s.includes("/")) {
     s = s.split("/")[0]!.trim();
@@ -175,9 +173,7 @@ export function buildIngestionRecommendations(
   // Phase 3.4: source-system override — only fires when a resolver result
   // names a concrete preferredStrategy. Unknown rows and rows missing a
   // strategy fall through to the generic ranking above untouched.
-  const topResolved = resolved?.find(
-    (r) => r.origin !== "unknown" && r.preferredStrategy !== null,
-  );
+  const topResolved = resolved?.find((r) => r.origin !== "unknown" && r.preferredStrategy !== null);
   if (!topResolved || !topResolved.preferredStrategy) return generic;
 
   // Promote the preferred strategy to position 0; preserve relative order

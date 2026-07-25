@@ -52,7 +52,7 @@ const findManyBenchmark = vi.fn<(arg: FindManyArg) => Promise<unknown[]>>();
 const aggregateValue = vi.fn<(arg: AggregateArg) => Promise<unknown>>();
 
 vi.mock("@/lib/prisma", () => ({
-  withPrisma: async <T,>(cb: (prisma: unknown) => Promise<T>) => {
+  withPrisma: async <T>(cb: (prisma: unknown) => Promise<T>) => {
     const prisma = {
       forgeRun: {
         findFirst: findFirstRun,
@@ -145,13 +145,8 @@ describe("getDashboardStats", () => {
       { type: "AI", _count: { _all: 3 } },
       { type: "Statistical", _count: { _all: 2 } },
     ]);
-    groupByUseCase.mockResolvedValueOnce([
-      { domain: "Sales", _count: { _all: 5 } },
-    ]);
-    findManyUseCase.mockResolvedValueOnce([
-      { overallScore: 0.75 },
-      { overallScore: 0.85 },
-    ]);
+    groupByUseCase.mockResolvedValueOnce([{ domain: "Sales", _count: { _all: 5 } }]);
+    findManyUseCase.mockResolvedValueOnce([{ overallScore: 0.75 }, { overallScore: 0.85 }]);
     aggregateValue.mockResolvedValueOnce({ _sum: { valueMid: 12345 } });
 
     const { getDashboardStats } = await import("@/lib/dashboard/stats");
@@ -167,10 +162,7 @@ describe("getDashboardStats", () => {
     expect(typeGroupArg?.where).toEqual({
       run: {
         runId: "r-1",
-        OR: [
-          { ownerEmail: "user@example.com" },
-          { runId: { in: ["shared-1"] } },
-        ],
+        OR: [{ ownerEmail: "user@example.com" }, { runId: { in: ["shared-1"] } }],
       },
     });
     // Aggregate on value estimates is keyed strictly by runId.
@@ -199,10 +191,7 @@ describe("getDashboardStats", () => {
     const typeGroupArg = groupByUseCase.mock.calls[0]?.[0];
     expect(typeGroupArg?.where).toEqual({
       run: {
-        OR: [
-          { ownerEmail: "user@example.com" },
-          { runId: { in: ["shared-1"] } },
-        ],
+        OR: [{ ownerEmail: "user@example.com" }, { runId: { in: ["shared-1"] } }],
       },
     });
     expect(aggregateValue).not.toHaveBeenCalled();
@@ -227,10 +216,7 @@ describe("getDashboardStats", () => {
 
     const recentRunsArg = findManyRun.mock.calls[0]?.[0];
     expect(recentRunsArg?.where).toEqual({
-      OR: [
-        { ownerEmail: "user@example.com" },
-        { runId: { in: ["shared-1"] } },
-      ],
+      OR: [{ ownerEmail: "user@example.com" }, { runId: { in: ["shared-1"] } }],
     });
     expect(recentRunsArg?.take).toBe(5);
   });
@@ -280,18 +266,11 @@ describe("listDashboardRunOptions", () => {
     ]);
 
     const { listDashboardRunOptions } = await import("@/lib/dashboard/stats");
-    const opts = await listDashboardRunOptions(
-      "user@example.com",
-      ["shared-1"],
-      10,
-    );
+    const opts = await listDashboardRunOptions("user@example.com", ["shared-1"], 10);
 
     const findManyArg = findManyRun.mock.calls[0]?.[0];
     expect(findManyArg?.where).toEqual({
-      OR: [
-        { ownerEmail: "user@example.com" },
-        { runId: { in: ["shared-1"] } },
-      ],
+      OR: [{ ownerEmail: "user@example.com" }, { runId: { in: ["shared-1"] } }],
     });
     expect(findManyArg?.orderBy).toEqual({ createdAt: "desc" });
     expect(findManyArg?.take).toBe(10);

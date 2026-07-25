@@ -64,9 +64,7 @@ function lower(s: string | null | undefined): string {
  * Build a forward-edge index: source FQN (lower-cased) → outgoing edges.
  * Returns an empty map when `lineageGraph` is null.
  */
-function buildForwardIndex(
-  lineageGraph: LineageGraph | null,
-): Map<string, LineageEdge[]> {
+function buildForwardIndex(lineageGraph: LineageGraph | null): Map<string, LineageEdge[]> {
   const index = new Map<string, LineageEdge[]>();
   if (!lineageGraph) return index;
   for (const edge of lineageGraph.edges) {

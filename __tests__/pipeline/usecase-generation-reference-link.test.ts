@@ -23,24 +23,24 @@ const ALLOWED = new Map<string, string>([
 
 describe("normalizeReferenceUseCaseName", () => {
   it("returns the canonical master-repo casing on exact match", () => {
-    expect(
-      normalizeReferenceUseCaseName("Customer Lifetime Value Modeling", ALLOWED),
-    ).toBe("Customer Lifetime Value Modeling");
+    expect(normalizeReferenceUseCaseName("Customer Lifetime Value Modeling", ALLOWED)).toBe(
+      "Customer Lifetime Value Modeling",
+    );
   });
 
   it("normalises minor LLM casing drift to canonical casing", () => {
-    expect(
-      normalizeReferenceUseCaseName("customer lifetime value modeling", ALLOWED),
-    ).toBe("Customer Lifetime Value Modeling");
-    expect(
-      normalizeReferenceUseCaseName("CUSTOMER LIFETIME VALUE MODELING", ALLOWED),
-    ).toBe("Customer Lifetime Value Modeling");
+    expect(normalizeReferenceUseCaseName("customer lifetime value modeling", ALLOWED)).toBe(
+      "Customer Lifetime Value Modeling",
+    );
+    expect(normalizeReferenceUseCaseName("CUSTOMER LIFETIME VALUE MODELING", ALLOWED)).toBe(
+      "Customer Lifetime Value Modeling",
+    );
   });
 
   it("trims surrounding whitespace before lookup", () => {
-    expect(
-      normalizeReferenceUseCaseName("  Real-Time Fraud Detection  ", ALLOWED),
-    ).toBe("Real-Time Fraud Detection");
+    expect(normalizeReferenceUseCaseName("  Real-Time Fraud Detection  ", ALLOWED)).toBe(
+      "Real-Time Fraud Detection",
+    );
   });
 
   it("returns null for hallucinated titles not in the allow-list", () => {
@@ -72,9 +72,9 @@ describe("normalizeReferenceUseCaseName", () => {
     // parser preserves the LLM's value (trimmed) so the Data Gap backfill
     // or fuzzy matcher can still try downstream.
     const empty = new Map<string, string>();
-    expect(
-      normalizeReferenceUseCaseName("  Some Industry Reference  ", empty),
-    ).toBe("Some Industry Reference");
+    expect(normalizeReferenceUseCaseName("  Some Industry Reference  ", empty)).toBe(
+      "Some Industry Reference",
+    );
     expect(normalizeReferenceUseCaseName(null, empty)).toBeNull();
     expect(normalizeReferenceUseCaseName("", empty)).toBeNull();
     expect(normalizeReferenceUseCaseName("none", empty)).toBeNull();

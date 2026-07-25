@@ -105,9 +105,7 @@ export async function checkMetricViewDependencies(
   if (requiredFqns.length === 0) {
     return { allDeployed: true, missing: [], deployed: [] };
   }
-  const safeRequiredFqns = requiredFqns.map((fqn) =>
-    validateFqn(fqn, "metric view FQN"),
-  );
+  const safeRequiredFqns = requiredFqns.map((fqn) => validateFqn(fqn, "metric view FQN"));
 
   const deployed: string[] = [];
   const missingFqns: string[] = [];
@@ -141,10 +139,7 @@ export async function checkMetricViewDependencies(
     // If the proposal was already deployed elsewhere, use that FQN
     if (proposal?.deployedFqn) {
       try {
-        const safeDeployedFqn = validateFqn(
-          proposal.deployedFqn,
-          "deployed metric view FQN",
-        );
+        const safeDeployedFqn = validateFqn(proposal.deployedFqn, "deployed metric view FQN");
         await executeSQL(`DESCRIBE TABLE ${quoteValidatedFqn(safeDeployedFqn)}`);
         existingFqn = safeDeployedFqn;
       } catch {

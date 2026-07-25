@@ -18,9 +18,7 @@ import { dashboardApiError, type DashboardAuthMode } from "./dashboard-capabilit
 
 export const DEFAULT_DASHBOARD_PARENT_PATH = "/Shared/Forge Dashboards/";
 
-export type DashboardAuth =
-  | { mode: "user"; oboToken: string }
-  | { mode: "app"; oboToken?: never };
+export type DashboardAuth = { mode: "user"; oboToken: string } | { mode: "app"; oboToken?: never };
 
 async function resolveHeaders(auth: DashboardAuth): Promise<Record<string, string>> {
   if (auth.mode === "app") {

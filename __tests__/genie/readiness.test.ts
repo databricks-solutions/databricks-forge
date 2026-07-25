@@ -64,11 +64,7 @@ describe("assessReadiness", () => {
       ],
     });
 
-    expect(r.results.map((x) => x.verdict)).toEqual([
-      "answerable",
-      "partial",
-      "not_answerable",
-    ]);
+    expect(r.results.map((x) => x.verdict)).toEqual(["answerable", "partial", "not_answerable"]);
     expect(r.summary).toEqual({ answerable: 1, partial: 1, notAnswerable: 1 });
     expect(r.ready).toBe(false);
     expect(r.results[0].requiredTables).toEqual(["main.sales.orders"]);

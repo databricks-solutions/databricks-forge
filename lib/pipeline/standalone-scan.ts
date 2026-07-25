@@ -21,7 +21,11 @@ import { enrichTablesInBatches, getTableTags, getColumnTags } from "@/lib/querie
 import { walkLineage } from "@/lib/queries/lineage";
 import { runIntelligenceLayer, buildTableInputs } from "@/lib/ai/environment-intelligence";
 import { computeAllTableHealth } from "@/lib/domain/health-score";
-import { saveEnvironmentScan, markScanFailed, type InsightRecord } from "@/lib/lakebase/environment-scans";
+import {
+  saveEnvironmentScan,
+  markScanFailed,
+  type InsightRecord,
+} from "@/lib/lakebase/environment-scans";
 import { resolveEndpoint } from "@/lib/dbx/client";
 import { initScanProgress, updateScanProgress } from "@/lib/pipeline/scan-progress";
 import { discoverExistingAssets } from "@/lib/discovery/asset-scanner";
@@ -701,11 +705,8 @@ export async function runStandaloneEnrichment(
         message: "Synthesising estate ontology (canonical entities + relationships)...",
       });
       const { runEstateOntology } = await import("@/lib/ai/estate-ontology");
-      const {
-        computeMetadataQualityCoverage,
-        computeTierDistribution,
-        computeReadinessScore,
-      } = await import("@/lib/domain/estate-readiness");
+      const { computeMetadataQualityCoverage, computeTierDistribution, computeReadinessScore } =
+        await import("@/lib/domain/estate-readiness");
 
       const governanceByFqn = new Map<string, number>();
       for (const gap of intelligenceResult?.governanceGaps ?? []) {

@@ -1,7 +1,4 @@
-import type {
-  MetricViewDimension,
-  MetricViewMeasure,
-} from "@/lib/metric-views/definition";
+import type { MetricViewDimension, MetricViewMeasure } from "@/lib/metric-views/definition";
 
 export type SemanticAssetSource = "metric_view" | "genie_expression";
 

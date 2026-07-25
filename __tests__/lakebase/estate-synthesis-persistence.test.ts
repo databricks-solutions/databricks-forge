@@ -17,22 +17,28 @@ interface Row {
 
 let store: Row[] = [];
 
-const create = vi.fn(async ({ data, select }: { data: Omit<Row, "id" | "createdAt">; select?: unknown }) => {
-  const row: Row = { id: `row-${store.length + 1}`, createdAt: new Date("2026-06-01T00:00:00Z"), ...data };
-  store.push(row);
-  return select ? { id: row.id } : row;
-});
-const findFirst = vi.fn(async ({ where, orderBy: _o }: { where: Partial<Row>; orderBy?: unknown }) => {
-  const matches = store.filter((r) =>
-    Object.entries(where).every(
-      ([k, v]) => (r as unknown as Record<string, unknown>)[k] === v,
-    ),
-  );
-  return matches.length ? matches[matches.length - 1] : null;
-});
+const create = vi.fn(
+  async ({ data, select }: { data: Omit<Row, "id" | "createdAt">; select?: unknown }) => {
+    const row: Row = {
+      id: `row-${store.length + 1}`,
+      createdAt: new Date("2026-06-01T00:00:00Z"),
+      ...data,
+    };
+    store.push(row);
+    return select ? { id: row.id } : row;
+  },
+);
+const findFirst = vi.fn(
+  async ({ where, orderBy: _o }: { where: Partial<Row>; orderBy?: unknown }) => {
+    const matches = store.filter((r) =>
+      Object.entries(where).every(([k, v]) => (r as unknown as Record<string, unknown>)[k] === v),
+    );
+    return matches.length ? matches[matches.length - 1] : null;
+  },
+);
 
 vi.mock("@/lib/prisma", () => ({
-  withPrisma: async <T,>(cb: (prisma: unknown) => Promise<T>) =>
+  withPrisma: async <T>(cb: (prisma: unknown) => Promise<T>) =>
     cb({ forgeEstateSynthesis: { create, findFirst } }),
 }));
 

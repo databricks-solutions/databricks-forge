@@ -63,11 +63,7 @@ export async function runPostSqlDependentJobs({
   if (signal?.aborted) return;
 
   const outcome = await runGenie();
-  if (
-    signal?.aborted ||
-    outcome.status !== "completed" ||
-    outcome.recommendationCount === 0
-  ) {
+  if (signal?.aborted || outcome.status !== "completed" || outcome.recommendationCount === 0) {
     return;
   }
 

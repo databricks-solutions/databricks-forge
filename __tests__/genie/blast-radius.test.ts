@@ -73,7 +73,10 @@ describe("gateByBlastRadius", () => {
   it("allows when within budget", () => {
     const after = {
       data_sources: {
-        tables: [{ path: "c.s.t1", description: "x" }, { path: "c.s.t2", description: "y" }],
+        tables: [
+          { path: "c.s.t1", description: "x" },
+          { path: "c.s.t2", description: "y" },
+        ],
       },
     };
     const out = gateByBlastRadius({ before, after, payload: { fix: true } });

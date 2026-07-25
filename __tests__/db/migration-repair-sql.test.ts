@@ -64,9 +64,7 @@ describe("scope (program_id, sequence) dedup — two-phase renumber", () => {
   it("phase 1 assigns unique NEGATIVE temporary sequences, scoped to affected programs", () => {
     const sql = repair.scopeRenumberPhase1Sql();
     // Deterministic ordering key required by the plan: sequence, created_at, scope_id.
-    expect(sql).toMatch(
-      /order\s+by\s+sequence\s+asc\s*,\s*created_at\s+asc\s*,\s*scope_id\s+asc/i,
-    );
+    expect(sql).toMatch(/order\s+by\s+sequence\s+asc\s*,\s*created_at\s+asc\s*,\s*scope_id\s+asc/i);
     expect(sql).toMatch(/partition\s+by\s+program_id/i);
     expect(sql).toMatch(/row_number\s*\(\s*\)/i);
     // The temporary value is negative so it can never collide with a final,
@@ -188,9 +186,8 @@ describe("classifyMigrationSql — destructive-delta gate", () => {
   it("flags DROP TYPE and destructive enum-value changes", () => {
     expect(repair.classifyMigrationSql('DROP TYPE "RunStatus";').destructive).toBe(true);
     expect(
-      repair.classifyMigrationSql(
-        'ALTER TYPE "RunStatus" RENAME VALUE \'pending\' TO \'queued\';',
-      ).destructive,
+      repair.classifyMigrationSql("ALTER TYPE \"RunStatus\" RENAME VALUE 'pending' TO 'queued';")
+        .destructive,
     ).toBe(true);
   });
 
@@ -292,9 +289,10 @@ describe("preflight diff-failure policy", () => {
         DATABRICKS_CLIENT_ID: "app-client",
       },
     ]) {
-      expect(
-        repair.decideMigrationDiffGate({ ok: false, reason: "diff failed" }, env),
-      ).toEqual({ proceed: false, bypassed: false });
+      expect(repair.decideMigrationDiffGate({ ok: false, reason: "diff failed" }, env)).toEqual({
+        proceed: false,
+        bypassed: false,
+      });
     }
   });
 });

@@ -12,11 +12,7 @@ import { chatCompletion } from "@/lib/dbx/model-serving";
 import { resolveEndpoint } from "@/lib/dbx/client";
 import { parseLLMJson } from "@/lib/toolkit/parse-llm-json";
 import { logger } from "@/lib/logger";
-import type {
-  EstateSynthesisInput,
-  EstateSynthesisDeps,
-  EstateSynthesisResult,
-} from "./types";
+import type { EstateSynthesisInput, EstateSynthesisDeps, EstateSynthesisResult } from "./types";
 import type { ExecutiveBrief } from "@/lib/domain/estate-synthesis-types";
 import { computeEstateScores, buildFindings, computeValueAtRisk } from "./scoring";
 import { buildBriefPrompt, fallbackBrief } from "./prompts";
@@ -92,8 +88,7 @@ function mergeBrief(llm: Partial<ExecutiveBrief>, fb: ExecutiveBrief): Executive
     strengths: nonEmpty(llm.strengths) ?? fb.strengths,
     criticalRisks: nonEmpty(llm.criticalRisks) ?? fb.criticalRisks,
     quickWins: nonEmpty(llm.quickWins) ?? fb.quickWins,
-    strategicRecommendations:
-      nonEmpty(llm.strategicRecommendations) ?? fb.strategicRecommendations,
+    strategicRecommendations: nonEmpty(llm.strategicRecommendations) ?? fb.strategicRecommendations,
     situationComplicationResolution: {
       situation:
         nonEmpty(llm.situationComplicationResolution?.situation) ??

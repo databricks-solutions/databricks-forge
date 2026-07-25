@@ -103,9 +103,7 @@ describe("buildIndustryReferenceCases", () => {
   });
 
   it("emits the placeholder string when both sources are absent", () => {
-    expect(buildIndustryReferenceCases({})).toBe(
-      "(no industry reference cases available)",
-    );
+    expect(buildIndustryReferenceCases({})).toBe("(no industry reference cases available)");
   });
 
   it("self-checks: at least one calibrated reference case ships in `banking` enrichment", () => {

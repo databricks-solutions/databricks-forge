@@ -66,10 +66,7 @@ export function DegradedFinancialBanner({
     <Card className="border-amber-500/40 bg-amber-500/5">
       <CardContent className="flex flex-col gap-3 py-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-start gap-3">
-          <AlertTriangle
-            className="mt-0.5 h-5 w-5 shrink-0 text-amber-500"
-            aria-hidden="true"
-          />
+          <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-amber-500" aria-hidden="true" />
           <div className="space-y-1">
             <p className="text-sm font-semibold text-amber-700 dark:text-amber-300">
               Financial estimates were not generated
@@ -80,8 +77,8 @@ export function DegradedFinancialBanner({
               {typeof missingCount === "number" && missingCount > 0
                 ? `${missingCount} use case${missingCount === 1 ? "" : "s"}`
                 : "one or more batches"}{" "}
-              and could not be recovered automatically. Click <em>Recompute</em> to retry --
-              the run will rotate to a fallback endpoint and split into smaller batches.
+              and could not be recovered automatically. Click <em>Recompute</em> to retry -- the run
+              will rotate to a fallback endpoint and split into smaller batches.
             </p>
           </div>
         </div>

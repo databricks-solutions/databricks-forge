@@ -245,10 +245,7 @@ describe("typed metric-view schema grounding", () => {
     );
 
     await runTypedMetricViewEngineV2BySchema(
-      inputFor(
-        [{ fqn: "main.sales.orders", columns: ["status", "revenue"] }],
-        [measure],
-      ),
+      inputFor([{ fqn: "main.sales.orders", columns: ["status", "revenue"] }], [measure]),
       runner,
     );
 

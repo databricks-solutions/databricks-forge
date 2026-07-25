@@ -29,16 +29,17 @@ export async function runIndustryClassification(
 ): Promise<IndustryClassification> {
   const { llm, logger: log, signal, modelTier } = opts;
 
-  const industriesList = existingIndustries
-    .map((i) => `- ${i.id}: ${i.name}`)
-    .join("\n");
+  const industriesList = existingIndustries.map((i) => `- ${i.id}: ${i.name}`).join("\n");
 
-  const prompt = INDUSTRY_CLASSIFICATION_PROMPT
-    .replace("{existing_industries}", industriesList)
-    .replace("{source_text}", sourceText.slice(0, 10_000));
+  const prompt = INDUSTRY_CLASSIFICATION_PROMPT.replace(
+    "{existing_industries}",
+    industriesList,
+  ).replace("{source_text}", sourceText.slice(0, 10_000));
 
   // Classification is a lightweight task; always prefer classification tier.
-  const endpoint = resolveResearchEndpoint(modelTier === "reasoning" ? "classification" : (modelTier ?? "classification"));
+  const endpoint = resolveResearchEndpoint(
+    modelTier === "reasoning" ? "classification" : (modelTier ?? "classification"),
+  );
 
   const response = await llm.chat({
     endpoint,
@@ -49,7 +50,10 @@ export async function runIndustryClassification(
     signal,
   });
 
-  const parsed = parseLLMJson(response.content, "industry-classification") as IndustryClassification & { reasoning?: string };
+  const parsed = parseLLMJson(
+    response.content,
+    "industry-classification",
+  ) as IndustryClassification & { reasoning?: string };
 
   log.info("Industry classified", {
     industryId: parsed.industryId,

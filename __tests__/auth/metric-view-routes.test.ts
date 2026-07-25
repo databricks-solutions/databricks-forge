@@ -49,7 +49,7 @@ vi.mock("@/lib/genie/metric-view-dependencies", () => ({
 vi.mock("@/lib/genie/deploy", () => ({ deployAsset: mocks.deployAsset }));
 vi.mock("@/lib/lakebase/activity-log", () => ({ logActivity: mocks.logActivity }));
 vi.mock("@/lib/prisma", () => ({
-  withPrisma: async <T,>(
+  withPrisma: async <T>(
     callback: (prisma: {
       forgeMetricViewProposal: { findUnique: typeof mocks.findUniqueProposal };
     }) => Promise<T>,
@@ -186,12 +186,22 @@ describe("metric-view resource guards", () => {
     ["deploy", deployProposal],
   ])("rejects unauthorized %s requests", async (method, handler) => {
     mocks.loadMetricViewProposalOrRespond.mockResolvedValue(denied());
-    const verb = method === "GET" ? "GET" : method === "PATCH" ? "PATCH" : method === "DELETE" ? "DELETE" : "POST";
+    const verb =
+      method === "GET"
+        ? "GET"
+        : method === "PATCH"
+          ? "PATCH"
+          : method === "DELETE"
+            ? "DELETE"
+            : "POST";
     const response = await handler(
-      request(`/api/metric-views/mv-1${method === "repair" || method === "deploy" ? `/${method}` : ""}`, {
-        method: verb,
-        body: verb === "GET" || verb === "DELETE" ? undefined : JSON.stringify({}),
-      }),
+      request(
+        `/api/metric-views/mv-1${method === "repair" || method === "deploy" ? `/${method}` : ""}`,
+        {
+          method: verb,
+          body: verb === "GET" || verb === "DELETE" ? undefined : JSON.stringify({}),
+        },
+      ),
       { params: Promise.resolve({ id: "mv-1" }) },
     );
 
@@ -297,10 +307,9 @@ measures:
   it("keeps deletion owner-only even for an edit recipient", async () => {
     mocks.loadMetricViewProposalOrRespond.mockResolvedValue(allowed("edit"));
 
-    const response = await deleteProposal(
-      request("/api/metric-views/mv-1", { method: "DELETE" }),
-      { params: Promise.resolve({ id: "mv-1" }) },
-    );
+    const response = await deleteProposal(request("/api/metric-views/mv-1", { method: "DELETE" }), {
+      params: Promise.resolve({ id: "mv-1" }),
+    });
 
     expect(response.status).toBe(403);
     expect(mocks.deleteProposal).not.toHaveBeenCalled();
@@ -329,13 +338,10 @@ measures:
     );
 
     expect(response.status).toBe(200);
-    expect(mocks.checkDependencies).toHaveBeenCalledWith(
-      ["main.sales.revenue_metrics"],
-      {
-        ownerEmail: caller.email,
-        sharedIds: ["shared-mv"],
-      },
-    );
+    expect(mocks.checkDependencies).toHaveBeenCalledWith(["main.sales.revenue_metrics"], {
+      ownerEmail: caller.email,
+      sharedIds: ["shared-mv"],
+    });
   });
 });
 

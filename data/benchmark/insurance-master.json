@@ -19,12 +19,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- Next in Personalization Report."
@@ -47,12 +42,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Insurance."
@@ -75,12 +65,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Insurance."
@@ -103,12 +88,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Insurance."
@@ -131,12 +111,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Nividous -- IDP Automation Stats."
@@ -159,12 +134,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Yahoo Finance -- Indico Data AI Submission Triage."
@@ -187,12 +157,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Insurance."
@@ -215,12 +180,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Insurance."
@@ -243,12 +203,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- Next in Personalization Report."
@@ -271,12 +226,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Nationwide (quoting McKinsey) -- Personalization in Insurance Marketing."
@@ -299,12 +249,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- Experience-led Growth (CX Outperformers)."
@@ -327,12 +272,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- Model makeover: Telco to Techco (Analytics)."
@@ -355,12 +295,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Insurance."
@@ -383,12 +318,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Insurance."
@@ -411,12 +341,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Carrier Management -- Allstate Drivewise Telematics Results."
@@ -439,12 +364,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Philadelphia Insurance -- PHLYTRAC Telematics Program Data."
@@ -467,12 +387,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Insurance."
@@ -495,12 +410,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Cross-Industry."
@@ -523,12 +433,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Insurance."
@@ -551,12 +456,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Insurance."
@@ -579,12 +479,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Insurance."
@@ -607,12 +502,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Avatier -- Compliance Automation Case Study."
@@ -635,12 +525,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Insurance."
@@ -663,12 +548,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- FEI Daily -- Accelerating the Close Cycle."
@@ -691,12 +571,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Insurance."
@@ -719,12 +594,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Guidewire -- AI FNOL Case Study."
@@ -747,12 +617,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- Insurance Claims Automation Outlook."
@@ -775,12 +640,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- Insurance Claims Automation Outlook."
@@ -803,12 +663,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- NAIC -- State of Insurance Fraud Report."
@@ -831,12 +686,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Verisk -- Predictive Analytics in Rating."
@@ -859,12 +709,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Shift Technology -- Subrogation AI Case."
@@ -887,12 +732,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- MITRE -- Insider Threats Detection Guide."
@@ -915,12 +755,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- MITRE -- Cyber Threat Hunting Fundamentals."
@@ -943,12 +778,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Cross-Industry."
@@ -971,12 +801,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Verizon -- DBIR 2025 Insights."
@@ -999,12 +824,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Gartner -- Innovation Insight for XDR."
@@ -1027,12 +847,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- FEI Daily -- Accelerating the Close Cycle."
@@ -1055,12 +870,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Insurance."
@@ -1083,12 +893,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Insurance."
@@ -1111,12 +916,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Insurance."
@@ -1139,12 +939,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Everest Group -- IDP Market Report."
@@ -1167,12 +962,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Encompass/Chartis -- Reducing Client Onboarding Time."
@@ -1195,12 +985,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- IBM (via MokaHR) -- Predictive Turnover Analytics."
@@ -1223,12 +1008,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Bain (American Banker) -- Branch Network Transformation."
@@ -1251,12 +1031,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Insurance."
@@ -1279,12 +1054,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Gartner -- Top 10 Strategic Tech Trends: AI in Customer Service."
@@ -1307,12 +1077,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "insurance",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "insurance", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Forrester -- Total Economic Impact of Contact-Center AI."

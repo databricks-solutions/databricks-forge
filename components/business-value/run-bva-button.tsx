@@ -18,12 +18,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { toast } from "sonner";
 import { Loader2, Play, AlertCircle } from "lucide-react";
 
@@ -208,7 +203,10 @@ export function RunBvaButton() {
           <Button variant="ghost" onClick={() => setOpen(false)}>
             Cancel
           </Button>
-          <Button onClick={handleSubmit} disabled={!selectedRunId || submitting || runs.length === 0}>
+          <Button
+            onClick={handleSubmit}
+            disabled={!selectedRunId || submitting || runs.length === 0}
+          >
             {submitting ? (
               <>
                 <Loader2 className="mr-1.5 h-4 w-4 animate-spin" />

@@ -66,11 +66,7 @@ export interface DataEngineDeps {
   llm?: LLMClient;
   sql?: SqlExecutor;
   logger?: Logger;
-  reviewAndFixSql?: (
-    sql: string,
-    error: string,
-    context?: string,
-  ) => Promise<string>;
+  reviewAndFixSql?: (sql: string, error: string, context?: string) => Promise<string>;
 }
 
 // ---------------------------------------------------------------------------

@@ -494,11 +494,7 @@ export async function runMetricViewEngineV2(
                   "METRIC_VIEW_REUSE_DEFINITION_MISSING",
                   message,
                 )
-              : evidenceFailed(
-                  "metric_view_parse",
-                  "METRIC_VIEW_REUSE_PARSE_FAILED",
-                  message,
-                ),
+              : evidenceFailed("metric_view_parse", "METRIC_VIEW_REUSE_PARSE_FAILED", message),
           ],
           validatorVersion: undefined,
           validatedAt: undefined,
@@ -585,49 +581,51 @@ export async function runMetricViewEngineV2(
       };
 
       const result = await runMetricViewProposals(genInput);
-      return Promise.all(result.proposals.map(async (proposal) => {
-        const matchedPlan = plans.find(
-          (p) =>
-            p.name.toLowerCase() === proposal.name.toLowerCase() ||
-            proposal.name.toLowerCase().includes(p.name.toLowerCase().replace(/\s+/g, "_")),
-        );
-        if (matchedPlan?.classification === "improve") {
-          const existing = existingMetricViews.find(
-            (view) => view.fqn.toLowerCase() === matchedPlan.existingFqn?.toLowerCase(),
+      return Promise.all(
+        result.proposals.map(async (proposal) => {
+          const matchedPlan = plans.find(
+            (p) =>
+              p.name.toLowerCase() === proposal.name.toLowerCase() ||
+              proposal.name.toLowerCase().includes(p.name.toLowerCase().replace(/\s+/g, "_")),
           );
-          if (!existing) {
+          if (matchedPlan?.classification === "improve") {
+            const existing = existingMetricViews.find(
+              (view) => view.fqn.toLowerCase() === matchedPlan.existingFqn?.toLowerCase(),
+            );
+            if (!existing) {
+              return {
+                ...proposal,
+                classification: "improve" as const,
+                rationale: matchedPlan.rationale,
+                existingFqn: matchedPlan.existingFqn,
+                subdomain: subGroup.subdomain,
+                validationStatus: "error" as const,
+                validationIssues: ["The planned existing metric view target was not discovered."],
+                validationEvidence: [
+                  evidenceFailed(
+                    "metric_view_improve",
+                    "METRIC_VIEW_IMPROVE_TARGET_MISSING",
+                    "The planned existing metric view target was not discovered.",
+                  ),
+                ],
+                validatorVersion: undefined,
+                validatedAt: undefined,
+              };
+            }
             return {
-              ...proposal,
-              classification: "improve" as const,
-              rationale: matchedPlan.rationale,
-              existingFqn: matchedPlan.existingFqn,
+              ...(await buildImprovementProposal(proposal, matchedPlan, existing, allowlist)),
               subdomain: subGroup.subdomain,
-              validationStatus: "error" as const,
-              validationIssues: ["The planned existing metric view target was not discovered."],
-              validationEvidence: [
-                evidenceFailed(
-                  "metric_view_improve",
-                  "METRIC_VIEW_IMPROVE_TARGET_MISSING",
-                  "The planned existing metric view target was not discovered.",
-                ),
-              ],
-              validatorVersion: undefined,
-              validatedAt: undefined,
             };
           }
           return {
-            ...(await buildImprovementProposal(proposal, matchedPlan, existing, allowlist)),
+            ...proposal,
+            classification: (matchedPlan?.classification ?? "new") as MetricViewClassification,
+            rationale: matchedPlan?.rationale ?? "Generated for this subdomain.",
+            existingFqn: matchedPlan?.existingFqn,
             subdomain: subGroup.subdomain,
           };
-        }
-        return {
-          ...proposal,
-          classification: (matchedPlan?.classification ?? "new") as MetricViewClassification,
-          rationale: matchedPlan?.rationale ?? "Generated for this subdomain.",
-          existingFqn: matchedPlan?.existingFqn,
-          subdomain: subGroup.subdomain,
-        };
-      }));
+        }),
+      );
     }),
     SUBDOMAIN_CONCURRENCY,
   );

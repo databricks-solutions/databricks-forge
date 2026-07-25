@@ -223,8 +223,9 @@ describe("Data Gap Analysis engine", () => {
     expect(usecaseWithMc).toBeDefined();
     if (!usecaseWithMc) return;
 
-    const firstMcAssetId = Object.entries(usecaseWithMc.dataAssetCriticality ?? {})
-      .find(([, role]) => role === "MC")?.[0];
+    const firstMcAssetId = Object.entries(usecaseWithMc.dataAssetCriticality ?? {}).find(
+      ([, role]) => role === "MC",
+    )?.[0];
     expect(firstMcAssetId).toBeDefined();
     if (!firstMcAssetId) return;
 
@@ -232,17 +233,13 @@ describe("Data Gap Analysis engine", () => {
     const matched = runDataGapAnalysis({
       industryId: "retail",
       classifiedTables: [],
-      useCaseSourceSystems: [
-        { name: usecaseWithMc.name, sourceSystems: ["Salesforce"] },
-      ],
+      useCaseSourceSystems: [{ name: usecaseWithMc.name, sourceSystems: ["Salesforce"] }],
     });
     expect(matched).not.toBeNull();
     if (!matched) return;
     const matchedRow = matched.coverage.find((c) => c.assetId === firstMcAssetId);
     expect(matchedRow).toBeDefined();
-    const lineageHits = matchedRow!.resolvedSourceSystems.filter(
-      (s) => s.origin === "lineage",
-    );
+    const lineageHits = matchedRow!.resolvedSourceSystems.filter((s) => s.origin === "lineage");
     expect(lineageHits.map((s) => s.name)).toContain("Salesforce");
 
     // Negative: same vendor but a customer-only name (no match in the
@@ -253,17 +250,13 @@ describe("Data Gap Analysis engine", () => {
     const mismatched = runDataGapAnalysis({
       industryId: "retail",
       classifiedTables: [],
-      useCaseSourceSystems: [
-        { name: customerName, sourceSystems: ["Salesforce"] },
-      ],
+      useCaseSourceSystems: [{ name: customerName, sourceSystems: ["Salesforce"] }],
     });
     expect(mismatched).not.toBeNull();
     if (!mismatched) return;
     const mismatchedRow = mismatched.coverage.find((c) => c.assetId === firstMcAssetId);
     expect(mismatchedRow).toBeDefined();
-    expect(
-      mismatchedRow!.resolvedSourceSystems.some((s) => s.name === "Salesforce"),
-    ).toBe(false);
+    expect(mismatchedRow!.resolvedSourceSystems.some((s) => s.name === "Salesforce")).toBe(false);
   });
 
   it("sorts missing-with-most-MC-use-cases ahead of present rows", () => {

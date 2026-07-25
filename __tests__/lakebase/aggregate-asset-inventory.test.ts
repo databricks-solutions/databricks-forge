@@ -22,7 +22,10 @@ const discovery = (scanId: string, payload: Record<string, unknown>) => ({
 describe("aggregate estate asset inventory", () => {
   it("does not add overlapping and repeated scan headers in one workspace", () => {
     const inventory = computeAggregateAssetInventory(
-      [scan("old", "w1", { genieSpaceCount: 4, dashboardCount: 2 }), scan("new", "w1", { genieSpaceCount: 4, dashboardCount: 3 })],
+      [
+        scan("old", "w1", { genieSpaceCount: 4, dashboardCount: 2 }),
+        scan("new", "w1", { genieSpaceCount: 4, dashboardCount: 3 }),
+      ],
       [],
     );
 

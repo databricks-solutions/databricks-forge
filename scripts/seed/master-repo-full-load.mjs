@@ -50,7 +50,9 @@ const inputPath = inputIdx !== -1 ? args[inputIdx + 1] : null;
 const dryRun = args.includes("--dry-run");
 
 if (!inputPath) {
-  console.error("Usage: node scripts/seed/master-repo-full-load.mjs --input <path-to-xlsx> [--dry-run]");
+  console.error(
+    "Usage: node scripts/seed/master-repo-full-load.mjs --input <path-to-xlsx> [--dry-run]",
+  );
   process.exit(1);
 }
 
@@ -65,21 +67,49 @@ if (!existsSync(resolvedInput)) {
 // ---------------------------------------------------------------------------
 
 const INDUSTRY_MAP = {
-  "Media, Entertainment, & Advertising": { id: "media-advertising", exportName: "MEDIA_ADVERTISING", name: "Media, Entertainment & Advertising" },
-  Communications: { id: "communications", exportName: "COMMUNICATIONS", name: "Communications & Telecom" },
+  "Media, Entertainment, & Advertising": {
+    id: "media-advertising",
+    exportName: "MEDIA_ADVERTISING",
+    name: "Media, Entertainment & Advertising",
+  },
+  Communications: {
+    id: "communications",
+    exportName: "COMMUNICATIONS",
+    name: "Communications & Telecom",
+  },
   Manufacturing: { id: "manufacturing", exportName: "MANUFACTURING", name: "Manufacturing" },
-  "Energy & Utilities": { id: "energy-utilities", exportName: "ENERGY_UTILITIES", name: "Energy & Utilities" },
+  "Energy & Utilities": {
+    id: "energy-utilities",
+    exportName: "ENERGY_UTILITIES",
+    name: "Energy & Utilities",
+  },
   Retail: { id: "retail", exportName: "RETAIL", name: "Retail" },
   "Consumer Goods": { id: "consumer-goods", exportName: "CONSUMER_GOODS", name: "Consumer Goods" },
   "Life Sciences": { id: "life-sciences", exportName: "LIFE_SCIENCES", name: "Life Sciences" },
   Healthcare: { id: "healthcare", exportName: "HEALTHCARE", name: "Healthcare" },
   "Banking & Payments": { id: "banking", exportName: "BANKING", name: "Banking & Payments" },
-  "Capital Markets": { id: "capital-markets", exportName: "CAPITAL_MARKETS", name: "Capital Markets" },
+  "Capital Markets": {
+    id: "capital-markets",
+    exportName: "CAPITAL_MARKETS",
+    name: "Capital Markets",
+  },
   Insurance: { id: "insurance", exportName: "INSURANCE", name: "Insurance" },
   "Recreational Gaming": { id: "games", exportName: "GAMES", name: "Recreational Gaming" },
-  "Casinos & Resorts": { id: "casinos-resorts", exportName: "CASINOS_RESORTS", name: "Casinos & Resorts" },
-  "Real Money Gaming [Digital]": { id: "real-money-gaming", exportName: "REAL_MONEY_GAMING", name: "Real Money Gaming (Digital)" },
-  "Digital Natives/Born in the Cloud": { id: "digital-natives", exportName: "DIGITAL_NATIVES", name: "Digital Natives" },
+  "Casinos & Resorts": {
+    id: "casinos-resorts",
+    exportName: "CASINOS_RESORTS",
+    name: "Casinos & Resorts",
+  },
+  "Real Money Gaming [Digital]": {
+    id: "real-money-gaming",
+    exportName: "REAL_MONEY_GAMING",
+    name: "Real Money Gaming (Digital)",
+  },
+  "Digital Natives/Born in the Cloud": {
+    id: "digital-natives",
+    exportName: "DIGITAL_NATIVES",
+    name: "Digital Natives",
+  },
 };
 
 // ---------------------------------------------------------------------------
@@ -92,7 +122,11 @@ function cellStr(cell) {
   if (typeof v === "string") return v.trim();
   if (typeof v === "number") return String(v);
   if (typeof v === "object") {
-    if ("richText" in v) return v.richText.map((r) => r.text).join("").trim();
+    if ("richText" in v)
+      return v.richText
+        .map((r) => r.text)
+        .join("")
+        .trim();
     if ("result" in v) return v.result != null ? String(v.result).trim() : "";
     if ("text" in v) return String(v.text).trim();
     if ("hyperlink" in v) return String(v.text || v.hyperlink).trim();
@@ -126,7 +160,9 @@ function parseBenchmarkSource(raw) {
 }
 
 function normalizeAccessDifficulty(raw) {
-  const v = String(raw || "").trim().toLowerCase();
+  const v = String(raw || "")
+    .trim()
+    .toLowerCase();
   if (!v) return undefined;
   if (v === "low") return "Low";
   if (v === "medium" || v === "med") return "Medium";
@@ -139,7 +175,9 @@ function normalizeLoeLevel(raw) {
 }
 
 function normalizeHighLow(raw) {
-  const v = String(raw || "").trim().toLowerCase();
+  const v = String(raw || "")
+    .trim()
+    .toLowerCase();
   if (v === "high") return "High";
   if (v === "low") return "Low";
   return undefined;
@@ -149,7 +187,13 @@ function normalizeImpactCategory(raw) {
   const v = String(raw || "").trim();
   if (!v) return undefined;
   // The master repo uses these exact 5 labels (verified via dump_xlsx)
-  const allowed = ["Cost", "Revenue", "Productivity / Capacity", "Risk / Loss Avoidance", "Cash / Working Capital"];
+  const allowed = [
+    "Cost",
+    "Revenue",
+    "Productivity / Capacity",
+    "Risk / Loss Avoidance",
+    "Cash / Working Capital",
+  ];
   if (allowed.includes(v)) return v;
   // Normalize spacing variations
   const collapsed = v.replace(/\s+/g, " ").trim();
@@ -455,8 +499,15 @@ async function main() {
   const summary = [];
   for (const [industryId, data] of byIndustry) {
     const cfg = data.cfg;
-    summary.push({ id: industryId, name: cfg.name, useCases: data.useCases.length, dataAssets: data.dataAssets.length });
-    console.log(`  ${cfg.name} (${industryId}): ${data.useCases.length} use cases, ${data.dataAssets.length} data assets`);
+    summary.push({
+      id: industryId,
+      name: cfg.name,
+      useCases: data.useCases.length,
+      dataAssets: data.dataAssets.length,
+    });
+    console.log(
+      `  ${cfg.name} (${industryId}): ${data.useCases.length} use cases, ${data.dataAssets.length} data assets`,
+    );
 
     const enrichmentPath = resolve(OUTCOMES_DIR, `${industryId}.enrichment.ts`);
     const tsContent = generateEnrichmentModule(cfg, data);
@@ -473,7 +524,8 @@ async function main() {
   console.log(`Industries: ${summary.length}`);
   console.log(`Total use cases: ${summary.reduce((s, i) => s + i.useCases, 0)}`);
   console.log(`Total data assets: ${summary.reduce((s, i) => s + i.dataAssets, 0)}`);
-  for (const s of summary) console.log(`  ${s.name}: ${s.useCases} use cases, ${s.dataAssets} data assets`);
+  for (const s of summary)
+    console.log(`  ${s.name}: ${s.useCases} use cases, ${s.dataAssets} data assets`);
 }
 
 function generateEnrichmentModule(cfg, data) {
@@ -513,7 +565,8 @@ function generateBenchmarks(industryId, industryName, useCases) {
       title: `${uc.name} -- ${uc.kpiTarget}`,
       summary: `${uc.kpiTarget}: ${uc.benchmarkImpact} improvement. ${uc.description}`,
       source_type: "open_report",
-      source_url: uc.benchmarkUrl || "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      source_url:
+        uc.benchmarkUrl || "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
       publisher: uc.benchmarkSource,
       published_at: "2024-06-01T00:00:00Z",
       industry: industryId,
@@ -524,7 +577,10 @@ function generateBenchmarks(industryId, industryName, useCases) {
       confidence: CONFIDENCE_MAP.medium,
       ttl_days: 365,
       tags: ["master-repo", "kpi", industryId, uc.economicImpactCategory || "uncategorized"],
-      provenance: { source_class: "master_repository", notes: `Sourced from Master Repository XLSX -- ${uc.benchmarkSource}.` },
+      provenance: {
+        source_class: "master_repository",
+        notes: `Sourced from Master Repository XLSX -- ${uc.benchmarkSource}.`,
+      },
       economicPattern: uc.economicPatternName,
       economicFormula: uc.economicFormula,
     });

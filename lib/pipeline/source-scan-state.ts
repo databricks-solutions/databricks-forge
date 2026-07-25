@@ -42,7 +42,8 @@ export function interpretScanSummary(httpStatus: number, body: unknown): SourceS
   if (httpStatus === 401 || httpStatus === 403) {
     return {
       status: "unauthorized",
-      message: "You do not have access to this estate scan. Ask the owner to share it, or start a live extraction instead.",
+      message:
+        "You do not have access to this estate scan. Ask the owner to share it, or start a live extraction instead.",
     };
   }
   if (httpStatus === 404) {
@@ -55,7 +56,8 @@ export function interpretScanSummary(httpStatus: number, body: unknown): SourceS
     if (!body.complete || !body.hasDetails) {
       return {
         status: "incomplete",
-        message: "This estate scan has not finished. Wait for it to complete, or start a live extraction instead.",
+        message:
+          "This estate scan has not finished. Wait for it to complete, or start a live extraction instead.",
       };
     }
     return {

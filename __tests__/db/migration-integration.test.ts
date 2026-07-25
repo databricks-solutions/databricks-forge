@@ -194,7 +194,9 @@ describe("migration integration — repair + prisma db push (real Postgres)", ()
       expect(first.lineageEntityTypesBackfilled).toBe(2); // retained l4 + l5
 
       // No scopes lost: 5 (P1) + 2 (P2) preserved.
-      const scopeCount = await client.query("SELECT COUNT(*)::int AS n FROM forge_estate_program_scopes");
+      const scopeCount = await client.query(
+        "SELECT COUNT(*)::int AS n FROM forge_estate_program_scopes",
+      );
       expect(scopeCount.rows[0].n).toBe(7);
 
       // P1 sequences are now unique + compacted 0..4 in (sequence,created_at,scope_id) order.
@@ -359,7 +361,9 @@ describe("migration integration — repair + prisma db push (real Postgres)", ()
       ).rejects.toThrow();
 
       // Rows are still all present (nothing dropped by the push).
-      const finalScopes = await client.query("SELECT COUNT(*)::int AS n FROM forge_estate_program_scopes");
+      const finalScopes = await client.query(
+        "SELECT COUNT(*)::int AS n FROM forge_estate_program_scopes",
+      );
       expect(finalScopes.rows[0].n).toBe(7);
       const finalLineage = await client.query("SELECT COUNT(*)::int AS n FROM forge_table_lineage");
       expect(finalLineage.rows[0].n).toBe(5);

@@ -27,29 +27,32 @@ const rows = [
   },
 ];
 
-const updateMany = vi.fn(async ({ where, data }: {
-  where: { id?: string; dashboardId?: string; ownerEmail?: string };
-  data: Record<string, unknown>;
-}) => {
-  let count = 0;
-  for (const row of rows) {
-    if (
-      (where.id === undefined || row.id === where.id) &&
-      (where.dashboardId === undefined || row.dashboardId === where.dashboardId) &&
-      (where.ownerEmail === undefined || row.ownerEmail === where.ownerEmail)
-    ) {
-      Object.assign(row, data);
-      count += 1;
+const updateMany = vi.fn(
+  async ({
+    where,
+    data,
+  }: {
+    where: { id?: string; dashboardId?: string; ownerEmail?: string };
+    data: Record<string, unknown>;
+  }) => {
+    let count = 0;
+    for (const row of rows) {
+      if (
+        (where.id === undefined || row.id === where.id) &&
+        (where.dashboardId === undefined || row.dashboardId === where.dashboardId) &&
+        (where.ownerEmail === undefined || row.ownerEmail === where.ownerEmail)
+      ) {
+        Object.assign(row, data);
+        count += 1;
+      }
     }
-  }
-  return { count };
-});
+    return { count };
+  },
+);
 
 vi.mock("@/lib/prisma", () => ({
-  withPrisma: async <T,>(
-    callback: (prisma: {
-      forgeDashboard: { updateMany: typeof updateMany };
-    }) => Promise<T>,
+  withPrisma: async <T>(
+    callback: (prisma: { forgeDashboard: { updateMany: typeof updateMany } }) => Promise<T>,
   ) => callback({ forgeDashboard: { updateMany } }),
 }));
 

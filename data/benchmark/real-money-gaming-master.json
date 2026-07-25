@@ -19,12 +19,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- Next in Personalization Report."
@@ -47,12 +42,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- Unlocking Targeted Promotions."
@@ -75,12 +65,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- UK Gambling Commission -- Responsible Gambling Insights."
@@ -103,12 +88,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Media."
@@ -131,12 +111,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- Next in Personalization Report."
@@ -159,12 +134,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Cognizant -- AI Fraud Detection Case Study."
@@ -187,12 +157,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Media."
@@ -215,12 +180,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Media."
@@ -243,12 +203,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Cognizant -- AI Fraud Detection Case Study."
@@ -271,12 +226,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Retail."
@@ -299,12 +249,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Media."
@@ -327,12 +272,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Google Jigsaw -- Perspective API Study."
@@ -355,12 +295,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Media."
@@ -383,12 +318,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- Next in Personalization Report."
@@ -411,12 +341,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- Telco Techco Transformation."
@@ -439,12 +364,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Financial Services."
@@ -467,12 +387,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- Next in Personalization Report."
@@ -495,12 +410,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Media."
@@ -523,12 +433,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Financial Services."
@@ -551,12 +456,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- NJ Division of Gaming -- Sports Betting Report."
@@ -579,12 +479,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Lund University -- In-Play Betting Study."
@@ -607,12 +502,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Media."
@@ -635,12 +525,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Media."
@@ -663,12 +548,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- FATF -- Casino Risk-Based Approach Report."
@@ -691,12 +571,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- Next in Personalization (Targeted promotions)."
@@ -719,12 +594,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Media."
@@ -747,12 +617,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Media."
@@ -775,12 +640,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Media."
@@ -803,12 +663,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Media."
@@ -831,12 +686,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- NJ DGE -- Sports Wagering Performance Report."
@@ -859,12 +709,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- NJ DGE -- Sports Wagering Performance Report."
@@ -887,12 +732,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Cross-Industry."
@@ -915,12 +755,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Cross-Industry."
@@ -943,12 +778,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- FEI Daily -- Accelerating the Close Cycle."
@@ -971,12 +801,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Microsoft -- GitHub Copilot Field Study."
@@ -999,12 +824,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- FinCEN -- SAR Automation Brief."
@@ -1027,12 +847,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Cross-Industry."
@@ -1055,12 +870,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Elastic -- AI Cybersecurity Case."
@@ -1083,12 +893,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Revenue"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Revenue"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Media."
@@ -1111,12 +916,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- IBM -- Data Security Report."
@@ -1139,12 +939,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Productivity / Capacity"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Productivity / Capacity"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Microsoft -- GitHub Copilot Field Study."
@@ -1167,12 +962,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Risk / Loss Avoidance"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Risk / Loss Avoidance"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- Gambling Commission -- Self-Exclusion Impact Report."
@@ -1195,12 +985,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Cross-Industry."
@@ -1223,12 +1008,7 @@
       "license_class": "citation_required",
       "confidence": 0.6,
       "ttl_days": 365,
-      "tags": [
-        "master-repo",
-        "kpi",
-        "real-money-gaming",
-        "Cost"
-      ],
+      "tags": ["master-repo", "kpi", "real-money-gaming", "Cost"],
       "provenance": {
         "source_class": "master_repository",
         "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Cross-Industry."

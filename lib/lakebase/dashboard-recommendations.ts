@@ -133,10 +133,7 @@ function dbRowToRecommendation(row: DbRow): DashboardRecommendation {
         throw new Error("missing binding");
       }
       const recomputed = applyDashboardImproveDiff(improveBaseDesign, improveDiff);
-      if (
-        fingerprintDashboardDesign(recomputed) !==
-        fingerprintDashboardDesign(persistedDesign)
-      ) {
+      if (fingerprintDashboardDesign(recomputed) !== fingerprintDashboardDesign(persistedDesign)) {
         throw new Error("artifact drift");
       }
       const isEmpty =
@@ -163,10 +160,9 @@ function dbRowToRecommendation(row: DbRow): DashboardRecommendation {
     dashboardDesign: persistedDesign,
     designVersion: "2",
     datasetSourceKind,
-    validationStatus:
-      !improvementBindingValid
-        ? "invalid"
-        : row.validationStatus === "valid" || row.validationStatus === "invalid"
+    validationStatus: !improvementBindingValid
+      ? "invalid"
+      : row.validationStatus === "valid" || row.validationStatus === "invalid"
         ? row.validationStatus
         : "pending",
     validatorVersion: improvementBindingValid ? (row.validatorVersion ?? undefined) : undefined,
@@ -263,9 +259,7 @@ export async function saveDashboardRecommendations(
                   : (rec.recommendationType ?? "new"),
               existingAssetId: rec.existingAssetId ?? null,
               improveDiffJson: rec.improveDiff ? JSON.stringify(rec.improveDiff) : null,
-              improveBaseJson: rec.improveBaseDesign
-                ? JSON.stringify(rec.improveBaseDesign)
-                : null,
+              improveBaseJson: rec.improveBaseDesign ? JSON.stringify(rec.improveBaseDesign) : null,
               changeSummary: rec.changeSummary ?? null,
               ownerEmail: ownerEmail ?? null,
               datasetSourceKind: rec.datasetSourceKind,

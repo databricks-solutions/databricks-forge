@@ -190,9 +190,7 @@ describe("runMetricViewProbes", () => {
       );
       const temporalProbe = buildMetricViewProbes({
         tempFqn: "catalog.schema.__forge_validate_test",
-        dimensions: [
-          { name: "order_year", kind: "temporal", temporalType: "calendar_integer" },
-        ],
+        dimensions: [{ name: "order_year", kind: "temporal", temporalType: "calendar_integer" }],
         measures: [{ name: "total_revenue" }],
         hasJoins: false,
       }).find((probe) => probe.kind === "temporal_group")!;
@@ -217,9 +215,7 @@ describe("runMetricViewProbes", () => {
     );
     const temporalProbe = buildMetricViewProbes({
       tempFqn: "catalog.schema.__forge_validate_test",
-      dimensions: [
-        { name: "order_year", kind: "temporal", temporalType: "calendar_integer" },
-      ],
+      dimensions: [{ name: "order_year", kind: "temporal", temporalType: "calendar_integer" }],
       measures: [{ name: "total_revenue" }],
       hasJoins: false,
     }).find((probe) => probe.kind === "temporal_group")!;
@@ -305,12 +301,12 @@ describe("createTempMetricView DDL envelope", () => {
     const execute = vi.fn<SqlExecutor["execute"]>().mockResolvedValue(emptyDdlResult);
     const sqlExecutor = executorWith(execute);
 
-    await expect(createTempMetricView(`${ddl}; \n\t`, "forge_", sqlExecutor)).resolves.toMatchObject(
-      {
-        catalog: "catalog",
-        schema: "schema",
-      },
-    );
+    await expect(
+      createTempMetricView(`${ddl}; \n\t`, "forge_", sqlExecutor),
+    ).resolves.toMatchObject({
+      catalog: "catalog",
+      schema: "schema",
+    });
     expect(execute).toHaveBeenCalledTimes(1);
   });
 });
@@ -504,9 +500,7 @@ describe("validateMetricViewDefinitionWithProbes", () => {
       ddl,
       allowlist: {
         tables: new Set(["catalog.schema.sales"]),
-        columns: new Map([
-          ["catalog.schema.sales", new Set(["region", "revenue"])],
-        ]),
+        columns: new Map([["catalog.schema.sales", new Set(["region", "revenue"])]]),
         columnTypes: new Map([
           ["catalog.schema.sales.region", "string"],
           ["catalog.schema.sales.revenue", "decimal(18,2)"],

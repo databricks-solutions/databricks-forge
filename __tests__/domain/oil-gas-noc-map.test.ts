@@ -1,8 +1,5 @@
 import { describe, it, expect } from "vitest";
-import {
-  INDUSTRY_OUTCOMES,
-  getIndustryOutcome,
-} from "@/lib/domain/industry-outcomes/index";
+import { INDUSTRY_OUTCOMES, getIndustryOutcome } from "@/lib/domain/industry-outcomes/index";
 import { getMasterRepoEnrichment } from "@/lib/domain/industry-outcomes/master-repo-registry";
 import {
   OIL_GAS_NOC_USE_CASES,
@@ -61,9 +58,7 @@ describe("Oil & Gas (NOC) outcome map", () => {
   it("enrichment strategicImperative/strategicPillar match base objectives/priorities", () => {
     const map = getIndustryOutcome("oil-gas-noc")!;
     const objectiveNames = new Set(map.objectives.map((o) => o.name));
-    const pillarNames = new Set(
-      map.objectives.flatMap((o) => o.priorities.map((p) => p.name)),
-    );
+    const pillarNames = new Set(map.objectives.flatMap((o) => o.priorities.map((p) => p.name)));
     for (const uc of OIL_GAS_NOC_USE_CASES) {
       if (uc.strategicImperative) {
         expect(
@@ -84,9 +79,7 @@ describe("Oil & Gas (NOC) outcome map", () => {
     const assetIds = new Set(OIL_GAS_NOC_DATA_ASSETS.map((a) => a.id));
     for (const uc of OIL_GAS_NOC_USE_CASES) {
       for (const id of uc.dataAssetIds ?? []) {
-        expect(assetIds.has(id), `use case "${uc.name}" references unknown asset ${id}`).toBe(
-          true,
-        );
+        expect(assetIds.has(id), `use case "${uc.name}" references unknown asset ${id}`).toBe(true);
       }
       // dataAssetCriticality keys must be a subset of dataAssetIds.
       for (const id of Object.keys(uc.dataAssetCriticality ?? {})) {
@@ -106,9 +99,7 @@ describe("Oil & Gas (NOC) outcome map", () => {
 
 describe("Oil & Gas industry detection", () => {
   it("routes hydrocarbon terms to oil-gas-noc and keeps utilities on energy-utilities", async () => {
-    const { detectIndustryFromContext } = await import(
-      "@/lib/domain/industry-outcomes-server"
-    );
+    const { detectIndustryFromContext } = await import("@/lib/domain/industry-outcomes-server");
     expect(await detectIndustryFromContext("Oil & Gas")).toBe("oil-gas-noc");
     expect(await detectIndustryFromContext("LNG and upstream E&P")).toBe("oil-gas-noc");
     expect(await detectIndustryFromContext("refining and petrochemicals")).toBe("oil-gas-noc");

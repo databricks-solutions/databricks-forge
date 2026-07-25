@@ -75,12 +75,7 @@ describe("dashboard improvement diffs", () => {
       ],
     };
 
-    const diff = buildDashboardImproveDiff(
-      "dashboard-123",
-      existing,
-      desired,
-      liveBaseFingerprint,
-    );
+    const diff = buildDashboardImproveDiff("dashboard-123", existing, desired, liveBaseFingerprint);
     expect(diff.existingAssetId).toBe("dashboard-123");
     expect(diff.liveBaseFingerprint).toBe(liveBaseFingerprint);
     expect(diff.baseFingerprint).toBe(fingerprintDashboardDesign(existing));
@@ -103,12 +98,7 @@ describe("dashboard improvement diffs", () => {
   it("suppresses exact duplicates", () => {
     const existing = design();
     expect(
-      buildDashboardImproveDiff(
-        "dashboard-123",
-        existing,
-        existing,
-        liveBaseFingerprint,
-      ),
+      buildDashboardImproveDiff("dashboard-123", existing, existing, liveBaseFingerprint),
     ).toEqual({
       existingAssetId: "dashboard-123",
       liveBaseFingerprint,
@@ -129,18 +119,9 @@ describe("dashboard improvement diffs", () => {
     };
 
     expect(() =>
-      buildDashboardImproveDiff(
-        "dashboard-123",
-        existing,
-        desired,
-        liveBaseFingerprint,
-      ),
-    ).toThrow(
-      DashboardImproveConflictError,
-    );
-    expect(() =>
-      buildDashboardImproveDiff("", existing, existing, liveBaseFingerprint),
-    ).toThrow(
+      buildDashboardImproveDiff("dashboard-123", existing, desired, liveBaseFingerprint),
+    ).toThrow(DashboardImproveConflictError);
+    expect(() => buildDashboardImproveDiff("", existing, existing, liveBaseFingerprint)).toThrow(
       DashboardImproveConflictError,
     );
   });
@@ -191,9 +172,9 @@ describe("dashboard improvement diffs", () => {
       existing,
       liveBaseFingerprint,
     );
-    expect(() =>
-      applyDashboardImproveDiff({ ...existing, description: "drift" }, diff),
-    ).toThrow(DashboardImproveConflictError);
+    expect(() => applyDashboardImproveDiff({ ...existing, description: "drift" }, diff)).toThrow(
+      DashboardImproveConflictError,
+    );
     expect(() =>
       applyDashboardImproveDiff(existing, { ...diff, mergedFingerprint: "0".repeat(64) }),
     ).toThrow(DashboardImproveConflictError);

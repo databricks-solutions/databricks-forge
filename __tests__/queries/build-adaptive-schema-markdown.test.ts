@@ -54,12 +54,7 @@ describe("buildAdaptiveSchemaMarkdown", () => {
 
   it("deduplicates repeated column names in the LLM ranking (C4)", () => {
     const t = table("cat.s.t");
-    const cols = [
-      col(t.fqn, "id"),
-      col(t.fqn, "amount"),
-      col(t.fqn, "ts"),
-      col(t.fqn, "status"),
-    ];
+    const cols = [col(t.fqn, "id"), col(t.fqn, "amount"), col(t.fqn, "ts"), col(t.fqn, "status")];
     // Limit: 3 columns. LLM hallucinated "id" three times -- the builder
     // must dedupe and still fill to the limit from the remaining columns.
     const llm = new Map([[t.fqn, ["id", "id", "id", "amount"]]]);
@@ -89,14 +84,9 @@ describe("buildAdaptiveSchemaMarkdown", () => {
     ];
     // LLM only named one column; builder must fill to the limit of 3.
     const llm = new Map([[t.fqn, ["id"]]]);
-    const out = buildAdaptiveSchemaMarkdown(
-      [t],
-      cols,
-      new Map([[t.fqn, 3]]),
-      llm,
-      80,
-      { fkColumnNames: new Set<string>() },
-    );
+    const out = buildAdaptiveSchemaMarkdown([t], cols, new Map([[t.fqn, 3]]), llm, 80, {
+      fkColumnNames: new Set<string>(),
+    });
 
     // id was explicitly requested by the LLM.
     expect(out).toContain("- id (INT)");
@@ -115,14 +105,9 @@ describe("buildAdaptiveSchemaMarkdown", () => {
       col(t.fqn, "total_amount", "DECIMAL", 1),
       col(t.fqn, "customer_id", "INT", 2),
     ];
-    const out = buildAdaptiveSchemaMarkdown(
-      [t],
-      cols,
-      new Map([[t.fqn, 2]]),
-      undefined,
-      80,
-      { fkColumnNames: new Set<string>() },
-    );
+    const out = buildAdaptiveSchemaMarkdown([t], cols, new Map([[t.fqn, 2]]), undefined, 80, {
+      fkColumnNames: new Set<string>(),
+    });
     expect(out).toContain("- total_amount (DECIMAL)");
     expect(out).toContain("- customer_id (INT)");
     expect(out).not.toContain("- payload_raw");

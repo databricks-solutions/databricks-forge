@@ -26,10 +26,7 @@ function adaptReviewAndFixSql(sql: string, error: string, context?: string): Pro
 import { runNarrativeDesign } from "./passes/narrative-design";
 import { runSchemaDesign } from "./passes/schema-design";
 import { runSeedGeneration } from "./passes/seed-generation";
-import {
-  runFactGeneration,
-  regenerateFactForFreshness,
-} from "./passes/fact-generation";
+import { runFactGeneration, regenerateFactForFreshness } from "./passes/fact-generation";
 import { runValidation } from "./passes/validation";
 import { runGenieDeploy } from "./passes/genie-deploy";
 import { computeDemoDateWindow } from "./date-window";
@@ -160,7 +157,15 @@ export async function runDataEngine(input: DataEngineInput): Promise<DataEngineR
         scope: input.research.scope,
       },
       dateWindow,
-      { llm, sql, logger: log, signal, onPhase, reviewAndFixSql: reviewFn, genieMode: input.genieMode },
+      {
+        llm,
+        sql,
+        logger: log,
+        signal,
+        onPhase,
+        reviewAndFixSql: reviewFn,
+        genieMode: input.genieMode,
+      },
     );
 
     const fqn = `\`${input.catalog}\`.\`${input.schema}\`.\`${table.name}\``;
@@ -311,7 +316,15 @@ export async function runDataEngine(input: DataEngineInput): Promise<DataEngineR
             nomenclature: input.research.nomenclature,
           },
           dateWindow,
-          { llm, sql, logger: log, signal, onPhase, reviewAndFixSql: reviewFn, genieMode: input.genieMode },
+          {
+            llm,
+            sql,
+            logger: log,
+            signal,
+            onPhase,
+            reviewAndFixSql: reviewFn,
+            genieMode: input.genieMode,
+          },
         );
 
         const fqn = `\`${input.catalog}\`.\`${input.schema}\`.\`${table.name}\``;
@@ -372,8 +385,9 @@ export async function runDataEngine(input: DataEngineInput): Promise<DataEngineR
     for (const staleName of staleFactRetryNames) {
       checkCancelled(signal);
       const table = factTables.find((t) => t.name === staleName);
-      const observed = validationSummary.results?.find((r) => r.tableName === staleName)
-        ?.dateCoverage;
+      const observed = validationSummary.results?.find(
+        (r) => r.tableName === staleName,
+      )?.dateCoverage;
       if (!table || !observed) continue;
 
       const onPhase = (phase: TablePhase) => input.onTablePhase?.(table.name, phase);
@@ -409,10 +423,16 @@ export async function runDataEngine(input: DataEngineInput): Promise<DataEngineR
 
     // Re-run validation ONLY for tables that were refreshed.
     const refreshedTables = tables.filter((t) => staleFactRetryNames.includes(t.name));
-    const revalidation = await runValidation(refreshedTables, input.catalog, input.schema, dateWindow, {
-      sql,
-      logger: log,
-    });
+    const revalidation = await runValidation(
+      refreshedTables,
+      input.catalog,
+      input.schema,
+      dateWindow,
+      {
+        sql,
+        logger: log,
+      },
+    );
 
     // Merge revalidation results back into the full summary.
     if (validationSummary.results && revalidation.results) {

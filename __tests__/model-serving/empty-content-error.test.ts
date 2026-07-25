@@ -1,9 +1,5 @@
 import { describe, it, expect } from "vitest";
-import {
-  EmptyContentError,
-  ModelServingError,
-  isEmptyContentError,
-} from "@/lib/dbx/model-serving";
+import { EmptyContentError, ModelServingError, isEmptyContentError } from "@/lib/dbx/model-serving";
 
 describe("EmptyContentError", () => {
   it("is a subclass of ModelServingError", () => {

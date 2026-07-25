@@ -31,10 +31,7 @@ import {
   validateAndRepairBatch,
   type ValidateAndRepairItem,
 } from "@/lib/genie/sql-validator";
-import {
-  buildProfileGroundingBlock,
-  snapshotsFromEntityCandidates,
-} from "../profile-grounding";
+import { buildProfileGroundingBlock, snapshotsFromEntityCandidates } from "../profile-grounding";
 
 const TEMPERATURE = 0.2;
 const BATCH_SIZE = 2;

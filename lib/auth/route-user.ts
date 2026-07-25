@@ -106,8 +106,7 @@ export async function getUserOrNull(req?: Request): Promise<ForgeUser | null> {
     }
 
     if (!email) {
-      const proxyEmail =
-        hdrs.get(X_FORWARDED_EMAIL) ?? hdrs.get(X_FORWARDED_PREFERRED_USERNAME);
+      const proxyEmail = hdrs.get(X_FORWARDED_EMAIL) ?? hdrs.get(X_FORWARDED_PREFERRED_USERNAME);
       if (proxyEmail) email = proxyEmail;
     }
 

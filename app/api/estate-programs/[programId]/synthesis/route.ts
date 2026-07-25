@@ -17,10 +17,7 @@ import { ensureMigrated } from "@/lib/lakebase/schema";
 import { apiLogger } from "@/lib/logger";
 import { loadEstateProgramOrRespond } from "@/lib/auth/route-guards";
 import { getEstateProgramOwner } from "@/lib/lakebase/estate-programs";
-import {
-  getLatestSynthesisForEstate,
-  saveEstateSynthesis,
-} from "@/lib/lakebase/estate-synthesis";
+import { getLatestSynthesisForEstate, saveEstateSynthesis } from "@/lib/lakebase/estate-synthesis";
 import { buildSynthesisInputForProgram } from "@/lib/ai/estate-synthesis/build-input";
 import { runEstateSynthesis } from "@/lib/ai/estate-synthesis/engine";
 import { logActivity } from "@/lib/lakebase/activity-log";

@@ -274,9 +274,7 @@ function isExternalSourceType(sourceType: string | null | undefined): boolean {
  * Build a reverse-edge index: target FQN (lower-cased) → incoming edges.
  * Empty when `lineageGraph` is null.
  */
-function buildReverseIndex(
-  lineageGraph: LineageGraph | null,
-): Map<string, LineageEdge[]> {
+function buildReverseIndex(lineageGraph: LineageGraph | null): Map<string, LineageEdge[]> {
   const index = new Map<string, LineageEdge[]>();
   if (!lineageGraph) return index;
   for (const edge of lineageGraph.edges) {
@@ -400,7 +398,9 @@ function matchTableSignals(
 }
 
 /** Roll up per-table hits into a single per-use-case origin label. */
-function rollupOrigin(origins: ReadonlySet<SignalHit["origin"]>): SourceSystemAttributionResult["origin"] {
+function rollupOrigin(
+  origins: ReadonlySet<SignalHit["origin"]>,
+): SourceSystemAttributionResult["origin"] {
   const count = origins.size;
   if (count === 0) return "naming"; // Will be filtered out before write
   if (count === 1) {
@@ -449,12 +449,13 @@ export function attributeSourceSystems(
         const rootTable = tableByFqn.get(lower(root.fqn));
         // Even if we don't have a TableInfo for the root (lineage walked
         // beyond the scan scope), we can still tokenize the FQN itself.
-        const synthetic: Pick<TableInfo, "catalog" | "schema" | "tableName" | "comment"> = rootTable ?? {
-          catalog: root.fqn.split(".")[0] ?? "",
-          schema: root.fqn.split(".")[1] ?? "",
-          tableName: root.fqn.split(".")[2] ?? "",
-          comment: null,
-        };
+        const synthetic: Pick<TableInfo, "catalog" | "schema" | "tableName" | "comment"> =
+          rootTable ?? {
+            catalog: root.fqn.split(".")[0] ?? "",
+            schema: root.fqn.split(".")[1] ?? "",
+            tableName: root.fqn.split(".")[2] ?? "",
+            comment: null,
+          };
         for (const hit of matchTableSignals(synthetic, root.isExternalBoundary)) {
           const existing = hitsByName.get(hit.systemName);
           // Lineage > naming > comment — never downgrade.

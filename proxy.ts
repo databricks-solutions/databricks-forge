@@ -39,8 +39,7 @@ function isPublic(pathname: string): boolean {
 
 function readEmailFromHeaders(req: NextRequest): string | null {
   const proxy =
-    req.headers.get("x-forwarded-email") ??
-    req.headers.get("x-forwarded-preferred-username");
+    req.headers.get("x-forwarded-email") ?? req.headers.get("x-forwarded-preferred-username");
   if (proxy) return proxy.toLowerCase().trim();
 
   if (process.env.NODE_ENV !== "production") {

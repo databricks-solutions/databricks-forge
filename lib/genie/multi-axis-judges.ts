@@ -40,15 +40,51 @@ interface JudgeSpec {
 }
 
 export const JUDGES: ReadonlyArray<JudgeSpec> = [
-  { id: "correctness", question: "Does the answer match the expected SQL semantically?", weight: 3 },
-  { id: "groundedness", question: "Does the answer cite tables/columns that actually exist in the schema?", weight: 2 },
-  { id: "precision", question: "Is the answer the most direct SQL for the question, with no needless complexity?", weight: 2 },
-  { id: "coverage", question: "Does the answer use available trusted_assets, measures, or filters when applicable?", weight: 1 },
-  { id: "naming", question: "Are titles and aliases human-readable and consistent with business terminology?", weight: 1 },
-  { id: "safety", question: "Does the answer respect filter/PII/governance rules implied by the schema?", weight: 1 },
-  { id: "disambiguation", question: "Did the agent ask a clarifying question when the user's intent was ambiguous?", weight: 1 },
-  { id: "completeness", question: "Did the answer include every dimension and metric the user asked for?", weight: 1 },
-  { id: "formatting", question: "Is the response well-structured (proper SQL formatting, results table)?", weight: 1 },
+  {
+    id: "correctness",
+    question: "Does the answer match the expected SQL semantically?",
+    weight: 3,
+  },
+  {
+    id: "groundedness",
+    question: "Does the answer cite tables/columns that actually exist in the schema?",
+    weight: 2,
+  },
+  {
+    id: "precision",
+    question: "Is the answer the most direct SQL for the question, with no needless complexity?",
+    weight: 2,
+  },
+  {
+    id: "coverage",
+    question: "Does the answer use available trusted_assets, measures, or filters when applicable?",
+    weight: 1,
+  },
+  {
+    id: "naming",
+    question: "Are titles and aliases human-readable and consistent with business terminology?",
+    weight: 1,
+  },
+  {
+    id: "safety",
+    question: "Does the answer respect filter/PII/governance rules implied by the schema?",
+    weight: 1,
+  },
+  {
+    id: "disambiguation",
+    question: "Did the agent ask a clarifying question when the user's intent was ambiguous?",
+    weight: 1,
+  },
+  {
+    id: "completeness",
+    question: "Did the answer include every dimension and metric the user asked for?",
+    weight: 1,
+  },
+  {
+    id: "formatting",
+    question: "Is the response well-structured (proper SQL formatting, results table)?",
+    weight: 1,
+  },
 ];
 
 // ---------------------------------------------------------------------------
@@ -85,7 +121,7 @@ const judgeLimiter = createConcurrencyLimiter(4);
 function buildPrompt(judge: JudgeSpec, input: JudgeInput): string {
   const lines: string[] = [
     `You are a strict SQL/quality judge. Evaluate ONLY: ${judge.question}`,
-    "Return JSON: {\"score\": <0-100>, \"rationale\": \"one short sentence\"}.",
+    'Return JSON: {"score": <0-100>, "rationale": "one short sentence"}.',
     "",
     `Question: ${input.question}`,
   ];
@@ -150,12 +186,15 @@ export async function scoreAnswer(input: JudgeInput): Promise<MultiAxisScoreResu
   if (!isMultiAxisJudgingEnabled()) {
     return {
       aggregate: 0,
-      scores: JUDGES.map((j) => ({ id: j.id, score: 0, rationale: "judging disabled", weight: j.weight })),
+      scores: JUDGES.map((j) => ({
+        id: j.id,
+        score: 0,
+        rationale: "judging disabled",
+        weight: j.weight,
+      })),
     };
   }
-  const scores = await Promise.all(
-    JUDGES.map((j) => judgeLimiter(() => runJudge(j, input))),
-  );
+  const scores = await Promise.all(JUDGES.map((j) => judgeLimiter(() => runJudge(j, input))));
   const totalWeight = scores.reduce((sum, s) => sum + s.weight, 0);
   const aggregate =
     totalWeight > 0
@@ -178,9 +217,7 @@ export async function scoreAnswerBatch(inputs: ReadonlyArray<JudgeInput>): Promi
     return { aggregate: 0, byJudge: empty };
   }
   const results = await Promise.all(inputs.map((i) => scoreAnswer(i)));
-  const aggregate = Math.round(
-    results.reduce((sum, r) => sum + r.aggregate, 0) / results.length,
-  );
+  const aggregate = Math.round(results.reduce((sum, r) => sum + r.aggregate, 0) / results.length);
   const byJudge: Record<JudgeId, number> = Object.fromEntries(
     JUDGES.map((j) => [j.id, 0]),
   ) as Record<JudgeId, number>;

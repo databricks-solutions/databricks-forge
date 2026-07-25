@@ -87,9 +87,7 @@ function dbRowToRecommendation(row: DbRow): GenieEngineRecommendation {
     const space: unknown = JSON.parse(row.serializedSpace);
     parsedSpace = space;
     const spaceRecord =
-      typeof space === "object" && space !== null
-        ? (space as Record<string, unknown>)
-        : {};
+      typeof space === "object" && space !== null ? (space as Record<string, unknown>) : {};
     const instructions =
       typeof spaceRecord.instructions === "object" && spaceRecord.instructions !== null
         ? (spaceRecord.instructions as Record<string, unknown>)

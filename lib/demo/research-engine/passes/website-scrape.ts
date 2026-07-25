@@ -65,9 +65,7 @@ export async function runWebsiteScrape(
 
       if (signal?.aborted) break;
 
-      const combined = signal
-        ? AbortSignal.any([signal, controller.signal])
-        : controller.signal;
+      const combined = signal ? AbortSignal.any([signal, controller.signal]) : controller.signal;
 
       const response = await fetchFn(url, {
         headers: { "User-Agent": "DatabricksForge/1.0" },

@@ -75,9 +75,7 @@ describe("mergeProgramRelationshipInputs", () => {
     const reversed = mergeProgramRelationshipInputs("p1", [...rows].reverse());
 
     expect(reversed).toEqual(forward);
-    expect(forward.details).toEqual([
-      { tableFqn: "cat.sales.orders", dataDomain: "Revenue" },
-    ]);
+    expect(forward.details).toEqual([{ tableFqn: "cat.sales.orders", dataDomain: "Revenue" }]);
     expect(forward.canonicalEntities).toEqual([
       { payloadJson: JSON.stringify({ name: "Ledger", tables: ["cat.fin.ledger"] }) },
       { payloadJson: JSON.stringify({ name: " order ", tables: ["cat.sales.orders"] }) },
@@ -134,7 +132,11 @@ describe("buildRelationshipGraph", () => {
     const result = buildRelationshipGraph({
       // Two scans' lineage merged into one edge list.
       lineage: [
-        { sourceTableFqn: "cat1.sales.orders", targetTableFqn: "cat1.sales.customers", eventCount: 5 },
+        {
+          sourceTableFqn: "cat1.sales.orders",
+          targetTableFqn: "cat1.sales.customers",
+          eventCount: 5,
+        },
         { sourceTableFqn: "cat1.sales.orders", targetTableFqn: "cat2.fin.ledger", eventCount: 2 },
       ],
       canonicalEntities: [
@@ -142,7 +144,13 @@ describe("buildRelationshipGraph", () => {
         { payloadJson: JSON.stringify({ name: "Ledger", tables: ["cat2.fin.ledger"] }) },
       ],
       entityRelationships: [
-        { payloadJson: JSON.stringify({ sourceEntity: "Order", targetEntity: "Ledger", via: "inferred" }) },
+        {
+          payloadJson: JSON.stringify({
+            sourceEntity: "Order",
+            targetEntity: "Ledger",
+            via: "inferred",
+          }),
+        },
       ],
       domainByFqn,
     });

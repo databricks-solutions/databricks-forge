@@ -13,13 +13,21 @@ import type { IndustryOutcome } from "./index";
 export const CASINOS_RESORTS: IndustryOutcome = {
   id: "casinos-resorts",
   name: "Casinos & Resorts",
-  subVerticals: ["Integrated Resorts","Regional Casinos","Cruise Gaming","Online Casino"],
-  suggestedDomains: ["Guest Experience","Gaming Operations","Hospitality","Marketing","Compliance","Loyalty"],
-  suggestedPriorities: ["Grow Guests","Protect the Guest","Optimize Operations"],
+  subVerticals: ["Integrated Resorts", "Regional Casinos", "Cruise Gaming", "Online Casino"],
+  suggestedDomains: [
+    "Guest Experience",
+    "Gaming Operations",
+    "Hospitality",
+    "Marketing",
+    "Compliance",
+    "Loyalty",
+  ],
+  suggestedPriorities: ["Grow Guests", "Protect the Guest", "Optimize Operations"],
   objectives: [
     {
       name: "Guest Centric Experience",
-      whyChange: "Knowing, attracting, and protecting the guest unlocks loyalty and lifetime value across gaming and hospitality.",
+      whyChange:
+        "Knowing, attracting, and protecting the guest unlocks loyalty and lifetime value across gaming and hospitality.",
       priorities: [
         {
           name: "Know the Guest",
@@ -53,8 +61,8 @@ export const CASINOS_RESORTS: IndustryOutcome = {
               description: "Spot rising high-rollers early.",
             },
           ],
-          kpis: ["Guest LTV","Theoretical win per visit","Loyalty enrollment"],
-          personas: ["Chief Marketing Officer","VP Loyalty","VP Guest Services"],
+          kpis: ["Guest LTV", "Theoretical win per visit", "Loyalty enrollment"],
+          personas: ["Chief Marketing Officer", "VP Loyalty", "VP Guest Services"],
         },
         {
           name: "Attact the Guest",
@@ -88,8 +96,8 @@ export const CASINOS_RESORTS: IndustryOutcome = {
               description: "Operate tiers, benefits, and comps.",
             },
           ],
-          kpis: ["Guest LTV","Theoretical win per visit","Loyalty enrollment"],
-          personas: ["Chief Marketing Officer","VP Loyalty","VP Guest Services"],
+          kpis: ["Guest LTV", "Theoretical win per visit", "Loyalty enrollment"],
+          personas: ["Chief Marketing Officer", "VP Loyalty", "VP Guest Services"],
         },
         {
           name: "Protect the Guest",
@@ -115,14 +123,15 @@ export const CASINOS_RESORTS: IndustryOutcome = {
               description: "Predict lapse risk and intervene.",
             },
           ],
-          kpis: ["Guest LTV","Theoretical win per visit","Loyalty enrollment"],
-          personas: ["Chief Marketing Officer","VP Loyalty","VP Guest Services"],
+          kpis: ["Guest LTV", "Theoretical win per visit", "Loyalty enrollment"],
+          personas: ["Chief Marketing Officer", "VP Loyalty", "VP Guest Services"],
         },
       ],
     },
     {
       name: "Betting",
-      whyChange: "Build-the-bet and offers personalization drive wagering revenue while maintaining responsible gaming standards.",
+      whyChange:
+        "Build-the-bet and offers personalization drive wagering revenue while maintaining responsible gaming standards.",
       priorities: [
         {
           name: "Build Bets",
@@ -152,8 +161,8 @@ export const CASINOS_RESORTS: IndustryOutcome = {
               description: "Balance margin vs. volume.",
             },
           ],
-          kpis: ["Handle per active","Hold %","Promo cost-to-revenue"],
-          personas: ["VP Sportsbook","Head of Trading","VP Promotions"],
+          kpis: ["Handle per active", "Hold %", "Promo cost-to-revenue"],
+          personas: ["VP Sportsbook", "Head of Trading", "VP Promotions"],
         },
         {
           name: "Offers",
@@ -183,14 +192,15 @@ export const CASINOS_RESORTS: IndustryOutcome = {
               description: "Suggest profitable parlay combos.",
             },
           ],
-          kpis: ["Handle per active","Hold %","Promo cost-to-revenue"],
-          personas: ["VP Sportsbook","Head of Trading","VP Promotions"],
+          kpis: ["Handle per active", "Hold %", "Promo cost-to-revenue"],
+          personas: ["VP Sportsbook", "Head of Trading", "VP Promotions"],
         },
       ],
     },
     {
       name: "Hospitality",
-      whyChange: "Hospitality growth and operational excellence convert gaming traffic into integrated resort revenue.",
+      whyChange:
+        "Hospitality growth and operational excellence convert gaming traffic into integrated resort revenue.",
       priorities: [
         {
           name: "Grow Guests",
@@ -220,8 +230,8 @@ export const CASINOS_RESORTS: IndustryOutcome = {
               description: "Seamless search, book, and upsell.",
             },
           ],
-          kpis: ["RevPAR","F&B cover counts","Length of stay"],
-          personas: ["Chief Hospitality Officer","VP F&B","GM Property"],
+          kpis: ["RevPAR", "F&B cover counts", "Length of stay"],
+          personas: ["Chief Hospitality Officer", "VP F&B", "GM Property"],
         },
         {
           name: "Operate",
@@ -255,8 +265,8 @@ export const CASINOS_RESORTS: IndustryOutcome = {
               description: "Align staffing with demand.",
             },
           ],
-          kpis: ["RevPAR","F&B cover counts","Length of stay"],
-          personas: ["Chief Hospitality Officer","VP F&B","GM Property"],
+          kpis: ["RevPAR", "F&B cover counts", "Length of stay"],
+          personas: ["Chief Hospitality Officer", "VP F&B", "GM Property"],
         },
       ],
     },
@@ -296,8 +306,12 @@ export const CASINOS_RESORTS: IndustryOutcome = {
               description: "Analyze vendor spend and savings.",
             },
           ],
-          kpis: ["SAR/STR turnaround time","AML alerts per FTE","Game floor downtime"],
-          personas: ["Chief Compliance Officer","VP Gaming Operations","Director of Surveillance"],
+          kpis: ["SAR/STR turnaround time", "AML alerts per FTE", "Game floor downtime"],
+          personas: [
+            "Chief Compliance Officer",
+            "VP Gaming Operations",
+            "Director of Surveillance",
+          ],
         },
         {
           name: "Optimize Operations",
@@ -327,8 +341,12 @@ export const CASINOS_RESORTS: IndustryOutcome = {
               description: "Workforce planning and compliance.",
             },
           ],
-          kpis: ["SAR/STR turnaround time","AML alerts per FTE","Game floor downtime"],
-          personas: ["Chief Compliance Officer","VP Gaming Operations","Director of Surveillance"],
+          kpis: ["SAR/STR turnaround time", "AML alerts per FTE", "Game floor downtime"],
+          personas: [
+            "Chief Compliance Officer",
+            "VP Gaming Operations",
+            "Director of Surveillance",
+          ],
         },
       ],
     },

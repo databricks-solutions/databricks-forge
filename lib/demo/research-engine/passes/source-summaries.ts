@@ -70,9 +70,10 @@ export async function runSourceSummaries(
     })
     .join("\n");
 
-  const prompt = SOURCE_SUMMARIES_PROMPT
-    .replace("{customer_name}", customerName)
-    .replace("{source_manifest}", manifest);
+  const prompt = SOURCE_SUMMARIES_PROMPT.replace("{customer_name}", customerName).replace(
+    "{source_manifest}",
+    manifest,
+  );
 
   const endpoint = resolveResearchEndpoint(modelTier ?? "classification");
 

@@ -1,13 +1,7 @@
 import PptxGenJS from "pptxgenjs";
 import type { ResearchEngineResult } from "@/lib/demo/research-engine/types";
 import { PPTX, today } from "./brand";
-import {
-  addTitleSlide,
-  addSectionSlide,
-  addFooter,
-  headerCell,
-  bodyCell,
-} from "./pptx-helpers";
+import { addTitleSlide, addSectionSlide, addFooter, headerCell, bodyCell } from "./pptx-helpers";
 
 export async function generateDemoResearchPptx(
   research: ResearchEngineResult,
@@ -18,12 +12,7 @@ export async function generateDemoResearchPptx(
   pptx.author = "Databricks Forge";
   pptx.title = `${customerName} Demo Preparation`;
 
-  addTitleSlide(
-    pptx,
-    `${customerName} Demo Preparation`,
-    today(),
-    research.industryId,
-  );
+  addTitleSlide(pptx, `${customerName} Demo Preparation`, today(), research.industryId);
 
   // --- Executive Brief slide -------------------------------------------
   const brief = research.executiveBrief;
@@ -232,7 +221,10 @@ export async function generateDemoResearchPptx(
         color: PPTX.DB_DARK,
         fontFace: "Calibri",
       });
-      const bulletText = items.slice(0, 4).map((i) => `• ${i}`).join("\n");
+      const bulletText = items
+        .slice(0, 4)
+        .map((i) => `• ${i}`)
+        .join("\n");
       if (bulletText) {
         slide.addText(bulletText, {
           x: x + 0.15,
@@ -695,14 +687,16 @@ export async function generateDemoResearchPptx(
     const slide = addSectionSlide(pptx, "Evidence Register");
     const evData: PptxGenJS.TableRow[] = [
       [headerCell("Tier"), headerCell("Claim"), headerCell("Evidence"), headerCell("Source")],
-      ...evidenceRows.slice(0, 20).map(
-        (r): PptxGenJS.TableRow => [
-          bodyCell(r.tier, { align: "center" }),
-          bodyCell(r.claim),
-          bodyCell(r.detail),
-          bodyCell(r.source),
-        ],
-      ),
+      ...evidenceRows
+        .slice(0, 20)
+        .map(
+          (r): PptxGenJS.TableRow => [
+            bodyCell(r.tier, { align: "center" }),
+            bodyCell(r.claim),
+            bodyCell(r.detail),
+            bodyCell(r.source),
+          ],
+        ),
     ];
     slide.addTable(evData, {
       x: PPTX.CONTENT_MARGIN + 0.3,

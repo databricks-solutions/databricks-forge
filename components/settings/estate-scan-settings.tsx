@@ -96,7 +96,9 @@ export function EstateScanSettings({
             <div>
               <p className="text-sm font-medium">{t("asset_discovery.label")}</p>
               <p className="text-xs text-muted-foreground">
-                {assetDiscoveryEnabled ? t("asset_discovery.enabled") : t("asset_discovery.disabled")}
+                {assetDiscoveryEnabled
+                  ? t("asset_discovery.enabled")
+                  : t("asset_discovery.disabled")}
               </p>
             </div>
           </div>
@@ -136,7 +138,6 @@ export function EstateScanSettings({
             activeColor="bg-amber-500"
           />
         </div>
-
       </CardContent>
     </Card>
   );

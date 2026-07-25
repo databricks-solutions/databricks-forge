@@ -163,10 +163,7 @@ export async function DELETE(
     if (!guard.ok) return guard.response;
     const { value, user, permission } = guard;
     if (permission !== "owner") {
-      return NextResponse.json(
-        { error: "Only the owner can delete a run." },
-        { status: 403 },
-      );
+      return NextResponse.json({ error: "Only the owner can delete a run." }, { status: 403 });
     }
 
     if (value.run.status === "running") {

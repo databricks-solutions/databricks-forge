@@ -90,7 +90,9 @@ export function normalizeMetricViewDefinition(
     return { ok: true, definition, removedAggregateDimensions: [] };
   }
 
-  const scalarDimensions = definition.dimensions.filter((dimension) => !isAggregateDimension(dimension));
+  const scalarDimensions = definition.dimensions.filter(
+    (dimension) => !isAggregateDimension(dimension),
+  );
   if (definition.measures.length === 0) {
     return {
       ok: false,

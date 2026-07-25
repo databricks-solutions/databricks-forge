@@ -13,8 +13,7 @@ import {
 
 const fullBlock = buildGsl({
   purpose: "Answer questions about North America retail sales.",
-  disambiguation:
-    "If 'sales' could mean revenue or order count, ask the user which they want.",
+  disambiguation: "If 'sales' could mean revenue or order count, ask the user which they want.",
   dataQualityNotes: "Treat NULL prices as missing data, never as zero.",
   constraints: "Use only `retail.sales.orders` and `retail.sales.line_items`.",
 });

@@ -24,13 +24,11 @@ const metricTable = {
   findUnique: vi.fn(async ({ where }: { where: { id: string } }) => {
     return rows.find((row) => row.id === where.id) ?? null;
   }),
-  update: vi.fn(
-    async (_args: { where: { id: string }; data: Record<string, unknown> }) => ({}),
-  ),
+  update: vi.fn(async (_args: { where: { id: string }; data: Record<string, unknown> }) => ({})),
 };
 
 vi.mock("@/lib/prisma", () => ({
-  withPrisma: async <T,>(
+  withPrisma: async <T>(
     callback: (prisma: {
       $transaction: (callback: (tx: unknown) => Promise<T>) => Promise<T>;
       forgeMetricViewProposal: typeof metricTable;
@@ -189,26 +187,16 @@ describe("metric view typed-definition persistence", () => {
       status: string,
       deployedFqn?: string,
     ) => Promise<void>;
-    await expect(
-      rawStatusUpdate(
-        "mv-1",
-        "deployed",
-        "main.sales.revenue_metrics",
-      ),
-    ).rejects.toThrow(/promoteMetricViewDeployment/);
+    await expect(rawStatusUpdate("mv-1", "deployed", "main.sales.revenue_metrics")).rejects.toThrow(
+      /promoteMetricViewDeployment/,
+    );
     expect(metricTable.update).not.toHaveBeenCalled();
   });
 
   it("serializes only the canonical definition into definitionJson", async () => {
     const input = proposal();
 
-    await saveMetricViewProposals(
-      "run-1",
-      "main.sales",
-      "Sales",
-      [input],
-      "owner@example.com",
-    );
+    await saveMetricViewProposals("run-1", "main.sales", "Sales", [input], "owner@example.com");
 
     const persisted = metricTable.createMany.mock.calls[0][0].data[0];
     expect(JSON.parse(persisted.definitionJson as string)).toEqual(definition);
@@ -352,12 +340,9 @@ describe("metric view typed-definition persistence", () => {
   });
 
   it("downgrades valid saves without a canonical typed definition", async () => {
-    await saveMetricViewProposals(
-      "run-1",
-      "main.sales",
-      "Sales",
-      [proposal({ definition: undefined, yaml: "version: [" })],
-    );
+    await saveMetricViewProposals("run-1", "main.sales", "Sales", [
+      proposal({ definition: undefined, yaml: "version: [" }),
+    ]);
 
     const persisted = metricTable.createMany.mock.calls[0][0].data[0];
     expect(persisted.definitionJson).toBeNull();
@@ -370,18 +355,13 @@ describe("metric view typed-definition persistence", () => {
   });
 
   it("downgrades typed valid saves without complete Release 1 provenance", async () => {
-    await saveMetricViewProposals(
-      "run-1",
-      "main.sales",
-      "Sales",
-      [
-        proposal({
-          validatorVersion: undefined,
-          validatedAt: undefined,
-          validationEvidence: undefined,
-        }),
-      ],
-    );
+    await saveMetricViewProposals("run-1", "main.sales", "Sales", [
+      proposal({
+        validatorVersion: undefined,
+        validatedAt: undefined,
+        validationEvidence: undefined,
+      }),
+    ]);
 
     const persisted = metricTable.createMany.mock.calls[0][0].data[0];
     expect(persisted.definitionJson).not.toBeNull();

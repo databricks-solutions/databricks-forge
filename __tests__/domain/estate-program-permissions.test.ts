@@ -13,7 +13,12 @@ import { estateProgramCapabilities } from "@/lib/domain/estate-program-permissio
 describe("estateProgramCapabilities", () => {
   it("grants full control to the owner", () => {
     const c = estateProgramCapabilities("owner");
-    expect(c).toEqual({ canEdit: true, canManageScopes: true, canRunSequence: true, canDelete: true });
+    expect(c).toEqual({
+      canEdit: true,
+      canManageScopes: true,
+      canRunSequence: true,
+      canDelete: true,
+    });
   });
 
   it("grants edit-share recipients everything except delete", () => {
@@ -26,7 +31,12 @@ describe("estateProgramCapabilities", () => {
 
   it("grants view-only recipients nothing mutating", () => {
     const c = estateProgramCapabilities("view");
-    expect(c).toEqual({ canEdit: false, canManageScopes: false, canRunSequence: false, canDelete: false });
+    expect(c).toEqual({
+      canEdit: false,
+      canManageScopes: false,
+      canRunSequence: false,
+      canDelete: false,
+    });
   });
 
   it("defaults an unknown/absent permission to view-only (fail closed)", () => {

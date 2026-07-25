@@ -16,10 +16,7 @@ import {
   portfolioAssetIdentitiesFromInsight,
   type PortfolioAssetKind,
 } from "@/lib/lakebase/portfolio-estate";
-import {
-  fromStoredLineageEdge,
-  toStoredLineageEntityType,
-} from "@/lib/domain/lineage-entity-type";
+import { fromStoredLineageEdge, toStoredLineageEntityType } from "@/lib/domain/lineage-entity-type";
 import type { MetadataQualityCoverage } from "@/lib/domain/estate-readiness";
 import type {
   EnvironmentScan,
@@ -750,7 +747,13 @@ async function _getAggregateEstateViewUncached(
           avgGovernanceScore: 0,
           oldestScanAt: null,
           newestScanAt: null,
-          assetInventory: { models: 0, functions: 0, genieSpaces: 0, dashboards: 0, metricViews: 0 },
+          assetInventory: {
+            models: 0,
+            functions: 0,
+            genieSpaces: 0,
+            dashboards: 0,
+            metricViews: 0,
+          },
           maturity: null,
           metadataCoverage: {
             tableCount: 0,
@@ -887,7 +890,8 @@ async function _getAggregateEstateViewUncached(
       tableCount: mergedDetails.length,
       avgGovernanceScore: avgGov,
       piiTablesCount: piiCount,
-      tablesWithDescription: mergedDetails.filter((d) => d.comment || d.generatedDescription).length,
+      tablesWithDescription: mergedDetails.filter((d) => d.comment || d.generatedDescription)
+        .length,
       tablesWithTags: mergedDetails.filter((d) => hasTags(d.tagsJson)).length,
       tablesWithOwner: mergedDetails.filter((d) => d.owner).length,
       tablesWithTier: mergedDetails.filter((d) => d.dataTier).length,
@@ -902,9 +906,7 @@ async function _getAggregateEstateViewUncached(
       tablesWithStreaming: mergedHistories.filter((h) => h.hasStreamingWrites).length,
       tablesWithCDF: mergedDetails.filter((d) => d.cdfEnabled).length,
       avgHealthScore:
-        healthScores.length > 0
-          ? healthScores.reduce((a, b) => a + b, 0) / healthScores.length
-          : 0,
+        healthScores.length > 0 ? healthScores.reduce((a, b) => a + b, 0) / healthScores.length : 0,
       tablesWithAutoOptimize: mergedDetails.filter((d) => d.autoOptimize).length,
       tablesWithLiquidClustering: mergedDetails.filter((d) => {
         try {

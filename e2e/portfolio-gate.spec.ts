@@ -11,9 +11,23 @@ test("non-admin does not see the Portfolio tab", async ({ page }) => {
   await mockCommonApis(page, { portfolioAllowed: false });
   await page.route("**/api/environment/aggregate", (r) =>
     jsonRoute(r, {
-      details: [{ tableFqn: "cat.s.t", dataDomain: "Finance", numRows: 1, sizeInBytes: 1, discoveredVia: "selected" }],
+      details: [
+        {
+          tableFqn: "cat.s.t",
+          dataDomain: "Finance",
+          numRows: 1,
+          sizeInBytes: 1,
+          discoveredVia: "selected",
+        },
+      ],
       insights: [],
-      stats: { totalScans: 1, totalTables: 1, coverageByScope: [{ ucPath: "cat", scanId: "scan1", tableCount: 1, scannedAt: new Date().toISOString() }] },
+      stats: {
+        totalScans: 1,
+        totalTables: 1,
+        coverageByScope: [
+          { ucPath: "cat", scanId: "scan1", tableCount: 1, scannedAt: new Date().toISOString() },
+        ],
+      },
     }),
   );
   await page.goto("/environment");
@@ -25,9 +39,23 @@ test("admin sees the Portfolio tab", async ({ page }) => {
   await mockCommonApis(page, { portfolioAllowed: true });
   await page.route("**/api/environment/aggregate", (r) =>
     jsonRoute(r, {
-      details: [{ tableFqn: "cat.s.t", dataDomain: "Finance", numRows: 1, sizeInBytes: 1, discoveredVia: "selected" }],
+      details: [
+        {
+          tableFqn: "cat.s.t",
+          dataDomain: "Finance",
+          numRows: 1,
+          sizeInBytes: 1,
+          discoveredVia: "selected",
+        },
+      ],
       insights: [],
-      stats: { totalScans: 1, totalTables: 1, coverageByScope: [{ ucPath: "cat", scanId: "scan1", tableCount: 1, scannedAt: new Date().toISOString() }] },
+      stats: {
+        totalScans: 1,
+        totalTables: 1,
+        coverageByScope: [
+          { ucPath: "cat", scanId: "scan1", tableCount: 1, scannedAt: new Date().toISOString() },
+        ],
+      },
     }),
   );
   await page.route("**/api/portfolio", (r) => jsonRoute(r, { estates: [], totals: {} }));

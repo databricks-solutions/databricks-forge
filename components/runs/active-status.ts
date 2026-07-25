@@ -9,9 +9,7 @@
 
 const ACTIVE_RUN_STATUSES = new Set(["running", "pending", "queued"]);
 
-export function hasActiveRunStatuses(
-  runs: ReadonlyArray<{ status: string }>,
-): boolean {
+export function hasActiveRunStatuses(runs: ReadonlyArray<{ status: string }>): boolean {
   for (const run of runs) {
     if (ACTIVE_RUN_STATUSES.has(run.status)) return true;
   }

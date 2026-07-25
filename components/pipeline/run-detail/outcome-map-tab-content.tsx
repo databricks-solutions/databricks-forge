@@ -18,10 +18,7 @@ import {
   Layers,
 } from "lucide-react";
 import type { UseCase } from "@/lib/domain/types";
-import {
-  computeIndustryCoverage,
-  type PriorityCoverage,
-} from "@/lib/domain/industry-coverage";
+import { computeIndustryCoverage, type PriorityCoverage } from "@/lib/domain/industry-coverage";
 import { useIndustryOutcomes } from "@/lib/hooks/use-industry-outcomes";
 import type { IndustryObjective } from "@/lib/domain/industry-outcomes";
 import { DataGapCard } from "./data-gap-card";

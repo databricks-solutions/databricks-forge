@@ -66,10 +66,7 @@ export interface DashboardDeployDependencies {
       auth: DashboardAuth;
     },
   ) => Promise<LakeviewDashboardResponse>;
-  getDashboard: (
-    dashboardId: string,
-    auth: DashboardAuth,
-  ) => Promise<LakeviewDashboardResponse>;
+  getDashboard: (dashboardId: string, auth: DashboardAuth) => Promise<LakeviewDashboardResponse>;
   publishDashboard: (
     dashboardId: string,
     warehouseId: string,
@@ -123,11 +120,7 @@ export class DashboardScopeUnsupportedError extends DashboardReadBackValidationE
   readonly draftCreated = true;
   readonly publicationStatus = "draft";
 
-  constructor(
-    dashboardId: string,
-    displayName: string,
-    evidence: ValidationEvidence[],
-  ) {
+  constructor(dashboardId: string, displayName: string, evidence: ValidationEvidence[]) {
     super(
       dashboardId,
       displayName,
@@ -262,10 +255,10 @@ export async function deployDashboardDraftAndVerify(
     : !draft.display_name
       ? "Dashboard mutation response did not contain display_name"
       : options.mode === "update" && observedDashboardId !== expectedDashboardId
-      ? `Updated dashboard ID "${observedDashboardId}" does not match expected "${expectedDashboardId}"`
-      : options.mode === "update" && draft.display_name !== options.displayName
-        ? `Updated display name "${draft.display_name}" does not match requested "${options.displayName}"`
-        : null;
+        ? `Updated dashboard ID "${observedDashboardId}" does not match expected "${expectedDashboardId}"`
+        : options.mode === "update" && draft.display_name !== options.displayName
+          ? `Updated display name "${draft.display_name}" does not match requested "${options.displayName}"`
+          : null;
   if (mutationResponseProblem) {
     throw new DashboardReadBackValidationError(
       dashboardId,
@@ -285,8 +278,7 @@ export async function deployDashboardDraftAndVerify(
       },
     );
   }
-  const expectedDisplayName =
-    options.mode === "create" ? observedDisplayName : options.displayName;
+  const expectedDisplayName = options.mode === "create" ? observedDisplayName : options.displayName;
   const action = options.mode === "create" ? "created" : "updated";
   const evidence: ValidationEvidence[] = readBackEnabled ? [] : [...expectedContract.evidence];
   if (!readBackEnabled) {
@@ -395,11 +387,7 @@ export async function deployDashboardDraftAndVerify(
           { artifactRef: `dashboard:${dashboardId}` },
         ),
       );
-      throw new DashboardScopeUnsupportedError(
-        dashboardId,
-        expectedDisplayName,
-        evidence,
-      );
+      throw new DashboardScopeUnsupportedError(dashboardId, expectedDisplayName, evidence);
     }
     if (!evidence.some((item) => item.status === "failed")) {
       evidence.push(
@@ -495,11 +483,7 @@ export async function deployDashboardDraftAndVerify(
           { artifactRef: `dashboard:${dashboardId}` },
         ),
       );
-      throw new DashboardScopeUnsupportedError(
-        dashboardId,
-        expectedDisplayName,
-        evidence,
-      );
+      throw new DashboardScopeUnsupportedError(dashboardId, expectedDisplayName, evidence);
     }
     evidence.push(
       evidenceFailed(

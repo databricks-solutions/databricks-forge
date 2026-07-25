@@ -25,19 +25,26 @@ interface PersonaTalkTrackProps {
 }
 
 function evidenceBadgeClass(tier: Evidence["tier"]): string {
-  if (tier === "sourced") return "bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border-emerald-500/20";
-  if (tier === "benchmark") return "bg-blue-500/10 text-blue-700 dark:text-blue-400 border-blue-500/20";
+  if (tier === "sourced")
+    return "bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border-emerald-500/20";
+  if (tier === "benchmark")
+    return "bg-blue-500/10 text-blue-700 dark:text-blue-400 border-blue-500/20";
   return "bg-amber-500/10 text-amber-700 dark:text-amber-400 border-amber-500/20";
 }
 
 function EvidenceChip({ evidence }: { evidence: Evidence }) {
-  const label = evidence.tier === "sourced" ? "Sourced" : evidence.tier === "benchmark" ? "Benchmark" : "Inferred";
+  const label =
+    evidence.tier === "sourced"
+      ? "Sourced"
+      : evidence.tier === "benchmark"
+        ? "Benchmark"
+        : "Inferred";
   const tooltip =
     evidence.tier === "sourced"
-      ? evidence.quote ?? evidence.claim ?? ""
+      ? (evidence.quote ?? evidence.claim ?? "")
       : evidence.tier === "benchmark"
         ? `${evidence.benchmarkLabel ?? ""} ${evidence.benchmarkRange ?? ""}`.trim()
-        : evidence.rationale ?? evidence.claim ?? "";
+        : (evidence.rationale ?? evidence.claim ?? "");
 
   const chip = (
     <Badge variant="outline" className={`text-[10px] gap-1 ${evidenceBadgeClass(evidence.tier)}`}>

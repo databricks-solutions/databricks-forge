@@ -121,11 +121,9 @@ const CONTROL_REFS: Record<string, Partial<WafCrossReference>> = {
   // Governance — audit / monitoring
   "DG-02-02": {
     awsLabel: "AWS WAF · SEC04 Detect & investigate security events",
-    awsHref:
-      "https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/sec04.html",
+    awsHref: "https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/sec04.html",
     azureLabel: "Azure WAF · Security – monitor & threat protection",
-    azureHref:
-      "https://learn.microsoft.com/azure/well-architected/security/monitor-threats",
+    azureHref: "https://learn.microsoft.com/azure/well-architected/security/monitor-threats",
   },
   // Cost — right-sizing
   "CO-01-09": {
@@ -142,8 +140,7 @@ const CONTROL_REFS: Record<string, Partial<WafCrossReference>> = {
     awsHref:
       "https://docs.aws.amazon.com/wellarchitected/latest/performance-efficiency-pillar/compute-and-hardware.html",
     azureLabel: "Azure WAF · Performance – plan for scaling",
-    azureHref:
-      "https://learn.microsoft.com/azure/well-architected/performance-efficiency/scale",
+    azureHref: "https://learn.microsoft.com/azure/well-architected/performance-efficiency/scale",
   },
   // Reliability — DLT expectations
   "R-01-03": {
@@ -151,17 +148,14 @@ const CONTROL_REFS: Record<string, Partial<WafCrossReference>> = {
     awsHref:
       "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/design-your-workload-to-withstand-component-failures.html",
     azureLabel: "Azure WAF · Reliability – validate data integrity",
-    azureHref:
-      "https://learn.microsoft.com/azure/well-architected/reliability/data-integrity",
+    azureHref: "https://learn.microsoft.com/azure/well-architected/reliability/data-integrity",
   },
   // Security — service principals
   "SCP-01-13": {
     awsLabel: "AWS WAF · SEC02 Identity & access management",
-    awsHref:
-      "https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/sec02.html",
+    awsHref: "https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/sec02.html",
     azureLabel: "Azure WAF · Security – identity & access management",
-    azureHref:
-      "https://learn.microsoft.com/azure/well-architected/security/identity-access",
+    azureHref: "https://learn.microsoft.com/azure/well-architected/security/identity-access",
   },
 };
 

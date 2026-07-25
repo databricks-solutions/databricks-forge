@@ -161,8 +161,7 @@ export const OIL_GAS_NOC_USE_CASES: MasterRepoUseCase[] = [
     modelType: "Intermediate — Traditional AI",
     kpiTarget: "Unplanned downtime",
     benchmarkImpact: "-40%",
-    benchmarkSource:
-      "McKinsey — Manufacturing Analytics Unleashes Productivity and Profitability",
+    benchmarkSource: "McKinsey — Manufacturing Analytics Unleashes Productivity and Profitability",
     benchmarkUrl:
       "https://www.mckinsey.com/capabilities/operations/our-insights/manufacturing-analytics-unleashes-productivity-and-profitability",
     strategicImperative: "Asset Integrity, Safety & Environment",
@@ -324,8 +323,7 @@ export const OIL_GAS_NOC_USE_CASES: MasterRepoUseCase[] = [
     kpiTarget: "Margin per barrel",
     benchmarkImpact: "+2%",
     benchmarkSource: "McKinsey — Refining Advanced Analytics",
-    benchmarkUrl:
-      "https://www.mckinsey.com/industries/oil-and-gas/our-insights",
+    benchmarkUrl: "https://www.mckinsey.com/industries/oil-and-gas/our-insights",
     strategicImperative: "Downstream & Petrochemical Yield",
     strategicPillar: "Refinery & Petrochemical Optimization",
     dataAssetIds: ["A03", "A29", "A30"],
@@ -541,7 +539,8 @@ export const OIL_GAS_NOC_DATA_ASSETS: ReferenceDataAsset[] = [
     ucFederation: "Low",
     lakebridgeMigrate: "Low",
     bespoke: "High",
-    accessRationale: "Master data typically in EAM/CMMS/MDM; commonly extracted via batch/bespoke export.",
+    accessRationale:
+      "Master data typically in EAM/CMMS/MDM; commonly extracted via batch/bespoke export.",
     systemKind: "CMMS / EAM",
   },
   {
@@ -571,7 +570,8 @@ export const OIL_GAS_NOC_DATA_ASSETS: ReferenceDataAsset[] = [
     ucFederation: "Low",
     lakebridgeMigrate: "Low",
     bespoke: "High",
-    accessRationale: "Process historians (PI, etc.) typically integrated via connectors or bespoke streaming.",
+    accessRationale:
+      "Process historians (PI, etc.) typically integrated via connectors or bespoke streaming.",
     systemKind: "SCADA / Historian",
   },
   {
@@ -586,7 +586,8 @@ export const OIL_GAS_NOC_DATA_ASSETS: ReferenceDataAsset[] = [
     ucFederation: "Low",
     lakebridgeMigrate: "Low",
     bespoke: "High",
-    accessRationale: "Condition-monitoring platforms feed via edge gateways; commonly bespoke ingestion.",
+    accessRationale:
+      "Condition-monitoring platforms feed via edge gateways; commonly bespoke ingestion.",
     systemKind: "Observability",
   },
   {
@@ -601,7 +602,8 @@ export const OIL_GAS_NOC_DATA_ASSETS: ReferenceDataAsset[] = [
     ucFederation: "High",
     lakebridgeMigrate: "Low",
     bespoke: "Low",
-    accessRationale: "Media typically lands in cloud object storage (ADLS/S3/GCS), accessible via Lakeflow or UC federation.",
+    accessRationale:
+      "Media typically lands in cloud object storage (ADLS/S3/GCS), accessible via Lakeflow or UC federation.",
     systemKind: "Data Lake",
   },
   {
@@ -661,7 +663,8 @@ export const OIL_GAS_NOC_DATA_ASSETS: ReferenceDataAsset[] = [
     ucFederation: "Low",
     lakebridgeMigrate: "Low",
     bespoke: "High",
-    accessRationale: "LNG plant historians/DCS; integrated via process-historian connectors or bespoke streaming.",
+    accessRationale:
+      "LNG plant historians/DCS; integrated via process-historian connectors or bespoke streaming.",
     systemKind: "SCADA / Historian",
   },
   {
@@ -676,7 +679,8 @@ export const OIL_GAS_NOC_DATA_ASSETS: ReferenceDataAsset[] = [
     ucFederation: "Low",
     lakebridgeMigrate: "Low",
     bespoke: "Low",
-    accessRationale: "Fleet-management systems and AIS providers expose APIs/feeds ingestible via Lakeflow.",
+    accessRationale:
+      "Fleet-management systems and AIS providers expose APIs/feeds ingestible via Lakeflow.",
     systemKind: "Order Management",
   },
   {
@@ -691,7 +695,8 @@ export const OIL_GAS_NOC_DATA_ASSETS: ReferenceDataAsset[] = [
     ucFederation: "High",
     lakebridgeMigrate: "Low",
     bespoke: "Low",
-    accessRationale: "Market-data vendors (Platts, ICE, etc.) ingested via API/feed or marketplace shares.",
+    accessRationale:
+      "Market-data vendors (Platts, ICE, etc.) ingested via API/feed or marketplace shares.",
     systemKind: "Data Lake",
   },
   {
@@ -706,7 +711,8 @@ export const OIL_GAS_NOC_DATA_ASSETS: ReferenceDataAsset[] = [
     ucFederation: "High",
     lakebridgeMigrate: "Low",
     bespoke: "Low",
-    accessRationale: "ETRM systems commonly federated via JDBC/UC federation or exported to the lakehouse.",
+    accessRationale:
+      "ETRM systems commonly federated via JDBC/UC federation or exported to the lakehouse.",
     systemKind: "Data Warehouse",
   },
   {
@@ -721,7 +727,8 @@ export const OIL_GAS_NOC_DATA_ASSETS: ReferenceDataAsset[] = [
     ucFederation: "High",
     lakebridgeMigrate: "Low",
     bespoke: "Low",
-    accessRationale: "ERP/procurement (SAP, etc.) accessible via Lakeflow connectors or UC federation.",
+    accessRationale:
+      "ERP/procurement (SAP, etc.) accessible via Lakeflow connectors or UC federation.",
     systemKind: "ERP",
   },
   {
@@ -766,7 +773,8 @@ export const OIL_GAS_NOC_DATA_ASSETS: ReferenceDataAsset[] = [
     ucFederation: "Low",
     lakebridgeMigrate: "Low",
     bespoke: "High",
-    accessRationale: "Integrity-management systems; commonly bespoke export of inspection datasets.",
+    accessRationale:
+      "Integrity-management systems; commonly bespoke export of inspection datasets.",
     systemKind: "Data Warehouse",
   },
   {
@@ -811,7 +819,8 @@ export const OIL_GAS_NOC_DATA_ASSETS: ReferenceDataAsset[] = [
     ucFederation: "Low",
     lakebridgeMigrate: "Low",
     bespoke: "Low",
-    accessRationale: "Document/content-management stores; files ingestible to volumes via Lakeflow.",
+    accessRationale:
+      "Document/content-management stores; files ingestible to volumes via Lakeflow.",
     systemKind: "EDMS",
   },
   {
@@ -841,7 +850,8 @@ export const OIL_GAS_NOC_DATA_ASSETS: ReferenceDataAsset[] = [
     ucFederation: "Low",
     lakebridgeMigrate: "Low",
     bespoke: "High",
-    accessRationale: "Large petrotechnical/subsurface stores; bespoke integration of seismic/log/model data.",
+    accessRationale:
+      "Large petrotechnical/subsurface stores; bespoke integration of seismic/log/model data.",
     systemKind: "Data Lake",
   },
   {
@@ -886,7 +896,8 @@ export const OIL_GAS_NOC_DATA_ASSETS: ReferenceDataAsset[] = [
     ucFederation: "Low",
     lakebridgeMigrate: "Low",
     bespoke: "High",
-    accessRationale: "Planning/LP systems (e.g. PIMS); commonly bespoke export of model inputs/outputs.",
+    accessRationale:
+      "Planning/LP systems (e.g. PIMS); commonly bespoke export of model inputs/outputs.",
     systemKind: "Data Warehouse",
   },
   {
@@ -916,7 +927,8 @@ export const OIL_GAS_NOC_DATA_ASSETS: ReferenceDataAsset[] = [
     ucFederation: "Low",
     lakebridgeMigrate: "Low",
     bespoke: "High",
-    accessRationale: "Hydrogen-plant SCADA/historian; integrated via connectors or bespoke streaming.",
+    accessRationale:
+      "Hydrogen-plant SCADA/historian; integrated via connectors or bespoke streaming.",
     systemKind: "SCADA / Historian",
   },
   {
@@ -931,7 +943,8 @@ export const OIL_GAS_NOC_DATA_ASSETS: ReferenceDataAsset[] = [
     ucFederation: "Low",
     lakebridgeMigrate: "Low",
     bespoke: "Low",
-    accessRationale: "SIEM/security platforms expose log streams ingestible via Lakeflow / cybersecurity lakehouse patterns.",
+    accessRationale:
+      "SIEM/security platforms expose log streams ingestible via Lakeflow / cybersecurity lakehouse patterns.",
     systemKind: "SIEM / Security",
   },
   {

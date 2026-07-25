@@ -119,10 +119,7 @@ export async function listPortfolioAdmins(): Promise<PortfolioAdmin[]> {
 }
 
 /** Grant portfolio admin to `email`. Returns the normalised email. */
-export async function addPortfolioAdmin(
-  email: string,
-  grantedByEmail: string,
-): Promise<string> {
+export async function addPortfolioAdmin(email: string, grantedByEmail: string): Promise<string> {
   const e = normaliseEmail(email);
   if (!e) throw new Error("A valid email address is required.");
   await withPrisma((prisma) =>
@@ -145,9 +142,7 @@ export async function removePortfolioAdmin(email: string): Promise<void> {
   const e = normaliseEmail(email);
   if (!e) throw new Error("A valid email address is required.");
   if (isEnvOrgAdmin(e)) {
-    throw new Error(
-      "This admin is configured at deploy time and cannot be removed from the UI.",
-    );
+    throw new Error("This admin is configured at deploy time and cannot be removed from the UI.");
   }
   await withPrisma(async (prisma) => {
     const count = await prisma.forgePortfolioAdmin.count();

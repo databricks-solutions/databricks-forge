@@ -63,11 +63,7 @@ export const HEALTHCARE: IndustryOutcome = {
                 "Wait Times",
                 "Staffing Levels",
               ],
-              typicalSourceSystems: [
-                "EHR",
-                "ADT Feed",
-                "Bed Management System",
-              ],
+              typicalSourceSystems: ["EHR", "ADT Feed", "Bed Management System"],
             },
             {
               name: "Predict Patient Throughput (ICU Capacity Planning)",
@@ -101,12 +97,7 @@ export const HEALTHCARE: IndustryOutcome = {
                 "Source-System Mappings",
                 "Lineage Records",
               ],
-              typicalSourceSystems: [
-                "EHR",
-                "FHIR Server",
-                "HIE Connector",
-                "Integration Engine",
-              ],
+              typicalSourceSystems: ["EHR", "FHIR Server", "HIE Connector", "Integration Engine"],
             },
             {
               name: "Support DICOM (standard for medical images)",
@@ -123,12 +114,7 @@ export const HEALTHCARE: IndustryOutcome = {
               typicalSourceSystems: ["PACS", "VNA", "Modality Workstations"],
             },
           ],
-          kpis: [
-            "Average length of stay",
-            "Throughput",
-            "Coding accuracy",
-            "Cost-per-encounter",
-          ],
+          kpis: ["Average length of stay", "Throughput", "Coding accuracy", "Cost-per-encounter"],
           personas: [
             "Chief Operating Officer",
             "Chief Medical Information Officer",
@@ -150,11 +136,7 @@ export const HEALTHCARE: IndustryOutcome = {
                 "Claim Records",
                 "Coverage Policies",
               ],
-              typicalSourceSystems: [
-                "EHR",
-                "Coding Platform",
-                "Claims Adjudication",
-              ],
+              typicalSourceSystems: ["EHR", "Coding Platform", "Claims Adjudication"],
             },
             {
               name: "Medicare Risk Adjustment",
@@ -168,11 +150,7 @@ export const HEALTHCARE: IndustryOutcome = {
                 "Member Demographics",
                 "HCC Codes",
               ],
-              typicalSourceSystems: [
-                "EHR",
-                "Claims Adjudication",
-                "Risk Adjustment Platform",
-              ],
+              typicalSourceSystems: ["EHR", "Claims Adjudication", "Risk Adjustment Platform"],
             },
             {
               name: "De-Identify Unstructured Data",
@@ -212,12 +190,7 @@ export const HEALTHCARE: IndustryOutcome = {
               ],
             },
           ],
-          kpis: [
-            "Average length of stay",
-            "Throughput",
-            "Coding accuracy",
-            "Cost-per-encounter",
-          ],
+          kpis: ["Average length of stay", "Throughput", "Coding accuracy", "Cost-per-encounter"],
           personas: [
             "Chief Operating Officer",
             "Chief Medical Information Officer",
@@ -239,11 +212,7 @@ export const HEALTHCARE: IndustryOutcome = {
                 "Clinical Documentation",
                 "Decision Logs",
               ],
-              typicalSourceSystems: [
-                "EHR",
-                "Payer Auth Platform",
-                "Coverage Rules Engine",
-              ],
+              typicalSourceSystems: ["EHR", "Payer Auth Platform", "Coverage Rules Engine"],
             },
             {
               name: "Modernize Underwriting: Forecast Utilization & Accelerate Bids",
@@ -267,8 +236,7 @@ export const HEALTHCARE: IndustryOutcome = {
               name: "Detect Fraud, Waste, & Abuse (Payment Integrity)",
               description:
                 "Spot anomalous billing, upcoding, and improper payments using ML on claims, provider, and member data with case-management workflow for investigators.",
-              businessValue:
-                "Higher payment-integrity savings; lower per-case investigation cost.",
+              businessValue: "Higher payment-integrity savings; lower per-case investigation cost.",
               typicalDataEntities: [
                 "Claims",
                 "Provider Profiles",
@@ -286,8 +254,7 @@ export const HEALTHCARE: IndustryOutcome = {
               name: "Improve Revenue Cycle Mgmt",
               description:
                 "Reduce denials, accelerate cash collection, and optimise net yield across the revenue-cycle lifecycle with ML on claim status, contract terms, and payer behaviour.",
-              businessValue:
-                "Lower denial rate; faster days-in-AR; improved net yield.",
+              businessValue: "Lower denial rate; faster days-in-AR; improved net yield.",
               typicalDataEntities: [
                 "Claims",
                 "Remittance",
@@ -320,12 +287,7 @@ export const HEALTHCARE: IndustryOutcome = {
               ],
             },
           ],
-          kpis: [
-            "Average length of stay",
-            "Throughput",
-            "Coding accuracy",
-            "Cost-per-encounter",
-          ],
+          kpis: ["Average length of stay", "Throughput", "Coding accuracy", "Cost-per-encounter"],
           personas: [
             "Chief Operating Officer",
             "Chief Medical Information Officer",
@@ -373,11 +335,7 @@ export const HEALTHCARE: IndustryOutcome = {
                 "Provider Performance",
                 "Quality Metrics",
               ],
-              typicalSourceSystems: [
-                "CRM",
-                "Member Engagement Platform",
-                "Provider Profile",
-              ],
+              typicalSourceSystems: ["CRM", "Member Engagement Platform", "Provider Profile"],
             },
             {
               name: "Improve Nurse Handoffs for Continuity of Care",
@@ -394,11 +352,7 @@ export const HEALTHCARE: IndustryOutcome = {
               typicalSourceSystems: ["EHR", "Nursing Workflow App"],
             },
           ],
-          kpis: [
-            "Readmission rate",
-            "HEDIS / Stars scores",
-            "Network leakage",
-          ],
+          kpis: ["Readmission rate", "HEDIS / Stars scores", "Network leakage"],
           personas: ["Chief Medical Officer", "VP Quality", "VP Network"],
         },
         {
@@ -434,18 +388,10 @@ export const HEALTHCARE: IndustryOutcome = {
                 "Outcomes Data",
                 "Geo-Coordinates",
               ],
-              typicalSourceSystems: [
-                "EHR",
-                "Referral Management",
-                "Network Management Platform",
-              ],
+              typicalSourceSystems: ["EHR", "Referral Management", "Network Management Platform"],
             },
           ],
-          kpis: [
-            "Readmission rate",
-            "HEDIS / Stars scores",
-            "Network leakage",
-          ],
+          kpis: ["Readmission rate", "HEDIS / Stars scores", "Network leakage"],
           personas: ["Chief Medical Officer", "VP Quality", "VP Network"],
         },
       ],
@@ -471,11 +417,7 @@ export const HEALTHCARE: IndustryOutcome = {
                 "SDOH Data",
                 "Care Plans",
               ],
-              typicalSourceSystems: [
-                "EHR",
-                "Claims Adjudication",
-                "Care Management Platform",
-              ],
+              typicalSourceSystems: ["EHR", "Claims Adjudication", "Care Management Platform"],
             },
             {
               name: "Predict Disease Onset & Progression",
@@ -490,11 +432,7 @@ export const HEALTHCARE: IndustryOutcome = {
                 "SDOH Data",
                 "Risk Scores",
               ],
-              typicalSourceSystems: [
-                "EHR",
-                "Claims Adjudication",
-                "Population Health Platform",
-              ],
+              typicalSourceSystems: ["EHR", "Claims Adjudication", "Population Health Platform"],
             },
             {
               name: "Identify Probability of Next Clinical Event",
@@ -508,41 +446,24 @@ export const HEALTHCARE: IndustryOutcome = {
                 "Vital Signs",
                 "Medication Records",
               ],
-              typicalSourceSystems: [
-                "EHR",
-                "Claims Adjudication",
-                "Population Health Platform",
-              ],
+              typicalSourceSystems: ["EHR", "Claims Adjudication", "Population Health Platform"],
             },
             {
               name: "Polygenic Risk Scoring",
               description:
                 "Compute polygenic risk scores and link to phenotypes and clinical workflows to support preventive care and precision-medicine programs.",
-              businessValue:
-                "Earlier preventive interventions; differentiated wellness offerings.",
+              businessValue: "Earlier preventive interventions; differentiated wellness offerings.",
               typicalDataEntities: [
                 "Genomic Data",
                 "Phenotype Records",
                 "PRS Scores",
                 "Clinical Notes",
               ],
-              typicalSourceSystems: [
-                "Genomics Platform",
-                "EHR",
-                "Population Health Platform",
-              ],
+              typicalSourceSystems: ["Genomics Platform", "EHR", "Population Health Platform"],
             },
           ],
-          kpis: [
-            "HCAHPS / NPS",
-            "Risk-adjusted mortality",
-            "Member retention",
-          ],
-          personas: [
-            "Chief Experience Officer",
-            "VP Population Health",
-            "VP Patient Engagement",
-          ],
+          kpis: ["HCAHPS / NPS", "Risk-adjusted mortality", "Member retention"],
+          personas: ["Chief Experience Officer", "VP Population Health", "VP Patient Engagement"],
         },
         {
           name: "Personalize Engagement",
@@ -602,16 +523,8 @@ export const HEALTHCARE: IndustryOutcome = {
               ],
             },
           ],
-          kpis: [
-            "HCAHPS / NPS",
-            "Risk-adjusted mortality",
-            "Member retention",
-          ],
-          personas: [
-            "Chief Experience Officer",
-            "VP Population Health",
-            "VP Patient Engagement",
-          ],
+          kpis: ["HCAHPS / NPS", "Risk-adjusted mortality", "Member retention"],
+          personas: ["Chief Experience Officer", "VP Population Health", "VP Patient Engagement"],
         },
         {
           name: "Improve Retention",
@@ -628,11 +541,7 @@ export const HEALTHCARE: IndustryOutcome = {
                 "Survey Responses",
                 "Churn Risk Scores",
               ],
-              typicalSourceSystems: [
-                "CRM",
-                "Member Engagement Platform",
-                "Claims Adjudication",
-              ],
+              typicalSourceSystems: ["CRM", "Member Engagement Platform", "Claims Adjudication"],
             },
             {
               name: "Call Center Analytics (Sentiment Analysis)",
@@ -646,11 +555,7 @@ export const HEALTHCARE: IndustryOutcome = {
                 "Intent Categories",
                 "QA Outcomes",
               ],
-              typicalSourceSystems: [
-                "Contact Center Platform",
-                "Speech Analytics",
-                "CRM",
-              ],
+              typicalSourceSystems: ["Contact Center Platform", "Speech Analytics", "CRM"],
             },
             {
               name: "Predict Propensity to Engage with Social Determinants",
@@ -664,23 +569,11 @@ export const HEALTHCARE: IndustryOutcome = {
                 "Engagement History",
                 "Program Outcomes",
               ],
-              typicalSourceSystems: [
-                "Population Health Platform",
-                "CRM",
-                "SDOH Data Provider",
-              ],
+              typicalSourceSystems: ["Population Health Platform", "CRM", "SDOH Data Provider"],
             },
           ],
-          kpis: [
-            "HCAHPS / NPS",
-            "Risk-adjusted mortality",
-            "Member retention",
-          ],
-          personas: [
-            "Chief Experience Officer",
-            "VP Population Health",
-            "VP Patient Engagement",
-          ],
+          kpis: ["HCAHPS / NPS", "Risk-adjusted mortality", "Member retention"],
+          personas: ["Chief Experience Officer", "VP Population Health", "VP Patient Engagement"],
         },
       ],
     },

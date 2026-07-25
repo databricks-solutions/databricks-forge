@@ -140,10 +140,7 @@ export function validateGsl(content: string): GslValidationResult {
   for (let h = 0; h < orderedHeaders.length; h++) {
     const start = orderedHeaders[h].idx + 1;
     const end = h + 1 < orderedHeaders.length ? orderedHeaders[h + 1].idx : lines.length;
-    const body = lines
-      .slice(start, end)
-      .join("\n")
-      .trim();
+    const body = lines.slice(start, end).join("\n").trim();
     if (body.length < GSL_MIN_SECTION_BODY_CHARS) empty.push(orderedHeaders[h].sec);
   }
 
@@ -152,10 +149,15 @@ export function validateGsl(content: string): GslValidationResult {
   const summaryIdx = headerIndices.get(summarySec);
   let summaryBody = "";
   if (summaryIdx !== undefined) {
-    summaryBody = lines.slice(summaryIdx + 1).join("\n").trim();
+    summaryBody = lines
+      .slice(summaryIdx + 1)
+      .join("\n")
+      .trim();
   }
   const normalize = (s: string) => s.replace(/\s+/g, " ").trim().toLowerCase();
-  const summaryVerbatim = normalize(summaryBody).includes(normalize(GSL_SUMMARY_VERBATIM).slice(0, 80));
+  const summaryVerbatim = normalize(summaryBody).includes(
+    normalize(GSL_SUMMARY_VERBATIM).slice(0, 80),
+  );
 
   const valid = missing.length === 0 && outOfOrder.length === 0 && empty.length === 0;
 
@@ -273,8 +275,9 @@ export function buildGsl(opts: {
     "## DISAMBIGUATION": opts.disambiguation.trim(),
     "## DATA QUALITY NOTES": opts.dataQualityNotes.trim(),
     "## CONSTRAINTS": opts.constraints.trim(),
-    "## Instructions you must follow when providing summaries":
-      (opts.instructions ?? GSL_SUMMARY_VERBATIM).trim(),
+    "## Instructions you must follow when providing summaries": (
+      opts.instructions ?? GSL_SUMMARY_VERBATIM
+    ).trim(),
   };
   return GSL_SECTIONS.map((sec) => `${sec}\n\n${sections[sec]}`).join("\n\n");
 }

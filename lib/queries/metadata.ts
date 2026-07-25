@@ -891,11 +891,7 @@ export function buildAdaptiveSchemaMarkdown(
           const remaining = allCols.filter((c) => !seen.has(c.columnName.toLowerCase()));
           const fillCount = limit - selected.length;
           if (columnScoreOptions) {
-            const filler = selectRepresentativeColumns(
-              remaining,
-              fillCount,
-              columnScoreOptions,
-            );
+            const filler = selectRepresentativeColumns(remaining, fillCount, columnScoreOptions);
             for (const col of filler.selected) {
               if (selected.length >= limit) break;
               const key = col.columnName.toLowerCase();

@@ -1146,11 +1146,7 @@ export async function validateMetricViewDefinitionWithProbes(input: {
       status: "error",
       issues: staticValidation.issues,
       evidence: staticValidation.issues.map((issue) =>
-        evidenceFailed(
-          "metric_view_static",
-          "METRIC_VIEW_STATIC_VALIDATION_FAILED",
-          issue,
-        ),
+        evidenceFailed("metric_view_static", "METRIC_VIEW_STATIC_VALIDATION_FAILED", issue),
       ),
       validatorVersion: METRIC_VIEW_PROBE_VALIDATOR_VERSION,
       validatedAt: new Date().toISOString(),
@@ -1194,9 +1190,7 @@ export async function validateMetricViewDefinitionWithProbes(input: {
       status: "error",
       issues: [
         ...staticValidation.issues,
-        ...failures.map(
-          (entry) => `Runtime validation failed [${entry.code}]: ${entry.message}`,
-        ),
+        ...failures.map((entry) => `Runtime validation failed [${entry.code}]: ${entry.message}`),
       ],
       evidence,
       validatorVersion: METRIC_VIEW_PROBE_VALIDATOR_VERSION,
@@ -1324,11 +1318,7 @@ function applyTypedGenerationGate(
     proposal.validationStatus = "error";
     proposal.validationIssues = [message];
     proposal.validationEvidence = [
-      evidenceFailed(
-        "metric_view_target",
-        "METRIC_VIEW_TARGET_REQUIRED",
-        message,
-      ),
+      evidenceFailed("metric_view_target", "METRIC_VIEW_TARGET_REQUIRED", message),
     ];
     return false;
   }
@@ -2240,11 +2230,7 @@ Create metric view proposals for this domain.`;
     for (const proposal of proposals) {
       if (!applyTypedGenerationGate(proposal, deploymentTarget)) continue;
 
-      const canonicalValidation = validateMetricViewYaml(
-        proposal.yaml,
-        proposal.ddl,
-        allowlist,
-      );
+      const canonicalValidation = validateMetricViewYaml(proposal.yaml, proposal.ddl, allowlist);
       const canonicalFeatures = detectFeatures(proposal.yaml);
       proposal.hasJoins = canonicalFeatures.hasJoins;
       proposal.hasFilteredMeasures = canonicalFeatures.hasFilteredMeasures;
@@ -2427,9 +2413,7 @@ Create metric view proposals for this domain.`;
     for (const proposal of proposals) {
       if (!proposal.validationEvidence?.length) continue;
       const hasRuntimeEvidence = proposal.validationEvidence.some((entry) =>
-        ["metric_view_create", "metric_view_probe", "metric_view_cleanup"].includes(
-          entry.stage,
-        ),
+        ["metric_view_create", "metric_view_probe", "metric_view_cleanup"].includes(entry.stage),
       );
       if (!hasRuntimeEvidence) continue;
       if (

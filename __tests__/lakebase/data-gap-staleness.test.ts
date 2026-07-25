@@ -36,7 +36,7 @@ const findFirstUseCase = vi.fn<
 >(async () => null);
 
 vi.mock("@/lib/prisma", () => ({
-  withPrisma: async <T,>(cb: (prisma: unknown) => Promise<T>) => {
+  withPrisma: async <T>(cb: (prisma: unknown) => Promise<T>) => {
     const prisma = {
       forgeValueEstimate: { aggregate },
       forgeUseCase: { findFirst: findFirstUseCase },

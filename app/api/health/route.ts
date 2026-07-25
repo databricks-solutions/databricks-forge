@@ -44,11 +44,7 @@ interface CheckResult {
 const startTime = Date.now();
 
 export async function GET(request: Request) {
-  const checks = await Promise.allSettled([
-    checkDatabase(),
-    checkWarehouse(),
-    isDemoModeEnabled(),
-  ]);
+  const checks = await Promise.allSettled([checkDatabase(), checkWarehouse(), isDemoModeEnabled()]);
 
   const database: CheckResult =
     checks[0].status === "fulfilled"

@@ -29,7 +29,5 @@ export function HeaderPageTitle() {
 
   if (!key) return null;
 
-  return (
-    <span className="hidden text-sm font-semibold text-foreground/80 md:block">{t(key)}</span>
-  );
+  return <span className="hidden text-sm font-semibold text-foreground/80 md:block">{t(key)}</span>;
 }

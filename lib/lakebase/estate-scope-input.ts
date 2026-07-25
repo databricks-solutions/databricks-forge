@@ -65,7 +65,10 @@ export function normalizeScopeInput(raw: unknown): NormalizeScopeResult {
 
   let lineageDepth: number | undefined;
   if (typeof o.lineageDepth === "number" && Number.isFinite(o.lineageDepth)) {
-    lineageDepth = Math.min(MAX_LINEAGE_DEPTH, Math.max(MIN_LINEAGE_DEPTH, Math.round(o.lineageDepth)));
+    lineageDepth = Math.min(
+      MAX_LINEAGE_DEPTH,
+      Math.max(MIN_LINEAGE_DEPTH, Math.round(o.lineageDepth)),
+    );
   }
 
   const lineageDirection =

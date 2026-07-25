@@ -145,7 +145,11 @@ function difficultyToLegacyCriticality(d: AccessDifficulty): DataCriticality {
 export function estimateLOEFromModelType(
   modelType: string,
   mcCount: number,
-): { effort: EffortEstimate; loeLevel: MasterRepoLOELevel; dataCriticality: DataCriticality } | null {
+): {
+  effort: EffortEstimate;
+  loeLevel: MasterRepoLOELevel;
+  dataCriticality: DataCriticality;
+} | null {
   const resolved = masterRepoNormalizeModelType(modelType);
   if (!resolved) return null;
 

@@ -974,8 +974,7 @@ export function UseCaseTable({
                         title="SQL Code"
                         icon={<Code2 className="h-4 w-4 text-pink-500" />}
                         action={
-                          selectedUseCase.sqlStatus === "generated" &&
-                          selectedUseCase.sqlCode ? (
+                          selectedUseCase.sqlStatus === "generated" && selectedUseCase.sqlCode ? (
                             <Button
                               variant="ghost"
                               size="sm"

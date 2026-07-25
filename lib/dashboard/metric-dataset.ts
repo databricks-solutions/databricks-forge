@@ -84,8 +84,8 @@ export function renderMetricViewDatasetSql(input: {
   ];
   const lines = [
     "SELECT",
-    ...projections.map((projection, index) =>
-      `  ${projection}${index < projections.length - 1 ? "," : ""}`,
+    ...projections.map(
+      (projection, index) => `  ${projection}${index < projections.length - 1 ? "," : ""}`,
     ),
     `FROM ${fqn.quoted}`,
     ...(dimensions.length > 0 ? ["GROUP BY ALL"] : []),

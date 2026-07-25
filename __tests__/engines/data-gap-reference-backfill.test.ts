@@ -230,9 +230,7 @@ describe("backfillReferenceUseCaseNames", () => {
     });
 
     expect(mockedUpdate).toHaveBeenCalledTimes(1);
-    expect(mockedUpdate).toHaveBeenCalledWith([
-      { useCaseId: "uc-1", referenceUseCaseName: null },
-    ]);
+    expect(mockedUpdate).toHaveBeenCalledWith([{ useCaseId: "uc-1", referenceUseCaseName: null }]);
     expect(out[0]!.referenceUseCaseName).toBeNull();
     // We still bump the resolved-at so the staleness check knows the run
     // has been processed.
@@ -349,9 +347,7 @@ describe("mapUseCasesToMasterRepo", () => {
     mockedChat.mockResolvedValue(
       chatResponse(
         JSON.stringify({
-          links: [
-            { useCaseId: "uc-1", referenceUseCaseName: "Real-Time Fraud Detection" },
-          ],
+          links: [{ useCaseId: "uc-1", referenceUseCaseName: "Real-Time Fraud Detection" }],
         }),
       ),
     );
@@ -359,8 +355,6 @@ describe("mapUseCasesToMasterRepo", () => {
       [{ id: "uc-1", name: "X", statement: "", businessValue: "" }],
       ENRICHMENT,
     );
-    expect(out).toEqual([
-      { useCaseId: "uc-1", referenceUseCaseName: "Real-Time Fraud Detection" },
-    ]);
+    expect(out).toEqual([{ useCaseId: "uc-1", referenceUseCaseName: "Real-Time Fraud Detection" }]);
   });
 });

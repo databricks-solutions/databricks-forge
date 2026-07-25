@@ -12,12 +12,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
-import {
-  LOCALE_COOKIE,
-  LOCALE_NATIVE_LABELS,
-  SUPPORTED_LOCALES,
-  type Locale,
-} from "@/i18n/config";
+import { LOCALE_COOKIE, LOCALE_NATIVE_LABELS, SUPPORTED_LOCALES, type Locale } from "@/i18n/config";
 
 const COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
 
@@ -58,9 +53,7 @@ export function LanguageToggle() {
         {SUPPORTED_LOCALES.map((value) => (
           <DropdownMenuItem key={value} onClick={() => handleSelect(value)}>
             {LOCALE_NATIVE_LABELS[value]}
-            {locale === value && (
-              <span className="ml-auto text-xs text-primary">Active</span>
-            )}
+            {locale === value && <span className="ml-auto text-xs text-primary">Active</span>}
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>

@@ -9,17 +9,11 @@
  */
 
 import { NextRequest, NextResponse } from "next/server";
-import {
-  getAggregateForExcel,
-  getAggregateEstateView,
-} from "@/lib/lakebase/environment-scans";
+import { getAggregateForExcel, getAggregateEstateView } from "@/lib/lakebase/environment-scans";
 import { getEstateProgram } from "@/lib/lakebase/estate-programs";
 import { getLatestSynthesisForEstate } from "@/lib/lakebase/estate-synthesis";
 import { generateEnvironmentExcel } from "@/lib/export/environment-excel";
-import {
-  generateEstateBoardPackPdf,
-  type BoardPackData,
-} from "@/lib/export/estate-board-pack-pdf";
+import { generateEstateBoardPackPdf, type BoardPackData } from "@/lib/export/estate-board-pack-pdf";
 import {
   buildEstateTree,
   parseCanonicalEntities,
@@ -57,22 +51,27 @@ export async function GET(
     const program = await getEstateProgram(programId);
     if (!program) return NextResponse.json({ error: "Program not found" }, { status: 404 });
 
-    const safeName = program.name.replace(/[^a-z0-9]+/gi, "-").toLowerCase().slice(0, 40);
+    const safeName = program.name
+      .replace(/[^a-z0-9]+/gi, "-")
+      .toLowerCase()
+      .slice(0, 40);
     const synthesis = await getLatestSynthesisForEstate(programId).catch(() => null);
 
     // ---- Detailed Excel workbook --------------------------------------------
     if (format === "excel") {
       const aggregate = await getAggregateForExcel(programId);
       if (!aggregate) {
-        return NextResponse.json({ error: "No scans attached to this program yet" }, { status: 404 });
+        return NextResponse.json(
+          { error: "No scans attached to this program yet" },
+          { status: 404 },
+        );
       }
       aggregate.ucPath = `${program.name} — Estate Detail`;
       const buffer = await generateEnvironmentExcel(aggregate, synthesis);
       return new NextResponse(new Uint8Array(buffer), {
         status: 200,
         headers: {
-          "Content-Type":
-            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          "Content-Type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
           "Content-Disposition": `attachment; filename="estate-detail-${safeName}.xlsx"`,
         },
       });
@@ -114,7 +113,9 @@ export async function GET(
     // back to the deterministic governance-coverage proxy.
     const readinessScore = synthesis
       ? synthesis.scores.overall
-      : Math.round((goldShare * 100 + coverage.tablesWithOwnerPct + coverage.tablesWithCommentPct) / 3);
+      : Math.round(
+          (goldShare * 100 + coverage.tablesWithOwnerPct + coverage.tablesWithCommentPct) / 3,
+        );
     const readinessBand: BoardPackData["readinessBand"] = synthesis
       ? synthesis.scores.band === "leading" || synthesis.scores.band === "established"
         ? "ready"

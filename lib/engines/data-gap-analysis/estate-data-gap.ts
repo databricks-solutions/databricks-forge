@@ -30,7 +30,10 @@ export async function computeEstateDataGap(
   const resolvedId = resolveIndustryId(industryId) ?? industryId;
   const enrichment = getMasterRepoEnrichment(resolvedId);
   if (!enrichment) {
-    logger.warn("[estate-data-gap] No master-repo enrichment for industry", { industryId, resolvedId });
+    logger.warn("[estate-data-gap] No master-repo enrichment for industry", {
+      industryId,
+      resolvedId,
+    });
     return null;
   }
 
@@ -40,7 +43,11 @@ export async function computeEstateDataGap(
   // Reuse classifications already on the world model; classify the rest.
   const preclassified = scan.details
     .filter((d) => d.dataAssetId)
-    .map((d) => ({ fqn: d.tableFqn, dataAssetId: d.dataAssetId!, dataAssetName: d.dataAssetName ?? d.dataAssetId! }));
+    .map((d) => ({
+      fqn: d.tableFqn,
+      dataAssetId: d.dataAssetId!,
+      dataAssetName: d.dataAssetName ?? d.dataAssetId!,
+    }));
   const unclassified = scan.details.filter((d) => !d.dataAssetId);
 
   let newlyClassified: Array<{ fqn: string; dataAssetId: string; dataAssetName: string }> = [];

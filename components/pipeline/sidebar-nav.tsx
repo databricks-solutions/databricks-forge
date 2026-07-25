@@ -291,7 +291,7 @@ function NavLinks({ onNavigate, collapsed }: { onNavigate?: () => void; collapse
               const isActive =
                 item.href === "/" || isParent
                   ? pathname === item.href
-                  : pathname?.startsWith(item.href) ?? false;
+                  : (pathname?.startsWith(item.href) ?? false);
               const itemLabel = tItems(item.labelKey);
 
               const link = (

@@ -133,10 +133,7 @@ export async function isDataGapCacheStale(
   // different table. Kept out of the aggregate below so we don't pay the
   // join cost on every poll; the column has an index on (runId).
   const newestRefResolvedAt = await getNewestReferenceUseCaseResolvedAt(runId);
-  if (
-    newestRefResolvedAt &&
-    newestRefResolvedAt.getTime() > cached.createdAt.getTime()
-  ) {
+  if (newestRefResolvedAt && newestRefResolvedAt.getTime() > cached.createdAt.getTime()) {
     return {
       stale: true,
       reason: `reference link backfilled after cache (resolved=${newestRefResolvedAt.toISOString()}, cache=${cached.createdAt.toISOString()})`,

@@ -57,10 +57,7 @@ const improveBase: MetricViewDefinition = {
 };
 const improveMerged: MetricViewDefinition = {
   ...improveBase,
-  measures: [
-    ...improveBase.measures,
-    { kind: "expression", name: "orders", expr: "COUNT(*)" },
-  ],
+  measures: [...improveBase.measures, { kind: "expression", name: "orders", expr: "COUNT(*)" }],
 };
 const boundImprove = {
   classification: "improve",

@@ -1768,7 +1768,18 @@
     },
     "tables": {
       "filter": "Filter by table name or domain…",
-      "headers": { "table": "Table", "domain": "Domain", "tier": "Tier", "size": "Size", "rows": "Rows", "owner": "Owner", "governance": "Gov.", "sensitivity": "Sensitivity", "modified": "Modified", "via": "Via" },
+      "headers": {
+        "table": "Table",
+        "domain": "Domain",
+        "tier": "Tier",
+        "size": "Size",
+        "rows": "Rows",
+        "owner": "Owner",
+        "governance": "Gov.",
+        "sensitivity": "Sensitivity",
+        "modified": "Modified",
+        "via": "Via"
+      },
       "help": {
         "table": "Fully qualified table name (catalog.schema.table) with its description if one exists — either human-authored or AI-generated.",
         "domain": "Business domain assigned by AI analysis. Groups tables by the business function they serve.",

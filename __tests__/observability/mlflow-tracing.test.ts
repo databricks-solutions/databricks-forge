@@ -83,9 +83,7 @@ describe("recordSpan", () => {
   it("swallows network errors", async () => {
     process.env.FORGE_MLFLOW_EXPERIMENT_ID = "exp-1";
     fetchMock.mockRejectedValue(new Error("connection reset"));
-    await expect(
-      recordSpan({ name: "x", spanType: "TOOL" }),
-    ).resolves.toBeUndefined();
+    await expect(recordSpan({ name: "x", spanType: "TOOL" })).resolves.toBeUndefined();
   });
 });
 

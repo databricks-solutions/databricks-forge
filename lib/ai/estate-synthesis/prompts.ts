@@ -5,7 +5,11 @@
  * State of the Nation always renders.
  */
 
-import type { ExecutiveBrief, EstateScores, EstateFinding } from "@/lib/domain/estate-synthesis-types";
+import type {
+  ExecutiveBrief,
+  EstateScores,
+  EstateFinding,
+} from "@/lib/domain/estate-synthesis-types";
 import type { EstateSynthesisInput } from "./types";
 
 export function buildBriefPrompt(
@@ -76,7 +80,10 @@ export function fallbackBrief(
         : `No critical risks were identified, though freshness (${scores.freshness}/100) should be monitored.`,
     quickWins:
       wins.length > 0
-        ? `Immediate wins include: ${wins.map((w) => w.title).slice(0, 2).join("; ")}.`
+        ? `Immediate wins include: ${wins
+            .map((w) => w.title)
+            .slice(0, 2)
+            .join("; ")}.`
         : `Documenting the highest-traffic undocumented tables is the fastest path to measurable uplift.`,
     strategicRecommendations: `Sequence remediation by value: close mission-critical data gaps, lift governance to the 70+ band, then stand up Genie spaces on the query-ready domains.`,
     situationComplicationResolution: {

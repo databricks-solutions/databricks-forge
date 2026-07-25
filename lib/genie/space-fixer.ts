@@ -590,9 +590,7 @@ export async function runFixes(request: FixRequest): Promise<FixResult> {
 
           let consolidated: string | null = null;
           if (allContent.length > 1) {
-            const { parseGsl, renderGsl, GSL_SECTIONS } = await import(
-              "@/lib/genie/gsl-schema"
-            );
+            const { parseGsl, renderGsl, GSL_SECTIONS } = await import("@/lib/genie/gsl-schema");
             const looksLikeGsl = allContent.some((c) =>
               GSL_SECTIONS.some((sec) => c.toLowerCase().includes(sec.toLowerCase())),
             );
@@ -941,9 +939,7 @@ export async function runFixes(request: FixRequest): Promise<FixResult> {
             // schema, we patch sections in place rather than appending a
             // sibling block (which would steamroll the existing PURPOSE /
             // DISAMBIGUATION / etc.).
-            const { parseGsl, renderGsl, GSL_SECTIONS } = await import(
-              "@/lib/genie/gsl-schema"
-            );
+            const { parseGsl, renderGsl, GSL_SECTIONS } = await import("@/lib/genie/gsl-schema");
             space.instructions = space.instructions ?? {};
             const existingBlocks = (space.instructions.text_instructions ?? []) as SpaceJson[];
             const onlyExisting = existingBlocks.length === 1 ? existingBlocks[0] : null;

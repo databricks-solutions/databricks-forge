@@ -181,7 +181,9 @@ export async function fetchTableImportance(
   input: CreationHintsInput,
 ): Promise<TableImportanceHint[]> {
   const seedTables =
-    input.tableFqns && input.tableFqns.length > 0 ? input.tableFqns : [`${input.catalog}.${input.schema ?? ""}`];
+    input.tableFqns && input.tableFqns.length > 0
+      ? input.tableFqns
+      : [`${input.catalog}.${input.schema ?? ""}`];
   const top = input.topTables ?? DEFAULT_TOP_TABLES;
 
   const counts = new Map<string, number>();
@@ -241,7 +243,7 @@ export async function fetchSensitivityTags(
     const result = await executeSQL(sql);
     return result.rows.map((r) => ({
       qualifiedColumn: `${r[0]}.${r[1]}.${r[2]}.${r[3]}`,
-      tag: r[5] ? `${r[4]}=${r[5]}` : r[4] ?? "",
+      tag: r[5] ? `${r[4]}=${r[5]}` : (r[4] ?? ""),
     }));
   } catch (err) {
     logger.warn("[creation-hints] column_tags not accessible, returning empty hints", {

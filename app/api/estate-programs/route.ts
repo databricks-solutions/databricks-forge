@@ -72,10 +72,7 @@ export async function POST(request: NextRequest) {
       isRegisteredIndustry: (id) => Boolean(getIndustryOutcome(id)),
     });
     if (!normalized.success) {
-      return NextResponse.json(
-        { error: normalized.error },
-        { status: 400 },
-      );
+      return NextResponse.json({ error: normalized.error }, { status: 400 });
     }
     const input = normalized.data as EstateProgramCreateInput;
 

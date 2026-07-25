@@ -7,10 +7,7 @@ import {
   failResearchJob,
   updateResearchJob,
 } from "@/lib/demo/research-engine/engine-status";
-import {
-  createDemoSession,
-  updateDemoSessionStatus,
-} from "@/lib/lakebase/demo-sessions";
+import { createDemoSession, updateDemoSessionStatus } from "@/lib/lakebase/demo-sessions";
 import { logActivity } from "@/lib/lakebase/activity-log";
 import { logger } from "@/lib/logger";
 import type { ResearchPreset, DemoScope } from "@/lib/demo/types";

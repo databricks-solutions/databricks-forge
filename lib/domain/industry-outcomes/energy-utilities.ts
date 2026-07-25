@@ -83,13 +83,7 @@ export const ENERGY_UTILITIES: IndustryOutcome = {
                 "DER Telemetry",
                 "Voltage / Frequency Measurements",
               ],
-              typicalSourceSystems: [
-                "ADMS",
-                "Smart Meter Infrastructure",
-                "SCADA",
-                "DERMS",
-                "GIS",
-              ],
+              typicalSourceSystems: ["ADMS", "Smart Meter Infrastructure", "SCADA", "DERMS", "GIS"],
             },
             {
               name: "Well Performance Optimization",
@@ -225,12 +219,7 @@ export const ENERGY_UTILITIES: IndustryOutcome = {
                 "Reporting Schedules",
                 "Control Effectiveness Tests",
               ],
-              typicalSourceSystems: [
-                "ERP",
-                "GRC Platform",
-                "Regulatory Data Sources",
-                "SCADA",
-              ],
+              typicalSourceSystems: ["ERP", "GRC Platform", "Regulatory Data Sources", "SCADA"],
             },
           ],
           kpis: ["Reporting accuracy", "Compliance cost reduction", "Emissions reduction tracking"],
@@ -307,12 +296,7 @@ export const ENERGY_UTILITIES: IndustryOutcome = {
                 "Grid Load",
                 "Weather Forecasts",
               ],
-              typicalSourceSystems: [
-                "MDM",
-                "Demand Response Platform",
-                "SCADA",
-                "ADMS",
-              ],
+              typicalSourceSystems: ["MDM", "Demand Response Platform", "SCADA", "ADMS"],
             },
             {
               name: "Personalized Energy Recommendations",
@@ -327,12 +311,7 @@ export const ENERGY_UTILITIES: IndustryOutcome = {
                 "Benchmark Comparisons",
                 "Tariff Configurations",
               ],
-              typicalSourceSystems: [
-                "MDM",
-                "CRM",
-                "Billing System",
-                "Customer Portal",
-              ],
+              typicalSourceSystems: ["MDM", "CRM", "Billing System", "Customer Portal"],
             },
           ],
           kpis: [

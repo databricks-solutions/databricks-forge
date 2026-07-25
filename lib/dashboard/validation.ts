@@ -13,10 +13,7 @@ import { executeSQL } from "@/lib/dbx/sql";
 import { logger } from "@/lib/logger";
 import type { SqlExecutor } from "@/lib/ports/sql-executor";
 import { normalizeThreePartFqn } from "@/lib/metric-views/parser";
-import {
-  safeSqlExecutorDiagnostic,
-  type SafeSqlExecutorDiagnostic,
-} from "./executor-diagnostic";
+import { safeSqlExecutorDiagnostic, type SafeSqlExecutorDiagnostic } from "./executor-diagnostic";
 
 /**
  * Validate dashboard dataset SQL via EXPLAIN dry-run.
@@ -289,9 +286,7 @@ function validateExactNames(
   }
 }
 
-function splitTopLevelSelectFrom(
-  sql: string,
-): { selectList: string; fromTail: string } | null {
+function splitTopLevelSelectFrom(sql: string): { selectList: string; fromTail: string } | null {
   let depth = 0;
   let state: "normal" | "single" | "double" | "backtick" = "normal";
   let wordStart = -1;

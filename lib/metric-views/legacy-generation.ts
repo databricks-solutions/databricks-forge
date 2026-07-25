@@ -10,7 +10,9 @@ type ProposalRunner = (input: MetricViewProposalsInput) => Promise<MetricViewPro
 function schemaScopeOf(tableFqn: string): string {
   const parts = tableFqn.replaceAll("`", "").split(".");
   if (parts.length !== 3) {
-    throw new Error(`Legacy metric-view generation requires a catalog.schema.table FQN: ${tableFqn}`);
+    throw new Error(
+      `Legacy metric-view generation requires a catalog.schema.table FQN: ${tableFqn}`,
+    );
   }
   return `${parts[0]}.${parts[1]}`;
 }

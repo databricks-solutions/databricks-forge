@@ -36,9 +36,7 @@ export interface UCModel {
  */
 export async function listFunctions(catalog: string, schema?: string): Promise<UCFunction[]> {
   const safeCatalog = validateIdentifier(catalog, "catalog");
-  const where = schema
-    ? `WHERE routine_schema = '${validateIdentifier(schema, "schema")}'`
-    : "";
+  const where = schema ? `WHERE routine_schema = '${validateIdentifier(schema, "schema")}'` : "";
   try {
     const result = await executeSQL(
       `SELECT routine_catalog, routine_schema, routine_name, data_type, comment
@@ -75,9 +73,7 @@ export async function listFunctions(catalog: string, schema?: string): Promise<U
  */
 export async function listRegisteredModels(catalog: string, schema?: string): Promise<UCModel[]> {
   const safeCatalog = validateIdentifier(catalog, "catalog");
-  const where = schema
-    ? `WHERE model_schema = '${validateIdentifier(schema, "schema")}'`
-    : "";
+  const where = schema ? `WHERE model_schema = '${validateIdentifier(schema, "schema")}'` : "";
   try {
     const result = await executeSQL(
       `SELECT model_catalog, model_schema, model_name, comment

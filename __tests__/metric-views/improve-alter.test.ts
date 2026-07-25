@@ -57,11 +57,7 @@ describe("metric view ALTER deployment", () => {
       parseMetricViewShowCreate(
         {
           columns: [],
-          rows: [
-            [
-              `CREATE VIEW main.analytics.other WITH METRICS LANGUAGE YAML AS $$\n${yaml}$$`,
-            ],
-          ],
+          rows: [[`CREATE VIEW main.analytics.other WITH METRICS LANGUAGE YAML AS $$\n${yaml}$$`]],
           totalRowCount: 1,
         },
         "main.analytics.sales_metrics",

@@ -40,10 +40,7 @@ vi.mock("@/lib/logger", () => ({
   logger: { info: mocks.logInfo, warn: vi.fn(), error: vi.fn(), debug: vi.fn() },
 }));
 
-import {
-  repairProposal,
-  runMetricViewProposals,
-} from "@/lib/genie/passes/metric-view-proposals";
+import { repairProposal, runMetricViewProposals } from "@/lib/genie/passes/metric-view-proposals";
 
 const metadata: MetadataSnapshot = {
   cacheKey: "test",
@@ -183,9 +180,7 @@ measures:
     );
     expect(proposal.yaml).toContain('version: "1.1"');
     expect(proposal.yaml).not.toContain("`");
-    expect(proposal.ddl).toContain(
-      "CREATE OR REPLACE VIEW `custom`.`semantic`.`preserved_target`",
-    );
+    expect(proposal.ddl).toContain("CREATE OR REPLACE VIEW `custom`.`semantic`.`preserved_target`");
     expect(proposal.ddl).toContain(`AS $$\n${proposal.yaml}$$`);
     expect(mocks.probes).toHaveBeenCalledOnce();
     expect(proposal.validationEvidence).toEqual(

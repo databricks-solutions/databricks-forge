@@ -80,9 +80,7 @@ export async function walkLineage(
       });
     }
     if (walkSeeds.length === 0) {
-      logger.warn(
-        "[lineage] All seed tables are in shared sample catalogs; skipping lineage walk",
-      );
+      logger.warn("[lineage] All seed tables are in shared sample catalogs; skipping lineage walk");
       return { ...emptyGraph, skippedSeeds };
     }
   }

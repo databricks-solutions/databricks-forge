@@ -1,7 +1,4 @@
-import type {
-  SemanticAssetManifest,
-  VerifiedMetricViewAsset,
-} from "@/lib/semantic-assets/types";
+import type { SemanticAssetManifest, VerifiedMetricViewAsset } from "@/lib/semantic-assets/types";
 import { isMetricFirstDashboardSourcesEnabled } from "@/lib/config/semantic-uplift-flags";
 import type { DatasetPurpose, DatasetSourceKind } from "./types";
 
@@ -101,10 +98,7 @@ export function selectDatasetSource(input: {
   if (!(input.metricFirstEnabled ?? isMetricFirstDashboardSourcesEnabled())) {
     return { kind: "table" };
   }
-  if (
-    input.purpose === "detail" ||
-    input.measureIds.length === 0
-  ) {
+  if (input.purpose === "detail" || input.measureIds.length === 0) {
     return { kind: "table" };
   }
 

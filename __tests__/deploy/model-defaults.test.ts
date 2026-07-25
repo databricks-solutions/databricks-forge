@@ -43,9 +43,7 @@ describe("deploy model defaults", () => {
     expect(deploy).toContain(
       "--review-endpoint NAME      Review model endpoint     (default: databricks-gpt-5-4)",
     );
-    expect(envExample).toContain(
-      "# Primary model (defaults to databricks-claude-opus-4-7)",
-    );
+    expect(envExample).toContain("# Primary model (defaults to databricks-claude-opus-4-7)");
     expect(envExample).toContain("# DATABRICKS_REVIEW_ENDPOINT=databricks-gpt-5-4");
     expect(docs).toContain(
       "Review endpoint (`serving-endpoint-review`) defaults to `databricks-gpt-5-4`",

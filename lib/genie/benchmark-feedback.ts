@@ -29,10 +29,7 @@ const SCORE_REASON_TO_CHECK_IDS: Record<ScoreReason, string[]> = {
   LLM_JUDGE_INCORRECT_METRIC_CALCULATION: ["measures-defined"],
   LLM_JUDGE_INCORRECT_FUNCTION_USAGE: ["example-sqls-minimum"],
   LLM_JUDGE_INSTRUCTION_COMPLIANCE_OR_MISSING_BUSINESS_LOGIC: ["text-instruction-exists"],
-  LLM_JUDGE_MISINTERPRETATION_OF_USER_REQUEST: [
-    "text-instruction-exists",
-    "example-sqls-minimum",
-  ],
+  LLM_JUDGE_MISINTERPRETATION_OF_USER_REQUEST: ["text-instruction-exists", "example-sqls-minimum"],
   LLM_JUDGE_SYNTAX_ERROR: ["example-sqls-minimum"],
   LLM_JUDGE_SEMANTIC_ERROR: ["text-instruction-exists"],
   LLM_JUDGE_FORMATTING_ERROR: ["text-instruction-exists"],
@@ -82,9 +79,7 @@ export function analyzeFeedbackForFixes(feedback: FeedbackEntry[]): string[] {
  * Summarize score reasons from a set of eval results into human-readable
  * descriptions for display in the UI.
  */
-export function summarizeScoreReasons(
-  reasons: ScoreReason[] | undefined,
-): string[] {
+export function summarizeScoreReasons(reasons: ScoreReason[] | undefined): string[] {
   if (!reasons || reasons.length === 0) return [];
 
   const counts = new Map<ScoreReason, number>();

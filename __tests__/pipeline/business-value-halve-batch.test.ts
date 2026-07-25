@@ -118,12 +118,7 @@ describe("halveBatchRetry", () => {
       maxHalvings: 1,
     });
 
-    expect(estimates.map((r) => r.use_case_id).sort()).toEqual([
-      "uc-1",
-      "uc-2",
-      "uc-3",
-      "uc-4",
-    ]);
+    expect(estimates.map((r) => r.use_case_id).sort()).toEqual(["uc-1", "uc-2", "uc-3", "uc-4"]);
     expect(missingItemIds.sort()).toEqual(["uc-5", "uc-6", "uc-7", "uc-8"]);
   });
 

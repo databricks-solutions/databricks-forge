@@ -290,7 +290,11 @@ Example: { "urls": ["https://example.com/strategy", "https://example.com/about",
   });
 
   const parsed = parseLLMJson(response.content, "strategic-crawl");
-  if (!parsed || typeof parsed !== "object" || !Array.isArray((parsed as { urls?: unknown }).urls)) {
+  if (
+    !parsed ||
+    typeof parsed !== "object" ||
+    !Array.isArray((parsed as { urls?: unknown }).urls)
+  ) {
     throw new Error("Invalid LLM response: expected { urls: string[] }");
   }
 

@@ -48,10 +48,7 @@
  * been resolved.
  */
 
-import {
-  classifySystemLocation,
-  type SystemKind,
-} from "@/lib/domain/tech-to-system";
+import { classifySystemLocation, type SystemKind } from "@/lib/domain/tech-to-system";
 import type { ReferenceDataAsset } from "@/lib/domain/industry-outcomes/master-repo-types";
 import type { IngestionStrategy } from "./types";
 
@@ -446,9 +443,7 @@ export function categoryEntryForAsset(
  * all, returns a single `Unknown` entry so UI code can render a
  * consistent badge.
  */
-export function resolveAssetSourceSystems(
-  input: AssetSourceSystemInput,
-): ResolvedSourceSystem[] {
+export function resolveAssetSourceSystems(input: AssetSourceSystemInput): ResolvedSourceSystem[] {
   // 1. Lineage signal (highest confidence) — dedupe + canonicalise.
   const lineageHits = new Set<string>();
   for (const raw of input.useCaseSourceSystems) {
@@ -458,14 +453,12 @@ export function resolveAssetSourceSystems(
   }
 
   if (lineageHits.size > 0) {
-    return [...lineageHits]
-      .sort()
-      .map((name) => ({
-        name,
-        origin: "lineage" as const,
-        systemKind: systemKindFor(name),
-        preferredStrategy: preferredStrategyFor(name),
-      }));
+    return [...lineageHits].sort().map((name) => ({
+      name,
+      origin: "lineage" as const,
+      systemKind: systemKindFor(name),
+      preferredStrategy: preferredStrategyFor(name),
+    }));
   }
 
   // 2. Master-repo fallback — emit CATEGORY + EXAMPLES, never a single

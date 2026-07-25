@@ -105,14 +105,12 @@ async function tick(): Promise<void> {
           userId: owner,
           resourceId: runId,
         });
-        starter
-          .start(runId, { ownerEmail: owner, oboToken: null })
-          .catch((err) => {
-            log.error("Promoted pipeline crashed", {
-              runId,
-              error: err instanceof Error ? err.message : String(err),
-            });
+        starter.start(runId, { ownerEmail: owner, oboToken: null }).catch((err) => {
+          log.error("Promoted pipeline crashed", {
+            runId,
+            error: err instanceof Error ? err.message : String(err),
           });
+        });
       } catch (err) {
         log.error("Pipeline promotion failed", {
           runId,

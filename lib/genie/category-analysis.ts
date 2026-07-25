@@ -178,9 +178,7 @@ async function analyzeCategory(
   const endpoint = resolveEndpoint("classification");
   const categoryPrompt = CATEGORY_PROMPTS[category];
 
-  const reasonLabels = [...new Set(scoreReasons)]
-    .map((r) => SCORE_REASON_LABELS[r])
-    .join(", ");
+  const reasonLabels = [...new Set(scoreReasons)].map((r) => SCORE_REASON_LABELS[r]).join(", ");
 
   const messages = [
     {

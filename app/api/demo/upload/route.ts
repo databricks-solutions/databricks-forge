@@ -22,10 +22,7 @@ export async function POST(request: Request) {
     }
 
     if (files.length > MAX_FILES) {
-      return NextResponse.json(
-        { error: `Maximum ${MAX_FILES} files allowed` },
-        { status: 400 },
-      );
+      return NextResponse.json({ error: `Maximum ${MAX_FILES} files allowed` }, { status: 400 });
     }
 
     const documents: ParsedDocument[] = [];
@@ -49,7 +46,7 @@ export async function POST(request: Request) {
           const buffer = Buffer.from(await file.arrayBuffer());
           const mod = await import("pdf-parse");
           const pdfParse = ((mod as Record<string, unknown>).default ?? mod) as (
-            buf: Buffer
+            buf: Buffer,
           ) => Promise<{ text: string }>;
           const result = await pdfParse(buffer);
           text = result.text.slice(0, MAX_TEXT_CHARS);

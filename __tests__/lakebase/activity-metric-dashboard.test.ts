@@ -138,10 +138,7 @@ describe("metric/dashboard activity lifecycle", () => {
     );
 
     expect(response.status).toBe(422);
-    expect(mocks.logActivity).not.toHaveBeenCalledWith(
-      "metric_view_deployed",
-      expect.anything(),
-    );
+    expect(mocks.logActivity).not.toHaveBeenCalledWith("metric_view_deployed", expect.anything());
   });
 
   it("blocks deployment when a changed definition has no fresh evidence", async () => {
@@ -182,19 +179,35 @@ describe("metric/dashboard activity lifecycle", () => {
     ["invalid validation timestamp", { validatedAt: "not-a-date" }],
     [
       "missing static evidence",
-      { validationEvidence: fullLifecycleEvidence.filter((entry) => entry.stage !== "metric_view_static") },
+      {
+        validationEvidence: fullLifecycleEvidence.filter(
+          (entry) => entry.stage !== "metric_view_static",
+        ),
+      },
     ],
     [
       "missing create evidence",
-      { validationEvidence: fullLifecycleEvidence.filter((entry) => entry.stage !== "metric_view_create") },
+      {
+        validationEvidence: fullLifecycleEvidence.filter(
+          (entry) => entry.stage !== "metric_view_create",
+        ),
+      },
     ],
     [
       "missing measure probe evidence",
-      { validationEvidence: fullLifecycleEvidence.filter((entry) => entry.stage !== "metric_view_probe") },
+      {
+        validationEvidence: fullLifecycleEvidence.filter(
+          (entry) => entry.stage !== "metric_view_probe",
+        ),
+      },
     ],
     [
       "missing cleanup evidence",
-      { validationEvidence: fullLifecycleEvidence.filter((entry) => entry.stage !== "metric_view_cleanup") },
+      {
+        validationEvidence: fullLifecycleEvidence.filter(
+          (entry) => entry.stage !== "metric_view_cleanup",
+        ),
+      },
     ],
     [
       "skipped required evidence",

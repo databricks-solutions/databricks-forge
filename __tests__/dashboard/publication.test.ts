@@ -118,12 +118,10 @@ describe("dashboard publication", () => {
       deps,
     );
 
-    expect(deps.publishDashboard).toHaveBeenCalledWith(
-      "dash-1",
-      "warehouse-1",
-      false,
-      { mode: "user", oboToken: "obo-token" },
-    );
+    expect(deps.publishDashboard).toHaveBeenCalledWith("dash-1", "warehouse-1", false, {
+      mode: "user",
+      oboToken: "obo-token",
+    });
   });
 
   it("marks published only after observing the matching published dashboard", async () => {

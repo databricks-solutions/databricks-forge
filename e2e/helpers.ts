@@ -93,9 +93,8 @@ export async function mockCommonApis(
     if (r.request().method() === "POST") {
       return jsonRoute(r, { programId: "new-prog" }, 201);
     }
-    return jsonRoute(
-      r,
-      { programs: programs.map((p) => ({ ...p, _count: { scopes: p.scopes.length, scans: 0 } })) },
-    );
+    return jsonRoute(r, {
+      programs: programs.map((p) => ({ ...p, _count: { scopes: p.scopes.length, scans: 0 } })),
+    });
   });
 }

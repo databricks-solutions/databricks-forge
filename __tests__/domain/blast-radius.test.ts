@@ -208,9 +208,7 @@ describe("computeBlastRadius — multi-seed dedup", () => {
     // Edge from seed A to seed B (both in tablesInvolved) — not downstream.
     const out = computeBlastRadius({
       useCases: [makeUseCase("u1", ["a.b.orders", "a.b.payments"])],
-      lineageGraph: makeGraph([
-        makeEdge("a.b.orders", "a.b.payments", { entityType: "JOB" }),
-      ]),
+      lineageGraph: makeGraph([makeEdge("a.b.orders", "a.b.payments", { entityType: "JOB" })]),
     });
     expect(out[0]?.summary.downstreamTableCount).toBe(0);
   });

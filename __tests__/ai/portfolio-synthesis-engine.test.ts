@@ -19,7 +19,9 @@ function scores(over: Partial<EstateScores> = {}): EstateScores {
   } as EstateScores;
 }
 
-function estate(partial: Partial<PortfolioEstateSummary> & { estateId: string; name: string }): PortfolioEstateSummary {
+function estate(
+  partial: Partial<PortfolioEstateSummary> & { estateId: string; name: string },
+): PortfolioEstateSummary {
   return {
     kind: "program",
     industryId: null,
@@ -38,14 +40,28 @@ function estate(partial: Partial<PortfolioEstateSummary> & { estateId: string; n
 function overview(partial: Partial<PortfolioOverview> = {}): PortfolioOverview {
   return {
     estates: [],
-    inventory: { estates: 0, scans: 0, tables: 0, domains: 0, dataProducts: 0, piiTables: 0, workloads: {} },
+    inventory: {
+      estates: 0,
+      scans: 0,
+      tables: 0,
+      domains: 0,
+      dataProducts: 0,
+      piiTables: 0,
+      workloads: {},
+    },
     totals: { estates: 0, scans: 0, tables: 0, totalValueAtRisk: 0, avgReadiness: 0 },
     generatedAt: "2026-01-01T00:00:00.000Z",
     ...partial,
   };
 }
 
-function ent(id: string, name: string, estateId: string, estateName: string, tableCount = 2): PortfolioEntity {
+function ent(
+  id: string,
+  name: string,
+  estateId: string,
+  estateName: string,
+  tableCount = 2,
+): PortfolioEntity {
   return { id, estateId, estateName, name, domain: "core", description: "", tableCount };
 }
 
@@ -61,7 +77,12 @@ describe("runPortfolioSynthesis", () => {
             valueAtRiskMid: 5000,
             scores: scores({ overall: 25, documentation: 20 }),
           }),
-          estate({ estateId: "p2", name: "Leader", readiness: 85, scores: scores({ overall: 85, documentation: 90 }) }),
+          estate({
+            estateId: "p2",
+            name: "Leader",
+            readiness: 85,
+            scores: scores({ overall: 85, documentation: 90 }),
+          }),
         ],
         totals: { estates: 2, scans: 2, tables: 20, totalValueAtRisk: 5000, avgReadiness: 55 },
       }),

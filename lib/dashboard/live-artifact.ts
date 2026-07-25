@@ -35,9 +35,7 @@ export function normalizeSerializedDashboard(value: string | unknown): UnknownRe
       };
     })
     .sort((left, right) =>
-      identity((left as UnknownRecord).name).localeCompare(
-        identity((right as UnknownRecord).name),
-      ),
+      identity((left as UnknownRecord).name).localeCompare(identity((right as UnknownRecord).name)),
     );
   const pages = dashboard.pages
     .map((page) => {
@@ -57,9 +55,7 @@ export function normalizeSerializedDashboard(value: string | unknown): UnknownRe
       };
     })
     .sort((left, right) =>
-      identity((left as UnknownRecord).name).localeCompare(
-        identity((right as UnknownRecord).name),
-      ),
+      identity((left as UnknownRecord).name).localeCompare(identity((right as UnknownRecord).name)),
     );
   return { datasets, pages };
 }

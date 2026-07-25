@@ -1,13 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import {
-  CheckCircle2,
-  AlertCircle,
-  Loader2,
-  Clock,
-  Database,
-} from "lucide-react";
+import { CheckCircle2, AlertCircle, Loader2, Clock, Database } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -70,7 +64,7 @@ export function GenerationProgressStep({
   }, [sessionId, onComplete]);
 
   useEffect(() => {
-    if (!status?.startedAt || (status.status !== "generating")) return;
+    if (!status?.startedAt || status.status !== "generating") return;
     const tick = () => setElapsed(Math.floor((Date.now() - status.startedAt) / 1000));
     tick();
     const id = setInterval(tick, 1000);
@@ -132,7 +126,16 @@ export function GenerationProgressStep({
                       {table.rowCount.toLocaleString()} rows
                     </span>
                   )}
-                  <Badge variant={table.phase === "completed" ? "secondary" : table.phase === "failed" ? "destructive" : "outline"} className="gap-1">
+                  <Badge
+                    variant={
+                      table.phase === "completed"
+                        ? "secondary"
+                        : table.phase === "failed"
+                          ? "destructive"
+                          : "outline"
+                    }
+                    className="gap-1"
+                  >
                     {phaseInfo.icon}
                     {phaseInfo.label}
                   </Badge>
@@ -143,37 +146,38 @@ export function GenerationProgressStep({
         </div>
       )}
 
-      {(status.status === "completed" || status.status === "failed") && status.tableStatuses.length > 0 && (
-        <div className="rounded-md border p-4 space-y-3">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium">
-                {status.tableStatuses.filter((t) => t.phase === "completed").length} of{" "}
-                {status.totalTables} tables created successfully
-              </p>
-              {status.tableStatuses.some((t) => t.phase === "failed") && (
-                <p className="text-sm text-destructive mt-1">
-                  {status.tableStatuses.filter((t) => t.phase === "failed").length} tables failed
+      {(status.status === "completed" || status.status === "failed") &&
+        status.tableStatuses.length > 0 && (
+          <div className="rounded-md border p-4 space-y-3">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium">
+                  {status.tableStatuses.filter((t) => t.phase === "completed").length} of{" "}
+                  {status.totalTables} tables created successfully
                 </p>
+                {status.tableStatuses.some((t) => t.phase === "failed") && (
+                  <p className="text-sm text-destructive mt-1">
+                    {status.tableStatuses.filter((t) => t.phase === "failed").length} tables failed
+                  </p>
+                )}
+              </div>
+              {status.tableStatuses.some((t) => t.phase === "failed") && (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    const failedNames = status.tableStatuses
+                      .filter((t) => t.phase === "failed")
+                      .map((t) => t.tableName);
+                    onRetryNeeded?.(failedNames);
+                  }}
+                >
+                  Retry Failed Tables
+                </Button>
               )}
             </div>
-            {status.tableStatuses.some((t) => t.phase === "failed") && (
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => {
-                  const failedNames = status.tableStatuses
-                    .filter((t) => t.phase === "failed")
-                    .map((t) => t.tableName);
-                  onRetryNeeded?.(failedNames);
-                }}
-              >
-                Retry Failed Tables
-              </Button>
-            )}
           </div>
-        </div>
-      )}
+        )}
     </div>
   );
 }

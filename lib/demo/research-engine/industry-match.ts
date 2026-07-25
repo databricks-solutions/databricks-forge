@@ -29,9 +29,7 @@ export function normalizeIndustryId(
   const exactKebab = allOutcomes.find((o) => o.id === kebab);
   if (exactKebab) return exactKebab.id;
 
-  const startsWith = allOutcomes.find(
-    (o) => o.id.startsWith(kebab) || kebab.startsWith(o.id),
-  );
+  const startsWith = allOutcomes.find((o) => o.id.startsWith(kebab) || kebab.startsWith(o.id));
   if (startsWith) return startsWith.id;
 
   const lowerName = trimmed.toLowerCase();
@@ -65,11 +63,7 @@ export function levenshtein(a: string, b: string): number {
     const ai = a.charCodeAt(i - 1);
     for (let j = 1; j <= n; j++) {
       const cost = ai === b.charCodeAt(j - 1) ? 0 : 1;
-      curr[j] = Math.min(
-        curr[j - 1] + 1,
-        prev[j] + 1,
-        prev[j - 1] + cost,
-      );
+      curr[j] = Math.min(curr[j - 1] + 1, prev[j] + 1, prev[j - 1] + cost);
     }
     [prev, curr] = [curr, prev];
   }

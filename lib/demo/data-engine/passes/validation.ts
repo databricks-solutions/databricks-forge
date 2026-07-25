@@ -8,12 +8,7 @@
 import { mapWithConcurrency } from "@/lib/toolkit/concurrency";
 import type { SqlExecutor } from "@/lib/ports/sql-executor";
 import type { Logger } from "@/lib/ports/logger";
-import type {
-  TableColumn,
-  TableDesign,
-  ValidationResult,
-  ValidationSummary,
-} from "../../types";
+import type { TableColumn, TableDesign, ValidationResult, ValidationSummary } from "../../types";
 import type { DemoDateWindow } from "../date-window";
 
 /** Max number of days MIN(date) is allowed to predate the window start. */
@@ -106,7 +101,9 @@ export async function runValidation(
         );
       }
     } catch (err) {
-      result.issues.push(`Row count check failed: ${err instanceof Error ? err.message : String(err)}`);
+      result.issues.push(
+        `Row count check failed: ${err instanceof Error ? err.message : String(err)}`,
+      );
     }
 
     const fkColumns = table.columns.filter((c) => c.role === "fk" && c.fkTarget);
@@ -123,9 +120,7 @@ export async function runValidation(
         const orphans = parseInt(orphanCount ?? "0", 10);
         if (orphans > 0) {
           result.fkIntegrity = { valid: false, orphanCount: orphans };
-          result.issues.push(
-            `${orphans} orphan FK values in ${col.name} -> ${col.fkTarget}`,
-          );
+          result.issues.push(`${orphans} orphan FK values in ${col.name} -> ${col.fkTarget}`);
         }
       } catch {
         // FK check failed -- non-fatal

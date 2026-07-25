@@ -38,9 +38,7 @@ function instructionsOf(value: unknown): string {
 
 function nameOf(entry: Record<string, unknown>): string | null {
   return (
-    nonEmptyString(entry.name) ??
-    nonEmptyString(entry.display_name) ??
-    nonEmptyString(entry.alias)
+    nonEmptyString(entry.name) ?? nonEmptyString(entry.display_name) ?? nonEmptyString(entry.alias)
   );
 }
 

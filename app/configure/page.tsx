@@ -9,10 +9,7 @@ import { PageHeader } from "@/components/page-header";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Lightbulb, Database, AlertTriangle, Loader2 } from "lucide-react";
-import {
-  interpretScanSummary,
-  type SourceScanState,
-} from "@/lib/pipeline/source-scan-state";
+import { interpretScanSummary, type SourceScanState } from "@/lib/pipeline/source-scan-state";
 
 function ConfigureContent() {
   const t = useTranslations("configure");
@@ -68,10 +65,7 @@ function ConfigureContent() {
 
   return (
     <div className="mx-auto max-w-[1400px] space-y-8">
-      <PageHeader
-        title={t("title")}
-        subtitle={t("subtitle")}
-      />
+      <PageHeader title={t("title")} subtitle={t("subtitle")} />
 
       {/* Source-scan banner (ready) */}
       {sourceReady && (
@@ -89,9 +83,7 @@ function ConfigureContent() {
                 <p className="break-all font-mono text-xs text-muted-foreground">
                   {sourceReady.ucPath}
                 </p>
-                <p className="text-xs text-muted-foreground">
-                  {t("source.readyDescription")}
-                </p>
+                <p className="text-xs text-muted-foreground">{t("source.readyDescription")}</p>
               </div>
             </div>
           </CardContent>
@@ -101,7 +93,11 @@ function ConfigureContent() {
       {/* Source-scan loading */}
       {sourceState.status === "loading" && (
         <Card className="border-muted">
-          <CardContent role="status" aria-live="polite" className="flex items-center gap-2 pt-4 text-sm text-muted-foreground">
+          <CardContent
+            role="status"
+            aria-live="polite"
+            className="flex items-center gap-2 pt-4 text-sm text-muted-foreground"
+          >
             <Loader2 aria-hidden="true" className="h-4 w-4 animate-spin" />
             {t("source.loading")}
           </CardContent>
@@ -116,11 +112,12 @@ function ConfigureContent() {
         <Card className="border-destructive/40 bg-destructive/[0.04]">
           <CardContent role="alert" aria-live="assertive" className="pt-4">
             <div className="flex items-start gap-3">
-              <AlertTriangle aria-hidden="true" className="mt-0.5 h-5 w-5 shrink-0 text-destructive" />
+              <AlertTriangle
+                aria-hidden="true"
+                className="mt-0.5 h-5 w-5 shrink-0 text-destructive"
+              />
               <div className="space-y-1">
-                <p className="text-sm font-medium text-destructive">
-                  {t("source.errorTitle")}
-                </p>
+                <p className="text-sm font-medium text-destructive">{t("source.errorTitle")}</p>
                 <p className="text-xs text-muted-foreground">
                   {t(`source.errors.${sourceState.status}` as "source.errors.missing")}
                 </p>

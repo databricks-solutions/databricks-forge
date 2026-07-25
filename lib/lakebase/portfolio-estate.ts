@@ -150,7 +150,8 @@ export function portfolioAssetIdentitiesFromInsight(
     const id = text(payload.id) ?? text(payload.productId);
     const name = text(payload.productName) ?? text(payload.name);
     const domain = text(payload.primaryDomain) ?? text(payload.domain);
-    const identity = id ?? (name ? `${domain ? `${domain.toLowerCase()}:` : ""}${name.toLowerCase()}` : fallback);
+    const identity =
+      id ?? (name ? `${domain ? `${domain.toLowerCase()}:` : ""}${name.toLowerCase()}` : fallback);
     return [{ scanId, kind: "data_product", identity }];
   }
   if (insightType !== "asset_discovery") return [];
@@ -433,11 +434,9 @@ export function aggregatePortfolio(input: PortfolioAggregationInput): PortfolioO
   const scansForEstate = (estateId: string): PortfolioScanRow[] =>
     estateId.startsWith("scan:")
       ? scans.filter((scan) => `scan:${scan.scanId}` === estateId)
-      : scansByProgram.get(estateId) ?? [];
-  const headerFloor = (
-    estateId: string,
-    select: (scan: PortfolioScanRow) => number,
-  ): number => Math.max(0, ...scansForEstate(estateId).map(select));
+      : (scansByProgram.get(estateId) ?? []);
+  const headerFloor = (estateId: string, select: (scan: PortfolioScanRow) => number): number =>
+    Math.max(0, ...scansForEstate(estateId).map(select));
   const countAcrossEstates = (
     semanticCount: (estateId: string) => number,
     header: (scan: PortfolioScanRow) => number,
@@ -458,19 +457,15 @@ export function aggregatePortfolio(input: PortfolioAggregationInput): PortfolioO
   );
   const piiTables = countAcrossEstates(
     (estateId) =>
-      [...(mergedDetailsByEstate.get(estateId)?.values() ?? [])].filter(
-        (detail) => detail.isPii,
-      ).length,
+      [...(mergedDetailsByEstate.get(estateId)?.values() ?? [])].filter((detail) => detail.isPii)
+        .length,
     (scan) => scan.piiTablesCount,
   );
   const countAssets = (
     kind: PortfolioAssetKind,
     header: (scan: PortfolioScanRow) => number,
   ): number =>
-    countAcrossEstates(
-      (estateId) => assetSetsByEstate.get(estateId)?.get(kind)?.size ?? 0,
-      header,
-    );
+    countAcrossEstates((estateId) => assetSetsByEstate.get(estateId)?.get(kind)?.size ?? 0, header);
   const inventory: EnterpriseInventory = {
     estates: estates.length,
     scans: scans.length,
@@ -597,8 +592,7 @@ export async function getPortfolioOverview(): Promise<PortfolioOverview> {
         tableFqn: detail.tableFqn,
         dataDomain: detail.dataDomain,
         isPii:
-          detail.sensitivityLevel === "confidential" ||
-          detail.sensitivityLevel === "restricted",
+          detail.sensitivityLevel === "confidential" || detail.sensitivityLevel === "restricted",
       })),
       assets: inventoryInsights.flatMap((insight) =>
         portfolioAssetIdentitiesFromInsight(

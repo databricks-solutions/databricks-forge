@@ -121,12 +121,7 @@ export const CONSUMER_GOODS: IndustryOutcome = {
                 "Preference Data",
                 "Identity Graph",
               ],
-              typicalSourceSystems: [
-                "CDP",
-                "Consent Management Platform",
-                "CRM",
-                "DTC Platform",
-              ],
+              typicalSourceSystems: ["CDP", "Consent Management Platform", "CRM", "DTC Platform"],
             },
           ],
           kpis: [
@@ -306,19 +301,14 @@ export const CONSUMER_GOODS: IndustryOutcome = {
               name: "Workforce Scheduling & Onboarding",
               description:
                 "Optimise labour to demand across plants, DCs, and field operations; automate onboarding tasks (compliance, training, system access) so new hires reach productivity faster.",
-              businessValue:
-                "Reduced labour cost percentage; faster new-hire ramp.",
+              businessValue: "Reduced labour cost percentage; faster new-hire ramp.",
               typicalDataEntities: [
                 "Demand Forecasts",
                 "Employee Availability",
                 "Onboarding Checklists",
                 "Roster History",
               ],
-              typicalSourceSystems: [
-                "Workforce Management",
-                "HRIS",
-                "Learning Platform",
-              ],
+              typicalSourceSystems: ["Workforce Management", "HRIS", "Learning Platform"],
             },
             {
               name: "Employee Self Service HR",
@@ -332,11 +322,7 @@ export const CONSUMER_GOODS: IndustryOutcome = {
                 "Benefits Catalog",
                 "Ticket History",
               ],
-              typicalSourceSystems: [
-                "HRIS",
-                "Service Management",
-                "Knowledge Base",
-              ],
+              typicalSourceSystems: ["HRIS", "Service Management", "Knowledge Base"],
             },
             {
               name: "Employee Lifecycle",
@@ -371,11 +357,7 @@ export const CONSUMER_GOODS: IndustryOutcome = {
                 "Compliance Records",
                 "Role Definitions",
               ],
-              typicalSourceSystems: [
-                "Learning Platform",
-                "Knowledge Base",
-                "HRIS",
-              ],
+              typicalSourceSystems: ["Learning Platform", "Knowledge Base", "HRIS"],
             },
             {
               name: "Internal knowledge agents",
@@ -389,12 +371,7 @@ export const CONSUMER_GOODS: IndustryOutcome = {
                 "Product Specs",
                 "Trade Spend Templates",
               ],
-              typicalSourceSystems: [
-                "Knowledge Base",
-                "ERP",
-                "PLM",
-                "Trade Promotion Management",
-              ],
+              typicalSourceSystems: ["Knowledge Base", "ERP", "PLM", "Trade Promotion Management"],
             },
             {
               name: "AI-driven BI",
@@ -408,24 +385,14 @@ export const CONSUMER_GOODS: IndustryOutcome = {
                 "Trade Promotion Performance",
                 "Finance Metrics",
               ],
-              typicalSourceSystems: [
-                "Data Warehouse",
-                "Genie / NL2SQL",
-                "BI Platform",
-              ],
+              typicalSourceSystems: ["Data Warehouse", "Genie / NL2SQL", "BI Platform"],
             },
             {
               name: "IT augmentation/automation",
               description:
                 "Automate IT ops, ticket triage, data pipelines, and testing across the corporate, manufacturing, and DTC IT estate.",
-              businessValue:
-                "Reduced MTTR on outages; lower IT operating cost per ticket.",
-              typicalDataEntities: [
-                "Incident Tickets",
-                "Telemetry Logs",
-                "Runbooks",
-                "CMDB",
-              ],
+              businessValue: "Reduced MTTR on outages; lower IT operating cost per ticket.",
+              typicalDataEntities: ["Incident Tickets", "Telemetry Logs", "Runbooks", "CMDB"],
               typicalSourceSystems: [
                 "Service Management",
                 "Observability Platform",
@@ -471,12 +438,7 @@ export const CONSUMER_GOODS: IndustryOutcome = {
                 "Regulatory Filings",
                 "Customer Playbooks",
               ],
-              typicalSourceSystems: [
-                "Knowledge Base",
-                "PLM",
-                "GRC Platform",
-                "CRM",
-              ],
+              typicalSourceSystems: ["Knowledge Base", "PLM", "GRC Platform", "CRM"],
             },
           ],
           kpis: [
@@ -484,11 +446,7 @@ export const CONSUMER_GOODS: IndustryOutcome = {
             "Field visit effectiveness",
             "Knowledge retrieval time",
           ],
-          personas: [
-            "Chief Human Resources Officer",
-            "VP Field Operations",
-            "Head of IT",
-          ],
+          personas: ["Chief Human Resources Officer", "VP Field Operations", "Head of IT"],
         },
       ],
     },
@@ -568,12 +526,7 @@ export const CONSUMER_GOODS: IndustryOutcome = {
                 "Carrier Performance",
                 "Weather Data",
               ],
-              typicalSourceSystems: [
-                "TMS",
-                "Carrier APIs",
-                "WMS",
-                "Cold-Chain IoT",
-              ],
+              typicalSourceSystems: ["TMS", "Carrier APIs", "WMS", "Cold-Chain IoT"],
             },
             {
               name: "Network simulation",
@@ -587,12 +540,7 @@ export const CONSUMER_GOODS: IndustryOutcome = {
                 "Demand Forecasts",
                 "Inventory Positions",
               ],
-              typicalSourceSystems: [
-                "Digital Twin Platform",
-                "WMS",
-                "ERP",
-                "MES",
-              ],
+              typicalSourceSystems: ["Digital Twin Platform", "WMS", "ERP", "MES"],
             },
             {
               name: "Regulatory compliance",
@@ -621,11 +569,7 @@ export const CONSUMER_GOODS: IndustryOutcome = {
             "Supplier diversification index",
             "Supplier ESG compliance rate",
           ],
-          personas: [
-            "Chief Supply Chain Officer",
-            "VP Procurement",
-            "Head of Risk Management",
-          ],
+          personas: ["Chief Supply Chain Officer", "VP Procurement", "Head of Risk Management"],
         },
         {
           name: "Demand & Inventory Optimization",
@@ -682,11 +626,7 @@ export const CONSUMER_GOODS: IndustryOutcome = {
                 "Production Orders",
                 "Inventory Movements",
               ],
-              typicalSourceSystems: [
-                "SAP ECC / S4",
-                "Data Warehouse",
-                "Demand Planning System",
-              ],
+              typicalSourceSystems: ["SAP ECC / S4", "Data Warehouse", "Demand Planning System"],
             },
           ],
           kpis: [
@@ -695,11 +635,7 @@ export const CONSUMER_GOODS: IndustryOutcome = {
             "Service level",
             "Working capital days",
           ],
-          personas: [
-            "Chief Supply Chain Officer",
-            "VP Procurement",
-            "Head of S&OP",
-          ],
+          personas: ["Chief Supply Chain Officer", "VP Procurement", "Head of S&OP"],
         },
         {
           name: "Retailer Collaboration",
@@ -716,12 +652,7 @@ export const CONSUMER_GOODS: IndustryOutcome = {
                 "ASN / Shipment Events",
                 "Quality Inspections",
               ],
-              typicalSourceSystems: [
-                "ERP",
-                "EDI / VAN",
-                "Clean Room",
-                "Demand Planning System",
-              ],
+              typicalSourceSystems: ["ERP", "EDI / VAN", "Clean Room", "Demand Planning System"],
             },
             {
               name: "Data sharing & monetization",
@@ -735,11 +666,7 @@ export const CONSUMER_GOODS: IndustryOutcome = {
                 "Promotional Performance",
                 "Identity Graph",
               ],
-              typicalSourceSystems: [
-                "Clean Room",
-                "Data Marketplace",
-                "Retail Media Platform",
-              ],
+              typicalSourceSystems: ["Clean Room", "Data Marketplace", "Retail Media Platform"],
             },
             {
               name: "Elevate Data Sharing Alliance",
@@ -785,11 +712,7 @@ export const CONSUMER_GOODS: IndustryOutcome = {
             "Category growth rate",
             "Working capital days",
           ],
-          personas: [
-            "VP Category Management",
-            "Head of Trade Marketing",
-            "VP Supply Chain",
-          ],
+          personas: ["VP Category Management", "Head of Trade Marketing", "VP Supply Chain"],
         },
       ],
     },
@@ -825,8 +748,7 @@ export const CONSUMER_GOODS: IndustryOutcome = {
               name: "Promotion optimization",
               description:
                 "Plan mechanics, depth, and timing to maximise lift and profit -- balancing trade-spend dollars against lift, cannibalisation, and margin impact across SKU and banner.",
-              businessValue:
-                "Higher promotional ROI; reduced unprofitable trade-spend allocation.",
+              businessValue: "Higher promotional ROI; reduced unprofitable trade-spend allocation.",
               typicalDataEntities: [
                 "Promotional Calendar",
                 "Trade Promotion Spend",
@@ -841,16 +763,8 @@ export const CONSUMER_GOODS: IndustryOutcome = {
               ],
             },
           ],
-          kpis: [
-            "Net revenue management uplift",
-            "Promotion ROI",
-            "New product success rate",
-          ],
-          personas: [
-            "Chief Revenue Officer",
-            "VP Trade Marketing",
-            "Head of Innovation",
-          ],
+          kpis: ["Net revenue management uplift", "Promotion ROI", "New product success rate"],
+          personas: ["Chief Revenue Officer", "VP Trade Marketing", "Head of Innovation"],
         },
         {
           name: "Portfolio Optimization & Innovation",
@@ -873,8 +787,7 @@ export const CONSUMER_GOODS: IndustryOutcome = {
               name: "Price pack architecture",
               description:
                 "Optimise size, pack, and price ladders for margin and reach -- across channels (grocery, mass, club, convenience, e-commerce) to maximise both share-of-shelf and gross-margin contribution.",
-              businessValue:
-                "Higher gross margin per unit; better channel-specific pack mix.",
+              businessValue: "Higher gross margin per unit; better channel-specific pack mix.",
               typicalDataEntities: [
                 "SKU Master",
                 "Pack Size Definitions",
@@ -903,16 +816,8 @@ export const CONSUMER_GOODS: IndustryOutcome = {
               ],
             },
           ],
-          kpis: [
-            "Net revenue management uplift",
-            "Promotion ROI",
-            "New product success rate",
-          ],
-          personas: [
-            "Chief Revenue Officer",
-            "VP Trade Marketing",
-            "Head of Innovation",
-          ],
+          kpis: ["Net revenue management uplift", "Promotion ROI", "New product success rate"],
+          personas: ["Chief Revenue Officer", "VP Trade Marketing", "Head of Innovation"],
         },
       ],
     },

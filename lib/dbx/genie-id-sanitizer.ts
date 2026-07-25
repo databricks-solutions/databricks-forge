@@ -80,9 +80,10 @@ function uniquifyId(id: string, seen: Set<string>): string {
   if (!seen.has(id)) return id;
   let suffix = 2;
   while (true) {
-    const trial = id.length + `_${suffix}`.length > MAX_ID_LENGTH
-      ? `${id.slice(0, MAX_ID_LENGTH - `_${suffix}`.length)}_${suffix}`
-      : `${id}_${suffix}`;
+    const trial =
+      id.length + `_${suffix}`.length > MAX_ID_LENGTH
+        ? `${id.slice(0, MAX_ID_LENGTH - `_${suffix}`.length)}_${suffix}`
+        : `${id}_${suffix}`;
     if (!seen.has(trial)) return trial;
     suffix++;
     if (suffix > 999) return trial;

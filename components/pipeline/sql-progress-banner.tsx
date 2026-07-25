@@ -67,10 +67,7 @@ export function SqlProgressBanner({ runId }: SqlProgressBannerProps) {
 
         // Transition from generating → terminal: refresh so the server
         // component picks up the newly-persisted use-case SQL.
-        if (
-          lastStatusRef.current === "generating" &&
-          data.status !== "generating"
-        ) {
+        if (lastStatusRef.current === "generating" && data.status !== "generating") {
           router.refresh();
         }
         lastStatusRef.current = data.status;
@@ -137,9 +134,8 @@ export function SqlProgressBanner({ runId }: SqlProgressBannerProps) {
                   {counts.failed > 0 ? ` (${counts.failed} failed)` : ""}.
                 </>
               )}{" "}
-              Use cases are explorable now; SQL fills in per row as it lands.
-              Genie spaces and dashboard recommendations will start once SQL
-              finishes.
+              Use cases are explorable now; SQL fills in per row as it lands. Genie spaces and
+              dashboard recommendations will start once SQL finishes.
             </p>
           </div>
         </div>

@@ -137,10 +137,7 @@ describe("CONSISTENCY_REVIEW_PROMPT", () => {
   });
 
   it("all placeholders are replaceable", () => {
-    const replaced = CONSISTENCY_REVIEW_PROMPT.replace(
-      "{language_directive}",
-      "Write in English.",
-    )
+    const replaced = CONSISTENCY_REVIEW_PROMPT.replace("{language_directive}", "Write in English.")
       .replace("{schema_summary}", "2 tables")
       .replace("{descriptions_list}", "- TABLE: cat.sch.tbl: desc");
 

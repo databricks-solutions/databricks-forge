@@ -158,12 +158,7 @@ export const RETAIL: IndustryOutcome = {
                 "Journey Events",
                 "Engagement Metrics",
               ],
-              typicalSourceSystems: [
-                "CDP",
-                "CRM",
-                "Marketing Platform",
-                "Analytics Platform",
-              ],
+              typicalSourceSystems: ["CDP", "CRM", "Marketing Platform", "Analytics Platform"],
             },
             {
               name: "Recommendation",
@@ -198,12 +193,7 @@ export const RETAIL: IndustryOutcome = {
                 "Consent Records",
                 "Identity Graph",
               ],
-              typicalSourceSystems: [
-                "CDP",
-                "DSP",
-                "Email Platform",
-                "Marketing Platform",
-              ],
+              typicalSourceSystems: ["CDP", "DSP", "Email Platform", "Marketing Platform"],
             },
             {
               name: "Content Generation",
@@ -218,12 +208,7 @@ export const RETAIL: IndustryOutcome = {
                 "Approval Workflow",
                 "A/B Test Results",
               ],
-              typicalSourceSystems: [
-                "DAM",
-                "PIM",
-                "E-Commerce Platform",
-                "Marketing Platform",
-              ],
+              typicalSourceSystems: ["DAM", "PIM", "E-Commerce Platform", "Marketing Platform"],
             },
             {
               name: "Promotions",
@@ -238,12 +223,7 @@ export const RETAIL: IndustryOutcome = {
                 "Customer Segments",
                 "Redemption Logs",
               ],
-              typicalSourceSystems: [
-                "Promotion Engine",
-                "POS System",
-                "ERP",
-                "Marketing Platform",
-              ],
+              typicalSourceSystems: ["Promotion Engine", "POS System", "ERP", "Marketing Platform"],
             },
             {
               name: "Competitive Intelligence Analytics",
@@ -388,29 +368,20 @@ export const RETAIL: IndustryOutcome = {
                 "Resume Parsing Output",
                 "Hiring Outcomes",
               ],
-              typicalSourceSystems: [
-                "ATS",
-                "HRIS",
-                "Workforce Management",
-              ],
+              typicalSourceSystems: ["ATS", "HRIS", "Workforce Management"],
             },
             {
               name: "Workforce Scheduling & Onboarding",
               description:
                 "Optimise associate staffing against forecast demand and streamline onboarding tasks (compliance training, system access, store-walk checklists) so new hires reach productivity faster.",
-              businessValue:
-                "Reduced labour cost percentage of sales; faster ramp on new hires.",
+              businessValue: "Reduced labour cost percentage of sales; faster ramp on new hires.",
               typicalDataEntities: [
                 "Demand Forecasts",
                 "Employee Availability",
                 "Onboarding Checklists",
                 "Roster History",
               ],
-              typicalSourceSystems: [
-                "Workforce Management",
-                "HRIS",
-                "Learning Platform",
-              ],
+              typicalSourceSystems: ["Workforce Management", "HRIS", "Learning Platform"],
             },
             {
               name: "Employee Self Service HR",
@@ -424,11 +395,7 @@ export const RETAIL: IndustryOutcome = {
                 "Benefits Catalog",
                 "Ticket History",
               ],
-              typicalSourceSystems: [
-                "HRIS",
-                "Service Management",
-                "Knowledge Base",
-              ],
+              typicalSourceSystems: ["HRIS", "Service Management", "Knowledge Base"],
             },
             {
               name: "Employee Lifecycle",
@@ -463,11 +430,7 @@ export const RETAIL: IndustryOutcome = {
                 "Compliance Records",
                 "Training Completion",
               ],
-              typicalSourceSystems: [
-                "Knowledge Base",
-                "Learning Platform",
-                "Store Operations App",
-              ],
+              typicalSourceSystems: ["Knowledge Base", "Learning Platform", "Store Operations App"],
             },
             {
               name: "Internal knowledge agents",
@@ -482,12 +445,7 @@ export const RETAIL: IndustryOutcome = {
                 "Return Policies",
                 "Inventory Positions",
               ],
-              typicalSourceSystems: [
-                "Knowledge Base",
-                "ERP",
-                "Merchandising System",
-                "POS System",
-              ],
+              typicalSourceSystems: ["Knowledge Base", "ERP", "Merchandising System", "POS System"],
             },
             {
               name: "AI-driven BI",
@@ -501,11 +459,7 @@ export const RETAIL: IndustryOutcome = {
                 "Marketing Campaign Performance",
                 "Store Operations Metrics",
               ],
-              typicalSourceSystems: [
-                "Data Warehouse",
-                "Genie / NL2SQL",
-                "BI Platform",
-              ],
+              typicalSourceSystems: ["Data Warehouse", "Genie / NL2SQL", "BI Platform"],
             },
             {
               name: "IT augmentation / automation",
@@ -513,12 +467,7 @@ export const RETAIL: IndustryOutcome = {
                 "AIOps and copilots for incident triage, root-cause analysis, runbook automation, and ticket deflection across the store, e-commerce, and corporate IT estate.",
               businessValue:
                 "Reduced MTTR on store/e-commerce outages; lower IT operating cost per ticket.",
-              typicalDataEntities: [
-                "Incident Tickets",
-                "Telemetry Logs",
-                "Runbooks",
-                "CMDB",
-              ],
+              typicalDataEntities: ["Incident Tickets", "Telemetry Logs", "Runbooks", "CMDB"],
               typicalSourceSystems: [
                 "Service Management",
                 "Observability Platform",
@@ -579,11 +528,7 @@ export const RETAIL: IndustryOutcome = {
             "Click-and-collect pick efficiency",
             "On-shelf availability",
           ],
-          personas: [
-            "Head of Retail Operations",
-            "Regional Manager",
-            "Workforce Planning Manager",
-          ],
+          personas: ["Head of Retail Operations", "Regional Manager", "Workforce Planning Manager"],
         },
       ],
     },
@@ -628,12 +573,7 @@ export const RETAIL: IndustryOutcome = {
                 "Carrier Performance",
                 "OTIF History",
               ],
-              typicalSourceSystems: [
-                "TMS",
-                "Carrier APIs",
-                "WMS",
-                "Weather / Traffic Feeds",
-              ],
+              typicalSourceSystems: ["TMS", "Carrier APIs", "WMS", "Weather / Traffic Feeds"],
             },
             {
               name: "Network simulation",
@@ -648,12 +588,7 @@ export const RETAIL: IndustryOutcome = {
                 "Capacity Constraints",
                 "Demand Forecasts",
               ],
-              typicalSourceSystems: [
-                "Digital Twin Platform",
-                "WMS",
-                "OMS",
-                "ERP",
-              ],
+              typicalSourceSystems: ["Digital Twin Platform", "WMS", "OMS", "ERP"],
             },
             {
               name: "Regulatory compliance",
@@ -682,11 +617,7 @@ export const RETAIL: IndustryOutcome = {
             "Forecast accuracy",
             "Supplier on-time-in-full",
           ],
-          personas: [
-            "Chief Supply Chain Officer",
-            "VP Merchandising",
-            "VP Procurement",
-          ],
+          personas: ["Chief Supply Chain Officer", "VP Merchandising", "VP Procurement"],
         },
         {
           name: "Demand & Inventory Optimization",
@@ -735,8 +666,7 @@ export const RETAIL: IndustryOutcome = {
               name: "Markdown and Pricing Optimization",
               description:
                 "Optimise markdown timing and pricing strategies across multi-channel promotional calendars and gross-margin targets for distinct retail formats, maximising revenue recovery on slow-moving inventory.",
-              businessValue:
-                "Higher margin recovery on aged stock; lower end-of-life write-offs.",
+              businessValue: "Higher margin recovery on aged stock; lower end-of-life write-offs.",
               typicalDataEntities: [
                 "Inventory Positions",
                 "Sales History",
@@ -744,12 +674,7 @@ export const RETAIL: IndustryOutcome = {
                 "Margin Targets",
                 "Competitor Pricing",
               ],
-              typicalSourceSystems: [
-                "ERP",
-                "POS System",
-                "Merchandising System",
-                "Pricing System",
-              ],
+              typicalSourceSystems: ["ERP", "POS System", "Merchandising System", "Pricing System"],
             },
             {
               name: "Category & Pricing Architecture Analytics",
@@ -764,25 +689,11 @@ export const RETAIL: IndustryOutcome = {
                 "Cross-Sell Matrices",
                 "Price Indices",
               ],
-              typicalSourceSystems: [
-                "POS System",
-                "ERP",
-                "Merchandising System",
-                "Pricing System",
-              ],
+              typicalSourceSystems: ["POS System", "ERP", "Merchandising System", "Pricing System"],
             },
           ],
-          kpis: [
-            "Forecast accuracy",
-            "Inventory turn",
-            "Stockout rate",
-            "Markdown rate",
-          ],
-          personas: [
-            "VP Demand Planning",
-            "Head of Merchandising",
-            "Chief Supply Chain Officer",
-          ],
+          kpis: ["Forecast accuracy", "Inventory turn", "Stockout rate", "Markdown rate"],
+          personas: ["VP Demand Planning", "Head of Merchandising", "Chief Supply Chain Officer"],
         },
         {
           name: "Supplier Collaboration",
@@ -799,12 +710,7 @@ export const RETAIL: IndustryOutcome = {
                 "ASN / Shipment Events",
                 "Quality Inspections",
               ],
-              typicalSourceSystems: [
-                "ERP",
-                "EDI / VAN",
-                "Clean Room",
-                "Demand Planning System",
-              ],
+              typicalSourceSystems: ["ERP", "EDI / VAN", "Clean Room", "Demand Planning System"],
             },
             {
               name: "Data sharing & monetization",
@@ -818,11 +724,7 @@ export const RETAIL: IndustryOutcome = {
                 "Promotional Performance",
                 "Identity Graph",
               ],
-              typicalSourceSystems: [
-                "Clean Room",
-                "Retail Media Platform",
-                "Data Marketplace",
-              ],
+              typicalSourceSystems: ["Clean Room", "Retail Media Platform", "Data Marketplace"],
             },
             {
               name: "Supplier Collaborative Planning",
@@ -856,11 +758,7 @@ export const RETAIL: IndustryOutcome = {
                 "Assortment Mix",
                 "Promotional Performance",
               ],
-              typicalSourceSystems: [
-                "POS System",
-                "Retail Data Syndication",
-                "ERP",
-              ],
+              typicalSourceSystems: ["POS System", "Retail Data Syndication", "ERP"],
             },
           ],
           kpis: [
@@ -893,12 +791,7 @@ export const RETAIL: IndustryOutcome = {
                 "Delivery Zones",
                 "Promise-Time Models",
               ],
-              typicalSourceSystems: [
-                "WMS",
-                "OMS",
-                "Store Inventory System",
-                "Carrier APIs",
-              ],
+              typicalSourceSystems: ["WMS", "OMS", "Store Inventory System", "Carrier APIs"],
             },
             {
               name: "DC-to-Store Replenishment Optimization",
@@ -927,11 +820,7 @@ export const RETAIL: IndustryOutcome = {
             "Ship-from-store utilisation",
             "Order promise accuracy",
           ],
-          personas: [
-            "Head of Omni Fulfilment",
-            "GM DC Operations",
-            "Head of Transport",
-          ],
+          personas: ["Head of Omni Fulfilment", "GM DC Operations", "Head of Transport"],
         },
       ],
     },

@@ -60,16 +60,10 @@ export async function POST(request: NextRequest) {
       // Only a fully-saved scan can seed a decoupled-discovery run; a
       // `running`/`failed` checkpoint is incomplete and must be rejected.
       if (sourceScan.scanStatus && sourceScan.scanStatus !== "complete") {
-        return NextResponse.json(
-          { error: "Source scan is not complete" },
-          { status: 409 },
-        );
+        return NextResponse.json({ error: "Source scan is not complete" }, { status: 409 });
       }
       if (!sourceScan.details?.length) {
-        return NextResponse.json(
-          { error: "Source scan has no metadata details" },
-          { status: 400 },
-        );
+        return NextResponse.json({ error: "Source scan has no metadata details" }, { status: 400 });
       }
       ucMetadata = sourceScan.ucPath;
     }

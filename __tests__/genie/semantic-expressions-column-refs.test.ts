@@ -18,9 +18,7 @@ describe("extractColumnRefs", () => {
   });
 
   it("filters out SQL keywords", () => {
-    const refs = extractColumnRefs(
-      "CASE WHEN status = 'paid' THEN amount ELSE 0 END",
-    );
+    const refs = extractColumnRefs("CASE WHEN status = 'paid' THEN amount ELSE 0 END");
     expect(refs.bare).toEqual(expect.arrayContaining(["status", "amount"]));
     expect(refs.bare).not.toContain("case");
     expect(refs.bare).not.toContain("when");

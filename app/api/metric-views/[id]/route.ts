@@ -57,7 +57,9 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
     if (typeof body.ddl === "string") updateData.ddl = body.ddl;
     if (updateData.yaml !== undefined || updateData.ddl !== undefined) {
       updateData.validationStatus = "unverified";
-      updateData.validationIssues = ["Definition changed after validation; repair to validate again."];
+      updateData.validationIssues = [
+        "Definition changed after validation; repair to validate again.",
+      ];
       updateData.validationEvidence = null;
       updateData.validatorVersion = null;
       updateData.validatedAt = null;
@@ -81,7 +83,10 @@ export async function DELETE(
     const guard = await loadMetricViewProposalOrRespond(request, id, "edit");
     if (!guard.ok) return guard.response;
     if (guard.permission !== "owner") {
-      return NextResponse.json({ error: "Only the owner can delete this proposal" }, { status: 403 });
+      return NextResponse.json(
+        { error: "Only the owner can delete this proposal" },
+        { status: 403 },
+      );
     }
 
     await deleteMetricViewProposal(id);

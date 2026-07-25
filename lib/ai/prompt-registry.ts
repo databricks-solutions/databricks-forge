@@ -50,9 +50,7 @@ export function registerDefaultPrompt(
   const existing = _defaults.get(key);
   if (existing) {
     if (existing.version === version && existing.template !== template) {
-      throw new Error(
-        `[prompt-registry] conflicting registration for "${key}" v${version}`,
-      );
+      throw new Error(`[prompt-registry] conflicting registration for "${key}" v${version}`);
     }
     if (existing.version > version) return;
   }

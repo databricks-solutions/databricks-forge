@@ -1,8 +1,5 @@
 import { describe, it, expect } from "vitest";
-import {
-  generateEstateBoardPackPdf,
-  type BoardPackData,
-} from "@/lib/export/estate-board-pack-pdf";
+import { generateEstateBoardPackPdf, type BoardPackData } from "@/lib/export/estate-board-pack-pdf";
 
 const base: BoardPackData = {
   programName: "Acme Energy",

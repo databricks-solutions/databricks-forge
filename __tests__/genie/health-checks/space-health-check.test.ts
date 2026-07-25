@@ -190,9 +190,7 @@ describe("enrichSpaceWithUcMetadata", () => {
     // any Forge-generated space (which uses `identifier`/`column_name`) the
     // FQN list was empty and UC comments were never fetched. Confirm that
     // the canonical spelling now hydrates descriptions correctly.
-    mockedTableComments.mockResolvedValue(
-      new Map([["main.sales.orders", "Order fact table"]]),
-    );
+    mockedTableComments.mockResolvedValue(new Map([["main.sales.orders", "Order fact table"]]));
     mockedColumnsBatch.mockResolvedValue([
       {
         tableFqn: "main.sales.orders",
@@ -226,9 +224,7 @@ describe("enrichSpaceWithUcMetadata", () => {
   });
 
   it("falls back to legacy path/name spellings when present", async () => {
-    mockedTableComments.mockResolvedValue(
-      new Map([["main.sales.orders", "Order fact table"]]),
-    );
+    mockedTableComments.mockResolvedValue(new Map([["main.sales.orders", "Order fact table"]]));
     mockedColumnsBatch.mockResolvedValue([]);
 
     const space = {

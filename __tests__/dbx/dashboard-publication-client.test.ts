@@ -91,12 +91,12 @@ describe("Lakeview OBO scope capability", () => {
         oboToken: "request-obo-token",
       }),
     ).rejects.toMatchObject({
-        name: "DashboardScopeUnsupportedError",
-        code: "DASHBOARD_OBO_SCOPE_UNSUPPORTED",
-        status: 403,
-        requiredScope: "dashboards",
-        operation: "get dashboard",
-      });
+      name: "DashboardScopeUnsupportedError",
+      code: "DASHBOARD_OBO_SCOPE_UNSUPPORTED",
+      status: 403,
+      requiredScope: "dashboards",
+      operation: "get dashboard",
+    });
     expect(mocks.getAppHeaders).not.toHaveBeenCalled();
   });
 
@@ -143,8 +143,7 @@ describe("Lakeview OBO scope capability", () => {
       status: 403,
       operation: "get dashboard",
       diagnosticCode: "PERMISSION_DENIED",
-      diagnosticMessage:
-        "User does not have permission to access dashboard external-dashboard",
+      diagnosticMessage: "User does not have permission to access dashboard external-dashboard",
     });
     expect(error).not.toHaveProperty("requiredScope");
   });
@@ -223,21 +222,9 @@ describe("Lakeview OBO scope capability", () => {
       "Request failed?access_token=access-secret&client_secret=client-secret",
       ["access-secret", "client-secret"],
     ],
-    [
-      "dashed header token",
-      "Request failed; refresh-token: refresh-secret",
-      ["refresh-secret"],
-    ],
-    [
-      "camel-case secret",
-      "Request failed; clientSecret=camel-secret",
-      ["camel-secret"],
-    ],
-    [
-      "API key query",
-      "Request failed?api_key=api-secret&safe=value",
-      ["api-secret"],
-    ],
+    ["dashed header token", "Request failed; refresh-token: refresh-secret", ["refresh-secret"]],
+    ["camel-case secret", "Request failed; clientSecret=camel-secret", ["camel-secret"]],
+    ["API key query", "Request failed?api_key=api-secret&safe=value", ["api-secret"]],
     [
       "password JSON-style value",
       'Request failed; "password": "password-secret"',

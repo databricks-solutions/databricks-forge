@@ -139,10 +139,9 @@ async function reviewSqlAlignment(
   schemaContext: string | undefined,
   surface: string,
 ): Promise<AlignmentReviewVerdict> {
-  const runtimeHint = interpolatePrompt(
-    getPromptSync(PROMPT_KEYS.benchmarkAlignmentRuntimeHint),
-    { question: b.question },
-  );
+  const runtimeHint = interpolatePrompt(getPromptSync(PROMPT_KEYS.benchmarkAlignmentRuntimeHint), {
+    question: b.question,
+  });
 
   let result;
   try {
@@ -160,7 +159,11 @@ async function reviewSqlAlignment(
     return { kind: "ok" };
   }
 
-  if (result.fixedSql && result.fixedSql.trim() && result.fixedSql.trim() !== b.expectedSql.trim()) {
+  if (
+    result.fixedSql &&
+    result.fixedSql.trim() &&
+    result.fixedSql.trim() !== b.expectedSql.trim()
+  ) {
     return {
       kind: "rewrite",
       rewrittenSql: result.fixedSql,

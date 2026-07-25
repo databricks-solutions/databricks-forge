@@ -70,10 +70,7 @@ describe("attributeSourceSystems — naming-only signals (no lineage)", () => {
         makeUseCase("u_servicenow", ["main.itsm.servicenow_incidents"]),
       ],
       lineageGraph: null,
-      tables: [
-        makeTable("main.workday_hcm.workers"),
-        makeTable("main.itsm.servicenow_incidents"),
-      ],
+      tables: [makeTable("main.workday_hcm.workers"), makeTable("main.itsm.servicenow_incidents")],
     });
     const byId = new Map(out.map((r) => [r.useCaseId, r] as const));
     expect(byId.get("u_workday")?.sourceSystems).toEqual(["Workday"]);
@@ -113,10 +110,7 @@ describe("attributeSourceSystems — comment-only signals", () => {
       useCases: [makeUseCase("u1", ["main.derived.orders"])],
       lineageGraph: null,
       tables: [
-        makeTable(
-          "main.derived.orders",
-          "Synced nightly from S/4HANA via Lakeflow Connect",
-        ),
+        makeTable("main.derived.orders", "Synced nightly from S/4HANA via Lakeflow Connect"),
       ],
     });
     expect(out[0]?.sourceSystems).toEqual(["SAP"]);
@@ -145,16 +139,12 @@ describe("attributeSourceSystems — lineage walking", () => {
     const edges = [
       makeEdge("main.bronze.sf_accounts", "main.silver.customer_360"),
       makeEdge("main.bronze.sf_opps", "main.silver.customer_360"),
-      makeEdge(
-        "salesforce_fed.public.accounts",
-        "main.bronze.sf_accounts",
-        { sourceType: "CONNECTION" },
-      ),
-      makeEdge(
-        "salesforce_fed.public.opportunities",
-        "main.bronze.sf_opps",
-        { sourceType: "CONNECTION" },
-      ),
+      makeEdge("salesforce_fed.public.accounts", "main.bronze.sf_accounts", {
+        sourceType: "CONNECTION",
+      }),
+      makeEdge("salesforce_fed.public.opportunities", "main.bronze.sf_opps", {
+        sourceType: "CONNECTION",
+      }),
     ];
     const out = attributeSourceSystems({
       useCases: [makeUseCase("u1", ["main.silver.customer_360"])],
@@ -173,11 +163,7 @@ describe("attributeSourceSystems — lineage walking", () => {
     // No TableInfo for the foreign-catalog root — resolver must still
     // tokenize the FQN itself.
     const edges = [
-      makeEdge(
-        "snowflake_fed.public.orders",
-        "main.silver.orders",
-        { sourceType: "CONNECTION" },
-      ),
+      makeEdge("snowflake_fed.public.orders", "main.silver.orders", { sourceType: "CONNECTION" }),
     ];
     const out = attributeSourceSystems({
       useCases: [makeUseCase("u1", ["main.silver.orders"])],
@@ -218,11 +204,9 @@ describe("attributeSourceSystems — lineage walking", () => {
     // has an upstream CONNECTION edge to `salesforce_fed.public.accounts`
     // (lineage match) — origin must be "lineage".
     const edges = [
-      makeEdge(
-        "salesforce_fed.public.accounts",
-        "salesforce_raw.public.accounts",
-        { sourceType: "CONNECTION" },
-      ),
+      makeEdge("salesforce_fed.public.accounts", "salesforce_raw.public.accounts", {
+        sourceType: "CONNECTION",
+      }),
     ];
     const out = attributeSourceSystems({
       useCases: [makeUseCase("u1", ["salesforce_raw.public.accounts"])],
@@ -247,17 +231,9 @@ describe("attributeSourceSystems — edge cases", () => {
 
   it("is order-stable: dedup'd source systems are sorted alphabetically", () => {
     const out = attributeSourceSystems({
-      useCases: [
-        makeUseCase("u1", [
-          "workday_raw.hcm.workers",
-          "salesforce_raw.crm.accounts",
-        ]),
-      ],
+      useCases: [makeUseCase("u1", ["workday_raw.hcm.workers", "salesforce_raw.crm.accounts"])],
       lineageGraph: null,
-      tables: [
-        makeTable("workday_raw.hcm.workers"),
-        makeTable("salesforce_raw.crm.accounts"),
-      ],
+      tables: [makeTable("workday_raw.hcm.workers"), makeTable("salesforce_raw.crm.accounts")],
     });
     expect(out[0]?.sourceSystems).toEqual(["Salesforce", "Workday"]);
   });

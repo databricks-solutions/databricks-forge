@@ -66,7 +66,8 @@ export function useRunDetail(runId: string) {
       setError(null);
     } catch (err) {
       if (err instanceof DOMException && err.name === "AbortError") return;
-      if (!runLoadedRef.current) setError(err instanceof Error ? err.message : "Failed to load run");
+      if (!runLoadedRef.current)
+        setError(err instanceof Error ? err.message : "Failed to load run");
     } finally {
       setLoading(false);
       fetchingRef.current = false;
