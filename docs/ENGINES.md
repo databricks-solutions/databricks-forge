@@ -34,7 +34,7 @@ pipeline results.
 | **Business Value Engine** | Financial quantification, roadmap phasing, executive synthesis, stakeholder analysis | Step 9 | [BUSINESS_VALUE.md](BUSINESS_VALUE.md) |
 | **Comment Engine** | Industry-aware table and column description generator (4-phase) | Standalone | [COMMENT_ENGINE.md](COMMENT_ENGINE.md) |
 | **Metric View Engine** | Unity Catalog metric view generation, validation, and deployment | Within Genie (parallel pass) | [METRIC_VIEW_ENGINE.md](METRIC_VIEW_ENGINE.md) |
-| **Estate Scan Engine** | Environment intelligence: health scoring, lineage, governance analysis | Standalone pipeline | [ESTATE_ANALYSIS.md](../ESTATE_ANALYSIS.md) |
+| **Estate Scan Engine** | Environment intelligence: health scoring, lineage, governance analysis | Standalone pipeline | [ESTATE_ANALYSIS.md](https://github.com/databricks-solutions/databricks-forge/blob/main/ESTATE_ANALYSIS.md) |
 | **WAF Assessment Engine** | Databricks Well-Architected Framework evaluation across 7 pillars (166 controls, automatic + qualitative) with drift compare and CSV export | Standalone | [WAF_ASSESSMENT.md](WAF_ASSESSMENT.md) |
 
 ### Infrastructure Engines
@@ -46,7 +46,7 @@ standalone engines.
 |--------|---------|---------------|
 | **SQL Engine** | Unified SQL generation, validation (EXPLAIN), and LLM-as-reviewer repair | [SQL_ENGINE.md](SQL_ENGINE.md) |
 | **Genie Health Check Engine** | Deterministic scoring (20 checks, A-F grade), automated fix workflow, benchmark feedback loop | [GENIE_HEALTHCHECK_ENGINE.md](GENIE_HEALTHCHECK_ENGINE.md) |
-| **Assistant Engine (Ask Forge)** | RAG-powered conversational AI with intent classification, context building, SQL proposals, and actions | [ASK_FORGE.md](../ASK_FORGE.md) |
+| **Assistant Engine (Ask Forge)** | RAG-powered conversational AI with intent classification, context building, SQL proposals, and actions | [ASK_FORGE.md](https://github.com/databricks-solutions/databricks-forge/blob/main/ASK_FORGE.md) |
 
 ### Supporting Systems
 
@@ -172,7 +172,7 @@ endpoint.
 
 ## Adding a New Engine
 
-See the [New Feature Integration Checklist](../AGENTS.md#new-feature-integration-checklist)
+See the [New Feature Integration Checklist](https://github.com/databricks-solutions/databricks-forge/blob/main/AGENTS.md#new-feature-integration-checklist)
 in AGENTS.md. For engines specifically:
 
 1. Define the engine function accepting typed input + optional `deps`

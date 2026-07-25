@@ -1,244 +1,275 @@
 # Quick Start
 
-Deploy Databricks Forge to your workspace in three steps.
+Deploy Databricks Forge to your workspace, verify it, and complete first-run
+setup.
 
-## Prerequisites
+## Before you begin
 
-- A Databricks workspace with a SQL Warehouse
-- [Databricks CLI](https://docs.databricks.com/dev-tools/cli/install.html) installed and authenticated
+Forge deploys a Databricks App and an isolated Lakebase Autoscaling project.
+It also binds a SQL warehouse and Databricks Model Serving endpoints. A normal
+first deployment takes approximately five minutes; service availability varies
+by cloud and region.
+
+Forge is a community-maintained Field Engineering accelerator. It is not an
+official Databricks product and is not covered by Databricks Support. See
+[Support](https://github.com/databricks-solutions/databricks-forge/blob/main/SUPPORT.md).
+
+## Check prerequisites
+
+You need:
+
+- A Databricks workspace with Unity Catalog enabled
+- A running Serverless or Pro SQL warehouse
+- Permission to create or manage Databricks Apps
+- Permission to create Lakebase Autoscaling projects, or an existing Lakebase
+  branch and database you can bind
+- Permission to use the selected SQL warehouse
+- Access to at least one supported Databricks Model Serving model
+- Node.js 20.9 or later
+- Python 3
+- [Databricks CLI](https://docs.databricks.com/dev-tools/cli/install.html)
+  0.205 or later
+
+Install the CLI on macOS:
 
 ```bash
-# Install the CLI (if not already installed)
-brew install databricks   # macOS
-# or: curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
-
-# Authenticate
-databricks auth login --host https://your-workspace.cloud.databricks.com
+brew install databricks
 ```
 
-## Deploy
+Or use the official installer:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
+```
+
+Confirm the local tools:
+
+```bash
+node --version
+python3 --version
+databricks version
+```
+
+The recommended user-authorization path requires **Databricks Apps -
+On-Behalf-Of User Authorization** in the workspace preview settings. The deploy
+script configures the required application scopes.
+
+## Clone and authenticate
 
 ```bash
 git clone https://github.com/databricks-solutions/databricks-forge.git
 cd databricks-forge
+databricks auth login --host https://your-workspace.cloud.databricks.com
+databricks current-user me
+```
+
+For a named CLI profile:
+
+```bash
+databricks auth login \
+  --host https://your-workspace.cloud.databricks.com \
+  --profile forge
+```
+
+## Deploy
+
+Run the guided deployment:
+
+```bash
 ./deploy.sh
 ```
 
-The script discovers your SQL Warehouses, lets you pick one, and handles
-everything else automatically -- resource bindings, user authorization scopes,
-code upload, and deployment. The premium model defaults to
-`databricks-claude-opus-4-7` and the fast model to `databricks-claude-sonnet-4-6`.
+The script:
 
-No manual configuration steps. Zero UI clicks.
+1. Checks CLI authentication.
+2. Lists available SQL warehouses and asks you to choose one.
+3. Probes supported model endpoints and selects available defaults.
+4. Creates or updates the `databricks-forge` Databricks App.
+5. Creates an isolated Lakebase project on first deployment.
+6. Installs required database extensions and grants the app service principal.
+7. Binds resources, configures user scopes, uploads the source, and deploys.
 
-## Redeploy
+To avoid the warehouse prompt:
 
-Run `./deploy.sh` again. It detects the existing app and updates it.
+```bash
+./deploy.sh --warehouse "Serverless Starter Warehouse"
+```
 
-## Remove
+To use a named profile:
+
+```bash
+./deploy.sh --profile forge
+```
+
+To run a second isolated instance:
+
+```bash
+./deploy.sh --app-name forge-demo
+```
+
+For all deployment, model, Lakebase, cost-governance, and zero-egress options,
+see [Deployment and Operations](DEPLOYMENT.md).
+
+## Verify the deployment
+
+Open the app URL printed by `deploy.sh`. You should see the Forge home page.
+
+Verify the health endpoint:
+
+```bash
+APP_URL=$(databricks apps get databricks-forge --output json | jq -r '.url')
+curl -fsS "$APP_URL/api/health" | jq .
+```
+
+A healthy response reports:
+
+```json
+{
+  "status": "healthy",
+  "warehouse": "connected",
+  "database": "connected"
+}
+```
+
+If you used a custom `--app-name`, replace `databricks-forge` in the command.
+
+View startup and runtime logs:
+
+```bash
+databricks apps logs databricks-forge --follow
+```
+
+## First-run checklist
+
+1. Open **Settings** and review feature flags, model routing, and AI output
+   language.
+2. Confirm the signed-in user can browse the intended Unity Catalog catalogs
+   and schemas.
+3. Run a small discovery against one schema before scanning a large estate.
+4. Keep Demo Mode disabled unless the workspace is specifically used for
+   synthetic demonstrations.
+5. Review
+   [Security Architecture](https://github.com/databricks-solutions/databricks-forge/blob/main/SECURITY_ARCHITECTURE.md)
+   before enabling optional data sampling or sharing the app broadly.
+
+Users need the Unity Catalog permissions required for the metadata they select,
+including `USE CATALOG`, `USE SCHEMA`, and relevant metadata/table access.
+Lineage features additionally require access to `system.access.table_lineage`.
+
+## Update Forge
+
+Pull the latest organization-hosted release and rerun the same deploy command:
+
+```bash
+git switch main
+git pull --ff-only
+./deploy.sh
+```
+
+The script detects the existing app and Lakebase binding. Startup runs the
+database preflight and applies safe additive schema changes before serving
+traffic.
+
+If an update fails, inspect app logs and redeploy the last known-good Git tag:
+
+```bash
+git fetch --tags
+git switch --detach v1.0.4
+./deploy.sh
+```
+
+Return to current development with:
+
+```bash
+git switch main
+```
+
+## Remove Forge safely
+
+Remove the app:
 
 ```bash
 ./deploy.sh --destroy
 ```
 
-## Advanced options
+The script then asks whether to remove the associated Lakebase project. The
+default is **keep**, preserving application data.
 
-All flags are optional. Combine as needed.
-
-### Core
-
-| Flag | Description |
-|------|-------------|
-| `--app-name "name"` | Custom app name for multi-instance deployments. Isolates the Databricks App and Lakebase database. Default: `databricks-forge` |
-| `--warehouse "Name"` | Skip the interactive warehouse prompt |
-| `--profile "name"` | Use a specific Databricks CLI profile |
-| `--zero-egress` | Build locally, package as split archive (no npm install on target) |
-| `--full` | Full sync: upload all files. Default is diff sync (only changed files since last deploy) |
-| `--destroy` | Remove the app and clean up workspace files |
-
-### Model endpoints
-
-| Flag | Default |
-|------|---------|
-| `--endpoint "name"` | `databricks-claude-opus-4-7` (premium/reasoning) |
-| `--fast-endpoint "name"` | `databricks-claude-sonnet-4-6` (fast/classification) |
-| `--embedding-endpoint "name"` | `databricks-qwen3-embedding-0-6b` (1024-dim) |
-| `--review-endpoint "name"` | `databricks-gpt-5-4` (SQL quality review) |
-| `--reasoning-endpoint-2 "name"` | `databricks-gemini-3-flash` (secondary reasoning) |
-| `--generation-endpoint "name"` | `databricks-llama-4-maverick` (dedicated generation) |
-| `--sql-endpoint "name"` | *(none)* (optional SQL/codex endpoint) |
-| `--lightweight-endpoint "name"` | `databricks-gemini-3-1-flash-lite` (lightweight/classification) |
-| `--allowed-models "a,b,c"` | Restrict the model pool to only these models |
-| `--skip-probe` | Skip deploy-time model availability probing (use defaults as-is) |
-
-Models are automatically probed at deploy time. If a preferred model is unavailable
-in your region/cloud, the script silently falls back to the best alternative.
-Use `--skip-probe` to bypass this check.
-
-### Lakebase (database)
-
-`./deploy.sh` **auto-provisions** the Lakebase project, branch, default
-`databricks_postgres` database, and `pgvector` extension on first run.
-Re-deploys against the same `--app-name` discover the existing binding
-and reuse it. The deploying user is granted the same Postgres role as
-the app service principal so they can open the SQL Editor against the
-new database immediately.
-
-Flags below are advanced overrides; most operators never set them.
-
-| Flag | Description |
-|------|-------------|
-| `--lakebase-project-id "id"` | Override the auto-provisioned project ID (default: sanitized `--app-name`). |
-| `--lakebase-branch "projects/.../branches/..."` | Bind an existing branch instead of auto-provisioning. Requires `--lakebase-database`. |
-| `--lakebase-database "projects/.../branches/.../databases/..."` | Bind an existing database. Requires `--lakebase-branch`. |
-| `--lakebase-bootstrap-user "email"` | Grant a Databricks user the same Postgres role as the app SP. Defaults to the deploying user when auto-provisioning. Pass `""` to opt out. |
-| `--lakebase-scale-to-zero-seconds N` | Branch inactivity timeout before scale-to-zero (default `300` on auto-provision; `0` disables; minimum `60`). |
-
-### Destroy / cleanup
-
-`./deploy.sh --destroy` removes the Databricks App, then **prompts** about
-deleting the associated Lakebase project. Default is *keep* (data > convenience).
-
-| Flag | Description |
-|------|-------------|
-| `--destroy-database` | Soft-delete the Lakebase project (recoverable). |
-| `--purge-database` | Hard-delete the Lakebase project (immediate, unrecoverable). |
-| `--keep-database` | Skip the prompt, preserve the project (useful in CI). |
-
-### Feature flags
-
-| Flag | Description |
-|------|-------------|
-| `--enable-demo-mode` | Enable Demo Mode for Field Engineering / Sales demos |
-| `--enable-metric-views` | Enable metric view generation |
-| `--enable-fabric` | Enable Fabric / Power BI features |
-
-### Benchmark catalog
-
-| Flag | Description |
-|------|-------------|
-| `--seed-benchmarks` | Seed benchmark catalog from `data/benchmark/*.json` at startup |
-| `--seed-benchmarks-all-industries` | Also generate baseline records for all outcome-map industries |
-| `--seed-benchmark-industries "banking,hls,rcg"` | Seed only these industry IDs |
-| `--benchmark-admins "a@co.com,b@co.com"` | Restrict benchmark management to these emails. If unset, all authenticated users can manage benchmarks. |
-
-### Examples
+For non-interactive cleanup:
 
 ```bash
-# Non-interactive deploy with a specific warehouse
-./deploy.sh --warehouse "My SQL Warehouse"
+# Remove the app and preserve Lakebase data.
+./deploy.sh --destroy --keep-database
 
-# Custom model endpoints
-./deploy.sh --endpoint "my-custom-model" --fast-endpoint "my-fast-model" --review-endpoint "my-review-model"
-
-# Seed benchmarks for banking and healthcare
-./deploy.sh --seed-benchmarks --seed-benchmark-industries "banking,hls"
-
-# Lock benchmark admin to specific users
-./deploy.sh --benchmark-admins "alice@company.com,bob@company.com"
-
-# Full production deploy with benchmarks (Lakebase is auto-provisioned)
-./deploy.sh \
-  --warehouse "Production Warehouse" \
-  --seed-benchmarks-all-industries \
-  --benchmark-admins "data-team@company.com"
-
-# Bind an existing Lakebase project instead of auto-provisioning
-./deploy.sh \
-  --lakebase-branch   "projects/my-existing-project/branches/production" \
-  --lakebase-database "projects/my-existing-project/branches/production/databases/databricks_postgres"
-
-# Latency-critical deploy: disable scale-to-zero so the DB stays warm
-./deploy.sh --lakebase-scale-to-zero-seconds 0
-
-# Deploy a separate demo instance (isolated app + auto-provisioned database)
-./deploy.sh --app-name "forge-demo" --warehouse "Demo Warehouse"
-
-# Deploy multiple instances side by side
-./deploy.sh --app-name "forge-banking-demo" --seed-benchmark-industries "banking"
-./deploy.sh --app-name "forge-hls-demo" --seed-benchmark-industries "hls"
-
-# Remove a named instance (prompts about deleting the Lakebase project)
-./deploy.sh --app-name "forge-demo" --destroy
-
-# Non-interactive destroy: also delete the database (soft delete, recoverable)
-./deploy.sh --app-name "forge-demo" --destroy --destroy-database
-
-# Non-interactive destroy: keep the database (default for CI without TTY)
-./deploy.sh --app-name "forge-demo" --destroy --keep-database
-
-# Zero-egress deploy (no npm install on the platform)
-./deploy.sh --zero-egress --warehouse "Production Warehouse"
+# Remove the app and soft-delete the Lakebase project.
+./deploy.sh --destroy --destroy-database
 ```
 
----
+`--purge-database` permanently deletes the Lakebase project and is
+irreversible. Use it only after independently confirming that no data must be
+retained.
 
-## Local Development (No Serverless Egress)
+## Troubleshooting
 
-For environments that restrict serverless egress or when you want to test
-locally before deploying, Forge can run on your machine pointing at a remote
-Databricks workspace. No PAT or long-lived credentials are stored on disk.
-
-### Prerequisites
-
-- **[Node.js 20+](https://nodejs.org)** -- download the LTS installer for your
-  OS, or use a version manager:
-  ```bash
-  # macOS (Homebrew)
-  brew install node@20
-
-  # Any OS (nvm -- recommended if you manage multiple Node versions)
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
-  nvm install 20
-  ```
-  Verify with `node -v` (should print `v20.x.x` or higher) and `npm -v`.
-
-- **[Databricks CLI](https://docs.databricks.com/dev-tools/cli/install.html)** installed
-- A **SQL Warehouse** (Serverless or Pro) in the target workspace
-
-### Setup
+### Authentication fails
 
 ```bash
-# 1. Clone the repo
-git clone https://github.com/databricks-solutions/databricks-forge.git
-cd databricks-forge
-
-# 2. Install dependencies (downloads all required packages -- takes ~60s first time)
-npm install
-
-# 3. One-time: browser-based OAuth login (opens your browser)
 databricks auth login --host https://your-workspace.cloud.databricks.com
-
-# 4. Provision Lakebase, select warehouse, write .env.local
-bash .deploy_local.sh
-
-# 5. Start dev server
-npm run dev
+databricks current-user me
 ```
 
-Open **http://localhost:3000** in your browser. The first page load takes
-10-15 seconds while Next.js compiles. You should see the Forge dashboard.
+If you use multiple workspaces, pass `--profile` consistently.
 
-The app authenticates via the Databricks CLI's OAuth session -- tokens are
-short-lived and auto-refresh. If your session expires, run
-`databricks auth login` again.
+### No warehouse appears
 
-See [DEPLOYMENT.md](DEPLOYMENT.md) for full architecture details,
-manual setup, and troubleshooting.
-
----
-
-### Manual benchmark seeding (local dev)
+Confirm a Serverless or Pro warehouse exists and that your user can view and
+use it:
 
 ```bash
-# Seed curated packs from data/benchmark/*.json
-npm run seed:benchmarks
-
-# Seed all industries (generate missing baseline records)
-npm run seed:benchmarks:all-industries
-
-# Seed a specific set of industries
-FORGE_SEED_BENCHMARK_INDUSTRIES="banking,hls" npm run seed:benchmarks:industries
+databricks warehouses list
 ```
 
-For local development setup and architecture details, see the [Deployment Guide](DEPLOYMENT.md).
+### Lakebase creation is denied
+
+Your user must be able to create Lakebase Autoscaling projects. If Lakebase is
+not available in the workspace region, bind an existing supported project with
+`--lakebase-branch` and `--lakebase-database`, or use the documented local
+development path.
+
+### A preferred model is unavailable
+
+The deploy script probes endpoints and falls back by role. Specify a model
+explicitly only when it is available in your cloud and region:
+
+```bash
+./deploy.sh --endpoint "available-model-name"
+```
+
+### The app starts but health is degraded
+
+Inspect:
+
+```bash
+databricks apps logs databricks-forge --follow
+databricks warehouses get <warehouse-id>
+```
+
+Check warehouse access, Lakebase startup, resource bindings, and model endpoint
+availability in the logs.
+
+### Local development
+
+For local development or zero-egress environments, follow
+[Local Development](DEPLOYMENT.md#local-development). The setup uses your
+Databricks CLI OAuth session and writes `.env.local`; do not commit that file.
+
+## Next steps
+
+- Follow the [User Guide](USER_GUIDE.md).
+- Understand the [Architecture](ARCHITECTURE.md).
+- Review the
+  [Security Architecture](https://github.com/databricks-solutions/databricks-forge/blob/main/SECURITY_ARCHITECTURE.md).
+- Learn how the [engines](ENGINES.md) work.
+- Read
+  [Support](https://github.com/databricks-solutions/databricks-forge/blob/main/SUPPORT.md)
+  before opening an issue.

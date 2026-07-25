@@ -35,7 +35,7 @@ Result: CommentEngineResult { tableComments, columnComments, schemaContext, cons
 Delegates to `buildSchemaContext()` from `lib/metadata/context-builder.ts`
 (or uses a pre-built `deps.schemaContext` for DI). Produces a fully classified,
 relationship-aware, lineage-enriched view of the schema. See
-[AGENTS.md](../AGENTS.md#shared-metadata-context-layer) for the metadata layer
+[AGENTS.md](https://github.com/databricks-solutions/databricks-forge/blob/main/AGENTS.md#shared-metadata-context-layer) for the metadata layer
 documentation.
 
 ### Phase 2: Table Comments

@@ -6,12 +6,18 @@ The supported deployment path is the interactive deploy script. It discovers
 your resources, creates the app, uploads code, and deploys -- all in one
 command with a single prompt (which SQL Warehouse to use).
 
+Model and Lakebase availability varies by Databricks cloud and region. Forge is
+a community-maintained accelerator with best-effort
+[support](https://github.com/databricks-solutions/databricks-forge/blob/main/SUPPORT.md),
+not an officially supported Databricks product.
+
 ```bash
 ./deploy.sh
 ```
 
-Models default to `databricks-claude-sonnet-4-6` for both premium and fast
-endpoints. Override with flags if needed:
+Models default to `databricks-claude-opus-4-7` for premium tasks and
+`databricks-claude-sonnet-4-6` for fast tasks. The script probes availability
+and selects a fallback when needed. Override with flags if needed:
 
 ```bash
 ./deploy.sh --warehouse "My Warehouse" --endpoint "my-model" --fast-endpoint "my-fast-model"
@@ -48,7 +54,8 @@ Non-interactive cleanup:
 ./deploy.sh --destroy --purge-database    # hard-delete (immediate, unrecoverable)
 ```
 
-See [QUICKSTART.md](../QUICKSTART.md) for the full three-step setup.
+See the [Quick Start](quickstart.md) for the full customer setup and
+verification flow.
 
 ---
 
@@ -359,7 +366,7 @@ Local development is designed for two scenarios:
 
 ### Prerequisites
 
-- **[Node.js 20+](https://nodejs.org)** and npm -- if you've never installed
+- **[Node.js 20.9+](https://nodejs.org)** and npm 10+ -- if you've never installed
   Node, download the LTS installer from https://nodejs.org, or:
   ```bash
   # macOS

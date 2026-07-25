@@ -43,7 +43,21 @@ nav:
       - Business Value: BUSINESS_VALUE.md
       - Estate Intelligence: estate-analysis.md
       - Knowledge Base: SKILLS_KNOWLEDGE_BASE.md
+  - Support: https://github.com/databricks-solutions/databricks-forge/blob/main/SUPPORT.md
+  - Security: https://github.com/databricks-solutions/databricks-forge/blob/main/SECURITY.md
+  - Contributing: https://github.com/databricks-solutions/databricks-forge/blob/main/CONTRIBUTING.md
   - Release Notes:
+      - 2026-07-21: release-notes/RELEASE_NOTES_2026_07_21.md
+      - 2026-05-26: release-notes/RELEASE_NOTES_2026_05_26.md
+      - 2026-05-11: release-notes/RELEASE_NOTES_2026_05_11.md
+      - 2026-05-02: release-notes/RELEASE_NOTES_2026_05_02.md
+      - 2026-04-30: release-notes/RELEASE_NOTES_2026_04_30.md
+      - 2026-04-16: release-notes/RELEASE_NOTES_2026_04_16.md
+      - 2026-03-31: release-notes/RELEASE_NOTES_2026_03_31.md
+      - 2026-03-19: release-notes/RELEASE_NOTES_2026_03_19.md
+      - 2026-03-18: release-notes/RELEASE_NOTES_2026_03_18.md
+      - 2026-03-16: release-notes/RELEASE_NOTES_2026_03_16.md
+      - 2026-03-15: release-notes/RELEASE_NOTES_2026_03_15.md
       - 2026-03-14: release-notes/RELEASE_NOTES_2026_03_14.md
       - 2026-03-13: release-notes/RELEASE_NOTES_2026_03_13.md
       - 2026-03-12: release-notes/RELEASE_NOTES_2026_03_12.md

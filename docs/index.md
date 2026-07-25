@@ -19,7 +19,8 @@ In one flow, your team can discover high-impact use cases, quantify their busine
 - **Immediate activation:** Convert recommendations into runnable Genie Spaces, AI/BI dashboards, SQL notebooks, and metric views without handoff delays.
 - **Executive clarity:** Give leaders board-ready findings, recommendations, and risk callouts backed by real data -- in the format they expect.
 - **Continuous tracking:** Follow every opportunity from discovery through delivery to measured value with built-in lifecycle management.
-- **Trusted by design:** Processing stays inside your Databricks workspace. Forge reads metadata only -- never your row-level data.
+- **Trusted by design:** Metadata is the default input. Optional row sampling is
+  explicit, limited, held in memory, and never persisted.
 
 ---
 
@@ -302,4 +303,4 @@ If your organisation wants faster time to value from data and AI investments, Fo
 
 ---
 
-**Disclaimer** -- Databricks Forge is provided subject to the [Databricks License](https://github.com/databricks-solutions/databricks-forge/blob/main/LICENSE). It is NOT an official Databricks product, feature, or service. It is provided "as-is" without warranty of any kind. Databricks and its contributors accept no liability for damages arising from the use of this software. Use of the Licensed Materials requires an active Databricks Services agreement. See [NOTICE](https://github.com/databricks-solutions/databricks-forge/blob/main/NOTICE) for support policy and [SECURITY](https://github.com/databricks-solutions/databricks-forge/blob/main/SECURITY.md) for vulnerability reporting.
+**Disclaimer** -- Databricks Forge is provided subject to the [Databricks License](https://github.com/databricks-solutions/databricks-forge/blob/main/LICENSE). It is NOT an official Databricks product, feature, or service. It is provided "as-is" without warranty of any kind. Databricks and its contributors accept no liability for damages arising from the use of this software. Use of the Licensed Materials requires an active Databricks Services agreement. See [SUPPORT](https://github.com/databricks-solutions/databricks-forge/blob/main/SUPPORT.md) for the community support model, [NOTICE](https://github.com/databricks-solutions/databricks-forge/blob/main/NOTICE) for legal notices, and [SECURITY](https://github.com/databricks-solutions/databricks-forge/blob/main/SECURITY.md) for vulnerability reporting.
