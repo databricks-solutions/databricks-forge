@@ -1,0 +1,1903 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Turn Unity Catalog metadata into business value in days, not quarters">
+      
+      
+      
+        <link rel="canonical" href="https://databricks-solutions.github.io/databricks-forge/release-notes/RELEASE_NOTES_2026_05_02.html">
+      
+      
+        <link rel="prev" href="RELEASE_NOTES_2026_05_11.html">
+      
+      
+        <link rel="next" href="RELEASE_NOTES_2026_04_30.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../images/databricks-icon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>2026-05-02 - Databricks Forge</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#release-notes-2026-05-02" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Databricks Forge" class="md-header__button md-logo" aria-label="Databricks Forge" data-md-component="logo">
+      
+  <img src="../images/databricks-icon.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Databricks Forge
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2026-05-02
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/databricks-solutions/databricks-forge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    databricks-solutions/databricks-forge
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Databricks Forge" class="md-nav__button md-logo" aria-label="Databricks Forge" data-md-component="logo">
+      
+  <img src="../images/databricks-icon.svg" alt="logo">
+
+    </a>
+    Databricks Forge
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/databricks-solutions/databricks-forge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    databricks-solutions/databricks-forge
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DEPLOYMENT.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../USER_GUIDE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Features
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ask-forge.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ask Forge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BUSINESS_VALUE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Value
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../estate-analysis.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estate Intelligence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SKILLS_KNOWLEDGE_BASE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Knowledge Base
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/SUPPORT.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/SECURITY.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/CONTRIBUTING.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release Notes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Release Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_07_21.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-07-21
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_05_26.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-26
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_05_11.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-02
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="RELEASE_NOTES_2026_05_02.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-02
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#v100-user-isolation-team-shared-refactor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v1.0.0 -- User Isolation &amp; Team-Shared Refactor
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.0.0 -- User Isolation &amp; Team-Shared Refactor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        New Features
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="New Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#per-user-isolation-across-every-surface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Per-user isolation across every surface
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#team-shared-sharing-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Team-shared sharing model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vector-search-isolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vector search isolation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#single-mandatory-auth-seam" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Single mandatory auth seam
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#per-user-fairness-quotas-and-queueing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Per-user fairness, quotas, and queueing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#queue-load-visibility-phase-5c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Queue &amp; load visibility (Phase 5c)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#improvements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Improvements
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#breaking-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Breaking Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#new-deploy-flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        New Deploy Flags
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#new-tables-columns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        New Tables / Columns
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#new-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        New Files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Coverage
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#all-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        All Commits
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_04_30.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-04-30
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_04_16.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-04-16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_31.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-31
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_19.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-19
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_18.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-18
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_16.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_15.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-15
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_14.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-14
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_13.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-13
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_12.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-12
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_11.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_10.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_09.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-09
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_07.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-07
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_06.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-06
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_05.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-05
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_04.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-04
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026-02-27.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-02-27
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026-02-25.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-02-25
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="release-notes-2026-05-02">Release Notes -- 2026-05-02<a class="headerlink" href="#release-notes-2026-05-02" title="Permanent link">&para;</a></h1>
+<p><strong>Databricks Forge v0.40.0 → v1.0.0</strong></p>
+<blockquote>
+<p><strong>BREAKING -- DATA WIPE REQUIRED.</strong> This release introduces true per-user
+isolation across the entire system. The schema migration adds a NOT NULL
+<code>owner_email</code> column to every root table, so all existing rows must be
+wiped before deploy. There is no in-place upgrade path. Run the factory
+reset (Settings -&gt; Factory Reset, or the <code>deleteAllData()</code> startup hook)
+before flipping <code>FORGE_USER_ISOLATION=true</code>. Customers should export any
+wanted artefacts (Excel/PDF/PPTX exports, deployed Genie spaces are kept
+in Databricks and survive the wipe) prior to upgrading.</p>
+</blockquote>
+<hr />
+<h2 id="v100-user-isolation-team-shared-refactor">v1.0.0 -- User Isolation &amp; Team-Shared Refactor<a class="headerlink" href="#v100-user-isolation-team-shared-refactor" title="Permanent link">&para;</a></h2>
+<h3 id="new-features">New Features<a class="headerlink" href="#new-features" title="Permanent link">&para;</a></h3>
+<h4 id="per-user-isolation-across-every-surface">Per-user isolation across every surface<a class="headerlink" href="#per-user-isolation-across-every-surface" title="Permanent link">&para;</a></h4>
+<p>Forge moves from a single-tenant-shared Lakebase model to true per-user
+isolation. Every root entity (<code>ForgeRun</code>, <code>ForgeEnvironmentScan</code>,
+<code>ForgeGenieSpace</code>, <code>ForgeMetadataGenieSpace</code>, <code>ForgeSpaceBenchmarkRun</code>,
+<code>ForgeSpaceHealthScore</code>, <code>ForgeDemoSession</code>, <code>ForgeCommentJob</code>,
+<code>ForgeConnection</code>, <code>ForgeFabricScan</code>, <code>ForgeFabricMigration</code>,
+<code>ForgeStrategyDocument</code>, <code>ForgeDocument</code>, <code>ForgeQualityMetric</code>) carries an
+<code>ownerEmail</code> column. List, detail, update, delete, and export paths are
+scoped through a single visibility rule:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>WHERE owner_email = $user
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>   OR id IN (SELECT resource_id FROM forge_resource_acl
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>             WHERE resource_type = $type AND viewer_email = $user)
+</code></pre></div>
+<p>Outcome maps, benchmarks, prompt templates, and metadata cache stay global
+by design.</p>
+<h4 id="team-shared-sharing-model">Team-shared sharing model<a class="headerlink" href="#team-shared-sharing-model" title="Permanent link">&para;</a></h4>
+<p>A new <code>ForgeResourceAcl</code> table holds opt-in per-resource permissions
+(<code>view</code> / <code>edit</code>). Owners share a run, scan, Genie space, demo session,
+comment job, strategy document, connection, or document with another
+teammate via a reusable <code>&lt;ShareDialog&gt;</code> component (shadcn). The dialog is
+backed by <code>POST/DELETE/GET /api/share</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Permission</th>
+<th>Read</th>
+<th>Re-run</th>
+<th>Edit</th>
+<th>Delete</th>
+<th>Re-share</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>view</code></td>
+<td>yes</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+</tr>
+<tr>
+<td><code>edit</code></td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
+<td>no</td>
+</tr>
+<tr>
+<td><code>owner</code></td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<p>Delete and re-share are owner-only by design.</p>
+<h4 id="vector-search-isolation">Vector search isolation<a class="headerlink" href="#vector-search-isolation" title="Permanent link">&para;</a></h4>
+<p><code>searchByVector()</code> and <code>retrieveContext()</code> now require <code>userEmail</code> and an
+explicit kind-to-scope mapping (<code>lib/embeddings/kind-scope.ts</code>). Readers
+resolve accessible parent ids via <code>listAccessibleIds(...)</code> and pass them
+through; writers stay unchanged. RAG, semantic search, run suggestions,
+and Ask Forge no longer leak embeddings across user boundaries.</p>
+<h4 id="single-mandatory-auth-seam">Single mandatory auth seam<a class="headerlink" href="#single-mandatory-auth-seam" title="Permanent link">&para;</a></h4>
+<p>A new <code>lib/auth/route-user.ts</code> exports <code>requireUser()</code> and <code>ForgeUser</code>.
+Next root middleware (<code>middleware.ts</code>) enforces 401 on every <code>/api/**</code> route
+that lacks identity. Server Components call <code>requireUser()</code> directly at the
+top of each render. Local dev supports a request-scoped <code>?as_user=</code> query
+param (gated to <code>NODE_ENV !== "production"</code>) so a single tab can swap
+identities without restarting the server.</p>
+<h4 id="per-user-fairness-quotas-and-queueing">Per-user fairness, quotas, and queueing<a class="headerlink" href="#per-user-fairness-quotas-and-queueing" title="Permanent link">&para;</a></h4>
+<p>Per-user active-resource caps (configurable via env, default <code>1</code> for
+pipelines / scans / demo engines, <code>2</code> for Genie deploys) are enforced at
+every fire-and-forget kickoff. <code>ForgeRun.status</code> adds a new <code>queued</code>
+state. When a user exceeds their cap, the run is enqueued instead of
+rejected; a process-local scheduler (<code>lib/pipeline/scheduler.ts</code>) ticks
+every 5s plus on-demand and atomically promotes the oldest queued run to
+<code>pending</code> when free capacity opens up. Cancel-from-queued is supported.</p>
+<p>The pool rate limiter (<code>lib/dbx/rate-limiter.ts</code>) now keeps a per-user
+inflight tally per endpoint; the foundation for max-min fair-share is in
+place. <code>ForgeUsage</code> records per-user daily counters (runs, LLM calls,
+embed tokens) for future chargeback.</p>
+<h4 id="queue-load-visibility-phase-5c">Queue &amp; load visibility (Phase 5c)<a class="headerlink" href="#queue-load-visibility-phase-5c" title="Permanent link">&para;</a></h4>
+<ul>
+<li>A new <code>&lt;SystemLoadBanner /&gt;</code> (visible only when the system is busy) reads
+  <code>GET /api/system-load</code> every ~8s and surfaces total active runs,
+  per-endpoint LLM in-flight/queued counts, and 429 throttle states.
+  Anonymous -- never exposes other users' identities.</li>
+<li>The runs list and run detail page show a <code>Queued</code> badge with hover
+  position and a cancel-from-queue button.</li>
+<li>Activity log captures <code>pipeline_queued</code>, <code>pipeline_promoted</code>, and
+  <code>endpoint_throttled</code> events.</li>
+</ul>
+<h3 id="improvements">Improvements<a class="headerlink" href="#improvements" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Owner badges + "My / Shared" filters</strong> -- every list view shows a
+  small owner chip and a <code>Shared</code> icon when the current viewer is not the
+  owner. Run, scan, Genie space, demo, and comment-job lists ship with a
+  <code>My / Shared with me / All visible</code> selector.</li>
+<li><strong>Background job context</strong> -- every fire-and-forget engine entrypoint
+  now requires a <code>user: ForgeUser</code> field. The OBO token is captured at the
+  request boundary and threaded through the entire async closure
+  (mandatory for the Genie Conversation API; rule generalised to all
+  fire-and-forget routes -- see <code>.cursor/rules/genie-obo-auth.mdc</code>).</li>
+<li><strong><code>ForgeAssistantLog.userId</code> is now required</strong> -- the feedback endpoint
+  validates ownership before recording thumbs up/down.</li>
+<li><strong>Activity log scoped to caller</strong> -- <code>getRecentActivity()</code> filters by
+  <code>userEmail</code>; the per-user feed shows their own queue events and shares.</li>
+<li><strong>Stats are per-user</strong> -- the dashboard and <code>/api/stats</code> count only the
+  caller's resources.</li>
+<li><strong><code>FORGE_USER_ISOLATION</code> flag</strong> -- a new env-var feature flag controls
+  the visibility of the sharing dialog and per-user quota enforcement.
+  Data-layer filtering by <code>ownerEmail</code> is unconditional and not gated by
+  the flag.</li>
+<li><strong>Factory reset coverage</strong> -- <code>deleteAllData()</code> now wipes
+  <code>ForgeFabricMigration</code>, <code>ForgeConnection</code>, <code>ForgeQualityMetric</code>,
+  <code>ForgeSpaceBenchmarkRun</code>, <code>ForgeSpaceHealthScore</code>,
+  <code>ForgeHealthCheckConfig</code>, <code>ForgeResourceAcl</code>, and <code>ForgeUsage</code> in
+  addition to the existing tables.</li>
+</ul>
+<h3 id="breaking-changes">Breaking Changes<a class="headerlink" href="#breaking-changes" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Schema migration is forward-only.</strong> <code>owner_email</code> is <code>NOT NULL</code> on
+  every root table. The migration runs on first boot post-deploy via
+  <code>ensureMigrated()</code> and assumes the database has been wiped.
+  <code>FORGE_USER_ISOLATION=false</code> does <strong>not</strong> restore pre-isolation
+  behaviour because the data layer always filters by <code>ownerEmail</code>. Real
+  rollback requires a Lakebase point-in-time restore.</li>
+<li><strong>Local dev requires <code>FORGE_LOCAL_USER_EMAIL</code>.</strong> <code>.deploy_local.sh</code>
+  sets it from <code>$USER_EMAIL</code> automatically; manual local runs must export
+  the variable themselves.</li>
+<li><strong>Direct-ID API access checks ownership.</strong> <code>getRunById</code>, update, delete,
+  export, and per-resource action routes return 403 for non-owners
+  (resolved via <code>lib/auth/route-guards.ts</code>).</li>
+<li><strong>Wipe does not delete external Databricks resources.</strong> Demo Mode UC
+  schemas and deployed Genie spaces are not Lakebase rows. Demo sessions
+  are iterated through <code>cleanupDemoSession()</code> before wipe; Genie spaces
+  remain in Databricks and re-attach on next sync.</li>
+</ul>
+<h3 id="new-deploy-flags">New Deploy Flags<a class="headerlink" href="#new-deploy-flags" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>./deploy.sh<span class="w"> </span>--disable-user-isolation<span class="w">                        </span><span class="c1"># Run with isolation flag off (data layer still scopes)</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>./deploy.sh<span class="w"> </span>--max-pipeline-runs-per-user<span class="w"> </span><span class="m">2</span><span class="w">                  </span><span class="c1"># Default 1</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>./deploy.sh<span class="w"> </span>--max-scans-per-user<span class="w"> </span><span class="m">2</span><span class="w">                          </span><span class="c1"># Default 1</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>./deploy.sh<span class="w"> </span>--max-genie-deploys-per-user<span class="w"> </span><span class="m">4</span><span class="w">                  </span><span class="c1"># Default 2</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>./deploy.sh<span class="w"> </span>--max-demo-engines-per-user<span class="w"> </span><span class="m">2</span><span class="w">                   </span><span class="c1"># Default 1</span>
+</code></pre></div>
+<h3 id="new-tables-columns">New Tables / Columns<a class="headerlink" href="#new-tables-columns" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>forge_resource_acl</code> -- per-resource sharing permissions</li>
+<li><code>forge_usage</code> -- per-user daily counters</li>
+<li><code>owner_email</code> on every root table</li>
+<li><code>queued</code> value added to the <code>ForgeRun.status</code> value set</li>
+</ul>
+<h3 id="new-files">New Files<a class="headerlink" href="#new-files" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>lib/auth/route-user.ts</code>, <code>lib/auth/route-guards.ts</code></li>
+<li><code>lib/lakebase/acl.ts</code>, <code>lib/lakebase/usage.ts</code></li>
+<li><code>lib/embeddings/kind-scope.ts</code></li>
+<li><code>lib/pipeline/scheduler.ts</code></li>
+<li><code>lib/dbx/system-load.ts</code></li>
+<li><code>lib/config/isolation-flag.ts</code></li>
+<li><code>lib/quotas.ts</code></li>
+<li><code>app/api/share/route.ts</code></li>
+<li><code>app/api/system-load/route.ts</code></li>
+<li><code>app/api/me/route.ts</code></li>
+<li><code>components/share/share-dialog.tsx</code></li>
+<li><code>components/system-load-banner.tsx</code></li>
+<li><code>lib/hooks/use-current-user.ts</code></li>
+<li><code>middleware.ts</code></li>
+</ul>
+<h3 id="test-coverage">Test Coverage<a class="headerlink" href="#test-coverage" title="Permanent link">&para;</a></h3>
+<ul>
+<li>919 tests passing across unit + integration suites.</li>
+<li>New: <code>__tests__/auth/require-user.test.ts</code>,
+  <code>__tests__/lakebase/acl.test.ts</code>,
+  <code>__tests__/embeddings/kind-scope.test.ts</code>,
+  <code>__tests__/rate-limiter/fair-share.test.ts</code>,
+  <code>__tests__/pipeline/scheduler.test.ts</code>.</li>
+</ul>
+<hr />
+<h2 id="all-commits">All Commits<a class="headerlink" href="#all-commits" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Hash</th>
+<th>Summary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(this release)</td>
+<td>feat: user isolation and team-shared refactor (Phases 1-8)</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "toc.integrate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

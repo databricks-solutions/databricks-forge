@@ -1,0 +1,1777 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Turn Unity Catalog metadata into business value in days, not quarters">
+      
+      
+      
+        <link rel="canonical" href="https://databricks-solutions.github.io/databricks-forge/ESTATE_INTELLIGENCE_DESIGN.html">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="images/databricks-icon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>Forge as a Data Estate Intelligence Platform — Design Doc - Databricks Forge</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#forge-as-a-data-estate-intelligence-platform-design-doc" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="Databricks Forge" class="md-header__button md-logo" aria-label="Databricks Forge" data-md-component="logo">
+      
+  <img src="images/databricks-icon.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Databricks Forge
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Forge as a Data Estate Intelligence Platform — Design Doc
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/databricks-solutions/databricks-forge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    databricks-solutions/databricks-forge
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Databricks Forge" class="md-nav__button md-logo" aria-label="Databricks Forge" data-md-component="logo">
+      
+  <img src="images/databricks-icon.svg" alt="logo">
+
+    </a>
+    Databricks Forge
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/databricks-solutions/databricks-forge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    databricks-solutions/databricks-forge
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="quickstart.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="DEPLOYMENT.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="USER_GUIDE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Features
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ask-forge.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ask Forge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="BUSINESS_VALUE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Value
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="estate-analysis.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estate Intelligence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="SKILLS_KNOWLEDGE_BASE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Knowledge Base
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/SUPPORT.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/SECURITY.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/CONTRIBUTING.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release Notes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Release Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_07_21.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-07-21
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_05_26.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-26
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_05_11.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_05_02.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-02
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_04_30.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-04-30
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_04_16.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-04-16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_31.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-31
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_19.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-19
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_18.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-18
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_16.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_15.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-15
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_14.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-14
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_13.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-13
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_12.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-12
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_11.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_10.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_09.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-09
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_07.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-07
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_06.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-06
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_05.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-05
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_04.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-04
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026-02-27.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-02-27
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026-02-25.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-02-25
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="forge-as-a-data-estate-intelligence-platform-design-doc">Forge as a Data Estate Intelligence Platform — Design Doc<a class="headerlink" href="#forge-as-a-data-estate-intelligence-platform-design-doc" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>Status: Living design doc for the Estate Intelligence rebuild. This is the
+gate before coding (per the build prompt in
+<code>docs/prompts/ESTATE_SCAN_CONSULTANT_GRADE_REBUILD.md</code> §6.1). It resolves the
+§11 open decisions, defines the data model and API surface, the federation /
+provenance model, the org-admin security model, the component tree, and the
+V1 / V2 migration plan.</p>
+</blockquote>
+<h2 id="1-the-reframe">1. The reframe<a class="headerlink" href="#1-the-reframe" title="Permanent link">&para;</a></h2>
+<p>Forge is re-founded as a <strong>Data Estate Intelligence platform</strong>. There is <strong>one
+persistent, living world model of the customer's data estate at the center</strong>,
+and every engine becomes an <strong>action on that model</strong> rather than a standalone
+pipeline. The estate is the noun; engines are verbs.</p>
+<p>The new front door is the <strong>State of the Nation</strong> — a management-consultant-grade
+diagnosis of the estate. Discovery does not die; it becomes <strong>"Opportunities"</strong>,
+invoked <em>from</em> the estate with full context.</p>
+<p>Operating loop (the spine):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>UNDERSTAND -&gt; DIAGNOSE -&gt; PRIORITISE -&gt; ACT -&gt; MEASURE -&gt; (re-scan) UNDERSTAND
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  scan        state of    uplift +     engines  re-scan,
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>              the nation   opportunity  as next- track drift
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>                           backlog      best actions
+</code></pre></div>
+<p>Three altitudes (one continuous drill-down):</p>
+<ul>
+<li><strong>Portfolio</strong> (CDO/CIO, V2) — across all teams/workspaces.</li>
+<li><strong>Estate</strong> (data lead/architect, V1) — one estate (one or many scopes rolled up).</li>
+<li><strong>Asset</strong> (engineer/steward, V1) — a table / data product / column.</li>
+</ul>
+<p>Drill spine: Portfolio -&gt; Estate -&gt; Domain -&gt; Data Product -&gt; Table -&gt; Column.</p>
+<h2 id="2-resolved-decisions-build-prompt-11">2. Resolved decisions (build prompt §11)<a class="headerlink" href="#2-resolved-decisions-build-prompt-11" title="Permanent link">&para;</a></h2>
+<h3 id="21-federation-approach-111-uc-system-tables-single-host">2.1 Federation approach (§11.1) — UC / system-tables, single host<a class="headerlink" href="#21-federation-approach-111-uc-system-tables-single-host" title="Permanent link">&para;</a></h3>
+<p>Customer reality (confirmed): everything is in <strong>one Unity Catalog metastore</strong>,
+and Forge runs from a workspace that has <strong>cross-workspace read access</strong> to all
+data. Therefore federation is <strong>provenance-aware roll-up within one host</strong>, not a
+cross-host export/import pipeline.</p>
+<ul>
+<li>No artifact import. The hub already sees the whole metastore through one
+  <code>DATABRICKS_HOST</code> / one OBO token / one warehouse.</li>
+<li>We capture <strong><code>workspaceId</code> + <code>teamLabel</code> provenance</strong> per scope and per scan so
+  the portfolio can attribute estates to teams/workspaces.</li>
+<li>Workspace/team attribution is derived from the scope's catalog grouping and,
+  where available, <code>system.access.*</code>. Provenance is set at scope-creation time
+  (explicit <code>teamLabel</code>) and stamped onto the resulting scan.</li>
+<li>This is <strong>designed in V1</strong> (columns + plumbing) and <strong>surfaced in V2</strong> (the
+  portfolio aggregator).</li>
+</ul>
+<p>Rejected alternatives: (a) hub-and-spoke export/import — unnecessary given
+cross-workspace UC access, adds an artifact schema + import surface for no gain;
+(c) a <code>databricks</code> connector in <code>lib/connections</code> — only needed if Forge could
+<em>not</em> read across workspaces, which is not the case here. The connector
+abstraction is left untouched for the genuinely external (Fabric) case.</p>
+<h3 id="22-scopes-data-model-112-repurpose-forgeestateprogram-as-the-estate">2.2 Scopes data model (§11.2) — repurpose <code>ForgeEstateProgram</code> as the Estate<a class="headerlink" href="#22-scopes-data-model-112-repurpose-forgeestateprogram-as-the-estate" title="Permanent link">&para;</a></h3>
+<p>Lowest-risk migration. Keep the proven sequencing mechanics
+(<code>claimNextPlannedScope</code>, deferred-queue chaining, one scope in flight,
+<code>getAggregateEstateView(programId)</code>), and <strong>rebrand "Program" to "Estate" in the
+API/UI/types layer</strong> without renaming the Prisma model.</p>
+<ul>
+<li><code>ForgeEstateProgram</code> is the <strong>Estate</strong> (the unit the user thinks about).</li>
+<li><code>ForgeEstateProgramScope</code> is an <strong>Estate Scope</strong> (an ordered scan target).</li>
+<li><code>ForgeEnvironmentScan</code> remains the per-scope unit-of-work; <code>programId</code> is the
+  estate linkage; scans roll up via <code>getAggregateEstateView</code>.</li>
+<li>A standalone single-target scan is an <strong>Estate-of-one</strong> (a length-1 sequence).</li>
+<li>Rejected: inverting to <code>ForgeEstateScanScope</code> as a child of
+  <code>ForgeEnvironmentScan</code> (one scan owning many scopes). That is a destructive
+  re-keying of every child table and the aggregate path; higher risk for no
+  product benefit.</li>
+</ul>
+<h3 id="23-org-admin-portfolio-security-model-113-audited-fourth-tier">2.3 Org-admin / portfolio security model (§11.3) — audited fourth tier<a class="headerlink" href="#23-org-admin-portfolio-security-model-113-audited-fourth-tier" title="Permanent link">&para;</a></h3>
+<p>The portfolio is the <strong>only</strong> exception to per-owner isolation. It is modeled on
+the existing <strong>WAF qualitative pattern</strong> (a deliberate workspace-wide read
+surface), not on <code>FORGE_USER_ISOLATION=false</code> (which never relaxes data-layer
+filters) and not on N×M ACL shares.</p>
+<ul>
+<li><strong>Gate 1 — feature flag:</strong> <code>FORGE_PORTFOLIO_ENABLED</code> (default off). When off,
+  the portfolio routes 404 and the nav item is hidden.</li>
+<li><strong>Gate 2 — role allowlist:</strong> <code>FORGE_ORG_ADMIN_EMAILS</code> (comma-separated). A
+  caller must be on the allowlist to read the portfolio. Implemented as
+  <code>isOrgAdmin(email)</code> in <code>lib/config/portfolio-flag.ts</code>. (Future: promote to a
+  <code>ForgeAppConfig</code>-backed role list editable in Settings, same pattern as
+  <code>demoModeEnabled</code>.)</li>
+<li><strong>Read-only:</strong> portfolio routes never mutate. The cross-owner aggregator
+  (<code>lib/lakebase/portfolio-estate.ts</code>) intentionally omits the <code>ownerEmail</code>
+  filter and is reachable <strong>only</strong> through the gated routes.</li>
+<li><strong>Audited:</strong> every portfolio read/export logs <code>portfolio_viewed</code> /
+  <code>portfolio_exported</code> via <code>logActivity</code> with the admin email.</li>
+<li><strong>Documented:</strong> this section is the security model of record. Per-owner
+  isolation remains the default for every other surface.</li>
+</ul>
+<h3 id="24-workload-inventory-breadth-114-v1-set">2.4 Workload inventory breadth (§11.4) — v1 set<a class="headerlink" href="#24-workload-inventory-breadth-114-v1-set" title="Permanent link">&para;</a></h3>
+<p>Inventory in v1: <strong>dashboards, Genie spaces, UC models, UC functions</strong> (reuse
+<code>discoverExistingAssets</code> + the UC model/function inventory already in
+<code>standalone-scan.ts</code>). Deferred to v2: jobs, pipelines, apps (need additional
+APIs/scopes and are lower-signal for the diagnosis).</p>
+<h3 id="25-cross-team-entity-resolution-115-embeddings-based">2.5 Cross-team entity resolution (§11.5) — embeddings-based<a class="headerlink" href="#25-cross-team-entity-resolution-115-embeddings-based" title="Permanent link">&para;</a></h3>
+<p>Run as a <strong>portfolio synthesis pass</strong> (V2). Resolve duplicated/conflicting
+canonical entities across estates using the existing pgvector store over
+<code>canonical_entity</code> insight embeddings, with a deterministic name-normalisation
+fallback. Output: clusters of "the same entity built N ways" with per-cluster
+team provenance and a recommended canonical owner.</p>
+<h3 id="26-naming-ia-116">2.6 Naming / IA (§11.6)<a class="headerlink" href="#26-naming-ia-116" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Spine nouns: <strong>Estate</strong> (single), <strong>Portfolio</strong> (cross-team).</li>
+<li>Landing: <strong>State of the Nation</strong>.</li>
+<li>Discovery: <strong>Opportunities</strong>.</li>
+<li>Engine CTAs: <strong>Actions</strong>.</li>
+<li>Remove <strong>Estate Programs</strong> from the nav; <code>app/environment/programs/**</code> is
+  retired once parity is reached.</li>
+</ul>
+<h3 id="27-phasing-117">2.7 Phasing (§11.7)<a class="headerlink" href="#27-phasing-117" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>V1</strong> — single-estate consultant-grade, shipped fully tested: data model +
+  migration, correctness bugs, persisted world model, consultant synthesis layer
+  (evidence + exec brief + estate data-gap + cost + WAF posture), sequenced runs
+  with pause/cancel/resume, engines-as-actions, the Estate State-of-the-Nation
+  UX + full drill-down, API consolidation, exports, i18n, tests.</li>
+<li><strong>V2</strong> — UC-federated portfolio: org-admin tier, enterprise inventory,
+  cross-estate fragmentation, federated opportunities, org uplift plan, the
+  Portfolio landing + board pack. (There is no "team" dimension — Forge has no
+  defined team entity, so the portfolio rolls up by estate, not by team.)</li>
+</ul>
+<p>The V1 data model carries provenance so V2 does not require a second migration.</p>
+<h2 id="3-data-model">3. Data model<a class="headerlink" href="#3-data-model" title="Permanent link">&para;</a></h2>
+<p>Forward-only Prisma migrations; <code>npx prisma generate</code> after each change. New root
+models carry <code>ownerEmail String?</code> + <code>@@index([ownerEmail])</code>. All new tables are
+added to <code>deleteAllData()</code> in <code>lib/lakebase/reset.ts</code>.</p>
+<h3 id="31-changes-to-existing-models">3.1 Changes to existing models<a class="headerlink" href="#31-changes-to-existing-models" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>ForgeEnvironmentScan</code></li>
+<li>Persist <code>excludedScope</code> / <code>exclusionPatterns</code> (columns exist; never written —
+    bug 6). Write them in <code>saveEnvironmentScan</code>.</li>
+<li>Add provenance: <code>workspaceId String?</code>, <code>teamLabel String?</code>.</li>
+<li><code>ForgeTableDetail</code></li>
+<li>Add <code>dataAssetId String?</code>, <code>dataAssetName String?</code> (industry asset mapping at
+    scan scope; required for estate data-gap).</li>
+<li>Add <code>tierReasoning String?</code> (today the LLM tier reasoning is discarded).</li>
+<li><strong>Fix <code>governanceScore</code></strong> to store <code>GovernanceGap.overallScore</code> (bug 1), not
+    the rule-based health score.</li>
+<li><code>ForgeEstateProgram</code> (the Estate)</li>
+<li>Add <code>subVertical String?</code> (industry sub-vertical threading).</li>
+<li><code>ForgeEstateProgramScope</code> (the Estate Scope)</li>
+<li>Extend status set with <code>paused</code> and <code>cancelled</code>.</li>
+<li>Add provenance <code>workspaceId String?</code>, <code>teamLabel String?</code>.</li>
+<li>Unique constraints to make the two-phase save idempotent (bug 3):</li>
+<li><code>ForgeTableLineage @@unique([scanId, sourceTableFqn, targetTableFqn, entityType])</code></li>
+<li><code>ForgeTableInsight</code> foreign-key insight idempotency handled by a guarded
+    checkpoint save (the checkpoint stops writing FK/lineage; final save owns
+    them) rather than a unique constraint, because <code>payloadJson</code> is free-form.</li>
+</ul>
+<h3 id="32-new-model-forgeestatesynthesis">3.2 New model — <code>ForgeEstateSynthesis</code><a class="headerlink" href="#32-new-model-forgeestatesynthesis" title="Permanent link">&para;</a></h3>
+<p>The persisted consultant-grade synthesis (one row per scan, optionally one per
+estate roll-up).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>model ForgeEstateSynthesis {
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>  id              String   @id @default(uuid())
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>  scanId          String?  @map(&quot;scan_id&quot;)
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>  estateId        String?  @map(&quot;estate_id&quot;)   // ForgeEstateProgram.id
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>  ownerEmail      String?  @map(&quot;owner_email&quot;)
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>  industryId      String?  @map(&quot;industry_id&quot;)
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>  briefJson       String   @map(&quot;brief_json&quot;)        // ExecutiveBrief
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>  findingsJson    String   @map(&quot;findings_json&quot;)     // EstateFinding[] (with Action + Evidence[])
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>  evidenceJson    String?  @map(&quot;evidence_json&quot;)     // flat Evidence[] index
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>  valueAtRiskJson String?  @map(&quot;value_at_risk_json&quot;)
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>  scoresJson      String?  @map(&quot;scores_json&quot;)       // sub-scores: governance/quality/freshness/docs/analytics/cost
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>  passResultsJson String?  @map(&quot;pass_results_json&quot;)
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>  createdAt       DateTime @default(now()) @map(&quot;created_at&quot;)
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>  @@index([scanId])
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>  @@index([estateId])
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>  @@index([ownerEmail])
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>  @@map(&quot;forge_estate_synthesis&quot;)
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>}
+</code></pre></div>
+<h3 id="33-new-domain-types-libdomainestate-synthesis-typests">3.3 New domain types (<code>lib/domain/estate-synthesis-types.ts</code>)<a class="headerlink" href="#33-new-domain-types-libdomainestate-synthesis-typests" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Reuse <code>EvidenceTier</code> / <code>Evidence</code> verbatim from
+  <code>lib/demo/research-engine/types.ts</code>.</li>
+<li><code>ExecutiveBrief</code> (Situation / Complication / Resolution + sections), modeled on
+  the research engine's brief.</li>
+<li><code>EstateFinding</code>: <code>{ id, kind, severity, title, summary, evidence: Evidence[],
+  action: EstateAction }</code>.</li>
+<li><code>EstateAction</code>: <code>{ engine, label, href, params }</code> mapping a finding to a Forge
+  engine route.</li>
+<li><code>EstateScores</code>: the six sub-scores (governance, quality/health, freshness,
+  documentation, analytics maturity, cost) + overall + band.</li>
+</ul>
+<h2 id="4-api-surface">4. API surface<a class="headerlink" href="#4-api-surface" title="Permanent link">&para;</a></h2>
+<p>All routes enforce <code>requireUser</code> (the <code>proxy.ts</code> edge gate plus explicit
+<code>requireUser</code> in handlers) and scope by <code>ownerEmail</code> ∪ <code>listAccessibleIds</code>,
+except the audited portfolio tier.</p>
+<h3 id="41-v1-estate-routes-consolidating-estate-programs">4.1 V1 — estate routes (consolidating estate-programs)<a class="headerlink" href="#41-v1-estate-routes-consolidating-estate-programs" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>GET/POST /api/environment-scan</code> — list / start scans (unchanged; estate-of-one).</li>
+<li><code>GET /api/environment/aggregate</code> — aggregate estate view (+ server-side
+  maturity, fixing the zeroed inputs).</li>
+<li><code>GET /api/environment/[scanId]/data-gap</code> — read latest estate data-gap
+  (compute-on-miss).</li>
+<li><code>POST /api/environment/[scanId]/data-gap</code> — recompute + persist (<code>scanId</code>).</li>
+<li><code>GET /api/environment/[scanId]/synthesis</code> — read persisted <code>ForgeEstateSynthesis</code>.</li>
+<li><code>POST /api/environment/[scanId]/synthesis</code> — (re)generate synthesis.</li>
+<li><code>GET /api/environment/trends</code> — scoped to the estate (today it compares the two
+  most recent global scans).</li>
+<li>Estate management (replaces <code>/api/estate-programs/**</code>), all under
+  <code>/api/estate/[estateId]</code>:</li>
+<li><code>GET/PATCH/DELETE /api/estate/[estateId]</code></li>
+<li><code>GET /api/estate/[estateId]/aggregate</code></li>
+<li><code>POST /api/estate/[estateId]/scopes</code>, <code>DELETE .../scopes/[scopeId]</code></li>
+<li><code>POST /api/estate/[estateId]/run</code> — start/resume the sequence.</li>
+<li><code>POST /api/estate/[estateId]/pause</code>, <code>.../cancel</code>, <code>.../resume</code>.</li>
+<li><code>GET /api/estate/[estateId]/export?format=pdf|excel</code>.</li>
+<li>Existing <code>/api/estate-programs/**</code> routes are kept as <strong>thin compatibility
+  shims</strong> that forward to the new handlers for one release, then deleted.</li>
+</ul>
+<h3 id="42-v2-portfolio-routes-gated">4.2 V2 — portfolio routes (gated)<a class="headerlink" href="#42-v2-portfolio-routes-gated" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>GET /api/portfolio</code> — enterprise inventory + estate roll-up (org-admin only).</li>
+<li><code>GET /api/portfolio/fragmentation</code> — cross-estate entity resolution clusters.</li>
+<li><code>GET /api/portfolio/opportunities</code> — federated industry-mapped opportunities.</li>
+<li><code>GET /api/portfolio/uplift</code> — org operating-model uplift plan.</li>
+<li><code>GET /api/portfolio/export?format=pdf</code> — portfolio board pack.</li>
+</ul>
+<h2 id="5-engines-libaiestate-synthesis-libaiportfolio-synthesis">5. Engines (<code>lib/ai/estate-synthesis/</code>, <code>lib/ai/portfolio-synthesis/</code>)<a class="headerlink" href="#5-engines-libaiestate-synthesis-libaiportfolio-synthesis" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Estate synthesis (V1)</strong> — modeled on <code>lib/demo/research-engine/engine.ts</code>
+  and <code>lib/pipeline/steps/business-value-analysis.ts</code>:</li>
+<li>Fan-out independent scoring passes (<code>Promise.allSettled</code>) -&gt;
+    estate-level executive-brief pass -&gt; evidence-tiering pass.</li>
+<li>Inputs: persisted scan details/insights/<code>scanSummaryJson</code> + master repo
+    (<code>industry-outcomes-server</code>) + estate data-gap + latest WAF posture +
+    cost modeling (<code>lib/domain/cost-modeling.ts</code>).</li>
+<li>Per-pass graceful skip + <code>passResultsJson</code>; never block a scan on synthesis
+    failure (BV degraded-flag pattern). In-memory status mirror like
+    <code>lib/genie/engine-status.ts</code>.</li>
+<li>Persist to <code>ForgeEstateSynthesis</code>.</li>
+<li><strong>Portfolio synthesis (V2)</strong> — elevates the canonical-entity pass to portfolio
+  scope (embeddings entity resolution), cross-estate fragmentation, federated
+  opportunities, org uplift plan.</li>
+</ul>
+<h2 id="6-federation-provenance-model">6. Federation / provenance model<a class="headerlink" href="#6-federation-provenance-model" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Provenance is captured per <strong>scope</strong> (<code>workspaceId</code>) and stamped onto each
+  resulting <strong>scan</strong>. (Note: there is no <code>team</code> concept in Forge — the dormant
+  <code>teamLabel</code> column is unused and the portfolio never groups by team.)</li>
+<li>The portfolio aggregator reads scans across owners (gated) and rolls them up
+  by <strong>estate</strong> (<code>ForgeEstateProgram</code> or standalone scan) to produce the
+  enterprise inventory and cross-estate fragmentation.</li>
+<li>Privacy: metadata-only across the board (schemas, names, history, tags) — never
+  row-level data, including in the portfolio.</li>
+</ul>
+<h2 id="7-component-tree-ux">7. Component tree (UX)<a class="headerlink" href="#7-component-tree-ux" title="Permanent link">&para;</a></h2>
+<p>Rebuild <code>app/environment/**</code> + <code>components/environment/**</code> into the spine.
+Charts use <strong>recharts</strong> (already in repo) for distributions/quadrants/gauges;
+<strong>React Flow</strong> (<code>@xyflow/react</code>, already in repo) for the lineage map. Every
+surface has loading / empty / error states and one dominant primary CTA. Reuse
+<code>CatalogBrowser</code>, <code>SemanticSearchInput</code>, <code>stat-card.tsx</code>.</p>
+<ul>
+<li><code>app/environment/page.tsx</code> — <strong>Estate State of the Nation</strong> (landing):
+  readiness scorecard with the six sub-scores, evidence-backed exec brief,
+  top-3 strengths / risks / quick-wins (click-through to evidence), domain
+  maturity quadrant/heatmap, tier/freshness/health distributions, coverage
+  gauges. No badge integers, no zeroed inputs.</li>
+<li>Domain explorer, Data products view (Pass-7 products promoted from Excel-only),
+  Lineage map (freshness propagation, upgrades <code>erd-viewer.tsx</code>),
+  Quality &amp; freshness (interactive/sortable/drill-down), Governance (real
+  <code>GovernanceGap</code> + corrected score), Asset drill-down (promote + link
+  <code>app/environment/table/[fqn]/page.tsx</code> from every table reference),
+  Sequenced-run management (add/reorder/remove scopes, start/pause/cancel/resume,
+  live per-scope progress).</li>
+<li>V2: <code>app/portfolio/page.tsx</code> — Portfolio State of the Nation.</li>
+<li>Nav: remove "Estate Programs"; add "Estate" / (V2) "Portfolio" to
+  <code>components/pipeline/sidebar-nav.tsx</code>.</li>
+</ul>
+<h2 id="8-engines-as-next-best-actions">8. Engines as next-best-actions<a class="headerlink" href="#8-engines-as-next-best-actions" title="Permanent link">&para;</a></h2>
+<p>A findings-to-action registry (<code>lib/domain/estate-actions.ts</code>) maps each
+<code>EstateFinding.kind</code> to a Forge engine route:</p>
+<ul>
+<li>Opportunity / outcome-map gap -&gt; Opportunities (discovery invoked from the
+  estate via <code>sourceScanId</code> reconstitution).</li>
+<li>Documentation gap -&gt; Comment Engine.</li>
+<li>Query-ready domain -&gt; Genie space stand-up.</li>
+<li>Coverage / data gap -&gt; Data-Gap remediation.</li>
+<li>Well-architected gap -&gt; WAF Assessment.</li>
+<li>Value quantification / roadmap -&gt; Business Value engine.</li>
+</ul>
+<p>Discovery is no longer a front door; it is the grounded payoff. A power-user path
+to run engines directly remains.</p>
+<h2 id="9-testing-strategy-full-e2e">9. Testing strategy (full e2e)<a class="headerlink" href="#9-testing-strategy-full-e2e" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Unit (Vitest):</strong> synthesis scoring + evidence tiering; scope state machine
+  (planned/queued/running/complete/failed/paused/cancelled + stuck-queued
+  reclaim); estate data-gap mapping; governance-score fix; cost wiring;
+  cross-team entity resolution; new row-to-type mappers; new Zod schemas;
+  portfolio aggregation.</li>
+<li><strong>Integration (Vitest + DI ports):</strong> each new/changed API route with mocked
+  <code>requireUser</code>/OBO; engine -&gt; Lakebase persistence round-trips via the existing
+  <code>deps</code> injection; isolation assertions (non-owner blocked; org-admin allowed
+  only when flagged).</li>
+<li>Gate: <code>npm run typecheck</code>, <code>npm run lint</code>, <code>npm test</code> all green; <code>AGENTS.md</code>
+  and <code>docs/estate-analysis.md</code> updated.</li>
+</ul>
+<h2 id="10-integration-checklist-agentsmd">10. Integration checklist (AGENTS.md)<a class="headerlink" href="#10-integration-checklist-agentsmd" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Factory reset: add <code>ForgeEstateSynthesis</code> (and V2 portfolio tables) to
+  <code>deleteAllData()</code>.</li>
+<li>Activity logging: add <code>estate_synthesis_generated</code>, <code>estate_data_gap_computed</code>,
+  <code>estate_sequence_paused</code>, <code>estate_sequence_cancelled</code>, <code>estate_sequence_resumed</code>,
+  <code>portfolio_viewed</code>, <code>portfolio_exported</code>.</li>
+<li>Navigation: update <code>components/pipeline/sidebar-nav.tsx</code>.</li>
+<li>Docs: update <code>AGENTS.md</code> + <code>docs/estate-analysis.md</code>.</li>
+<li>Prisma indexes + <code>ownerEmail</code> on new root models.</li>
+<li>SQL-injection protection: identifiers via <code>validateFqn</code> / <code>validateIdentifier</code>;
+  literals via <code>escapeComment</code>.</li>
+<li>Component reuse: <code>CatalogBrowser</code>, <code>SemanticSearchInput</code>, <code>stat-card.tsx</code>.</li>
+<li>Isolation: owner-scope everywhere except the audited portfolio tier.</li>
+<li>Embeddings scope: register any new vector kind (V2 portfolio entity
+  embeddings) in <code>lib/embeddings/kind-scope.ts</code>.</li>
+<li>Quotas: sequenced scans respect <code>FORGE_MAX_ACTIVE_SCANS_PER_USER</code>.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "toc.integrate"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

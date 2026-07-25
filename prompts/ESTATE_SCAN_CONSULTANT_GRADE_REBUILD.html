@@ -1,0 +1,2011 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Turn Unity Catalog metadata into business value in days, not quarters">
+      
+      
+      
+        <link rel="canonical" href="https://databricks-solutions.github.io/databricks-forge/prompts/ESTATE_SCAN_CONSULTANT_GRADE_REBUILD.html">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../images/databricks-icon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>BUILD PROMPT — Forge as a Data Estate Intelligence Platform - Databricks Forge</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#build-prompt-forge-as-a-data-estate-intelligence-platform" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Databricks Forge" class="md-header__button md-logo" aria-label="Databricks Forge" data-md-component="logo">
+      
+  <img src="../images/databricks-icon.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Databricks Forge
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              BUILD PROMPT — Forge as a Data Estate Intelligence Platform
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/databricks-solutions/databricks-forge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    databricks-solutions/databricks-forge
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Databricks Forge" class="md-nav__button md-logo" aria-label="Databricks Forge" data-md-component="logo">
+      
+  <img src="../images/databricks-icon.svg" alt="logo">
+
+    </a>
+    Databricks Forge
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/databricks-solutions/databricks-forge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    databricks-solutions/databricks-forge
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DEPLOYMENT.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../USER_GUIDE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Features
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ask-forge.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ask Forge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BUSINESS_VALUE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Value
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../estate-analysis.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estate Intelligence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SKILLS_KNOWLEDGE_BASE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Knowledge Base
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/SUPPORT.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/SECURITY.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/CONTRIBUTING.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release Notes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Release Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes/RELEASE_NOTES_2026_07_21.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-07-21
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes/RELEASE_NOTES_2026_05_26.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-26
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes/RELEASE_NOTES_2026_05_11.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes/RELEASE_NOTES_2026_05_02.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-02
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes/RELEASE_NOTES_2026_04_30.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-04-30
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes/RELEASE_NOTES_2026_04_16.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-04-16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes/RELEASE_NOTES_2026_03_31.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-31
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes/RELEASE_NOTES_2026_03_19.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-19
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes/RELEASE_NOTES_2026_03_18.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-18
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes/RELEASE_NOTES_2026_03_16.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes/RELEASE_NOTES_2026_03_15.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-15
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes/RELEASE_NOTES_2026_03_14.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-14
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes/RELEASE_NOTES_2026_03_13.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-13
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes/RELEASE_NOTES_2026_03_12.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-12
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes/RELEASE_NOTES_2026_03_11.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes/RELEASE_NOTES_2026_03_10.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes/RELEASE_NOTES_2026_03_09.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-09
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes/RELEASE_NOTES_2026_03_07.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-07
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes/RELEASE_NOTES_2026_03_06.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-06
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes/RELEASE_NOTES_2026_03_05.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-05
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes/RELEASE_NOTES_2026_03_04.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-04
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes/RELEASE_NOTES_2026-02-27.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-02-27
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../release-notes/RELEASE_NOTES_2026-02-25.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-02-25
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="build-prompt-forge-as-a-data-estate-intelligence-platform">BUILD PROMPT — Forge as a Data Estate Intelligence Platform<a class="headerlink" href="#build-prompt-forge-as-a-data-estate-intelligence-platform" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>Paste this whole document as the task prompt for an agent that will first
+<strong>produce an implementation plan</strong>, then build it, in the <code>databricks-forge</code>
+repo. It is grounded in the current implementation (file paths and symbols are
+real — read them before planning). Follow <code>AGENTS.md</code>, the workspace rules, and
+the <strong>New Feature Integration Checklist</strong> in <code>AGENTS.md</code>.</p>
+<p><strong>Your first deliverable is a written implementation plan</strong> (a design doc in
+<code>docs/</code>) that makes the open decisions in §11 explicit, sequences the work,
+and defines the data model and API surface. Do not start coding until the plan
+is written.</p>
+</blockquote>
+<hr />
+<h2 id="1-the-reframe-read-this-first-it-changes-what-forge-is">1. The Reframe (read this first — it changes what Forge <em>is</em>)<a class="headerlink" href="#1-the-reframe-read-this-first-it-changes-what-forge-is" title="Permanent link">&para;</a></h2>
+<p>Forge today is a <strong>toolbox of engines</strong> — discovery, estate scan, Genie,
+comments, WAF, data-gap, business value — with the <strong>discovery pipeline</strong> (scan
+→ scored use cases → auto-built SQL) as the front door. That is backwards: it
+asks the customer's most advanced question ("generate me solutions") before they
+can answer the most basic one ("what do I even have?"). No consultant builds you
+a solution on day one — they <strong>assess, diagnose, recommend, then execute.</strong></p>
+<p><strong>This work re-founds Forge as a Data Estate Intelligence platform.</strong> There is
+<strong>one persistent, living model of the customer's data estate at the center</strong>, and
+every engine becomes an <strong>action on that model</strong> rather than a standalone
+pipeline. The estate is the noun; everything else is a verb.</p>
+<p>The new front door is the <strong>State of the Nation</strong> — a management-consultant-grade
+diagnosis of the estate. The discovery pipeline does <strong>not</strong> die: it becomes
+<strong>"Opportunities,"</strong> invoked <em>from</em> the estate with full context, so it fires
+smarter (grounded in real domains, products, lineage, and gaps) and lands as the
+satisfying payoff of a diagnosis the customer already believes.</p>
+<h3 id="the-operating-rhythm-the-systems-spine">The operating rhythm (the system's spine)<a class="headerlink" href="#the-operating-rhythm-the-systems-spine" title="Permanent link">&para;</a></h3>
+<p>Everything snaps to one legible loop. The user always knows where they are and
+what the single next step is. It is a <strong>loop, not a pipeline</strong> — the estate is
+re-scanned, drift is detected, new risk and opportunity surface over time.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>        ┌───────────────────────────────────────────────┐
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>        │                                               ▼
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>   UNDERSTAND  →  DIAGNOSE  →  PRIORITISE  →  ACT  →  MEASURE
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>   (scan the      (state of    (uplift +     (engines   (re-scan,
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    estate)        the nation)   opportunity   as next-   track drift
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>                                 backlog)      best       over time)
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>                                              actions)
+</code></pre></div>
+<h3 id="what-makes-it-feel-intelligent-not-a-re-skin">What makes it feel <em>intelligent</em> (not a re-skin)<a class="headerlink" href="#what-makes-it-feel-intelligent-not-a-re-skin" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>One world model.</strong> The estate scan produces a single enriched model
+   (domains → data products → tables → columns + lineage + health + ontology +
+   evidence). <code>lib/metadata/buildSchemaContext()</code> is already designed as an
+   extractable, dependency-free context object — make it the substrate.</li>
+<li><strong>Every engine reads/writes it.</strong> Discovery, Genie, Comments, Data-Gap all
+   consume the same context instead of re-scanning cold; acting on the estate
+   <em>improves</em> the model (comments raise the documentation score; discovery adds
+   opportunities). The estate gets smarter every time you use Forge.</li>
+<li><strong>It has memory.</strong> Re-scans track drift (the trends infra exists —
+   <code>/api/environment/trends</code>, <code>scan-trends-panel.tsx</code>); the estate compares to
+   prior state and proactively flags new risks ("3 new ungoverned PII tables
+   since last month").</li>
+<li><strong>Everything is evidenced.</strong> Every claim is <code>sourced</code> / <code>benchmark</code> /
+   <code>inferred</code> so it is defensible to a board.</li>
+<li><strong>Diagnosis is the navigation to the cure.</strong> Every finding carries a Forge
+   action that resolves it.</li>
+</ol>
+<hr />
+<h2 id="2-the-executive-test-this-must-pass">2. The Executive Test This Must Pass<a class="headerlink" href="#2-the-executive-test-this-must-pass" title="Permanent link">&para;</a></h2>
+<p>Persona: a <strong>C-level exec at Petronas (a National Oil Company)</strong> trying to
+understand what <strong>50 teams in isolated workspaces</strong> have built. The rebuild is
+successful only if it answers, <strong>at enterprise scale</strong>:</p>
+<ol>
+<li><strong>What do I have?</strong> — across all teams/workspaces, not one at a time.</li>
+<li><strong>Where are my quality gaps?</strong> — including <em>cross-team</em> fragmentation and a
+   team-vs-team view, not just within one estate.</li>
+<li><strong>What's my uplift plan?</strong> — an org operating-model plan with owners, phasing,
+   and dollars — not just per-table fixes.</li>
+<li><strong>What use cases align to my industry outcome maps?</strong> — federated across
+   teams, mapped to the NOC / energy Master Repo, as a headline output.</li>
+</ol>
+<p>A tool that produces 50 beautiful per-team reports and leaves the exec to
+assemble the enterprise picture has <strong>failed this test.</strong> This is fundamentally a
+<strong>federation + portfolio</strong> problem, not a polish problem.</p>
+<hr />
+<h2 id="3-three-altitudes-the-core-information-architecture">3. Three Altitudes (the core information architecture)<a class="headerlink" href="#3-three-altitudes-the-core-information-architecture" title="Permanent link">&para;</a></h2>
+<p>The product is one continuous drill-down across three altitudes. A user lands at
+the altitude their role implies; every metric is a doorway down.</p>
+<table>
+<thead>
+<tr>
+<th>Altitude</th>
+<th>Persona</th>
+<th>The question it answers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Portfolio</strong> (new top)</td>
+<td>CDO / CIO</td>
+<td>"Across all teams/workspaces — what do we have, who's strong vs weak, where's the risk and opportunity?"</td>
+</tr>
+<tr>
+<td><strong>Estate</strong> (a team/scan)</td>
+<td>Data lead / architect</td>
+<td>"What's the state of this estate — domains, products, lineage, quality, freshness?"</td>
+</tr>
+<tr>
+<td><strong>Asset</strong> (table / data product)</td>
+<td>Engineer / steward</td>
+<td>"What is this, is it healthy, who uses it, what do I fix?"</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-current-state-read-these-first">4. Current State (read these first)<a class="headerlink" href="#4-current-state-read-these-first" title="Permanent link">&para;</a></h2>
+<p>Architecture is mapped in <code>docs/estate-analysis.md</code> and AGENTS.md ("Estate Scan
+Pipeline"). Key modules:</p>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Standalone scan orchestrator</td>
+<td><code>lib/pipeline/standalone-scan.ts</code> (<code>runStandaloneEnrichment</code>)</td>
+</tr>
+<tr>
+<td>Pipeline metadata-step twin</td>
+<td><code>lib/pipeline/steps/metadata-extraction.ts</code></td>
+</tr>
+<tr>
+<td>LLM intelligence passes</td>
+<td><code>lib/ai/environment-intelligence.ts</code> (<code>runIntelligenceLayer</code>)</td>
+</tr>
+<tr>
+<td>Estate ontology pass</td>
+<td><code>lib/ai/estate-ontology.ts</code> (<code>runEstateOntology</code>)</td>
+</tr>
+<tr>
+<td>Asset discovery</td>
+<td><code>lib/pipeline/steps/asset-discovery.ts</code></td>
+</tr>
+<tr>
+<td>Progress tracking</td>
+<td><code>lib/pipeline/scan-progress.ts</code></td>
+</tr>
+<tr>
+<td>Scan reconstitution (discovery decoupling)</td>
+<td><code>lib/pipeline/scan-reconstitution.ts</code></td>
+</tr>
+<tr>
+<td>Program sequencing (to be folded into scans)</td>
+<td><code>lib/pipeline/estate-program.ts</code> (<code>runProgramSequence</code>)</td>
+</tr>
+<tr>
+<td>Persistence (scans)</td>
+<td><code>lib/lakebase/environment-scans.ts</code> (<code>getAggregateEstateView</code>)</td>
+</tr>
+<tr>
+<td>Persistence (programs → migrate)</td>
+<td><code>lib/lakebase/estate-programs.ts</code></td>
+</tr>
+<tr>
+<td>Shared world model</td>
+<td><code>lib/metadata/**</code> (<code>buildSchemaContext</code>, <code>EnrichedTable</code>, <code>SchemaContext</code>)</td>
+</tr>
+<tr>
+<td>Domain types</td>
+<td><code>lib/domain/types.ts</code>, <code>lib/domain/estate-tree.ts</code>, <code>lib/domain/estate-readiness.ts</code></td>
+</tr>
+<tr>
+<td>Health scoring (10 rules)</td>
+<td><code>lib/domain/health-score.ts</code></td>
+</tr>
+<tr>
+<td>Cost / consumption</td>
+<td><code>lib/domain/cost-modeling.ts</code>, <code>docs/CONSUMPTION_ESTIMATE.md</code></td>
+</tr>
+<tr>
+<td>Lineage walking</td>
+<td><code>lib/queries/lineage.ts</code></td>
+</tr>
+<tr>
+<td>Enrichment SQL</td>
+<td><code>lib/queries/metadata-detail.ts</code></td>
+</tr>
+<tr>
+<td>ERD builder</td>
+<td><code>lib/export/erd-generator.ts</code></td>
+</tr>
+<tr>
+<td>Excel export (13 sheets)</td>
+<td><code>lib/export/environment-excel.ts</code></td>
+</tr>
+<tr>
+<td>Industry Master Repos (incl. <code>oil-gas-noc</code>, <code>energy-utilities</code>, <code>mining</code>)</td>
+<td><code>lib/domain/industry-outcomes/**</code>, <code>industry-outcomes-server.ts</code></td>
+</tr>
+<tr>
+<td>Data-gap engine (value-at-risk)</td>
+<td><code>lib/engines/data-gap-analysis/**</code></td>
+</tr>
+<tr>
+<td>WAF assessment</td>
+<td><code>lib/engines/waf-assessment/**</code></td>
+</tr>
+<tr>
+<td>External connections (Fabric only today)</td>
+<td><code>lib/connections/**</code></td>
+</tr>
+<tr>
+<td>Main UI</td>
+<td><code>app/environment/page.tsx</code></td>
+</tr>
+<tr>
+<td>Program UI (to remove from nav)</td>
+<td><code>app/environment/programs/**</code></td>
+</tr>
+<tr>
+<td>Table drill-down (orphaned)</td>
+<td><code>app/environment/table/[fqn]/page.tsx</code></td>
+</tr>
+<tr>
+<td>Components</td>
+<td><code>components/environment/**</code></td>
+</tr>
+<tr>
+<td>Nav</td>
+<td><code>components/pipeline/sidebar-nav.tsx</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="rich-output-that-already-exists-but-the-ui-throws-away">Rich output that already exists but the UI throws away<a class="headerlink" href="#rich-output-that-already-exists-but-the-ui-throws-away" title="Permanent link">&para;</a></h3>
+<p>LLM passes already produce: domains, PII/sensitivity, AI descriptions,
+redundancy, implicit relationships, tiers, <strong>data products</strong>, <strong>governance
+gaps</strong>, <strong>analytics maturity</strong>, plus ontology (<strong>canonical entities, entity
+relationships, business glossary</strong>). Most of this is only visible in the Excel
+export. A large part of "make it intelligent" is <strong>surfacing data that already
+exists.</strong></p>
+<h3 id="correctness-bugs-to-fix-as-part-of-this-work">Correctness bugs to fix as part of this work<a class="headerlink" href="#correctness-bugs-to-fix-as-part-of-this-work" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>governanceScore</code> on <code>ForgeTableDetail</code> is set from the <strong>health score</strong>, not
+  <code>GovernanceGap.overallScore</code> (<code>saveEnvironmentScan</code>, <code>lib/lakebase/environment-scans.ts</code> ~196).</li>
+<li><code>DataMaturityCard</code> is fed <strong>hardcoded zeros</strong> for tags/lineage/optimize/vacuum
+  (<code>components/environment/aggregate-summary.tsx</code>).</li>
+<li>Program readiness recomputed client-side instead of reading persisted
+  <code>EstateScanSummary.readinessScore</code>.</li>
+<li><code>ForgeEstateProgram.industryId</code> is never threaded into
+  <code>runIntelligenceLayer({ industryId })</code> — industry alignment unused.</li>
+<li><code>assetDiscoveryEnabled</code> defaults off on manual scans → analytics maturity pass
+  usually skipped.</li>
+</ul>
+<h3 id="confirmed-facts-that-shape-the-design">Confirmed facts that shape the design<a class="headerlink" href="#confirmed-facts-that-shape-the-design" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The NOC / energy industry content exists (<code>oil-gas-noc</code>, <code>energy-utilities</code>,
+  <code>mining</code>, <code>water-utilities</code>) with enrichments — Q4 content is available.</li>
+<li>There is <strong>no multi-Databricks-workspace federation.</strong> <code>lib/connections</code> is
+  <code>connectorType: "fabric"</code> only. Forge runs against one <code>DATABRICKS_HOST</code> / one
+  OBO token / one warehouse.</li>
+<li><code>getAggregateEstateView</code> rolls up only scans the <strong>current user</strong> owns or has
+  been shared — there is <strong>no org-wide, cross-owner view.</strong> The isolation model
+  (<code>ownerEmail</code> ∪ <code>listAccessibleIds</code>) actively prevents the CDO view today.</li>
+</ul>
+<hr />
+<h2 id="5-target-architecture">5. Target Architecture<a class="headerlink" href="#5-target-architecture" title="Permanent link">&para;</a></h2>
+<h3 id="51-tier-1-the-estate-single-scanteam">5.1 Tier 1 — The Estate (single scan/team)<a class="headerlink" href="#51-tier-1-the-estate-single-scanteam" title="Permanent link">&para;</a></h3>
+<p>Fold "programs" into scans and make the estate a first-class world model.</p>
+<ul>
+<li><strong>Eliminate the separate "Estate Programs" concept from the UI.</strong> The mental
+  model is just <strong>Estate Scans</strong>. Remove programs from <code>sidebar-nav.tsx</code>;
+  delete/migrate <code>app/environment/programs/**</code> once parity is reached.</li>
+<li><strong>Any scan supports a sequenced run.</strong> A scan owns an <strong>ordered list of
+  scopes</strong> (reuse the <code>ForgeEstateProgramScope</code> shape: <code>label</code>, <code>ucMetadata</code>,
+  exclusions, <code>assetDiscoveryEnabled</code>, <code>lineageDepth</code>, <code>status</code>, <code>sequence</code>,
+  <code>errorMessage</code>, child segment id) that run in sequence and <strong>roll up into one
+  estate view</strong> with per-scope provenance. A single scope is just a sequence of
+  length 1. Keep <code>runProgramSequence</code>'s proven mechanics (atomic
+  <code>claimNextPlannedScope</code>, <code>enqueueDeferredJob</code> with per-user quota, recursive
+  chaining, one scope in flight) renamed to scan-centric terms; add <strong>pause /
+  cancel / resume</strong>.</li>
+<li><strong>Persist the world model.</strong> The scan produces a durable enriched model
+  (<code>SchemaContext</code>-shaped) — domains, data products, tables, columns, lineage,
+  health, ontology, evidence — that other engines consume instead of re-scanning.</li>
+<li>Fix the §4 correctness bugs. Thread <code>industryId</code> (incl. sub-vertical) into
+  intelligence + synthesis.</li>
+</ul>
+<h3 id="52-tier-2-federation-how-50-isolated-workspaces-get-in">5.2 Tier 2 — Federation (how 50 isolated workspaces get in)<a class="headerlink" href="#52-tier-2-federation-how-50-isolated-workspaces-get-in" title="Permanent link">&para;</a></h3>
+<p>This is the <strong>gating decision</strong> and must be designed in the plan, not skipped.
+Evaluate and choose (document trade-offs):</p>
+<ul>
+<li><strong>(a) Hub-and-spoke export/import</strong> — Forge-per-workspace produces a portable,
+  privacy-safe <strong>estate summary artifact</strong> (metadata + scores + ontology, no row
+  data) that is imported into a hub deployment.</li>
+<li><strong>(b) System-tables / UC federation</strong> — a hub reads <code>system.*</code> /
+  <code>information_schema</code> / <code>system.access.table_lineage</code> across workspaces via UC
+  federation or Delta Sharing, where governance permits.</li>
+<li><strong>(c) Connector model</strong> — extend <code>lib/connections</code> beyond Fabric to a
+  <code>databricks</code> connector type for cross-workspace ingestion.</li>
+</ul>
+<p>Requirements regardless of choice: capture <strong>workspace/team provenance</strong> on every
+estate; handle <strong>scale</strong> (50 estates × thousands of tables — sequencing, LLM
+budget, cost); never read row-level data (metadata only).</p>
+<h3 id="53-tier-3-portfolio-the-cdo-view">5.3 Tier 3 — Portfolio (the CDO view)<a class="headerlink" href="#53-tier-3-portfolio-the-cdo-view" title="Permanent link">&para;</a></h3>
+<p>A new top-level view that legitimately aggregates <strong>across owners/teams</strong>:</p>
+<ul>
+<li><strong>Org-admin role.</strong> A deliberate, audited exception to per-owner isolation
+  (NOT a hack) — a role that can read the portfolio. Gate with a feature flag and
+  activity logging; document the security model. Per-owner isolation remains the
+  default for everyone else.</li>
+<li><strong>Enterprise inventory</strong> — totals across teams: tables, data products, domains,
+  workloads (dashboards, Genie spaces, models, jobs, pipelines, apps — not just
+  Delta tables).</li>
+<li><strong>Team league table</strong> — benchmark the 50 teams on readiness, governance,
+  quality/health, freshness, documentation, and cost. Who is strong vs a
+  liability.</li>
+<li><strong>Cross-team fragmentation analysis</strong> — elevate the per-scan canonical-entity /
+  ontology pass to <strong>portfolio scope</strong> to expose duplicated/conflicting entities
+  ("customer", "well", "production_volume" built N ways) and redundant data
+  products across teams. This is the #1 CDO finding.</li>
+<li><strong>Federated, industry-mapped opportunities</strong> — run data-gap + use-case
+  discovery across the <strong>combined</strong> estate so cross-team, high-value NOC use cases
+  (which need data spanning multiple teams) surface as a headline.</li>
+<li><strong>Org operating-model uplift plan</strong> — see §5.5.</li>
+</ul>
+<h3 id="54-consultant-grade-insight-layer-applies-at-every-altitude">5.4 Consultant-grade insight layer (applies at every altitude)<a class="headerlink" href="#54-consultant-grade-insight-layer-applies-at-every-altitude" title="Permanent link">&para;</a></h3>
+<p>Add an estate-level synthesis pass modeled on the Demo Research Engine
+(<code>lib/demo/research-engine/</code>) and Business Value engine
+(<code>lib/pipeline/steps/business-value-analysis.ts</code>):</p>
+<ul>
+<li><strong>Evidence model</strong> — every assertion tiered <code>sourced</code> / <code>benchmark</code> /
+  <code>inferred</code>. No naked claims.</li>
+<li><strong>Executive brief</strong> — Situation → Complication → Resolution. "State of the
+  nation" in crisp sections: estate shape, strengths, critical risks, quick
+  wins, strategic recommendations.</li>
+<li><strong>Value-at-risk / opportunity sizing</strong> — reuse
+  <code>lib/engines/data-gap-analysis/economic-value.ts</code>; wire an <strong>estate-level
+  data-gap analysis</strong> (schema already supports <code>ForgeDataGapAnalysis.scanId</code>; add
+  the missing API route under <code>app/api/environment/...</code> and UI).</li>
+<li><strong>Cost dimension</strong> — wire <code>lib/domain/cost-modeling.ts</code> / consumption so uplift
+  and risk are expressed in dollars (optimize/vacuum debt → cost).</li>
+<li><strong>WAF posture</strong> — stitch <code>lib/engines/waf-assessment</code> into the estate's
+  quality/governance scorecard so "quality" includes security/reliability/cost.</li>
+<li>Persist synthesis deterministically; resilient passes (graceful skip +
+  <code>passResultsJson</code>); never block a scan on a synthesis failure.</li>
+</ul>
+<h3 id="55-engines-become-next-best-actions-the-connective-tissue">5.5 Engines become next-best-actions (the connective tissue)<a class="headerlink" href="#55-engines-become-next-best-actions-the-connective-tissue" title="Permanent link">&para;</a></h3>
+<p>Every finding carries a Forge action that resolves it. Re-home the engines:</p>
+<table>
+<thead>
+<tr>
+<th>Finding</th>
+<th>Action (existing engine)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Opportunity / outcome-map gap</td>
+<td><strong>Opportunities</strong> = discovery pipeline, invoked with full estate context; "auto-build SQL" becomes "activate this opportunity"</td>
+</tr>
+<tr>
+<td>Documentation gap</td>
+<td><strong>Comment Engine</strong></td>
+</tr>
+<tr>
+<td>Query-ready domain</td>
+<td><strong>Genie</strong> space stand-up</td>
+</tr>
+<tr>
+<td>Coverage / data gap</td>
+<td><strong>Data-Gap</strong> remediation + value-at-risk</td>
+</tr>
+<tr>
+<td>Well-architected gap</td>
+<td><strong>WAF Assessment</strong></td>
+</tr>
+<tr>
+<td>Value quantification / roadmap</td>
+<td><strong>Business Value</strong> engine</td>
+</tr>
+</tbody>
+</table>
+<p>Discovery is no longer a front door; it is the grounded payoff. Keep a power-user
+path to run engines directly, but they are not the hero.</p>
+<h3 id="56-ux-surfaces">5.6 UX / surfaces<a class="headerlink" href="#56-ux-surfaces" title="Permanent link">&para;</a></h3>
+<p>Rebuild <code>app/environment/**</code> and <code>components/environment/**</code> into a cohesive
+diagnostic. The spine is <strong>Portfolio → Estate → Domain → Data Product → Table →
+Column</strong>. Every surface needs loading / empty / error states (rule 00) and one
+visually-dominant primary CTA (rule 02/06). Modern shadcn/ui + Tailwind, real
+charts (check repo for the charting lib in use), generous whitespace — it must
+read like a McKinsey/BCG data diagnostic rendered as a live app, not a DB admin
+tool.</p>
+<p>Required surfaces:
+1. <strong>Portfolio / State of the Nation (new landing for CDO role)</strong> — enterprise
+   scorecard, team league table, cross-team fragmentation, federated
+   opportunities, org uplift plan, provenance of which teams/workspaces compose
+   it.
+2. <strong>Estate State of the Nation</strong> — readiness scorecard with sub-scores
+   (governance, quality/health, freshness, documentation, analytics maturity,
+   cost), evidence-backed exec brief, top-3 strengths/risks/quick-wins (each
+   click-through to evidence), visual analytics (domain maturity quadrant/heatmap,
+   tier/freshness/health distributions, coverage gauges) — <strong>no badge integers,
+   no fake/zeroed inputs</strong>.
+3. <strong>Domain explorer</strong> — domains as first-class cards (maturity, counts, health,
+   PII, ownership) drilling into data products and tables.
+4. <strong>Data products view</strong> — surface Pass-7 data products as a real panel
+   (today Excel-only): product → tables → consumers → quality → readiness.
+5. <strong>Lineage map</strong> — a dedicated beautiful lineage/flow view (beyond the FK ERD):
+   domain-level and table-level, upstream/downstream, with <strong>freshness
+   propagation</strong> (stale upstream highlighted). Upgrade <code>erd-viewer.tsx</code>.
+6. <strong>Quality &amp; freshness</strong> — health (10 rules), freshness, optimize/vacuum debt
+   as interactive, sortable, drill-down analytics — not a flat 100-row grid.
+7. <strong>Governance</strong> — fix the mislabeled tab: real <code>GovernanceGap</code> insights +
+   corrected score, per-domain posture, PII coverage, ownership gaps.
+8. <strong>Asset drill-down</strong> — promote <code>app/environment/table/[fqn]/page.tsx</code> to a
+   first-class, linked destination (currently orphaned); rich schema, lineage,
+   history/health, freshness, insights, description, related opportunities.
+9. <strong>Sequenced-run management</strong> — add/reorder/remove scopes, start/pause/cancel/
+   resume, live per-scope progress (reuse <code>scan-progress.ts</code> + <code>ScanProgressCard</code>).</p>
+<hr />
+<h2 id="6-work-plan-suggested-sequencing">6. Work Plan (suggested sequencing)<a class="headerlink" href="#6-work-plan-suggested-sequencing" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Plan doc</strong> (first deliverable) — read cited files; resolve §11 decisions;
+   define data model, federation approach, API surface, component tree, security
+   model for the org-admin role, and migration plan.</li>
+<li><strong>Tier 1 data model + migration</strong> — scopes-on-scan; migrate sequencing off
+   <code>estate-program.ts</code>; persist the world model; forward-only migration;
+   <code>npx prisma generate</code>.</li>
+<li><strong>Fix correctness bugs</strong> (§4).</li>
+<li><strong>Consultant synthesis layer</strong> (§5.4) — evidence, exec brief, estate data-gap</li>
+<li>value-at-risk + cost + WAF posture; persist.</li>
+<li><strong>Tier 2 federation</strong> (§5.2) — the chosen ingestion path + provenance.</li>
+<li><strong>Tier 3 portfolio</strong> (§5.3) — org-admin role, enterprise inventory, league
+   table, cross-team fragmentation, federated opportunities, org uplift plan.</li>
+<li><strong>Engines-as-actions</strong> (§5.5) — re-home discovery as "Opportunities" grounded
+   in estate context; wire action CTAs from findings.</li>
+<li><strong>UX rebuild</strong> (§5.6) surface by surface — Portfolio + Estate landings first.</li>
+<li><strong>API consolidation</strong> — collapse <code>/api/estate-programs/**</code> into scan routes;
+   add estate data-gap route; keep aggregate/trends/table/erd/export; maintain
+   <code>requireUser</code> + scoping on every route.</li>
+<li><strong>Exports</strong> — keep Excel + PDF board pack working against the new model;
+    align to synthesis output; add a portfolio board pack.</li>
+<li><strong>i18n</strong> — all new strings in <code>messages/{en,pt-BR,es}.json</code>.</li>
+<li><strong>Tests</strong> (§9). <strong>Docs</strong> — update <code>AGENTS.md</code> + <code>docs/estate-analysis.md</code>.</li>
+</ol>
+<hr />
+<h2 id="7-constraints-guardrails-from-agentsmd-must-follow">7. Constraints &amp; Guardrails (from AGENTS.md — must follow)<a class="headerlink" href="#7-constraints-guardrails-from-agentsmd-must-follow" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>No raw SQL in components</strong> — SQL in <code>lib/queries/**</code>; identifiers via
+  <code>validateFqn()</code> / <code>validateIdentifier()</code>; literals via <code>escapeComment()</code>.</li>
+<li><strong>No hardcoded credentials / warehouse IDs</strong> — Databricks Apps env vars only.</li>
+<li><strong>Privacy:</strong> metadata only (schemas, names, history, tags) — never row-level
+  data, including across federation.</li>
+<li><strong>User isolation is mandatory by default.</strong> Every list/read route resolves
+  <code>requireUser</code> and scopes by <code>ownerEmail</code> ∪ <code>listAccessibleIds</code>. Use
+  <code>loadScanOrRespond</code> guards. Background jobs capture <code>ownerEmail</code> + <code>oboToken</code>
+  in request context and thread them through. <strong>The portfolio/org-admin view is
+  the only exception</strong> — it must be an explicit, feature-flagged, activity-logged
+  role with a documented security model, never an ambient bypass.</li>
+<li><strong>OBO tokens</strong> for user-scoped Databricks/Genie calls; never the SP.</li>
+<li><strong>Loading / empty / error</strong> states everywhere; dominant primary CTA per page.</li>
+<li><strong>Integration checklist</strong> (AGENTS.md): factory reset (<code>lib/lakebase/reset.ts</code>),
+  activity logging (<code>lib/lakebase/activity-log.ts</code>), navigation, AGENTS.md docs,
+  Prisma indexes + <code>ownerEmail</code>, SQL-injection protection, component reuse
+  (<code>CatalogBrowser</code>, <code>SemanticSearchInput</code>, <code>stat-card.tsx</code>), isolation,
+  embeddings scope (<code>lib/embeddings/kind-scope.ts</code>).</li>
+<li><strong>Quotas:</strong> sequenced/federated scans spawn background jobs → respect
+  <code>FORGE_MAX_ACTIVE_SCANS_PER_USER</code> via <code>lib/quotas.ts</code>.</li>
+<li>Keep discovery integration intact: <code>sourceScanId</code> reconstitution
+  (<code>scan-reconstitution.ts</code>), <code>getLatestScanIdForRun()</code>.</li>
+</ul>
+<hr />
+<h2 id="8-acceptance-criteria">8. Acceptance Criteria<a class="headerlink" href="#8-acceptance-criteria" title="Permanent link">&para;</a></h2>
+<h3 id="the-petronas-executive-test">The Petronas executive test<a class="headerlink" href="#the-petronas-executive-test" title="Permanent link">&para;</a></h3>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>What I have:</strong> a Portfolio view aggregates across teams/workspaces
+      (federation), with workspace/team provenance and a workload inventory
+      (dashboards, Genie, models, jobs, pipelines, apps), not just tables.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Quality gaps:</strong> a team league table benchmarks the 50 teams, and a
+      cross-team fragmentation analysis exposes duplicated/conflicting entities
+      and redundant products; WAF + cost posture included.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Uplift plan:</strong> an org operating-model plan with owners, phasing, and
+      dollars — not just per-table fixes.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Opportunities:</strong> federated, industry-mapped (NOC/energy) use-case
+      discovery is a headline output, including cross-team opportunities.</li>
+</ul>
+<h3 id="the-platform-reframe">The platform reframe<a class="headerlink" href="#the-platform-reframe" title="Permanent link">&para;</a></h3>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> State of the Nation is the new default landing; discovery is reachable as
+      "Opportunities" <em>from</em> the estate, grounded in estate context.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> One persistent world model is produced by the scan and consumed by other
+      engines (no cold re-scans); acting on the estate updates the model.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Re-scan tracks drift and surfaces new risks/opportunities over time.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Every State-of-the-Nation finding carries a Forge action that resolves it.</li>
+</ul>
+<h3 id="estate-quality">Estate quality<a class="headerlink" href="#estate-quality" title="Permanent link">&para;</a></h3>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> No "Estate Programs" in UI/nav; any scan supports an ordered, rolled-up
+      sequenced run with pause/cancel/resume and live progress.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Drill-down Portfolio → Estate → Domain → Data Product → Table → Column;
+      every table reference links to the first-class table detail page.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Dedicated lineage map (beyond FK ERD) with freshness propagation.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Freshness + quality/health as interactive analytics; governance tab shows
+      real gaps + corrected score; data products + analytics maturity surfaced in
+      UI (not just Excel); no fake/zeroed inputs.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Evidence-tiered (<code>sourced</code>/<code>benchmark</code>/<code>inferred</code>) executive brief.</li>
+</ul>
+<h3 id="engineering">Engineering<a class="headerlink" href="#engineering" title="Permanent link">&para;</a></h3>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>npm run typecheck</code>, <code>npm run lint</code>, <code>npm test</code> pass. Unit tests for:
+      synthesis/scoring logic, scopes/sequencing state machine, federation
+      import/aggregation, cross-team entity resolution, new row-to-type mappers,
+      new Zod schemas.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> All new strings in <code>en</code>, <code>pt-BR</code>, <code>es</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>AGENTS.md</code> and <code>docs/estate-analysis.md</code> updated.</li>
+</ul>
+<hr />
+<h2 id="9-definition-of-done">9. Definition of Done<a class="headerlink" href="#9-definition-of-done" title="Permanent link">&para;</a></h2>
+<p>Forge presents as a <strong>Data Estate Intelligence platform</strong>: a CDO lands on a
+federated State of the Nation across all teams, sees clearly what exists, where
+the quality gaps and fragmentation are, a costed org uplift plan, and a set of
+industry-aligned opportunities — then drills into any team, domain, product, or
+table, and resolves findings with one-click Forge actions grounded in a single
+living world model that gets smarter and remembers over time. Shipped behind the
+isolation/quota model (with a deliberate, audited org-admin exception), fully
+typed, tested, translated, and documented.</p>
+<hr />
+<h2 id="10-reusable-forge-primitives-to-build-on-dont-reinvent">10. Reusable Forge primitives to build on (don't reinvent)<a class="headerlink" href="#10-reusable-forge-primitives-to-build-on-dont-reinvent" title="Permanent link">&para;</a></h2>
+<p><code>buildSchemaContext()</code> (world model) · <code>runIntelligenceLayer</code> + <code>runEstateOntology</code>
+(insights) · <code>runProgramSequence</code> (sequencing mechanics) · <code>getAggregateEstateView</code>
+(roll-up) · data-gap economic-value · industry Master Repos + <code>industry-outcomes-server</code>
+· health-score 10 rules · <code>walkLineage</code> + ERD builder · WAF engine · cost-modeling
+· Business Value + Demo Research consultant patterns (evidence model) · trends
+infra (drift) · <code>CatalogBrowser</code> / <code>SemanticSearchInput</code> / <code>stat-card</code> (UI).</p>
+<hr />
+<h2 id="11-open-decisions-for-the-plan-to-resolve">11. Open Decisions for the Plan to Resolve<a class="headerlink" href="#11-open-decisions-for-the-plan-to-resolve" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Federation approach</strong> — (a) hub-and-spoke export/import, (b) system-tables /
+   UC federation / Delta Sharing, or (c) a <code>databricks</code> connector. Trade-offs,
+   scale, governance, and which to build first.</li>
+<li><strong>Data-model approach for scopes</strong> — repurpose <code>ForgeEstateProgram</code> as an
+   internal non-surfaced "scan group," or introduce <code>ForgeEstateScanScope</code> as a
+   child of <code>ForgeEnvironmentScan</code>. Pick the lower-risk migration.</li>
+<li><strong>Org-admin / portfolio security model</strong> — how the cross-owner exception is
+   granted, flagged, audited, and scoped (e.g. to a tenant/org).</li>
+<li><strong>Workload inventory breadth</strong> — which asset types to inventory in v1
+   (dashboards, Genie, models, jobs, pipelines, apps) given API/scope limits.</li>
+<li><strong>Cross-team entity resolution method</strong> — embeddings-based vs ontology-merge
+   vs name-normalisation, and where it runs (portfolio synthesis pass).</li>
+<li><strong>Naming / IA</strong> — final labels: "Estate" / "Intelligence" for the spine,
+   "Opportunities" for discovery, "Actions" vocabulary for engines.</li>
+<li><strong>Phasing</strong> — what ships in v1 vs later (e.g. single-estate consultant UX +
+   sequenced runs first; federation + portfolio second), without painting the
+   data model into a corner.</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "toc.integrate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

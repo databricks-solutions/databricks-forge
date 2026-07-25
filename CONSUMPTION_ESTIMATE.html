@@ -1,0 +1,2021 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Turn Unity Catalog metadata into business value in days, not quarters">
+      
+      
+      
+        <link rel="canonical" href="https://databricks-solutions.github.io/databricks-forge/CONSUMPTION_ESTIMATE.html">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="images/databricks-icon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>Forge — Consumption Estimate (DBUs / USD) - Databricks Forge</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#forge-consumption-estimate-dbus-usd" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="Databricks Forge" class="md-header__button md-logo" aria-label="Databricks Forge" data-md-component="logo">
+      
+  <img src="images/databricks-icon.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Databricks Forge
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Forge — Consumption Estimate (DBUs / USD)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/databricks-solutions/databricks-forge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    databricks-solutions/databricks-forge
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Databricks Forge" class="md-nav__button md-logo" aria-label="Databricks Forge" data-md-component="logo">
+      
+  <img src="images/databricks-icon.svg" alt="logo">
+
+    </a>
+    Databricks Forge
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/databricks-solutions/databricks-forge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    databricks-solutions/databricks-forge
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="quickstart.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="DEPLOYMENT.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="USER_GUIDE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Features
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ask-forge.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ask Forge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="BUSINESS_VALUE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Value
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="estate-analysis.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estate Intelligence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="SKILLS_KNOWLEDGE_BASE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Knowledge Base
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/SUPPORT.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/SECURITY.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/CONTRIBUTING.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release Notes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Release Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_07_21.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-07-21
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_05_26.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-26
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_05_11.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_05_02.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-02
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_04_30.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-04-30
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_04_16.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-04-16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_31.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-31
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_19.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-19
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_18.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-18
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_16.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_15.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-15
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_14.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-14
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_13.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-13
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_12.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-12
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_11.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_10.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_09.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-09
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_07.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-07
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_06.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-06
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_05.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-05
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_04.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-04
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026-02-27.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-02-27
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026-02-25.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-02-25
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="forge-consumption-estimate-dbus-usd">Forge — Consumption Estimate (DBUs / USD)<a class="headerlink" href="#forge-consumption-estimate-dbus-usd" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>Reference document to support <strong>cost estimation</strong> of running Databricks Forge inside the customer's workspace. All consumption described here is billed <strong>in the customer's workspace</strong> (not the deployer's). The app does not dispatch any Databricks Jobs — only Model Serving, SQL Warehouse, and Lakebase.</p>
+</blockquote>
+<hr />
+<h2 id="1-pricing-assumptions-list-price">1. Pricing assumptions (list price)<a class="headerlink" href="#1-pricing-assumptions-list-price" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>Replace with the customer's contracted rates when available. Values in <strong>USD</strong> assume Premium Tier.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>SKU</th>
+<th>Rate</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Foundation Model API — Claude Opus 4 (premium)</td>
+<td><strong>$15 / 1M input tokens</strong> · <strong>$75 / 1M output tokens</strong></td>
+<td>Pay-per-token; used for SQL generation, scoring, Genie</td>
+</tr>
+<tr>
+<td>Foundation Model API — Claude Sonnet 4 (fast)</td>
+<td><strong>$3 / 1M input tokens</strong> · <strong>$15 / 1M output tokens</strong></td>
+<td>Pay-per-token; used for filtering, clustering, comments</td>
+</tr>
+<tr>
+<td>Foundation Model API — GPT‑5 (review)</td>
+<td><strong>$5 / 1M input</strong> · <strong>$15 / 1M output</strong> <em>(estimate)</em></td>
+<td>Pay-per-token; opt‑in SQL review</td>
+</tr>
+<tr>
+<td>Foundation Model API — Embedding (qwen3‑0.6b)</td>
+<td><strong>$0.10 / 1M tokens</strong></td>
+<td>KB ingestion + RAG</td>
+</tr>
+<tr>
+<td>SQL Warehouse Serverless (Small, 4 DBU/h)</td>
+<td><strong>$0.70 / DBU</strong> → <strong>$2.80/h</strong></td>
+<td>Used for <code>system.*</code> queries (WAF / Estate health)</td>
+</tr>
+<tr>
+<td>Lakebase</td>
+<td>Included with the platform</td>
+<td>Lightweight persistence; negligible on the bill</td>
+</tr>
+</tbody>
+</table>
+<p><strong>DBU ↔ USD conversion (Model Serving)</strong>: the table above is in USD/MTok because that is how Foundation Model APIs are priced. To express it as DBU‑equivalent, divide by <strong>$0.07/DBU</strong> (Premium rate):</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>DBU/MTok input</th>
+<th>DBU/MTok output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Opus (premium)</td>
+<td>214</td>
+<td>1,071</td>
+</tr>
+<tr>
+<td>Sonnet (fast)</td>
+<td>43</td>
+<td>214</td>
+</tr>
+<tr>
+<td>GPT‑5 (review)</td>
+<td>71</td>
+<td>214</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-average-cost-per-llm-call">2. Average cost per LLM call<a class="headerlink" href="#2-average-cost-per-llm-call" title="Permanent link">&para;</a></h2>
+<p>Token estimates are based on the prompt shape observed across the engines:</p>
+<table>
+<thead>
+<tr>
+<th>Call type</th>
+<th>Average tokens (in / out)</th>
+<th>Endpoint</th>
+<th>Cost / call</th>
+<th>DBU / call</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Use case generation (batch)</td>
+<td>15,000 / 5,000</td>
+<td>Premium</td>
+<td><strong>$0.60</strong></td>
+<td>8.6</td>
+</tr>
+<tr>
+<td>SQL generation (1 use case)</td>
+<td>8,000 / 2,000</td>
+<td>Premium</td>
+<td><strong>$0.27</strong></td>
+<td>3.9</td>
+</tr>
+<tr>
+<td>Genie pass (column intel, semantic, etc.)</td>
+<td>8,000 / 4,000</td>
+<td>Premium / fast</td>
+<td><strong>$0.30 (premium)</strong> / $0.08 (fast)</td>
+<td>4.3 / 1.1</td>
+</tr>
+<tr>
+<td>Filtering / clustering (batch)</td>
+<td>6,000 / 2,000</td>
+<td>Fast</td>
+<td><strong>$0.05</strong></td>
+<td>0.7</td>
+</tr>
+<tr>
+<td>Comment engine (table/column batches)</td>
+<td>5,000 / 2,000</td>
+<td>Fast</td>
+<td><strong>$0.045</strong></td>
+<td>0.6</td>
+</tr>
+<tr>
+<td>Business Value (batch)</td>
+<td>6,000 / 3,000</td>
+<td>Fast</td>
+<td><strong>$0.063</strong></td>
+<td>0.9</td>
+</tr>
+<tr>
+<td>SQL review / repair</td>
+<td>4,000 / 1,000</td>
+<td>Review (GPT‑5)</td>
+<td><strong>$0.035</strong></td>
+<td>0.5</td>
+</tr>
+<tr>
+<td>Ask Forge (intent + answer + RAG)</td>
+<td>~10,000 / ~3,000</td>
+<td>Mix fast+premium</td>
+<td><strong>~$0.10</strong></td>
+<td>~1.4</td>
+</tr>
+<tr>
+<td>Embedding (1 doc / 100‑doc batch)</td>
+<td>~500 / 0</td>
+<td>Embedding</td>
+<td><strong>$0.00005</strong></td>
+<td>&lt;0.001</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-consumption-by-feature">3. Consumption by feature<a class="headerlink" href="#3-consumption-by-feature" title="Permanent link">&para;</a></h2>
+<h3 id="31-estate-scan-1000-tables">3.1 Estate Scan (1,000 tables)<a class="headerlink" href="#31-estate-scan-1000-tables" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Block</th>
+<th>Volume</th>
+<th>Cost</th>
+<th>DBU</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8 LLM passes in batches of 50 tables</td>
+<td>160 fast calls</td>
+<td>$7.68</td>
+<td>110</td>
+</tr>
+<tr>
+<td>10 health rules × 1,000 tables (warehouse)</td>
+<td>~30–60 min on Serverless Small</td>
+<td>$1.40–$2.80</td>
+<td>2–4</td>
+</tr>
+<tr>
+<td>Lineage walk + metadata</td>
+<td>10–20 lightweight queries</td>
+<td>&lt;$0.10</td>
+<td>&lt;0.2</td>
+</tr>
+<tr>
+<td><strong>Estate Scan subtotal</strong></td>
+<td></td>
+<td><strong>~$9–11</strong></td>
+<td><strong>~115 DBU</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="32-discovery-pipeline-1000-tables-50-use-cases">3.2 Discovery Pipeline (1,000 tables, 50 use cases)<a class="headerlink" href="#32-discovery-pipeline-1000-tables-50-use-cases" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Volume</th>
+<th>Cost</th>
+<th>DBU</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 — Business Context</td>
+<td>1 fast call</td>
+<td>$0.05</td>
+<td>0.7</td>
+</tr>
+<tr>
+<td>2 — Metadata extraction (warehouse)</td>
+<td>~10 queries</td>
+<td>&lt;$0.10</td>
+<td>&lt;0.2</td>
+</tr>
+<tr>
+<td>4 — Table filtering</td>
+<td>20 fast batches</td>
+<td>$1.00</td>
+<td>14</td>
+</tr>
+<tr>
+<td>5 — Use case generation</td>
+<td>8 parallel premium batches</td>
+<td>$4.80</td>
+<td>69</td>
+</tr>
+<tr>
+<td>6 — Domain clustering</td>
+<td>1 fast call</td>
+<td>$0.05</td>
+<td>0.7</td>
+</tr>
+<tr>
+<td>7 — Scoring (premium+fast)</td>
+<td>3 calls</td>
+<td>~$1.50</td>
+<td>21</td>
+</tr>
+<tr>
+<td>8 — SQL generation</td>
+<td>50 premium streaming calls</td>
+<td>$13.50</td>
+<td>193</td>
+</tr>
+<tr>
+<td>9 — Business Value (4 passes)</td>
+<td>8 fast calls</td>
+<td>$0.50</td>
+<td>7</td>
+</tr>
+<tr>
+<td>10 — Genie recommendations (5 domains × 7 passes)</td>
+<td>~200 calls (60% fast, 40% premium)</td>
+<td><strong>$53.80</strong></td>
+<td>770</td>
+</tr>
+<tr>
+<td><strong>Discovery Pipeline subtotal</strong></td>
+<td></td>
+<td><strong>~$75</strong></td>
+<td><strong>~1,075 DBU</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Genie is the most expensive item per engagement — controlling the number of domains and the preset (Speed vs Quality) is the main lever.</p>
+</blockquote>
+<h3 id="33-comment-engine-1000-tables-optional">3.3 Comment Engine (1,000 tables, optional)<a class="headerlink" href="#33-comment-engine-1000-tables-optional" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Volume</th>
+<th>Cost</th>
+<th>DBU</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Phase 0+1 (classification)</td>
+<td>20 fast calls</td>
+<td>$1.00</td>
+<td>14</td>
+</tr>
+<tr>
+<td>Phase 2 (table comments)</td>
+<td>100 fast calls</td>
+<td>$4.50</td>
+<td>64</td>
+</tr>
+<tr>
+<td>Phase 3 (column comments)</td>
+<td>~500 fast calls (50 cols/table)</td>
+<td>$22.50</td>
+<td>321</td>
+</tr>
+<tr>
+<td>Phase 4 (consistency review, opt)</td>
+<td>1 fast call</td>
+<td>$0.05</td>
+<td>0.7</td>
+</tr>
+<tr>
+<td><strong>Comments subtotal</strong></td>
+<td></td>
+<td><strong>~$28</strong></td>
+<td><strong>~400 DBU</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="34-ask-forge-rag">3.4 Ask Forge (RAG)<a class="headerlink" href="#34-ask-forge-rag" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Cost per question</strong>: ~$0.10 / 1.4 DBU (1 fast intent + 1 fast/premium answer + 0–1 review)</li>
+<li><strong>20 questions/day × 30 days</strong> = 600 questions → <strong>~$60 / 850 DBU/month</strong></li>
+<li>KB embedding ingestion: negligible (~$0.001 per document).</li>
+</ul>
+<h3 id="35-waf-assessment">3.5 WAF Assessment<a class="headerlink" href="#35-waf-assessment" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Frequency</th>
+<th>Cost</th>
+<th>DBU</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 assessment run (~30–50 queries on <code>system.*</code>)</td>
+<td>one‑shot per execution</td>
+<td>&lt;$0.05</td>
+<td>&lt;0.1</td>
+</tr>
+<tr>
+<td>Lakeview Dashboard (3 pages, ~13 datasets) — daily refresh</td>
+<td>13 queries × 30 days</td>
+<td>$0.50–$1.50/month</td>
+<td>&lt;2</td>
+</tr>
+<tr>
+<td>WAF Genie Space — ad‑hoc questions</td>
+<td>~$0.05/question (Genie uses internal SQL gen + warehouse)</td>
+<td>varies</td>
+<td>varies</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>WAF is <strong>very cheap</strong> because it operates on <code>system.*</code> only (small volume) and the dashboard datasets are lightweight. Serverless Small is the recommended warehouse size.</p>
+</blockquote>
+<hr />
+<h2 id="4-sizing-scenarios">4. Sizing scenarios<a class="headerlink" href="#4-sizing-scenarios" title="Permanent link">&para;</a></h2>
+<h3 id="41-small-customer-200-tables-20-use-cases-1-genie-domain">4.1 Small customer (≤200 tables, 20 use cases, 1 Genie domain)<a class="headerlink" href="#41-small-customer-200-tables-20-use-cases-1-genie-domain" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Block</th>
+<th>Cost</th>
+<th>DBU</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Estate Scan</td>
+<td>$2</td>
+<td>25</td>
+</tr>
+<tr>
+<td>Discovery Pipeline</td>
+<td>$20</td>
+<td>285</td>
+</tr>
+<tr>
+<td>Comments (opt)</td>
+<td>$6</td>
+<td>85</td>
+</tr>
+<tr>
+<td>WAF Assessment + 30‑day dashboard</td>
+<td>$1</td>
+<td>15</td>
+</tr>
+<tr>
+<td>Ask Forge (5 questions/day × 30d)</td>
+<td>$15</td>
+<td>215</td>
+</tr>
+<tr>
+<td><strong>Estimated monthly total</strong></td>
+<td><strong>~$45</strong></td>
+<td><strong>~625 DBU</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="42-medium-customer-1000-tables-50-use-cases-5-genie-domains-base-scenario">4.2 Medium customer (1,000 tables, 50 use cases, 5 Genie domains) — <strong>base scenario</strong><a class="headerlink" href="#42-medium-customer-1000-tables-50-use-cases-5-genie-domains-base-scenario" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Block</th>
+<th>Cost</th>
+<th>DBU</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Estate Scan (1× upfront)</td>
+<td>$10</td>
+<td>115</td>
+</tr>
+<tr>
+<td>Discovery Pipeline (1×)</td>
+<td>$75</td>
+<td>1,075</td>
+</tr>
+<tr>
+<td>Comments (opt, 1×)</td>
+<td>$28</td>
+<td>400</td>
+</tr>
+<tr>
+<td>WAF Assessment + 30‑day dashboard</td>
+<td>$1.50</td>
+<td>20</td>
+</tr>
+<tr>
+<td>Ask Forge (20 questions/day × 30d)</td>
+<td>$60</td>
+<td>850</td>
+</tr>
+<tr>
+<td><strong>Estimated monthly total</strong></td>
+<td><strong>~$175</strong></td>
+<td><strong>~2,460 DBU</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="43-large-customer-5000-tables-200-use-cases-15-genie-domains">4.3 Large customer (5,000 tables, 200 use cases, 15 Genie domains)<a class="headerlink" href="#43-large-customer-5000-tables-200-use-cases-15-genie-domains" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Block</th>
+<th>Cost</th>
+<th>DBU</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Estate Scan</td>
+<td>$40</td>
+<td>570</td>
+</tr>
+<tr>
+<td>Discovery Pipeline</td>
+<td>$325</td>
+<td>4,640</td>
+</tr>
+<tr>
+<td>Comments (opt)</td>
+<td>$140</td>
+<td>2,000</td>
+</tr>
+<tr>
+<td>WAF Assessment + 30‑day dashboard</td>
+<td>$3</td>
+<td>40</td>
+</tr>
+<tr>
+<td>Ask Forge (50 questions/day × 30d)</td>
+<td>$150</td>
+<td>2,140</td>
+</tr>
+<tr>
+<td><strong>Estimated monthly total</strong></td>
+<td><strong>~$660</strong></td>
+<td><strong>~9,400 DBU</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Scaling profile: cost grows <strong>linearly</strong> with table count (filtering, comments, estate scan) and with use cases (SQL gen, business value), but <strong>superlinearly</strong> with Genie domains (each domain triggers 7 premium passes).</p>
+</blockquote>
+<hr />
+<h2 id="5-drivers-and-knobs-to-reduce-consumption">5. Drivers and knobs to reduce consumption<a class="headerlink" href="#5-drivers-and-knobs-to-reduce-consumption" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Knob</th>
+<th>Where it applies</th>
+<th>Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Disable SQL review (<code>serving-endpoint-review</code>)</td>
+<td>SQL Engine, Ask Forge</td>
+<td>−1 LLM call per generated SQL (~−10–15% of Discovery)</td>
+</tr>
+<tr>
+<td>Lower <code>lineage depth</code> (default 5 → 2)</td>
+<td>Estate Scan</td>
+<td>−60% lineage queries</td>
+</tr>
+<tr>
+<td>Cap <code>maxUseCases</code></td>
+<td>Discovery (Step 5/8)</td>
+<td>SQL gen cost scales 1:1</td>
+</tr>
+<tr>
+<td><strong>Speed</strong> preset on Genie</td>
+<td>Genie Engine</td>
+<td>More passes routed to fast endpoint (~−40% Genie cost)</td>
+</tr>
+<tr>
+<td>Reduce <code>domainConcurrency</code></td>
+<td>Genie Engine</td>
+<td>Doesn't cut cost, cuts wall‑clock; avoids contention</td>
+</tr>
+<tr>
+<td><code>wide-schema mode</code> (&gt;3K tables)</td>
+<td>Discovery</td>
+<td>Cuts parallel batches 8 → 3 (smooths peaks)</td>
+</tr>
+<tr>
+<td>Lakeview / Genie cache</td>
+<td>WAF Dashboard, Genie</td>
+<td>Avoids re-running datasets</td>
+</tr>
+<tr>
+<td><strong>Serverless Small</strong> warehouse</td>
+<td>WAF, Estate health</td>
+<td><code>system.*</code> is lightweight; bigger sizes don't help</td>
+</tr>
+<tr>
+<td>Skip Comment Engine if not in scope</td>
+<td>Comments</td>
+<td>Largest elective block (~$28/1K tables)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="6-executive-summary-base-scenario-1000-tables">6. Executive summary (base scenario — 1,000 tables)<a class="headerlink" href="#6-executive-summary-base-scenario-1000-tables" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Single engagement</strong> (1 estate scan + 1 discovery + 1 WAF + comments): <strong>~$115 / ~1,620 DBU</strong></li>
+<li><strong>30‑day operation</strong> (warm usage, daily dashboard, 20 questions/day in Ask Forge): <strong>~$175 / ~2,460 DBU</strong></li>
+<li><strong>Almost 100% of the cost is Model Serving (Foundation Model APIs)</strong>. SQL Warehouse stays under <strong>$5/month</strong> even in the large scenario.</li>
+</ul>
+<blockquote>
+<p><strong>Caveat</strong>: the figures above are estimates based on list price and average tokens observed in the prompts. Variations of ±30% are expected depending on customer schema shape, presets (Speed/Quality), and SQL repair retry counts.</p>
+</blockquote>
+<hr />
+<h2 id="7-how-to-measure-actual-consumption-after-deployment">7. How to measure actual consumption after deployment<a class="headerlink" href="#7-how-to-measure-actual-consumption-after-deployment" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Enable the system tables <code>system.serving.endpoint_usage</code> (token usage per endpoint) and <code>system.billing.usage</code> (DBUs per SKU).</li>
+<li>Filter by the app's workspace/user (<code>workspace_id</code>, <code>identity_metadata</code>) and by the engagement window.</li>
+<li>The Forge WAF dashboard already has a <strong>Compute / Warehouses</strong> tab that can be extended to track the app's consumption.</li>
+<li><code>ForgePromptLog</code> (Lakebase) records every LLM call with token counts — useful to reconcile against <code>system.serving.endpoint_usage</code>.</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "toc.integrate"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

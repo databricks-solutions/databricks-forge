@@ -1,0 +1,2434 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Turn Unity Catalog metadata into business value in days, not quarters">
+      
+      
+      
+        <link rel="canonical" href="https://databricks-solutions.github.io/databricks-forge/BUSINESS_VALUE.html">
+      
+      
+        <link rel="prev" href="ask-forge.html">
+      
+      
+        <link rel="next" href="estate-analysis.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="images/databricks-icon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>Business Value - Databricks Forge</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#business-value-engine" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="Databricks Forge" class="md-header__button md-logo" aria-label="Databricks Forge" data-md-component="logo">
+      
+  <img src="images/databricks-icon.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Databricks Forge
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Business Value
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/databricks-solutions/databricks-forge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    databricks-solutions/databricks-forge
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Databricks Forge" class="md-nav__button md-logo" aria-label="Databricks Forge" data-md-component="logo">
+      
+  <img src="images/databricks-icon.svg" alt="logo">
+
+    </a>
+    Databricks Forge
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/databricks-solutions/databricks-forge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    databricks-solutions/databricks-forge
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="quickstart.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="DEPLOYMENT.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="USER_GUIDE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Features
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ask-forge.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ask Forge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Value
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="BUSINESS_VALUE.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Value
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lakebase-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lakebase Tables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#domain-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Domain Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cost-modeling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cost Modeling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strategy-alignment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strategy Alignment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#master-repository-enrichment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Master Repository Enrichment
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pipeline-passes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pipeline Passes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pipeline Passes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pass-1-financial-quantification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pass 1: Financial Quantification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pass-2-roadmap-phasing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pass 2: Roadmap Phasing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pass-3-executive-synthesis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pass 3: Executive Synthesis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pass-4-stakeholder-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pass 4: Stakeholder Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ui-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UI Pages
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="UI Pages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#business-value-portfolio-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /business-value -- Portfolio Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#business-valueroadmap-implementation-roadmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /business-value/roadmap -- Implementation Roadmap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#business-valuestrategy-strategy-alignment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /business-value/strategy -- Strategy Alignment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#business-valuestakeholders-stakeholder-intelligence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /business-value/stakeholders -- Stakeholder Intelligence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#business-valuetracking-value-tracking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /business-value/tracking -- Value Tracking
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exports
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exports">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#per-run-exports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Per-Run Exports
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#portfolio-exports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Portfolio Exports
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shared-export-infrastructure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shared Export Infrastructure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-case-voting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use Case Voting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-routes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Routes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integration Points
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Integration Points">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dashboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run Detail
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ask-forge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ask Forge
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-pptx-export" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run PPTX Export
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File Map
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="estate-analysis.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estate Intelligence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="SKILLS_KNOWLEDGE_BASE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Knowledge Base
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/SUPPORT.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/SECURITY.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/CONTRIBUTING.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release Notes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Release Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_07_21.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-07-21
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_05_26.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-26
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_05_11.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_05_02.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-02
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_04_30.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-04-30
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_04_16.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-04-16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_31.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-31
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_19.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-19
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_18.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-18
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_16.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_15.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-15
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_14.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-14
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_13.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-13
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_12.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-12
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_11.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_10.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_09.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-09
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_07.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-07
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_06.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-06
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_05.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-05
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_04.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-04
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026-02-27.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-02-27
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026-02-25.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-02-25
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="business-value-engine">Business Value Engine<a class="headerlink" href="#business-value-engine" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>Post-pipeline intelligence that transforms discovered use cases into
+financially-grounded, boardroom-ready deliverables.</p>
+</blockquote>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The Business Value Engine runs as <strong>Pipeline Step 9</strong>, immediately after SQL
+generation. It executes four LLM passes over the scored use cases to produce:</p>
+<ol>
+<li><strong>Financial Quantification</strong> -- dollar-range estimates per use case</li>
+<li><strong>Roadmap Phasing</strong> -- Quick Wins / Foundation / Transformation assignment</li>
+<li><strong>Executive Synthesis</strong> -- key findings, strategic recommendations, risk callouts</li>
+<li><strong>Stakeholder Analysis</strong> -- organizational impact mapping and champion identification</li>
+</ol>
+<p>Results are persisted in Lakebase, surfaced through five dedicated UI pages,
+exportable in four portfolio-level formats, and integrated into the dashboard,
+run detail, Ask Forge, and per-run exports.</p>
+<hr />
+<h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Pipeline Engine (engine.ts)
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  └── runBusinessValueAnalysis(ctx)  [Step 9, ~90% progress]
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>        ├── Pass 1: Financial Quantification  [fast model, JSON mode]
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>        ├── Pass 2: Roadmap Phasing           [fast model, JSON mode]
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>        ├── Pass 3: Executive Synthesis       [fast model, JSON mode]
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        └── Pass 4: Stakeholder Analysis      [fast model, JSON mode]
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>              │
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>              ▼
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        Lakebase (7 tables)
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>              │
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>              ▼
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>        API Routes (/api/business-value/*, /api/export/portfolio)
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>              │
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>              ▼
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>        UI Pages (/business-value/*)
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>              │
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>              ▼
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>        Exports (Excel, PPTX, PDF, D4B Workshop Pack)
+</code></pre></div>
+<p>All four passes use <code>getFastServingEndpoint()</code> and <code>responseFormat: "json_object"</code>.
+Use cases are batched (25 per request) for the financial and roadmap passes to
+stay within token limits.</p>
+<p>Financial quantification prompts include <strong>D4B industry benchmarks</strong> (ad-hoc
+report costs, analyst time savings, BI consolidation, data quality automation,
+governance audit reduction) to ground LLM estimates in real-world values.</p>
+<hr />
+<h2 id="data-model">Data Model<a class="headerlink" href="#data-model" title="Permanent link">&para;</a></h2>
+<h3 id="lakebase-tables">Lakebase Tables<a class="headerlink" href="#lakebase-tables" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Table</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ForgeValueEstimate</code></td>
+<td><code>forge_value_estimates</code></td>
+<td>Per-use-case financial estimates (low/mid/high, type, confidence)</td>
+</tr>
+<tr>
+<td><code>ForgeRoadmapPhase</code></td>
+<td><code>forge_roadmap_phases</code></td>
+<td>Phase assignment with effort, dependencies, enablers</td>
+</tr>
+<tr>
+<td><code>ForgeUseCaseTracking</code></td>
+<td><code>forge_use_case_tracking</code></td>
+<td>Lifecycle stage tracking (discovered → measured) + voting data (in <code>notes</code> JSON)</td>
+</tr>
+<tr>
+<td><code>ForgeValueCapture</code></td>
+<td><code>forge_value_captures</code></td>
+<td>Actual delivered value records</td>
+</tr>
+<tr>
+<td><code>ForgeStrategyDocument</code></td>
+<td><code>forge_strategy_documents</code></td>
+<td>Uploaded strategy documents with parsed initiatives</td>
+</tr>
+<tr>
+<td><code>ForgeStrategyAlignment</code></td>
+<td><code>forge_strategy_alignments</code></td>
+<td>Strategy-to-use-case alignment and gap analysis</td>
+</tr>
+<tr>
+<td><code>ForgeStakeholderProfile</code></td>
+<td><code>forge_stakeholder_profiles</code></td>
+<td>Role/department profiles with champion flags</td>
+</tr>
+</tbody>
+</table>
+<p>The <code>ForgeRun</code> model holds <code>synthesisJson</code> (executive synthesis output) and has
+relations to all seven tables. All relations cascade on delete.</p>
+<h3 id="domain-types">Domain Types<a class="headerlink" href="#domain-types" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ValueType        = &quot;cost_savings&quot; | &quot;revenue_uplift&quot; | &quot;risk_reduction&quot; | &quot;efficiency_gain&quot;
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>ValueConfidence  = &quot;low&quot; | &quot;medium&quot; | &quot;high&quot;
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>RoadmapPhase     = &quot;quick_wins&quot; | &quot;foundation&quot; | &quot;transformation&quot;
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>EffortEstimate   = &quot;xs&quot; | &quot;s&quot; | &quot;m&quot; | &quot;l&quot; | &quot;xl&quot;
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>TrackingStage    = &quot;discovered&quot; | &quot;planned&quot; | &quot;in_progress&quot; | &quot;delivered&quot; | &quot;measured&quot;
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>StrategyGapType  = &quot;supported&quot; | &quot;partial&quot; | &quot;blocked&quot; | &quot;unmatched&quot;
+</code></pre></div>
+<p>Key interfaces: <code>ValueEstimate</code>, <code>RoadmapPhaseAssignment</code>, <code>UseCaseTrackingEntry</code>,
+<code>ValueCaptureEntry</code>, <code>StrategyDocument</code>, <code>StrategyInitiative</code>,
+<code>StrategyAlignmentEntry</code>, <code>StakeholderProfile</code>, <code>ExecutiveSynthesis</code>,
+<code>BusinessValuePortfolio</code> (see <code>lib/domain/types.ts</code>).</p>
+<h3 id="cost-modeling">Cost Modeling<a class="headerlink" href="#cost-modeling" title="Permanent link">&para;</a></h3>
+<p><code>lib/domain/cost-modeling.ts</code> provides:</p>
+<ul>
+<li><strong>T-shirt to dollar conversion</strong> -- maps EffortEstimate (xs → xl) to FTE months
+  and dollar cost ranges using <code>FTE_MONTHLY_COST</code> ($15,000/month)</li>
+<li><strong>ROI calculation</strong> -- <code>calculateRoi(annualValueMid, effort)</code> returns net ROI
+  percentage, payback period in months, and net value (mid value minus cost)</li>
+<li><strong>LOE matrix estimation</strong> -- <code>estimateLOEFromModelType(modelType, mcCount)</code> uses
+  the Master Repository 4x3 matrix (model type x data criticality) to derive
+  effort directly from use case characteristics (maps to <code>s</code>/<code>m</code>/<code>l</code>)</li>
+<li><strong>Data access feasibility</strong> -- <code>estimateDataAccessFeasibility(industryId, assetIds)</code>
+  scores 0-1 based on Databricks connectivity ratings (Lakeflow, UC Federation,
+  Lakebridge) for referenced data assets</li>
+<li>Helper labels and ordering for UI display</li>
+</ul>
+<h3 id="strategy-alignment">Strategy Alignment<a class="headerlink" href="#strategy-alignment" title="Permanent link">&para;</a></h3>
+<p><code>lib/domain/strategy-alignment.ts</code> provides deterministic strategy alignment
+using the Master Repository's strategic taxonomy:</p>
+<ul>
+<li><strong><code>buildStrategyAlignmentMap(industryId, useCaseNames)</code></strong> -- fuzzy-matches
+  pipeline use cases against Master Repository strategic imperatives and pillars
+  (exact, substring, then token overlap with 40% threshold)</li>
+<li><strong><code>buildStrategyAlignmentPrompt(industryId, useCaseNames)</code></strong> -- compact markdown
+  summary injected into the Executive Synthesis prompt for strategy-aware findings</li>
+</ul>
+<p>The Executive Synthesis pass (Pass 3) automatically includes strategy alignment
+context when industry enrichment data is available.</p>
+<h3 id="master-repository-enrichment">Master Repository Enrichment<a class="headerlink" href="#master-repository-enrichment" title="Permanent link">&para;</a></h3>
+<p>The Master Repository (<code>scripts/convert-master-repo.mjs</code>) enriches the industry
+outcome maps with structured benchmark, data asset, and strategic alignment data:</p>
+<ul>
+<li><strong>562 reference use cases</strong> across 11 industries with benchmarks, model types,
+  strategic imperatives, and data asset mappings (MC/VA criticality)</li>
+<li><strong>398 data assets</strong> with Databricks connectivity scores</li>
+<li>Data flows through the <strong>LLM Skills system</strong> (<code>lib/skills/content/industry-enrichment.ts</code>)
+  as 5 additional chunk extractors: benchmark context, model type guidance,
+  strategic alignment, data asset requirements, and LOE patterns</li>
+<li>Embedded into <strong>pgvector</strong> as <code>industry_benchmark</code> and <code>industry_data_asset</code>
+  entity kinds for RAG retrieval</li>
+<li>CLI update process: <code>npm run sync-master-repo -- --input path/to/xlsx</code></li>
+</ul>
+<hr />
+<h2 id="pipeline-passes">Pipeline Passes<a class="headerlink" href="#pipeline-passes" title="Permanent link">&para;</a></h2>
+<h3 id="pass-1-financial-quantification">Pass 1: Financial Quantification<a class="headerlink" href="#pass-1-financial-quantification" title="Permanent link">&para;</a></h3>
+<p><strong>Prompt:</strong> <code>FINANCIAL_QUANTIFICATION_PROMPT</code>
+<strong>Persona:</strong> Senior Management Consultant and Financial Analyst</p>
+<p>Estimates annual financial impact per use case as a low/mid/high range in USD.
+Uses calibration anchors:</p>
+<ul>
+<li><strong>Cost Savings</strong> -- process automation (1-5% of operating cost), data quality (0.5-2% of revenue)</li>
+<li><strong>Revenue Uplift</strong> -- targeting/personalization (2-8% of addressable revenue), churn reduction</li>
+<li><strong>Risk Reduction</strong> -- fraud detection (0.5-2% of transaction value), compliance</li>
+<li><strong>Efficiency Gain</strong> -- analyst time savings ($100-250K per FTE), faster decision cycles</li>
+</ul>
+<p>D4B industry benchmarks injected into the prompt:</p>
+<ul>
+<li>Average cost per ad-hoc analyst report: $1,200--$3,500</li>
+<li>Analyst time saved by self-service analytics: 3--7 days per month</li>
+<li>BI tool consolidation savings: 15--30% of licensing costs</li>
+<li>Data quality automation: 40--60% error reduction</li>
+<li>Governance audit reduction: 50--70% with lineage/cataloguing</li>
+</ul>
+<p>Estimates are scaled by data estate size, industry, feasibility score, and table
+complexity. Conservative by design: low estimate is achievable with poor execution,
+high represents ideal execution.</p>
+<h3 id="pass-2-roadmap-phasing">Pass 2: Roadmap Phasing<a class="headerlink" href="#pass-2-roadmap-phasing" title="Permanent link">&para;</a></h3>
+<p><strong>Prompt:</strong> <code>ROADMAP_PHASING_PROMPT</code>
+<strong>Persona:</strong> Chief Delivery Officer</p>
+<p>Assigns each use case to a delivery phase:</p>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Timeframe</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Quick Wins</td>
+<td>0-3 months</td>
+<td>Feasibility &gt;= 0.7, proven patterns, data readily available</td>
+</tr>
+<tr>
+<td>Foundation</td>
+<td>3-9 months</td>
+<td>Requires data engineering, gold tables, quality improvements</td>
+</tr>
+<tr>
+<td>Transformation</td>
+<td>9-18 months</td>
+<td>ML models, real-time systems, cross-domain analytics</td>
+</tr>
+</tbody>
+</table>
+<p>Includes effort estimates (xs through xl), dependency chains between use cases,
+and enabler descriptions.</p>
+<h3 id="pass-3-executive-synthesis">Pass 3: Executive Synthesis<a class="headerlink" href="#pass-3-executive-synthesis" title="Permanent link">&para;</a></h3>
+<p><strong>Prompt:</strong> <code>EXECUTIVE_SYNTHESIS_PROMPT</code>
+<strong>Persona:</strong> Senior Partner at a top-tier management consulting firm</p>
+<p>Produces a board-ready briefing:</p>
+<ul>
+<li><strong>3-5 Key Findings</strong> -- specific to the business, mixing opportunities and risks</li>
+<li><strong>3-5 Strategic Recommendations</strong> -- concrete actions with expected outcomes</li>
+<li><strong>2-3 Risk Callouts</strong> -- specific risks with evidence and impact</li>
+</ul>
+<p>Stored as <code>synthesisJson</code> on the <code>ForgeRun</code> record.</p>
+<h3 id="pass-4-stakeholder-analysis">Pass 4: Stakeholder Analysis<a class="headerlink" href="#pass-4-stakeholder-analysis" title="Permanent link">&para;</a></h3>
+<p><strong>Prompt:</strong> <code>STAKEHOLDER_ANALYSIS_PROMPT</code>
+<strong>Persona:</strong> Organizational Change Management Consultant</p>
+<p>Maps beneficiary and sponsor fields from use cases into structured profiles:
+role, department, use case count, domains, type distribution, change complexity,
+champion/sponsor flags.</p>
+<hr />
+<h2 id="ui-pages">UI Pages<a class="headerlink" href="#ui-pages" title="Permanent link">&para;</a></h2>
+<p>All pages use <code>PageHeader</code>, <code>mx-auto max-w-[1400px] space-y-8</code> container,
+and the established shadcn/ui component patterns.</p>
+<h3 id="business-value-portfolio-overview"><code>/business-value</code> -- Portfolio Overview<a class="headerlink" href="#business-value-portfolio-overview" title="Permanent link">&para;</a></h3>
+<p>Server component with <code>&lt;Suspense&gt;</code> boundary. Aggregates data across all runs via
+<code>getPortfolioData()</code>.</p>
+<ul>
+<li>Key Findings banner (from latest synthesis)</li>
+<li>Value Hero Cards: Total Estimated Value, Quick Wins, Delivered Value, Use Case count</li>
+<li><strong>Portfolio Velocity Metrics</strong>: conversion funnel (Discovered → Measured),
+  conversion rate, realization rate (delivered/estimated), in-pipeline count</li>
+<li>Strategic Themes: top domains by value</li>
+<li>Phase Distribution: Quick Wins / Foundation / Transformation counts</li>
+<li>Domain Heatmap: table with score, feasibility, use case count, value per domain</li>
+<li><strong>Interactive Drill-Down</strong>: expandable domain cards with per-use-case tables
+  including scores, feasibility, effort, estimated value, and <strong>vote buttons</strong></li>
+<li><strong>Export Button</strong> (dropdown): Portfolio Excel, Portfolio PPTX, Executive PDF,
+  D4B Workshop Pack</li>
+</ul>
+<h3 id="business-valueroadmap-implementation-roadmap"><code>/business-value/roadmap</code> -- Implementation Roadmap<a class="headerlink" href="#business-valueroadmap-implementation-roadmap" title="Permanent link">&para;</a></h3>
+<p>Server component. Shows phase-level summary with a Recharts <code>BarChart</code>
+(<code>DeliveryTimelineChart</code>) for visual delivery timeline. Interactive drill-down
+by phase with effort and dependency details.</p>
+<h3 id="business-valuestrategy-strategy-alignment"><code>/business-value/strategy</code> -- Strategy Alignment<a class="headerlink" href="#business-valuestrategy-strategy-alignment" title="Permanent link">&para;</a></h3>
+<p>Client component. Upload strategy documents (plain text), which are parsed into
+initiatives via LLM (<code>PARSE_OUTCOME_MAP</code>). View alignment against discovered
+use cases with gap status badges (Supported / Partial / Blocked / Not Assessed).
+Supports delete with confirmation dialog.</p>
+<h3 id="business-valuestakeholders-stakeholder-intelligence"><code>/business-value/stakeholders</code> -- Stakeholder Intelligence<a class="headerlink" href="#business-valuestakeholders-stakeholder-intelligence" title="Permanent link">&para;</a></h3>
+<p>Server component. Displays recommended champions, department summary cards,
+full stakeholder table (role, department, use cases, domains, types, change
+complexity, champion/sponsor flags), and skills assessment (aggregate type
+distribution). Interactive drill-down by stakeholder with linked use cases.</p>
+<h3 id="business-valuetracking-value-tracking"><code>/business-value/tracking</code> -- Value Tracking<a class="headerlink" href="#business-valuetracking-value-tracking" title="Permanent link">&para;</a></h3>
+<p>Client component. Lifecycle tracking from discovery to measured value:</p>
+<ul>
+<li>Scorecard: Discovered / Planned + In Progress / Delivered / Measured counts</li>
+<li>Stage Pipeline: visual bar showing distribution across stages</li>
+<li>Tracking Table with:</li>
+<li>Stage dropdown (PATCH to update)</li>
+<li><strong>Inline owner editing</strong> (pencil icon → input → save/cancel)</li>
+<li><strong>Stalled indicators</strong>: amber highlight and "Stalled (Xd)" badge for use cases
+    with no stage change in 14+ days</li>
+<li><strong>Status column</strong>: days since last update, "Today" label for recent changes</li>
+<li><strong>Stalled alert banner</strong>: count of stalled use cases with unblock guidance</li>
+<li><strong>Value Capture dialog</strong>: record actual delivered value against a use case</li>
+</ul>
+<hr />
+<h2 id="exports">Exports<a class="headerlink" href="#exports" title="Permanent link">&para;</a></h2>
+<h3 id="per-run-exports">Per-Run Exports<a class="headerlink" href="#per-run-exports" title="Permanent link">&para;</a></h3>
+<p>Per-run PPTX export (<code>lib/export/pptx.ts</code>) conditionally includes synthesis
+slides when Business Value data is available:</p>
+<ul>
+<li>Key Findings slide (numbered list)</li>
+<li>Strategic Recommendations slide (numbered list)</li>
+<li>Risk Callouts slide (titled + body)</li>
+<li>Value Summary KPI slide (total value, quick wins value, quick wins count, phases)</li>
+</ul>
+<p>Backward-compatible: the <code>synthesis</code> parameter is optional.</p>
+<p>Per-run Excel export includes a "Business Value" sheet and "Stakeholders" sheet.</p>
+<h3 id="portfolio-exports">Portfolio Exports<a class="headerlink" href="#portfolio-exports" title="Permanent link">&para;</a></h3>
+<p>Served from <code>GET /api/export/portfolio?format=excel|pptx|pdf|workshop</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Format</th>
+<th>Generator</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>excel</code></td>
+<td><code>lib/export/portfolio-excel.ts</code></td>
+<td>8-sheet workbook (Executive Summary, Key Findings, Recommendations, Risk Callouts, Domain Performance, Delivery Pipeline, Use Cases with cost modeling/ROI, Stakeholders)</td>
+</tr>
+<tr>
+<td><code>pptx</code></td>
+<td><code>lib/export/portfolio-pptx.ts</code></td>
+<td>8-slide Databricks-branded deck (Title, Value Summary KPIs, Findings, Recommendations, Risks, Pipeline, Domains, Stakeholders)</td>
+</tr>
+<tr>
+<td><code>pdf</code></td>
+<td><code>lib/export/executive-pdf.ts</code></td>
+<td>2-page executive brief (Page 1: KPIs + findings + recommendations; Page 2: pipeline + domain heatmap + risks)</td>
+</tr>
+<tr>
+<td><code>workshop</code></td>
+<td><code>lib/export/workshop-pptx.ts</code></td>
+<td>D4B Workshop Pack (5 sections: Case for Change with D4B stats, Executive Findings, Delivery Roadmap, Recommended Genie Spaces, Workshop Agenda)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="shared-export-infrastructure">Shared Export Infrastructure<a class="headerlink" href="#shared-export-infrastructure" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>lib/export/brand.ts</code> -- centralised Databricks brand constants (<code>BRAND</code>, <code>PPTX</code>, <code>EXCEL</code>, <code>PDF</code> palettes) and utilities (<code>today()</code>, <code>formatCompactCurrency()</code>, <code>scoreColor()</code>)</li>
+<li><code>lib/export/excel-helpers.ts</code> -- reusable ExcelJS utilities (<code>thinBorder</code>, <code>styleHeaderRow</code>, <code>styleDataRows</code>, <code>styleScoreCell</code>)</li>
+<li><code>lib/export/pptx-helpers.ts</code> -- reusable pptxgenjs utilities (<code>getLogoBase64</code>, <code>addFooter</code>, <code>addAccentBar</code>, <code>addRedSeparator</code>, <code>addBrandShapes</code>, <code>addTitleSlide</code>, <code>addSectionSlide</code>, <code>headerCell</code>, <code>bodyCell</code>)</li>
+</ul>
+<hr />
+<h2 id="use-case-voting">Use Case Voting<a class="headerlink" href="#use-case-voting" title="Permanent link">&para;</a></h2>
+<p>Workshop-style prioritisation feature allowing users to vote on use cases:</p>
+<ul>
+<li><code>POST /api/business-value/vote</code> -- cast or toggle a vote (stores in <code>notes</code> JSON of <code>ForgeUseCaseTracking</code>, no schema changes)</li>
+<li><code>GET /api/business-value/vote?runId=</code> -- retrieve vote counts per use case</li>
+<li><code>VoteButton</code> component (compact and full variants) rendered in Portfolio Drill-Down table</li>
+<li>Voter identity based on current user email; each user can vote once per use case</li>
+</ul>
+<hr />
+<h2 id="api-routes">API Routes<a class="headerlink" href="#api-routes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/business-value/portfolio</code></td>
+<td>Aggregated portfolio data</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/business-value/tracking</code></td>
+<td>All tracking entries + stage counts</td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><code>/api/business-value/tracking</code></td>
+<td>Update use case stage, owner, or notes</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/business-value/value-capture</code></td>
+<td>List value captures with use case names</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/api/business-value/value-capture</code></td>
+<td>Record actual delivered value</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><code>/api/business-value/value-capture</code></td>
+<td>Delete a value capture record</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/business-value/strategy</code></td>
+<td>List strategy documents</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/api/business-value/strategy</code></td>
+<td>Create + LLM-parse strategy document</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><code>/api/business-value/strategy?id=</code></td>
+<td>Delete strategy document</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/business-value/strategy/[id]</code></td>
+<td>Strategy doc with alignments</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/business-value/vote?runId=</code></td>
+<td>Vote counts per use case</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/api/business-value/vote</code></td>
+<td>Cast or toggle a vote</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/export/portfolio?format=</code></td>
+<td>Portfolio export (excel, pptx, pdf, workshop)</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/runs/[runId]/business-value</code></td>
+<td>Full business value data for a run</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="integration-points">Integration Points<a class="headerlink" href="#integration-points" title="Permanent link">&para;</a></h2>
+<h3 id="dashboard">Dashboard<a class="headerlink" href="#dashboard" title="Permanent link">&para;</a></h3>
+<p><code>BusinessValueSummary</code> component (client, fetches from portfolio API on mount)
+shows Total Estimated Value and Implementation Progress cards, linking into the
+business value pages.</p>
+<h3 id="run-detail">Run Detail<a class="headerlink" href="#run-detail" title="Permanent link">&para;</a></h3>
+<p><code>BusinessValueTab</code> in <code>run-completed-tabs.tsx</code> renders per-run value summary,
+executive synthesis (findings/recommendations/risks), value by category, and
+roadmap phase distribution.</p>
+<h3 id="ask-forge">Ask Forge<a class="headerlink" href="#ask-forge" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>strategic</code> intent added to intent classification (heuristic + LLM)</li>
+<li><code>strategic</code> persona overlay for CDO/CFO/Board-level audience</li>
+<li>Action cards: View Portfolio, Generate Business Case, View Stakeholders,
+  View Roadmap, Draft Executive Memo</li>
+</ul>
+<h3 id="run-pptx-export">Run PPTX Export<a class="headerlink" href="#run-pptx-export" title="Permanent link">&para;</a></h3>
+<p>The per-run PPTX export (<code>lib/export/pptx.ts</code>) conditionally includes synthesis
+slides (Key Findings, Strategic Recommendations, Risk Callouts, Value Summary)
+when <code>synthesisJson</code> is present on the run record.</p>
+<hr />
+<h2 id="file-map">File Map<a class="headerlink" href="#file-map" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>lib/
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>  ai/
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    templates-business-value.ts      4 prompt templates (includes D4B benchmarks)
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    templates.ts                     Registers prompts in central registry
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    agent.ts                         Default temperatures for BV prompts
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>  pipeline/
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    steps/
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>      business-value-analysis.ts     Step 9 orchestrator (4 LLM passes)
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    engine.ts                        Integrates step 8 into pipeline
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>  lakebase/
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    value-estimates.ts               CRUD for ForgeValueEstimate
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    roadmap-phases.ts                CRUD for ForgeRoadmapPhase
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    use-case-tracking.ts             CRUD for ForgeUseCaseTracking
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>    value-captures.ts                CRUD for ForgeValueCapture
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>    strategy-documents.ts            CRUD for ForgeStrategyDocument + Alignment
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>    stakeholder-profiles.ts          CRUD for ForgeStakeholderProfile
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>    portfolio.ts                     Cross-run portfolio aggregation (+ latestRunId)
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>  domain/
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>    types.ts                         ValueEstimate, RoadmapPhase, etc.
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>    cost-modeling.ts                 T-shirt sizing, ROI, LOE matrix, data access feasibility
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>    strategy-alignment.ts            Deterministic strategy alignment from Master Repository
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>    industry-outcomes/
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>      master-repo-types.ts           MasterRepoUseCase, ReferenceDataAsset types
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>      master-repo-registry.ts        Enrichment data lookup by industry ID
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>      *.enrichment.ts                Auto-generated enrichment modules (11 industries)
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>  export/
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>    brand.ts                         Centralised brand constants (BRAND, PPTX, EXCEL, PDF)
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>    excel-helpers.ts                 Shared ExcelJS styling utilities
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>    pptx-helpers.ts                  Shared pptxgenjs slide helpers
+<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>    portfolio-excel.ts               8-sheet portfolio Excel generator
+<a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a>    portfolio-pptx.ts                8-slide portfolio PPTX generator
+<a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a>    executive-pdf.ts                 2-page executive PDF brief
+<a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a>    workshop-pptx.ts                 D4B Workshop Pack PPTX generator
+<a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a>    pptx.ts                          Per-run PPTX (now with optional synthesis slides)
+<a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a>    excel.ts                         Per-run Excel (Business Value + Stakeholders sheets)
+<a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a>  assistant/
+<a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a>    intent.ts                        &quot;strategic&quot; intent
+<a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a>    prompts.ts                       &quot;strategic&quot; persona overlay
+<a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a>    engine.ts                        Strategic action cards
+<a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a>
+<a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a>app/
+<a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a>  business-value/
+<a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a>    page.tsx                         Portfolio overview (+ velocity metrics, export button)
+<a id="__codelineno-2-44" name="__codelineno-2-44" href="#__codelineno-2-44"></a>    roadmap/page.tsx                 Roadmap page (+ drill-down)
+<a id="__codelineno-2-45" name="__codelineno-2-45" href="#__codelineno-2-45"></a>    strategy/page.tsx                Strategy alignment
+<a id="__codelineno-2-46" name="__codelineno-2-46" href="#__codelineno-2-46"></a>    stakeholders/page.tsx            Stakeholder intelligence (+ drill-down)
+<a id="__codelineno-2-47" name="__codelineno-2-47" href="#__codelineno-2-47"></a>    tracking/page.tsx                Value tracking (+ inline edit, stalled, voting)
+<a id="__codelineno-2-48" name="__codelineno-2-48" href="#__codelineno-2-48"></a>  api/
+<a id="__codelineno-2-49" name="__codelineno-2-49" href="#__codelineno-2-49"></a>    business-value/
+<a id="__codelineno-2-50" name="__codelineno-2-50" href="#__codelineno-2-50"></a>      portfolio/route.ts             GET portfolio
+<a id="__codelineno-2-51" name="__codelineno-2-51" href="#__codelineno-2-51"></a>      tracking/route.ts              GET/PATCH tracking (stage, owner, notes)
+<a id="__codelineno-2-52" name="__codelineno-2-52" href="#__codelineno-2-52"></a>      value-capture/route.ts         GET/POST/DELETE value capture
+<a id="__codelineno-2-53" name="__codelineno-2-53" href="#__codelineno-2-53"></a>      vote/route.ts                  GET/POST use case voting
+<a id="__codelineno-2-54" name="__codelineno-2-54" href="#__codelineno-2-54"></a>      strategy/route.ts              GET/POST/DELETE strategy docs
+<a id="__codelineno-2-55" name="__codelineno-2-55" href="#__codelineno-2-55"></a>      strategy/[id]/route.ts         GET strategy with alignments
+<a id="__codelineno-2-56" name="__codelineno-2-56" href="#__codelineno-2-56"></a>    export/
+<a id="__codelineno-2-57" name="__codelineno-2-57" href="#__codelineno-2-57"></a>      portfolio/route.ts             GET portfolio exports (4 formats)
+<a id="__codelineno-2-58" name="__codelineno-2-58" href="#__codelineno-2-58"></a>    runs/[runId]/
+<a id="__codelineno-2-59" name="__codelineno-2-59" href="#__codelineno-2-59"></a>      business-value/route.ts        GET per-run business value
+<a id="__codelineno-2-60" name="__codelineno-2-60" href="#__codelineno-2-60"></a>
+<a id="__codelineno-2-61" name="__codelineno-2-61" href="#__codelineno-2-61"></a>components/
+<a id="__codelineno-2-62" name="__codelineno-2-62" href="#__codelineno-2-62"></a>  business-value/
+<a id="__codelineno-2-63" name="__codelineno-2-63" href="#__codelineno-2-63"></a>    delivery-timeline-chart.tsx      Recharts BarChart for roadmap
+<a id="__codelineno-2-64" name="__codelineno-2-64" href="#__codelineno-2-64"></a>    portfolio-drill-down.tsx         Expandable domain cards with vote buttons
+<a id="__codelineno-2-65" name="__codelineno-2-65" href="#__codelineno-2-65"></a>    portfolio-export-button.tsx      4-format dropdown export button
+<a id="__codelineno-2-66" name="__codelineno-2-66" href="#__codelineno-2-66"></a>    value-capture-dialog.tsx         Record actual delivered value
+<a id="__codelineno-2-67" name="__codelineno-2-67" href="#__codelineno-2-67"></a>    vote-button.tsx                  Use case voting (compact + full variants)
+<a id="__codelineno-2-68" name="__codelineno-2-68" href="#__codelineno-2-68"></a>  pipeline/
+<a id="__codelineno-2-69" name="__codelineno-2-69" href="#__codelineno-2-69"></a>    run-detail/
+<a id="__codelineno-2-70" name="__codelineno-2-70" href="#__codelineno-2-70"></a>      business-value-tab.tsx         Run detail BV tab
+<a id="__codelineno-2-71" name="__codelineno-2-71" href="#__codelineno-2-71"></a>    sidebar-nav.tsx                  Business Value nav section
+<a id="__codelineno-2-72" name="__codelineno-2-72" href="#__codelineno-2-72"></a>  dashboard/
+<a id="__codelineno-2-73" name="__codelineno-2-73" href="#__codelineno-2-73"></a>    dashboard-content.tsx            BusinessValueSummary widget
+<a id="__codelineno-2-74" name="__codelineno-2-74" href="#__codelineno-2-74"></a>
+<a id="__codelineno-2-75" name="__codelineno-2-75" href="#__codelineno-2-75"></a>__tests__/
+<a id="__codelineno-2-76" name="__codelineno-2-76" href="#__codelineno-2-76"></a>  domain/
+<a id="__codelineno-2-77" name="__codelineno-2-77" href="#__codelineno-2-77"></a>    cost-modeling.test.ts            Unit tests for cost modeling + LOE matrix + feasibility
+<a id="__codelineno-2-78" name="__codelineno-2-78" href="#__codelineno-2-78"></a>    benchmarks.test.ts               Benchmark pack validation (baseline + master-repo)
+<a id="__codelineno-2-79" name="__codelineno-2-79" href="#__codelineno-2-79"></a>  export/
+<a id="__codelineno-2-80" name="__codelineno-2-80" href="#__codelineno-2-80"></a>    brand.test.ts                    Unit tests for brand constants
+<a id="__codelineno-2-81" name="__codelineno-2-81" href="#__codelineno-2-81"></a>
+<a id="__codelineno-2-82" name="__codelineno-2-82" href="#__codelineno-2-82"></a>scripts/
+<a id="__codelineno-2-83" name="__codelineno-2-83" href="#__codelineno-2-83"></a>  convert-master-repo.mjs            XLSX → TypeScript/JSON conversion for Master Repository
+<a id="__codelineno-2-84" name="__codelineno-2-84" href="#__codelineno-2-84"></a>  seed-benchmarks.mjs                Seed benchmark records to Lakebase (includes master-repo packs)
+<a id="__codelineno-2-85" name="__codelineno-2-85" href="#__codelineno-2-85"></a>
+<a id="__codelineno-2-86" name="__codelineno-2-86" href="#__codelineno-2-86"></a>data/
+<a id="__codelineno-2-87" name="__codelineno-2-87" href="#__codelineno-2-87"></a>  benchmark/
+<a id="__codelineno-2-88" name="__codelineno-2-88" href="#__codelineno-2-88"></a>    *-baseline.json                  Curated baseline benchmark packs
+<a id="__codelineno-2-89" name="__codelineno-2-89" href="#__codelineno-2-89"></a>    *-master.json                    Master Repository benchmark packs (auto-generated)
+<a id="__codelineno-2-90" name="__codelineno-2-90" href="#__codelineno-2-90"></a>
+<a id="__codelineno-2-91" name="__codelineno-2-91" href="#__codelineno-2-91"></a>prisma/
+<a id="__codelineno-2-92" name="__codelineno-2-92" href="#__codelineno-2-92"></a>  schema.prisma                      7 new models (see Data Model above)
+</code></pre></div>
+<hr />
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
+<p>No additional configuration is required. The Business Value Engine uses the same
+model serving endpoints as the rest of the pipeline:</p>
+<ul>
+<li><code>serving-endpoint-fast</code> for all 4 LLM passes (falls back to premium if unset)</li>
+<li>All passes use <code>temperature: 0.2</code> except Executive Synthesis (<code>0.4</code>)</li>
+<li>Batch size: 25 use cases per LLM request (financial quantification and roadmap)</li>
+</ul>
+<p>The engine runs automatically when a pipeline completes scoring. It can be
+skipped if no use cases are generated (early exit with log message).</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "toc.integrate"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

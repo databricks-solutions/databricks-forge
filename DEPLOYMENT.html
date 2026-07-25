@@ -1,0 +1,2423 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Turn Unity Catalog metadata into business value in days, not quarters">
+      
+      
+      
+        <link rel="canonical" href="https://databricks-solutions.github.io/databricks-forge/DEPLOYMENT.html">
+      
+      
+        <link rel="prev" href="quickstart.html">
+      
+      
+        <link rel="next" href="USER_GUIDE.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="images/databricks-icon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>Deployment - Databricks Forge</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#deployment-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="Databricks Forge" class="md-header__button md-logo" aria-label="Databricks Forge" data-md-component="logo">
+      
+  <img src="images/databricks-icon.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Databricks Forge
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Deployment
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/databricks-solutions/databricks-forge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    databricks-solutions/databricks-forge
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Databricks Forge" class="md-nav__button md-logo" aria-label="Databricks Forge" data-md-component="logo">
+      
+  <img src="images/databricks-icon.svg" alt="logo">
+
+    </a>
+    Databricks Forge
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/databricks-solutions/databricks-forge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    databricks-solutions/databricks-forge
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="quickstart.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="DEPLOYMENT.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quick-deploy-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Deploy (Recommended)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Works
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How It Works">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-deploysh-does" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What deploy.sh does
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lakebase-auto-provisioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lakebase auto-provisioning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#destroy-cleanup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Destroy / cleanup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#per-app-isolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Per-app isolation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-bindings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resource bindings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-authorization-scopes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User authorization scopes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#platform-injected-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Platform-injected variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zero-egress-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Zero-Egress Deployment
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Zero-Egress Deployment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it works
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-and-start-sequence-source-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build and Start Sequence (Source Mode)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#safe-upgrade-from-a-pre-pr-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Safe upgrade from a pre-PR database
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Safe upgrade from a pre-PR database">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recovery-instructions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recovery instructions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local Development
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Local Development">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-setup-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Setup (Recommended)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-deploy_localsh-does" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What .deploy_local.sh Does
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manual-setup-without-deploy_localsh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual Setup (Without .deploy_local.sh)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limitations-vs-deployed-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limitations vs Deployed App
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cicd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CI/CD
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="USER_GUIDE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Features
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ask-forge.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ask Forge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="BUSINESS_VALUE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Value
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="estate-analysis.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estate Intelligence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="SKILLS_KNOWLEDGE_BASE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Knowledge Base
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/SUPPORT.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/SECURITY.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/CONTRIBUTING.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release Notes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Release Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_07_21.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-07-21
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_05_26.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-26
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_05_11.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_05_02.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-02
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_04_30.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-04-30
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_04_16.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-04-16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_31.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-31
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_19.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-19
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_18.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-18
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_16.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_15.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-15
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_14.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-14
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_13.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-13
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_12.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-12
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_11.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_10.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_09.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-09
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_07.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-07
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_06.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-06
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_05.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-05
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_04.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-04
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026-02-27.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-02-27
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026-02-25.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-02-25
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="deployment-guide">Deployment Guide<a class="headerlink" href="#deployment-guide" title="Permanent link">&para;</a></h1>
+<h2 id="quick-deploy-recommended">Quick Deploy (Recommended)<a class="headerlink" href="#quick-deploy-recommended" title="Permanent link">&para;</a></h2>
+<p>The supported deployment path is the interactive deploy script. It discovers
+your resources, creates the app, uploads code, and deploys -- all in one
+command with a single prompt (which SQL Warehouse to use).</p>
+<p>Model and Lakebase availability varies by Databricks cloud and region. Forge is
+a community-maintained accelerator with best-effort
+<a href="https://github.com/databricks-solutions/databricks-forge/blob/main/SUPPORT.md">support</a>,
+not an officially supported Databricks product.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>./deploy.sh
+</code></pre></div>
+<p>Models default to <code>databricks-claude-opus-4-7</code> for premium tasks and
+<code>databricks-claude-sonnet-4-6</code> for fast tasks. The script probes availability
+and selects a fallback when needed. Override with flags if needed:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>./deploy.sh<span class="w"> </span>--warehouse<span class="w"> </span><span class="s2">&quot;My Warehouse&quot;</span><span class="w"> </span>--endpoint<span class="w"> </span><span class="s2">&quot;my-model&quot;</span><span class="w"> </span>--fast-endpoint<span class="w"> </span><span class="s2">&quot;my-fast-model&quot;</span>
+</code></pre></div>
+<p>Lakebase is <strong>auto-provisioned by default</strong> — no flags required:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Zero-touch: deploy.sh creates a per-app Lakebase project, default</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="c1"># branch, databricks_postgres database, pgvector + databricks_auth</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1"># extensions, and grants the app SP the right public schema privileges.</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>./deploy.sh
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1"># Bind an existing Lakebase project instead of auto-provisioning</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>./deploy.sh<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span>--lakebase-branch<span class="w">   </span><span class="s2">&quot;projects/my-project/branches/production&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">  </span>--lakebase-database<span class="w"> </span><span class="s2">&quot;projects/my-project/branches/production/databases/databricks_postgres&quot;</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="c1"># Latency-critical deploy: disable scale-to-zero (keeps the DB warm)</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>./deploy.sh<span class="w"> </span>--lakebase-scale-to-zero-seconds<span class="w"> </span><span class="m">0</span>
+</code></pre></div>
+<p>To remove the app (prompts about the Lakebase project):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>./deploy.sh<span class="w"> </span>--destroy
+</code></pre></div>
+<p>Non-interactive cleanup:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>./deploy.sh<span class="w"> </span>--destroy<span class="w"> </span>--keep-database<span class="w">     </span><span class="c1"># preserve the project (default in CI)</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>./deploy.sh<span class="w"> </span>--destroy<span class="w"> </span>--destroy-database<span class="w">  </span><span class="c1"># soft-delete (recoverable)</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>./deploy.sh<span class="w"> </span>--destroy<span class="w"> </span>--purge-database<span class="w">    </span><span class="c1"># hard-delete (immediate, unrecoverable)</span>
+</code></pre></div>
+<p>See the <a href="quickstart.html">Quick Start</a> for the full customer setup and
+verification flow.</p>
+<hr />
+<h2 id="how-it-works">How It Works<a class="headerlink" href="#how-it-works" title="Permanent link">&para;</a></h2>
+<p>Databricks Forge is deployed as a <strong>Databricks App</strong> -- a containerised web
+application that runs inside a Databricks workspace with automatic
+authentication.</p>
+<h3 id="what-deploysh-does">What <code>deploy.sh</code> does<a class="headerlink" href="#what-deploysh-does" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Validates the Databricks CLI is installed and authenticated</li>
+<li>Lists SQL Warehouses and lets you pick one</li>
+<li>Creates the Databricks App (or detects an existing one)</li>
+<li><strong>Resolves the Lakebase binding</strong>: discovers an existing <code>postgres</code>
+   resource on the app, else auto-provisions a per-app Lakebase project,
+   default <code>databricks_postgres</code> database, and waits for the endpoint to
+   become <code>ACTIVE</code></li>
+<li>Configures scale-to-zero on the branch (<code>300s</code> default on
+   auto-provisioned projects)</li>
+<li>Binds resources (SQL warehouse, serving endpoints, Postgres) and
+   user authorization scopes via the Apps API <code>create-update</code> endpoint</li>
+<li><strong>Bootstraps Postgres grants</strong> for the app's service principal:
+   installs <code>pgvector</code> + <code>databricks_auth</code> as the project owner, ensures
+   the SP role exists, grants <code>CONNECT</code>/<code>USAGE</code>/<code>CREATE</code>/table/sequence
+   privileges + default privileges, and transfers ownership of any
+   pre-existing <code>public.*</code> tables to the SP so Prisma can ALTER/DROP them</li>
+<li>Optionally grants the deploying user the same Postgres role (default
+   on auto-provisioned deploys) so they get SQL Editor access immediately</li>
+<li>Syncs the project source code to a workspace folder</li>
+<li>Deploys the app from that workspace folder and polls the submitted
+    deployment until it is the active <code>SUCCEEDED</code> deployment and
+    <code>app_status</code> is <code>RUNNING</code>. <code>CRASHED</code>, <code>UNAVAILABLE</code>, and <code>FAILED</code> states
+    fail the command once they belong to the submitted active deployment,
+    with the deployment ID and a direct logs command. A stale crashed
+    deployment remains observable while its replacement is pending.</li>
+</ol>
+<p>No manual UI configuration is needed. The script handles everything.</p>
+<h3 id="lakebase-auto-provisioning">Lakebase auto-provisioning<a class="headerlink" href="#lakebase-auto-provisioning" title="Permanent link">&para;</a></h3>
+<p>By default, <code>./deploy.sh</code> is <strong>zero-touch</strong> for Lakebase: it derives a
+per-app project ID from <code>--app-name</code> (sanitized to <code>[a-z0-9-]{1,63}</code>),
+auto-creates the project, default branch, and <code>databricks_postgres</code>
+database, then re-uses the same binding on every subsequent re-deploy.</p>
+<p>Power-user overrides (rarely needed):</p>
+<ul>
+<li><code>--lakebase-project-id ID</code> — override the auto-derived project ID
+  (still auto-creates if missing). Useful when running multiple apps
+  against the same project (not recommended; see "Per-app isolation").</li>
+<li><code>--lakebase-branch &lt;path&gt; --lakebase-database &lt;path&gt;</code> — bind an
+  existing, externally-managed project/branch/database. Disables
+  auto-provisioning.</li>
+<li><code>--lakebase-scale-to-zero-seconds N</code> — branch inactivity timeout
+  before scale-to-zero. Default <code>300</code> on auto-provisioned projects;
+  <code>0</code> disables (always-on, latency-critical prod); minimum <code>60</code>.
+  Re-deploys against an existing branch leave the value alone unless
+  this flag is explicitly passed.</li>
+<li><code>--lakebase-bootstrap-user EMAIL</code> — grant a specific Databricks user
+  the same Postgres role as the app SP. Defaults to the deploying user
+  when <code>deploy.sh</code> auto-provisions the project. Pass <code>""</code> to opt out.</li>
+</ul>
+<h3 id="destroy-cleanup">Destroy / cleanup<a class="headerlink" href="#destroy-cleanup" title="Permanent link">&para;</a></h3>
+<p><code>./deploy.sh --destroy</code> removes the Databricks App, then <strong>prompts</strong>
+about deleting the associated Lakebase project. Default is <em>keep</em>
+(data preservation wins over convenience).</p>
+<p>Non-interactive flags:</p>
+<ul>
+<li><code>--destroy-database</code> — soft-delete the Lakebase project (recoverable).</li>
+<li><code>--purge-database</code> — hard-delete (immediate, unrecoverable). Implies
+  <code>--destroy-database</code>.</li>
+<li><code>--keep-database</code> — skip the prompt, preserve the project (default in
+  non-interactive contexts like CI without a TTY).</li>
+</ul>
+<h3 id="per-app-isolation">Per-app isolation<a class="headerlink" href="#per-app-isolation" title="Permanent link">&para;</a></h3>
+<p>Each <code>--app-name</code> deploys to its own Databricks App AND its own
+auto-provisioned Lakebase project (named after the app). Demos and dev
+instances are completely isolated from production:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>./deploy.sh<span class="w">                              </span><span class="c1"># → app: databricks-forge / project: databricks-forge</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>./deploy.sh<span class="w"> </span>--app-name<span class="w"> </span>forge-demo<span class="w">        </span><span class="c1"># → app: forge-demo      / project: forge-demo</span>
+</code></pre></div>
+<h3 id="resource-bindings">Resource bindings<a class="headerlink" href="#resource-bindings" title="Permanent link">&para;</a></h3>
+<p>The script binds three resources to the app via the API. The <code>app.yaml</code>
+references these using <code>valueFrom:</code> keys, which the platform resolves to
+environment variables at runtime.</p>
+<table>
+<thead>
+<tr>
+<th>Resource key</th>
+<th>Type</th>
+<th>Default</th>
+<th>Permission</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sql-warehouse</code></td>
+<td>SQL Warehouse</td>
+<td>Customer-selected</td>
+<td>CAN_USE</td>
+</tr>
+<tr>
+<td><code>serving-endpoint</code></td>
+<td>Serving Endpoint</td>
+<td><code>databricks-claude-sonnet-4-6</code></td>
+<td>CAN_QUERY</td>
+</tr>
+<tr>
+<td><code>serving-endpoint-fast</code></td>
+<td>Serving Endpoint</td>
+<td><code>databricks-claude-sonnet-4-6</code></td>
+<td>CAN_QUERY</td>
+</tr>
+</tbody>
+</table>
+<h3 id="user-authorization-scopes">User authorization scopes<a class="headerlink" href="#user-authorization-scopes" title="Permanent link">&para;</a></h3>
+<p>The script configures these OAuth scopes so the app can act on behalf of the
+logged-in user, enforcing their Unity Catalog permissions:</p>
+<table>
+<thead>
+<tr>
+<th>Scope</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sql</code></td>
+<td>Execute SQL via warehouse</td>
+</tr>
+<tr>
+<td><code>catalog.tables:read</code></td>
+<td>Read tables in Unity Catalog</td>
+</tr>
+<tr>
+<td><code>catalog.schemas:read</code></td>
+<td>Read schemas in Unity Catalog</td>
+</tr>
+<tr>
+<td><code>catalog.catalogs:read</code></td>
+<td>Read catalogs in Unity Catalog</td>
+</tr>
+<tr>
+<td><code>files.files</code></td>
+<td>Manage files and directories</td>
+</tr>
+<tr>
+<td><code>dashboards.genie</code></td>
+<td>Manage Genie Spaces (create, update, trash as user)</td>
+</tr>
+</tbody>
+</table>
+<p><code>dashboards</code> is not accepted as a Databricks Apps user authorization scope in
+the verified workspace runtime. Lakeview OBO requests nevertheless return 403
+when they require that scope. Forge therefore keeps <code>dashboards.genie</code> and does
+not add the rejected scope. External/user-owned Lakeview discovery remains
+explicit OBO and reports unsupported-scope errors without credential fallback.
+Forge-owned dashboards under <code>/Shared/Forge Dashboards/</code> use the app service
+principal's workspace OAuth M2M token (<code>scope=all-apis</code>) consistently for
+create, update, draft read-back, publish, and publication read-back. The
+initiating user is still authorized by the route guard and recorded for
+ownership/activity. A service-principal 403 is returned as the actual bounded
+permission diagnostic; it is not mislabeled as an Apps OBO capability limit.</p>
+<p>The bound <code>sql-warehouse</code> resource grants the app service principal <code>CAN_USE</code>,
+which is required when app-owned dashboards execute through the selected
+warehouse. Publishing defaults to <code>embed_credentials=false</code>.</p>
+<p><code>configure_app</code> sends this complete supported list on every deployment, so
+redeploying an existing app removes stale invalid scope requests.</p>
+<h3 id="platform-injected-variables">Platform-injected variables<a class="headerlink" href="#platform-injected-variables" title="Permanent link">&para;</a></h3>
+<p>These are set automatically by the Databricks Apps platform at runtime:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DATABRICKS_HOST</code></td>
+<td>Workspace URL</td>
+</tr>
+<tr>
+<td><code>DATABRICKS_CLIENT_ID</code></td>
+<td>OAuth client ID (app service principal)</td>
+</tr>
+<tr>
+<td><code>DATABRICKS_CLIENT_SECRET</code></td>
+<td>OAuth client secret</td>
+</tr>
+<tr>
+<td><code>DATABRICKS_APP_PORT</code></td>
+<td>Port the app must listen on</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="zero-egress-deployment">Zero-Egress Deployment<a class="headerlink" href="#zero-egress-deployment" title="Permanent link">&para;</a></h2>
+<p>For workspaces that <strong>block serverless egress</strong> (no <code>npm install</code> capability),
+use the <code>--zero-egress</code> flag. This builds the app locally, compresses it into
+a split archive, and uploads only ~6 files to the workspace.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>./deploy.sh<span class="w"> </span>--zero-egress<span class="w"> </span>--warehouse<span class="w"> </span><span class="s2">&quot;My Warehouse&quot;</span>
+</code></pre></div>
+<h3 id="how-it-works_1">How it works<a class="headerlink" href="#how-it-works_1" title="Permanent link">&para;</a></h3>
+<ol>
+<li><code>npm run build</code> runs locally (prisma generate + next build)</li>
+<li>The Next.js standalone output is assembled with the Prisma CLI and Linux
+   schema engine binary (downloaded from Prisma CDN)</li>
+<li>Non-runtime files are aggressively pruned (.map, .nft.json, docs, macOS
+   binaries)</li>
+<li>No <code>package.json</code> is included -- prevents the platform from running
+   <code>npm install</code></li>
+<li>On macOS, the bundle is compressed with BSD tar's <code>--no-xattrs</code> because
+   macOS 15 can retain protected <code>com.apple.provenance</code> attributes even when
+   <code>xattr -d/-c</code> reports success. Linux uses portable tar flags without the
+   unsupported BSD option. Archive creation failures remain fatal.</li>
+<li>The archive is split into &lt;10MB chunks (Databricks Apps per-file limit)</li>
+<li>A minimal wrapper is uploaded: <code>app.yaml</code>, <code>bootstrap.sh</code>, archive chunks,
+   and a <code>.prebuilt</code> marker</li>
+</ol>
+<p>At startup, <code>bootstrap.sh</code> reassembles the archive, extracts it, and hands
+off to the normal <code>scripts/start.sh</code> flow.</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Source mode</th>
+<th>Zero-egress mode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Files uploaded</td>
+<td>~4,400</td>
+<td>~6</td>
+</tr>
+<tr>
+<td>Upload size</td>
+<td>~100 MB (uncompressed)</td>
+<td>~26 MB (compressed)</td>
+</tr>
+<tr>
+<td>Requires egress</td>
+<td>Yes (<code>npm install</code>)</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Build location</td>
+<td>Platform</td>
+<td>Local machine</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="build-and-start-sequence-source-mode">Build and Start Sequence (Source Mode)<a class="headerlink" href="#build-and-start-sequence-source-mode" title="Permanent link">&para;</a></h2>
+<p>Databricks Apps builds the application from <code>package.json</code>. No Dockerfile is
+needed -- the platform handles containerisation.</p>
+<ol>
+<li><code>npm install</code> (runs <code>postinstall</code> which triggers <code>prisma generate</code>)</li>
+<li><code>npm run build</code> (runs <code>prisma generate &amp;&amp; next build &amp;&amp; sh scripts/postbuild.sh</code>)</li>
+<li><code>scripts/start.sh</code>:</li>
+<li>Mints a short-lived Lakebase OAuth credential as the app SP</li>
+<li>Confirms <code>pgvector</code> is installed (no-op — <code>deploy.sh</code> already
+     installed it as the project owner)</li>
+<li><strong>Runs the database preflight (<code>scripts/db-preflight.mjs</code>)</strong> — an
+     idempotent, advisory-lock-protected repair + destructive-delta gate
+     (see "Safe upgrade from a pre-PR database" below)</li>
+<li>Runs <code>prisma db push --accept-data-loss</code> to sync the Postgres schema —
+     safe because the preflight already removed the duplicates and proved the
+     delta is non-destructive (see below); the SP grants applied by <code>deploy.sh</code>
+     make this succeed on first deploy</li>
+<li>Optionally grants the <code>LAKEBASE_BOOTSTRAP_USER</code> the same Postgres
+     role as the SP so they can open the SQL Editor against the database</li>
+<li>Starts the Next.js standalone server on <code>DATABRICKS_APP_PORT</code></li>
+</ol>
+<hr />
+<h2 id="safe-upgrade-from-a-pre-pr-database">Safe upgrade from a pre-PR database<a class="headerlink" href="#safe-upgrade-from-a-pre-pr-database" title="Permanent link">&para;</a></h2>
+<p>Estate Programs added a hard <code>@@unique([programId, sequence])</code> on
+<code>forge_estate_program_scopes</code>, a semantic scan-edge unique on
+<code>forge_table_lineage</code>, and new scan/scope lifecycle columns
+(<code>scan_status</code>, <code>attempt_count</code>, <code>queued_at</code>, <code>heartbeat_at</code>, …). A database
+provisioned by an <strong>earlier</strong> app version can hold data that would make a naive
+<code>prisma db push</code> fail (duplicate <code>(program_id, sequence)</code> rows block the new
+unique) or lose data (<code>--accept-data-loss</code>).</p>
+<p>To make the upgrade safe and reproducible, every startup runs a <strong>preflight</strong>
+(<code>scripts/db-preflight.mjs</code>) <em>before</em> <code>prisma db push</code>. It runs the pure repair
+logic in <code>scripts/db/repair.mjs</code> (unit-tested SQL builders in
+<code>scripts/db/repair-sql.mjs</code>) inside <strong>one advisory-locked transaction</strong>:</p>
+<ol>
+<li><strong>Scope sequence dedup.</strong> For each program that actually contains duplicate
+   sequences, a two-phase renumber assigns unique negative temporaries, then
+   compacts to a dense 0-based ordering by <code>(sequence, created_at, scope_id)</code>.
+   <strong>No scope is ever deleted</strong> — duplicates are re-sequenced, not dropped.</li>
+<li><strong>Lineage dedup.</strong> Duplicate edges are collapsed under the intended semantic
+   key <code>(scan_id, source, target, entity_type)</code> — with <strong>all NULL
+   <code>entity_type</code> rows treated as one equivalence class</strong> — keeping the
+   latest/best row (most recent <code>last_event_time</code>, then highest <code>event_count</code>).
+   Retained NULLs are then normalized to the non-null
+   <code>__forge_null_entity__</code> storage sentinel before Prisma applies <code>NOT NULL</code>
+   and the unique index. Runtime <code>createMany({skipDuplicates:true})</code> uses the
+   same normalization, so repeated saves cannot reaccumulate a logical-null
+   edge. Read/reconstitution/export/ERD boundaries translate the sentinel back
+   to domain/API <code>null</code>; it is never user-facing.</li>
+<li><strong>Scan lifecycle backfill.</strong> Legacy scans are stamped <code>scan_status='complete'</code>
+   (either directly, or via the Prisma column <code>DEFAULT 'complete'</code> when the
+   column is being added) so historical scans keep counting in aggregates.</li>
+</ol>
+<p>Properties: <strong>idempotent</strong> (safe to rerun), <strong>no-op on a clean/fresh DB</strong>
+(missing tables are skipped; dedup statements touch zero rows), <strong>transaction-
+safe</strong> (any failure rolls the whole repair back), and <strong>advisory-lock
+protected</strong> (concurrent app boots serialize on a fixed key).</p>
+<p><strong>Why <code>--accept-data-loss</code> is kept but is now safe.</strong> <code>prisma db push</code>
+structurally <em>requires</em> <code>--accept-data-loss</code> here for one reason: it classifies
+<strong>adding a unique constraint</strong> (the new <code>(program_id, sequence)</code> and lineage
+scan-edge uniques) as a "data loss warning" because it <em>could</em> fail if
+duplicates exist. There is no way to add a unique constraint via <code>db push</code>
+without the flag. That warning is not real data loss — and after the repair
+above there are no duplicates left, so the constraints apply losslessly. To make
+passing the flag safe rather than blind, the preflight computes the pending
+delta with <code>prisma migrate diff --script</code> and classifies it: if it ever contains
+a genuinely data-losing or ambiguous statement (<code>DROP TABLE/COLUMN/SCHEMA/TYPE</code>,
+<code>TRUNCATE</code>, table/column/type rename, or <code>ALTER COLUMN TYPE</code>), the preflight
+<strong>aborts startup</strong> instead of letting <code>--accept-data-loss</code> discard or reinterpret
+estate data. (<code>DROP INDEX</code> / <code>DROP CONSTRAINT</code>, emitted for the
+<code>index -&gt; unique</code> conversion and FK re-creation, are correctly treated as
+non-destructive.) A <code>migrate diff</code> execution error also <strong>fails closed by
+default</strong>: inability to prove safety is not treated as safety.</p>
+<p>The only bypass is explicitly local:
+<code>FORGE_DB_PREFLIGHT_LOCAL_BYPASS=1</code> together with
+<code>FORGE_LOCAL_USER_EMAIL</code>. It is refused when <code>DATABRICKS_CLIENT_ID</code> is present
+or <code>NODE_ENV=production</code>, so Databricks App/startup cannot silently continue.
+The preflight <strong>always attempts <code>migrate diff</code> first</strong>. This bypass applies only
+when diff execution/configuration fails; it can never override a successfully
+computed destructive delta.</p>
+<h3 id="recovery-instructions">Recovery instructions<a class="headerlink" href="#recovery-instructions" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Startup fails with "destructive schema delta detected":</strong> the pending delta
+  would drop a table/column or truncate. Inspect the statements printed by the
+  preflight, reconcile <code>prisma/schema.prisma</code> with the live DB (a column may
+  have been renamed rather than dropped), and apply the change deliberately in
+  the SQL Editor. Never work around it by re-adding <code>--accept-data-loss</code>.</li>
+<li><strong>Startup fails during repair (rolled back):</strong> the transaction rolled back, so
+  no partial dedup was committed — the DB is unchanged. Re-check connectivity /
+  SP grants and redeploy; the repair is idempotent.</li>
+<li><strong>Startup fails because <code>migrate diff</code> could not run:</strong> treat this as a safety
+  failure, not a warning. Restore the Prisma CLI/config or database
+  connectivity, rerun <code>npm run db:preflight</code>, and only proceed after the gate
+  can compute and classify the delta.</li>
+<li><strong>Manual dry-run against a live DB:</strong> <code>DATABASE_URL=... npm run db:preflight</code>
+  runs the exact same repair + gate the app runs at startup and prints a JSON
+  report (rows renumbered / duplicates removed / scans backfilled) without
+  starting the server.</li>
+<li><strong>Reproduce the whole upgrade locally / in CI:</strong> the <code>migration</code> CI job (and
+  <code>npm run test:integration</code> against a disposable <code>TEST_DATABASE_URL</code>) seeds a
+  legacy schema with duplicate sequence + lineage rows, runs the repair twice,
+  then <code>prisma db push</code>, and asserts every row is preserved/deduped/backfilled
+  and the new constraints are enforced.</li>
+</ul>
+<hr />
+<h2 id="local-development">Local Development<a class="headerlink" href="#local-development" title="Permanent link">&para;</a></h2>
+<p>Local development is designed for two scenarios:</p>
+<ol>
+<li><strong>No serverless egress</strong> -- workspaces that restrict outbound traffic from
+   Databricks Apps (e.g. private-link environments where you cannot deploy an
+   app but can still reach the workspace APIs from your machine).</li>
+<li><strong>Development and testing</strong> -- iterate on UI, prompts, or pipeline logic
+   locally before deploying.</li>
+</ol>
+<h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong><a href="https://nodejs.org">Node.js 20.9+</a></strong> and npm 10+ -- if you've never installed
+  Node, download the LTS installer from https://nodejs.org, or:
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># macOS</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>brew<span class="w"> </span>install<span class="w"> </span>node@20
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="c1"># Any OS with nvm</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>nvm<span class="w"> </span>install<span class="w"> </span><span class="m">20</span>
+</code></pre></div>
+  Verify: <code>node -v</code> should print <code>v20.x.x</code> or higher. <code>npm -v</code> should also work.</li>
+<li><strong><a href="https://docs.databricks.com/dev-tools/cli/install.html">Databricks CLI</a></strong> installed</li>
+<li>A <strong>SQL Warehouse</strong> (Serverless or Pro) in the target workspace</li>
+<li>Your workspace must support <strong>Lakebase Autoscaling</strong> (available in
+  <code>us-east-1</code>, <code>us-east-2</code>, <code>us-west-2</code>, <code>ca-central-1</code>, <code>sa-east-1</code>,
+  <code>eu-central-1</code>, <code>eu-west-1</code>, <code>eu-west-2</code>, <code>ap-south-1</code>, <code>ap-southeast-1</code>,
+  <code>ap-southeast-2</code>)</li>
+</ul>
+<h3 id="quick-setup-recommended">Quick Setup (Recommended)<a class="headerlink" href="#quick-setup-recommended" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># 1. Clone the repo</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/databricks-solutions/databricks-forge.git
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="nb">cd</span><span class="w"> </span>databricks-forge
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="c1"># 2. Install dependencies (downloads all required packages -- takes ~60s first time)</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>npm<span class="w"> </span>install
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="c1"># 3. One-time: browser-based OAuth login (opens your browser, no PAT created)</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>databricks<span class="w"> </span>auth<span class="w"> </span>login<span class="w"> </span>--host<span class="w"> </span>https://your-workspace.cloud.databricks.com
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="c1"># 4. Provision Lakebase, select warehouse, write .env.local</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>bash<span class="w"> </span>.deploy_local.sh
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="c1"># 5. Start dev server (runs prisma generate + next dev with Turbopack)</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>npm<span class="w"> </span>run<span class="w"> </span>dev
+</code></pre></div>
+<p>Open <strong>http://localhost:3000</strong> in your browser. The first page load takes
+10-15 seconds while Next.js compiles the app. You should see the Forge
+dashboard with a sidebar and a "New Discovery Run" button.</p>
+<h3 id="what-deploy_localsh-does">What <code>.deploy_local.sh</code> Does<a class="headerlink" href="#what-deploy_localsh-does" title="Permanent link">&para;</a></h3>
+<p>The script is idempotent -- safe to re-run at any time.</p>
+<ol>
+<li><strong>Verifies CLI authentication</strong> via <code>databricks current-user me</code></li>
+<li><strong>Selects a SQL Warehouse</strong> (interactive prompt or <code>--warehouse "Name"</code>)</li>
+<li><strong>Provisions a Lakebase project</strong> (<code>databricks postgres create-project</code>)
+   with scale-to-zero enabled by default</li>
+<li><strong>Discovers the branch and endpoint</strong> for the project</li>
+<li><strong>Generates a short-lived DB credential</strong> to run initial setup SQL</li>
+<li><strong>Creates the <code>vector</code> extension</strong> (pgvector for embeddings)</li>
+<li><strong>Pushes the Prisma schema</strong> (<code>npx prisma db push</code>)</li>
+<li><strong>Creates a native password role</strong> (<code>forge_local_dev</code>) for stable
+   credentials that do not expire during dev sessions</li>
+<li><strong>Resolves your email</strong> from the CLI session</li>
+<li><strong>Writes <code>.env.local</code></strong> with all required config (no PAT or token stored)</li>
+</ol>
+<p><strong>Flags:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--profile "name"</code></td>
+<td>Use a named Databricks CLI profile (multi-workspace setups)</td>
+</tr>
+<tr>
+<td><code>--warehouse "Name"</code></td>
+<td>Skip the interactive warehouse prompt</td>
+</tr>
+<tr>
+<td><code>--project-id "id"</code></td>
+<td>Custom Lakebase project ID (default: <code>forge-local</code>)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="authentication-architecture">Authentication Architecture<a class="headerlink" href="#authentication-architecture" title="Permanent link">&para;</a></h3>
+<p>Local dev uses a different auth model than the deployed Databricks App:</p>
+<table>
+<thead>
+<tr>
+<th>Concern</th>
+<th>Databricks App</th>
+<th>Local Dev</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Databricks API auth</strong></td>
+<td>OBO user token (from proxy header) or SP OAuth</td>
+<td>Databricks CLI OAuth U2M (<code>databricks auth token</code>)</td>
+</tr>
+<tr>
+<td><strong>Auth credential storage</strong></td>
+<td>Platform-injected, no files</td>
+<td>None on disk -- CLI manages token cache</td>
+</tr>
+<tr>
+<td><strong>User identity</strong></td>
+<td><code>x-forwarded-email</code> header</td>
+<td><code>FORGE_LOCAL_USER_EMAIL</code> env var</td>
+</tr>
+<tr>
+<td><strong>Lakebase auth</strong></td>
+<td>Auto-provisioned OAuth or native password with SP credential rotation</td>
+<td>Native password (<code>forge_local_dev</code>) via <code>DATABASE_URL</code></td>
+</tr>
+<tr>
+<td><strong>Token refresh</strong></td>
+<td>Automatic (platform / SP OAuth)</td>
+<td>Automatic (CLI refreshes OAuth tokens; re-run <code>databricks auth login</code> if session expires)</td>
+</tr>
+</tbody>
+</table>
+<p>The auth priority chain in <code>lib/dbx/client.ts</code>:</p>
+<ol>
+<li><strong>OBO header</strong> -- <code>x-forwarded-access-token</code> (Databricks Apps only)</li>
+<li><strong>PAT</strong> -- <code>DATABRICKS_TOKEN</code> env var (optional explicit override)</li>
+<li><strong>CLI OAuth U2M</strong> -- <code>databricks auth token</code> (primary local dev path)</li>
+<li><strong>SP OAuth M2M</strong> -- <code>DATABRICKS_CLIENT_ID</code> / <code>SECRET</code> (Databricks Apps)</li>
+</ol>
+<h3 id="manual-setup-without-deploy_localsh">Manual Setup (Without <code>.deploy_local.sh</code>)<a class="headerlink" href="#manual-setup-without-deploy_localsh" title="Permanent link">&para;</a></h3>
+<p>If you prefer manual control or already have a Lakebase project:</p>
+<ol>
+<li>
+<p><strong>Authenticate:</strong>
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>databricks<span class="w"> </span>auth<span class="w"> </span>login<span class="w"> </span>--host<span class="w"> </span>https://your-workspace.cloud.databricks.com
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Create a Lakebase project</strong> (skip if you have one):
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>databricks<span class="w"> </span>postgres<span class="w"> </span>create-project<span class="w"> </span>forge-local<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">  </span>--json<span class="w"> </span><span class="s1">&#39;{&quot;spec&quot;: {&quot;display_name&quot;: &quot;Forge Local Dev&quot;}}&#39;</span>
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Get your endpoint host:</strong>
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>databricks<span class="w"> </span>postgres<span class="w"> </span>list-branches<span class="w"> </span>projects/forge-local
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="c1"># Note the branch ID, then:</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>databricks<span class="w"> </span>postgres<span class="w"> </span>list-endpoints<span class="w"> </span>projects/forge-local/branches/&lt;branch_id&gt;
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>databricks<span class="w"> </span>postgres<span class="w"> </span>get-endpoint<span class="w"> </span>projects/forge-local/branches/&lt;branch_id&gt;/endpoints/&lt;endpoint_id&gt;
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Generate a credential and connect with psql</strong> to create extensions and
+   roles, or set up <code>DATABASE_URL</code> and run <code>npx prisma db push</code>.</p>
+</li>
+<li>
+<p><strong>Create <code>.env.local</code></strong> (see <code>.env.local.example</code> for all options):
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>DATABRICKS_HOST=https://your-workspace.cloud.databricks.com
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>DATABRICKS_WAREHOUSE_ID=your_warehouse_id
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a># Paste the Lakebase connection string generated in the previous step.
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>DATABASE_URL=
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>FORGE_LOCAL_USER_EMAIL=your.email@company.com
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>DATABRICKS_APP_PORT=3000
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Start:</strong>
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>npm<span class="w"> </span>run<span class="w"> </span>dev
+</code></pre></div></p>
+</li>
+</ol>
+<h3 id="limitations-vs-deployed-app">Limitations vs Deployed App<a class="headerlink" href="#limitations-vs-deployed-app" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Deployed App</th>
+<th>Local Dev</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Multi-user (OBO)</td>
+<td>Each user runs queries as themselves</td>
+<td>Single user context (your CLI identity)</td>
+</tr>
+<tr>
+<td>Resource bindings</td>
+<td><code>app.yaml</code> <code>valueFrom:</code></td>
+<td><code>.env.local</code> env vars</td>
+</tr>
+<tr>
+<td>Credential rotation</td>
+<td>Automatic (SP-managed, proactive refresh)</td>
+<td>Native password (stable, no rotation)</td>
+</tr>
+<tr>
+<td>Scale-to-zero management</td>
+<td><code>scripts/start.sh</code> manages endpoint lifecycle</td>
+<td>Inherits default (endpoint auto-suspends)</td>
+</tr>
+<tr>
+<td>HTTPS</td>
+<td>Platform-provided</td>
+<td><code>http://localhost:3000</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h3>
+<p><strong>"No authentication credentials found"</strong>
+Your CLI session has expired. Run:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>databricks<span class="w"> </span>auth<span class="w"> </span>login<span class="w"> </span>--host<span class="w"> </span>https://your-workspace.cloud.databricks.com
+</code></pre></div></p>
+<p><strong>Lakebase endpoint not ready / connection timeout</strong>
+After creating a new project or waking from scale-to-zero, the endpoint can
+take 30-60 seconds to become available. Re-run <code>.deploy_local.sh</code> or wait and
+retry <code>npm run dev</code>.</p>
+<p><strong><code>@/lib/generated/prisma/client</code> import errors</strong>
+The Prisma client was not generated. <code>npm run dev</code> runs <code>prisma generate</code>
+automatically, but if you see this error from another command, run:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>npx<span class="w"> </span>prisma<span class="w"> </span>generate
+</code></pre></div></p>
+<p><strong>Conversations show "not authenticated" / benchmark admin returns 403</strong>
+<code>FORGE_LOCAL_USER_EMAIL</code> is not set in <code>.env.local</code>. Run <code>.deploy_local.sh</code> or
+add it manually.</p>
+<p><strong>Embeddings / Ask Forge RAG not working</strong>
+Set <code>DATABRICKS_EMBEDDING_ENDPOINT</code> in <code>.env.local</code>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>DATABRICKS_EMBEDDING_ENDPOINT=databricks-qwen3-embedding-0-6b
+</code></pre></div></p>
+<hr />
+<h2 id="cicd">CI/CD<a class="headerlink" href="#cicd" title="Permanent link">&para;</a></h2>
+<p>Recommended pipeline:</p>
+<ol>
+<li><strong>Lint</strong> -- <code>npm run lint</code></li>
+<li><strong>Type check</strong> -- <code>npm run typecheck</code></li>
+<li><strong>Test</strong> -- <code>npm test</code></li>
+<li><strong>Build</strong> -- <code>npm run build</code></li>
+<li><strong>Deploy</strong> -- <code>./deploy.sh --warehouse "Production Warehouse"</code></li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "toc.integrate"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1921 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Turn Unity Catalog metadata into business value in days, not quarters">
+      
+      
+      
+        <link rel="canonical" href="https://databricks-solutions.github.io/databricks-forge/WAF_ASSESSMENT.html">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="images/databricks-icon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>WAF Assessment Engine - Databricks Forge</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#waf-assessment-engine" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="Databricks Forge" class="md-header__button md-logo" aria-label="Databricks Forge" data-md-component="logo">
+      
+  <img src="images/databricks-icon.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Databricks Forge
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              WAF Assessment Engine
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/databricks-solutions/databricks-forge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    databricks-solutions/databricks-forge
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Databricks Forge" class="md-nav__button md-logo" aria-label="Databricks Forge" data-md-component="logo">
+      
+  <img src="images/databricks-icon.svg" alt="logo">
+
+    </a>
+    Databricks Forge
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/databricks-solutions/databricks-forge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    databricks-solutions/databricks-forge
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="quickstart.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="DEPLOYMENT.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="USER_GUIDE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Features
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ask-forge.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ask Forge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="BUSINESS_VALUE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Value
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="estate-analysis.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estate Intelligence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="SKILLS_KNOWLEDGE_BASE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Knowledge Base
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/SUPPORT.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/SECURITY.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/CONTRIBUTING.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release Notes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Release Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_07_21.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-07-21
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_05_26.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-26
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_05_11.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_05_02.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-02
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_04_30.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-04-30
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_04_16.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-04-16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_31.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-31
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_19.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-19
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_18.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-18
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_16.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_15.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-15
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_14.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-14
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_13.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-13
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_12.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-12
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_11.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_10.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_09.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-09
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_07.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-07
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_06.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-06
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_05.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-05
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_04.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-04
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026-02-27.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-02-27
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026-02-25.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-02-25
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="waf-assessment-engine">WAF Assessment Engine<a class="headerlink" href="#waf-assessment-engine" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>Self-service Databricks Well-Architected Framework assessment with deterministic SQL over <code>system.*</code> and per-pillar scoring.</p>
+</blockquote>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The WAF Assessment Engine evaluates a Databricks workspace against the
+<a href="https://docs.databricks.com/aws/en/lakehouse-architecture/">Databricks Well-Architected Framework</a>
+(7 pillars). It runs deterministic SQL queries over <code>system.*</code> (lineage, audit,
+billing, compute, information_schema) on behalf of the logged-in user (OBO),
+joins the rows to a curated controls catalog, and produces:</p>
+<ol>
+<li><strong>Per-pillar scores</strong> -- one score per pillar (<code>controls met / controls in pillar * 100</code>)</li>
+<li><strong>Overall score</strong> -- average of available pillar scores (skips pillars with
+   no controls or query failures)</li>
+<li><strong>Per-control drill-down</strong> -- principle, best practice, threshold, score,
+   recommendation, and a "Fix with Forge" deep-link</li>
+<li><strong>History + drift comparison</strong> -- every run persisted in Lakebase,
+   <code>from vs. to</code> diff highlighting regressions and improvements</li>
+</ol>
+<p>The engine is <strong>always enabled</strong> -- the page lives at <code>/assessment</code> and the
+catalog is seeded on first boot from a bundled CSV.</p>
+<hr />
+<h2 id="pillars">Pillars<a class="headerlink" href="#pillars" title="Permanent link">&para;</a></h2>
+<p>The catalog covers all 7 Databricks WAF pillars. Each pillar has a
+deterministic SQL query that scores a curated subset of its controls; the
+remaining controls in each pillar are either catalog-only (no automatic
+signal yet) or qualitative (scored from <code>forge_waf_qualitative_responses</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Pillar key</th>
+<th>Display name</th>
+<th>Evaluation today</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>governance</code></td>
+<td>Data and AI Governance</td>
+<td>Automatic (SQL)</td>
+</tr>
+<tr>
+<td><code>interoperability_usability</code></td>
+<td>Interoperability and Usability</td>
+<td>Automatic (SQL, subset)</td>
+</tr>
+<tr>
+<td><code>operational_excellence</code></td>
+<td>Operational Excellence</td>
+<td>Automatic (SQL, subset) + qualitative</td>
+</tr>
+<tr>
+<td><code>security_compliance_privacy</code></td>
+<td>Security, Compliance and Privacy</td>
+<td>Automatic (SQL, subset) + qualitative</td>
+</tr>
+<tr>
+<td><code>reliability</code></td>
+<td>Reliability</td>
+<td>Automatic (SQL) + qualitative</td>
+</tr>
+<tr>
+<td><code>performance_efficiency</code></td>
+<td>Performance Efficiency</td>
+<td>Automatic (SQL)</td>
+</tr>
+<tr>
+<td><code>cost_optimisation</code></td>
+<td>Cost Optimisation</td>
+<td>Automatic (SQL)</td>
+</tr>
+</tbody>
+</table>
+<p>The pillars with SQL queries are exported as <code>WAF_PILLARS_WITH_QUERIES</code> in
+<code>lib/engines/waf-assessment/types.ts</code> and drive the engine loop. The IU / OE /
+SCP queries cover a curated set of high-signal controls (4-5 each); other
+controls in those pillars stay catalog-only.</p>
+<hr />
+<h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>runAssessment()
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    │
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    │ 1. ensureCatalogSeeded() -- upsert bundled CSV into forge_waf_controls
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    │
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    │ 2. Insert ForgeWafAssessment row (status=running)
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    │
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    ▼
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>runAllPillars() -- Promise.allSettled over WAF_PILLARS_WITH_QUERIES
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    │
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    │   ┌──────────────┬─────────┬─────────┬─────────┬───────┬────────┬────────────┐
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    │   │ governance   │ IU      │ OE      │ SCP     │ rel.  │ cost   │ perf       │
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    │   └──────────────┴─────────┴─────────┴─────────┴───────┴────────┴────────────┘
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    │              ▼  executeSQL() against the user&#39;s SQL Warehouse (OBO)
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    │
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    │   WafControlResult[]  (waf_id, pillar, score, threshold, threshold_met)
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    │
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    ▼
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>Score aggregation
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    │   pillarScore = round((met / total) * 100, 1)
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    │   overallScore = avg of available pillar scores
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    │
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    ▼
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>Persist
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    │   ForgeWafControlResult.createMany() -- per-control rows
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    │   ForgeWafAssessment.update() -- status=completed + scores + counts
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    │
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>    ▼
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>WafAssessmentSummary returned to the API
+</code></pre></div>
+<p>A failure in any single pillar query is captured as <code>{ pillar, message }</code> in
+the <code>errors[]</code> array and surfaced in <code>errorMessage</code>; the other pillars still
+produce results and the assessment is marked <code>completed</code> with whatever pillars
+returned. Only when <strong>all</strong> pillars fail is the assessment marked <code>failed</code>.</p>
+<hr />
+<h2 id="engine-flow">Engine Flow<a class="headerlink" href="#engine-flow" title="Permanent link">&para;</a></h2>
+<h3 id="phase-1-catalog-seed">Phase 1: Catalog seed<a class="headerlink" href="#phase-1-catalog-seed" title="Permanent link">&para;</a></h3>
+<p><code>ensureCatalogSeeded()</code> in <code>lib/engines/waf-assessment/catalog.ts</code>:</p>
+<ol>
+<li>Reads <code>lib/engines/waf-assessment/data/waf-controls-catalog.csv</code></li>
+<li>Maps each row to a <code>WafControl</code> (pillar key derived from <code>pillar_name</code>)</li>
+<li>Attaches the <code>FIX_ACTIONS</code> map for the "Fix with Forge" UI shortcut</li>
+<li>Upserts into <code>ForgeWafControl</code> (idempotent — runs every assessment)</li>
+</ol>
+<h3 id="phase-2-pillar-queries">Phase 2: Pillar queries<a class="headerlink" href="#phase-2-pillar-queries" title="Permanent link">&para;</a></h3>
+<p><code>runPillar(pillar)</code> in <code>lib/engines/waf-assessment/engine.ts</code> loads the
+corresponding SQL file from <code>lib/engines/waf-assessment/queries/</code>, executes it
+via <code>executeSQL()</code>, and maps each row to a <code>WafControlResult</code>. Each query must
+return columns:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>waf_id, score_percentage, threshold_percentage, threshold_met
+</code></pre></div>
+<p><code>threshold_met</code> is a string — <code>met</code> becomes <code>true</code>, anything else becomes
+<code>false</code>.</p>
+<p><code>runAllPillars()</code> runs all 7 SQL pillars in parallel via
+<code>Promise.allSettled</code>, so one failing query does not block the others.</p>
+<h3 id="phase-3-aggregate-persist">Phase 3: Aggregate + persist<a class="headerlink" href="#phase-3-aggregate-persist" title="Permanent link">&para;</a></h3>
+<p><code>runAssessment()</code> in <code>lib/engines/waf-assessment/service.ts</code>:</p>
+<ol>
+<li>Filters results to <code>wafId</code>s present in the catalog (avoids FK violations
+   if a query returns an unknown id)</li>
+<li><code>createMany()</code> per-control results in <code>ForgeWafControlResult</code></li>
+<li>Computes per-pillar scores via <code>pillarScore(totals, pillar)</code> --
+   <code>Math.round((met / total) * 1000) / 10</code></li>
+<li><code>overallScore</code> is the rounded average of available pillar scores</li>
+<li>Updates the assessment header with status + scores + counts + timestamps</li>
+</ol>
+<hr />
+<h2 id="catalog">Catalog<a class="headerlink" href="#catalog" title="Permanent link">&para;</a></h2>
+<p>The bundled catalog (<code>waf-controls-catalog.csv</code>, 166 rows) is the source of
+truth for control metadata. It currently includes:</p>
+<ul>
+<li><strong>151 BPs</strong> from the official Databricks WAF spreadsheet (CombinedList) —
+  Databricks-style codes (e.g. <code>DG-01-03</code>, <code>R-02-04</code>, <code>CO-01-09</code>) that map
+  cleanly to the AWS / Azure WAF references.</li>
+<li><strong>15 EX extensions</strong> (<code>&lt;PILLAR&gt;-EX&lt;NN&gt;-&lt;NN&gt;</code> format, e.g. <code>SCP-EX01-01</code>)
+  covering modern controls not yet in the official spreadsheet: Automatic
+  Identity Management, encryption-in-transit, data classification, idle
+  decommissioning, criticality tiering, SDLC, FinOps, ops standardization,
+  FMA, and DR drills.</li>
+</ul>
+<h3 id="csv-schema-11-columns">CSV schema (11 columns)<a class="headerlink" href="#csv-schema-11-columns" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>waf_id</code></td>
+<td>Stable identifier (<code>DG-01-01</code>, <code>SCP-EX01-01</code>, ...) — primary key</td>
+</tr>
+<tr>
+<td><code>pillar_name</code></td>
+<td>Verbatim from the catalog (e.g. <code>01 - Data And AI Governance</code>) — mapped to a pillar key by <code>pillarKeyFromName()</code></td>
+</tr>
+<tr>
+<td><code>principle</code></td>
+<td>Higher-level grouping inside the pillar</td>
+</tr>
+<tr>
+<td><code>best_practice</code></td>
+<td>Short title shown in the UI</td>
+</tr>
+<tr>
+<td><code>capabilities</code></td>
+<td>Free-text capabilities note</td>
+</tr>
+<tr>
+<td><code>details</code></td>
+<td>Long description shown in the drill-down</td>
+</tr>
+<tr>
+<td><code>query_table_name</code></td>
+<td>Hint for which <code>system.*</code> table the SQL touches</td>
+</tr>
+<tr>
+<td><code>threshold_percentage</code></td>
+<td>Pass threshold — <code>null</code> for qualitative controls</td>
+</tr>
+<tr>
+<td><code>metric_definition</code></td>
+<td>Free-text formula / metric definition</td>
+</tr>
+<tr>
+<td><code>recommendation_if_not_met</code></td>
+<td>Recommendation surfaced when the control fails</td>
+</tr>
+<tr>
+<td><code>evaluation_type</code></td>
+<td><code>automatic</code> or <code>qualitative</code> (160 + 6 today)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="evaluation-type">Evaluation type<a class="headerlink" href="#evaluation-type" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>automatic</code> — score comes from a SQL query; the result is compared against
+  <code>threshold_percentage</code> to derive <code>threshold_met</code>.</li>
+<li><code>qualitative</code> — score comes from a <code>yes</code> (100) / <code>partial</code> (50) / <code>no</code> (0) /
+  <code>not_applicable</code> (excluded) questionnaire response stored in
+  <code>forge_waf_qualitative_responses</code>. The threshold is hardcoded at 100 (must
+  answer "yes" to count as met). Saved responses are workspace-level and reused
+  across every assessment run — no need to re-answer between runs.</li>
+</ul>
+<h3 id="fix-action-map">Fix-action map<a class="headerlink" href="#fix-action-map" title="Permanent link">&para;</a></h3>
+<p><code>FIX_ACTIONS</code> in <code>catalog.ts</code> attaches a <code>fixActionEngine</code> + <code>params</code> per
+<code>waf_id</code>. Two flavours:</p>
+<ul>
+<li><strong>Internal engines</strong> (<code>comment-engine</code>, <code>estate-scan</code>, <code>ask-forge</code>) deep-link
+  to a Forge surface that addresses the gap directly. Rendered with a
+  "Fix with Forge" button (Wrench icon).</li>
+<li><strong><code>docs</code></strong> is a fallback that links to the canonical Databricks doc when
+  remediation is admin- or workload-level (Photon, autoscaling, runtimes).
+  Rendered with an "Open docs" button (Book icon, new tab).</li>
+</ul>
+<hr />
+<h2 id="api-routes">API Routes<a class="headerlink" href="#api-routes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Method</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/assessment</code></td>
+<td>GET</td>
+<td>Latest assessment (with control results) + history list + qualitative controls + saved responses</td>
+</tr>
+<tr>
+<td><code>/api/assessment/run</code></td>
+<td>POST</td>
+<td>Trigger a full assessment run, persist results, return the summary</td>
+</tr>
+<tr>
+<td><code>/api/assessment/[assessmentId]</code></td>
+<td>GET</td>
+<td>Single assessment with per-control results</td>
+</tr>
+<tr>
+<td><code>/api/assessment/controls</code></td>
+<td>GET</td>
+<td>Catalog of WAF controls (no run required)</td>
+</tr>
+<tr>
+<td><code>/api/assessment/qualitative</code></td>
+<td>GET / POST / DELETE</td>
+<td>List, upsert, or remove a workspace qualitative response</td>
+</tr>
+<tr>
+<td><code>/api/assessment/ignored</code></td>
+<td>GET / POST / DELETE</td>
+<td>List, add, or remove a workspace control exclusion</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="ui">UI<a class="headerlink" href="#ui" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>app/assessment/page.tsx</code></td>
+<td>Main <code>/assessment</code> page: pillar score cards, failing-controls tab, per-pillar drill-down, qualitative tab, ignored tab, AWS/Azure WAF cross-reference badges, history table, CSV export</td>
+</tr>
+<tr>
+<td><code>app/assessment/compare/page.tsx</code></td>
+<td><code>/assessment/compare?from=X&amp;to=Y</code> drift view — Regressed / Improved / Moved / Added / Removed / Unchanged</td>
+</tr>
+</tbody>
+</table>
+<p>Each control row (both automatic and qualitative) renders two clickable badges
+("AWS WAF · …" / "Azure WAF · …") sourced from
+<code>lib/engines/waf-assessment/cross-references.ts</code>. The module returns a
+pillar-level fallback for every control plus per-control overrides for the
+controls where the official Databricks WAF spreadsheet documents a specific
+AWS / Azure reference (currently <code>DG-02-02</code>, <code>CO-01-09</code>, <code>PE-02-04</code>,
+<code>R-01-03</code>, <code>SCP-01-13</code>).</p>
+<p>The toolbar exports a client-side CSV (<code>waf-assessment-YYYY-MM-DD.csv</code>) with
+columns <code>waf_id, pillar, principle, best_practice, score, threshold, met,
+recommendation</code>.</p>
+<hr />
+<h2 id="data-model">Data Model<a class="headerlink" href="#data-model" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Table</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ForgeWafControl</code></td>
+<td>Curated catalog of WAF controls (one row per <code>waf_id</code>) — seeded from the bundled CSV. Includes <code>evaluation_type</code> and nullable <code>threshold_percentage</code> for qualitative items</td>
+</tr>
+<tr>
+<td><code>ForgeWafAssessment</code></td>
+<td>One row per assessment run: status, per-pillar scores (<code>governance_score</code>, <code>iu_score</code>, <code>oe_score</code>, <code>scp_score</code>, <code>reliability_score</code>, <code>cost_score</code>, <code>performance_score</code>), <code>overall_score</code>, met/total counts, error message, timestamps</td>
+</tr>
+<tr>
+<td><code>ForgeWafControlResult</code></td>
+<td>Per-control result rows joined to a parent assessment via FK (<code>assessment_id</code> × <code>waf_id</code>) — score, threshold, met flag, evaluated_at</td>
+</tr>
+<tr>
+<td><code>ForgeWafQualitativeResponse</code></td>
+<td>Workspace-level answers for the 6 qualitative controls — one row per <code>waf_id</code>, reused across assessment runs (configuration, not run-scoped)</td>
+</tr>
+<tr>
+<td><code>ForgeWafIgnoredResource</code></td>
+<td>Workspace exclusions: opt out of a control (or in a future iteration, a specific resource) with a reason. Excluded controls are skipped when computing pillar/overall scores</td>
+</tr>
+</tbody>
+</table>
+<p>Schema is auto-migrated via <code>prisma db push --accept-data-loss</code> on app boot
+(<code>scripts/start.sh</code>, Step E).</p>
+<hr />
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
+<p>The engine takes no runtime configuration today. The bundled CSV is the
+source of truth for pillar coverage, thresholds, and evaluation type. To add
+or modify a control, edit the CSV and re-deploy — <code>ensureCatalogSeeded()</code>
+will upsert the change on the next assessment.</p>
+<hr />
+<h2 id="file-reference">File Reference<a class="headerlink" href="#file-reference" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>lib/engines/waf-assessment/types.ts</code></td>
+<td>All TypeScript types: <code>WafPillar</code>, <code>WafControl</code>, <code>WafControlResult</code>, <code>WafAssessmentSummary/Detail</code>, <code>WAF_PILLARS</code>, <code>WAF_PILLARS_WITH_QUERIES</code>, <code>PILLAR_LABEL</code></td>
+</tr>
+<tr>
+<td><code>lib/engines/waf-assessment/catalog.ts</code></td>
+<td>CSV loader, pillar-key mapping, <code>FIX_ACTIONS</code> map, <code>ensureCatalogSeeded()</code></td>
+</tr>
+<tr>
+<td><code>lib/engines/waf-assessment/csv.ts</code></td>
+<td>Minimal RFC 4180 CSV parser (handles multiline quoted fields)</td>
+</tr>
+<tr>
+<td><code>lib/engines/waf-assessment/engine.ts</code></td>
+<td><code>runPillar()</code> + <code>runAllPillars()</code> — load SQL, execute, map rows</td>
+</tr>
+<tr>
+<td><code>lib/engines/waf-assessment/service.ts</code></td>
+<td><code>runAssessment()</code>, <code>listAssessments()</code>, <code>getLatestAssessment()</code>, <code>getAssessmentDetail()</code>, <code>listControls()</code></td>
+</tr>
+<tr>
+<td><code>lib/engines/waf-assessment/queries/governance.sql</code></td>
+<td>Governance pillar SQL</td>
+</tr>
+<tr>
+<td><code>lib/engines/waf-assessment/queries/interoperability-usability.sql</code></td>
+<td>Interoperability &amp; Usability pillar SQL</td>
+</tr>
+<tr>
+<td><code>lib/engines/waf-assessment/queries/operational-excellence.sql</code></td>
+<td>Operational Excellence pillar SQL</td>
+</tr>
+<tr>
+<td><code>lib/engines/waf-assessment/queries/security-compliance-privacy.sql</code></td>
+<td>Security, Compliance and Privacy pillar SQL</td>
+</tr>
+<tr>
+<td><code>lib/engines/waf-assessment/queries/reliability.sql</code></td>
+<td>Reliability pillar SQL</td>
+</tr>
+<tr>
+<td><code>lib/engines/waf-assessment/queries/cost-optimisation.sql</code></td>
+<td>Cost Optimisation pillar SQL</td>
+</tr>
+<tr>
+<td><code>lib/engines/waf-assessment/queries/performance-efficiency.sql</code></td>
+<td>Performance Efficiency pillar SQL</td>
+</tr>
+<tr>
+<td><code>lib/engines/waf-assessment/data/waf-controls-catalog.csv</code></td>
+<td>Bundled catalog (166 rows, 11 columns)</td>
+</tr>
+<tr>
+<td><code>lib/engines/waf-assessment/cross-references.ts</code></td>
+<td>Static AWS WAF / Azure WAF cross-reference resolver (pillar fallback + per-control overrides) used by the UI badges</td>
+</tr>
+<tr>
+<td><code>app/api/assessment/route.ts</code></td>
+<td><code>GET</code> latest + history</td>
+</tr>
+<tr>
+<td><code>app/api/assessment/run/route.ts</code></td>
+<td><code>POST</code> trigger run</td>
+</tr>
+<tr>
+<td><code>app/api/assessment/[assessmentId]/route.ts</code></td>
+<td><code>GET</code> single assessment</td>
+</tr>
+<tr>
+<td><code>app/api/assessment/controls/route.ts</code></td>
+<td><code>GET</code> catalog</td>
+</tr>
+<tr>
+<td><code>app/assessment/page.tsx</code></td>
+<td>Main UI</td>
+</tr>
+<tr>
+<td><code>app/assessment/compare/page.tsx</code></td>
+<td>Drift comparison UI</td>
+</tr>
+<tr>
+<td><code>prisma/schema.prisma</code></td>
+<td><code>ForgeWafControl</code>, <code>ForgeWafAssessment</code>, <code>ForgeWafControlResult</code> models</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="roadmap">Roadmap<a class="headerlink" href="#roadmap" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Broaden IU / OE / SCP coverage</strong> — the current SQL queries cover a
+  curated subset of each pillar (4-5 controls). Extend with admin-API checks
+  for SCIM/AIM, network/IdP federation, customer-managed keys, and additional
+  workflow/cluster policy signals.</li>
+<li><strong>Resource-level exclusions</strong> — extend <code>ForgeWafIgnoredResource</code> (which
+  already accepts an optional <code>resourceType</code>/<code>resourceId</code> pair) so that SQL
+  queries honor exclusions at the resource grain (e.g. exclude one warehouse
+  from <code>SCP-02-01</code> instead of the whole control).</li>
+<li><strong>Enrich AWS / Azure cross-references</strong> — <code>cross-references.ts</code> ships with
+  pillar-level fallback for every control plus per-control overrides for a
+  handful of controls. Sweep the official Databricks WAF spreadsheet's
+  "AWS reference" / "Azure reference" columns and add a <code>CONTROL_REFS</code> entry
+  for every documented mapping so the badges always deep-link to the most
+  specific AWS / Azure WAF guidance.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "toc.integrate"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

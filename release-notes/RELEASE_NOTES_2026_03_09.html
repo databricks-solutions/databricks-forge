@@ -1,0 +1,2454 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Turn Unity Catalog metadata into business value in days, not quarters">
+      
+      
+      
+        <link rel="canonical" href="https://databricks-solutions.github.io/databricks-forge/release-notes/RELEASE_NOTES_2026_03_09.html">
+      
+      
+        <link rel="prev" href="RELEASE_NOTES_2026_03_10.html">
+      
+      
+        <link rel="next" href="RELEASE_NOTES_2026_03_07.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../images/databricks-icon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>2026-03-09 - Databricks Forge</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#release-notes-2026-03-09" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Databricks Forge" class="md-header__button md-logo" aria-label="Databricks Forge" data-md-component="logo">
+      
+  <img src="../images/databricks-icon.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Databricks Forge
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2026-03-09
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/databricks-solutions/databricks-forge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    databricks-solutions/databricks-forge
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Databricks Forge" class="md-nav__button md-logo" aria-label="Databricks Forge" data-md-component="logo">
+      
+  <img src="../images/databricks-icon.svg" alt="logo">
+
+    </a>
+    Databricks Forge
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/databricks-solutions/databricks-forge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    databricks-solutions/databricks-forge
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DEPLOYMENT.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../USER_GUIDE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Features
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ask-forge.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ask Forge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BUSINESS_VALUE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Value
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../estate-analysis.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estate Intelligence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SKILLS_KNOWLEDGE_BASE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Knowledge Base
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/SUPPORT.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/SECURITY.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/CONTRIBUTING.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release Notes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Release Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_07_21.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-07-21
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_05_26.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-26
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_05_11.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_05_02.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-02
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_04_30.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-04-30
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_04_16.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-04-16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_31.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-31
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_19.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-19
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_18.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-18
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_16.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_15.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-15
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_14.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-14
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_13.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-13
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_12.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-12
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_11.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_10.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-09
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="RELEASE_NOTES_2026_03_09.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-09
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#v0150-design-system-overhaul" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v0.15.0 -- Design System Overhaul
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v0.15.0 -- Design System Overhaul">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        New Features
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="New Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#design-system-overhaul" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Design System Overhaul
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#typography" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Typography
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#motion-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Motion System
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tile-dashboard-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tile Dashboard Layout
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#improvements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Improvements
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Improvements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sidebar-atmosphere" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sidebar Atmosphere
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#header-refinement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Header Refinement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consistent-page-layouts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consistent Page Layouts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#component-refinements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Component Refinements
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-status-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error &amp; Status Pages
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ask-forge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ask Forge
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v0160-llm-skills-system-genie-detail-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v0.16.0 -- LLM Skills System + Genie Detail Page
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v0.16.0 -- LLM Skills System + Genie Detail Page">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-features_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        New Features
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="New Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#llm-skills-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LLM Skills System
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#genie-space-detail-page-uplift" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Genie Space Detail Page Uplift
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#genie-space-improvement-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Genie Space Improvement Workflow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sql-extraction-in-space-fixer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SQL Extraction in Space Fixer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#improvements_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Improvements
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Improvements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#design-restoration-outcomes-ask-forge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Design Restoration -- Outcomes &amp; Ask Forge
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dynamic-application-naming" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dynamic Application Naming
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#layout-spacing-consistency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layout &amp; Spacing Consistency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trusted-assets-pass-enhancements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trusted Assets Pass Enhancements
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#benchmark-generation-improvements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Benchmark Generation Improvements
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v0170-llm-skills-overhaul-8-modules-12-surfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v0.17.0 -- LLM Skills Overhaul (8 Modules, 12 Surfaces)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v0.17.0 -- LLM Skills Overhaul (8 Modules, 12 Surfaces)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-features_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        New Features
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="New Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#llm-skills-overhaul-8-modules-12-blind-surfaces-wired" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LLM Skills Overhaul -- 8 Modules, 12 Blind Surfaces Wired
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#improvements_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Improvements
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Improvements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sql-generation-craft-skills" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SQL Generation Craft Skills
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#databricks-data-modeling-skill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Databricks Data Modeling Skill
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#databricks-ai-functions-skill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Databricks AI Functions Skill
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#databricks-sql-scripting-skill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Databricks SQL Scripting Skill
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dashboard-sql-skill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dashboard SQL Skill
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enhanced-genie-design-skill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enhanced Genie Design Skill
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enhanced-metric-view-patterns-skill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enhanced Metric View Patterns Skill
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enhanced-system-tables-skill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enhanced System Tables Skill
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#skill-resolver-wired-to-12-llm-surfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Skill Resolver Wired to 12 LLM Surfaces
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v0171-sql-hallucination-fix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v0.17.1 -- SQL Hallucination Fix
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v0.17.1 -- SQL Hallucination Fix">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bug-fixes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bug Fixes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#improvements_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Improvements
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Improvements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lateral-view-explode-deprecation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LATERAL VIEW EXPLODE Deprecation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#canonical-from_json-alias-naming" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Canonical from_json() Alias Naming
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#targeted-fix-guidance-for-from_json-violations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Targeted Fix Guidance for from_json Violations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v0180-pipeline-engine-performance-17-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v0.18.0 -- Pipeline &amp; Engine Performance (17 Areas)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v0.18.0 -- Pipeline &amp; Engine Performance (17 Areas)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#improvements_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Improvements
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Improvements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parallelized-pipeline-steps-for-faster-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parallelized pipeline steps for faster execution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#genie-engine-pass-reordering-and-concurrency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Genie Engine pass reordering and concurrency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-level-sample-data-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run-level sample data cache
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parallelized-embedding-batches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parallelized embedding batches
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sql-reviewer-llm-cache-for-genie-surfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SQL reviewer LLM cache for Genie surfaces
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#buffered-prompt-log-inserts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Buffered prompt log inserts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#progress-update-throttling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Progress update throttling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reduced-sql-generation-wave-delay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reduced SQL generation wave delay
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontend-polling-backoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend polling backoff
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cache-control-headers-on-read-heavy-api-routes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cache-Control headers on read-heavy API routes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lazy-loaded-codemirror-editor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lazy-loaded CodeMirror editor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batched-n1-update-in-enrich-pbi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Batched N+1 update in enrich-pbi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deduplicated-aggregate-estate-view-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deduplicated aggregate estate view queries
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#all-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        All Commits
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_07.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-07
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_06.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-06
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_05.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-05
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_04.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-04
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026-02-27.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-02-27
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026-02-25.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-02-25
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="release-notes-2026-03-09">Release Notes -- 2026-03-09<a class="headerlink" href="#release-notes-2026-03-09" title="Permanent link">&para;</a></h1>
+<p><strong>Databricks Forge v0.15.0 → v0.18.0</strong></p>
+<hr />
+<h2 id="v0150-design-system-overhaul">v0.15.0 -- Design System Overhaul<a class="headerlink" href="#v0150-design-system-overhaul" title="Permanent link">&para;</a></h2>
+<h3 id="new-features">New Features<a class="headerlink" href="#new-features" title="Permanent link">&para;</a></h3>
+<h4 id="design-system-overhaul">Design System Overhaul<a class="headerlink" href="#design-system-overhaul" title="Permanent link">&para;</a></h4>
+<p>Complete visual redesign moving from scaffold defaults to a branded, intentional design language. The new "Precision Intelligence" aesthetic transforms every surface of the application from a developer workbench into a polished business tool.</p>
+<h4 id="typography">Typography<a class="headerlink" href="#typography" title="Permanent link">&para;</a></h4>
+<p>Replaced Geist (the Next.js default) with <strong>Plus Jakarta Sans</strong> for body/headings and <strong>JetBrains Mono</strong> for code, creating a distinctive typographic identity.</p>
+<h4 id="motion-system">Motion System<a class="headerlink" href="#motion-system" title="Permanent link">&para;</a></h4>
+<p>Installed <code>motion</code> (Framer Motion v11+) and created shared animation variants. The sidebar now uses spring-based collapse/expand, page transitions use fade+slide via <code>template.tsx</code>, and dashboard cards enter with staggered animations.</p>
+<h4 id="tile-dashboard-layout">Tile Dashboard Layout<a class="headerlink" href="#tile-dashboard-layout" title="Permanent link">&para;</a></h4>
+<p>Redesigned the home page with an atmospheric hero banner featuring a Databricks diamond texture pattern, an asymmetric tile layout with a hero use-case metric, quick-action cards, secondary KPI tiles, side-by-side recent runs and activity feed, and a refreshed empty state with branded onboarding.</p>
+<h3 id="improvements">Improvements<a class="headerlink" href="#improvements" title="Permanent link">&para;</a></h3>
+<h4 id="sidebar-atmosphere">Sidebar Atmosphere<a class="headerlink" href="#sidebar-atmosphere" title="Permanent link">&para;</a></h4>
+<p>Replaced flat <code>bg-muted/30</code> with gradient background, stronger active states with left-border accent in Databricks Red, refined section labels, and animated brand text on collapse/expand.</p>
+<h4 id="header-refinement">Header Refinement<a class="headerlink" href="#header-refinement" title="Permanent link">&para;</a></h4>
+<p>Increased height from 48px to 56px, grouped right-side actions with a visual divider, strengthened page title weight, and added subtle bottom shadow for depth.</p>
+<h4 id="consistent-page-layouts">Consistent Page Layouts<a class="headerlink" href="#consistent-page-layouts" title="Permanent link">&para;</a></h4>
+<p>All 23 pages now use <code>max-w-[1400px]</code> content constraint, <code>space-y-8</code> section spacing, and standardized <code>PageHeader</code> component where applicable. New <code>PageShell</code> and <code>PageHeader</code> shared components enforce consistency.</p>
+<h4 id="component-refinements">Component Refinements<a class="headerlink" href="#component-refinements" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Card</strong>: Added hover transition support and tighter title tracking</li>
+<li><strong>Badge</strong>: New <code>brand</code> variant using Databricks Red with subtle border</li>
+<li><strong>Button</strong>: Primary buttons now have shadow, hover shadow, and active scale</li>
+<li><strong>Skeleton</strong>: Brand-tinted shimmer instead of generic grey pulse</li>
+</ul>
+<h4 id="error-status-pages">Error &amp; Status Pages<a class="headerlink" href="#error-status-pages" title="Permanent link">&para;</a></h4>
+<p>Refreshed 404 page with branded icon and atmospheric large-number background, refined error boundary with icon treatment and action buttons, and loading skeletons that mirror the new tile layout.</p>
+<h4 id="ask-forge">Ask Forge<a class="headerlink" href="#ask-forge" title="Permanent link">&para;</a></h4>
+<p>Updated layout margins for the new header height, refined persona toggle and conversation history backgrounds.</p>
+<hr />
+<h2 id="v0160-llm-skills-system-genie-detail-page">v0.16.0 -- LLM Skills System + Genie Detail Page<a class="headerlink" href="#v0160-llm-skills-system-genie-detail-page" title="Permanent link">&para;</a></h2>
+<h3 id="new-features_1">New Features<a class="headerlink" href="#new-features_1" title="Permanent link">&para;</a></h3>
+<h4 id="llm-skills-system">LLM Skills System<a class="headerlink" href="#llm-skills-system" title="Permanent link">&para;</a></h4>
+<p>Introduced a structured knowledge injection framework (<code>lib/skills/</code>) that enriches all AI surfaces with domain-specific expertise. Skills are registered in a central registry and resolved at prompt-build time based on context signals (industry, data patterns, intent). Ships with five built-in skill packs: Databricks SQL Patterns, Genie Space Design, Industry Enrichment, Metric View Patterns, and System Tables. Skills are embedded into the vector store for RAG retrieval and injected directly into LLM prompts, improving generation quality across the Genie Engine, Ask Forge, and pipeline steps.</p>
+<h4 id="genie-space-detail-page-uplift">Genie Space Detail Page Uplift<a class="headerlink" href="#genie-space-detail-page-uplift" title="Permanent link">&para;</a></h4>
+<p>Completely redesigned the Genie Space detail page (<code>app/genie/[spaceId]/page.tsx</code>) with a tab-based layout featuring a new hero section (<code>space-detail-hero.tsx</code>), Overview tab (<code>space-overview-tab.tsx</code>) with table/instruction/expression summaries, Health tab (<code>space-health-tab.tsx</code>) with inline health checks and fix actions, Benchmarks tab (<code>space-benchmarks-tab.tsx</code>), and a refreshed Config Viewer. The page now matches the app's Precision Intelligence design language.</p>
+<h4 id="genie-space-improvement-workflow">Genie Space Improvement Workflow<a class="headerlink" href="#genie-space-improvement-workflow" title="Permanent link">&para;</a></h4>
+<p>Added a background improvement job system (<code>lib/genie/improve-jobs.ts</code>) with new API routes (<code>/api/genie-spaces/[spaceId]/improve</code> and <code>/api/genie-spaces/improve-status</code>). Users can trigger space improvements from the detail page and poll for progress, with status indicators and result surfacing in the UI.</p>
+<h4 id="sql-extraction-in-space-fixer">SQL Extraction in Space Fixer<a class="headerlink" href="#sql-extraction-in-space-fixer" title="Permanent link">&para;</a></h4>
+<p>Enhanced the space fixer (<code>lib/genie/space-fixer.ts</code>) with SQL extraction and reference handling capabilities, enabling more precise automated fixes when resolving health check failures.</p>
+<h3 id="improvements_1">Improvements<a class="headerlink" href="#improvements_1" title="Permanent link">&para;</a></h3>
+<h4 id="design-restoration-outcomes-ask-forge">Design Restoration -- Outcomes &amp; Ask Forge<a class="headerlink" href="#design-restoration-outcomes-ask-forge" title="Permanent link">&para;</a></h4>
+<p>Restored the design-overhaul UX to the Outcomes page, Use-Case Table, and Ask Forge chat interface that had been lost during branch merges.</p>
+<h4 id="dynamic-application-naming">Dynamic Application Naming<a class="headerlink" href="#dynamic-application-naming" title="Permanent link">&para;</a></h4>
+<p>Updated <code>lib/lakebase/provision.ts</code> to support a <code>FORGE_APP_NAME</code> environment variable for <code>PROJECT_ID_BASE</code> and display name.</p>
+<h4 id="layout-spacing-consistency">Layout &amp; Spacing Consistency<a class="headerlink" href="#layout-spacing-consistency" title="Permanent link">&para;</a></h4>
+<p>Updated layout and spacing across multiple pages (Fabric, Environment, Metadata Genie, Run Detail) for consistent margins, padding, and content constraints matching the design system.</p>
+<h4 id="trusted-assets-pass-enhancements">Trusted Assets Pass Enhancements<a class="headerlink" href="#trusted-assets-pass-enhancements" title="Permanent link">&para;</a></h4>
+<p>Expanded the trusted assets pass (<code>lib/genie/passes/trusted-assets.ts</code>) with richer generation logic and better handling of SQL patterns.</p>
+<h4 id="benchmark-generation-improvements">Benchmark Generation Improvements<a class="headerlink" href="#benchmark-generation-improvements" title="Permanent link">&para;</a></h4>
+<p>Enhanced the benchmark generation pass with more robust question generation and better context handling for improved Genie Space benchmark coverage.</p>
+<hr />
+<h2 id="v0170-llm-skills-overhaul-8-modules-12-surfaces">v0.17.0 -- LLM Skills Overhaul (8 Modules, 12 Surfaces)<a class="headerlink" href="#v0170-llm-skills-overhaul-8-modules-12-surfaces" title="Permanent link">&para;</a></h2>
+<h3 id="new-features_2">New Features<a class="headerlink" href="#new-features_2" title="Permanent link">&para;</a></h3>
+<h4 id="llm-skills-overhaul-8-modules-12-blind-surfaces-wired">LLM Skills Overhaul -- 8 Modules, 12 Blind Surfaces Wired<a class="headerlink" href="#llm-skills-overhaul-8-modules-12-blind-surfaces-wired" title="Permanent link">&para;</a></h4>
+<p>Comprehensive overhaul of the in-app LLM skills system. Created four new skill modules (Databricks Data Modeling, AI Functions, SQL Scripting, Dashboard SQL) and substantially rewrote four existing modules (SQL Patterns, Genie Design, Metric View Patterns, System Tables). Extended the type system with new <code>GeniePass</code> values (<code>exampleQueries</code>, <code>joinInference</code>) and <code>PipelineStep</code> value (<code>dashboard-design</code>). Wired the skill resolver into 12 previously blind LLM surfaces so every AI-powered generation path now benefits from structured domain knowledge.</p>
+<h3 id="improvements_2">Improvements<a class="headerlink" href="#improvements_2" title="Permanent link">&para;</a></h3>
+<h4 id="sql-generation-craft-skills">SQL Generation Craft Skills<a class="headerlink" href="#sql-generation-craft-skills" title="Permanent link">&para;</a></h4>
+<p>Rewrote <code>databricks-sql-patterns</code> to focus purely on SQL generation craft: window function recipes, CTE composition patterns, date idioms, lambda/higher-order function patterns, and a comprehensive anti-patterns catalogue.</p>
+<h4 id="databricks-data-modeling-skill">Databricks Data Modeling Skill<a class="headerlink" href="#databricks-data-modeling-skill" title="Permanent link">&para;</a></h4>
+<p>New dedicated skill covering star schema design, keys and constraints, Liquid Clustering best practices, SCD Type 1/2 patterns, and data modeling anti-patterns. Wired into table-filtering and SQL generation pipeline steps.</p>
+<h4 id="databricks-ai-functions-skill">Databricks AI Functions Skill<a class="headerlink" href="#databricks-ai-functions-skill" title="Permanent link">&para;</a></h4>
+<p>New skill covering <code>ai_query</code> rules and structured output, the cost-optimisation funnel, and all task-specific AI functions (<code>ai_classify</code>, <code>ai_extract</code>, <code>ai_forecast</code>, <code>vector_search</code>, <code>http_request</code>, <code>remote_query</code>, <code>read_files</code>).</p>
+<h4 id="databricks-sql-scripting-skill">Databricks SQL Scripting Skill<a class="headerlink" href="#databricks-sql-scripting-skill" title="Permanent link">&para;</a></h4>
+<p>New skill for procedural SQL: <code>BEGIN...END</code> blocks, variable declaration, control flow, exception handling, stored procedures with <code>IN</code>/<code>OUT</code>/<code>INOUT</code> parameters, and recursive CTE patterns.</p>
+<h4 id="dashboard-sql-skill">Dashboard SQL Skill<a class="headerlink" href="#dashboard-sql-skill" title="Permanent link">&para;</a></h4>
+<p>New skill for Lakeview dashboard dataset SQL rules, widget field matching constraints, 6-column grid layout rules, and metric view SQL compliance.</p>
+<h4 id="enhanced-genie-design-skill">Enhanced Genie Design Skill<a class="headerlink" href="#enhanced-genie-design-skill" title="Permanent link">&para;</a></h4>
+<p>Added five new chunks: snippet expression complexity rules, alias-based join inference patterns, auto-generated date filters, question style guidelines, and instruction anti-patterns.</p>
+<h4 id="enhanced-metric-view-patterns-skill">Enhanced Metric View Patterns Skill<a class="headerlink" href="#enhanced-metric-view-patterns-skill" title="Permanent link">&para;</a></h4>
+<p>Added star/snowflake join YAML examples, common gotchas, and window measure examples (YTD, rolling, period-over-period).</p>
+<h4 id="enhanced-system-tables-skill">Enhanced System Tables Skill<a class="headerlink" href="#enhanced-system-tables-skill" title="Permanent link">&para;</a></h4>
+<p>Added deeper coverage: job/pipeline monitoring, storage/compute metrics, and data product observability patterns.</p>
+<h4 id="skill-resolver-wired-to-12-llm-surfaces">Skill Resolver Wired to 12 LLM Surfaces<a class="headerlink" href="#skill-resolver-wired-to-12-llm-surfaces" title="Permanent link">&para;</a></h4>
+<p>Previously blind surfaces now receive skill context: SQL Reviewer, Pipeline SQL Generation, Dashboard Engine, Genie Example Query Generation, Genie Join Inference, Genie Adhoc Engine, Genie Optimise, Genie Space Fixer, Health Check Synthesis, Fabric Gold Proposer, Fabric DAX-to-SQL, and Pipeline Table Filtering.</p>
+<hr />
+<h2 id="v0171-sql-hallucination-fix">v0.17.1 -- SQL Hallucination Fix<a class="headerlink" href="#v0171-sql-hallucination-fix" title="Permanent link">&para;</a></h2>
+<h3 id="bug-fixes">Bug Fixes<a class="headerlink" href="#bug-fixes" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>False-positive hallucination flags on AI use case SQL</strong> -- The column validator was rejecting valid SQL that used <code>from_json()</code> struct field access (e.g. <code>parsed.confidence</code>). The validator now recognises column-alias prefixes as struct field access and skips them during validation.</p>
+</li>
+<li>
+<p><strong>String literal content matched as column references</strong> -- Prose inside SQL string literals was being matched by the column reference regex. Added <code>stripStringLiterals()</code> to the extraction pipeline.</p>
+</li>
+<li>
+<p><strong>Reviewer fixes introducing new hallucinated columns</strong> -- The SQL reviewer fix prompt now includes an explicit column-grounding constraint.</p>
+</li>
+</ul>
+<h3 id="improvements_3">Improvements<a class="headerlink" href="#improvements_3" title="Permanent link">&para;</a></h3>
+<h4 id="lateral-view-explode-deprecation">LATERAL VIEW EXPLODE Deprecation<a class="headerlink" href="#lateral-view-explode-deprecation" title="Permanent link">&para;</a></h4>
+<p>Added rules across all prompt surfaces warning against <code>LATERAL VIEW EXPLODE</code> (deprecated Hive syntax that causes parse errors when combined with JOINs).</p>
+<h4 id="canonical-from_json-alias-naming">Canonical <code>from_json()</code> Alias Naming<a class="headerlink" href="#canonical-from_json-alias-naming" title="Permanent link">&para;</a></h4>
+<p>Enforced <code>ai_result</code> and <code>parsed_result</code> as the mandatory alias names for <code>ai_query()</code> and <code>from_json()</code> outputs respectively.</p>
+<h4 id="targeted-fix-guidance-for-from_json-violations">Targeted Fix Guidance for <code>from_json</code> Violations<a class="headerlink" href="#targeted-fix-guidance-for-from_json-violations" title="Permanent link">&para;</a></h4>
+<p>When the hallucination fixer detects <code>parsed.*</code> prefix patterns in flagged columns, the error message now includes specific instructions about canonical <code>from_json()</code> alias naming.</p>
+<hr />
+<h2 id="v0180-pipeline-engine-performance-17-areas">v0.18.0 -- Pipeline &amp; Engine Performance (17 Areas)<a class="headerlink" href="#v0180-pipeline-engine-performance-17-areas" title="Permanent link">&para;</a></h2>
+<h3 id="improvements_4">Improvements<a class="headerlink" href="#improvements_4" title="Permanent link">&para;</a></h3>
+<h4 id="parallelized-pipeline-steps-for-faster-execution">Parallelized pipeline steps for faster execution<a class="headerlink" href="#parallelized-pipeline-steps-for-faster-execution" title="Permanent link">&para;</a></h4>
+<p>Domain-clustering (Step 5) and scoring/dedup (Step 6) now process domains in parallel with bounded concurrency, and LLM batches within each step run concurrently via <code>Promise.all</code>. Metadata extraction (Step 2) runs all per-scope queries in parallel. Expected 3-5x speedup on steps 2, 5, and 6.</p>
+<h4 id="genie-engine-pass-reordering-and-concurrency">Genie Engine pass reordering and concurrency<a class="headerlink" href="#genie-engine-pass-reordering-and-concurrency" title="Permanent link">&para;</a></h4>
+<p>Metric view proposals now run in parallel with Phase 3 passes instead of sequentially before them. Genie LLM concurrency default raised from 3 to 6. Metric view SQL reviews now run in parallel.</p>
+<h4 id="run-level-sample-data-cache">Run-level sample data cache<a class="headerlink" href="#run-level-sample-data-cache" title="Permanent link">&para;</a></h4>
+<p>SQL generation (Step 7) now caches sample data per table FQN across use cases within a run, eliminating 50-80% of redundant warehouse queries.</p>
+<h4 id="parallelized-embedding-batches">Parallelized embedding batches<a class="headerlink" href="#parallelized-embedding-batches" title="Permanent link">&para;</a></h4>
+<p>Embedding generation now runs up to 3 batches concurrently with increased batch size (32, up from 16), reducing embedding phase latency by 2-3x.</p>
+<h4 id="sql-reviewer-llm-cache-for-genie-surfaces">SQL reviewer LLM cache for Genie surfaces<a class="headerlink" href="#sql-reviewer-llm-cache-for-genie-surfaces" title="Permanent link">&para;</a></h4>
+<p>SQL review calls for <code>genie-*</code> surfaces are now routed through the Genie LLM cache, avoiding redundant model serving calls.</p>
+<h4 id="buffered-prompt-log-inserts">Buffered prompt log inserts<a class="headerlink" href="#buffered-prompt-log-inserts" title="Permanent link">&para;</a></h4>
+<p>Prompt log entries are now buffered in memory and flushed via <code>createMany</code> every 20 entries or 2 seconds, reducing DB round-trips.</p>
+<h4 id="progress-update-throttling">Progress update throttling<a class="headerlink" href="#progress-update-throttling" title="Permanent link">&para;</a></h4>
+<p><code>updateRunMessage</code> calls are now debounced to at most one write per 500ms.</p>
+<h4 id="reduced-sql-generation-wave-delay">Reduced SQL generation wave delay<a class="headerlink" href="#reduced-sql-generation-wave-delay" title="Permanent link">&para;</a></h4>
+<p>Default <code>SQL_GEN_WAVE_DELAY_MS</code> reduced from 2000ms to 500ms.</p>
+<h4 id="frontend-polling-backoff">Frontend polling backoff<a class="headerlink" href="#frontend-polling-backoff" title="Permanent link">&para;</a></h4>
+<p>All status polling now uses progressive backoff (starting at 2s, scaling to 8-10s) instead of fixed intervals.</p>
+<h4 id="cache-control-headers-on-read-heavy-api-routes">Cache-Control headers on read-heavy API routes<a class="headerlink" href="#cache-control-headers-on-read-heavy-api-routes" title="Permanent link">&para;</a></h4>
+<p>Added <code>s-maxage</code> + <code>stale-while-revalidate</code> headers to environment/table, table-coverage, outcome-maps, genie-spaces, and aggregate ERD endpoints.</p>
+<h4 id="lazy-loaded-codemirror-editor">Lazy-loaded CodeMirror editor<a class="headerlink" href="#lazy-loaded-codemirror-editor" title="Permanent link">&para;</a></h4>
+<p>The SQL editor component is now dynamically imported with <code>ssr: false</code>, removing ~200KB from the initial Ask Forge bundle.</p>
+<h4 id="batched-n1-update-in-enrich-pbi">Batched N+1 update in enrich-pbi<a class="headerlink" href="#batched-n1-update-in-enrich-pbi" title="Permanent link">&para;</a></h4>
+<p>Individual <code>prisma.update</code> calls replaced with a single <code>prisma.$transaction</code> batch.</p>
+<h4 id="deduplicated-aggregate-estate-view-queries">Deduplicated aggregate estate view queries<a class="headerlink" href="#deduplicated-aggregate-estate-view-queries" title="Permanent link">&para;</a></h4>
+<p>Added a 30-second in-memory TTL cache for <code>getAggregateEstateView()</code>.</p>
+<hr />
+<h2 id="all-commits">All Commits<a class="headerlink" href="#all-commits" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Hash</th>
+<th>Summary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0591d98</code></td>
+<td>Design system overhaul: replace scaffold defaults with branded, intentional UI</td>
+</tr>
+<tr>
+<td><code>c51529c</code></td>
+<td>Add industry context handling in assistant context builder</td>
+</tr>
+<tr>
+<td><code>8bd4f19</code></td>
+<td>Enhance evaluation framework and persona handling in assistant</td>
+</tr>
+<tr>
+<td><code>1608d53</code></td>
+<td>Add resource prefix support for Unity Catalog resources and enable metric view generation</td>
+</tr>
+<tr>
+<td><code>167dbd5</code></td>
+<td>Restore design-overhaul UX for outcomes page and use-case table</td>
+</tr>
+<tr>
+<td><code>3552a07</code></td>
+<td>Restore Ask Forge design overhaul from stashed design-system-overhaul branch</td>
+</tr>
+<tr>
+<td><code>18f3c85</code></td>
+<td>Update PROJECT_ID_BASE and DISPLAY_NAME logic in provision.ts for dynamic app naming</td>
+</tr>
+<tr>
+<td><code>1e299e5</code></td>
+<td>Uplift Genie Space detail tabs to match app design quality</td>
+</tr>
+<tr>
+<td><code>9e012eb</code></td>
+<td>Add LLM skills system for structured knowledge injection across all AI surfaces</td>
+</tr>
+<tr>
+<td><code>d95c7b9</code></td>
+<td>Add SQL extraction and reference handling in space fixer</td>
+</tr>
+<tr>
+<td><code>1884492</code></td>
+<td>Implement improvement polling and status handling in Genie pages</td>
+</tr>
+<tr>
+<td><code>5b179cb</code></td>
+<td>Update layout and spacing for consistency across multiple pages</td>
+</tr>
+<tr>
+<td><code>29dcd04</code></td>
+<td>Refactor OutcomesPage and IngestOutcomeMapPage for improved state management and UI consistency</td>
+</tr>
+<tr>
+<td><code>4aa9c57</code></td>
+<td>Overhaul LLM skills: 8 skill modules, 12 blind surfaces wired</td>
+</tr>
+<tr>
+<td><code>246a27d</code></td>
+<td>Fix false-positive hallucination flags and tighten SQL generation quality</td>
+</tr>
+<tr>
+<td><code>307032e</code></td>
+<td>Improve pipeline and engine performance across 17 areas</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "toc.integrate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

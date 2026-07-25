@@ -1,0 +1,2125 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Turn Unity Catalog metadata into business value in days, not quarters">
+      
+      
+      
+        <link rel="canonical" href="https://databricks-solutions.github.io/databricks-forge/PROMPTS.html">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="images/databricks-icon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>Prompt Template Catalog - Databricks Forge</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#prompt-template-catalog" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="Databricks Forge" class="md-header__button md-logo" aria-label="Databricks Forge" data-md-component="logo">
+      
+  <img src="images/databricks-icon.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Databricks Forge
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Prompt Template Catalog
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/databricks-solutions/databricks-forge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    databricks-solutions/databricks-forge
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Databricks Forge" class="md-nav__button md-logo" aria-label="Databricks Forge" data-md-component="logo">
+      
+  <img src="images/databricks-icon.svg" alt="logo">
+
+    </a>
+    Databricks Forge
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/databricks-solutions/databricks-forge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    databricks-solutions/databricks-forge
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="quickstart.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="DEPLOYMENT.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="USER_GUIDE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Features
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ask-forge.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ask Forge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="BUSINESS_VALUE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Value
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="estate-analysis.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estate Intelligence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="SKILLS_KNOWLEDGE_BASE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Knowledge Base
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/SUPPORT.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/SECURITY.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/CONTRIBUTING.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release Notes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Release Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_07_21.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-07-21
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_05_26.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-26
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_05_11.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_05_02.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-02
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_04_30.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-04-30
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_04_16.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-04-16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_31.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-31
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_19.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-19
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_18.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-18
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_16.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_15.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-15
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_14.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-14
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_13.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-13
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_12.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-12
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_11.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_10.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_09.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-09
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_07.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-07
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_06.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-06
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_05.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-05
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_04.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-04
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026-02-27.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-02-27
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026-02-25.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-02-25
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="prompt-template-catalog">Prompt Template Catalog<a class="headerlink" href="#prompt-template-catalog" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>All prompt templates used by the pipeline, defined in
+<code>lib/ai/templates.ts</code>. Auto-versioned via SHA-256 content hashes —
+see <code>PROMPT_VERSIONS</code> in the same file.</p>
+</blockquote>
+<h2 id="template-index">Template Index<a class="headerlink" href="#template-index" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Template Key</th>
+<th>Pipeline Step</th>
+<th>Output Format</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>BUSINESS_CONTEXT_WORKER_PROMPT</td>
+<td>business-context</td>
+<td>JSON (honesty-wrapped)</td>
+<td>Active</td>
+</tr>
+<tr>
+<td>2</td>
+<td>FILTER_BUSINESS_TABLES_PROMPT</td>
+<td>table-filtering</td>
+<td>CSV</td>
+<td>Active</td>
+</tr>
+<tr>
+<td>3</td>
+<td>BASE_USE_CASE_GEN_PROMPT</td>
+<td>(base for 4 &amp; 5)</td>
+<td>CSV</td>
+<td>Active</td>
+</tr>
+<tr>
+<td>4</td>
+<td>AI_USE_CASE_GEN_PROMPT</td>
+<td>usecase-generation</td>
+<td>CSV</td>
+<td>Active</td>
+</tr>
+<tr>
+<td>5</td>
+<td>STATS_USE_CASE_GEN_PROMPT</td>
+<td>usecase-generation</td>
+<td>CSV</td>
+<td>Active</td>
+</tr>
+<tr>
+<td>6</td>
+<td>DOMAIN_FINDER_PROMPT</td>
+<td>domain-clustering</td>
+<td>JSON array</td>
+<td>Active</td>
+</tr>
+<tr>
+<td>7</td>
+<td>SUBDOMAIN_DETECTOR_PROMPT</td>
+<td>domain-clustering</td>
+<td>JSON array</td>
+<td>Active</td>
+</tr>
+<tr>
+<td>8</td>
+<td>DOMAINS_MERGER_PROMPT</td>
+<td>domain-clustering</td>
+<td>JSON (honesty-wrapped)</td>
+<td>Active</td>
+</tr>
+<tr>
+<td>9</td>
+<td>SCORE_USE_CASES_PROMPT</td>
+<td>scoring</td>
+<td>JSON array</td>
+<td>Active</td>
+</tr>
+<tr>
+<td>10</td>
+<td>REVIEW_USE_CASES_PROMPT</td>
+<td>scoring (dedup)</td>
+<td>JSON array</td>
+<td>Active</td>
+</tr>
+<tr>
+<td>11</td>
+<td>GLOBAL_SCORE_CALIBRATION_PROMPT</td>
+<td>scoring (calibration)</td>
+<td>JSON array</td>
+<td>Active</td>
+</tr>
+<tr>
+<td>12</td>
+<td>CROSS_DOMAIN_DEDUP_PROMPT</td>
+<td>scoring (cross-domain dedup)</td>
+<td>JSON array</td>
+<td>Active</td>
+</tr>
+<tr>
+<td>13</td>
+<td>USE_CASE_SQL_GEN_PROMPT</td>
+<td>sql-generation</td>
+<td>Raw SQL</td>
+<td>Active</td>
+</tr>
+<tr>
+<td>14</td>
+<td>USE_CASE_SQL_FIX_PROMPT</td>
+<td>sql-generation (fix/retry)</td>
+<td>Raw SQL</td>
+<td>Active</td>
+</tr>
+<tr>
+<td>15</td>
+<td>SUMMARY_GEN_PROMPT</td>
+<td>export (PDF/PPTX)</td>
+<td>JSON array</td>
+<td>Defined, not wired</td>
+</tr>
+<tr>
+<td>16</td>
+<td>KEYWORDS_TRANSLATE_PROMPT</td>
+<td>export (multi-lang)</td>
+<td>JSON</td>
+<td>Defined, not wired</td>
+</tr>
+<tr>
+<td>17</td>
+<td>USE_CASE_TRANSLATE_PROMPT</td>
+<td>export (multi-lang)</td>
+<td>JSON</td>
+<td>Defined, not wired</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Output language note.</strong> Use case generation honours <code>outputLanguage</code>
+(<code>"en"</code> | <code>"pt-BR"</code> | <code>"es"</code>) by injecting <code>{output_language_directive}</code>
+into <code>AI_USE_CASE_GEN_PROMPT</code> and <code>STATS_USE_CASE_GEN_PROMPT</code> (see entry below).
+The <code>{output_language}</code> placeholder listed for <code>DOMAIN_FINDER_PROMPT</code>,
+<code>SUBDOMAIN_DETECTOR_PROMPT</code>, and similar templates is documented but <strong>not
+yet supplied at runtime</strong> — those steps still produce English output. See
+<a href="ROADMAP.html#17-multi-language-support-i18n">ROADMAP.md item #17</a>.</p>
+</blockquote>
+<hr />
+<h2 id="per-prompt-temperature-configuration">Per-Prompt Temperature Configuration<a class="headerlink" href="#per-prompt-temperature-configuration" title="Permanent link">&para;</a></h2>
+<p>Temperatures are configured per-prompt in <code>lib/ai/agent.ts</code> via the
+<code>PROMPT_TEMPERATURES</code> map, ported from the reference notebook's
+<code>TECHNICAL_CONTEXT</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Prompt</th>
+<th>Temperature</th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BUSINESS_CONTEXT_WORKER_PROMPT</td>
+<td>0.3</td>
+<td>Semi-structured reasoning</td>
+</tr>
+<tr>
+<td>FILTER_BUSINESS_TABLES_PROMPT</td>
+<td>0.2</td>
+<td>Deterministic classification</td>
+</tr>
+<tr>
+<td>BASE_USE_CASE_GEN_PROMPT</td>
+<td>0.7</td>
+<td>Creative generation</td>
+</tr>
+<tr>
+<td>AI_USE_CASE_GEN_PROMPT</td>
+<td>0.8</td>
+<td>Maximum creative diversity</td>
+</tr>
+<tr>
+<td>STATS_USE_CASE_GEN_PROMPT</td>
+<td>0.7</td>
+<td>Creative generation</td>
+</tr>
+<tr>
+<td>DOMAIN_FINDER_PROMPT</td>
+<td>0.5</td>
+<td>Semi-structured taxonomy</td>
+</tr>
+<tr>
+<td>SUBDOMAIN_DETECTOR_PROMPT</td>
+<td>0.4</td>
+<td>Semi-structured taxonomy</td>
+</tr>
+<tr>
+<td>DOMAINS_MERGER_PROMPT</td>
+<td>0.4</td>
+<td>Semi-structured merging</td>
+</tr>
+<tr>
+<td>SCORE_USE_CASES_PROMPT</td>
+<td>0.2</td>
+<td>Deterministic scoring</td>
+</tr>
+<tr>
+<td>REVIEW_USE_CASES_PROMPT</td>
+<td>0.3</td>
+<td>Deterministic dedup</td>
+</tr>
+<tr>
+<td>GLOBAL_SCORE_CALIBRATION_PROMPT</td>
+<td>0.2</td>
+<td>Deterministic calibration</td>
+</tr>
+<tr>
+<td>CROSS_DOMAIN_DEDUP_PROMPT</td>
+<td>0.3</td>
+<td>Deterministic dedup</td>
+</tr>
+<tr>
+<td>USE_CASE_SQL_GEN_PROMPT</td>
+<td>0.1</td>
+<td>Precise SQL generation</td>
+</tr>
+<tr>
+<td>USE_CASE_SQL_FIX_PROMPT</td>
+<td>0.1</td>
+<td>Precise SQL fixing</td>
+</tr>
+<tr>
+<td>SUMMARY_GEN_PROMPT</td>
+<td>0.5</td>
+<td>Semi-creative writing</td>
+</tr>
+<tr>
+<td>KEYWORDS_TRANSLATE_PROMPT</td>
+<td>0.2</td>
+<td>Deterministic translation</td>
+</tr>
+<tr>
+<td>USE_CASE_TRANSLATE_PROMPT</td>
+<td>0.3</td>
+<td>Semi-deterministic translation</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="template-details">Template Details<a class="headerlink" href="#template-details" title="Permanent link">&para;</a></h2>
+<h3 id="1-business_context_worker_prompt">1. BUSINESS_CONTEXT_WORKER_PROMPT<a class="headerlink" href="#1-business_context_worker_prompt" title="Permanent link">&para;</a></h3>
+<p><strong>Step:</strong> business-context
+<strong>Purpose:</strong> Extracts business context, strategic goals, priorities, value chain,
+and revenue model from an industry/business name.</p>
+<p><strong>Key features:</strong>
+- 3-step chain-of-thought workflow (Research → Gather → Construct)
+- Constrained strategic goals taxonomy (8 standard goals, pick 3-7)
+- Per-field quality guidance (length, specificity, tone)
+- Honesty score self-assessment</p>
+<p><strong>Input variables:</strong>
+- <code>{industry}</code> — detected or user-supplied industry
+- <code>{name}</code> — business/organisation name
+- <code>{type_description}</code> — description of the analysis type
+- <code>{type_label}</code> — label for the output type</p>
+<p><strong>Expected output:</strong> JSON object wrapped in honesty scoring:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">&quot;honesty_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.85</span><span class="p">,</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">&quot;industries&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">&quot;strategic_goals&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Reduce Cost (elaboration), Increase Revenue (elaboration), ...&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">&quot;business_priorities&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="nt">&quot;strategic_initiative&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nt">&quot;value_chain&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="nt">&quot;revenue_model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="nt">&quot;additional_context&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="p">}</span>
+</code></pre></div></p>
+<hr />
+<h3 id="2-filter_business_tables_prompt">2. FILTER_BUSINESS_TABLES_PROMPT<a class="headerlink" href="#2-filter_business_tables_prompt" title="Permanent link">&para;</a></h3>
+<p><strong>Step:</strong> table-filtering
+<strong>Purpose:</strong> Classifies tables as business-relevant vs technical/system tables.</p>
+<p><strong>Key features:</strong>
+- Data category definitions (Transactional, Master, Reference) to guide classification
+- Universal technical patterns list (<code>*_logs</code>, <code>*_audit_trail</code>, <code>*_snapshot</code>, etc.)
+- 3 industry-specific few-shot examples (Data Platform, Healthcare, Logistics)
+- Classification priority rules (semantic analysis first)</p>
+<p><strong>Input variables:</strong>
+- <code>{business_name}</code> — organisation name
+- <code>{industry}</code> — detected industry
+- <code>{business_context}</code> — from Step 1
+- <code>{exclusion_strategy}</code> — rules for excluding tables
+- <code>{additional_context_section}</code> — extra context
+- <code>{strategy_rules}</code> — filtering strategy rules
+- <code>{tables_markdown}</code> — markdown list of tables</p>
+<p><strong>Expected output:</strong> CSV with columns:
+<code>table_fqn, classification, reason</code></p>
+<hr />
+<h3 id="3-base_use_case_gen_prompt">3. BASE_USE_CASE_GEN_PROMPT<a class="headerlink" href="#3-base_use_case_gen_prompt" title="Permanent link">&para;</a></h3>
+<p><strong>Step:</strong> usecase-generation (base template)
+<strong>Purpose:</strong> Base prompt for use case generation; extended by AI and Stats prompts.</p>
+<p><strong>Key features:</strong>
+- <strong>Critical anti-hallucination block</strong> — every use case must reference real tables from the schema
+- <strong>Mandatory 5-point realism test</strong> — logical causation, industry recognition, executive credibility, domain expert validation, boardroom test
+- <strong>Improved column instructions</strong> — business-oriented naming (Anticipate, Predict, Detect), no specific percentages in Business Value, SELECT DISTINCT in Technical Design
+- <strong>Self-validation checklist</strong> — verify before finalizing</p>
+<p><strong>Input variables:</strong>
+- <code>{business_context}</code>, <code>{strategic_goals}</code>, <code>{business_priorities}</code>
+- <code>{strategic_initiative}</code>, <code>{value_chain}</code>, <code>{revenue_model}</code>
+- <code>{additional_context_section}</code>, <code>{focus_areas_instruction}</code>
+- <code>{ai_functions_summary}</code>, <code>{statistical_functions_detailed}</code>
+- <code>{schema_markdown}</code>, <code>{foreign_key_relationships}</code>
+- <code>{previous_use_cases_feedback}</code>, <code>{target_use_case_count}</code>
+- <code>{output_language_directive}</code> — optional natural-language directive injected near the top of <code>AI_USE_CASE_GEN_PROMPT</code> and <code>STATS_USE_CASE_GEN_PROMPT</code>. Computed by <code>lib/pipeline/steps/usecase-generation.ts:buildOutputLanguageDirective()</code> from <code>run.config.outputLanguage</code>. Empty string for English (default); for <code>pt-BR</code> and <code>es</code> it instructs the LLM to write the natural-language fields (<code>name</code>, <code>statement</code>, <code>solution</code>, <code>business_value</code>, <code>beneficiary</code>, <code>sponsor</code>, <code>technical_design</code>) in the chosen language while keeping technical identifiers (FQNs, AI/SQL function names, JSON keys, <code>analytics_technique</code> values) in English.</p>
+<p><strong>Expected output:</strong> CSV with columns:
+<code>No, Name, type, Analytics Technique, Statement, Solution, Business Value, Beneficiary, Sponsor, Tables Involved, Technical Design</code></p>
+<hr />
+<h3 id="4-ai_use_case_gen_prompt">4. AI_USE_CASE_GEN_PROMPT<a class="headerlink" href="#4-ai_use_case_gen_prompt" title="Permanent link">&para;</a></h3>
+<p><strong>Step:</strong> usecase-generation
+<strong>Purpose:</strong> Generates AI-focused use cases leveraging ai_forecast, ai_classify,
+ai_query, ai_summarize, ai_extract, etc.</p>
+<p><strong>Key features (in addition to base):</strong>
+- Anti-hallucination block
+- AI function pairing guidance (e.g., ai_forecast + ai_query, ai_classify + ai_analyze_sentiment)
+- Realism test
+- Analytics Technique must be a specific AI function name</p>
+<p><strong>Input variables:</strong> Same as BASE_USE_CASE_GEN_PROMPT with:
+- <code>{ai_functions_summary}</code> — summary of available AI functions</p>
+<p><strong>Expected output:</strong> Same CSV format as BASE_USE_CASE_GEN_PROMPT.</p>
+<hr />
+<h3 id="5-stats_use_case_gen_prompt">5. STATS_USE_CASE_GEN_PROMPT<a class="headerlink" href="#5-stats_use_case_gen_prompt" title="Permanent link">&para;</a></h3>
+<p><strong>Step:</strong> usecase-generation
+<strong>Purpose:</strong> Generates statistics-focused use cases (anomaly detection,
+simulation, geospatial, trend analysis, etc.)</p>
+<p><strong>Key features (in addition to base):</strong>
+- Anti-hallucination block
+- Comprehensive statistics requirement (3-5 statistical functions per use case)
+- Function combination guidance (e.g., STDDEV_POP + PERCENTILE_APPROX + SKEWNESS for anomaly detection)
+- Realism test</p>
+<p><strong>Input variables:</strong> Same as BASE_USE_CASE_GEN_PROMPT with:
+- <code>{statistical_functions_detailed}</code> — detailed statistical functions reference</p>
+<p><strong>Expected output:</strong> Same CSV format as BASE_USE_CASE_GEN_PROMPT.</p>
+<hr />
+<h3 id="6-domain_finder_prompt">6. DOMAIN_FINDER_PROMPT<a class="headerlink" href="#6-domain_finder_prompt" title="Permanent link">&para;</a></h3>
+<p><strong>Step:</strong> domain-clustering
+<strong>Purpose:</strong> Assigns use cases to 3-25 business domains (one-word names).</p>
+<p><strong>Key features:</strong>
+- Anti-consolidation rule with formula (target = use_cases / 10)
+- Industry-specific domain name examples (Banking, Healthcare, Retail, Manufacturing)
+- Retry with previous violations</p>
+<p><strong>Input variables:</strong>
+- <code>{business_name}</code>, <code>{industries}</code>, <code>{business_context}</code>
+- <code>{use_cases_csv}</code> — all use cases as CSV
+- <code>{previous_violations}</code> — any prior constraint violations
+- <code>{output_language}</code> — target language</p>
+<p><strong>Expected output:</strong> JSON array:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">[{</span><span class="nt">&quot;no&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Finance&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;no&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Marketing&quot;</span><span class="p">}]</span>
+</code></pre></div></p>
+<hr />
+<h3 id="7-subdomain_detector_prompt">7. SUBDOMAIN_DETECTOR_PROMPT<a class="headerlink" href="#7-subdomain_detector_prompt" title="Permanent link">&para;</a></h3>
+<p><strong>Step:</strong> domain-clustering
+<strong>Purpose:</strong> Assigns 2-10 subdomains within a single domain.</p>
+<p><strong>Key features:</strong>
+- 2-word naming rule (mandatory)
+- Semantic grouping by business outcome, not technique
+- Example showing domain-to-subdomain mapping
+- No single-item subdomains</p>
+<p><strong>Input variables:</strong>
+- <code>{domain_name}</code> — the parent domain
+- <code>{business_name}</code>, <code>{industries}</code>, <code>{business_context}</code>
+- <code>{use_cases_csv}</code> — use cases in this domain
+- <code>{previous_violations}</code> — prior violations
+- <code>{output_language}</code> — target language</p>
+<p><strong>Expected output:</strong> JSON array:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">[{</span><span class="nt">&quot;no&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;subdomain&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Revenue Optimization&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;no&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;subdomain&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Cost Control&quot;</span><span class="p">}]</span>
+</code></pre></div></p>
+<hr />
+<h3 id="8-domains_merger_prompt">8. DOMAINS_MERGER_PROMPT<a class="headerlink" href="#8-domains_merger_prompt" title="Permanent link">&para;</a></h3>
+<p><strong>Step:</strong> domain-clustering
+<strong>Purpose:</strong> Merges small domains (below minimum threshold) into larger ones.</p>
+<p><strong>Key features:</strong>
+- Semantic overlap preference (not just largest domain)
+- Honesty score self-assessment</p>
+<p><strong>Input variables:</strong>
+- <code>{min_cases_per_domain}</code> — minimum use cases per domain
+- <code>{domain_info_str}</code> — domain name + count listing</p>
+<p><strong>Expected output:</strong> JSON object (honesty-wrapped):
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span><span class="nt">&quot;SmallDomain1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TargetDomain1&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;SmallDomain2&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TargetDomain2&quot;</span><span class="p">}</span>
+</code></pre></div></p>
+<hr />
+<h3 id="9-score_use_cases_prompt">9. SCORE_USE_CASES_PROMPT<a class="headerlink" href="#9-score_use_cases_prompt" title="Permanent link">&para;</a></h3>
+<p><strong>Step:</strong> scoring
+<strong>Purpose:</strong> Scores use cases on priority, feasibility, impact, and overall dimensions.</p>
+<p><strong>Key features (major upgrade):</strong>
+- <strong>Value Score rubric (4 weighted factors):</strong>
+  - ROI (60%) — 5-level ladder with concrete examples
+  - Strategic Alignment (25%) — direct hit / strong link / weak definitions
+  - Time to Value (7.5%) — weeks / months / years ladder
+  - Reusability (7.5%) — platform asset / modular / one-off
+- <strong>Feasibility Score rubric (8 factors, simple average):</strong>
+  - Data Availability, Data Accessibility, Architecture Fitness, Team Skills
+  - Domain Knowledge, People Allocation, Budget Allocation, Time to Production
+- <strong>Value-First Formula:</strong> overall_score = (Value × 0.75) + (Feasibility × 0.25)
+- <strong>Scoring rules:</strong> No forced distribution, zero-based scoring, strategic goal bonus
+- <strong>Business relevancy penalties:</strong> Irrelevant correlations, nonsensical external data, boardroom test
+- <strong>Chain-of-thought:</strong> LLM computes sub-factors internally, outputs final 4 scores</p>
+<p><strong>Input variables:</strong>
+- <code>{business_context}</code>, <code>{strategic_goals}</code>, <code>{business_priorities}</code>
+- <code>{strategic_initiative}</code>, <code>{value_chain}</code>, <code>{revenue_model}</code>
+- <code>{use_case_markdown}</code> — use cases formatted as markdown table</p>
+<p><strong>Expected output:</strong> JSON array:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="p">[{</span><span class="nt">&quot;no&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;priority_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.7</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;feasibility_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.6</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;impact_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;overall_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.68</span><span class="p">}]</span>
+</code></pre></div></p>
+<hr />
+<h3 id="10-review_use_cases_prompt">10. REVIEW_USE_CASES_PROMPT<a class="headerlink" href="#10-review_use_cases_prompt" title="Permanent link">&para;</a></h3>
+<p><strong>Step:</strong> scoring (per-domain deduplication)
+<strong>Purpose:</strong> Detects duplicate and low-quality use cases for removal.</p>
+<p><strong>Key features:</strong>
+- Aggressive semantic duplicate detection with examples
+- Quality rejection criteria: no business outcome, irrelevant correlation, purely technical, vague/generic, boardroom test failure</p>
+<p><strong>Input variables:</strong>
+- <code>{total_count}</code> — total use case count
+- <code>{use_case_markdown}</code> — use cases formatted as markdown table</p>
+<p><strong>Expected output:</strong> JSON array:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">[{</span><span class="nt">&quot;no&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;keep&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;reason&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Unique concept&quot;</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;no&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;remove&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;reason&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Duplicate of #1&quot;</span><span class="p">}]</span>
+</code></pre></div></p>
+<hr />
+<h3 id="11-global_score_calibration_prompt">11. GLOBAL_SCORE_CALIBRATION_PROMPT<a class="headerlink" href="#11-global_score_calibration_prompt" title="Permanent link">&para;</a></h3>
+<p><strong>Step:</strong> scoring (global calibration)
+<strong>Purpose:</strong> Re-calibrates scores across all domains for consistency on a single global scale.</p>
+<p><strong>Key features:</strong>
+- References Value-First framework (Value × 0.75 + Feasibility × 0.25)
+- Explicit score ladder (0.8+ = exceptional, 0.5-0.79 = solid, 0.3-0.49 = modest, &lt;0.3 = weak)
+- Absolute merit scoring, no curve</p>
+<p><strong>Input variables:</strong>
+- <code>{business_context}</code>, <code>{strategic_goals}</code>
+- <code>{use_case_markdown}</code> — top use cases from each domain</p>
+<p><strong>Expected output:</strong> JSON array:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="p">[{</span><span class="nt">&quot;no&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;overall_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.72</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;no&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;overall_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.55</span><span class="p">}]</span>
+</code></pre></div></p>
+<hr />
+<h3 id="12-cross_domain_dedup_prompt">12. CROSS_DOMAIN_DEDUP_PROMPT<a class="headerlink" href="#12-cross_domain_dedup_prompt" title="Permanent link">&para;</a></h3>
+<p><strong>Step:</strong> scoring (cross-domain deduplication)
+<strong>Purpose:</strong> Identifies semantically duplicate use cases across different domains.</p>
+<p><strong>Key features:</strong>
+- 5 examples of cross-domain duplicates
+- "NOT duplicates" examples to prevent over-flagging
+- Score-based retention rules</p>
+<p><strong>Input variables:</strong>
+- <code>{use_case_markdown}</code> — all use cases with domain and score</p>
+<p><strong>Expected output:</strong> JSON array:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="p">[{</span><span class="nt">&quot;no&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;duplicate_of&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;reason&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Same churn prediction concept, #12 has higher score&quot;</span><span class="p">}]</span>
+</code></pre></div></p>
+<hr />
+<h3 id="13-use_case_sql_gen_prompt">13. USE_CASE_SQL_GEN_PROMPT<a class="headerlink" href="#13-use_case_sql_gen_prompt" title="Permanent link">&para;</a></h3>
+<p><strong>Step:</strong> sql-generation
+<strong>Purpose:</strong> Generates production-grade Databricks SQL for a single use case.</p>
+<p><strong>Key features (major upgrade):</strong>
+- <strong>Shared SQL quality rules</strong> — imports <code>DATABRICKS_SQL_RULES</code> from <code>lib/ai/sql-rules.ts</code>
+- <strong>SELECT DISTINCT first-CTE rule</strong> — mandatory deduplication before analysis
+- <strong>Persona enrichment for ai_query</strong> — every AI persona must include business_name, context, goals, priorities
+- <strong>ai_sys_prompt column</strong> — mandatory last column capturing the exact prompt for auditability
+- <strong>Business-friendly CTE names</strong> — descriptive names like <code>customer_lifetime_value</code>, not <code>cte1</code>
+- <strong>End marker</strong> — <code>--END OF GENERATED SQL</code>
+- Comprehensive AI function and statistical function usage rules</p>
+<p><strong>Input variables:</strong>
+- <code>{business_name}</code>, <code>{business_context}</code>, <code>{strategic_goals}</code>
+- <code>{business_priorities}</code>, <code>{strategic_initiative}</code>, <code>{value_chain}</code>, <code>{revenue_model}</code>
+- <code>{use_case_id}</code>, <code>{use_case_name}</code>, <code>{business_domain}</code>
+- <code>{use_case_type}</code>, <code>{analytics_technique}</code>, <code>{statement}</code>, <code>{solution}</code>
+- <code>{tables_involved}</code>, <code>{directly_involved_schema}</code>, <code>{foreign_key_relationships}</code>
+- <code>{sample_data_section}</code>, <code>{ai_functions_summary}</code>, <code>{statistical_functions_detailed}</code>
+- <code>{sql_model_serving}</code> — model endpoint for ai_query calls</p>
+<p><strong>Expected output:</strong> Raw SQL (no markdown fences), starting with <code>-- Use Case:</code> comment, ending with <code>--END OF GENERATED SQL</code>.</p>
+<hr />
+<h3 id="14-use_case_sql_fix_prompt">14. USE_CASE_SQL_FIX_PROMPT<a class="headerlink" href="#14-use_case_sql_fix_prompt" title="Permanent link">&para;</a></h3>
+<p><strong>Step:</strong> sql-generation (fix/retry)
+<strong>Purpose:</strong> Fixes SQL that failed execution by incorporating the error message.</p>
+<p><strong>Key features:</strong>
+- Fix-only philosophy (no logic changes, no optimization, no new features)
+- Preserves ai_sys_prompt column and end marker if present
+- Extended common fixes list (ai_query errors, AI_FORECAST errors)</p>
+<p><strong>Input variables:</strong>
+- <code>{use_case_name}</code>, <code>{use_case_id}</code>
+- <code>{original_sql}</code> — the SQL that failed
+- <code>{error_message}</code> — the error from execution
+- <code>{directly_involved_schema}</code> — available tables and columns
+- <code>{foreign_key_relationships}</code> — FK relationships</p>
+<p><strong>Expected output:</strong> Raw SQL (corrected).</p>
+<hr />
+<h3 id="15-summary_gen_prompt">15. SUMMARY_GEN_PROMPT<a class="headerlink" href="#15-summary_gen_prompt" title="Permanent link">&para;</a></h3>
+<p><strong>Step:</strong> export (PDF/PPTX generation) — <strong>not yet wired</strong>
+<strong>Purpose:</strong> Generates executive and domain summaries for documents.</p>
+<p><strong>Input variables:</strong>
+- <code>{business_name}</code>, <code>{total_cases}</code>, <code>{domain_list}</code>, <code>{output_language}</code></p>
+<p><strong>Expected output:</strong> JSON array of summary objects.</p>
+<hr />
+<h3 id="16-keywords_translate_prompt">16. KEYWORDS_TRANSLATE_PROMPT<a class="headerlink" href="#16-keywords_translate_prompt" title="Permanent link">&para;</a></h3>
+<p><strong>Step:</strong> export (multi-language) — <strong>not yet wired</strong>
+<strong>Purpose:</strong> Translates JSON keyword values into a target language.</p>
+<p><strong>Input variables:</strong>
+- <code>{target_language}</code>, <code>{json_payload}</code></p>
+<p><strong>Expected output:</strong> Translated JSON.</p>
+<hr />
+<h3 id="17-use_case_translate_prompt">17. USE_CASE_TRANSLATE_PROMPT<a class="headerlink" href="#17-use_case_translate_prompt" title="Permanent link">&para;</a></h3>
+<p><strong>Step:</strong> export (multi-language) — <strong>not yet wired</strong>
+<strong>Purpose:</strong> Translates use case data into a target language.</p>
+<p><strong>Input variables:</strong>
+- <code>{target_language}</code>, <code>{json_payload}</code></p>
+<p><strong>Expected output:</strong> Translated JSON.</p>
+<hr />
+<h2 id="function-registries">Function Registries<a class="headerlink" href="#function-registries" title="Permanent link">&para;</a></h2>
+<h3 id="ai_functions">AI_FUNCTIONS<a class="headerlink" href="#ai_functions" title="Permanent link">&para;</a></h3>
+<p>Used in AI use case generation prompts to guide the LLM on available Databricks
+AI SQL functions:</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ai_analyze_sentiment</td>
+<td>Sentiment analysis on text columns</td>
+</tr>
+<tr>
+<td>ai_classify</td>
+<td>Text classification into categories</td>
+</tr>
+<tr>
+<td>ai_extract</td>
+<td>Entity extraction from text</td>
+</tr>
+<tr>
+<td>ai_fix_grammar</td>
+<td>Grammar correction</td>
+</tr>
+<tr>
+<td>ai_mask</td>
+<td>PII masking</td>
+</tr>
+<tr>
+<td>ai_parse_document</td>
+<td>Document parsing (unstructured)</td>
+</tr>
+<tr>
+<td>ai_similarity</td>
+<td>Text similarity scoring</td>
+</tr>
+<tr>
+<td>ai_summarize</td>
+<td>Text summarisation</td>
+</tr>
+<tr>
+<td>ai_translate</td>
+<td>Language translation</td>
+</tr>
+<tr>
+<td>ai_query</td>
+<td>Free-form LLM queries</td>
+</tr>
+<tr>
+<td>ai_forecast</td>
+<td>Time series forecasting</td>
+</tr>
+<tr>
+<td>vector_search</td>
+<td>Vector similarity search</td>
+</tr>
+</tbody>
+</table>
+<h3 id="statistical_functions">STATISTICAL_FUNCTIONS<a class="headerlink" href="#statistical_functions" title="Permanent link">&para;</a></h3>
+<p>Used in statistical use case generation prompts:</p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Functions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Central Tendency</td>
+<td>AVG, MEDIAN, MODE</td>
+</tr>
+<tr>
+<td>Dispersion</td>
+<td>STDDEV_POP, STDDEV_SAMP, VAR_POP, MIN, MAX, RANGE</td>
+</tr>
+<tr>
+<td>Distribution Shape</td>
+<td>SKEWNESS, KURTOSIS</td>
+</tr>
+<tr>
+<td>Percentiles</td>
+<td>PERCENTILE_APPROX, PERCENTILE, APPROX_PERCENTILE</td>
+</tr>
+<tr>
+<td>Trend Analysis</td>
+<td>REGR_SLOPE, REGR_INTERCEPT, REGR_R2</td>
+</tr>
+<tr>
+<td>Correlation</td>
+<td>CORR, COVAR_POP</td>
+</tr>
+<tr>
+<td>Volatility</td>
+<td>COEFF_VAR</td>
+</tr>
+<tr>
+<td>Outlier Detection</td>
+<td>Z_SCORE, IQR_THRESHOLD</td>
+</tr>
+<tr>
+<td>Ranking</td>
+<td>CUME_DIST, NTILE, DENSE_RANK, ROW_NUMBER</td>
+</tr>
+<tr>
+<td>Time Series</td>
+<td>LAG, LEAD, RUNNING_SUM, MOVING_AVG</td>
+</tr>
+<tr>
+<td>OLAP</td>
+<td>ROLLUP, CUBE, PIVOT</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="shared-sql-quality-rules">Shared SQL Quality Rules<a class="headerlink" href="#shared-sql-quality-rules" title="Permanent link">&para;</a></h2>
+<p><strong>Module:</strong> <code>lib/ai/sql-rules.ts</code></p>
+<p>All SQL-generating prompts share a centralised set of Databricks SQL quality
+rules to ensure consistency across pipeline SQL, Genie trusted assets,
+benchmarks, and dashboard queries.</p>
+<h3 id="databricks_sql_rules-comprehensive"><code>DATABRICKS_SQL_RULES</code> (comprehensive)<a class="headerlink" href="#databricks_sql_rules-comprehensive" title="Permanent link">&para;</a></h3>
+<p>Used by prompts that generate complete SQL queries (e.g. <code>USE_CASE_SQL_GEN_PROMPT</code>,
+dashboard prompts). Covers:</p>
+<ul>
+<li><strong>Syntax safety</strong>: No <code>MEDIAN()</code> (use <code>PERCENTILE_APPROX</code>), no nested
+  window functions in aggregates, <code>DECIMAL(18,2)</code> for financials</li>
+<li><strong>Query structure</strong>: <code>ORDER BY ... LIMIT N</code> for top-N (not <code>RANK</code>),
+  <code>QUALIFY</code> for per-group dedup, explicit column lists, filter early</li>
+<li><strong>Databricks features</strong>: <code>COLLATE UTF8_LCASE</code>, pipe syntax, native
+  functions over UDFs</li>
+</ul>
+<h3 id="databricks_sql_rules_compact-abbreviated"><code>DATABRICKS_SQL_RULES_COMPACT</code> (abbreviated)<a class="headerlink" href="#databricks_sql_rules_compact-abbreviated" title="Permanent link">&para;</a></h3>
+<p>Used by Genie engine passes where context budget is tight (trusted assets,
+benchmarks, metric views). Contains the most critical rules only.</p>
+<hr />
+<h2 id="infrastructure">Infrastructure<a class="headerlink" href="#infrastructure" title="Permanent link">&para;</a></h2>
+<h3 id="versioning">Versioning<a class="headerlink" href="#versioning" title="Permanent link">&para;</a></h3>
+<p>Prompt templates are version-tracked via content-addressable SHA-256 hashes
+computed at startup. The <code>PROMPT_VERSIONS</code> map in <code>lib/ai/templates.ts</code>
+provides a <code>Record&lt;PromptKey, string&gt;</code> where each value is an 8-character
+hash of the template content.</p>
+<p>These hashes are stored with each pipeline run (in <code>generationOptions.promptVersions</code>)
+so that any change to a prompt template is automatically traceable to specific runs.</p>
+<h3 id="prompt-injection-protection">Prompt Injection Protection<a class="headerlink" href="#prompt-injection-protection" title="Permanent link">&para;</a></h3>
+<p>User-supplied variables (listed in <code>USER_INPUT_VARIABLES</code>) are wrapped with
+<code>---BEGIN USER DATA---</code> / <code>---END USER DATA---</code> delimiters by the
+<code>sanitiseUserInput()</code> function before injection into templates.</p>
+<h3 id="variable-validation">Variable Validation<a class="headerlink" href="#variable-validation" title="Permanent link">&para;</a></h3>
+<p>The <code>formatPrompt()</code> function logs a warning if any <code>{placeholder}</code> patterns
+remain after variable substitution, catching missing variables at runtime
+instead of silently sending unresolved placeholders to the LLM.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "toc.integrate"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

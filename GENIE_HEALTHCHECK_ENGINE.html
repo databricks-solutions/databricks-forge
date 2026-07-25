@@ -1,0 +1,2822 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Turn Unity Catalog metadata into business value in days, not quarters">
+      
+      
+      
+        <link rel="canonical" href="https://databricks-solutions.github.io/databricks-forge/GENIE_HEALTHCHECK_ENGINE.html">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="images/databricks-icon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>Genie Health Check Engine - Databricks Forge</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#genie-health-check-engine" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="Databricks Forge" class="md-header__button md-logo" aria-label="Databricks Forge" data-md-component="logo">
+      
+  <img src="images/databricks-icon.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Databricks Forge
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Genie Health Check Engine
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/databricks-solutions/databricks-forge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    databricks-solutions/databricks-forge
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Databricks Forge" class="md-nav__button md-logo" aria-label="Databricks Forge" data-md-component="logo">
+      
+  <img src="images/databricks-icon.svg" alt="logo">
+
+    </a>
+    Databricks Forge
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/databricks-solutions/databricks-forge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    databricks-solutions/databricks-forge
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="quickstart.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="DEPLOYMENT.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="USER_GUIDE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Features
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ask-forge.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ask Forge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="BUSINESS_VALUE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Value
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="estate-analysis.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estate Intelligence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="SKILLS_KNOWLEDGE_BASE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Knowledge Base
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/SUPPORT.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/SECURITY.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/CONTRIBUTING.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release Notes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Release Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_07_21.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-07-21
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_05_26.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-26
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_05_11.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_05_02.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-02
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_04_30.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-04-30
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_04_16.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-04-16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_31.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-31
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_19.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-19
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_18.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-18
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_16.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_15.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-15
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_14.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-14
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_13.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-13
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_12.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-12
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_11.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_10.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_09.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-09
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_07.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-07
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_06.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-06
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_05.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-05
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_04.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-04
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026-02-27.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-02-27
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026-02-25.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-02-25
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="genie-health-check-engine">Genie Health Check Engine<a class="headerlink" href="#genie-health-check-engine" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>Technical guide for Genie Space discovery, deterministic health checking,
+optimization review with diff preview, and the benchmark feedback loop
+in Databricks Forge.</p>
+</blockquote>
+<p>The Health Check Engine discovers Genie Spaces in the workspace (with OBO
+authentication), scores them against a configurable checklist of best practices,
+offers automated fixes via the existing Genie Engine passes with an intermediate
+optimization review and diff preview step, and supports an iterative benchmark
+feedback loop to validate real-world accuracy.</p>
+<hr />
+<h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="#architecture-overview">Architecture Overview</a></li>
+<li><a href="#space-discovery--stale-validation">Space Discovery &amp; Stale Validation</a></li>
+<li><a href="#health-check-pipeline">Health Check Pipeline</a></li>
+<li><a href="#yaml-check-dsl">YAML Check DSL</a></li>
+<li><a href="#evaluator-functions">Evaluator Functions</a></li>
+<li><a href="#registry--merge-logic">Registry &amp; Merge Logic</a></li>
+<li><a href="#scoring-algorithm">Scoring Algorithm</a></li>
+<li><a href="#custom-check-configuration">Custom Check Configuration</a></li>
+<li><a href="#fix-workflow">Fix Workflow</a></li>
+<li><a href="#optimization-review--diff-preview">Optimization Review &amp; Diff Preview</a></li>
+<li><a href="#fix-strategy-router">Fix Strategy Router</a></li>
+<li><a href="#metadata-building-for-off-platform-spaces">Metadata Building for Off-Platform Spaces</a></li>
+<li><a href="#benchmark-feedback-loop">Benchmark Feedback Loop</a></li>
+<li><a href="#improvement-logic-feedback-to-fix">Improvement Logic (Feedback-to-Fix)</a></li>
+<li><a href="#critical-user-journeys-cujs">Critical User Journeys (CUJs)</a></li>
+<li><a href="#data-model">Data Model</a></li>
+<li><a href="#api-reference">API Reference</a></li>
+<li><a href="#ui-components">UI Components</a></li>
+<li><a href="#hardening--performance">Hardening &amp; Performance</a></li>
+<li><a href="#file-reference">File Reference</a></li>
+</ol>
+<hr />
+<h2 id="architecture-overview">Architecture Overview<a class="headerlink" href="#architecture-overview" title="Permanent link">&para;</a></h2>
+<p>The system is split into four interconnected stages forming an
+iterative improvement cycle:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>┌────────────────────────────────────────────────────────────────────────────┐
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│                         IMPROVEMENT PIPELINE                               │
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>│                                                                            │
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  ┌───────────────┐  │
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│  │ DISCOVER     │─▶│ DIAGNOSE     │─▶│ FIX          │─▶│ REVIEW        │  │
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│  │ Workspace    │  │ Health Check │  │ Engine Passes │  │ Optimization  │  │
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│  │ scan + OBO   │  │ (pure func)  │  │ (LLM + det.) │  │ Review + Diff │  │
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│  └──────────────┘  └──────────────┘  └──────────────┘  └──────┬───────┘  │
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│                           ▲                                    │          │
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>│                           │         ┌───────────────┐          │          │
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>│                           │         │ VERIFY        │◀─────────┘          │
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>│                           │         │ Benchmark Loop│                     │
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>│                           │         │ (Conv. API)   │                     │
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>│                           │         └──────┬────────┘                     │
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>│                           └────────────────┘                              │
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>│                      (iterate until satisfied)                             │
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>└────────────────────────────────────────────────────────────────────────────┘
+</code></pre></div>
+<h3 id="discovery-layer">Discovery Layer<a class="headerlink" href="#discovery-layer" title="Permanent link">&para;</a></h3>
+<p>All read operations use <strong>OBO (On-Behalf-Of) authentication</strong> -- the logged-in
+user's token is forwarded to the Databricks API. This ensures that spaces are
+only visible if the user has permission to access their underlying tables.</p>
+<p>The <code>/api/genie-spaces</code> route cross-references workspace spaces against Lakebase
+tracked spaces to filter out <strong>stale</strong> entries (tracked spaces whose backing
+Genie Space has been deleted). Stale spaces are excluded from the UI but their
+Lakebase records remain intact for potential redeployment via pipeline runs.</p>
+<p>The <code>/api/genie-spaces/discover</code> endpoint performs bulk metadata extraction
+and health scoring in a single call, replacing the former <code>health-batch</code>
+endpoint. It uses bounded concurrency (5 parallel tasks) and the in-memory
+space cache.</p>
+<h3 id="health-check-layer-diagnose">Health Check Layer (Diagnose)<a class="headerlink" href="#health-check-layer-diagnose" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>┌─────────────────────────────────────────────────────┐
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>│  Check Definitions (YAML)                           │
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>│  ┌─────────────────┐  ┌──────────────────────────┐  │
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>│  │ default-checks  │  │ user-custom-checks       │  │
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>│  │ .yaml (built-in)│  │ (Lakebase / settings UI) │  │
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>│  └────────┬────────┘  └────────────┬─────────────┘  │
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>│           └──────────┬─────────────┘                │
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>│                      ▼                              │
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>│  ┌─────────────────────────────────────────┐        │
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>│  │  Registry (merges defaults + overrides) │        │
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>│  └────────────────────┬────────────────────┘        │
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>│                       ▼                             │
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>│  ┌─────────────────────────────────────────┐        │
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>│  │  Evaluator Engine (deterministic)       │        │
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>│  │  count | exists | length | ratio |      │        │
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>│  │  pattern | range | unique | jsonpath    │        │
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>│  └────────────────────┬────────────────────┘        │
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>│                       ▼                             │
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>│  ┌─────────────────────────────────────────┐        │
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>│  │  SpaceHealthReport                      │        │
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>│  └─────────────────────────────────────────┘        │
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>└─────────────────────────────────────────────────────┘
+</code></pre></div>
+<p>Key design decisions:
+- <strong>OBO auth</strong> for all Genie API reads -- user-scoped permissions, no SP privilege escalation
+- <strong>No LLM calls</strong> for evaluation -- all checks are deterministic pure functions
+- <strong>YAML-driven</strong> -- checks are declarative and user-configurable
+- <strong>Extensible</strong> -- users add custom checks via settings UI or YAML import
+- <strong>Additive-only</strong> fixes -- the fixer never removes existing space content
+- <strong>Review before apply</strong> -- all fixes go through an Optimization Review step with diff preview</p>
+<hr />
+<h2 id="space-discovery-stale-validation">Space Discovery &amp; Stale Validation<a class="headerlink" href="#space-discovery-stale-validation" title="Permanent link">&para;</a></h2>
+<p>When the Genie Spaces page loads, the system performs two passes:</p>
+<h3 id="pass-1-list-filter-get-apigenie-spaces">Pass 1: List &amp; Filter (GET /api/genie-spaces)<a class="headerlink" href="#pass-1-list-filter-get-apigenie-spaces" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Fetch workspace spaces via <code>listGenieSpaces()</code> (OBO auth)</li>
+<li>Fetch tracked spaces from Lakebase via <code>listTrackedGenieSpaces()</code></li>
+<li>Build a set of workspace space IDs</li>
+<li>Filter tracked spaces: keep only those whose <code>spaceId</code> exists in the workspace set (or are trashed)</li>
+<li>Return merged list plus <code>staleCount</code> for UI notification</li>
+<li>Lakebase records for stale spaces are <strong>not deleted</strong> -- they remain available for redeployment from the pipeline runs page</li>
+</ol>
+<h3 id="pass-2-discover-post-apigenie-spacesdiscover">Pass 2: Discover (POST /api/genie-spaces/discover)<a class="headerlink" href="#pass-2-discover-post-apigenie-spacesdiscover" title="Permanent link">&para;</a></h3>
+<ol>
+<li>UI sends an array of active space IDs to the discover endpoint</li>
+<li>For each space (bounded concurrency = 5):
+   a. Fetch <code>serialized_space</code> via <code>getGenieSpace()</code> (OBO auth, cached in space cache)
+   b. Extract <code>SpaceMetadata</code> via <code>extractSpaceMetadata()</code> (table count, measure count, filter count, etc.)
+   c. Run <code>runHealthCheck()</code> to produce a <code>SpaceHealthReport</code></li>
+<li>Return a map of <code>spaceId → { metadata, healthReport }</code></li>
+<li>UI enriches space cards with metadata counts and health grade badges</li>
+</ol>
+<h3 id="space-metadata-extraction">Space Metadata Extraction<a class="headerlink" href="#space-metadata-extraction" title="Permanent link">&para;</a></h3>
+<p><code>lib/genie/space-metadata.ts</code> provides shared utilities for extracting structured
+metadata from a <code>serialized_space</code> JSON string:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kd">interface</span><span class="w"> </span><span class="nx">SpaceMetadata</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nx">tableCount</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nx">metricViewCount</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nx">measureCount</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="nx">sampleQuestionCount</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="nx">filterCount</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="nx">expressionCount</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span><span class="nx">joinCount</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">  </span><span class="nx">exampleSqlCount</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">  </span><span class="nx">benchmarkCount</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">  </span><span class="nx">instructionLength</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">  </span><span class="nx">tables</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">[];</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">  </span><span class="nx">metricViews</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">[];</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="p">}</span>
+</code></pre></div>
+<p>Three entry points:
+- <code>extractSpaceMetadata(raw: string)</code> -- parse + extract in one call
+- <code>extractMetadataFromParsed(space: SerializedSpace)</code> -- extract from already-parsed object
+- <code>parseSerializedSpace(raw: string)</code> -- safe JSON parse returning <code>null</code> on failure</p>
+<hr />
+<h2 id="health-check-pipeline">Health Check Pipeline<a class="headerlink" href="#health-check-pipeline" title="Permanent link">&para;</a></h2>
+<p>Step-by-step flow from API call to <code>SpaceHealthReport</code>:</p>
+<ol>
+<li><strong>Fetch space</strong> -- <code>getGenieSpace(spaceId)</code> returns <code>serialized_space</code> JSON (OBO auth)</li>
+<li><strong>Load config</strong> -- <code>getHealthCheckConfig()</code> loads user overrides from Lakebase</li>
+<li><strong>Resolve registry</strong> -- <code>resolveRegistry(overrides, custom, weights)</code> merges
+   defaults + user overrides + custom checks</li>
+<li><strong>Run evaluators</strong> -- for each enabled check, call <code>runEvaluator(space, check)</code></li>
+<li><strong>Compute category scores</strong> -- <code>passed / total * 100</code> per category</li>
+<li><strong>Compute overall score</strong> -- weighted average of category scores</li>
+<li><strong>Assign grade</strong> -- A (90+), B (80-89), C (70-79), D (60-69), F (&lt;60)</li>
+<li><strong>Collect quick wins</strong> -- from failed checks, sorted by severity, capped at 5</li>
+<li><strong>Return report</strong> -- <code>SpaceHealthReport</code> with all results</li>
+</ol>
+<p>The entire pipeline is a <strong>pure function</strong> with no side effects. Health score
+persistence is fire-and-forget after the report is returned.</p>
+<hr />
+<h2 id="yaml-check-dsl">YAML Check DSL<a class="headerlink" href="#yaml-check-dsl" title="Permanent link">&para;</a></h2>
+<p>Each check is a declarative YAML block in <code>lib/genie/health-checks/default-checks.yaml</code>.</p>
+<h3 id="check-definition-fields">Check Definition Fields<a class="headerlink" href="#check-definition-fields" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>Unique identifier for the check</td>
+</tr>
+<tr>
+<td><code>category</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>Must match a defined category key</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>Human-readable description shown in UI</td>
+</tr>
+<tr>
+<td><code>severity</code></td>
+<td><code>critical</code> | <code>warning</code> | <code>info</code></td>
+<td>Yes</td>
+<td>Determines ordering and UI treatment</td>
+</tr>
+<tr>
+<td><code>fixable</code></td>
+<td>boolean</td>
+<td>Yes</td>
+<td>Whether the fix workflow can address this</td>
+</tr>
+<tr>
+<td><code>fix_strategy</code></td>
+<td>string</td>
+<td>If fixable</td>
+<td>Maps to a fix strategy in <code>space-fixer.ts</code></td>
+</tr>
+<tr>
+<td><code>evaluator</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>One of the 13 registered evaluator types</td>
+</tr>
+<tr>
+<td><code>path</code></td>
+<td>string</td>
+<td>Depends</td>
+<td>JSONPath-like dot notation into <code>serialized_space</code></td>
+</tr>
+<tr>
+<td><code>paths</code></td>
+<td>string[]</td>
+<td>For <code>no_empty_field</code></td>
+<td>Multiple paths to check</td>
+</tr>
+<tr>
+<td><code>field</code></td>
+<td>string</td>
+<td>For <code>ratio</code>/<code>nested_ratio</code></td>
+<td>Field to check on each item</td>
+</tr>
+<tr>
+<td><code>params</code></td>
+<td>object</td>
+<td>Yes</td>
+<td>Evaluator-specific parameters</td>
+</tr>
+<tr>
+<td><code>quick_win</code></td>
+<td>string</td>
+<td>No</td>
+<td>Actionable text shown when check fails</td>
+</tr>
+<tr>
+<td><code>condition_path</code></td>
+<td>string</td>
+<td>For <code>conditional_count</code></td>
+<td>Path to check before evaluating</td>
+</tr>
+<tr>
+<td><code>condition_min</code></td>
+<td>number</td>
+<td>For <code>conditional_count</code></td>
+<td>Minimum count to trigger evaluation</td>
+</tr>
+</tbody>
+</table>
+<h3 id="category-definitions">Category Definitions<a class="headerlink" href="#category-definitions" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">categories</span><span class="p">:</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">data_sources</span><span class="p">:</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Data</span><span class="nv"> </span><span class="s">Sources&quot;</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nt">weight</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">25</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span><span class="nt">instructions</span><span class="p">:</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Instructions&quot;</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="nt">weight</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">25</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">  </span><span class="nt">semantic_richness</span><span class="p">:</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Semantic</span><span class="nv"> </span><span class="s">Richness&quot;</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="nt">weight</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">25</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">  </span><span class="nt">quality_assurance</span><span class="p">:</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Quality</span><span class="nv"> </span><span class="s">Assurance&quot;</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">    </span><span class="nt">weight</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">25</span>
+</code></pre></div>
+<p>Weights determine how much each category contributes to the overall score.
+Users can override weights via the settings API.</p>
+<hr />
+<h2 id="evaluator-functions">Evaluator Functions<a class="headerlink" href="#evaluator-functions" title="Permanent link">&para;</a></h2>
+<p>Located in <code>lib/genie/health-checks/evaluators.ts</code>. Each evaluator is a pure
+function: <code>(space, checkDef) =&gt; CheckResult</code>.</p>
+<h3 id="count"><code>count</code><a class="headerlink" href="#count" title="Permanent link">&para;</a></h3>
+<p>Count items at <code>path</code> and check against <code>min</code> / <code>max</code>.
+- <strong>Params:</strong> <code>min</code> (default 0), <code>max</code> (optional)
+- <strong>Pass:</strong> <code>count &gt;= min &amp;&amp; count &lt;= max</code>
+- <strong>Example:</strong> Check for at least 5 example SQL pairs</p>
+<h3 id="range"><code>range</code><a class="headerlink" href="#range" title="Permanent link">&para;</a></h3>
+<p>Like <code>count</code> with an additional <code>warn_above</code> threshold.
+- <strong>Params:</strong> <code>min</code>, <code>max</code>, <code>warn_above</code>
+- <strong>Pass:</strong> within range AND below warn threshold</p>
+<h3 id="exists"><code>exists</code><a class="headerlink" href="#exists" title="Permanent link">&para;</a></h3>
+<p>Check if a path resolves to a non-null value.
+- <strong>Pass:</strong> at least one value found at path</p>
+<h3 id="length"><code>length</code><a class="headerlink" href="#length" title="Permanent link">&para;</a></h3>
+<p>Check string length at a path.
+- <strong>Params:</strong> <code>min</code>, <code>max</code></p>
+<h3 id="ratio"><code>ratio</code><a class="headerlink" href="#ratio" title="Permanent link">&para;</a></h3>
+<p>What fraction of items at <code>path</code> have a non-empty <code>field</code>.
+- <strong>Params:</strong> <code>min_ratio</code> (0.0 to 1.0)
+- <strong>Pass:</strong> <code>ratio &gt;= min_ratio</code>
+- <strong>Edge case:</strong> Empty arrays vacuously pass</p>
+<h3 id="nested_ratio"><code>nested_ratio</code><a class="headerlink" href="#nested_ratio" title="Permanent link">&para;</a></h3>
+<p>Like <code>ratio</code> but for nested arrays (e.g., <code>tables[*].column_configs</code>).
+Flattens the resolved array before counting.
+- <strong>Params:</strong> <code>min_ratio</code></p>
+<h3 id="pattern"><code>pattern</code><a class="headerlink" href="#pattern" title="Permanent link">&para;</a></h3>
+<p>Validate all values match a regex.
+- <strong>Params:</strong> <code>regex</code>
+- <strong>Special path:</strong> <code>__all_ids__</code> collects all <code>id</code> fields recursively</p>
+<h3 id="unique"><code>unique</code><a class="headerlink" href="#unique" title="Permanent link">&para;</a></h3>
+<p>Check all values are unique (no duplicates).
+- <strong>Special path:</strong> <code>__all_ids__</code> collects all <code>id</code> fields recursively</p>
+<h3 id="no_empty_field"><code>no_empty_field</code><a class="headerlink" href="#no_empty_field" title="Permanent link">&para;</a></h3>
+<p>Verify no items have empty/missing values at given paths.
+- <strong>Uses <code>paths</code></strong> (array) instead of single <code>path</code></p>
+<h3 id="conditional_count"><code>conditional_count</code><a class="headerlink" href="#conditional_count" title="Permanent link">&para;</a></h3>
+<p>Only evaluate if a condition is met (e.g., only check join specs if &gt;= 2 tables).
+- <strong>Params:</strong> inherits from <code>count</code>, plus <code>condition_path</code>, <code>condition_min</code>
+- <strong>Pass:</strong> if condition not met, check is skipped (passes)</p>
+<h3 id="jsonpath"><code>jsonpath</code><a class="headerlink" href="#jsonpath" title="Permanent link">&para;</a></h3>
+<p>Reserved for advanced user-defined checks using arbitrary JSONPath expressions.</p>
+<h3 id="sql_quality"><code>sql_quality</code><a class="headerlink" href="#sql_quality" title="Permanent link">&para;</a></h3>
+<p>LLM-powered SQL quality review using the dedicated review endpoint
+(<code>serving-endpoint-review</code>). Collects SQL snippets from the specified <code>paths</code>,
+batch-reviews them via <code>reviewBatch()</code>, and passes if the average quality
+score meets the threshold and no individual snippet fails.
+- <strong>Params:</strong> <code>min_score</code> (default 60, scale 0-100)
+- <strong>Uses <code>paths</code></strong> (array of paths to SQL string values)
+- <strong>Async:</strong> queued during synchronous health check run, resolved via
+  <code>enrichReportWithSqlQuality()</code> after the initial report
+- <strong>Feature-gated:</strong> only runs when <code>serving-endpoint-review</code> is configured</p>
+<hr />
+<h2 id="registry-merge-logic">Registry &amp; Merge Logic<a class="headerlink" href="#registry-merge-logic" title="Permanent link">&para;</a></h2>
+<p>Located in <code>lib/genie/health-checks/registry.ts</code>.</p>
+<h3 id="merge-precedence">Merge Precedence<a class="headerlink" href="#merge-precedence" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Load <code>default-checks.yaml</code> (bundled, immutable, cached in memory)</li>
+<li>Load user overrides from Lakebase <code>ForgeHealthCheckConfig</code> table</li>
+<li>Merge rules:</li>
+<li>User <code>enabled: false</code> disables a built-in check</li>
+<li>User <code>params</code> are shallow-merged (override individual thresholds)</li>
+<li>User <code>severity</code> replaces the default severity</li>
+<li>Custom checks are appended after built-in checks</li>
+<li>Category weight overrides applied to category definitions</li>
+<li>Validation: custom checks must reference valid categories and evaluators</li>
+</ol>
+<h3 id="cache-behavior">Cache Behavior<a class="headerlink" href="#cache-behavior" title="Permanent link">&para;</a></h3>
+<p>Default checks are parsed once from YAML and cached in a module-level variable.
+Call <code>clearRegistryCache()</code> to force a reload (used in tests).</p>
+<hr />
+<h2 id="scoring-algorithm">Scoring Algorithm<a class="headerlink" href="#scoring-algorithm" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>overallScore = Σ(categoryScore × categoryWeight) / Σ(categoryWeight)
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>categoryScore = (passedChecks / totalChecks) × 100  (or 100 if no checks)
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>grade:
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>  90-100 → A
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>  80-89  → B
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>  70-79  → C
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>  60-69  → D
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>  0-59   → F
+</code></pre></div>
+<p>Quick wins are collected from failed checks that have <code>quick_win</code> defined,
+sorted by severity (critical → warning → info), and capped at 5.</p>
+<hr />
+<h2 id="custom-check-configuration">Custom Check Configuration<a class="headerlink" href="#custom-check-configuration" title="Permanent link">&para;</a></h2>
+<p>Users can configure health checks via:</p>
+<ol>
+<li><strong>Settings API</strong> (<code>PUT /api/genie-spaces/health-config</code>) -- programmatic</li>
+<li><strong>YAML import</strong> -- upload a YAML file with check definitions</li>
+</ol>
+<h3 id="override-types">Override Types<a class="headerlink" href="#override-types" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kd">interface</span><span class="w"> </span><span class="nx">UserCheckOverride</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nx">checkId</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="nx">enabled?</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="nx">params?</span><span class="o">:</span><span class="w"> </span><span class="kt">Record</span><span class="o">&lt;</span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">unknown</span><span class="o">&gt;</span><span class="p">;</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span><span class="nx">severity</span><span class="o">?:</span><span class="w"> </span><span class="s2">&quot;critical&quot;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s2">&quot;warning&quot;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s2">&quot;info&quot;</span><span class="p">;</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="p">}</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="kd">interface</span><span class="w"> </span><span class="nx">UserCustomCheck</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">  </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">  </span><span class="nx">category</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">  </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">  </span><span class="nx">severity</span><span class="o">:</span><span class="w"> </span><span class="kt">Severity</span><span class="p">;</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">  </span><span class="nx">evaluator</span><span class="o">:</span><span class="w"> </span><span class="kt">EvaluatorType</span><span class="p">;</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="w">  </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">  </span><span class="nx">field?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="w">  </span><span class="nx">params</span><span class="o">:</span><span class="w"> </span><span class="kt">Record</span><span class="o">&lt;</span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">unknown</span><span class="o">&gt;</span><span class="p">;</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="w">  </span><span class="nx">quick_win?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="fix-workflow">Fix Workflow<a class="headerlink" href="#fix-workflow" title="Permanent link">&para;</a></h2>
+<p>When health checks reveal issues, the Fix Workflow generates improvements
+using Forge's existing Genie Engine passes.</p>
+<h3 id="fix-execution-flow">Fix Execution Flow<a class="headerlink" href="#fix-execution-flow" title="Permanent link">&para;</a></h3>
+<ol>
+<li>User navigates to the <strong>Space Detail Page</strong> (<code>/genie/[spaceId]</code>) and opens the <strong>Health</strong> tab</li>
+<li>User clicks "Fix" (individual check) or "Fix All"</li>
+<li>API (<code>POST /api/genie-spaces/[id]/fix</code>) receives list of failed check IDs</li>
+<li><code>resolveFixStrategies()</code> groups checks by <code>fix_strategy</code></li>
+<li>For off-platform spaces, <code>buildMetadataForSpace()</code> queries <code>information_schema</code></li>
+<li>Relevant engine passes run (using existing pass modules)</li>
+<li>Results are merged into the space (<strong>additive only</strong> -- nothing removed)</li>
+<li>API returns <code>originalSerializedSpace</code>, <code>updatedSerializedSpace</code>, <code>changes[]</code>, and <code>strategiesRun[]</code></li>
+<li><strong>Optimization Review</strong> is displayed (see next section) with prioritized suggestions</li>
+<li>User selects/deselects suggestions, previews diff, then clicks "Apply to Space" or "Clone and Apply"</li>
+<li><code>updateGenieSpace()</code> pushes changes to Databricks (or clone is created first)</li>
+<li>Health check re-runs automatically, score refreshes</li>
+</ol>
+<hr />
+<h2 id="optimization-review-diff-preview">Optimization Review &amp; Diff Preview<a class="headerlink" href="#optimization-review-diff-preview" title="Permanent link">&para;</a></h2>
+<p>Both the Health Fix and Benchmark Improve workflows route through an
+intermediate <strong>Optimization Review</strong> step before any changes are applied.</p>
+<h3 id="optimization-review-componentsgenieoptimization-reviewtsx">Optimization Review (<code>components/genie/optimization-review.tsx</code>)<a class="headerlink" href="#optimization-review-componentsgenieoptimization-reviewtsx" title="Permanent link">&para;</a></h3>
+<p>Displays the generated changes as a selectable list:</p>
+<ol>
+<li><strong>Strategy summary</strong> -- count of suggestions and strategies used</li>
+<li><strong>Priority badges</strong> -- each change is categorized as high (joins/measures),
+   medium (instructions/filters), or low (other) priority</li>
+<li><strong>Select/deselect</strong> -- users can toggle individual suggestions with checkboxes</li>
+<li><strong>Preview Changes</strong> -- opens the diff viewer</li>
+<li><strong>Apply to Space</strong> -- pushes the updated <code>serialized_space</code> to the existing space</li>
+<li><strong>Clone and Apply</strong> -- creates a clone first, then applies (safe for off-platform spaces)</li>
+</ol>
+<h3 id="diff-preview-componentsgeniespace-diff-viewertsx">Diff Preview (<code>components/genie/space-diff-viewer.tsx</code>)<a class="headerlink" href="#diff-preview-componentsgeniespace-diff-viewertsx" title="Permanent link">&para;</a></h3>
+<p>Side-by-side comparison of the current vs proposed <code>serialized_space</code>:</p>
+<ul>
+<li>JSON is pretty-printed before diffing</li>
+<li>Line-level diff with green highlights for additions and red for removals</li>
+<li>Change summary card showing sections affected with +added / ~modified counts</li>
+<li>Line count stats (total lines added/removed)</li>
+</ul>
+<h3 id="flow-integration">Flow Integration<a class="headerlink" href="#flow-integration" title="Permanent link">&para;</a></h3>
+<p>Both fix and benchmark-improve APIs return the same shape:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kd">interface</span><span class="w"> </span><span class="nx">FixResult</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="nx">originalSerializedSpace</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span><span class="nx">updatedSerializedSpace</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span><span class="nx">changes</span><span class="o">:</span><span class="w"> </span><span class="kt">Array</span><span class="o">&lt;</span><span class="p">{</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="nx">section</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">    </span><span class="nx">added</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">    </span><span class="nx">modified</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">  </span><span class="p">}</span><span class="o">&gt;</span><span class="p">;</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">  </span><span class="nx">strategiesRun</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">[];</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="p">}</span>
+</code></pre></div>
+<p>The Space Detail page and Benchmarks page both consume this payload and
+render <code>OptimizationReview</code> → <code>SpaceDiffViewer</code> before any apply action.</p>
+<hr />
+<h2 id="fix-strategy-router">Fix Strategy Router<a class="headerlink" href="#fix-strategy-router" title="Permanent link">&para;</a></h2>
+<p>Located in <code>lib/genie/space-fixer.ts</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Fix Strategy</th>
+<th>Engine Pass</th>
+<th>LLM?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>column_intelligence</code></td>
+<td>Pass 1 (Column Intelligence)</td>
+<td>Yes (fast)</td>
+</tr>
+<tr>
+<td><code>semantic_expressions</code></td>
+<td>Pass 2 (Semantic Expressions)</td>
+<td>Yes (premium)</td>
+</tr>
+<tr>
+<td><code>join_inference</code></td>
+<td>Join Inference</td>
+<td>Yes (fast)</td>
+</tr>
+<tr>
+<td><code>trusted_assets</code></td>
+<td>Pass 3 (Trusted Assets)</td>
+<td>Yes (premium)</td>
+</tr>
+<tr>
+<td><code>instruction_generation</code></td>
+<td>Pass 4 (Instruction Generation)</td>
+<td>Yes (fast)</td>
+</tr>
+<tr>
+<td><code>benchmark_generation</code></td>
+<td>Pass 5 (Benchmark Generation)</td>
+<td>Yes (premium)</td>
+</tr>
+<tr>
+<td><code>entity_matching</code></td>
+<td>Deterministic enablement</td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>sample_questions</code></td>
+<td>Generate from existing examples</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h3 id="fixable-health-checks">Fixable Health Checks<a class="headerlink" href="#fixable-health-checks" title="Permanent link">&para;</a></h3>
+<p>The following health checks are marked as fixable and mapped to fix
+strategies. When the user clicks "Fix All", the system groups these
+checks by strategy and runs only the necessary engine passes:</p>
+<table>
+<thead>
+<tr>
+<th>Check ID</th>
+<th>Fix Strategy</th>
+<th>What It Fixes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>join-specs-have-comments</code></td>
+<td><code>join_inference</code></td>
+<td>Adds relationship comments to join specs</td>
+</tr>
+<tr>
+<td><code>example-sqls-have-usage-guidance</code></td>
+<td><code>trusted_assets</code></td>
+<td>Generates usage guidance for example SQL queries</td>
+</tr>
+<tr>
+<td><code>expressions-have-instructions</code></td>
+<td><code>semantic_expressions</code></td>
+<td>Adds usage instructions to dimension expressions</td>
+</tr>
+<tr>
+<td><code>measures-have-display-names</code></td>
+<td><code>trusted_assets</code></td>
+<td>Adds human-readable display names to measures</td>
+</tr>
+<tr>
+<td><code>expressions-have-display-names</code></td>
+<td><code>semantic_expressions</code></td>
+<td>Adds display names to dimension expressions</td>
+</tr>
+<tr>
+<td><code>filters-have-display-names</code></td>
+<td><code>trusted_assets</code></td>
+<td>Adds display names to filters</td>
+</tr>
+<tr>
+<td><code>measures-have-comments</code></td>
+<td><code>trusted_assets</code></td>
+<td>Adds purpose comments to measures</td>
+</tr>
+<tr>
+<td><code>filters-have-comments</code></td>
+<td><code>trusted_assets</code></td>
+<td>Adds usage comments to filters</td>
+</tr>
+<tr>
+<td><code>measure-synonyms-defined</code></td>
+<td><code>trusted_assets</code></td>
+<td>Adds colloquial synonyms to measures</td>
+</tr>
+<tr>
+<td><code>filter-synonyms-defined</code></td>
+<td><code>trusted_assets</code></td>
+<td>Adds synonyms to filters</td>
+</tr>
+<tr>
+<td><code>expression-synonyms-defined</code></td>
+<td><code>semantic_expressions</code></td>
+<td>Adds synonyms to expressions</td>
+</tr>
+</tbody>
+</table>
+<p>The Genie Engine assembler now populates <code>display_name</code>, <code>comment</code>, and
+<code>instruction</code> fields automatically during space generation, so
+engine-generated spaces rarely need these fixes. They are primarily
+useful for imported or manually created spaces.</p>
+<hr />
+<h2 id="metadata-building-for-off-platform-spaces">Metadata Building for Off-Platform Spaces<a class="headerlink" href="#metadata-building-for-off-platform-spaces" title="Permanent link">&para;</a></h2>
+<p>Off-platform spaces have no Forge <code>MetadataSnapshot</code>. Before running engine
+passes:</p>
+<ol>
+<li>Extract table FQNs from <code>serialized_space.data_sources.tables[*].identifier</code></li>
+<li>Query <code>information_schema.columns</code> for each table</li>
+<li>Build a <code>MetadataSnapshot</code> with <code>tables</code>, <code>columns</code>, empty <code>foreignKeys</code></li>
+<li>Build <code>SchemaAllowlist</code> via <code>buildSchemaAllowlist()</code></li>
+<li>This enables grounded generation for all LLM passes</li>
+</ol>
+<hr />
+<h2 id="benchmark-feedback-loop">Benchmark Feedback Loop<a class="headerlink" href="#benchmark-feedback-loop" title="Permanent link">&para;</a></h2>
+<p>An iterative cycle for validating and improving Genie Space quality:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>┌──────────┐  ┌─────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>│ Run      │─▶│ Label   │─▶│ Improve  │─▶│ Review   │─▶│ Apply    │
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>│benchmarks│  │results  │  │(targeted │  │(Opt.Rev. │  │+ re-score│
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>└──────────┘  └─────────┘  │ passes)  │  │ + Diff)  │  └────┬─────┘
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>     ▲                      └──────────┘  └──────────┘       │
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>     └───────────────────────────────────────────────────────┘
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>                      (repeat until satisfied)
+</code></pre></div>
+<h3 id="components">Components<a class="headerlink" href="#components" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Benchmark questions</strong> -- loaded from <code>serialized_space.benchmarks.questions</code></li>
+<li><strong>Run</strong> -- <code>createEvalRun()</code> submits questions to the Genie Eval API; polls <code>getEvalRun()</code> until DONE</li>
+<li><strong>Evaluation</strong> -- Databricks server-side LLM judge + result-set comparison produces <code>GOOD/BAD/NEEDS_REVIEW</code> assessments with <code>ScoreReason[]</code></li>
+<li><strong>Label</strong> -- user marks correct/incorrect with optional feedback</li>
+<li><strong>Improve</strong> -- feedback analyzed for patterns, targeted fixes generated</li>
+<li><strong>Review</strong> -- <code>OptimizationReview</code> displayed with selectable suggestions and diff preview</li>
+<li><strong>Apply</strong> -- user chooses "Apply to Space" or "Clone and Apply" from the review step</li>
+<li><strong>History</strong> -- all runs persisted in <code>ForgeSpaceBenchmarkRun</code></li>
+</ol>
+<h3 id="eval-api-assessment">Eval API Assessment<a class="headerlink" href="#eval-api-assessment" title="Permanent link">&para;</a></h3>
+<p>Each benchmark result is evaluated server-side by the Genie Eval API, which provides:</p>
+<ul>
+<li><strong>Assessment</strong>: <code>GOOD</code>, <code>BAD</code>, or <code>NEEDS_REVIEW</code></li>
+<li><strong>ScoreReason[]</strong>: 25+ categories (e.g. <code>LLM_JUDGE_MISSING_JOIN</code>, <code>RESULT_MISSING_ROWS</code>, <code>SINGLE_CELL_DIFFERENCE</code>)</li>
+<li><strong>Side-by-side responses</strong>: expected vs actual SQL + execution results</li>
+</ul>
+<p>Previously used a client-side 3-tier comparison; now fully delegated to the Eval API:</p>
+<ol>
+<li><strong>High SQL similarity</strong> (&gt;=90%) -- the Genie-generated SQL closely
+   matches the expected SQL. Automatically marked as pass.</li>
+<li><strong>Result-set comparison</strong> -- when SQL similarity is moderate, the actual
+   query result (column count, row count) is compared against the expected
+   result. Passes if both match within tolerance.</li>
+<li><strong>Basic SQL similarity</strong> (&gt;=60%) -- fallback threshold for structural
+   similarity. Below this threshold, the test is marked as failed.</li>
+</ol>
+<h3 id="failure-diagnostics">Failure Diagnostics<a class="headerlink" href="#failure-diagnostics" title="Permanent link">&para;</a></h3>
+<p>Each failed test includes rich diagnostic information:</p>
+<ul>
+<li><strong><code>failureCategory</code></strong> -- classifies the root cause (e.g. <code>wrong_tables</code>,
+  <code>missing_join</code>, <code>wrong_aggregation</code>, <code>wrong_filter</code>, <code>wrong_column</code>,
+  <code>syntax_error</code>)</li>
+<li><strong><code>comparisonMethod</code></strong> -- which evaluation tier determined the outcome
+  (<code>sql_similarity</code>, <code>result_set</code>, <code>basic_similarity</code>)</li>
+<li><strong><code>sqlSimilarity</code></strong> -- percentage score (0-100) of SQL structural similarity</li>
+<li><strong><code>failureReason</code></strong> -- human-readable explanation of what went wrong</li>
+</ul>
+<p>These diagnostics are displayed in the test runner UI and inform the
+feedback-to-fix analysis.</p>
+<hr />
+<h2 id="improvement-logic-feedback-to-fix">Improvement Logic (Feedback-to-Fix)<a class="headerlink" href="#improvement-logic-feedback-to-fix" title="Permanent link">&para;</a></h2>
+<p>Located in <code>lib/genie/benchmark-feedback.ts</code>.</p>
+<p>The <code>analyzeFeedbackForFixes()</code> function maps <code>ScoreReason</code> values from the Eval API
+directly to health check IDs for targeted fixes. Each of the 25+ <code>ScoreReason</code> values
+maps to specific check IDs (e.g. <code>LLM_JUDGE_MISSING_JOIN</code> -&gt; <code>join-specs-for-multi-table</code>).
+Escalation rules: 3+ failures -&gt; <code>text-instruction-exists</code>, 5+ -&gt; <code>benchmarks-exist</code>.</p>
+<p>The function maps labeled failures to check IDs:</p>
+<table>
+<thead>
+<tr>
+<th>Failure Pattern</th>
+<th>Detected Via</th>
+<th>Fix Check ID</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Join issues</td>
+<td>"join" in feedback or expected SQL</td>
+<td><code>join-specs-for-multi-table</code></td>
+</tr>
+<tr>
+<td>Time/date issues</td>
+<td>"time", "date", "period" in feedback</td>
+<td><code>filters-defined</code></td>
+</tr>
+<tr>
+<td>Aggregation issues</td>
+<td>"sum", "count", "average" in feedback</td>
+<td><code>measures-defined</code></td>
+</tr>
+<tr>
+<td>User-provided SQL</td>
+<td><code>expectedSql</code> present</td>
+<td><code>example-sqls-minimum</code></td>
+</tr>
+<tr>
+<td>Multiple failures (3+)</td>
+<td>Count of failures</td>
+<td><code>text-instruction-exists</code></td>
+</tr>
+<tr>
+<td>No specific pattern</td>
+<td>Fallback</td>
+<td><code>measures-defined</code>, <code>filters-defined</code>, <code>example-sqls-minimum</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="critical-user-journeys-cujs">Critical User Journeys (CUJs)<a class="headerlink" href="#critical-user-journeys-cujs" title="Permanent link">&para;</a></h2>
+<h3 id="cuj-1-diagnose-and-fix-an-off-platform-space">CUJ 1: Diagnose and Fix an Off-Platform Space<a class="headerlink" href="#cuj-1-diagnose-and-fix-an-off-platform-space" title="Permanent link">&para;</a></h3>
+<ol>
+<li>User navigates to <code>/genie</code> -- stale spaces are auto-filtered; toast shows "N spaces no longer found"</li>
+<li>Discovery runs in the background, enriching cards with metadata counts and health grades</li>
+<li>An off-platform space shows a <strong>D</strong> grade with "3 fixable issues"</li>
+<li>User clicks the grade badge to open the Health Detail Sheet</li>
+<li>User clicks <strong>Fix</strong> in the sheet -- navigated to <code>/genie/[spaceId]?tab=health</code> (Space Detail Page)</li>
+<li>On the Health tab, user clicks <strong>Fix All</strong> -- API runs relevant engine passes</li>
+<li><strong>Optimization Review</strong> is displayed with prioritized suggestions and strategy summary</li>
+<li>User reviews suggestions, clicks <strong>Preview Changes</strong> to see side-by-side diff</li>
+<li>User clicks <strong>Apply to Space</strong> (or <strong>Clone and Apply</strong> to preserve the original)</li>
+<li>Changes pushed to Databricks, health check re-runs: <strong>D → B</strong></li>
+<li>User navigates to <strong>Benchmarks</strong> tab and clicks <strong>Open Test Runner</strong></li>
+<li>Benchmarks run (SSE real-time progress), 7/10 pass</li>
+<li>User labels 3 failures with feedback</li>
+<li>User clicks <strong>Improve</strong> -- <strong>Optimization Review</strong> shown again with benchmark-driven suggestions</li>
+<li>User applies, re-runs benchmarks: 9/10 pass (95%)</li>
+</ol>
+<h3 id="cuj-2-customize-health-checks-for-organization">CUJ 2: Customize Health Checks for Organization<a class="headerlink" href="#cuj-2-customize-health-checks-for-organization" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Admin calls <code>PUT /api/genie-spaces/health-config</code> with overrides:</li>
+<li>Disable <code>column-synonyms-defined</code> (not relevant for their use case)</li>
+<li>Raise <code>example-sqls-minimum</code> threshold from 5 to 10</li>
+<li>Add custom check: "At least 3 metric views configured"</li>
+<li>All spaces are re-scored with the new configuration</li>
+<li>Spaces that previously scored A might now show B due to stricter thresholds</li>
+</ol>
+<h3 id="cuj-3-iterate-on-a-forge-generated-space">CUJ 3: Iterate on a Forge-Generated Space<a class="headerlink" href="#cuj-3-iterate-on-a-forge-generated-space" title="Permanent link">&para;</a></h3>
+<ol>
+<li>User deploys a Genie Space from the pipeline -- sees <strong>B</strong> grade on <code>/genie</code> page</li>
+<li>Clicks space card to open <strong>Space Detail Page</strong> (<code>/genie/[spaceId]</code>)</li>
+<li><strong>Overview</strong> tab shows key stats (tables, measures, filters, benchmarks) and quick actions</li>
+<li>Navigates to <strong>Configuration</strong> tab to inspect the full <code>serialized_space</code> in an accordion layout</li>
+<li>Opens <strong>Benchmarks</strong> tab → <strong>Open Test Runner</strong>: 7/10 pass</li>
+<li>Labels 3 failures: "Wrong join", "Missing time filter", "Sum vs Count"</li>
+<li>Clicks <strong>Improve</strong> -- <strong>Optimization Review</strong> shown with 3 high-priority suggestions</li>
+<li>Previews diff, clicks <strong>Apply to Space</strong></li>
+<li>Re-runs benchmarks: 10/10 pass</li>
+<li>Returns to <strong>Health</strong> tab -- score is now <strong>A</strong></li>
+</ol>
+<h3 id="cuj-4-clone-a-space-for-experimentation">CUJ 4: Clone a Space for Experimentation<a class="headerlink" href="#cuj-4-clone-a-space-for-experimentation" title="Permanent link">&para;</a></h3>
+<ol>
+<li>User opens <strong>Space Detail Page</strong> for a production space</li>
+<li>On <strong>Overview</strong> tab, clicks <strong>Clone</strong></li>
+<li>Clone created in Databricks, user is redirected to the new clone's detail page</li>
+<li>User runs health checks, applies fixes, runs benchmarks on the clone without affecting the original</li>
+<li>Alternatively, from the <strong>Optimization Review</strong> step, user clicks <strong>Clone and Apply</strong> to create a clone with proposed changes already applied</li>
+</ol>
+<hr />
+<h2 id="data-model">Data Model<a class="headerlink" href="#data-model" title="Permanent link">&para;</a></h2>
+<h3 id="forgespacebenchmarkrun">ForgeSpaceBenchmarkRun<a class="headerlink" href="#forgespacebenchmarkrun" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>UUID</td>
+<td>Primary key</td>
+</tr>
+<tr>
+<td><code>spaceId</code></td>
+<td>string</td>
+<td>Genie Space ID</td>
+</tr>
+<tr>
+<td><code>evalRunId</code></td>
+<td>string</td>
+<td>Genie Eval API run ID</td>
+</tr>
+<tr>
+<td><code>runAt</code></td>
+<td>datetime</td>
+<td>When the run was executed</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>string</td>
+<td><code>DONE</code>, <code>EVALUATION_FAILED</code>, etc.</td>
+</tr>
+<tr>
+<td><code>numQuestions</code></td>
+<td>int</td>
+<td>Number of benchmark questions</td>
+</tr>
+<tr>
+<td><code>numCorrect</code></td>
+<td>int</td>
+<td>Questions assessed as GOOD</td>
+</tr>
+<tr>
+<td><code>numNeedsReview</code></td>
+<td>int</td>
+<td>Questions needing manual review</td>
+</tr>
+<tr>
+<td><code>accuracy</code></td>
+<td>float</td>
+<td><code>numCorrect / numQuestions * 100</code></td>
+</tr>
+<tr>
+<td><code>resultsJson</code></td>
+<td>JSON string</td>
+<td><code>EvalResultDetail[]</code></td>
+</tr>
+<tr>
+<td><code>feedbackJson</code></td>
+<td>JSON string</td>
+<td>User labels + feedback text</td>
+</tr>
+<tr>
+<td><code>improvementsApplied</code></td>
+<td>boolean</td>
+<td>Whether improvements were applied from this run</td>
+</tr>
+<tr>
+<td><code>improvementSummary</code></td>
+<td>string</td>
+<td>Description of improvements made</td>
+</tr>
+</tbody>
+</table>
+<h3 id="forgespacehealthscore">ForgeSpaceHealthScore<a class="headerlink" href="#forgespacehealthscore" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>UUID</td>
+<td>Primary key</td>
+</tr>
+<tr>
+<td><code>spaceId</code></td>
+<td>string</td>
+<td>Genie Space ID</td>
+</tr>
+<tr>
+<td><code>score</code></td>
+<td>int</td>
+<td>0-100 overall score</td>
+</tr>
+<tr>
+<td><code>grade</code></td>
+<td>string</td>
+<td>A through F</td>
+</tr>
+<tr>
+<td><code>checksJson</code></td>
+<td>JSON string</td>
+<td><code>HealthCheckItem[]</code></td>
+</tr>
+<tr>
+<td><code>triggeredBy</code></td>
+<td>string</td>
+<td>"manual", "post_fix", "post_benchmark"</td>
+</tr>
+<tr>
+<td><code>measuredAt</code></td>
+<td>datetime</td>
+<td>When the score was recorded</td>
+</tr>
+</tbody>
+</table>
+<h3 id="forgehealthcheckconfig">ForgeHealthCheckConfig<a class="headerlink" href="#forgehealthcheckconfig" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>string</td>
+<td>Always "singleton"</td>
+</tr>
+<tr>
+<td><code>overridesJson</code></td>
+<td>JSON string</td>
+<td><code>UserCheckOverride[]</code></td>
+</tr>
+<tr>
+<td><code>customChecksJson</code></td>
+<td>JSON string</td>
+<td><code>UserCustomCheck[]</code></td>
+</tr>
+<tr>
+<td><code>categoryWeightsJson</code></td>
+<td>JSON string</td>
+<td><code>Record&lt;string, number&gt;</code></td>
+</tr>
+<tr>
+<td><code>updatedAt</code></td>
+<td>datetime</td>
+<td>Last update timestamp</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="api-reference">API Reference<a class="headerlink" href="#api-reference" title="Permanent link">&para;</a></h2>
+<h3 id="discovery-detail">Discovery &amp; Detail<a class="headerlink" href="#discovery-detail" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/genie-spaces</code></td>
+<td>List workspace spaces + filtered tracked spaces (stale excluded)</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/api/genie-spaces/discover</code></td>
+<td>Bulk metadata extraction + health scoring (replaces <code>health-batch</code>)</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/genie-spaces/[id]/detail</code></td>
+<td>Full space detail: serialized_space, metadata, health report, tracking info</td>
+</tr>
+</tbody>
+</table>
+<h3 id="health-check">Health Check<a class="headerlink" href="#health-check" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/genie-spaces/[id]/health</code></td>
+<td>Run health check on a single space</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/api/genie-spaces/health-batch</code></td>
+<td>Batch health check (legacy, superseded by discover)</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/genie-spaces/[id]/health-history</code></td>
+<td>Health score trending data</td>
+</tr>
+</tbody>
+</table>
+<h3 id="fix-workflow_1">Fix Workflow<a class="headerlink" href="#fix-workflow_1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><code>/api/genie-spaces/[id]/fix</code></td>
+<td>Generate fixes for failed checks (returns original + updated for review)</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/api/genie-spaces/[id]/apply</code></td>
+<td>Apply reviewed serialized_space to the space</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/api/genie-spaces/[id]/clone</code></td>
+<td>Clone space (for safe fixing or experimentation)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="benchmark-feedback-loop_1">Benchmark Feedback Loop<a class="headerlink" href="#benchmark-feedback-loop_1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/genie-spaces/[id]/benchmarks</code></td>
+<td>Load benchmark questions</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/api/genie-spaces/[id]/benchmarks/run</code></td>
+<td>Create eval run (returns evalRunId)</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/genie-spaces/[id]/benchmarks/run?evalRunId=X</code></td>
+<td>Poll eval run status; once DONE returns full results</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/api/genie-spaces/[id]/benchmarks/feedback</code></td>
+<td>Save labeled results</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><code>/api/genie-spaces/[id]/benchmarks/improve</code></td>
+<td>Generate improvements (returns original + updated for review)</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/genie-spaces/[id]/benchmarks/history</code></td>
+<td>Past eval runs (API + Lakebase enrichments)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Endpoint</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td><code>/api/genie-spaces/health-config</code></td>
+<td>Get health check configuration</td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td><code>/api/genie-spaces/health-config</code></td>
+<td>Update health check configuration</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="ui-components">UI Components<a class="headerlink" href="#ui-components" title="Permanent link">&para;</a></h2>
+<h3 id="genie-spaces-list-page-appgeniepagetsx">Genie Spaces List Page (<code>app/genie/page.tsx</code>)<a class="headerlink" href="#genie-spaces-list-page-appgeniepagetsx" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Refresh button</strong> -- re-fetches workspace spaces and re-runs discovery</li>
+<li><strong>Stale toast</strong> -- notification when tracked spaces are no longer in the workspace</li>
+<li><strong>Space cards</strong> with enriched metadata (table count, measures, questions, filters)</li>
+<li><strong>Health grade badge</strong> -- circular A-F badge, color-coded (green/amber/red)</li>
+<li><strong>Fixable count</strong> -- "3 fixable issues" text when applicable</li>
+<li><strong>Test button</strong> -- links to <code>/genie/[spaceId]/benchmarks</code></li>
+<li><strong>Card click</strong> -- navigates to the Space Detail Page (<code>/genie/[spaceId]</code>)</li>
+<li><strong>Health detail sheet</strong> -- slide-out panel; Fix navigates to detail page health tab</li>
+<li><strong>Active/Trashed tabs</strong> -- separate views for active and trashed spaces</li>
+</ul>
+<h3 id="space-detail-page-appgeniespaceidpagetsx">Space Detail Page (<code>app/genie/[spaceId]/page.tsx</code>)<a class="headerlink" href="#space-detail-page-appgeniespaceidpagetsx" title="Permanent link">&para;</a></h3>
+<p>Central hub for a single Genie Space with four tabs:</p>
+<ul>
+<li><strong>Overview</strong> -- key stats (tables, measures, questions, filters, joins, benchmarks), domain, status, quick actions (Open in Databricks, Run Benchmarks, Clone, View Run)</li>
+<li><strong>Configuration</strong> -- embeds <code>SpaceConfigViewer</code> to display the full <code>serialized_space</code> structure</li>
+<li><strong>Health</strong> -- inline health report with grade, quick wins, category progress bars, per-check details, Fix/Fix All buttons that trigger the Optimization Review flow</li>
+<li><strong>Benchmarks</strong> -- link to the benchmark test runner page</li>
+</ul>
+<h3 id="space-config-viewer-componentsgeniespace-config-viewertsx">Space Config Viewer (<code>components/genie/space-config-viewer.tsx</code>)<a class="headerlink" href="#space-config-viewer-componentsgeniespace-config-viewertsx" title="Permanent link">&para;</a></h3>
+<p>Read-only accordion layout displaying all sections of a <code>SerializedSpace</code>:
+- Data Sources → Tables, Metric Views
+- Instructions → Text Instructions, Example Question SQLs, Join Specs
+- SQL Snippets → Measures, Filters, Expressions
+- Benchmarks → Questions
+- Config → Sample Questions
+- Count badges on each section header</p>
+<h3 id="optimization-review-componentsgenieoptimization-reviewtsx_1">Optimization Review (<code>components/genie/optimization-review.tsx</code>)<a class="headerlink" href="#optimization-review-componentsgenieoptimization-reviewtsx_1" title="Permanent link">&para;</a></h3>
+<p>Intermediate review step before any changes are applied:
+- Strategy summary with count of suggestions and strategies used
+- Priority badges (high/medium/low) on each suggestion
+- Select/deselect checkboxes for individual suggestions
+- <strong>Preview Changes</strong> button opens the diff viewer
+- <strong>Apply to Space</strong> / <strong>Clone and Apply</strong> / <strong>Cancel</strong> actions</p>
+<h3 id="space-diff-viewer-componentsgeniespace-diff-viewertsx">Space Diff Viewer (<code>components/genie/space-diff-viewer.tsx</code>)<a class="headerlink" href="#space-diff-viewer-componentsgeniespace-diff-viewertsx" title="Permanent link">&para;</a></h3>
+<p>Side-by-side comparison of current vs proposed <code>serialized_space</code>:
+- Pretty-printed JSON diff
+- Line-level highlights (green=added, red=removed)
+- Change summary card with section badges
+- Line count stats (added/removed)</p>
+<h3 id="health-detail-sheet-componentsgeniehealth-detail-sheettsx">Health Detail Sheet (<code>components/genie/health-detail-sheet.tsx</code>)<a class="headerlink" href="#health-detail-sheet-componentsgeniehealth-detail-sheettsx" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Overall score + grade with colored background</li>
+<li>Quick wins section</li>
+<li>Fix All / Run Benchmarks CTAs</li>
+<li>Category breakdown with progress bars</li>
+<li>Individual checks grouped by category with pass/fail icons</li>
+<li><strong>Fix</strong> action navigates to the Space Detail Page health tab (ensuring the review step is used)</li>
+</ul>
+<h3 id="benchmark-page-appgeniespaceidbenchmarkspagetsx">Benchmark Page (<code>app/genie/[spaceId]/benchmarks/page.tsx</code>)<a class="headerlink" href="#benchmark-page-appgeniespaceidbenchmarkspagetsx" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Run tab</strong> -- load questions, create eval run via API, poll for progress, results with GOOD/BAD/NEEDS_REVIEW badges, ScoreReason chips, side-by-side SQL, execution results, manual assessment UI</li>
+<li><strong>History tab</strong> -- past runs with pass rate badges</li>
+<li>Thumbs up/down labeling with optional feedback textarea</li>
+<li><strong>Improve</strong> button generates targeted fixes and displays <strong>Optimization Review</strong> (no longer auto-applies)</li>
+<li>Back button navigates to the Space Detail Page</li>
+</ul>
+<hr />
+<h2 id="hardening-performance">Hardening &amp; Performance<a class="headerlink" href="#hardening-performance" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Concern</th>
+<th>Implementation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>OBO auth</strong></td>
+<td>All Genie API reads use <code>getHeaders()</code> (user token) to enforce user-level permissions</td>
+</tr>
+<tr>
+<td><strong>Space caching</strong></td>
+<td>In-memory 5min TTL cache in <code>lib/genie/space-cache.ts</code></td>
+</tr>
+<tr>
+<td><strong>Discovery concurrency</strong></td>
+<td>Bounded to 5 parallel tasks per discover call</td>
+</tr>
+<tr>
+<td><strong>Stale filtering</strong></td>
+<td>Tracked spaces not found in workspace excluded from UI (Lakebase intact)</td>
+</tr>
+<tr>
+<td><strong>Rate limiting</strong></td>
+<td>Delegated to Genie Eval API (handles question execution server-side)</td>
+</tr>
+<tr>
+<td><strong>Health check cache</strong></td>
+<td>Invalidated on fix apply and benchmark improve</td>
+</tr>
+<tr>
+<td><strong>Clone + Fix</strong></td>
+<td><code>/api/genie-spaces/[id]/clone</code> creates a copy before modifying off-platform spaces</td>
+</tr>
+<tr>
+<td><strong>Health trending</strong></td>
+<td><code>ForgeSpaceHealthScore</code> persisted on every check, sparkline via history API</td>
+</tr>
+<tr>
+<td><strong>Audit trail</strong></td>
+<td><code>triggeredBy</code> field on scores, structured logging via <code>lib/logger.ts</code></td>
+</tr>
+<tr>
+<td><strong>Input validation</strong></td>
+<td><code>isSafeId()</code> on all space ID parameters</td>
+</tr>
+<tr>
+<td><strong>Batch limits</strong></td>
+<td>50 max for discover endpoint</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="file-reference">File Reference<a class="headerlink" href="#file-reference" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Core Libraries</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><code>lib/genie/health-checks/default-checks.yaml</code></td>
+<td>Built-in check definitions (20 checks, 4 categories)</td>
+</tr>
+<tr>
+<td><code>lib/genie/health-checks/types.ts</code></td>
+<td>TypeScript types for checks, results, reports</td>
+</tr>
+<tr>
+<td><code>lib/genie/health-checks/evaluators.ts</code></td>
+<td>11 deterministic evaluator functions</td>
+</tr>
+<tr>
+<td><code>lib/genie/health-checks/registry.ts</code></td>
+<td>YAML parser, merge logic, validation</td>
+</tr>
+<tr>
+<td><code>lib/genie/space-health-check.ts</code></td>
+<td>Scorer -- runs checks, computes scores and grades</td>
+</tr>
+<tr>
+<td><code>lib/genie/space-fixer.ts</code></td>
+<td>Fix strategy router, metadata builder, pass invocation</td>
+</tr>
+<tr>
+<td><code>lib/genie/space-cache.ts</code></td>
+<td>In-memory serialized_space cache with TTL</td>
+</tr>
+<tr>
+<td><code>lib/genie/space-metadata.ts</code></td>
+<td>Shared metadata extraction from serialized_space</td>
+</tr>
+<tr>
+<td><code>lib/genie/eval-types.ts</code></td>
+<td>Genie Eval API types (1:1 with REST API)</td>
+</tr>
+<tr>
+<td><code>lib/genie/benchmark-feedback.ts</code></td>
+<td>ScoreReason-to-check-ID mapping for fix targeting</td>
+</tr>
+<tr>
+<td><code>lib/genie/benchmark-runner.ts</code></td>
+<td>Eval run orchestrator (Genie Eval API)</td>
+</tr>
+<tr>
+<td><code>lib/dbx/genie.ts</code></td>
+<td>Databricks Genie Spaces REST API client (OBO auth for reads)</td>
+</tr>
+<tr>
+<td><code>lib/lakebase/space-health.ts</code></td>
+<td>CRUD for health scores, benchmark runs, config</td>
+</tr>
+<tr>
+<td><strong>UI Components</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><code>components/genie/health-detail-sheet.tsx</code></td>
+<td>Health report slide-out panel</td>
+</tr>
+<tr>
+<td><code>components/genie/space-config-viewer.tsx</code></td>
+<td>Read-only serialized_space accordion viewer</td>
+</tr>
+<tr>
+<td><code>components/genie/optimization-review.tsx</code></td>
+<td>Optimization review with selectable suggestions</td>
+</tr>
+<tr>
+<td><code>components/genie/space-diff-viewer.tsx</code></td>
+<td>Side-by-side current vs proposed config diff</td>
+</tr>
+<tr>
+<td><strong>Pages</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><code>app/genie/page.tsx</code></td>
+<td>Genie Spaces list with discovery, stale filtering, metadata enrichment</td>
+</tr>
+<tr>
+<td><code>app/genie/[spaceId]/page.tsx</code></td>
+<td>Space Detail hub (Overview, Configuration, Health, Benchmarks tabs)</td>
+</tr>
+<tr>
+<td><code>app/genie/[spaceId]/benchmarks/page.tsx</code></td>
+<td>Benchmark test runner with optimization review</td>
+</tr>
+<tr>
+<td><strong>API Routes</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><code>app/api/genie-spaces/route.ts</code></td>
+<td>List spaces (stale filtering) and create spaces</td>
+</tr>
+<tr>
+<td><code>app/api/genie-spaces/discover/route.ts</code></td>
+<td>Bulk discovery: metadata extraction + health scoring</td>
+</tr>
+<tr>
+<td><code>app/api/genie-spaces/[spaceId]/detail/route.ts</code></td>
+<td>Full space detail in one call</td>
+</tr>
+<tr>
+<td><code>app/api/genie-spaces/[spaceId]/health/route.ts</code></td>
+<td>Health check API</td>
+</tr>
+<tr>
+<td><code>app/api/genie-spaces/health-batch/route.ts</code></td>
+<td>Batch health check API (legacy)</td>
+</tr>
+<tr>
+<td><code>app/api/genie-spaces/health-config/route.ts</code></td>
+<td>Health config API</td>
+</tr>
+<tr>
+<td><code>app/api/genie-spaces/[spaceId]/fix/route.ts</code></td>
+<td>Fix generation API</td>
+</tr>
+<tr>
+<td><code>app/api/genie-spaces/[spaceId]/apply/route.ts</code></td>
+<td>Apply fix API</td>
+</tr>
+<tr>
+<td><code>app/api/genie-spaces/[spaceId]/clone/route.ts</code></td>
+<td>Clone space API</td>
+</tr>
+<tr>
+<td><code>app/api/genie-spaces/[spaceId]/benchmarks/route.ts</code></td>
+<td>Load benchmarks API</td>
+</tr>
+<tr>
+<td><code>app/api/genie-spaces/[spaceId]/benchmarks/run/route.ts</code></td>
+<td>Create + poll eval runs API</td>
+</tr>
+<tr>
+<td><code>app/api/genie-spaces/[spaceId]/benchmarks/feedback/route.ts</code></td>
+<td>Feedback API</td>
+</tr>
+<tr>
+<td><code>app/api/genie-spaces/[spaceId]/benchmarks/improve/route.ts</code></td>
+<td>Improve from feedback API</td>
+</tr>
+<tr>
+<td><code>app/api/genie-spaces/[spaceId]/benchmarks/history/route.ts</code></td>
+<td>Benchmark history API</td>
+</tr>
+<tr>
+<td><code>app/api/genie-spaces/[spaceId]/health-history/route.ts</code></td>
+<td>Health score trending API</td>
+</tr>
+<tr>
+<td><strong>Tests</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><code>__tests__/genie/health-checks/evaluators.test.ts</code></td>
+<td>Evaluator unit tests</td>
+</tr>
+<tr>
+<td><code>__tests__/genie/health-checks/registry.test.ts</code></td>
+<td>Registry merge logic tests</td>
+</tr>
+<tr>
+<td><code>__tests__/genie/health-checks/space-health-check.test.ts</code></td>
+<td>End-to-end scorer tests</td>
+</tr>
+<tr>
+<td><code>__tests__/genie/space-fixer.test.ts</code></td>
+<td>Fix strategy routing tests</td>
+</tr>
+<tr>
+<td><code>__tests__/genie/benchmark-feedback.test.ts</code></td>
+<td>Feedback analysis tests</td>
+</tr>
+<tr>
+<td><code>__tests__/genie/health-checks/fixtures/spaces.ts</code></td>
+<td>Test fixture spaces</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "toc.integrate"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2191 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Turn Unity Catalog metadata into business value in days, not quarters">
+      
+      
+      
+        <link rel="canonical" href="https://databricks-solutions.github.io/databricks-forge/SQL_ENGINE.html">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="images/databricks-icon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>SQL Engine -- Grounded SQL Generation & Validation - Databricks Forge</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sql-engine-grounded-sql-generation-validation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="Databricks Forge" class="md-header__button md-logo" aria-label="Databricks Forge" data-md-component="logo">
+      
+  <img src="images/databricks-icon.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Databricks Forge
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              SQL Engine -- Grounded SQL Generation &amp; Validation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/databricks-solutions/databricks-forge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    databricks-solutions/databricks-forge
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Databricks Forge" class="md-nav__button md-logo" aria-label="Databricks Forge" data-md-component="logo">
+      
+  <img src="images/databricks-icon.svg" alt="logo">
+
+    </a>
+    Databricks Forge
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/databricks-solutions/databricks-forge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    databricks-solutions/databricks-forge
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="quickstart.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="DEPLOYMENT.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="USER_GUIDE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Features
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ask-forge.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ask Forge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="BUSINESS_VALUE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Value
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="estate-analysis.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estate Intelligence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="SKILLS_KNOWLEDGE_BASE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Knowledge Base
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/SUPPORT.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/SECURITY.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/CONTRIBUTING.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release Notes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Release Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_07_21.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-07-21
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_05_26.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-26
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_05_11.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_05_02.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-02
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_04_30.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-04-30
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_04_16.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-04-16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_31.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-31
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_19.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-19
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_18.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-18
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_16.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_15.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-15
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_14.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-14
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_13.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-13
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_12.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-12
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_11.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_10.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_09.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-09
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_07.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-07
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_06.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-06
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_05.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-05
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_04.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-04
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026-02-27.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-02-27
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026-02-25.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-02-25
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="sql-engine-grounded-sql-generation-validation">SQL Engine -- Grounded SQL Generation &amp; Validation<a class="headerlink" href="#sql-engine-grounded-sql-generation-validation" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>How Databricks Forge generates, validates, and repairs LLM-produced SQL
+across every surface in the application.</p>
+</blockquote>
+<hr />
+<h2 id="1-overview-and-design-principles">1. Overview and Design Principles<a class="headerlink" href="#1-overview-and-design-principles" title="Permanent link">&para;</a></h2>
+<p>Databricks Forge generates SQL via LLM calls in <strong>10 different surfaces</strong>
+(pipeline use case SQL, dashboards, Genie spaces, the Ask Forge assistant,
+etc.). Every surface follows the same grounded generation philosophy:</p>
+<p><strong>The LLM only sees real metadata, never invents.</strong></p>
+<p>The defence-in-depth strategy is:</p>
+<ol>
+<li><strong>Prompt grounding</strong> -- inject actual table/column schemas into the prompt
+   with explicit instructions that these are the ONLY valid identifiers</li>
+<li><strong>Static column validation</strong> -- extract column references from the generated
+   SQL and check them against the known schema</li>
+<li><strong>EXPLAIN dry-run</strong> -- execute <code>EXPLAIN &lt;sql&gt;</code> against the warehouse to
+   catch runtime errors (type mismatches, ambiguous columns, missing tables)</li>
+<li><strong>Fix cycle</strong> -- if validation fails, send the SQL + error back to the LLM
+   with the correct schema for a single repair attempt</li>
+<li><strong>LLM review</strong> -- a dedicated review endpoint (<code>serving-endpoint-review</code>,
+   default <code>databricks-gpt-5-4</code>) performs multi-dimensional quality assessment
+   (correctness, performance, readability, security, Databricks idiom adherence)
+   via <code>lib/ai/sql-reviewer.ts</code>. This separates generation (creative) from
+   review (critical). When the review endpoint is configured, surfaces that
+   opt in get a post-validation review pass that can auto-fix quality issues
+   EXPLAIN cannot catch (suboptimal joins, non-idiomatic patterns, readability).
+   Feature-gated per surface via <code>isReviewEnabled()</code>.</li>
+<li><strong>Rejection</strong> -- if the fix and review both fail, reject the SQL (return null,
+   drop the dataset, or filter the expression)</li>
+</ol>
+<p>Not every surface implements all six tiers. The minimum bar is prompt
+grounding + static validation. See section 6 for the per-surface matrix.</p>
+<hr />
+<h2 id="2-metadata-sourcing">2. Metadata Sourcing<a class="headerlink" href="#2-metadata-sourcing" title="Permanent link">&para;</a></h2>
+<h3 id="where-metadata-originates">Where metadata originates<a class="headerlink" href="#where-metadata-originates" title="Permanent link">&para;</a></h3>
+<p>All metadata comes from Unity Catalog <code>information_schema</code> queries in
+<code>lib/queries/metadata.ts</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Returns</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>listTables(catalog, schema?)</code></td>
+<td><code>TableInfo[]</code></td>
+<td><code>information_schema.tables</code></td>
+</tr>
+<tr>
+<td><code>listColumns(catalog, schema?)</code></td>
+<td><code>ColumnInfo[]</code></td>
+<td><code>information_schema.columns</code></td>
+</tr>
+<tr>
+<td><code>listForeignKeys(catalog, schema?)</code></td>
+<td><code>ForeignKey[]</code></td>
+<td><code>information_schema.table_constraints</code> + <code>key_column_usage</code> + <code>constraint_column_usage</code></td>
+</tr>
+<tr>
+<td><code>listMetricViews(catalog, schema?)</code></td>
+<td><code>MetricViewInfo[]</code></td>
+<td><code>information_schema.tables</code> where <code>table_type = 'METRIC_VIEW'</code></td>
+</tr>
+<tr>
+<td><code>fetchTableInfoBatch(fqns)</code></td>
+<td><code>TableInfo[]</code></td>
+<td>Per-table <code>information_schema</code> lookup</td>
+</tr>
+<tr>
+<td><code>fetchColumnsBatch(fqns)</code></td>
+<td><code>ColumnInfo[]</code></td>
+<td>Per-table <code>information_schema.columns</code> lookup</td>
+</tr>
+</tbody>
+</table>
+<h3 id="core-types">Core types<a class="headerlink" href="#core-types" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>TableInfo     { catalog, schema, tableName, fqn, comment, tableType?, dataSourceFormat? }
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>ColumnInfo    { tableFqn, columnName, dataType, ordinalPosition, isNullable, comment? }
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>ForeignKey    { constraintName, tableFqn, columnName, referencedTableFqn, referencedColumnName }
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>MetricViewInfo { catalog, schema, name, fqn, comment? }
+</code></pre></div>
+<h3 id="metadatasnapshot">MetadataSnapshot<a class="headerlink" href="#metadatasnapshot" title="Permanent link">&para;</a></h3>
+<p>The unified container used by most consumers:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>MetadataSnapshot {
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>  tables: TableInfo[]
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>  columns: ColumnInfo[]
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>  foreignKeys: ForeignKey[]
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>  metricViews: MetricViewInfo[]
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>  schemaMarkdown: string     // pre-rendered for prompt injection
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>  tableCount, columnCount    // summary stats
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>  cachedAt: string           // ISO timestamp
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>}
+</code></pre></div>
+<h3 id="how-metadata-reaches-each-consumer">How metadata reaches each consumer<a class="headerlink" href="#how-metadata-reaches-each-consumer" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Consumer</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pipeline (SQL gen, use case gen)</td>
+<td><code>PipelineContext.metadata</code> -- built by the metadata-extraction step (step 2)</td>
+</tr>
+<tr>
+<td>Genie engine</td>
+<td><code>MetadataSnapshot</code> passed to engine, built from table-selection pass</td>
+</tr>
+<tr>
+<td>Dashboard engine</td>
+<td><code>MetadataSnapshot</code> passed to engine from pipeline context</td>
+</tr>
+<tr>
+<td>Dashboard adhoc engine</td>
+<td><code>fetchTableInfoBatch</code> + <code>fetchColumnsBatch</code> called directly</td>
+</tr>
+<tr>
+<td>Ask Forge assistant</td>
+<td><code>tableEnrichments</code> from RAG context builder (Lakebase + embedding retrieval)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-schema-injection-into-prompts">3. Schema Injection into Prompts<a class="headerlink" href="#3-schema-injection-into-prompts" title="Permanent link">&para;</a></h2>
+<h3 id="formatting-functions">Formatting functions<a class="headerlink" href="#formatting-functions" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Location</th>
+<th>Format</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>buildSchemaMarkdown(tables, columns)</code></td>
+<td><code>lib/queries/metadata.ts</code></td>
+<td><code>### catalog.schema.table -- comment</code><br><code>- columnName (TYPE) -- comment</code></td>
+<td>Pipeline SQL gen, use case gen, metadata extraction</td>
+</tr>
+<tr>
+<td><code>buildForeignKeyMarkdown(fks)</code></td>
+<td><code>lib/queries/metadata.ts</code></td>
+<td><code>- table.col -&gt; ref_table.ref_col</code></td>
+<td>Pipeline SQL gen</td>
+</tr>
+<tr>
+<td><code>buildCompactColumnsBlock(metadata)</code></td>
+<td><code>lib/genie/schema-allowlist.ts</code></td>
+<td><code>catalog.schema.table: col1, col2, col3</code></td>
+<td>Genie passes</td>
+</tr>
+<tr>
+<td><code>buildSchemaContextBlock(metadata)</code></td>
+<td><code>lib/genie/schema-allowlist.ts</code></td>
+<td><code>**table** -- comment</code><br><code>- \</code>col` (TYPE) -- comment`</td>
+<td>Genie passes</td>
+</tr>
+<tr>
+<td><code>buildColumnSchemas(columns, fqns)</code></td>
+<td><code>lib/dashboard/adhoc-engine.ts</code></td>
+<td><code>table: col1 (TYPE), col2 (TYPE)</code></td>
+<td>Adhoc dashboard</td>
+</tr>
+</tbody>
+</table>
+<h3 id="per-use-case-scoping-pipeline">Per-use-case scoping (pipeline)<a class="headerlink" href="#per-use-case-scoping-pipeline" title="Permanent link">&para;</a></h3>
+<p>In the pipeline SQL generation step, schema is scoped to each use case's
+<code>tablesInvolved</code> array. Only columns from those specific tables are injected:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>for (const fqn of uc.tablesInvolved) {
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>  const cols = columnsByTable.get(fqn) ?? [];
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>  involvedColumns.push(...cols);
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>}
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>const schemaMarkdown = buildSchemaMarkdown(involvedTables, involvedColumns);
+</code></pre></div>
+<h3 id="sample-data-injection">Sample data injection<a class="headerlink" href="#sample-data-injection" title="Permanent link">&para;</a></h3>
+<p>When <code>sampleRowsPerTable &gt; 0</code> is configured, <code>fetchSampleData()</code> in
+<code>lib/pipeline/sample-data.ts</code> queries up to N rows per table and formats them
+as markdown tables. Cell values are truncated to 60 chars. Tables without
+SELECT permission are skipped (metadata-only fallback).</p>
+<h3 id="prompt-placement">Prompt placement<a class="headerlink" href="#prompt-placement" title="Permanent link">&para;</a></h3>
+<p>The schema is injected via the <code>{directly_involved_schema}</code> template variable.
+Every SQL generation prompt includes a critical instruction block:</p>
+<blockquote>
+<p><strong>CRITICAL: The tables and columns listed above are the ONLY ones available.
+Do NOT invent, guess, or hallucinate any table or column names. If a column
+does not appear above, it does not exist.</strong></p>
+</blockquote>
+<hr />
+<h2 id="4-sql-quality-rules">4. SQL Quality Rules<a class="headerlink" href="#4-sql-quality-rules" title="Permanent link">&para;</a></h2>
+<h3 id="shared-rule-sets-libaisql-rulests">Shared rule sets (<code>lib/ai/sql-rules.ts</code>)<a class="headerlink" href="#shared-rule-sets-libaisql-rulests" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Rule set</th>
+<th>Length</th>
+<th>Used by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DATABRICKS_SQL_RULES</code></td>
+<td>Full (~40 lines)</td>
+<td>Pipeline SQL gen, pipeline SQL fix, Ask Forge assistant, dashboard design</td>
+</tr>
+<tr>
+<td><code>DATABRICKS_SQL_RULES_COMPACT</code></td>
+<td>Compact (~10 lines)</td>
+<td>Genie semantic expressions, benchmark generation, trusted assets</td>
+</tr>
+</tbody>
+</table>
+<h3 id="key-rules">Key rules<a class="headerlink" href="#key-rules" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>No MEDIAN()</strong> -- use <code>PERCENTILE_APPROX(col, 0.5)</code></li>
+<li><strong>No nested window functions</strong> -- compute in CTE first, then aggregate</li>
+<li><strong>DECIMAL(18,2)</strong> for financial/monetary calculations</li>
+<li><strong>Backtick-quote</strong> column names with spaces: <code>`Net Cash Flow`</code></li>
+<li><strong>Use names EXACTLY as in schema</strong> -- never transform to snake_case</li>
+<li><strong>Three-part table names</strong>: <code>catalog.schema.table</code></li>
+<li><strong>No AI functions in metric views</strong> -- non-deterministic and expensive</li>
+<li><strong>COLLATE UTF8_LCASE</strong> for case-insensitive comparisons</li>
+<li><strong>Filter early, aggregate late</strong></li>
+</ul>
+<hr />
+<h2 id="5-the-shared-validation-module-libvalidationsql-columnsts">5. The Shared Validation Module (<code>lib/validation/sql-columns.ts</code>)<a class="headerlink" href="#5-the-shared-validation-module-libvalidationsql-columnsts" title="Permanent link">&para;</a></h2>
+<p>This module is the single source of truth for column-reference extraction and
+validation. It consolidates logic that was previously duplicated between the
+pipeline validator and the Genie schema-allowlist.</p>
+<h3 id="exports">Exports<a class="headerlink" href="#exports" title="Permanent link">&para;</a></h3>
+<h4 id="extractcolumnreferencessql-columnreference"><code>extractColumnReferences(sql): ColumnReference[]</code><a class="headerlink" href="#extractcolumnreferencessql-columnreference" title="Permanent link">&para;</a></h4>
+<p>Extracts all <code>alias.column</code> references from SQL, both plain identifiers and
+backtick-quoted identifiers:</p>
+<ul>
+<li>Plain: <code>alias.column_name</code> via <code>/\b([a-zA-Z_]\w*)\.([a-zA-Z_]\w*)\b/g</code></li>
+<li>Quoted: <code>alias.`column with spaces`</code> via <code>/\b([a-zA-Z_]\w*)\.</code>([^<code>]+)</code>/g`</li>
+</ul>
+<p>Returns <code>{ prefix, column, position, isQuoted }</code> for each reference.</p>
+<h4 id="extractsqlaliasessql-sqlaliases"><code>extractSqlAliases(sql): SqlAliases</code><a class="headerlink" href="#extractsqlaliasessql-sqlaliases" title="Permanent link">&para;</a></h4>
+<p>Detects all SQL aliases from the backtick-stripped SQL:</p>
+<ul>
+<li><strong>Table aliases</strong>: <code>FROM/JOIN &lt;fqn&gt; [AS] &lt;alias&gt;</code></li>
+<li><strong>Column aliases</strong>: <code>AS &lt;alias&gt;</code></li>
+<li><strong>CTE names</strong>: <code>WITH cte AS (</code> and chained <code>, cte AS (</code></li>
+</ul>
+<p>Returns <code>{ tableAliases, columnAliases, cteNames, all }</code> (all as <code>Set&lt;string&gt;</code>).</p>
+<h4 id="validatecolumnreferencessql-knowncolumns-options-sqlcolumnvalidationresult"><code>validateColumnReferences(sql, knownColumns, options?): SqlColumnValidationResult</code><a class="headerlink" href="#validatecolumnreferencessql-knowncolumns-options-sqlcolumnvalidationresult" title="Permanent link">&para;</a></h4>
+<p>Core validation function. Extracts column references, filters out:</p>
+<ul>
+<li>SQL keywords (via <code>SQL_KEYWORDS</code>)</li>
+<li>FQN parts (catalog, schema, table name fragments from <code>options.tablesInvolved</code>)</li>
+<li>Known aliases and CTE names</li>
+<li>AI function return fields (when <code>options.allowAiFunctionFields</code> is true)</li>
+</ul>
+<p>Then flags any column that does not appear in <code>knownColumns</code>.</p>
+<p>Returns <code>{ valid: boolean, unknownColumns: string[], warnings: string[] }</code>.</p>
+<h4 id="ai_function_return_fields"><code>AI_FUNCTION_RETURN_FIELDS</code><a class="headerlink" href="#ai_function_return_fields" title="Permanent link">&para;</a></h4>
+<p><code>Set&lt;string&gt;</code> containing <code>"result"</code>, <code>"errormessage"</code>, <code>"parsed_result"</code>, and
+<code>"ai_result"</code> (lowercased). These are runtime struct fields and common aliases
+used with <code>ai_query()</code> when <code>failOnError =&gt; false</code>. They are not table columns
+and must be allowlisted to avoid false-positive hallucination flags.</p>
+<p>The <code>parsed_result</code> and <code>ai_result</code> entries support the recommended
+<code>from_json()</code> pattern for structured AI output (see section 9).</p>
+<h4 id="sql_keywords"><code>SQL_KEYWORDS</code><a class="headerlink" href="#sql_keywords" title="Permanent link">&para;</a></h4>
+<p>Re-exported from <code>lib/genie/schema-allowlist.ts</code>. Canonical set of ~200 SQL
+keywords used to avoid false positives (e.g. <code>t.count</code> where <code>count</code> is a
+SQL keyword, not a column name).</p>
+<hr />
+<h2 id="6-validation-tiers">6. Validation Tiers<a class="headerlink" href="#6-validation-tiers" title="Permanent link">&para;</a></h2>
+<h3 id="tier-matrix">Tier matrix<a class="headerlink" href="#tier-matrix" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Surface</th>
+<th style="text-align: center;">Prompt grounding</th>
+<th style="text-align: center;">Static column check</th>
+<th style="text-align: center;">EXPLAIN</th>
+<th style="text-align: center;">Fix cycle</th>
+<th style="text-align: center;">LLM Review</th>
+<th style="text-align: center;">Rejection</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Pipeline SQL gen</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes (LLM)</td>
+<td style="text-align: center;">Yes (opt-in)</td>
+<td style="text-align: center;">Return null</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Ask Forge assistant</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes (LLM)</td>
+<td style="text-align: center;">Yes (opt-in)</td>
+<td style="text-align: center;">Keep original</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Dashboard engine</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes (review+fix)</td>
+<td style="text-align: center;">Drop dataset</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Ad-hoc dashboard</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes (review+fix)</td>
+<td style="text-align: center;">Drop dataset</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Genie: semantic expressions</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes (batch)</td>
+<td style="text-align: center;">Filter out</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Genie: benchmarks</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes (review+fix)</td>
+<td style="text-align: center;">Filter out</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Genie: trusted assets</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes (review+fix)</td>
+<td style="text-align: center;">Filter out</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Genie: example queries</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Filter out</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Genie: join inference</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Filter out</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Genie: metric views</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes (YAML)</td>
+<td style="text-align: center;">Yes (DDL)</td>
+<td style="text-align: center;">Yes (LLM)</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Drop proposal</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Fabric: DAX-to-SQL</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes (batch)</td>
+<td style="text-align: center;">Confidence downgrade</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Genie: optimize</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes (review)</td>
+<td style="text-align: center;">Reject suggestion</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tier-1-structural-checks-pipeline-only">Tier 1: Structural checks (pipeline only)<a class="headerlink" href="#tier-1-structural-checks-pipeline-only" title="Permanent link">&para;</a></h3>
+<ul>
+<li>SQL starts with a recognised keyword (<code>--</code>, <code>WITH</code>, <code>SELECT</code>, <code>CREATE</code>, <code>FROM</code>)</li>
+<li>At least one expected table from <code>tablesInvolved</code> appears in the SQL</li>
+</ul>
+<h3 id="tier-2-static-column-validation">Tier 2: Static column validation<a class="headerlink" href="#tier-2-static-column-validation" title="Permanent link">&para;</a></h3>
+<p>Uses the shared module (<code>validateColumnReferences</code> or <code>findInvalidIdentifiers</code>
+via <code>validateSqlExpression</code>) to check that every <code>alias.column</code> reference
+exists in the known schema. Catches:</p>
+<ul>
+<li>Completely hallucinated column names</li>
+<li>Column names with typos or incorrect casing</li>
+<li>Backtick-quoted column names with spaces that don't exist</li>
+<li>AI function return fields are allowlisted to avoid false positives</li>
+</ul>
+<h3 id="tier-3-explain-dry-run">Tier 3: EXPLAIN dry-run<a class="headerlink" href="#tier-3-explain-dry-run" title="Permanent link">&para;</a></h3>
+<p><code>EXPLAIN &lt;sql&gt;</code> against the SQL Warehouse catches runtime errors that static
+analysis cannot detect:</p>
+<ul>
+<li>Type mismatches (<code>CAST</code> errors)</li>
+<li>Ambiguous column references (columns in multiple joined tables)</li>
+<li>Missing tables (tables that exist but the user has no access to)</li>
+<li>Invalid function usage</li>
+</ul>
+<p><strong>Limitation</strong>: Pipe syntax (<code>|&gt;</code>) is valid Databricks SQL but not supported
+by EXPLAIN. Queries using pipe syntax skip this tier.</p>
+<h3 id="tier-4-fix-repair-cycle">Tier 4: Fix / repair cycle<a class="headerlink" href="#tier-4-fix-repair-cycle" title="Permanent link">&para;</a></h3>
+<p>When validation fails, the SQL and error message are sent back to the LLM
+with the correct schema for a single repair attempt. See section 7.</p>
+<h3 id="tier-5-rejection">Tier 5: Rejection<a class="headerlink" href="#tier-5-rejection" title="Permanent link">&para;</a></h3>
+<p>If the fix attempt also fails, the SQL is rejected:</p>
+<ul>
+<li>Pipeline: <code>generateSqlForUseCase()</code> returns <code>null</code></li>
+<li>Dashboard: dataset is dropped from the design before assembly</li>
+<li>Genie: expression/query is filtered out of the pass output</li>
+<li>Assistant: original SQL is kept in the response (best-effort)</li>
+</ul>
+<hr />
+<h2 id="7-fix-repair-cycles">7. Fix / Repair Cycles<a class="headerlink" href="#7-fix-repair-cycles" title="Permanent link">&para;</a></h2>
+<h3 id="pipeline-fix-cycle">Pipeline fix cycle<a class="headerlink" href="#pipeline-fix-cycle" title="Permanent link">&para;</a></h3>
+<p><strong>Prompt</strong>: <code>USE_CASE_SQL_FIX_PROMPT</code> in <code>lib/ai/templates.ts</code></p>
+<p><strong>Flow</strong>:
+1. <code>validateSqlOutput()</code> detects unknown columns
+2. <code>buildColumnViolationMessage()</code> constructs a detailed error listing the
+   hallucinated columns and the valid columns per table
+3. <code>attemptSqlFix()</code> sends the original SQL + error + schema to the LLM
+4. The fix response is cleaned and re-validated
+5. If unknown columns remain, the SQL is rejected
+6. If the fix passes static validation, it's checked with EXPLAIN
+7. If EXPLAIN fails, the SQL is rejected</p>
+<p><strong>Key prompt rules</strong>:
+- Fix errors only -- do not change business logic UNLESS the error is a
+  hallucinated column
+- Removing references to non-existent columns is a valid fix -- do NOT
+  substitute with guessed alternatives
+- Use column names EXACTLY as in the schema
+- <code>DATABRICKS_SQL_RULES</code> is appended for full SQL quality guidance</p>
+<h3 id="assistant-fix-cycle">Assistant fix cycle<a class="headerlink" href="#assistant-fix-cycle" title="Permanent link">&para;</a></h3>
+<p><strong>Prompt</strong>: <code>buildSqlFixPrompt()</code> in <code>lib/assistant/sql-proposer.ts</code></p>
+<p><strong>Flow</strong>:
+1. Static pre-check via <code>validateColumnReferences()</code> catches hallucinations
+   before EXPLAIN round-trip
+2. If static check passes, <code>validateSql()</code> runs EXPLAIN
+3. If either fails with a column error, <code>buildSqlFixPrompt()</code> constructs a
+   fix prompt with the exact error and correct column schema
+4. Single fix attempt via <code>chatCompletion()</code>
+5. Fixed SQL is rechecked with EXPLAIN
+6. If the fix passes, the original SQL block in the response is replaced</p>
+<h3 id="genie-metric-view-fix-cycle">Genie metric view fix cycle<a class="headerlink" href="#genie-metric-view-fix-cycle" title="Permanent link">&para;</a></h3>
+<p><strong>Prompt</strong>: inline repair prompt in <code>lib/genie/passes/metric-view-proposals.ts</code></p>
+<p><strong>Flow</strong>:
+1. <code>validateMetricViewYaml()</code> checks column references in the YAML
+2. If invalid, <code>repairProposal()</code> sends the YAML + validation issues + schema
+   back to the LLM
+3. DDL is generated and validated with <code>executeSQL()</code> (dry run)</p>
+<hr />
+<h2 id="8-consumer-wiring-reference">8. Consumer Wiring Reference<a class="headerlink" href="#8-consumer-wiring-reference" title="Permanent link">&para;</a></h2>
+<h3 id="per-surface-summary">Per-surface summary<a class="headerlink" href="#per-surface-summary" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Surface</th>
+<th>Validation function</th>
+<th>Known-columns source</th>
+<th>Fix cycle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pipeline SQL gen</td>
+<td><code>validateColumnReferences</code></td>
+<td><code>ColumnInfo[]</code> from metadata</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Ask Forge</td>
+<td><code>validateColumnReferences</code> + <code>validateSql</code></td>
+<td><code>tableEnrichments</code></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Dashboard engine</td>
+<td><code>validateSqlExpression</code></td>
+<td><code>SchemaAllowlist</code> from <code>MetadataSnapshot</code></td>
+<td>No</td>
+</tr>
+<tr>
+<td>Ad-hoc dashboard</td>
+<td><code>validateSqlExpression</code></td>
+<td><code>SchemaAllowlist</code> from fetched metadata</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Genie passes (5)</td>
+<td><code>validateSqlExpression</code></td>
+<td><code>SchemaAllowlist</code> from <code>MetadataSnapshot</code></td>
+<td>No</td>
+</tr>
+<tr>
+<td>Genie metric views</td>
+<td><code>validateMetricViewYaml</code></td>
+<td>Column references in YAML</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<h3 id="how-to-wire-a-new-sql-generating-consumer">How to wire a new SQL-generating consumer<a class="headerlink" href="#how-to-wire-a-new-sql-generating-consumer" title="Permanent link">&para;</a></h3>
+<h4 id="step-1-source-metadata">Step 1: Source metadata<a class="headerlink" href="#step-1-source-metadata" title="Permanent link">&para;</a></h4>
+<p>Choose the metadata source that fits your consumer:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">// Option A: Full MetadataSnapshot (from pipeline or Genie context)</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">metadata</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ctx</span><span class="p">;</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1">// Option B: Fetch specific tables</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="kd">const</span><span class="w"> </span><span class="p">[</span><span class="nx">tableInfos</span><span class="p">,</span><span class="w"> </span><span class="nx">columns</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">([</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">  </span><span class="nx">fetchTableInfoBatch</span><span class="p">(</span><span class="nx">tables</span><span class="p">),</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span><span class="nx">fetchColumnsBatch</span><span class="p">(</span><span class="nx">tables</span><span class="p">),</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="p">]);</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="c1">// Option C: From assistant context</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="kd">const</span><span class="w"> </span><span class="nx">knownColumns</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Set</span><span class="p">(</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">  </span><span class="nx">context</span><span class="p">.</span><span class="nx">tableEnrichments</span><span class="p">.</span><span class="nx">flatMap</span><span class="p">((</span><span class="nx">t</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">    </span><span class="nx">t</span><span class="p">.</span><span class="nx">columns</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">c</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">name</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">())</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">  </span><span class="p">)</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="p">);</span>
+</code></pre></div>
+<h4 id="step-2-build-the-known-columns-set-or-allowlist">Step 2: Build the known-columns set or allowlist<a class="headerlink" href="#step-2-build-the-known-columns-set-or-allowlist" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">// For validateColumnReferences (flat column set)</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kd">const</span><span class="w"> </span><span class="nx">knownColumns</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Set</span><span class="p">(</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="nx">columns</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">c</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">columnName</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">())</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="p">);</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="c1">// For validateSqlExpression (structured allowlist)</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">buildSchemaAllowlist</span><span class="p">,</span><span class="w"> </span><span class="nx">validateSqlExpression</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@/lib/genie/schema-allowlist&quot;</span><span class="p">;</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="kd">const</span><span class="w"> </span><span class="nx">allowlist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">buildSchemaAllowlist</span><span class="p">(</span><span class="nx">metadata</span><span class="p">);</span>
+</code></pre></div>
+<h4 id="step-3-validate">Step 3: Validate<a class="headerlink" href="#step-3-validate" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">// Option A: Direct column validation (pipeline / assistant pattern)</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">validateColumnReferences</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@/lib/validation/sql-columns&quot;</span><span class="p">;</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">validateColumnReferences</span><span class="p">(</span><span class="nx">sql</span><span class="p">,</span><span class="w"> </span><span class="nx">knownColumns</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="nx">tablesInvolved</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;catalog.schema.table&quot;</span><span class="p">],</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span><span class="nx">allowAiFunctionFields</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="p">});</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">result</span><span class="p">.</span><span class="nx">valid</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">  </span><span class="c1">// result.unknownColumns contains the hallucinated columns</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="p">}</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="c1">// Option B: Schema allowlist validation (Genie / dashboard pattern)</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="kd">const</span><span class="w"> </span><span class="nx">isValid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">validateSqlExpression</span><span class="p">(</span><span class="nx">allowlist</span><span class="p">,</span><span class="w"> </span><span class="nx">sql</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;context:name&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">isValid</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="w">  </span><span class="c1">// SQL was logged and should be filtered out</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="p">}</span>
+</code></pre></div>
+<h4 id="step-4-handle-invalid-results">Step 4: Handle invalid results<a class="headerlink" href="#step-4-handle-invalid-results" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">// Filter pattern (dashboards / Genie)</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kd">const</span><span class="w"> </span><span class="nx">validDatasets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">datasets</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">ds</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span><span class="nx">validateSqlExpression</span><span class="p">(</span><span class="nx">allowlist</span><span class="p">,</span><span class="w"> </span><span class="nx">ds</span><span class="p">.</span><span class="nx">sql</span><span class="p">,</span><span class="w"> </span><span class="sb">`my-consumer:</span><span class="si">${</span><span class="nx">ds</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="p">);</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="c1">// Fix pattern (pipeline / assistant)</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">unknownColumns</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">fixedSql</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">attemptFix</span><span class="p">(</span><span class="nx">sql</span><span class="p">,</span><span class="w"> </span><span class="nx">result</span><span class="p">,</span><span class="w"> </span><span class="nx">schema</span><span class="p">);</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">fixedSql</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w"> </span><span class="c1">// reject</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="9-known-limitations-and-edge-cases">9. Known Limitations and Edge Cases<a class="headerlink" href="#9-known-limitations-and-edge-cases" title="Permanent link">&para;</a></h2>
+<h3 id="ai-function-return-fields-and-structured-output">AI function return fields and structured output<a class="headerlink" href="#ai-function-return-fields-and-structured-output" title="Permanent link">&para;</a></h3>
+<p><code>ai_query()</code> with <code>failOnError =&gt; false</code> returns
+<code>STRUCT&lt;result: STRING, errorMessage: STRING&gt;</code>. The <code>result</code> field is <strong>always
+STRING</strong> regardless of the <code>responseFormat</code> parameter. Attempting to access
+nested struct fields directly (e.g. <code>ai_result.result.field</code>) causes
+<code>INVALID_EXTRACT_BASE_FIELD_TYPE</code> errors.</p>
+<p><strong>Correct pattern for structured output:</strong></p>
+<ol>
+<li>Include JSON format instructions in the prompt text via CONCAT</li>
+<li>Call <code>ai_query(endpoint, prompt, modelParameters =&gt; ..., failOnError =&gt; false) AS ai_result</code></li>
+<li>Parse: <code>from_json(ai_result.result, 'STRUCT&lt;field1: TYPE, ...&gt;') AS parsed_result</code></li>
+<li>Access: <code>parsed_result.field1</code>, <code>parsed_result.field2</code>; errors: <code>ai_result.errorMessage</code></li>
+</ol>
+<p><strong>Do NOT</strong> use <code>responseFormat</code> with <code>failOnError =&gt; false</code> -- it does not
+change the result field from STRING to a nested struct.</p>
+<p>The shared validation module allowlists <code>result</code>, <code>errormessage</code>,
+<code>parsed_result</code>, and <code>ai_result</code> via <code>AI_FUNCTION_RETURN_FIELDS</code> to avoid
+false-positive hallucination flags on these runtime aliases. If new AI
+functions or parsing patterns introduce additional aliases, update this set.</p>
+<h3 id="backtick-quoted-column-names-with-spaces">Backtick-quoted column names with spaces<a class="headerlink" href="#backtick-quoted-column-names-with-spaces" title="Permanent link">&para;</a></h3>
+<p>Both the shared module and the Genie validator handle backtick-quoted columns
+(e.g. <code>alias.`Age Group`</code>). The shared module extracts these via a
+dedicated regex pass that runs on the original SQL before backtick stripping.</p>
+<h3 id="cte-computed-aliases">CTE-computed aliases<a class="headerlink" href="#cte-computed-aliases" title="Permanent link">&para;</a></h3>
+<p>When a CTE defines a computed column (e.g. <code>SUM(amount) AS total_revenue</code>),
+<code>total_revenue</code> is a valid column reference in subsequent CTEs but does NOT
+exist in the source schema. The validator treats it as a known alias (detected
+by the <code>AS &lt;alias&gt;</code> regex) and does not flag it.</p>
+<h3 id="explain-limitations">EXPLAIN limitations<a class="headerlink" href="#explain-limitations" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Pipe syntax</strong> (<code>|&gt;</code>) is valid Databricks SQL but <code>EXPLAIN</code> does not
+  support it. Queries using pipe syntax skip EXPLAIN validation.</li>
+<li><strong>Complex CTEs</strong>: EXPLAIN may not catch all column errors in deeply nested
+  CTEs where column resolution depends on runtime evaluation.</li>
+<li><strong>Permissions</strong>: EXPLAIN requires SELECT access to the referenced tables.
+  Tables the user cannot access will fail EXPLAIN even if the SQL is correct.</li>
+</ul>
+<h3 id="tables-with-no-column-metadata">Tables with no column metadata<a class="headerlink" href="#tables-with-no-column-metadata" title="Permanent link">&para;</a></h3>
+<p>If <code>tablesInvolved</code> references a table that has no entries in
+<code>metadata.columns</code> (e.g. due to permissions or information_schema gaps), the
+validator logs a warning and skips column validation for that use case. The
+schema markdown shows <code>(schema not available)</code>.</p>
+<h3 id="token-budget">Token budget<a class="headerlink" href="#token-budget" title="Permanent link">&para;</a></h3>
+<p><code>buildSchemaMarkdown</code> emits all columns for all tables with no cap. For very
+wide tables (hundreds of columns), this can consume significant prompt tokens.
+The trade-off is intentional: hiding columns caused hallucinations. If token
+limits become an issue, the solution is to reduce the number of tables per
+use case, not to cap columns.</p>
+<hr />
+<h2 id="10-diagrams">10. Diagrams<a class="headerlink" href="#10-diagrams" title="Permanent link">&para;</a></h2>
+<h3 id="metadata-flow">Metadata flow<a class="headerlink" href="#metadata-flow" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Unity Catalog information_schema
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>        │
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>        ▼
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>  listTables / listColumns / listForeignKeys / listMetricViews
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>        │
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>        ▼
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>  MetadataSnapshot { tables, columns, foreignKeys, metricViews }
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>        │
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>        ├──▶ Pipeline context (full snapshot)
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>        │       └──▶ per-use-case scoping (tablesInvolved)
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>        │               └──▶ buildSchemaMarkdown → prompt injection
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>        │
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>        ├──▶ Genie engine (full snapshot)
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>        │       └──▶ buildSchemaAllowlist → SchemaAllowlist
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>        │       └──▶ buildSchemaContextBlock → prompt injection
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>        │
+<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>        ├──▶ Dashboard engine (full snapshot or fetched)
+<a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>        │       └──▶ buildSchemaAllowlist → SchemaAllowlist
+<a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>        │
+<a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a>        └──▶ Assistant (tableEnrichments from RAG)
+<a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a>                └──▶ Set&lt;string&gt; of column names
+</code></pre></div>
+<h3 id="validation-pipeline">Validation pipeline<a class="headerlink" href="#validation-pipeline" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>  LLM generates SQL
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>        │
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>        ▼
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>  [Tier 1] Structural checks
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>  (starts with SELECT/WITH, references expected tables)
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>        │
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>        ▼
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>  [Tier 2] Static column validation
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>  (extractColumnReferences → check against knownColumns)
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>        │
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>        ├── valid ──▶ [Tier 3] EXPLAIN dry-run
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>        │                 │
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>        │                 ├── passes ──▶ ✅ Accept SQL
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>        │                 │
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>        │                 └── fails ──▶ [Tier 4] Fix cycle
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>        │                                   │
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>        │                                   ├── fix passes ──▶ ✅ Accept fixed SQL
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>        │                                   │
+<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>        │                                   └── fix fails ──▶ ❌ Reject
+<a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a>        │
+<a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a>        └── invalid ──▶ [Tier 4] Fix cycle
+<a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a>                            │
+<a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a>                            ├── fix passes + re-validates ──▶ ✅ Accept
+<a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a>                            │
+<a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a>                            └── fix fails ──▶ ❌ Reject
+</code></pre></div>
+<h3 id="consumer-wiring">Consumer wiring<a class="headerlink" href="#consumer-wiring" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>  lib/validation/sql-columns.ts (shared module)
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>  ┌─────────────────────────────────────────────┐
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>  │ extractColumnReferences (backtick-aware)     │
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>  │ extractSqlAliases (table/col/CTE aliases)    │
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>  │ validateColumnReferences (core validator)     │
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>  │ AI_FUNCTION_RETURN_FIELDS (allowlist)         │
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>  │ SQL_KEYWORDS (re-exported)                    │
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>  └──────────┬──────────────────────┬────────────┘
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>             │                      │
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>             ▼                      ▼
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>  Pipeline sql-generation.ts   Genie schema-allowlist.ts
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>  validateSqlOutput()          findInvalidIdentifiers()
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>  + fix cycle                  validateSqlExpression()
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>             │                      │
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>             │           ┌──────────┼──────────────────┐
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>             │           │          │                   │
+<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>             │           ▼          ▼                   ▼
+<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>             │    Dashboard    Genie passes (5)   Deploy validation
+<a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a>             │    engine       semantic-expressions  join-diagnostics
+<a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a>             │    adhoc-engine benchmark-generation
+<a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a>             │                 trusted-assets
+<a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a>             │                 example-query-generation
+<a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a>             │                 join-inference
+<a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a>             │
+<a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a>             ▼
+<a id="__codelineno-9-26" name="__codelineno-9-26" href="#__codelineno-9-26"></a>  Assistant engine.ts
+<a id="__codelineno-9-27" name="__codelineno-9-27" href="#__codelineno-9-27"></a>  validateColumnReferences()
+<a id="__codelineno-9-28" name="__codelineno-9-28" href="#__codelineno-9-28"></a>  + validateSql (EXPLAIN)
+<a id="__codelineno-9-29" name="__codelineno-9-29" href="#__codelineno-9-29"></a>  + fix cycle
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "toc.integrate"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

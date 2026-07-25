@@ -1,0 +1,2556 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Turn Unity Catalog metadata into business value in days, not quarters">
+      
+      
+      
+        <link rel="canonical" href="https://databricks-solutions.github.io/databricks-forge/DEMO_MODE.html">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="images/databricks-icon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>Demo Mode - Databricks Forge</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#demo-mode" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="Databricks Forge" class="md-header__button md-logo" aria-label="Databricks Forge" data-md-component="logo">
+      
+  <img src="images/databricks-icon.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Databricks Forge
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Demo Mode
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/databricks-solutions/databricks-forge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    databricks-solutions/databricks-forge
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Databricks Forge" class="md-nav__button md-logo" aria-label="Databricks Forge" data-md-component="logo">
+      
+  <img src="images/databricks-icon.svg" alt="logo">
+
+    </a>
+    Databricks Forge
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/databricks-solutions/databricks-forge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    databricks-solutions/databricks-forge
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="quickstart.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="DEPLOYMENT.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="USER_GUIDE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Features
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ask-forge.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ask Forge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="BUSINESS_VALUE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Value
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="estate-analysis.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estate Intelligence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="SKILLS_KNOWLEDGE_BASE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Knowledge Base
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/SUPPORT.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/SECURITY.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/CONTRIBUTING.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release Notes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Release Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_07_21.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-07-21
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_05_26.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-26
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_05_11.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_05_02.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-02
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_04_30.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-04-30
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_04_16.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-04-16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_31.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-31
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_19.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-19
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_18.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-18
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_16.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_15.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-15
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_14.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-14
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_13.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-13
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_12.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-12
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_11.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_10.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_09.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-09
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_07.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-07
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_06.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-06
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_05.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-05
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_04.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-04
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026-02-27.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-02-27
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026-02-25.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-02-25
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="demo-mode">Demo Mode<a class="headerlink" href="#demo-mode" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>Team guide for Field Engineering and Sales -- generate custom synthetic
+demo datasets tailored to a specific customer, industry, and business
+division.</p>
+</blockquote>
+<p>Demo Mode researches a target company using LLM-powered intelligence,
+designs a relational data model from industry outcome maps, and writes
+realistic demo data directly to Unity Catalog managed Delta tables. The
+entire workflow runs from a 6-step wizard accessible from the <strong>Demo
+Sessions</strong> sidebar entry or from <strong>Settings</strong>.</p>
+<hr />
+<h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="#enabling-demo-mode">Enabling Demo Mode</a></li>
+<li><a href="#research-presets">Research Presets</a></li>
+<li><a href="#wizard-walkthrough">Wizard Walkthrough</a></li>
+<li><a href="#demo-scope">Demo Scope</a></li>
+<li><a href="#genie-mode">Genie Mode</a></li>
+<li><a href="#customer-insight-page">Customer Insight Page</a></li>
+<li><a href="#exporting-research">Exporting Research</a></li>
+<li><a href="#after-generation">After Generation</a></li>
+<li><a href="#managing-sessions">Managing Sessions</a></li>
+<li><a href="#architecture">Architecture</a></li>
+<li><a href="#api-reference">API Reference</a></li>
+<li><a href="#troubleshooting">Troubleshooting</a></li>
+<li><a href="#file-reference">File Reference</a></li>
+</ol>
+<hr />
+<h2 id="enabling-demo-mode">Enabling Demo Mode<a class="headerlink" href="#enabling-demo-mode" title="Permanent link">&para;</a></h2>
+<p>Demo Mode is <strong>disabled by default</strong> and is now a workspace-shared runtime
+toggle persisted to Lakebase (<code>ForgeAppConfig</code> singleton). Any authenticated
+user can flip it from the Settings page; <strong>no redeploy is needed</strong>.</p>
+<h3 id="from-the-ui-preferred">From the UI (preferred)<a class="headerlink" href="#from-the-ui-preferred" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Open <strong>Settings</strong> in the sidebar.</li>
+<li>Find the <strong>Feature Flags</strong> card (between "About" and "Data Management").</li>
+<li>Toggle <strong>Demo Mode</strong> on.</li>
+<li>The page reloads and the <strong>Demo</strong> section appears in the sidebar.</li>
+</ol>
+<p>The toggle is workspace-shared, so the change becomes visible to every user
+on their next page load. Toggle events are recorded to the activity log
+(<code>app_config_updated</code>) for audit.</p>
+<h3 id="seeding-via-env-var-optional">Seeding via env var (optional)<a class="headerlink" href="#seeding-via-env-var-optional" title="Permanent link">&para;</a></h3>
+<p><code>FORGE_DEMO_MODE_ENABLED=true</code> only <strong>seeds the initial value</strong> on first
+read of the singleton row. After that the Settings UI is the source of
+truth. Use this when you want a deployment to come up with Demo Mode
+already on:</p>
+<p>Local dev — add to <code>.env.local</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>FORGE_DEMO_MODE_ENABLED=true
+</code></pre></div>
+<p>Databricks Apps deployment:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>./deploy.sh<span class="w"> </span>--enable-demo-mode
+</code></pre></div>
+<p>Combine with other flags as normal:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>./deploy.sh<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span>--warehouse<span class="w"> </span><span class="s2">&quot;My SQL Warehouse&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span>--enable-demo-mode<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span>--enable-metric-views<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span>--reasoning-endpoint-2<span class="w"> </span><span class="s2">&quot;databricks-claude-opus-4-6&quot;</span>
+</code></pre></div>
+<h3 id="verification">Verification<a class="headerlink" href="#verification" title="Permanent link">&para;</a></h3>
+<p>Once enabled (via UI or env var seed):
+- A <strong>Demo</strong> section appears in the sidebar with a "Demo Sessions" link.
+- The <strong>Settings</strong> page shows a Demo Mode card with a quick link.
+- Navigate to <code>/demo</code> to see the full sessions listing.</p>
+<p>If the section does not appear:
+- Confirm the singleton row's <code>demoModeEnabled</code> is <code>true</code> — check
+  <code>/api/health</code> (response includes <code>"demoModeEnabled": true</code>) or
+  <code>/api/settings/feature-flags</code>.
+- Hard-refresh the browser to clear cached settings state.
+- The flag is cached in process memory for 30s; in multi-pod setups the
+  toggle takes up to 30s to fully propagate (acceptable because Demo Mode
+  is a feature-visibility gate, not a security boundary).</p>
+<h3 id="disabling">Disabling<a class="headerlink" href="#disabling" title="Permanent link">&para;</a></h3>
+<p>Flip the <strong>Demo Mode</strong> toggle off in Settings. The env var is ignored
+once the singleton row exists. To force the env var to re-seed (e.g. after
+testing), use the Settings page's <strong>Data Management → Delete all data</strong>
+action, which drops <code>ForgeAppConfig</code> and lets the env var seed it again
+on next read.</p>
+<hr />
+<h2 id="research-presets">Research Presets<a class="headerlink" href="#research-presets" title="Permanent link">&para;</a></h2>
+<p>The wizard offers three research depth levels. Choose based on how much
+time you have and how polished the demo needs to be.</p>
+<table>
+<thead>
+<tr>
+<th>Preset</th>
+<th>Sources</th>
+<th>Analysis</th>
+<th>Estimated Time</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Quick</strong></td>
+<td>Website only</td>
+<td>Single synthesis pass (+ best-effort evidence-linking)</td>
+<td>25--55 s</td>
+<td>Fast standups, internal testing</td>
+</tr>
+<tr>
+<td><strong>Balanced</strong></td>
+<td>Website + investor docs</td>
+<td>Phase-1 fan-out (landscape ∥ key-quotes ∥ source-summaries) → combined strategy-narrative → Phase-5 fan-out (persona-talk-track ∥ evidence-linking)</td>
+<td>75--180 s</td>
+<td>Customer meetings with reasonable prep time</td>
+</tr>
+<tr>
+<td><strong>Full</strong></td>
+<td>Website + IR docs + uploads</td>
+<td>Phase-1 fan-out → deep-dive → data strategy → demo narrative → Phase-5 fan-out. Produces consultant-grade executive brief, 6 opportunities, 5 persona talk tracks, and a quote-backed evidence register</td>
+<td>3--5 min</td>
+<td>High-stakes executive demos, QBRs</td>
+</tr>
+</tbody>
+</table>
+<p>All presets allow industry selection from a dropdown of known industries,
+or auto-detection from website content when left as "Auto-detect". If the
+detected industry has no built-in outcome map, the engine generates one
+from scratch and persists it for reuse. If an outcome map exists but has
+no enrichment data, only the enrichment layer is generated (faster).</p>
+<hr />
+<h2 id="wizard-walkthrough">Wizard Walkthrough<a class="headerlink" href="#wizard-walkthrough" title="Permanent link">&para;</a></h2>
+<h3 id="step-1-company-info">Step 1: Company Info<a class="headerlink" href="#step-1-company-info" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Required</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Customer Name</td>
+<td>Yes</td>
+<td>e.g. "Rio Tinto", "ANZ Bank"</td>
+</tr>
+<tr>
+<td>Website URL</td>
+<td>No</td>
+<td>Scraped for company context. Division-specific subpages are also probed.</td>
+</tr>
+<tr>
+<td>Industry</td>
+<td>No</td>
+<td>Select from dropdown or leave as "Auto-detect from website".</td>
+</tr>
+<tr>
+<td>Research Depth</td>
+<td>Yes</td>
+<td>Quick / Balanced / Full (see above).</td>
+</tr>
+<tr>
+<td>Division / Scope</td>
+<td>No</td>
+<td>Narrows the demo to a business unit. See <a href="#demo-scope">Demo Scope</a>.</td>
+</tr>
+<tr>
+<td>Demo Objective</td>
+<td>No</td>
+<td>Free text describing what the demo should emphasise.</td>
+</tr>
+<tr>
+<td><strong>Genie Mode</strong></td>
+<td>No</td>
+<td>Toggle. Biases every data-engine pass toward a rich, Genie-Space-optimised schema and, after data generation, auto-deploys a Genie Space bound to <code>&lt;catalog&gt;.&lt;schema&gt;</code>. See <a href="#genie-mode">Genie Mode</a>.</td>
+</tr>
+<tr>
+<td>Additional Documents</td>
+<td>No</td>
+<td>Upload PDFs, paste strategy excerpts, annual report text. Only used in Full mode.</td>
+</tr>
+</tbody>
+</table>
+<p>Click <strong>Start Research</strong> to kick off the Research Engine.</p>
+<h3 id="step-2-research-results">Step 2: Research Results<a class="headerlink" href="#step-2-research-results" title="Permanent link">&para;</a></h3>
+<p>The wizard shows a step-by-step timeline with real-time progress:</p>
+<ul>
+<li><strong>Gathering Sources</strong> -- website scraping, IR document discovery</li>
+<li><strong>Classifying Industry</strong> -- LLM-based, closed-list industry pick from the registered v2 outcome maps (with <code>normalizeIndustryId</code> closest-match fallback). The wizard never invents or auto-generates outcome maps; missing registry coverage shows up as a server-side warning, not a per-customer LLM workaround.</li>
+<li><strong>Industry Landscape / Key Quotes / Source Summaries</strong> -- Phase-1 fan-out runs in parallel (Balanced + Full)</li>
+<li><strong>Analytical Passes</strong> -- varies by preset: Quick = 1 synthesis pass; Balanced = combined strategy-narrative; Full = deep-dive → data strategy → demo narrative</li>
+<li><strong>Persona Talk Tracks / Evidence Linking</strong> -- Phase-5 fan-out runs in parallel; the evidence-linking pass retrieves verbatim quotes from the <code>company_research</code> pgvector store to ground every <code>sourced</code> claim</li>
+</ul>
+<p>Each step shows a detail message (e.g. "Scraping https://riotinto.com -- 45K chars",
+"Classified as Manufacturing (92% confidence)").</p>
+<p>When complete, a summary card shows key stats with a <strong>View Full Insights</strong>
+button that opens the Customer Insight Page.</p>
+<h3 id="step-3-catalog-selection">Step 3: Catalog Selection<a class="headerlink" href="#step-3-catalog-selection" title="Permanent link">&para;</a></h3>
+<p>Two modes:</p>
+<ol>
+<li><strong>Browse existing</strong> -- use the Catalog Browser to select an existing
+   catalog and schema. Click a schema to select it.</li>
+<li><strong>Create new</strong> -- toggle "Create new catalog", enter a name, and click
+   <strong>Validate Permissions</strong> to pre-check access.</li>
+</ol>
+<p>Common errors and what to do:</p>
+<table>
+<thead>
+<tr>
+<th>Error</th>
+<th>Resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"You don't have permission to create catalogs"</td>
+<td>Use an existing catalog, or ask your admin to grant <code>CREATE CATALOG</code>.</td>
+</tr>
+<tr>
+<td>"Cannot create schema in this catalog"</td>
+<td>You need <code>USE CATALOG</code> + <code>CREATE SCHEMA</code> on the target catalog.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="step-4-schema-review">Step 4: Schema Review<a class="headerlink" href="#step-4-schema-review" title="Permanent link">&para;</a></h3>
+<p>Review the data assets, narratives, and nomenclature the Data Engine will
+use. This is a read-only preview.</p>
+<h3 id="step-5-generation-progress">Step 5: Generation Progress<a class="headerlink" href="#step-5-generation-progress" title="Permanent link">&para;</a></h3>
+<p>Each table shows its current phase: Pending → Generating SQL → Executing →
+Completed/Failed. Failed tables are retried up to 2 times with LLM
+review-and-fix. Table and column descriptions are applied automatically
+after each table is created.</p>
+<h3 id="step-6-complete">Step 6: Complete<a class="headerlink" href="#step-6-complete" title="Permanent link">&para;</a></h3>
+<p>Summary shows the fully qualified catalog.schema path, table/row counts,
+and suggested next steps.</p>
+<hr />
+<h2 id="demo-scope">Demo Scope<a class="headerlink" href="#demo-scope" title="Permanent link">&para;</a></h2>
+<p>Scope narrows the demo from a full enterprise view to a specific unit.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Division</strong></td>
+<td>e.g. "Aluminium Division", "Wealth Management". Focuses research on that business unit.</td>
+</tr>
+<tr>
+<td><strong>Functional Focus</strong></td>
+<td>Asset families to include (e.g. "Commercial &amp; Customer", "Operations &amp; OT").</td>
+</tr>
+<tr>
+<td><strong>Departments</strong></td>
+<td>Auto-maps to asset families. HR → Workforce, Finance → Finance &amp; Regulatory, etc.</td>
+</tr>
+<tr>
+<td><strong>Demo Objective</strong></td>
+<td>Free text that shapes the narrative design and killer moments.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="genie-mode">Genie Mode<a class="headerlink" href="#genie-mode" title="Permanent link">&para;</a></h2>
+<p>Genie Mode is a toggle on <strong>Step 1: Company Info</strong> that turns the wizard into
+a one-click <strong>"rich demo dataset + deployed Genie Space"</strong> pipeline.</p>
+<h3 id="what-genie-mode-does">What Genie Mode does<a class="headerlink" href="#what-genie-mode-does" title="Permanent link">&para;</a></h3>
+<p>When enabled, every data-engine pass is biased toward a schema that showcases
+well in Genie Spaces, and after validation the engine auto-deploys a real
+Genie Space bound to the generated <code>&lt;catalog&gt;.&lt;schema&gt;</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Surface</th>
+<th>Standard wizard</th>
+<th>Genie Mode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Row counts</td>
+<td>2K–10K per table</td>
+<td><strong>8K–50K per table</strong> (<code>DEMO_GENIE_ROW_BAND</code>)</td>
+</tr>
+<tr>
+<td>Table count</td>
+<td>8–12</td>
+<td><strong>12–18</strong> (<code>DEMO_GENIE_TABLE_BAND</code>)</td>
+</tr>
+<tr>
+<td>Schema bias</td>
+<td>Star-ish; domain coverage</td>
+<td>Strong star schema: ≥ 3 fact tables + conformed date/customer/product dimensions</td>
+</tr>
+<tr>
+<td>Column bias</td>
+<td>Domain-appropriate</td>
+<td>Extra measures (amount, qty, margin, discount) + hierarchical dims (region → country → store, category → subcategory)</td>
+</tr>
+<tr>
+<td>Narrative</td>
+<td>Talk-track / killer moments</td>
+<td>Biased toward <strong>question-answerability</strong> -- narratives map to specific Genie questions</td>
+</tr>
+<tr>
+<td>Post-validation</td>
+<td>Done</td>
+<td><strong>Pass 5: Genie Deploy</strong> runs the ad-hoc Genie Engine and creates a Genie Space</td>
+</tr>
+</tbody>
+</table>
+<h3 id="pass-5-genie-deploy">Pass 5: Genie Deploy<a class="headerlink" href="#pass-5-genie-deploy" title="Permanent link">&para;</a></h3>
+<p><code>lib/demo/data-engine/passes/genie-deploy.ts</code> runs only when <code>genieMode=true</code>
+<strong>and</strong> at least one fact table produced rows. On failure it records
+<code>genieDeployError</code> and the surrounding data-generation result is still
+returned successfully.</p>
+<p>Steps:</p>
+<ol>
+<li>Collect the fully-qualified names of every successfully-generated table</li>
+<li>Call <code>runFastGenieEngine</code> (the ad-hoc engine) with <code>qualityPreset: "balanced"</code></li>
+<li>Call <code>createGenieSpace</code> with <code>authMode: "obo"</code> -- the user's OBO token is
+   required so the space is owned by the logged-in user, not the app SP</li>
+<li>Seed <code>ForgeGenieSpaceCache</code> via <code>upsertCachedSpaces</code> +
+   <code>updateCachedSpaceDiscovery</code> so <code>/genie</code> shows the new space immediately
+   (no manual sync required)</li>
+<li>Call <code>trackGenieSpaceCreated</code> so the space appears in the Forge tracking tables</li>
+<li>Emit a <code>demo_genie_space_deployed</code> activity log entry</li>
+</ol>
+<h3 id="obo-token-requirement">OBO token requirement<a class="headerlink" href="#obo-token-requirement" title="Permanent link">&para;</a></h3>
+<p>The wizard's <code>POST /api/demo/generate</code> route captures
+<code>x-forwarded-access-token</code> at request time and threads it through
+<code>DataEngineInput.oboToken</code>. This is non-negotiable: the Genie Create /
+Conversation APIs return <code>RESOURCE_DOES_NOT_EXIST</code> when called as the service
+principal. See <code>.cursor/rules/genie-obo-auth.mdc</code> and AGENTS.md
+("Genie Conversation API MUST use OBO tokens").</p>
+<h3 id="ui-surfaces">UI surfaces<a class="headerlink" href="#ui-surfaces" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Wizard Step 1</strong> -- "Genie Mode" toggle card with sparkle icon</li>
+<li><strong>Wizard Step 5 (Generation Progress)</strong> -- progress messages prefixed with
+  <code>Genie:</code> during the deploy pass; overall progress runs 95→99% during the
+  deploy band</li>
+<li><strong>Wizard Step 6 (Complete)</strong> -- violet "Genie Space" card with
+  <strong>Open in Databricks</strong> and <strong>View in Forge</strong> buttons; "Failed" state when
+  deploy errors</li>
+<li><strong>Session detail page</strong> (<code>/demo/sessions/{id}</code>) -- same Genie Space card
+  rendered above the Data Window card for any Genie-Mode session</li>
+</ul>
+<h3 id="when-to-use-genie-mode">When to use Genie Mode<a class="headerlink" href="#when-to-use-genie-mode" title="Permanent link">&para;</a></h3>
+<p>Pick Genie Mode when the demo's hero surface is Genie. Skip it when you only
+need a schema for the discovery pipeline or environment scan -- the standard
+bands are faster (smaller row counts) and the extra Genie deploy pass adds
+~30–60 s.</p>
+<hr />
+<h2 id="customer-insight-page">Customer Insight Page<a class="headerlink" href="#customer-insight-page" title="Permanent link">&para;</a></h2>
+<p>Navigate to <code>/demo/sessions/{sessionId}</code> (or click a session row, or
+"View Full Insights" in the wizard) to see the full research output as a
+presentation-ready page.</p>
+<p>Sections (shown when data is available):</p>
+<ul>
+<li><strong>Company Overview</strong> -- stated priorities, inferred priorities, urgency signals, strategic gaps</li>
+<li><strong>SWOT Analysis</strong> -- strengths, weaknesses, opportunities, threats (4-card grid)</li>
+<li><strong>Industry Landscape</strong> -- market forces with urgency indicators, competitive dynamics, regulatory pressures</li>
+<li><strong>Key Benchmarks</strong> -- metrics, impacts, and sources in tabular form</li>
+<li><strong>Data Strategy</strong> -- matched assets with relevance scores, maturity assessment, prioritised use cases</li>
+<li><strong>Demo Flow</strong> -- numbered step-by-step talk track with transitions</li>
+<li><strong>Killer Moments</strong> -- hero cards with scenario, insight, expected reaction</li>
+<li><strong>Competitive Positioning</strong> -- competitor angles and opportunities</li>
+<li><strong>Executive Talking Points</strong> -- per-asset headlines with benchmark tie-ins</li>
+<li><strong>Data Narratives</strong> -- stories embedded in the demo data</li>
+<li><strong>Sources</strong> -- all gathered sources with type, status, and size</li>
+</ul>
+<p>Quick preset shows Data Narratives and Sources only. Balanced adds
+Industry Landscape and Strategy. Full shows all sections.</p>
+<hr />
+<h2 id="exporting-research">Exporting Research<a class="headerlink" href="#exporting-research" title="Permanent link">&para;</a></h2>
+<p>From the Customer Insight Page or the sessions table, export research as:</p>
+<ul>
+<li><strong>PPTX</strong> -- branded slide deck (10--12 slides) suitable for internal
+  prep or customer-facing presentations</li>
+<li><strong>PDF</strong> -- document-style report with the same content sections</li>
+</ul>
+<p>Both formats use Databricks Forge branding and skip sections where data
+is not available (e.g. Quick preset exports are shorter).</p>
+<p>Download URL: <code>GET /api/demo/sessions/{id}/export?format=pptx|pdf</code></p>
+<hr />
+<h2 id="after-generation">After Generation<a class="headerlink" href="#after-generation" title="Permanent link">&para;</a></h2>
+<p>The generated data lives at <code>&lt;catalog&gt;.&lt;schema&gt;</code> as managed Delta tables
+with table and column descriptions applied.</p>
+<p>Use it with any Forge feature:</p>
+<ol>
+<li><strong>Discovery Pipeline</strong> -- point a new pipeline run at the demo
+   catalog/schema.</li>
+<li><strong>Genie Studio</strong> -- create Genie Spaces from the demo schema.</li>
+<li><strong>AI/BI Dashboards</strong> -- generate executive-ready dashboards.</li>
+<li><strong>Ask Forge</strong> -- explore the demo data conversationally.</li>
+<li><strong>AI Comments</strong> -- generate catalog documentation for the demo schema.</li>
+</ol>
+<hr />
+<h2 id="managing-sessions">Managing Sessions<a class="headerlink" href="#managing-sessions" title="Permanent link">&para;</a></h2>
+<h3 id="viewing-past-sessions">Viewing Past Sessions<a class="headerlink" href="#viewing-past-sessions" title="Permanent link">&para;</a></h3>
+<p>Navigate to <code>/demo</code> (sidebar: Demo → Demo Sessions) to see all sessions
+in a table view with customer name, industry, status, catalog path, table
+and row counts, and creation date.</p>
+<h3 id="deleting-demo-data">Deleting Demo Data<a class="headerlink" href="#deleting-demo-data" title="Permanent link">&para;</a></h3>
+<p>Click the delete action on any session. This:
+1. Runs <code>DROP TABLE IF EXISTS</code> for every table created by that session
+2. Drops the schema if it's empty after table drops
+3. Deletes the <code>ForgeDemoSession</code> record from Lakebase
+4. Logs a <code>demo_cleanup</code> activity event</p>
+<p>Only tables tracked by that specific session are dropped.</p>
+<h3 id="factory-reset">Factory Reset<a class="headerlink" href="#factory-reset" title="Permanent link">&para;</a></h3>
+<p><code>Settings → Delete All Data</code> also clears all demo sessions from Lakebase
+(but does <strong>not</strong> drop Unity Catalog objects -- use per-session delete for
+that).</p>
+<hr />
+<h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>┌──────────────────────────────────────────────────────┐
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>│                  Demo Wizard (6 steps)                │
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>│   Company Info → Research → Catalog → Review → Gen   │
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>└───────────┬──────────────────────────┬───────────────┘
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>            │                          │
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>            ▼                          ▼
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>┌───────────────────────┐  ┌───────────────────────────┐
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>│    Research Engine     │  │       Data Engine          │
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>│                        │  │                           │
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>│  Pass 0: Sources       │  │  Pass 0: Narrative Design │
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>│  Pass 3.25: Industry   │  │  Pass 1: Schema Design    │
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>│  Pass 3.5: Outcome Map │  │  Pass 2: Seed Generation  │
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>│  Phase-1 fan-out:      │  │  Pass 3: Fact Generation  │
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>│   landscape ∥ quotes   │  │  Pass 4: Validation       │
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>│   ∥ source-summaries   │  │                           │
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>│  Analysis (Q/B/F)      │  │                           │
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>│  Phase-5 fan-out:      │  │                           │
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>│   persona ∥ evidence   │  │                           │
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>└───────────────────────┘  └───────────────────────────┘
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>            │                          │
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>            ▼                          ▼
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>┌───────────────────────┐  ┌───────────────────────────┐
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>│  ResearchEngineResult  │  │  Unity Catalog Delta      │
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>│  (stored in Lakebase)  │  │  Tables (direct write)    │
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>└───────────────────────┘  └───────────────────────────┘
+</code></pre></div>
+<h3 id="research-engine-passes">Research Engine Passes<a class="headerlink" href="#research-engine-passes" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Pass</th>
+<th>Name</th>
+<th>Preset</th>
+<th>Tier</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Source Collection</td>
+<td>All</td>
+<td>--</td>
+<td>Website scrape, IR discovery, doc parsing (parallel)</td>
+</tr>
+<tr>
+<td>3.25</td>
+<td>Industry Classification</td>
+<td>All (if needed)</td>
+<td>classification</td>
+<td>Auto-detect industry from sources</td>
+</tr>
+<tr>
+<td>3.5</td>
+<td>Outcome Map / Enrichment</td>
+<td>All (if needed)</td>
+<td>reasoning / generation</td>
+<td>3-case: skip if both exist, generate enrichment if outcome-only, full generation if neither</td>
+</tr>
+<tr>
+<td>4Q</td>
+<td>Quick Synthesis</td>
+<td>Quick</td>
+<td>generation</td>
+<td>Single-pass: assets + nomenclature + narratives</td>
+</tr>
+<tr>
+<td>4a</td>
+<td>Industry Landscape</td>
+<td>Balanced, Full</td>
+<td>reasoning</td>
+<td>Market forces, benchmarks, competitive dynamics (cached by <code>industryId::subVertical</code>, 24h TTL)</td>
+</tr>
+<tr>
+<td>4b</td>
+<td>Key Quotes Extraction</td>
+<td>Balanced, Full</td>
+<td>classification</td>
+<td>Pull 8--15 verbatim, executive-worthy quotes per source; dedup by normalized text</td>
+</tr>
+<tr>
+<td>4c</td>
+<td>Source Summaries</td>
+<td>Balanced, Full</td>
+<td>classification</td>
+<td>Two-sentence summary + 3 key takeaways per source for the Ingested Sources panel</td>
+</tr>
+<tr>
+<td>5B</td>
+<td>Strategy &amp; Narrative</td>
+<td>Balanced</td>
+<td>reasoning</td>
+<td>Combined strategic profile + data strategy + demo narrative + executive brief</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Company Deep-Dive</td>
+<td>Full</td>
+<td>reasoning</td>
+<td>SWOT, stated/inferred priorities, urgency signals, executive brief</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Data Strategy Mapping</td>
+<td>Full</td>
+<td>reasoning</td>
+<td>Map priorities to data assets with criticality scoring</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Demo Narrative Design</td>
+<td>Full</td>
+<td>reasoning</td>
+<td>Expanded killer moments (problem, hypothesis tree, quantified impact, discovery Qs, risk of inaction)</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Persona Talk Tracks</td>
+<td>Balanced, Full</td>
+<td>reasoning</td>
+<td>5 executive personas: provocative opening, 3 objections + responses, discovery ladder, close signal</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Evidence Linking</td>
+<td>All</td>
+<td>-- (RAG only)</td>
+<td>Retrieve verbatim quotes from <code>company_research</code> pgvector index to ground <code>sourced</code> claims; downgrade to <code>inferred</code> when no match</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tiered-evidence-model">Tiered Evidence Model<a class="headerlink" href="#tiered-evidence-model" title="Permanent link">&para;</a></h3>
+<p>Every consultant-grade output (executive brief, company profile priorities,
+killer moments, persona talk tracks) carries an <code>evidence[]</code> array where each
+item has one of three tiers:</p>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Fields</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sourced</code></td>
+<td><code>claim</code>, <code>quote</code>, <code>sourceUrl</code>, <code>sourceTitle</code></td>
+<td>Verbatim attribution from an ingested research source. Quotes are filled by the evidence-linking pass via pgvector retrieval over the <code>company_research</code> index (filtered by <code>customerName</code>).</td>
+</tr>
+<tr>
+<td><code>benchmark</code></td>
+<td><code>claim</code>, <code>benchmarkLabel</code>, <code>benchmarkRange</code></td>
+<td>Industry-standard figure (e.g. "Mining asset-utilisation 68--78%"). Produced directly by analysis passes; never linked to a customer URL.</td>
+</tr>
+<tr>
+<td><code>inferred</code></td>
+<td><code>claim</code>, <code>rationale</code></td>
+<td>Reasoned hypothesis with an explicit rationale. Claims requested as <code>sourced</code> but ungrounded by the evidence-linking pass are downgraded here.</td>
+</tr>
+</tbody>
+</table>
+<p>The Customer Insight Page renders tier counts in the summary strip
+("3s · 5b · 2i") and provides a per-tier filter on the Evidence Register.
+The PPTX and PDF exports include a dedicated Evidence Register section with
+up to 20--25 items.</p>
+<h3 id="new-result-fields">New Result Fields<a class="headerlink" href="#new-result-fields" title="Permanent link">&para;</a></h3>
+<p><code>ResearchEngineResult</code> exposes the following optional top-level fields that
+power the consultant-grade UI and exports:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Produced By</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>executiveBrief</code></td>
+<td><code>ExecutiveBrief</code></td>
+<td><code>company-deep-dive</code> (Full) or <code>strategy-and-narrative</code> (Balanced)</td>
+</tr>
+<tr>
+<td><code>personaTalkTracks</code></td>
+<td><code>PersonaTalkTrack[]</code> (5 entries)</td>
+<td><code>persona-talk-track</code> pass (Balanced + Full)</td>
+</tr>
+<tr>
+<td><code>sourceSummaries</code></td>
+<td><code>SourceSummary[]</code></td>
+<td><code>source-summaries</code> pass (Balanced + Full)</td>
+</tr>
+<tr>
+<td><code>keyQuotes</code></td>
+<td><code>KeyQuote[]</code></td>
+<td><code>key-quotes-extraction</code> pass (Balanced + Full)</td>
+</tr>
+</tbody>
+</table>
+<p>Expanded <code>KillerMoment</code> fields (emitted by <code>demo-narrative</code> for Full,
+<code>strategy-and-narrative</code> for Balanced): <code>problemStatement</code>, <code>hypothesisTree</code>,
+<code>quantifiedImpact</code> (low/mid/high + unit), <code>kpiDelta</code>, <code>riskOfInaction</code>,
+<code>discoveryQuestions</code>, <code>measureOfSuccess</code>, <code>evidence[]</code>, <code>idealBuyerPersona</code>,
+<code>timeToValue</code>.</p>
+<h3 id="source-recency-bias">Source Recency Bias<a class="headerlink" href="#source-recency-bias" title="Permanent link">&para;</a></h3>
+<p>The Research Engine biases every LLM pass toward newer material so a 2016
+annual report cannot outrank a 2024 report on pure similarity.</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Where</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Date extraction</td>
+<td><code>lib/demo/research-engine/date-extraction.ts</code></td>
+<td>Pulls <code>publishedAt</code> from sitemap <code>lastmod</code>, SEC filing dates, HTTP <code>Last-Modified</code>, HTML meta tags / JSON-LD, URL or filename year regex, and a first-500-char text-body scan. Tags a confidence: <code>high</code>, <code>medium</code>, <code>low</code>, or <code>unknown</code>.</td>
+</tr>
+<tr>
+<td>Source type</td>
+<td><code>lib/demo/types.ts</code> (<code>ResearchSource</code>)</td>
+<td>Carries <code>publishedAt</code>, <code>publishedYear</code>, and <code>dateConfidence</code> through every downstream pass.</td>
+</tr>
+<tr>
+<td>Per-pass ordering</td>
+<td><code>lib/demo/research-engine/engine.ts</code></td>
+<td>Sorts the <code>perSourceData</code> manifest by <code>recencyWeight(source) * volume</code> so the newest material wins the token budget in <code>key-quotes</code>, <code>source-summaries</code>, <code>company-deep-dive</code>, and <code>strategy-and-narrative</code>.</td>
+</tr>
+<tr>
+<td>RAG retrieval</td>
+<td><code>lib/embeddings/retriever.ts</code></td>
+<td><code>company_research</code> chunks carry <code>publishedAt</code> + <code>ttlDays=365</code> in <code>metadataJson</code>; <code>freshnessMultiplier</code> applies a graded decay (full weight within 2 years, soft decay to 0.25 by year 5).</td>
+</tr>
+<tr>
+<td>Evidence linking</td>
+<td><code>lib/demo/research-engine/passes/evidence-linking.ts</code></td>
+<td>Runs retrieval with <code>enforceSourcePriority: true</code> and a higher <code>minScore</code> of 0.58 so stale passages get downgraded to <code>inferred</code> rather than attached to a claim.</td>
+</tr>
+<tr>
+<td>Prompt guidance</td>
+<td><code>lib/demo/research-engine/prompts.ts</code></td>
+<td>Source manifests include a <code>Published: YYYY-MM-DD (confidence)</code> line, and prompts are instructed to prefer recent sources and flag anything older than 3 years as historical context.</td>
+</tr>
+<tr>
+<td>UI</td>
+<td><code>components/demo/session/source-list.tsx</code>, <code>evidence-list.tsx</code></td>
+<td>Every source and every sourced evidence chip shows the publication year. Anything older than 3 years gets a red "Stale: YYYY" badge.</td>
+</tr>
+</tbody>
+</table>
+<p>Tuning constants live in <code>lib/demo/research-engine/recency.ts</code> -- edit
+<code>RECENT_YEARS</code> / <code>HARD_FLOOR_YEARS</code> / <code>STALE_YEARS</code> there to make the bias
+stronger or weaker.</p>
+<h3 id="data-engine-passes">Data Engine Passes<a class="headerlink" href="#data-engine-passes" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Pass</th>
+<th>Name</th>
+<th>Tier</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Narrative Design</td>
+<td>reasoning</td>
+<td>Design 3--5 data stories with temporal patterns (anchored to the active <code>DemoDateWindow</code>)</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Schema Design</td>
+<td>reasoning</td>
+<td>Design dimension + fact tables from matched assets</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Seed Generation</td>
+<td>sql</td>
+<td>DDL + INSERT for dimension tables (sequential) + COMMENT ON; all timestamps inside the window</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Fact Generation</td>
+<td>sql</td>
+<td>CTAS for fact tables (concurrent) + COMMENT ON; rows distributed across the window with a bias toward the last 90 days</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Validation</td>
+<td>--</td>
+<td>Row counts, FK integrity, and <strong>date freshness</strong> probe per fact table (MIN, MAX, rows_last_90d)</td>
+</tr>
+<tr>
+<td>4b</td>
+<td>Fact Freshness Auto-Fix</td>
+<td>sql</td>
+<td>Single-shot regeneration for any fact table whose dates fall outside the window; re-validated before the engine returns</td>
+</tr>
+</tbody>
+</table>
+<h3 id="demodatewindow-rolling-fy-ytd-anchor"><code>DemoDateWindow</code> -- rolling FY + YTD anchor<a class="headerlink" href="#demodatewindow-rolling-fy-ytd-anchor" title="Permanent link">&para;</a></h3>
+<p>Every Data Engine run computes a single date window (<code>lib/demo/data-engine/date-window.ts</code>)
+that fixes the legs of all generated data in time so demos never drift into a
+stale year (the common "all data is 2024" failure mode).</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Example</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>startDate</code></td>
+<td><code>2025-01-01</code></td>
+<td>First day of the most recently completed fiscal year</td>
+</tr>
+<tr>
+<td><code>endDate</code></td>
+<td><code>2026-04-17</code></td>
+<td>Today</td>
+</tr>
+<tr>
+<td><code>dateRangeDays</code></td>
+<td><code>471</code></td>
+<td>Inclusive span of the window</td>
+</tr>
+<tr>
+<td><code>fyLabel</code></td>
+<td><code>FY2025 + YTD FY2026</code></td>
+<td>Human label shown in the session chip</td>
+</tr>
+<tr>
+<td><code>fiscalYearStartMonth</code></td>
+<td><code>1</code></td>
+<td>1-12; default January (calendar FY), overridable per session</td>
+</tr>
+</tbody>
+</table>
+<p>Safety rail: if the current fiscal year has fewer than 60 days elapsed at run
+time (see <code>MIN_CURRENT_FY_DAYS</code>), the window is extended back one additional
+FY so narratives have more than a thin stub of YTD data to work with.</p>
+<p>The window is propagated into every generation prompt via placeholders
+(<code>{start_date}</code>, <code>{end_date}</code>, <code>{fy_label}</code>, <code>{date_range_days}</code>) inside a
+shared <code>DATA RECENCY</code> block and is persisted on the session as part of
+<code>dataModelJson</code> so the session UI can render a "Data window" chip and a
+per-fact-table MIN → MAX coverage row with a <strong>Stale</strong> badge when the MAX
+falls more than 60 days behind today.</p>
+<h3 id="status-tracking">Status Tracking<a class="headerlink" href="#status-tracking" title="Permanent link">&para;</a></h3>
+<p>Both engines use in-memory <code>Map</code> for fast polling (2s intervals) with
+<code>AbortController</code> support for cancellation. Final status is persisted on
+<code>ForgeDemoSession</code> in Lakebase. Demo jobs do <strong>not</strong> write to
+<code>ForgeBackgroundJob</code> (which has an FK to <code>ForgeRun</code>).</p>
+<hr />
+<h2 id="api-reference">API Reference<a class="headerlink" href="#api-reference" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><code>/api/demo/research</code></td>
+<td>Start Research Engine (fire-and-forget)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/demo/research/status?sessionId=X</code></td>
+<td>Poll research job status</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/api/demo/generate</code></td>
+<td>Start Data Engine (fire-and-forget)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/demo/generate/status?sessionId=X</code></td>
+<td>Poll generation job status</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/api/demo/validate-catalog</code></td>
+<td>Pre-check catalog/schema permissions</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/api/demo/upload</code></td>
+<td>Upload PDF/text documents for research</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/demo/sessions</code></td>
+<td>List all demo sessions</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/demo/sessions/:id</code></td>
+<td>Session detail + research result</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td><code>/api/demo/sessions/:id</code></td>
+<td>Cleanup: DROP tables + delete session</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/demo/sessions/:id/export?format=pptx\|pdf</code></td>
+<td>Export research as PPTX or PDF</td>
+</tr>
+</tbody>
+</table>
+<p>All routes return 404 when Demo Mode is disabled (toggle in <strong>Settings → Feature Flags</strong>, or seed via <code>FORGE_DEMO_MODE_ENABLED=true</code> on first boot). The toggle itself lives at <code>/api/settings/feature-flags</code> (GET + PATCH, owned by all authenticated users).</p>
+<hr />
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<h3 id="demo-mode-is-not-enabled">"Demo mode is not enabled"<a class="headerlink" href="#demo-mode-is-not-enabled" title="Permanent link">&para;</a></h3>
+<p>All API routes return this when the feature gate is off. Open <strong>Settings
+→ Feature Flags</strong> and toggle Demo Mode on; the page reloads and the demo
+APIs become available. (No restart required — the env var only seeds the
+initial value on first boot.)</p>
+<h3 id="research-takes-too-long">Research takes too long<a class="headerlink" href="#research-takes-too-long" title="Permanent link">&para;</a></h3>
+<p>Switch to <strong>Quick</strong> preset for 20--45 second research. Full preset can
+take 2--3 minutes due to 4 sequential reasoning-tier LLM calls.</p>
+<h3 id="you-dont-have-permission-to-create-catalogs">"You don't have permission to create catalogs"<a class="headerlink" href="#you-dont-have-permission-to-create-catalogs" title="Permanent link">&para;</a></h3>
+<p>The service principal (or your PAT in local dev) needs <code>CREATE CATALOG</code>
+on the metastore. Alternatively, select an existing catalog using the
+Catalog Browser.</p>
+<h3 id="tables-fail-during-generation">Tables fail during generation<a class="headerlink" href="#tables-fail-during-generation" title="Permanent link">&para;</a></h3>
+<p>The Data Engine retries failed SQL up to 2 times using LLM review-and-fix.
+If a table still fails:
+- Check the SQL warehouse is running and not at capacity
+- The generated SQL uses Databricks-specific functions (<code>EXPLODE</code>,
+  <code>SEQUENCE</code>, <code>RAND</code>) -- ensure the warehouse supports these</p>
+<h3 id="empty-llm-response-content-finishreasonlength">"Empty LLM response content (finishReason=length)"<a class="headerlink" href="#empty-llm-response-content-finishreasonlength" title="Permanent link">&para;</a></h3>
+<p>The SQL generation model hit its output token limit. The Data Engine now
+uses the <code>sql</code> tier (routing to models with 128K output capacity) to
+prevent this. If you still see this, the table design may be too complex --
+try reducing the target row count.</p>
+<h3 id="no-industry-outcome-map-found">No industry outcome map found<a class="headerlink" href="#no-industry-outcome-map-found" title="Permanent link">&para;</a></h3>
+<p>If the target industry isn't in the built-in registry, the engine
+auto-generates one. If only the enrichment is missing, only that layer is
+generated (~30s). Full generation takes ~60-120s. Generated maps are
+persisted for reuse.</p>
+<h3 id="demo-data-looks-too-uniform">Demo data looks too uniform<a class="headerlink" href="#demo-data-looks-too-uniform" title="Permanent link">&para;</a></h3>
+<p>Ensure you're using <strong>Balanced</strong> or <strong>Full</strong> preset. Quick mode produces
+simpler narratives. Also check that you provided a website URL -- without
+it, the engine has less context for nomenclature and realistic values.</p>
+<hr />
+<h2 id="file-reference">File Reference<a class="headerlink" href="#file-reference" title="Permanent link">&para;</a></h2>
+<h3 id="core">Core<a class="headerlink" href="#core" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>lib/demo/config.ts</code></td>
+<td>Async <code>isDemoModeEnabled()</code> feature gate backed by the <code>ForgeAppConfig</code> singleton (30s in-memory cache); <code>setDemoModeEnabled()</code> + <code>invalidateDemoModeCache()</code> for the UI toggle. <code>FORGE_DEMO_MODE_ENABLED</code> env var seeds the row on first read.</td>
+</tr>
+<tr>
+<td><code>lib/demo/types.ts</code></td>
+<td>All shared types (ResearchPreset, DemoScope, TableDesign, etc.)</td>
+</tr>
+<tr>
+<td><code>lib/demo/scope.ts</code></td>
+<td>Department → asset family resolution, schema name builder</td>
+</tr>
+<tr>
+<td><code>lib/demo/cleanup.ts</code></td>
+<td>UC object cleanup (DROP TABLE/SCHEMA)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="research-engine">Research Engine<a class="headerlink" href="#research-engine" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>lib/demo/research-engine/engine.ts</code></td>
+<td><code>runResearchEngine()</code> orchestrator with parallel fan-outs (Phase-1 and Phase-5) + <code>normalizeIndustryId()</code></td>
+</tr>
+<tr>
+<td><code>lib/demo/research-engine/types.ts</code></td>
+<td>Input, deps, result, intermediate analysis types (<code>Evidence</code>, <code>ExecutiveBrief</code>, <code>PersonaTalkTrack</code>, <code>KeyQuote</code>, <code>SourceSummary</code>, expanded <code>KillerMoment</code>)</td>
+</tr>
+<tr>
+<td><code>lib/demo/research-engine/prompts.ts</code></td>
+<td>All prompt templates (incl. <code>KEY_QUOTES_PROMPT</code>, <code>SOURCE_SUMMARIES_PROMPT</code>, <code>PERSONA_TALK_TRACK_PROMPT</code>, <code>INDUSTRY_CLASSIFICATION_PROMPT</code>). The closed-list classification prompt forbids inventing new industry ids -- every customer is mapped onto one of the registered v2 industries.</td>
+</tr>
+<tr>
+<td><code>lib/demo/research-engine/engine-status.ts</code></td>
+<td>In-memory status tracking (no ForgeBackgroundJob)</td>
+</tr>
+<tr>
+<td><code>lib/demo/research-engine/industry-cache.ts</code></td>
+<td>In-memory LRU cache (24h TTL) for <code>industry-landscape</code> outputs keyed by <code>industryId::subVertical</code></td>
+</tr>
+<tr>
+<td><code>lib/demo/research-engine/passes/key-quotes.ts</code></td>
+<td><code>runKeyQuotesExtraction()</code> -- verbatim executive-worthy quote extraction</td>
+</tr>
+<tr>
+<td><code>lib/demo/research-engine/passes/source-summaries.ts</code></td>
+<td><code>runSourceSummaries()</code> -- per-source 2-sentence summary + 3 takeaways</td>
+</tr>
+<tr>
+<td><code>lib/demo/research-engine/passes/persona-talk-track.ts</code></td>
+<td><code>runPersonaTalkTrack()</code> -- 5-persona objection-handling talk tracks</td>
+</tr>
+<tr>
+<td><code>lib/demo/research-engine/passes/evidence-linking.ts</code></td>
+<td><code>runEvidenceLinking()</code> -- RAG-backed quote attachment via pgvector <code>company_research</code> index</td>
+</tr>
+<tr>
+<td><code>lib/demo/research-engine/passes/*.ts</code></td>
+<td>Other pass implementations (industry-classification, quick-synthesis, industry-landscape, company-deep-dive, data-strategy-mapping, demo-narrative). Outcome-map and enrichment auto-generation passes were removed in May 2026 -- the registry is now authoritative.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="data-engine">Data Engine<a class="headerlink" href="#data-engine" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>lib/demo/data-engine/engine.ts</code></td>
+<td><code>runDataEngine()</code> orchestrator</td>
+</tr>
+<tr>
+<td><code>lib/demo/data-engine/types.ts</code></td>
+<td>Input, deps, result types</td>
+</tr>
+<tr>
+<td><code>lib/demo/data-engine/prompts.ts</code></td>
+<td>Prompt templates for schema/SQL generation</td>
+</tr>
+<tr>
+<td><code>lib/demo/data-engine/engine-status.ts</code></td>
+<td>In-memory status tracking (no ForgeBackgroundJob)</td>
+</tr>
+<tr>
+<td><code>lib/demo/data-engine/passes/*.ts</code></td>
+<td>Individual pass implementations (with COMMENT ON after creation)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="export">Export<a class="headerlink" href="#export" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>lib/export/demo-research-pptx.ts</code></td>
+<td><code>generateDemoResearchPptx()</code> -- branded slide deck</td>
+</tr>
+<tr>
+<td><code>lib/export/demo-research-pdf.ts</code></td>
+<td><code>generateDemoResearchPdf()</code> -- document-style report</td>
+</tr>
+</tbody>
+</table>
+<h3 id="persistence">Persistence<a class="headerlink" href="#persistence" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>lib/lakebase/demo-sessions.ts</code></td>
+<td>CRUD for <code>ForgeDemoSession</code></td>
+</tr>
+<tr>
+<td><code>lib/lakebase/outcome-maps.ts</code></td>
+<td><code>getCustomEnrichment()</code>, <code>setCustomEnrichment()</code></td>
+</tr>
+<tr>
+<td><code>prisma/schema.prisma</code></td>
+<td><code>ForgeDemoSession</code> model, <code>enrichmentJson</code> on <code>ForgeOutcomeMap</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="ui">UI<a class="headerlink" href="#ui" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>app/demo/page.tsx</code></td>
+<td>Demo Sessions listing page (table, wizard launcher)</td>
+</tr>
+<tr>
+<td><code>app/demo/sessions/[sessionId]/page.tsx</code></td>
+<td>Customer Insight Page (full research view)</td>
+</tr>
+<tr>
+<td><code>components/demo/demo-wizard.tsx</code></td>
+<td>6-step wizard modal</td>
+</tr>
+<tr>
+<td><code>components/demo/demo-settings.tsx</code></td>
+<td>Settings page card (link to /demo)</td>
+</tr>
+<tr>
+<td><code>components/demo/steps/*.tsx</code></td>
+<td>Individual step components</td>
+</tr>
+<tr>
+<td><code>components/pipeline/sidebar-nav.tsx</code></td>
+<td>Demo section (conditional on <code>demoModeEnabled</code>)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="api-routes">API Routes<a class="headerlink" href="#api-routes" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>app/api/demo/research/route.ts</code></td>
+<td>Start research</td>
+</tr>
+<tr>
+<td><code>app/api/demo/generate/route.ts</code></td>
+<td>Start data generation</td>
+</tr>
+<tr>
+<td><code>app/api/demo/validate-catalog/route.ts</code></td>
+<td>Permission pre-check</td>
+</tr>
+<tr>
+<td><code>app/api/demo/upload/route.ts</code></td>
+<td>Document upload</td>
+</tr>
+<tr>
+<td><code>app/api/demo/sessions/route.ts</code></td>
+<td>List sessions</td>
+</tr>
+<tr>
+<td><code>app/api/demo/sessions/[sessionId]/route.ts</code></td>
+<td>Session detail + delete</td>
+</tr>
+<tr>
+<td><code>app/api/demo/sessions/[sessionId]/export/route.ts</code></td>
+<td>PPTX/PDF export</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "toc.integrate"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

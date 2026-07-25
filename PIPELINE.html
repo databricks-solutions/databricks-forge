@@ -1,0 +1,1820 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Turn Unity Catalog metadata into business value in days, not quarters">
+      
+      
+      
+        <link rel="canonical" href="https://databricks-solutions.github.io/databricks-forge/PIPELINE.html">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="images/databricks-icon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>Pipeline Reference - Databricks Forge</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#pipeline-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="Databricks Forge" class="md-header__button md-logo" aria-label="Databricks Forge" data-md-component="logo">
+      
+  <img src="images/databricks-icon.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Databricks Forge
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Pipeline Reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/databricks-solutions/databricks-forge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    databricks-solutions/databricks-forge
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Databricks Forge" class="md-nav__button md-logo" aria-label="Databricks Forge" data-md-component="logo">
+      
+  <img src="images/databricks-icon.svg" alt="logo">
+
+    </a>
+    Databricks Forge
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/databricks-solutions/databricks-forge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    databricks-solutions/databricks-forge
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="quickstart.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="DEPLOYMENT.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="USER_GUIDE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Features
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ask-forge.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ask Forge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="BUSINESS_VALUE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Value
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="estate-analysis.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estate Intelligence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="SKILLS_KNOWLEDGE_BASE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Knowledge Base
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/SUPPORT.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/SECURITY.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/CONTRIBUTING.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release Notes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Release Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_07_21.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-07-21
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_05_26.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-26
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_05_11.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_05_02.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-02
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_04_30.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-04-30
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_04_16.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-04-16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_31.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-31
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_19.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-19
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_18.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-18
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_16.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_15.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-15
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_14.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-14
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_13.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-13
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_12.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-12
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_11.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_10.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_09.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-09
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_07.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-07
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_06.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-06
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_05.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-05
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_04.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-04
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026-02-27.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-02-27
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026-02-25.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-02-25
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="pipeline-reference">Pipeline Reference<a class="headerlink" href="#pipeline-reference" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>Detailed reference for each pipeline step in the "Discover Usecases" flow.</p>
+</blockquote>
+<h2 id="pipeline-overview">Pipeline Overview<a class="headerlink" href="#pipeline-overview" title="Permanent link">&para;</a></h2>
+<p>The pipeline runs 10 steps. Each step:</p>
+<ul>
+<li>Receives the current pipeline state (run config + accumulated results)</li>
+<li>Executes SQL queries (metadata) and/or Model Serving calls (LLM via chat completions API)</li>
+<li>Writes results back to Lakebase</li>
+<li>Updates <code>progress_pct</code> and <code>current_step</code> on the run record</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a> [1] Business Context         (10%)
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>         │
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a> [2] Metadata Extraction      (18%)
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>         │
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a> [3] Asset Discovery          (22%)  ← optional
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>         │
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a> [4] Table Filtering          (30%)
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>         │
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a> [5] Use Case Generation      (45%)
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>         │
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a> [6] Domain Clustering        (55%)
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>         │
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a> [7] Scoring &amp; Dedup          (65%)
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>         │
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a> [8] SQL Generation           (80%)
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>         │
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a> [9] Business Value Analysis  (90%)
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>         │
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>[10] Genie Recommendations   (100%)  ← background
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>         │
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>     Dashboard Engine                 ← background (parallel with Genie)
+</code></pre></div>
+<hr />
+<h2 id="model-routing">Model Routing<a class="headerlink" href="#model-routing" title="Permanent link">&para;</a></h2>
+<p>The discovery pipeline uses a <strong>dual-endpoint strategy</strong> to balance quality and
+speed. Steps that involve creative generation or nuanced judgment run on the
+premium model (via <code>run.config.aiModel</code>), while classification and enrichment
+steps run on the fast model (via <code>getFastServingEndpoint()</code>).</p>
+<p>If the <code>serving-endpoint-fast</code> app resource is <strong>not configured</strong>, the fast
+endpoint falls back to the premium endpoint -- all behaviour is unchanged.</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Model</th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Business Context</td>
+<td><strong>Fast</strong></td>
+<td>Structured JSON output (industries, goals, priorities)</td>
+</tr>
+<tr>
+<td>2. Metadata Extraction</td>
+<td>None (SQL)</td>
+<td>Pure SQL queries against <code>information_schema</code></td>
+</tr>
+<tr>
+<td>3. Asset Discovery</td>
+<td>None (SQL/API)</td>
+<td>Discovers existing Genie Spaces, dashboards, metric views</td>
+</tr>
+<tr>
+<td>4. Table Filtering</td>
+<td><strong>Fast</strong></td>
+<td>Binary classification (business vs technical)</td>
+</tr>
+<tr>
+<td>5. Use Case Generation</td>
+<td><strong>Premium</strong></td>
+<td>Creative generation with schema grounding -- quality-critical</td>
+</tr>
+<tr>
+<td>6. Domain Clustering</td>
+<td><strong>Fast</strong></td>
+<td>Taxonomy assignment (3 sub-passes: domain, subdomain, merge)</td>
+</tr>
+<tr>
+<td>7a. Scoring</td>
+<td><strong>Premium</strong></td>
+<td>Nuanced judgment on multiple scoring dimensions</td>
+</tr>
+<tr>
+<td>7b. Dedup (per-domain)</td>
+<td><strong>Fast</strong></td>
+<td>Binary classification (keep vs remove)</td>
+</tr>
+<tr>
+<td>7c. Dedup (cross-domain)</td>
+<td><strong>Fast</strong></td>
+<td>Binary classification (keep vs remove)</td>
+</tr>
+<tr>
+<td>7d. Calibration</td>
+<td><strong>Premium</strong></td>
+<td>Global score adjustment requires contextual reasoning</td>
+</tr>
+<tr>
+<td>8. SQL Generation</td>
+<td><strong>Premium</strong></td>
+<td>SQL correctness is critical</td>
+</tr>
+<tr>
+<td>9. Business Value Analysis</td>
+<td><strong>Fast</strong></td>
+<td>Financial quantification, roadmap, synthesis, stakeholders</td>
+</tr>
+<tr>
+<td>10. Genie Engine</td>
+<td>Mixed</td>
+<td>See <a href="GENIE_ENGINE.html#model-routing">GENIE_ENGINE.md</a></td>
+</tr>
+<tr>
+<td>-- Dashboard Engine</td>
+<td><strong>Premium</strong></td>
+<td>All passes are quality-critical</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="output-language">Output Language<a class="headerlink" href="#output-language" title="Permanent link">&para;</a></h2>
+<p>The Discovery pipeline honours <code>PipelineRunConfig.outputLanguage</code> (<code>"en"</code> |
+<code>"pt-BR"</code> | <code>"es"</code>, default <code>"en"</code>). The value is sourced from the user's
+<code>aiCommentLanguage</code> setting at submission time and propagated as follows:</p>
+<ol>
+<li><strong>Comment enrichment prerequisite</strong> — before Step 4, the engine calls
+   <code>ensureCommentEnrichment(...)</code> (<code>lib/pipeline/comment-prerequisite.ts</code>),
+   which checks for a fresh AI Comment job covering the scope. The freshness
+   check now requires the job's <code>outputLanguage</code> to match the run's; otherwise
+   a new Comment Engine run is dispatched in the requested language.</li>
+<li><strong>Use case generation</strong> — Step 5 injects an <code>{output_language_directive}</code>
+   placeholder into both <code>AI_USE_CASE_GEN_PROMPT</code> and
+   <code>STATS_USE_CASE_GEN_PROMPT</code>, instructing the LLM to write the natural
+   language fields (<code>name</code>, <code>statement</code>, <code>solution</code>, <code>business_value</code>,
+   <code>beneficiary</code>, <code>sponsor</code>, <code>technical_design</code>) in the chosen language while
+   keeping technical identifiers (FQNs, AI/SQL function names, JSON keys) in
+   English.</li>
+</ol>
+<p>Other pipeline steps (table filtering, scoring, domain clustering, SQL
+generation) currently run in English regardless of <code>outputLanguage</code>; their
+prompts list <code>{output_language}</code> placeholders that are not yet wired (tracked
+under ROADMAP item #17).</p>
+<hr />
+<h2 id="step-1-business-context">Step 1: Business Context<a class="headerlink" href="#step-1-business-context" title="Permanent link">&para;</a></h2>
+<p><strong>File:</strong> <code>lib/pipeline/steps/business-context.ts</code></p>
+<p><strong>Purpose:</strong> Generate a structured business context from the organisation name
+and any user-supplied domains, priorities, or goals.</p>
+<p><strong>Prompt:</strong> <code>BUSINESS_CONTEXT_WORKER_PROMPT</code></p>
+<p><strong>Inputs:</strong>
+- <code>business_name</code> (from config)
+- <code>business_domains</code> (optional, from config)
+- <code>business_priorities</code> (from config)
+- <code>strategic_goals</code> (optional, from config)</p>
+<p><strong>Process:</strong>
+1. Call Model Serving with the business name to generate industry context
+2. Parse the JSON response (wrapped in honesty scoring)
+3. Merge LLM-generated context with user-supplied overrides
+4. Store merged context on the run record (<code>business_context</code> column)</p>
+<p><strong>Output:</strong> <code>BusinessContext</code> object with fields:
+- <code>industries</code> -- detected industries
+- <code>strategic_goals</code> -- strategic goals
+- <code>business_priorities</code> -- priorities
+- <code>strategic_initiative</code> -- key initiative
+- <code>value_chain</code> -- value chain description
+- <code>revenue_model</code> -- revenue model
+- <code>additional_context</code> -- any extra context</p>
+<p><strong>Error handling:</strong> If the Model Serving call fails, use a minimal default context built from
+the business name and user-supplied priorities.</p>
+<hr />
+<h2 id="step-2-metadata-extraction">Step 2: Metadata Extraction<a class="headerlink" href="#step-2-metadata-extraction" title="Permanent link">&para;</a></h2>
+<p><strong>File:</strong> <code>lib/pipeline/steps/metadata-extraction.ts</code></p>
+<p><strong>Purpose:</strong> Query Unity Catalog <code>information_schema</code> to extract all catalogs,
+schemas, tables, and columns for the specified UC metadata path.</p>
+<p><strong>Prompts:</strong> None (pure SQL queries)</p>
+<p><strong>Inputs:</strong>
+- <code>uc_metadata</code> (from config) -- e.g. <code>main.finance</code> or <code>catalog1,catalog2</code></p>
+<p><strong>Process:</strong>
+1. Parse the UC metadata input to determine scope (catalogs, schemas, or tables)
+2. Query <code>information_schema.schemata</code> for schemas
+3. Query <code>information_schema.tables</code> for table list
+4. Query <code>information_schema.columns</code> for column details
+5. Optionally query foreign key relationships
+6. Build schema markdown (table + column descriptions for prompts)
+7. Cache results in <code>forge_metadata_cache</code></p>
+<p><strong>Output:</strong> <code>MetadataSnapshot</code> with:
+- <code>tables</code> -- list of table FQNs
+- <code>columns</code> -- column details per table
+- <code>foreign_keys</code> -- FK relationships
+- <code>schema_markdown</code> -- formatted markdown for prompt injection
+- <code>table_count</code>, <code>column_count</code> -- counts</p>
+<p><strong>Error handling:</strong> If a catalog/schema is inaccessible, log a warning and
+continue with accessible metadata. Fail the step only if zero tables are found.</p>
+<hr />
+<h2 id="step-3-asset-discovery">Step 3: Asset Discovery<a class="headerlink" href="#step-3-asset-discovery" title="Permanent link">&para;</a></h2>
+<p><strong>File:</strong> <code>lib/pipeline/steps/asset-discovery.ts</code></p>
+<p><strong>Purpose:</strong> Discover existing Genie Spaces, dashboards, and metric views within
+the scoped catalogs and schemas. This step is optional and runs when
+<code>assetDiscoveryEnabled</code> is set in the run config.</p>
+<p><strong>Prompts:</strong> None (API + SQL queries)</p>
+<p><strong>Inputs:</strong>
+- <code>MetadataSnapshot</code> (from Step 2)</p>
+<p><strong>Process:</strong>
+1. Query workspace for existing Genie Spaces via the Genie API
+2. Query <code>information_schema</code> for metric views (<code>table_type = 'METRIC_VIEW'</code>)
+3. Discover Lakeview dashboards via the Workspace API
+4. Persist discovered assets in the pipeline context for later steps</p>
+<p><strong>Output:</strong> Discovered asset lists (Genie Spaces, dashboards, metric views)
+available to the Genie Engine and Dashboard Engine for enhancement recommendations.</p>
+<p><strong>Error handling:</strong> If discovery fails for any asset type, log a warning and
+continue with empty results. This step never blocks pipeline execution.</p>
+<hr />
+<h2 id="step-4-table-filtering">Step 4: Table Filtering<a class="headerlink" href="#step-4-table-filtering" title="Permanent link">&para;</a></h2>
+<p><strong>File:</strong> <code>lib/pipeline/steps/table-filtering.ts</code></p>
+<p><strong>Purpose:</strong> Classify tables as "business" (relevant for use cases) vs
+"technical" (system/audit tables to exclude).</p>
+<p><strong>Prompt:</strong> <code>FILTER_BUSINESS_TABLES_PROMPT</code></p>
+<p><strong>Inputs:</strong>
+- <code>business_name</code>, <code>industries</code>, <code>business_context</code> (from Step 1)
+- Table list with column summaries (from Step 2)</p>
+<p><strong>Process:</strong>
+1. Batch tables into groups (by schema or by count)
+2. For each batch, call Model Serving with table names + column summaries
+3. Parse CSV response: each row is <code>table_fqn, classification, reason</code>
+4. Filter to keep only "business" tables
+5. Update the metadata snapshot with the filtered table list</p>
+<p><strong>Output:</strong> Filtered list of business-relevant tables.</p>
+<p><strong>Error handling:</strong> If classification fails for a batch, include all tables from
+that batch (fail-open to avoid missing use cases).</p>
+<hr />
+<h2 id="step-5-use-case-generation">Step 5: Use Case Generation<a class="headerlink" href="#step-5-use-case-generation" title="Permanent link">&para;</a></h2>
+<p><strong>File:</strong> <code>lib/pipeline/steps/usecase-generation.ts</code></p>
+<p><strong>Purpose:</strong> Generate AI and statistical use cases from the filtered metadata.</p>
+<p><strong>Prompts:</strong>
+- <code>AI_USE_CASE_GEN_PROMPT</code> -- for AI-focused use cases (ai_forecast, ai_classify, etc.)
+- <code>STATS_USE_CASE_GEN_PROMPT</code> -- for statistical use cases (anomaly detection, etc.)</p>
+<p><strong>Inputs:</strong>
+- <code>business_context</code> (from Step 1)
+- <code>schema_markdown</code> with only business tables (from Step 3)
+- <code>foreign_key_relationships</code> (from Step 2)
+- <code>ai_functions_summary</code> (from AI_FUNCTIONS registry)
+- <code>statistical_functions_detailed</code> (from STATISTICAL_FUNCTIONS registry)
+- <code>output_language_directive</code> (computed from <code>run.config.outputLanguage</code>; empty for English, otherwise a "Write all natural-language fields in <language>" instruction. See <a href="#output-language">Output Language</a>.)</p>
+<p><strong>Process:</strong>
+1. Batch tables using <code>BatchOptimizer</code> logic (group by schema, respect token limits)
+2. For each batch, run AI and Stats prompts in parallel via <code>Promise.all</code>
+3. Parse CSV responses into use case objects
+4. Optionally run a second pass for transactional tables with feedback
+5. Deduplicate within batches
+6. Retry for missing table coverage (up to 3 rounds)</p>
+<p><strong>Output:</strong> Array of raw <code>UseCase</code> objects (unscored, uncategorised).</p>
+<p><strong>Error handling:</strong> Retry failed batches up to 2 times. Log and skip batches
+that fail after retries.</p>
+<hr />
+<h2 id="step-6-domain-clustering">Step 6: Domain Clustering<a class="headerlink" href="#step-6-domain-clustering" title="Permanent link">&para;</a></h2>
+<p><strong>File:</strong> <code>lib/pipeline/steps/domain-clustering.ts</code></p>
+<p><strong>Purpose:</strong> Assign each use case to a business domain and subdomain.</p>
+<p><strong>Prompts:</strong>
+- <code>DOMAIN_FINDER_PROMPT</code> -- assigns domains (3-25 one-word names)
+- <code>SUBDOMAIN_DETECTOR_PROMPT</code> -- assigns subdomains within each domain
+- <code>DOMAINS_MERGER_PROMPT</code> -- merges small domains (&lt; threshold) into larger ones</p>
+<p><strong>Inputs:</strong>
+- <code>business_name</code>, <code>industries</code>, <code>business_context</code>
+- Use cases from Step 4 (as CSV)</p>
+<p><strong>Process:</strong>
+1. Call Model Serving with all use cases to assign domains
+2. For each domain, call Model Serving to assign subdomains
+3. If any domain has fewer than the minimum cases, merge into related domains
+4. Update use case objects with domain/subdomain assignments</p>
+<p><strong>Output:</strong> Use cases with <code>domain</code> and <code>subdomain</code> fields populated.</p>
+<p><strong>Error handling:</strong> If domain assignment fails, assign all use cases to a
+"General" domain.</p>
+<hr />
+<h2 id="step-7-scoring-deduplication">Step 7: Scoring &amp; Deduplication<a class="headerlink" href="#step-7-scoring-deduplication" title="Permanent link">&para;</a></h2>
+<p><strong>File:</strong> <code>lib/pipeline/steps/scoring.ts</code></p>
+<p><strong>Purpose:</strong> Score each use case on ROI, strategic alignment, and priority, then
+remove duplicates.</p>
+<p><strong>Prompts:</strong>
+- <code>SCORE_USE_CASES_PROMPT</code> -- scores on multiple dimensions
+- <code>REVIEW_USE_CASES_PROMPT</code> -- detects and removes duplicates</p>
+<p><strong>Inputs:</strong>
+- <code>business_context</code>, <code>strategic_goals</code>, <code>business_priorities</code>
+- Domain-clustered use cases from Step 5</p>
+<p><strong>Process:</strong>
+1. For each domain, call Model Serving with use cases to score them
+2. Parse CSV response: <code>use_case_no, priority_score, feasibility_score, impact_score, overall_score</code>
+3. For each domain, call Model Serving to review and remove duplicates
+4. Re-number use case IDs with domain prefix
+5. Sort by overall_score descending
+6. Apply volume filter if total exceeds threshold (50/100/200)
+7. Persist final use cases to <code>forge_use_cases</code> table</p>
+<p><strong>Output:</strong> Scored, deduplicated, ranked use cases persisted in Lakebase.</p>
+<p><strong>Error handling:</strong> If scoring fails for a domain, assign default scores (0.5).
+If dedup fails, keep all use cases.</p>
+<hr />
+<h2 id="step-8-sql-generation">Step 8: SQL Generation<a class="headerlink" href="#step-8-sql-generation" title="Permanent link">&para;</a></h2>
+<p><strong>File:</strong> <code>lib/pipeline/steps/sql-generation.ts</code></p>
+<p><strong>Purpose:</strong> Generate bespoke SQL code for each use case, producing runnable
+Databricks SQL that demonstrates the analytical technique.</p>
+<p><strong>Prompts:</strong> <code>SQL_GENERATION_PROMPT</code></p>
+<p><strong>Inputs:</strong>
+- <code>business_context</code> (from Step 1)
+- <code>schema_markdown</code> with business tables (from Step 4)
+- Use cases with domains and scores (from Step 7)
+- Optional sample data (if data sampling is enabled)</p>
+<p><strong>Process:</strong>
+1. For each use case, call Model Serving with the use case details + schema context
+2. Stream the SQL response to reduce latency
+3. Parse and validate the generated SQL
+4. Persist <code>sql_code</code> and <code>sql_status</code> on each use case record</p>
+<p><strong>Output:</strong> Use cases with <code>sql_code</code> populated and <code>sql_status</code> set to <code>generated</code>.</p>
+<p><strong>Error handling:</strong> If SQL generation fails for a use case, set <code>sql_status</code> to <code>failed</code>
+and continue with the next use case.</p>
+<hr />
+<h2 id="step-9-business-value-analysis">Step 9: Business Value Analysis<a class="headerlink" href="#step-9-business-value-analysis" title="Permanent link">&para;</a></h2>
+<p><strong>File:</strong> <code>lib/pipeline/steps/business-value-analysis.ts</code></p>
+<p><strong>Purpose:</strong> Generate financially-grounded deliverables from scored use cases:
+dollar-range estimates, delivery roadmap, executive synthesis, and stakeholder
+profiles.</p>
+<p>See <a href="BUSINESS_VALUE.html">docs/BUSINESS_VALUE.md</a> for full documentation.</p>
+<p><strong>Prompts:</strong>
+- <code>FINANCIAL_QUANTIFICATION_PROMPT</code> -- dollar-range estimates per use case
+- <code>ROADMAP_PHASING_PROMPT</code> -- delivery timeline and effort
+- <code>EXECUTIVE_SYNTHESIS_PROMPT</code> -- board-ready findings and recommendations
+- <code>STAKEHOLDER_ANALYSIS_PROMPT</code> -- organisational impact mapping</p>
+<p><strong>Inputs:</strong>
+- <code>business_context</code> (from Step 1)
+- Scored use cases with SQL (from Steps 7-8)
+- Industry benchmarks (when available)</p>
+<p><strong>Process:</strong>
+1. Financial Quantification: estimate value for each use case (low/mid/high ranges)
+2. Roadmap Phasing: assign to Quick Wins / Foundation / Transformation phases
+3. Executive Synthesis: generate key findings, recommendations, and risks
+4. Stakeholder Analysis: map impact to roles/departments with champion flags</p>
+<p><strong>Output:</strong> <code>ForgeValueEstimate</code>, <code>ForgeRoadmapPhase</code>, executive synthesis JSON,
+and <code>ForgeStakeholderProfile</code> records persisted in Lakebase.</p>
+<p><strong>Error handling:</strong> Each pass runs independently. If any pass fails, the others
+still execute. Failed passes log warnings but do not block pipeline completion.</p>
+<hr />
+<h2 id="step-10-genie-recommendations-background">Step 10: Genie Recommendations (Background)<a class="headerlink" href="#step-10-genie-recommendations-background" title="Permanent link">&para;</a></h2>
+<p><strong>File:</strong> <code>lib/genie/engine.ts</code></p>
+<p><strong>Purpose:</strong> Generate Databricks Genie Space recommendations from the pipeline
+results. Runs in the background after Business Value Analysis completes.</p>
+<p>See <a href="GENIE_ENGINE.html">docs/GENIE_ENGINE.md</a> for full documentation of the
+Genie Engine, its configuration, LLM passes, assembler, and deployment.</p>
+<p><strong>Process:</strong>
+1. Select tables per domain using LLM-based table scoring
+2. Run up to 8 LLM passes: column intelligence, entity matching, semantic
+   expressions, trusted assets, benchmarks, metric views, sample questions,
+   text instructions
+3. Generate time-period filters and dimensions for date columns
+4. Assemble all outputs into a <code>SerializedSpace</code> v2 JSON payload
+5. Persist recommendations in <code>forge_genie_recommendations</code>
+6. User can review, edit, and deploy spaces from the Genie Workbench</p>
+<p>The Dashboard Engine also runs in the background alongside Genie, generating
+AI/BI (Lakeview) dashboard recommendations per domain. See
+<a href="DASHBOARD_ENGINE.html">docs/DASHBOARD_ENGINE.md</a> for full documentation.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "toc.integrate"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

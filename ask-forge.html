@@ -1,0 +1,3275 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Turn Unity Catalog metadata into business value in days, not quarters">
+      
+      
+      
+        <link rel="canonical" href="https://databricks-solutions.github.io/databricks-forge/ask-forge.html">
+      
+      
+        <link rel="prev" href="USER_GUIDE.html">
+      
+      
+        <link rel="next" href="BUSINESS_VALUE.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="images/databricks-icon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>Ask Forge - Databricks Forge</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ask_forgemd-conversational-data-intelligence-assistant" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="Databricks Forge" class="md-header__button md-logo" aria-label="Databricks Forge" data-md-component="logo">
+      
+  <img src="images/databricks-icon.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Databricks Forge
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Ask Forge
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/databricks-solutions/databricks-forge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    databricks-solutions/databricks-forge
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Databricks Forge" class="md-nav__button md-logo" aria-label="Databricks Forge" data-md-component="logo">
+      
+  <img src="images/databricks-icon.svg" alt="logo">
+
+    </a>
+    Databricks Forge
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/databricks-solutions/databricks-forge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    databricks-solutions/databricks-forge
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="quickstart.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="DEPLOYMENT.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="USER_GUIDE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Features
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ask Forge
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="ask-forge.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ask Forge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-capabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Capabilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#engine-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Engine Pipeline
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Engine Pipeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-intent-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Intent Classification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-context-building" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Context Building
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2: Context Building">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#strategy-1-direct-lakebase-queries-always-available" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strategy 1: Direct Lakebase Queries (always available)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strategy-2-vector-semantic-search-when-embeddings-enabled" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strategy 2: Vector Semantic Search (when embeddings enabled)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table-reference-extraction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table Reference Extraction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table-enrichment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table Enrichment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#context-merge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context Merge
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-prompt-construction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Prompt Construction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-llm-streaming" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: LLM Streaming
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-post-processing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Post-Processing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 5: Post-Processing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sql-block-extraction-libassistantsql-proposerts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SQL Block Extraction (lib/assistant/sql-proposer.ts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dashboard-intent-extraction-libassistantdashboard-proposerts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dashboard Intent Extraction (lib/assistant/dashboard-proposer.ts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#existing-dashboard-lookup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Existing Dashboard Lookup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#genie-space-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Genie Space Routing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-action-building" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6: Action Building
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-7-interaction-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 7: Interaction Logging
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Endpoints
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#post-apiassistant" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/assistant
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiassistantfeedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/assistant/feedback
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiassistantconversations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/assistant/conversations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiassistantconversations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/assistant/conversations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiassistantconversationsconversationid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/assistant/conversations/[conversationId]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#patch-apiassistantconversationsconversationid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PATCH /api/assistant/conversations/[conversationId]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-apiassistantconversationsconversationid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DELETE /api/assistant/conversations/[conversationId]
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frontend-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend Components
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Frontend Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#page-layout-appask-forgepagetsx-ask-forge-contenttsx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Page Layout (app/ask-forge/page.tsx + ask-forge-content.tsx)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conversationhistory-componentsassistantconversation-historytsx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ConversationHistory (components/assistant/conversation-history.tsx)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#askforgechat-componentsassistantask-forge-chattsx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AskForgeChat (components/assistant/ask-forge-chat.tsx)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#askforgecontextpanel-componentsassistantask-forge-context-paneltsx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AskForgeContextPanel (components/assistant/ask-forge-context-panel.tsx)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#answerstream-componentsassistantanswer-streamtsx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AnswerStream (components/assistant/answer-stream.tsx)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sourcecardlist-sourcecard-componentsassistantsource-cardtsx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SourceCardList / SourceCard (components/assistant/source-card.tsx)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actioncardlist-actioncard-componentsassistantaction-cardtsx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ActionCardList / ActionCard (components/assistant/action-card.tsx)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sqlrunner-componentsassistantsql-runnertsx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SqlRunner (components/assistant/sql-runner.tsx)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sqldialog-componentsassistantsql-dialogtsx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SqlDialog (components/assistant/sql-dialog.tsx)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deployoptions-componentsassistantdeploy-optionstsx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DeployOptions (components/assistant/deploy-options.tsx)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deploydashboarddialog-componentsassistantdeploy-dashboard-dialogtsx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DeployDashboardDialog (components/assistant/deploy-dashboard-dialog.tsx)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#embeddingstatus-componentsassistantembedding-statustsx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EmbeddingStatus (components/assistant/embedding-status.tsx)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#erdmodal-componentsassistanterd-modaltsx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ErdModal (components/assistant/erd-modal.tsx)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#askforgepanel-componentsassistantask-forge-paneltsx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AskForgePanel (components/assistant/ask-forge-panel.tsx)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Flow
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Flow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#question-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question Lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conversation-persistence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conversation Persistence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#in-flight-conversation-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In-Flight Conversation Memory
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#embedding-rag-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Embedding / RAG Pipeline
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File Inventory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File Inventory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backend-libassistant" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend (lib/assistant/)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backend-api-routes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend (API routes)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backend-persistence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend (persistence)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontend-componentsassistant" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend (components/assistant/)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontend-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend (page)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="BUSINESS_VALUE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Value
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="estate-analysis.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estate Intelligence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="SKILLS_KNOWLEDGE_BASE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Knowledge Base
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/SUPPORT.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/SECURITY.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/CONTRIBUTING.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release Notes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Release Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_07_21.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-07-21
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_05_26.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-26
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_05_11.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_05_02.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-02
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_04_30.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-04-30
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_04_16.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-04-16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_31.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-31
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_19.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-19
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_18.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-18
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_16.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_15.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-15
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_14.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-14
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_13.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-13
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_12.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-12
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_11.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_10.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_09.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-09
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_07.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-07
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_06.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-06
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_05.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-05
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_04.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-04
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026-02-27.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-02-27
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026-02-25.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-02-25
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="ask_forgemd-conversational-data-intelligence-assistant">ASK_FORGE.md -- Conversational Data Intelligence Assistant<a class="headerlink" href="#ask_forgemd-conversational-data-intelligence-assistant" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>Complete specification of the Ask Forge feature: a conversational AI assistant
+that answers questions about the user's Unity Catalog data estate, proposes SQL,
+and enables one-click deployment of notebooks, dashboards, and Genie Spaces.</p>
+</blockquote>
+<hr />
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>Ask Forge is a RAG-powered conversational assistant embedded in Databricks Forge.
+Users ask natural-language questions about their data estate and receive grounded
+answers enriched with real metadata, executable SQL, lineage context, and
+actionable deployment options. Every response cites its sources and is traceable
+back to the vector store chunks that informed it.</p>
+<h3 id="key-capabilities">Key Capabilities<a class="headerlink" href="#key-capabilities" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Answer business and technical questions grounded in actual Unity Catalog metadata</li>
+<li>Propose SQL using only real table/column names from the user's estate</li>
+<li>Classify user intent to tailor response strategy and available actions</li>
+<li>Surface table health, lineage, PII, governance, and freshness alongside answers</li>
+<li>One-click actions: run SQL, deploy notebooks, create dashboards, launch Genie Spaces</li>
+<li>Dual-strategy context pipeline: direct Lakebase queries + vector semantic search</li>
+<li>Full interaction logging with thumbs up/down feedback for continuous improvement</li>
+<li>Keyboard shortcut (Cmd+J / Ctrl+J) for instant access from anywhere in the app</li>
+</ul>
+<hr />
+<h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>┌──────────────────────────────────────────────────────────────────────────┐
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│                  /ask-forge (Page → dynamic import, ssr: false)          │
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>│  ┌──────────────┐ ┌───────────────────────┐ ┌────────────────────────┐  │
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│  │ Conversation  │ │    AskForgeChat        │ │  AskForgeContextPanel  │  │
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│  │ History       │ │  • Message thread      │ │  • Referenced tables   │  │
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│  │ (sidebar)     │ │  • SSE streaming       │ │  • Health / lineage    │  │
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│  │  • Per-user   │ │  • Action cards        │ │  • Expandable sources  │  │
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│  │  • Rename     │ │  • Source citations     │ │  • AI insight fallback │  │
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│  │  • Delete     │ │  • Feedback buttons    │ │  • ERD viewer          │  │
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>│  │  • Date groups│ │  • react-markdown GFM  │ │  • &quot;Ask about table&quot;   │  │
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>│  └──────┬───────┘ └────────────┬───────────┘ └────────────────────────┘  │
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>│         │                      │                                         │
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>│   GET/POST /api/assistant/conversations    POST /api/assistant (SSE)     │
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>│         │                      │                                         │
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>│  ┌──────▼──────────────────────▼─────────┐                               │
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>│  │         Assistant Engine               │                               │
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>│  │  1. classifyIntent()                  │───► Fast model (JSON mode)     │
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>│  │  2. buildAssistantContext()           │───► Lakebase + pgvector RAG    │
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>│  │  3. buildAssistantMessages            │───► System + user prompts      │
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>│  │  4. chatCompletionStream()            │───► Premium model (streaming)  │
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>│  │  5. extractSqlBlocks()                │                                │
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>│  │  6. extractDashboardIntent            │                                │
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>│  │  7. buildActions()                    │                                │
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>│  │  8. createAssistantLog()              │───► Lakebase persistence       │
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>│  │  9. createConversation() (first msg)  │───► Lakebase persistence       │
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>│  └───────────────────────────────────────┘                               │
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>└──────────────────────────────────────────────────────────────────────────┘
+</code></pre></div>
+<hr />
+<h2 id="engine-pipeline">Engine Pipeline<a class="headerlink" href="#engine-pipeline" title="Permanent link">&para;</a></h2>
+<p>The assistant engine (<code>lib/assistant/engine.ts</code>) orchestrates a sequential
+pipeline for every user question:</p>
+<h3 id="step-1-intent-classification">Step 1: Intent Classification<a class="headerlink" href="#step-1-intent-classification" title="Permanent link">&para;</a></h3>
+<p><strong>Module:</strong> <code>lib/assistant/intent.ts</code></p>
+<p>Classifies the user's question into one of five intents using the fast serving
+endpoint (low-latency model). The intent determines RAG scope, response
+strategy, and available actions.</p>
+<table>
+<thead>
+<tr>
+<th>Intent</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>business</code></td>
+<td>Business value, KPIs, metrics, analytics</td>
+<td>"How can I calculate Customer Lifetime Value?"</td>
+</tr>
+<tr>
+<td><code>technical</code></td>
+<td>Data quality, health, maintenance, governance</td>
+<td>"Which tables haven't run OPTIMIZE?"</td>
+</tr>
+<tr>
+<td><code>dashboard</code></td>
+<td>Visualisation, charts, trends, comparisons</td>
+<td>"Show me revenue trends by region"</td>
+</tr>
+<tr>
+<td><code>navigation</code></td>
+<td>Finding specific entities (tables, use cases)</td>
+<td>"Find customer tables"</td>
+</tr>
+<tr>
+<td><code>exploration</code></td>
+<td>Open-ended investigation of the estate</td>
+<td>"What PII risks exist in Finance?"</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Classification flow:</strong></p>
+<ol>
+<li>Send the question to <code>getFastServingEndpoint()</code> with the intent system prompt</li>
+<li>Parse the JSON response: <code>{ intent, confidence, reasoning }</code></li>
+<li>Validate the intent is one of the five allowed values</li>
+<li>On failure (LLM error, invalid JSON, endpoint unavailable), fall back to
+   <code>heuristicClassify()</code> which uses regex patterns:</li>
+<li>Dashboard patterns: <code>show me</code>, <code>chart</code>, <code>trend</code>, <code>visualize</code>, <code>compare...by</code></li>
+<li>Technical patterns: <code>optimize</code>, <code>vacuum</code>, <code>health</code>, <code>pii</code>, <code>governance</code></li>
+<li>Navigation patterns: <code>find</code>, <code>where is</code>, <code>show the</code>, <code>navigate</code></li>
+<li>Business patterns: <code>calculate</code>, <code>kpi</code>, <code>metric</code>, <code>revenue</code>, <code>forecast</code></li>
+<li>Default: <code>exploration</code> at 0.5 confidence</li>
+</ol>
+<h3 id="step-2-context-building">Step 2: Context Building<a class="headerlink" href="#step-2-context-building" title="Permanent link">&para;</a></h3>
+<p><strong>Module:</strong> <code>lib/assistant/context-builder.ts</code></p>
+<p>Builds a rich context payload using a dual-strategy pipeline. Both strategies
+run independently and their results are merged before LLM injection.</p>
+<h4 id="strategy-1-direct-lakebase-queries-always-available">Strategy 1: Direct Lakebase Queries (always available)<a class="headerlink" href="#strategy-1-direct-lakebase-queries-always-available" title="Permanent link">&para;</a></h4>
+<p>Fetches structured context directly from the database, independent of the
+embedding/vector search system:</p>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Source Table</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Business Context</td>
+<td><code>ForgeRun</code> (latest completed)</td>
+<td>Organisation name, business context, priorities, strategic goals, domains</td>
+</tr>
+<tr>
+<td>Estate Summary</td>
+<td><code>ForgeEnvironmentScan</code> (latest)</td>
+<td>Table count, domain count, PII table count, avg governance score, lineage edges, data product count</td>
+</tr>
+<tr>
+<td>Deployed Assets</td>
+<td><code>ForgeDashboard</code> + <code>ForgeGenieSpace</code></td>
+<td>Up to 20 dashboards and 20 Genie Spaces (title, domain)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="strategy-2-vector-semantic-search-when-embeddings-enabled">Strategy 2: Vector Semantic Search (when embeddings enabled)<a class="headerlink" href="#strategy-2-vector-semantic-search-when-embeddings-enabled" title="Permanent link">&para;</a></h4>
+<p>Uses pgvector cosine similarity to retrieve the most relevant knowledge chunks:</p>
+<ul>
+<li><strong>Embedding model:</strong> <code>databricks-qwen3-embedding-0-6b</code> (1024-dim vectors)</li>
+<li><strong>Top K:</strong> 15 chunks</li>
+<li><strong>Min score:</strong> 0.35 cosine similarity</li>
+<li><strong>Scope routing:</strong> Technical intents scope to <code>estate</code> kinds; others search all kinds</li>
+<li><strong>12 embedding kinds:</strong> <code>table_detail</code>, <code>column_profile</code>, <code>table_health</code>,
+  <code>lineage_context</code>, <code>environment_insight</code>, <code>data_product</code>, <code>use_case</code>,
+  <code>business_context</code>, <code>genie_recommendation</code>, <code>genie_question</code>, <code>outcome_map</code>,
+  <code>document_chunk</code></li>
+</ul>
+<h4 id="table-reference-extraction">Table Reference Extraction<a class="headerlink" href="#table-reference-extraction" title="Permanent link">&para;</a></h4>
+<p>After RAG retrieval, the engine extracts fully-qualified table names (FQNs) from
+the retrieved chunks using multiple strategies:</p>
+<ol>
+<li>Direct FQN kinds where <code>sourceId</code> is the FQN (<code>table_detail</code>, <code>column_profile</code>, <code>table_health</code>)</li>
+<li>Metadata fields: <code>tableFqn</code>, <code>source</code>, <code>target</code>, <code>tables[]</code></li>
+<li>Fallback: regex scan for three-part identifiers (<code>catalog.schema.table</code>) in estate-scoped chunk content</li>
+</ol>
+<p>Up to 20 table FQNs are extracted per response.</p>
+<h4 id="table-enrichment">Table Enrichment<a class="headerlink" href="#table-enrichment" title="Permanent link">&para;</a></h4>
+<p>For each extracted table FQN, the engine fetches deep metadata from Lakebase:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Owner, size, row count, format</td>
+<td><code>ForgeTableDetail</code></td>
+</tr>
+<tr>
+<td>Domain, tier, created by</td>
+<td><code>ForgeTableDetail</code></td>
+</tr>
+<tr>
+<td>Health score, issues, recommendations</td>
+<td><code>ForgeTableHistorySummary</code></td>
+</tr>
+<tr>
+<td>Last write timestamp/operation</td>
+<td><code>ForgeTableHistorySummary</code></td>
+</tr>
+<tr>
+<td>Upstream/downstream tables</td>
+<td><code>ForgeTableLineage</code></td>
+</tr>
+</tbody>
+</table>
+<p>Enrichments are formatted as structured markdown and appended to the LLM context,
+then also sent to the frontend for the context panel.</p>
+<h4 id="context-merge">Context Merge<a class="headerlink" href="#context-merge" title="Permanent link">&para;</a></h4>
+<p>The final context string is assembled in order:</p>
+<ol>
+<li>Direct Lakebase context (business + estate + deployed assets)</li>
+<li>RAG-retrieved context (formatted with provenance labels)</li>
+<li>Table enrichment metadata for referenced tables</li>
+</ol>
+<h3 id="step-3-prompt-construction">Step 3: Prompt Construction<a class="headerlink" href="#step-3-prompt-construction" title="Permanent link">&para;</a></h3>
+<p><strong>Module:</strong> <code>lib/assistant/prompts.ts</code></p>
+<p>Builds the system and user messages for the LLM.</p>
+<p><strong>System prompt</strong> defines the Forge persona with strict grounding rules:</p>
+<ul>
+<li>Never assume or invent table/column names</li>
+<li>Never say "assuming you have X" -- only reference what exists in the context</li>
+<li>Use ONLY real FQNs from the retrieved context in SQL proposals</li>
+<li>Follow <code>DATABRICKS_SQL_RULES</code> for all SQL generation</li>
+<li>Cite sources using <code>[1]</code>, <code>[2]</code> markers</li>
+<li>Structure responses: Direct Answer, What We Know, Technical Implementation, What's Missing, Recommended Actions</li>
+</ul>
+<p><strong>User message</strong> is constructed from the template:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>## Retrieved Context
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>{ragContext}
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>## Conversation History
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>{conversationHistory}
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>## User Question
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>{question}
+</code></pre></div>
+<p>Conversation history includes the last 10 turns, each truncated to 500 characters.</p>
+<h3 id="step-4-llm-streaming">Step 4: LLM Streaming<a class="headerlink" href="#step-4-llm-streaming" title="Permanent link">&para;</a></h3>
+<p>The engine calls <code>chatCompletionStream()</code> with:</p>
+<ul>
+<li><strong>Endpoint:</strong> Premium serving endpoint (<code>getServingEndpoint()</code>)</li>
+<li><strong>Temperature:</strong> 0.3</li>
+<li><strong>Max tokens:</strong> 4,096</li>
+<li><strong>Streaming:</strong> <code>onChunk</code> callback fires for each content delta</li>
+</ul>
+<p>Each chunk is immediately forwarded to the client via SSE for real-time display.</p>
+<h3 id="step-5-post-processing">Step 5: Post-Processing<a class="headerlink" href="#step-5-post-processing" title="Permanent link">&para;</a></h3>
+<p>After the stream completes, the engine extracts structured data from the response:</p>
+<h4 id="sql-block-extraction-libassistantsql-proposerts">SQL Block Extraction (<code>lib/assistant/sql-proposer.ts</code>)<a class="headerlink" href="#sql-block-extraction-libassistantsql-proposerts" title="Permanent link">&para;</a></h4>
+<p>Regex-extracts all <code>```sql ... ```</code> code blocks from the markdown response.
+The first SQL block becomes the primary actionable query.</p>
+<h4 id="dashboard-intent-extraction-libassistantdashboard-proposerts">Dashboard Intent Extraction (<code>lib/assistant/dashboard-proposer.ts</code>)<a class="headerlink" href="#dashboard-intent-extraction-libassistantdashboard-proposerts" title="Permanent link">&para;</a></h4>
+<p>Detects dashboard-related keywords (chart, widget, visualisation, trend) and
+extracts:</p>
+<ul>
+<li>Table FQNs referenced in backticks</li>
+<li>Widget descriptions from bullet-point lists containing dashboard-related terms</li>
+<li>Returns a <code>DashboardProposal</code> with title, description, tables, and widget descriptions</li>
+</ul>
+<h4 id="existing-dashboard-lookup">Existing Dashboard Lookup<a class="headerlink" href="#existing-dashboard-lookup" title="Permanent link">&para;</a></h4>
+<p>When the intent is <code>dashboard</code>, the engine queries <code>ForgeDashboardRecommendation</code>
+for the 5 most recent recommendations to avoid duplicate creation.</p>
+<h4 id="genie-space-routing">Genie Space Routing<a class="headerlink" href="#genie-space-routing" title="Permanent link">&para;</a></h4>
+<p>When embeddings are enabled, performs a high-confidence vector search
+(min score 0.7) across <code>genie_recommendation</code> and <code>genie_question</code> kinds to
+find an existing Genie Space that could answer the user's question directly.</p>
+<h3 id="step-6-action-building">Step 6: Action Building<a class="headerlink" href="#step-6-action-building" title="Permanent link">&para;</a></h3>
+<p>The engine constructs context-aware action cards based on what was extracted:</p>
+<table>
+<thead>
+<tr>
+<th>Condition</th>
+<th>Actions Generated</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SQL blocks found</td>
+<td><strong>Run this SQL</strong>, <strong>Deploy as Notebook</strong></td>
+</tr>
+<tr>
+<td>SQL + dashboard intent</td>
+<td><strong>Deploy as Dashboard</strong></td>
+</tr>
+<tr>
+<td>Dashboard intent, no SQL</td>
+<td><strong>Create Dashboard</strong></td>
+</tr>
+<tr>
+<td>Table FQNs found</td>
+<td><strong>View N Referenced Tables</strong></td>
+</tr>
+<tr>
+<td>2+ table FQNs</td>
+<td><strong>View ERD</strong></td>
+</tr>
+<tr>
+<td>Table FQNs found</td>
+<td><strong>Create Genie Space</strong></td>
+</tr>
+<tr>
+<td>High-confidence Genie match</td>
+<td><strong>Ask Genie: {Space Title}</strong> (prepended to top)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="step-7-interaction-logging">Step 7: Interaction Logging<a class="headerlink" href="#step-7-interaction-logging" title="Permanent link">&para;</a></h3>
+<p><strong>Module:</strong> <code>lib/lakebase/assistant-log.ts</code></p>
+<p>Every interaction is persisted to the <code>ForgeAssistantLog</code> table:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sessionId</code></td>
+<td>Client-generated UUID per browser session</td>
+</tr>
+<tr>
+<td><code>question</code></td>
+<td>The user's question</td>
+</tr>
+<tr>
+<td><code>intent</code> / <code>intentConfidence</code></td>
+<td>Classified intent and confidence score</td>
+</tr>
+<tr>
+<td><code>ragChunkIds</code></td>
+<td>JSON array of source IDs used in RAG retrieval</td>
+</tr>
+<tr>
+<td><code>response</code></td>
+<td>Full assistant answer text</td>
+</tr>
+<tr>
+<td><code>sqlGenerated</code></td>
+<td>First SQL block (if any)</td>
+</tr>
+<tr>
+<td><code>durationMs</code></td>
+<td>Total pipeline duration</td>
+</tr>
+<tr>
+<td><code>promptTokens</code> / <code>completionTokens</code> / <code>totalTokens</code></td>
+<td>Token usage</td>
+</tr>
+<tr>
+<td><code>feedbackRating</code></td>
+<td>Thumbs up/down (updated later via feedback endpoint)</td>
+</tr>
+<tr>
+<td><code>feedbackText</code></td>
+<td>Optional feedback text</td>
+</tr>
+<tr>
+<td><code>sqlExecuted</code> / <code>sqlResult</code></td>
+<td>Whether the user ran the SQL and the outcome</td>
+</tr>
+<tr>
+<td><code>actionsTaken</code></td>
+<td>JSON array of actions the user clicked</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="api-endpoints">API Endpoints<a class="headerlink" href="#api-endpoints" title="Permanent link">&para;</a></h2>
+<h3 id="post-apiassistant">POST /api/assistant<a class="headerlink" href="#post-apiassistant" title="Permanent link">&para;</a></h3>
+<p><strong>File:</strong> <code>app/api/assistant/route.ts</code></p>
+<p>Streaming conversational AI endpoint. Returns an SSE stream.</p>
+<p><strong>Request body:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">&quot;question&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;How can I calculate Customer Lifetime Value?&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">&quot;history&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;user&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;assistant&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="p">],</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="nt">&quot;sessionId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uuid&quot;</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">}</span>
+</code></pre></div>
+<p><strong>SSE events:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Event Type</th>
+<th>Payload</th>
+<th>Timing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>chunk</code></td>
+<td><code>{ type: "chunk", content: "..." }</code></td>
+<td>During LLM streaming</td>
+</tr>
+<tr>
+<td><code>done</code></td>
+<td><code>{ type: "done", answer, intent, sources, actions, tables, tableEnrichments, sqlBlocks, dashboardProposal, existingDashboards, tokenUsage, durationMs, logId }</code></td>
+<td>After completion</td>
+</tr>
+<tr>
+<td><code>error</code></td>
+<td><code>{ type: "error", error: "..." }</code></td>
+<td>On failure</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Configuration:</strong> <code>runtime: "nodejs"</code>, <code>maxDuration: 120</code> seconds.</p>
+<h3 id="post-apiassistantfeedback">POST /api/assistant/feedback<a class="headerlink" href="#post-apiassistantfeedback" title="Permanent link">&para;</a></h3>
+<p><strong>File:</strong> <code>app/api/assistant/feedback/route.ts</code></p>
+<p>Submits feedback for a specific assistant response.</p>
+<p><strong>Request body:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">&quot;logId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uuid&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nt">&quot;rating&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;up&quot;</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="s2">&quot;down&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;optional feedback text&quot;</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="p">}</span>
+</code></pre></div>
+<p>Updates the <code>ForgeAssistantLog</code> entry with the rating.</p>
+<h3 id="get-apiassistantconversations">GET /api/assistant/conversations<a class="headerlink" href="#get-apiassistantconversations" title="Permanent link">&para;</a></h3>
+<p><strong>File:</strong> <code>app/api/assistant/conversations/route.ts</code></p>
+<p>Lists conversations for the authenticated user.</p>
+<p><strong>Response:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="p">{</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">&quot;conversations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uuid&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;sessionId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uuid&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;createdAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;updatedAt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="p">],</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span><span class="nt">&quot;authenticated&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="p">}</span>
+</code></pre></div>
+<p>Returns <code>{ conversations: [], authenticated: false }</code> when no user identity.</p>
+<h3 id="post-apiassistantconversations">POST /api/assistant/conversations<a class="headerlink" href="#post-apiassistantconversations" title="Permanent link">&para;</a></h3>
+<p>Creates a new conversation. Used by the SSE endpoint on first message.</p>
+<h3 id="get-apiassistantconversationsconversationid">GET /api/assistant/conversations/[conversationId]<a class="headerlink" href="#get-apiassistantconversationsconversationid" title="Permanent link">&para;</a></h3>
+<p><strong>File:</strong> <code>app/api/assistant/conversations/[conversationId]/route.ts</code></p>
+<p>Loads a conversation with all its <code>ForgeAssistantLog</code> messages. Verifies
+user ownership.</p>
+<h3 id="patch-apiassistantconversationsconversationid">PATCH /api/assistant/conversations/[conversationId]<a class="headerlink" href="#patch-apiassistantconversationsconversationid" title="Permanent link">&para;</a></h3>
+<p>Renames a conversation. Body: <code>{ title: "New title" }</code>.</p>
+<h3 id="delete-apiassistantconversationsconversationid">DELETE /api/assistant/conversations/[conversationId]<a class="headerlink" href="#delete-apiassistantconversationsconversationid" title="Permanent link">&para;</a></h3>
+<p>Deletes a conversation and all its <code>ForgeAssistantLog</code> entries. Verifies
+user ownership.</p>
+<hr />
+<h2 id="frontend-components">Frontend Components<a class="headerlink" href="#frontend-components" title="Permanent link">&para;</a></h2>
+<h3 id="page-layout-appask-forgepagetsx-ask-forge-contenttsx">Page Layout (<code>app/ask-forge/page.tsx</code> + <code>ask-forge-content.tsx</code>)<a class="headerlink" href="#page-layout-appask-forgepagetsx-ask-forge-contenttsx" title="Permanent link">&para;</a></h3>
+<p>The page entry point is a thin <code>"use client"</code> shell that dynamically imports
+<code>AskForgeContent</code> with <code>ssr: false</code> to avoid <code>navigator is not defined</code> errors
+during Next.js prerendering.</p>
+<p>Three-panel layout occupying the full viewport below the navigation bar:</p>
+<ul>
+<li><strong>Left sidebar (collapsible):</strong> <code>ConversationHistory</code> -- per-user chat history</li>
+<li><strong>Center panel (flexible width):</strong> <code>AskForgeChat</code> -- the conversation thread</li>
+<li><strong>Right panel (400px, desktop only):</strong> <code>AskForgeContextPanel</code> -- live metadata</li>
+</ul>
+<p>Above the panels, <code>EmbeddingStatus</code> shows the knowledge base health.</p>
+<p>Overlay dialogs:
+- <code>SqlDialog</code> -- opens when "Run this SQL" is clicked
+- <code>DeployOptions</code> modal -- opens when "Deploy as Notebook" is clicked
+- <code>DeployDashboardDialog</code> -- opens when "Deploy as Dashboard" is clicked</p>
+<p>Table details are fetched lazily via <code>GET /api/environment/table/{fqn}</code> when
+the assistant references tables (up to 10 concurrent requests). An AbortController
+cancels in-flight detail requests when the user switches conversations.</p>
+<h3 id="conversationhistory-componentsassistantconversation-historytsx">ConversationHistory (<code>components/assistant/conversation-history.tsx</code>)<a class="headerlink" href="#conversationhistory-componentsassistantconversation-historytsx" title="Permanent link">&para;</a></h3>
+<p>ChatGPT-style history sidebar showing the current user's conversations:</p>
+<ul>
+<li>Fetches from <code>GET /api/assistant/conversations</code> (per-user, most recent first)</li>
+<li>Groups conversations by date: Today, Yesterday, Last 7 Days, Last 30 Days, Older</li>
+<li><strong>New Conversation</strong> button resets the chat to a fresh session</li>
+<li>Click a conversation to load its messages via <code>GET /api/assistant/conversations/[id]</code></li>
+<li>Inline rename (pencil icon) via <code>PATCH /api/assistant/conversations/[id]</code></li>
+<li>Delete with confirmation via <code>DELETE /api/assistant/conversations/[id]</code></li>
+<li>Collapsible: chevron button toggles between full sidebar and icon-only strip</li>
+<li>Only shown when <code>authenticated: true</code> from the conversations API</li>
+<li>Auto-refreshes when the chat creates a new conversation (<code>historyRefreshKey</code>)</li>
+</ul>
+<h3 id="askforgechat-componentsassistantask-forge-chattsx">AskForgeChat (<code>components/assistant/ask-forge-chat.tsx</code>)<a class="headerlink" href="#askforgechat-componentsassistantask-forge-chattsx" title="Permanent link">&para;</a></h3>
+<p>The core chat component. Supports two render modes:</p>
+<ul>
+<li><strong><code>full</code></strong> -- spacious layout with max-width constraint (used on the dedicated page)</li>
+<li><strong><code>compact</code></strong> -- tighter layout for embedding in sheets or sidebars</li>
+</ul>
+<p><strong>Features:</strong>
+- Conversation message thread with user/assistant avatars
+- Real-time streaming with blinking cursor indicator
+- Intent badge displayed above each assistant response
+- Suggested starter questions (CLV, PII, revenue trends, data quality)
+- Clear conversation button (invokes <code>onClear</code> to start a new session in the parent)
+- Feedback thumbs up/down on each response (persisted via <code>/api/assistant/feedback</code>)
+- External <code>sessionId</code> prop ties the component to a specific conversation
+- <code>initialMessages</code> prop hydrates messages when loading a saved conversation
+- <code>onConversationCreated</code> callback fired when the backend creates a new conversation
+- Imperative handle (<code>AskForgeChatHandle</code>) for programmatic question submission</p>
+<p><strong>SSE parsing:</strong> Reads the response stream line-by-line, parsing <code>data:</code> prefixed
+JSON events. Content chunks are appended in real-time; the <code>done</code> event finalises
+the message with sources, actions, intent, and enrichments.</p>
+<p><strong>Action routing:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Action Type</th>
+<th>Behaviour</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>run_sql</code></td>
+<td>Opens SQL dialog (full mode) or inline runner (compact)</td>
+</tr>
+<tr>
+<td><code>deploy_notebook</code></td>
+<td>Opens deploy options modal or inline form</td>
+</tr>
+<tr>
+<td><code>deploy_dashboard</code></td>
+<td>Opens dashboard deploy dialog, generates + deploys via ad-hoc engine</td>
+</tr>
+<tr>
+<td><code>view_tables</code></td>
+<td>Navigates to table detail or environment tables page</td>
+</tr>
+<tr>
+<td><code>view_erd</code></td>
+<td>Navigates to environment ERD tab</td>
+</tr>
+<tr>
+<td><code>create_genie_space</code></td>
+<td>Navigates to <code>/metadata-genie</code></td>
+</tr>
+<tr>
+<td><code>start_discovery</code></td>
+<td>Navigates to <code>/configure</code></td>
+</tr>
+<tr>
+<td><code>view_run</code></td>
+<td>Navigates to <code>/runs/{runId}</code></td>
+</tr>
+<tr>
+<td><code>ask_genie</code></td>
+<td>Opens Genie Space URL in new tab</td>
+</tr>
+<tr>
+<td><code>export_report</code></td>
+<td>Navigates to environment overview</td>
+</tr>
+</tbody>
+</table>
+<p><strong>SQL error recovery:</strong> When SQL execution fails, the "Ask Forge to fix" button
+pre-fills the input with the SQL and error message, creating a conversational
+fix loop.</p>
+<h3 id="askforgecontextpanel-componentsassistantask-forge-context-paneltsx">AskForgeContextPanel (<code>components/assistant/ask-forge-context-panel.tsx</code>)<a class="headerlink" href="#askforgecontextpanel-componentsassistantask-forge-context-paneltsx" title="Permanent link">&para;</a></h3>
+<p>Side panel that displays rich metadata for all tables referenced in the
+assistant's response.</p>
+<p><strong>Sections:</strong></p>
+<ol>
+<li><strong>Referenced Tables</strong> -- expandable <code>RichTableCard</code> for each table</li>
+<li><strong>Lineage</strong> -- upstream/downstream summary per table</li>
+<li><strong>Sources</strong> -- RAG source cards with kind labels and similarity scores</li>
+<li><strong>ERD button</strong> -- opens full-screen ERD modal when 2+ tables are referenced</li>
+</ol>
+<p><strong>RichTableCard</strong> shows:</p>
+<table>
+<thead>
+<tr>
+<th>Always Visible</th>
+<th>Expanded Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Table name (linked), schema path</td>
+<td>Full description</td>
+</tr>
+<tr>
+<td>Health score badge (colour-coded)</td>
+<td>Owner, size, governance score</td>
+</tr>
+<tr>
+<td>Domain/tier, row count, freshness</td>
+<td>Last write timestamp and operation</td>
+</tr>
+<tr>
+<td>PII column count</td>
+<td>Write/merge counts, streaming status</td>
+</tr>
+<tr>
+<td>Sensitivity badge</td>
+<td>Column list (first 12, with PII highlighted)</td>
+</tr>
+<tr>
+<td></td>
+<td>Data quality issues (first 3)</td>
+</tr>
+<tr>
+<td></td>
+<td>Related use cases (first 4, with scores)</td>
+</tr>
+<tr>
+<td></td>
+<td>LLM-generated insights (first 3, severity-coded)</td>
+</tr>
+<tr>
+<td></td>
+<td>"Ask Forge about this table" button</td>
+</tr>
+</tbody>
+</table>
+<h3 id="answerstream-componentsassistantanswer-streamtsx">AnswerStream (<code>components/assistant/answer-stream.tsx</code>)<a class="headerlink" href="#answerstream-componentsassistantanswer-streamtsx" title="Permanent link">&para;</a></h3>
+<p>Renders the assistant's markdown response in real-time with a blinking cursor
+animation during streaming. Uses <code>react-markdown</code> with <code>remark-gfm</code> for full
+GitHub Flavored Markdown support:</p>
+<ul>
+<li>GFM tables with styled headers and compact cells</li>
+<li>Fenced code blocks with <code>SyntaxHighlighter</code> and copy button</li>
+<li>Inline code with muted background</li>
+<li>Headers (h1-h4) with proper spacing</li>
+<li>Bold, italic, strikethrough, links</li>
+<li>Citation markers <code>[1]</code> injected as styled superscript spans before markdown parsing</li>
+<li>Ordered and unordered lists</li>
+<li>Blockquotes</li>
+<li>Tailwind Typography (<code>prose</code>) classes for consistent styling</li>
+</ul>
+<p>Auto-scrolls to keep the latest content visible. The <code>@tailwindcss/typography</code>
+plugin is enabled in <code>globals.css</code>.</p>
+<h3 id="sourcecardlist-sourcecard-componentsassistantsource-cardtsx">SourceCardList / SourceCard (<code>components/assistant/source-card.tsx</code>)<a class="headerlink" href="#sourcecardlist-sourcecard-componentsassistantsource-cardtsx" title="Permanent link">&para;</a></h3>
+<p>Expandable cards showing the RAG sources that informed the response:</p>
+<ul>
+<li>Numbered index matching citation markers in the answer text</li>
+<li>Kind-specific icon (table, column, health, lineage, insight, etc.)</li>
+<li>Provenance badge: <strong>Platform</strong> (verified metadata), <strong>Insight</strong> (AI-generated
+  estate intelligence), <strong>Generated</strong> (pipeline outputs), <strong>Uploaded</strong> (user
+  documents), <strong>Template</strong> (outcome maps)</li>
+<li>Cosine similarity score as percentage</li>
+<li>Expandable detail: full label text and metadata key-value pairs</li>
+<li>Shows first 3 sources by default, "Show all" toggle for more</li>
+</ul>
+<h3 id="actioncardlist-actioncard-componentsassistantaction-cardtsx">ActionCardList / ActionCard (<code>components/assistant/action-card.tsx</code>)<a class="headerlink" href="#actioncardlist-actioncard-componentsassistantaction-cardtsx" title="Permanent link">&para;</a></h3>
+<p>Horizontally wrapped action buttons with type-specific icons and styling:</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Icon</th>
+<th>Style</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>run_sql</code></td>
+<td>Play</td>
+<td>Primary (filled)</td>
+</tr>
+<tr>
+<td><code>deploy_notebook</code></td>
+<td>BookOpen</td>
+<td>Outline</td>
+</tr>
+<tr>
+<td><code>deploy_dashboard</code></td>
+<td>LayoutDashboard</td>
+<td>Primary (filled)</td>
+</tr>
+<tr>
+<td><code>create_genie_space</code></td>
+<td>Sparkles</td>
+<td>Outline</td>
+</tr>
+<tr>
+<td><code>view_tables</code></td>
+<td>Table2</td>
+<td>Secondary</td>
+</tr>
+<tr>
+<td><code>view_erd</code></td>
+<td>GitBranch</td>
+<td>Secondary</td>
+</tr>
+<tr>
+<td><code>start_discovery</code></td>
+<td>Rocket</td>
+<td>Outline</td>
+</tr>
+<tr>
+<td><code>export_report</code></td>
+<td>Download</td>
+<td>Secondary</td>
+</tr>
+<tr>
+<td><code>view_run</code></td>
+<td>Eye</td>
+<td>Secondary</td>
+</tr>
+<tr>
+<td><code>ask_genie</code></td>
+<td>ExternalLink</td>
+<td>Outline</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sqlrunner-componentsassistantsql-runnertsx">SqlRunner (<code>components/assistant/sql-runner.tsx</code>)<a class="headerlink" href="#sqlrunner-componentsassistantsql-runnertsx" title="Permanent link">&para;</a></h3>
+<p>Inline SQL execution component (used in compact mode):</p>
+<ul>
+<li>Displays SQL in a read-only code block</li>
+<li><strong>Edit</strong> toggle switches to a textarea for query modification</li>
+<li><strong>Copy</strong> button with clipboard feedback</li>
+<li><strong>Run</strong> button executes via <code>POST /api/sql/execute</code></li>
+<li>Success: shows result table (100 row limit), duration, row count, CSV export</li>
+<li>Error: shows error message with "Ask Forge to fix" button</li>
+<li>CSV export generates a downloadable file from the result set</li>
+</ul>
+<h3 id="sqldialog-componentsassistantsql-dialogtsx">SqlDialog (<code>components/assistant/sql-dialog.tsx</code>)<a class="headerlink" href="#sqldialog-componentsassistantsql-dialogtsx" title="Permanent link">&para;</a></h3>
+<p>Modal SQL execution (used in full-page mode):</p>
+<ul>
+<li>Same capabilities as SqlRunner in a Dialog overlay</li>
+<li>Maximum width 4xl, 85vh max height</li>
+<li>Additional toolbar: Run, Copy, Edit, Deploy as Notebook</li>
+<li>Type information shown on column headers</li>
+<li>Scrollable result table with truncated cells</li>
+</ul>
+<h3 id="deployoptions-componentsassistantdeploy-optionstsx">DeployOptions (<code>components/assistant/deploy-options.tsx</code>)<a class="headerlink" href="#deployoptions-componentsassistantdeploy-optionstsx" title="Permanent link">&para;</a></h3>
+<p>Notebook deployment form:</p>
+<ul>
+<li>Customisable title (default: "Forge Assistant Query")</li>
+<li>Customisable workspace path (default: <code>/Shared/forge_assistant/</code>)</li>
+<li>Deploys via <code>POST /api/sql/deploy</code> with <code>target: "notebook"</code></li>
+<li>Shows success (deployed path) or error state</li>
+</ul>
+<h3 id="deploydashboarddialog-componentsassistantdeploy-dashboard-dialogtsx">DeployDashboardDialog (<code>components/assistant/deploy-dashboard-dialog.tsx</code>)<a class="headerlink" href="#deploydashboarddialog-componentsassistantdeploy-dashboard-dialogtsx" title="Permanent link">&para;</a></h3>
+<p>Dashboard generation and deployment via the ad-hoc dashboard engine:</p>
+<ul>
+<li>Displays the dashboard proposal: title, description, referenced tables, proposed widgets</li>
+<li>Shows SQL context when available (optional -- engine generates its own from column schemas)</li>
+<li>"Deploy Dashboard" calls <code>POST /api/dashboard/generate</code> with full conversation context</li>
+<li>The ad-hoc engine maps conversation intent into the dashboard design prompt:</li>
+<li><code>conversationSummary</code> → <code>businessContext.strategicGoals</code> (steers LLM focus)</li>
+<li><code>widgetDescriptions</code> → synthetic use case statements (tells LLM what to visualise)</li>
+<li><code>domainHint</code> → domain (names the dashboard around user's topic)</li>
+<li><code>sqlBlocks</code> → synthetic use case SQL (bonus context for the LLM)</li>
+<li>Shows progress ("Designing and deploying dashboard...") then success with a link to the deployed Lakeview dashboard in Databricks</li>
+</ul>
+<h3 id="embeddingstatus-componentsassistantembedding-statustsx">EmbeddingStatus (<code>components/assistant/embedding-status.tsx</code>)<a class="headerlink" href="#embeddingstatus-componentsassistantembedding-statustsx" title="Permanent link">&para;</a></h3>
+<p>Knowledge base status bar shown above the chat:</p>
+<ul>
+<li><strong>Disabled state:</strong> amber warning banner when embedding endpoint is not configured</li>
+<li><strong>Enabled state:</strong> collapsible bar showing vector count with green checkmark</li>
+<li><strong>Expanded view:</strong> breakdown by scope (Estate, Pipeline, Genie, Documents)
+  and by kind (table detail, column profile, etc.)</li>
+<li><strong>Rebuild Embeddings</strong> button triggers <code>POST /api/embeddings/backfill</code></li>
+</ul>
+<h3 id="erdmodal-componentsassistanterd-modaltsx">ErdModal (<code>components/assistant/erd-modal.tsx</code>)<a class="headerlink" href="#erdmodal-componentsassistanterd-modaltsx" title="Permanent link">&para;</a></h3>
+<p>Full-screen entity-relationship diagram viewer:</p>
+<ul>
+<li>Fetches the complete ERD graph via <code>GET /api/environment/aggregate/erd?format=json&amp;includeLineage=true</code></li>
+<li>Filters to the referenced tables plus their 1-hop neighbours</li>
+<li>Calculates edge statistics (FK, implicit, lineage counts)</li>
+<li>Lazy-loads the <code>ERDViewer</code> component for interactive graph rendering</li>
+<li>Escape key to close</li>
+<li>Shows table and relationship counts in the header</li>
+</ul>
+<h3 id="askforgepanel-componentsassistantask-forge-paneltsx">AskForgePanel (<code>components/assistant/ask-forge-panel.tsx</code>)<a class="headerlink" href="#askforgepanel-componentsassistantask-forge-paneltsx" title="Permanent link">&para;</a></h3>
+<p>Header navigation trigger:</p>
+<ul>
+<li>Button with BrainCircuit icon and "Ask Forge" label</li>
+<li>Keyboard shortcut badge (Cmd+J)</li>
+<li>Cmd+J / Ctrl+J toggles between <code>/ask-forge</code> and the previous page</li>
+<li>Active state styling when on the Ask Forge page</li>
+</ul>
+<hr />
+<h2 id="data-flow">Data Flow<a class="headerlink" href="#data-flow" title="Permanent link">&para;</a></h2>
+<h3 id="question-lifecycle">Question Lifecycle<a class="headerlink" href="#question-lifecycle" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>User types question
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>        │
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>        ▼
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>AskForgeChat.handleSubmit()
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>  ├── Creates user + assistant message placeholders
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>  ├── POST /api/assistant { question, history, sessionId }
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>  │
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>  ▼
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>API Route: ReadableStream SSE
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>  │
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>  ├── runAssistantEngine()
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>  │   ├── classifyIntent() ──────────────────► Fast model
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>  │   ├── buildAssistantContext()
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>  │   │   ├── fetchDirectLakebaseContext() ──► Lakebase (Prisma)
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>  │   │   ├── retrieveContext() ─────────────► pgvector search
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>  │   │   ├── extractTableReferences() ──────► FQN extraction
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>  │   │   └── fetchTableEnrichments() ───────► Lakebase (deep detail)
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>  │   ├── buildAssistantMessages() ──────────► Prompt assembly
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>  │   ├── chatCompletionStream() ────────────► Premium model (streaming)
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>  │   │   └── onChunk() ────────────────────► SSE: { type: &quot;chunk&quot; }
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>  │   ├── extractSqlBlocks()
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>  │   ├── extractDashboardIntent()
+<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>  │   ├── [dashboard lookup]
+<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>  │   ├── [Genie space routing]
+<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>  │   ├── buildActions()
+<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>  │   └── createAssistantLog() ──────────────► Lakebase persistence
+<a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>  │
+<a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a>  └── SSE: { type: &quot;done&quot;, answer, intent, sources, actions, ... }
+<a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a>        │
+<a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a>        ▼
+<a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a>AskForgeChat processes &quot;done&quot; event
+<a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a>  ├── Updates message with final content, sources, actions, intent
+<a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a>  ├── onTableEnrichments() ──► Context panel updates
+<a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a>  ├── onReferencedTables() ──► Triggers table detail fetch
+<a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a>  └── onSources() ──────────► Context panel source list
+<a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a>
+<a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a>User clicks action
+<a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a>  ├── &quot;Run this SQL&quot; ──────► SqlDialog opens
+<a id="__codelineno-5-39" name="__codelineno-5-39" href="#__codelineno-5-39"></a>  ├── &quot;Deploy as Notebook&quot; ► DeployOptions modal
+<a id="__codelineno-5-40" name="__codelineno-5-40" href="#__codelineno-5-40"></a>  ├── &quot;Deploy as Dashboard&quot;► DeployDashboardDialog
+<a id="__codelineno-5-41" name="__codelineno-5-41" href="#__codelineno-5-41"></a>  ├── &quot;View Tables&quot; ───────► Navigation to environment
+<a id="__codelineno-5-42" name="__codelineno-5-42" href="#__codelineno-5-42"></a>  ├── &quot;View ERD&quot; ──────────► ErdModal opens
+<a id="__codelineno-5-43" name="__codelineno-5-43" href="#__codelineno-5-43"></a>  └── &quot;Ask Genie&quot; ────────► External Genie Space URL
+<a id="__codelineno-5-44" name="__codelineno-5-44" href="#__codelineno-5-44"></a>
+<a id="__codelineno-5-45" name="__codelineno-5-45" href="#__codelineno-5-45"></a>User provides feedback
+<a id="__codelineno-5-46" name="__codelineno-5-46" href="#__codelineno-5-46"></a>  └── POST /api/assistant/feedback { logId, rating }
+<a id="__codelineno-5-47" name="__codelineno-5-47" href="#__codelineno-5-47"></a>      └── updateAssistantLog() ──► Lakebase update
+</code></pre></div>
+<h3 id="conversation-persistence">Conversation Persistence<a class="headerlink" href="#conversation-persistence" title="Permanent link">&para;</a></h3>
+<p>Conversations are persisted to the <code>ForgeConversation</code> Lakebase table. Each
+conversation is associated with a <code>userId</code> (from <code>x-forwarded-email</code> header)
+and linked to <code>ForgeAssistantLog</code> entries via the shared <code>sessionId</code>.</p>
+<p><strong>On first message:</strong> The API route creates a new <code>ForgeConversation</code> record
+with the question as the title and returns the <code>conversationId</code> in the SSE
+<code>done</code> event. The frontend adds it to the history sidebar.</p>
+<p><strong>On subsequent messages:</strong> The API route calls <code>touchConversation()</code> to
+update the <code>updatedAt</code> timestamp.</p>
+<p><strong>Loading a conversation:</strong> The frontend fetches
+<code>GET /api/assistant/conversations/[id]</code> which returns the conversation metadata
+plus all <code>ForgeAssistantLog</code> entries (mapped to <code>ConversationMessage[]</code>).</p>
+<h3 id="in-flight-conversation-memory">In-Flight Conversation Memory<a class="headerlink" href="#in-flight-conversation-memory" title="Permanent link">&para;</a></h3>
+<p>The frontend maintains the full conversation history in component state.
+On each new question, the last 10 non-streaming messages are sent as
+<code>history</code> to the API. The context builder formats these as labelled turns
+(truncated to 500 chars each) and injects them into the user prompt between
+the RAG context and the current question.</p>
+<hr />
+<h2 id="embedding-rag-pipeline">Embedding / RAG Pipeline<a class="headerlink" href="#embedding-rag-pipeline" title="Permanent link">&para;</a></h2>
+<p>Ask Forge's answer quality depends on the vector knowledge base. The embedding
+pipeline is documented separately but the key integration points are:</p>
+<table>
+<thead>
+<tr>
+<th>Concern</th>
+<th>Module</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Feature gate</td>
+<td><code>lib/embeddings/config.ts</code></td>
+<td><code>isEmbeddingEnabled()</code> checks <code>DATABRICKS_EMBEDDING_ENDPOINT</code> env var</td>
+</tr>
+<tr>
+<td>Embedding client</td>
+<td><code>lib/embeddings/client.ts</code></td>
+<td><code>databricks-qwen3-embedding-0-6b</code>, 1024-dim, batches of 16, retry on 429/5xx</td>
+</tr>
+<tr>
+<td>Vector store</td>
+<td><code>lib/embeddings/store.ts</code></td>
+<td>pgvector in Lakebase, HNSW index, <code>forge_embeddings</code> table</td>
+</tr>
+<tr>
+<td>Retriever</td>
+<td><code>lib/embeddings/retriever.ts</code></td>
+<td><code>retrieveContext()</code> with scope/kind filtering, <code>formatRetrievedContext()</code> with provenance labels</td>
+</tr>
+<tr>
+<td>Text composition</td>
+<td><code>lib/embeddings/compose.ts</code></td>
+<td>12 composing functions, one per embedding kind</td>
+</tr>
+<tr>
+<td>Estate embedding</td>
+<td><code>lib/embeddings/embed-estate.ts</code></td>
+<td>Embeds scan results (tables, health, insights, lineage)</td>
+</tr>
+<tr>
+<td>Pipeline embedding</td>
+<td><code>lib/embeddings/embed-pipeline.ts</code></td>
+<td>Embeds run results (use cases, business context, Genie)</td>
+</tr>
+<tr>
+<td>Backfill</td>
+<td><code>POST /api/embeddings/backfill</code></td>
+<td>Rebuilds all embeddings from current Lakebase data</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Graceful degradation:</strong> When embeddings are disabled, Ask Forge still works
+using only the direct Lakebase context strategy. The <code>hasDataGaps</code> flag in
+<code>AssistantContext</code> is set when both strategies return empty results.</p>
+<hr />
+<h2 id="file-inventory">File Inventory<a class="headerlink" href="#file-inventory" title="Permanent link">&para;</a></h2>
+<h3 id="backend-libassistant">Backend (lib/assistant/)<a class="headerlink" href="#backend-libassistant" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>engine.ts</code></td>
+<td>Main pipeline orchestrator: intent → context → LLM → actions</td>
+</tr>
+<tr>
+<td><code>intent.ts</code></td>
+<td>LLM-based intent classification with heuristic fallback</td>
+</tr>
+<tr>
+<td><code>context-builder.ts</code></td>
+<td>Dual-strategy context pipeline (Lakebase + RAG)</td>
+</tr>
+<tr>
+<td><code>prompts.ts</code></td>
+<td>System prompt, user template, message builder</td>
+</tr>
+<tr>
+<td><code>sql-proposer.ts</code></td>
+<td>SQL execution, validation (EXPLAIN), block extraction</td>
+</tr>
+<tr>
+<td><code>dashboard-proposer.ts</code></td>
+<td>Dashboard intent detection and proposal extraction</td>
+</tr>
+</tbody>
+</table>
+<h3 id="backend-api-routes">Backend (API routes)<a class="headerlink" href="#backend-api-routes" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>app/api/assistant/route.ts</code></td>
+<td>SSE streaming endpoint (creates conversations)</td>
+</tr>
+<tr>
+<td><code>app/api/assistant/feedback/route.ts</code></td>
+<td>Feedback submission endpoint</td>
+</tr>
+<tr>
+<td><code>app/api/assistant/conversations/route.ts</code></td>
+<td>List / create conversations</td>
+</tr>
+<tr>
+<td><code>app/api/assistant/conversations/[conversationId]/route.ts</code></td>
+<td>Get / rename / delete a conversation</td>
+</tr>
+<tr>
+<td><code>app/api/assistant/suggestions/route.ts</code></td>
+<td>Dynamic suggested questions</td>
+</tr>
+</tbody>
+</table>
+<h3 id="backend-persistence">Backend (persistence)<a class="headerlink" href="#backend-persistence" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>lib/lakebase/assistant-log.ts</code></td>
+<td>CRUD for <code>ForgeAssistantLog</code> table</td>
+</tr>
+<tr>
+<td><code>lib/lakebase/conversations.ts</code></td>
+<td>CRUD for <code>ForgeConversation</code> table (per-user chat history)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="frontend-componentsassistant">Frontend (components/assistant/)<a class="headerlink" href="#frontend-componentsassistant" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ask-forge-chat.tsx</code></td>
+<td>Main chat component (messages, input, SSE, actions, onClear)</td>
+</tr>
+<tr>
+<td><code>ask-forge-context-panel.tsx</code></td>
+<td>Side panel with table detail, expandable sources, AI insight fallback</td>
+</tr>
+<tr>
+<td><code>ask-forge-panel.tsx</code></td>
+<td>Header button and Cmd+J keyboard shortcut</td>
+</tr>
+<tr>
+<td><code>conversation-history.tsx</code></td>
+<td>ChatGPT-style per-user conversation sidebar</td>
+</tr>
+<tr>
+<td><code>answer-stream.tsx</code></td>
+<td>Real-time markdown rendering via react-markdown + remark-gfm</td>
+</tr>
+<tr>
+<td><code>source-card.tsx</code></td>
+<td>RAG source cards with provenance and score</td>
+</tr>
+<tr>
+<td><code>action-card.tsx</code></td>
+<td>Contextual action buttons</td>
+</tr>
+<tr>
+<td><code>sql-runner.tsx</code></td>
+<td>Inline SQL execution with results table</td>
+</tr>
+<tr>
+<td><code>sql-dialog.tsx</code></td>
+<td>Modal SQL execution with full editing</td>
+</tr>
+<tr>
+<td><code>deploy-options.tsx</code></td>
+<td>Notebook deployment form</td>
+</tr>
+<tr>
+<td><code>deploy-dashboard-dialog.tsx</code></td>
+<td>Dashboard deployment preview and confirmation</td>
+</tr>
+<tr>
+<td><code>embedding-status.tsx</code></td>
+<td>Knowledge base status bar with rebuild</td>
+</tr>
+<tr>
+<td><code>erd-modal.tsx</code></td>
+<td>Full-screen ERD viewer for referenced tables</td>
+</tr>
+<tr>
+<td><code>dashboard-preview.tsx</code></td>
+<td>Dashboard design preview</td>
+</tr>
+<tr>
+<td><code>erd-preview.tsx</code></td>
+<td>Mermaid ERD code preview</td>
+</tr>
+<tr>
+<td><code>table-card.tsx</code></td>
+<td>Compact table metadata card</td>
+</tr>
+</tbody>
+</table>
+<h3 id="frontend-page">Frontend (page)<a class="headerlink" href="#frontend-page" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>app/ask-forge/page.tsx</code></td>
+<td>Thin client shell with dynamic import (ssr: false)</td>
+</tr>
+<tr>
+<td><code>app/ask-forge/ask-forge-content.tsx</code></td>
+<td>Three-panel layout: history, chat, context panel + dialog orchestration</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Environment Variable</th>
+<th>Required</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DATABRICKS_HOST</code></td>
+<td>Yes</td>
+<td>Databricks workspace URL</td>
+</tr>
+<tr>
+<td><code>DATABRICKS_TOKEN</code></td>
+<td>Local dev</td>
+<td>PAT for local development</td>
+</tr>
+<tr>
+<td><code>DATABRICKS_EMBEDDING_ENDPOINT</code></td>
+<td>No</td>
+<td>Enables vector search (recommended)</td>
+</tr>
+<tr>
+<td><code>serving-endpoint</code></td>
+<td>Yes</td>
+<td>Premium model for answer generation</td>
+</tr>
+<tr>
+<td><code>serving-endpoint-fast</code></td>
+<td>No</td>
+<td>Fast model for intent classification</td>
+</tr>
+</tbody>
+</table>
+<p>Ask Forge works without the embedding endpoint but provides significantly
+richer answers when semantic search is enabled.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "toc.integrate"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

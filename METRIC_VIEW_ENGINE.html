@@ -1,0 +1,1868 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Turn Unity Catalog metadata into business value in days, not quarters">
+      
+      
+      
+        <link rel="canonical" href="https://databricks-solutions.github.io/databricks-forge/METRIC_VIEW_ENGINE.html">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="images/databricks-icon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>Metric View Engine - Databricks Forge</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#metric-view-engine" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="Databricks Forge" class="md-header__button md-logo" aria-label="Databricks Forge" data-md-component="logo">
+      
+  <img src="images/databricks-icon.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Databricks Forge
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Metric View Engine
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/databricks-solutions/databricks-forge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    databricks-solutions/databricks-forge
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Databricks Forge" class="md-nav__button md-logo" aria-label="Databricks Forge" data-md-component="logo">
+      
+  <img src="images/databricks-icon.svg" alt="logo">
+
+    </a>
+    Databricks Forge
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/databricks-solutions/databricks-forge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    databricks-solutions/databricks-forge
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="quickstart.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="DEPLOYMENT.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="USER_GUIDE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Features
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ask-forge.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ask Forge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="BUSINESS_VALUE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Value
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="estate-analysis.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estate Intelligence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="SKILLS_KNOWLEDGE_BASE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Knowledge Base
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/SUPPORT.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/SECURITY.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/CONTRIBUTING.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release Notes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Release Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_07_21.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-07-21
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_05_26.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-26
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_05_11.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_05_02.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-02
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_04_30.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-04-30
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_04_16.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-04-16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_31.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-31
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_19.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-19
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_18.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-18
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_16.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_15.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-15
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_14.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-14
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_13.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-13
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_12.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-12
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_11.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_10.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_09.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-09
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_07.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-07
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_06.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-06
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_05.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-05
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_04.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-04
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026-02-27.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-02-27
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026-02-25.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-02-25
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="metric-view-engine">Metric View Engine<a class="headerlink" href="#metric-view-engine" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>Subdomain-level metric view generation, validation, and deployment.</p>
+</blockquote>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The Metric View Engine generates Databricks Unity Catalog
+<a href="https://docs.databricks.com/en/sql/language-manual/sql-ref-syntax-ddl-create-metric-view.html">metric views</a>
+(YAML v1.1) from pipeline results. It discovers existing metric views in scope,
+classifies them as reuse/improve/new, generates proposals with multi-table joins,
+validates against the schema allowlist, and deploys via DDL execution.</p>
+<p>The engine is <strong>enabled by default</strong>.  Set <code>FORGE_METRIC_VIEWS_ENABLED=false</code>
+to explicitly disable it.</p>
+<p>Release 2 adds a typed source-of-truth behind
+<code>FORGE_TYPED_METRIC_VIEW_MODEL</code> (default <code>false</code>). When disabled, generation
+uses the Release 1 YAML path; canonical parsing, runtime probes, validation
+provenance, and deployment gates still run. Rows containing only legacy
+YAML/DDL remain readable through the compatibility adapter.</p>
+<hr />
+<h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Discovery                    Planning                   Generation
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>discoverExisting ──►  LLM classify per subdomain ──►  LLM generate YAML v1.1
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  MetricViews()        (reuse / improve / new)           proposals
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>                                                            │
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>                                                            ▼
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>                                                     Post-processing
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>                                                     ├── Strip FQN prefixes
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>                                                     ├── Nest snowflake joins
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>                                                     ├── Qualify nested alias refs
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>                                                     ├── Auto-fix collisions
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>                                                     ▼
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>                                                     Validation
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>                                                     ├── Schema allowlist
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>                                                     ├── Column references
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>                                                     ├── Dry-run DDL (temp view)
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>                                                     ├── Optional LLM repair
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>                                                     ▼
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>                                                     Persistence + Deploy
+</code></pre></div>
+<hr />
+<h2 id="engine-flow">Engine Flow<a class="headerlink" href="#engine-flow" title="Permanent link">&para;</a></h2>
+<h3 id="phase-1-discovery">Phase 1: Discovery<a class="headerlink" href="#phase-1-discovery" title="Permanent link">&para;</a></h3>
+<p><code>discoverExistingMetricViews(scope)</code> in <code>lib/metric-views/discovery.ts</code>:</p>
+<ol>
+<li>Queries <code>information_schema</code> for tables with <code>table_type = 'METRIC_VIEW'</code></li>
+<li>Runs <code>SHOW CREATE TABLE</code> per metric view to extract the YAML body</li>
+<li>Parses YAML to extract dimensions, measures, join targets, and source table</li>
+<li>Returns <code>ExistingMetricViewDetail[]</code></li>
+</ol>
+<p><code>filterRelevantExistingViews()</code> narrows the list to views whose source tables
+overlap with the current scope.</p>
+<h3 id="phase-2-planning-engine-v2">Phase 2: Planning (Engine V2)<a class="headerlink" href="#phase-2-planning-engine-v2" title="Permanent link">&para;</a></h3>
+<p><code>runMetricViewEngineV2()</code> in <code>lib/metric-views/engine.ts</code>:</p>
+<ol>
+<li>Groups use cases by subdomain via <code>mapSubdomainsToTables()</code></li>
+<li>Runs a planning pre-pass where the LLM classifies each subdomain's needs:</li>
+<li><strong>reuse</strong> -- existing metric view is sufficient</li>
+<li><strong>improve</strong> -- existing view needs enhancement</li>
+<li><strong>new</strong> -- no existing view covers this subdomain</li>
+<li>Generates proposals per subdomain</li>
+<li>Merges all proposals into the output</li>
+</ol>
+<p>The typed IR is <code>MetricViewDefinition</code> in
+<code>lib/metric-views/definition.ts</code>. <code>parseMetricViewYaml()</code> and
+<code>serializeMetricViewYaml()</code> form its canonical boundary.
+<code>lib/metric-views/capabilities.ts</code> validates YAML capability versions and
+required features; the supported source format is metric-view YAML <code>1.1</code>.
+<code>lib/metric-views/legacy-adapter.ts</code> converts old proposal text into the IR and
+renders IR back to compatibility YAML/DDL.</p>
+<h3 id="phase-3-generation">Phase 3: Generation<a class="headerlink" href="#phase-3-generation" title="Permanent link">&para;</a></h3>
+<p><code>runMetricViewProposals()</code> in <code>lib/genie/passes/metric-view-proposals.ts</code>:</p>
+<ol>
+<li>Builds schema and column context from metadata</li>
+<li>LLM generates 1-3 proposals per domain (YAML v1.1 format)</li>
+<li>Post-processing pipeline:</li>
+<li>Strip FQN prefixes from SQL</li>
+<li>Nest snowflake joins (detect and restructure flat joins)</li>
+<li>Qualify nested alias references</li>
+<li>Auto-fix pass:</li>
+<li>Rename shadowed measures, dimensions, join aliases</li>
+<li>Fix materialization references</li>
+<li>Validate against schema allowlist and column references</li>
+<li>LLM repair for remaining column/alias errors</li>
+<li>Create a uniquely named temporary metric view in the target schema</li>
+<li>Probe representative measures with <code>MEASURE()</code></li>
+<li>Drop the temporary view in <code>finally</code>, including failed probes</li>
+<li>Persist compact validation evidence and validator version</li>
+<li>Optional SQL review when <code>isReviewEnabled("genie-metric-views")</code></li>
+</ol>
+<h3 id="phase-4-deployment">Phase 4: Deployment<a class="headerlink" href="#phase-4-deployment" title="Permanent link">&para;</a></h3>
+<p>Proposals can be deployed individually or in batch:</p>
+<p>Only proposals with <code>validationStatus: "valid"</code> and complete Release 1
+provenance are deployable. Provenance must use <code>metric-view-probes-v1</code>, include
+a parseable validation timestamp, and contain the stable passed
+static/create/atomic-measure-probe/cleanup lifecycle codes. <code>unverified</code>,
+warning/error, legacy, incomplete, skipped/failed, and evidence-free proposals
+fail closed.</p>
+<p>The legacy <code>dryRunMetricViewDdl</code> compatibility wrapper remains fail-closed for
+cleanup. A failed temporary-view <code>DROP</code> returns a non-null error beginning with
+<code>Failed to drop temp validation view</code>; callers must not assume every non-null
+result means temporary-view creation failed.</p>
+<ol>
+<li><code>sanitizeMetricViewDdl()</code> rewrites DDL for the target schema</li>
+<li>Execute <code>CREATE OR REPLACE VIEW ... WITH METRICS LANGUAGE YAML AS $$...$$</code></li>
+<li>Update deployment status in Lakebase</li>
+<li><code>patchSpaceWithMetricViews()</code> adds deployed FQNs to the Genie Space's
+   <code>data_sources.metric_views</code></li>
+</ol>
+<p><code>improve</code> is an in-place typed update, not a create with a new label. The
+proposal stores the exact existing FQN, typed base definition, additive diff,
+and merged definition fingerprint. Deployment requires an OBO token, reads the
+live definition immediately before <code>ALTER VIEW</code>, rejects drift with <code>409</code>, and
+never falls back to creating a duplicate. <code>reuse</code> performs no mutation.</p>
+<h3 id="semantic-asset-manifest">Semantic asset manifest<a class="headerlink" href="#semantic-asset-manifest" title="Permanent link">&para;</a></h3>
+<p>After metric-view validation, <code>lib/semantic-assets/manifest.ts</code> builds a
+version <code>1</code> per-domain <code>SemanticAssetManifest</code> containing verified metric-view
+assets plus governed Genie measures, dimensions, and filters. Each metric-view
+asset records FQN, proposal identity, validation/deployment state, typed
+measures and dimensions, representative <code>MEASURE()</code> queries, and source tables.
+The manifest is persisted in the existing Genie recommendation/pass-output
+JSON; Release 2 adds no manifest table.</p>
+<p>The dependency chain is:</p>
+<p><code>SQL generation → Genie semantic generation/metric validation → manifest persistence → Dashboard generation</code></p>
+<p>Business Value remains parallel. Dashboard does not start after a failed,
+cancelled, empty, or incompletely persisted semantic stage.</p>
+<hr />
+<h2 id="metric-view-proposal-shape">Metric View Proposal Shape<a class="headerlink" href="#metric-view-proposal-shape" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kd">interface</span><span class="w"> </span><span class="nx">MetricViewProposal</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span><span class="w">                    </span><span class="c1">// snake_case identifier</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nx">definition?</span><span class="o">:</span><span class="w"> </span><span class="kt">MetricViewDefinition</span><span class="p">;</span><span class="w"> </span><span class="c1">// typed canonical model</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nx">yaml</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span><span class="w">                    </span><span class="c1">// YAML body (version 1.1)</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="nx">ddl</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span><span class="w">                     </span><span class="c1">// Full CREATE OR REPLACE VIEW DDL</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="nx">sourceTables</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">[];</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="nx">hasJoins</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span><span class="nx">hasFilteredMeasures</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span><span class="nx">hasWindowMeasures</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">  </span><span class="nx">hasMaterialization</span><span class="o">:</span><span class="w"> </span><span class="kt">boolean</span><span class="p">;</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">  </span><span class="nx">validationStatus</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;valid&quot;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s2">&quot;warning&quot;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s2">&quot;error&quot;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s2">&quot;unverified&quot;</span><span class="p">;</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">  </span><span class="nx">validationIssues</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">[];</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">  </span><span class="nx">validatorVersion?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">  </span><span class="nx">validationEvidence?</span><span class="o">:</span><span class="w"> </span><span class="kt">ValidationEvidence</span><span class="p">[];</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">  </span><span class="nx">validatedAt?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">  </span><span class="nx">classification</span><span class="o">?:</span><span class="w"> </span><span class="s2">&quot;reuse&quot;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s2">&quot;improve&quot;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s2">&quot;new&quot;</span><span class="p">;</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">  </span><span class="nx">rationale?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">  </span><span class="nx">existingFqn?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span><span class="w">            </span><span class="c1">// For reuse/improve</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">  </span><span class="nx">improveDiff?</span><span class="o">:</span><span class="w"> </span><span class="kt">MetricViewImproveDiff</span><span class="p">;</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">  </span><span class="nx">improveBaseDefinition?</span><span class="o">:</span><span class="w"> </span><span class="kt">MetricViewDefinition</span><span class="p">;</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">  </span><span class="nx">subdomain?</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="p">}</span>
+</code></pre></div>
+<p>YAML v1.1 supports: <code>version</code>, <code>source</code>, <code>filter</code>, <code>dimensions</code>, <code>measures</code>,
+<code>joins</code> (star and snowflake patterns), and optional <code>materialization</code>.</p>
+<hr />
+<h2 id="genie-engine-integration">Genie Engine Integration<a class="headerlink" href="#genie-engine-integration" title="Permanent link">&para;</a></h2>
+<p>The Metric View Engine runs as a parallel pass within the Genie Engine when
+<code>isMetricViewsEnabled()</code> and <code>config.generateMetricViews</code> are both true:</p>
+<ol>
+<li><code>discoverExistingMetricViews()</code> for the schema scope</li>
+<li><code>runMetricViewEngineV2()</code> with measures, dimensions, and joins from earlier
+   Genie passes (column intelligence, semantic expressions)</li>
+<li><code>saveMetricViewProposals()</code> persists proposals to Lakebase</li>
+<li>The Genie assembler converts proposals to <code>DataSourceMetricView[]</code> and adds
+   them to <code>data_sources.metric_views</code> in the serialized space (capped at ~30%
+   of <code>MAX_DATA_OBJECTS</code>)</li>
+</ol>
+<h3 id="dependency-management">Dependency Management<a class="headerlink" href="#dependency-management" title="Permanent link">&para;</a></h3>
+<p>Before deploying a Genie Space that references metric views:</p>
+<ul>
+<li><code>checkMetricViewDependencies(fqns, access)</code> identifies which are deployed vs
+  missing; proposal lookup is always restricted to the authenticated caller's
+  owned/shared proposal IDs, including explicit-FQN checks</li>
+<li><code>ensureMetricViewsDeployed(fqns, access, targetSchema)</code> auto-deploys missing
+  proposals using the authenticated owner/shared proposal scope</li>
+<li><code>extractMetricViewFqnsFromSpace()</code> extracts FQNs from the serialized space</li>
+<li><code>rewriteDashboardMetricViewFqns()</code> handles FQN rewrites when target schema differs</li>
+</ul>
+<hr />
+<h2 id="lightweight-seed">Lightweight Seed<a class="headerlink" href="#lightweight-seed" title="Permanent link">&para;</a></h2>
+<p><code>buildLightweightSeed()</code> in <code>lib/metric-views/seed.ts</code> provides a deterministic
+fallback when LLM generation is not available:</p>
+<ul>
+<li>Numeric columns -&gt; SUM/AVG measures</li>
+<li>Date columns -&gt; DATE_TRUNC dimensions</li>
+<li>String columns -&gt; categorical dimensions</li>
+<li>Adds a <code>row_count</code> measure</li>
+</ul>
+<hr />
+<h2 id="feature-gates">Feature Gates<a class="headerlink" href="#feature-gates" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Source</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>FORGE_METRIC_VIEWS_ENABLED</code></td>
+<td><code>deploy.sh --enable-metric-views</code></td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>FORGE_TYPED_METRIC_VIEW_MODEL</code></td>
+<td>Environment</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>GenieEngineConfig.generateMetricViews</code></td>
+<td>Per-run Genie config</td>
+<td><code>true</code> (when feature enabled)</td>
+</tr>
+<tr>
+<td><code>/api/health</code></td>
+<td>Health endpoint</td>
+<td>Reports <code>metricViewsEnabled</code></td>
+</tr>
+</tbody>
+</table>
+<p>The pure rollout helpers live in <code>lib/config/semantic-uplift-flags.ts</code>.
+Disabling the typed flag changes only the generation source-of-truth; it never
+bypasses Release 1 parsing, temporary creation, probes, cleanup, or provenance.</p>
+<hr />
+<h2 id="api-routes">API Routes<a class="headerlink" href="#api-routes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Method</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/metric-views</code></td>
+<td>GET</td>
+<td>List proposals by <code>runId</code> or <code>schemaScope</code></td>
+</tr>
+<tr>
+<td><code>/api/metric-views/generate</code></td>
+<td>POST</td>
+<td>Standalone generation from tables</td>
+</tr>
+<tr>
+<td><code>/api/metric-views/[id]</code></td>
+<td>GET</td>
+<td>Get proposal by ID</td>
+</tr>
+<tr>
+<td><code>/api/metric-views/[id]</code></td>
+<td>PATCH</td>
+<td>Atomically update YAML/DDL, set <code>unverified</code>, and clear stale evidence/version/timestamp</td>
+</tr>
+<tr>
+<td><code>/api/metric-views/[id]</code></td>
+<td>DELETE</td>
+<td>Delete proposal</td>
+</tr>
+<tr>
+<td><code>/api/metric-views/[id]/deploy</code></td>
+<td>POST</td>
+<td>Deploy proposal to target schema</td>
+</tr>
+<tr>
+<td><code>/api/metric-views/[id]/repair</code></td>
+<td>POST</td>
+<td>Auto-fix + optional LLM repair</td>
+</tr>
+<tr>
+<td><code>/api/metric-views/check-dependencies</code></td>
+<td>POST</td>
+<td>Check deployment dependencies</td>
+</tr>
+<tr>
+<td><code>/api/runs/[runId]/genie-engine/[domain]/metric-views</code></td>
+<td>POST</td>
+<td>Execute DDL and add to Genie Space</td>
+</tr>
+</tbody>
+</table>
+<p>All routes resolve the caller server-side. Lists are restricted to proposals
+owned by the caller plus proposal IDs shared through
+<code>metric_view_proposal</code> ACL entries. Detail, edit, repair, and deploy operations
+use the consolidated metric-view proposal guard; view shares are read-only,
+edit shares may repair/deploy/update, and deletion and sharing remain
+owner-only. Run-derived dependency checks also authorize the run before reading
+proposal metadata. Explicit-FQN dependency checks apply the same owner/shared
+proposal scope before returning any proposal ID, DDL, or derived metadata.</p>
+<hr />
+<h2 id="ui">UI<a class="headerlink" href="#ui" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>components/pipeline/metric-views-tab.tsx</code></td>
+<td>Run-level proposals: list, deploy, repair, expand YAML/DDL</td>
+</tr>
+<tr>
+<td><code>components/pipeline/metric-view-deploy-modal.tsx</code></td>
+<td>Deploy multiple proposals with schema selection</td>
+</tr>
+<tr>
+<td><code>components/pipeline/metric-view-dependency-modal.tsx</code></td>
+<td>Resolve missing metric views before Genie deploy</td>
+</tr>
+<tr>
+<td><code>components/genie/genie-defaults-settings.tsx</code></td>
+<td>Settings toggle for metric views</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="data-model">Data Model<a class="headerlink" href="#data-model" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Table</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ForgeMetricViewProposal</code></td>
+<td>Proposal record: run, domain, schema, YAML, DDL, status, deployed FQN</td>
+</tr>
+</tbody>
+</table>
+<p>Validation evidence contains stage/status/code/message plus bounded operational
+metadata such as duration, temporary artifact reference, observed schema, and
+row count; raw query rows are never persisted. Factory reset explicitly deletes
+<code>ForgeMetricViewProposal</code>, including standalone rows with <code>runId = null</code>.
+Successful validation, failed validation, and successful deployment emit
+<code>metric_view_validated</code>, <code>metric_view_validation_failed</code>, and
+<code>metric_view_deployed</code> only after their outcomes are persisted. Permission-
+limited full probes emit <code>metric_view_validation_unverified</code>; they never emit a
+false validation success. Repair runs static checks, temporary create,
+representative <code>MEASURE()</code> probes, and cleanup against the final repaired
+definition, then replaces all stale validation metadata atomically.
+Persisted Release 2 outcomes additionally emit one structured
+<code>semantic_manifest_built</code> event per completed semantic run and
+<code>metric_view_improve_planned</code> when persisted pass output contains improve
+plans. Both occur only after recommendation/pass-output persistence.</p>
+<p>Metric view data also appears in:
+- <code>ForgeGenieRecommendation.metricViewProposals</code> (JSON) -- proposals per Genie recommendation
+- <code>ForgeGenieSpace.metricViews</code> -- deployed metric views per space
+- <code>ForgeEnvironmentScan.metricViewCount</code> -- discovery counts
+- <code>ForgeDiscoveredAsset</code> -- metric views as discovered assets</p>
+<hr />
+<h2 id="file-reference">File Reference<a class="headerlink" href="#file-reference" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>lib/metric-views/engine.ts</code></td>
+<td>V2 engine orchestrator (planning + generation)</td>
+</tr>
+<tr>
+<td><code>lib/metric-views/types.ts</code></td>
+<td>All TypeScript types</td>
+</tr>
+<tr>
+<td><code>lib/metric-views/discovery.ts</code></td>
+<td>Discover existing metric views from UC</td>
+</tr>
+<tr>
+<td><code>lib/metric-views/config.ts</code></td>
+<td>Feature gate (<code>isMetricViewsEnabled</code>)</td>
+</tr>
+<tr>
+<td><code>lib/metric-views/seed.ts</code></td>
+<td>Lightweight deterministic seed</td>
+</tr>
+<tr>
+<td><code>lib/metric-views/subdomain-mapper.ts</code></td>
+<td>Use case to subdomain grouping</td>
+</tr>
+<tr>
+<td><code>lib/metric-views/index.ts</code></td>
+<td>Public API</td>
+</tr>
+<tr>
+<td><code>lib/genie/passes/metric-view-proposals.ts</code></td>
+<td>LLM generation, validation, auto-fix, repair</td>
+</tr>
+<tr>
+<td><code>lib/genie/deploy.ts</code></td>
+<td>DDL deployment and space patching</td>
+</tr>
+<tr>
+<td><code>lib/genie/metric-view-dependencies.ts</code></td>
+<td>Dependency checking and auto-deploy</td>
+</tr>
+<tr>
+<td><code>lib/lakebase/metric-view-proposals.ts</code></td>
+<td>Persistence CRUD</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "toc.integrate"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1966 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Turn Unity Catalog metadata into business value in days, not quarters">
+      
+      
+      
+        <link rel="canonical" href="https://databricks-solutions.github.io/databricks-forge/release-notes/RELEASE_NOTES_2026_05_26.html">
+      
+      
+        <link rel="prev" href="RELEASE_NOTES_2026_07_21.html">
+      
+      
+        <link rel="next" href="RELEASE_NOTES_2026_05_11.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../images/databricks-icon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>2026-05-26 - Databricks Forge</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#release-notes-2026-05-26" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Databricks Forge" class="md-header__button md-logo" aria-label="Databricks Forge" data-md-component="logo">
+      
+  <img src="../images/databricks-icon.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Databricks Forge
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2026-05-26
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/databricks-solutions/databricks-forge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    databricks-solutions/databricks-forge
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Databricks Forge" class="md-nav__button md-logo" aria-label="Databricks Forge" data-md-component="logo">
+      
+  <img src="../images/databricks-icon.svg" alt="logo">
+
+    </a>
+    Databricks Forge
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/databricks-solutions/databricks-forge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    databricks-solutions/databricks-forge
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DEPLOYMENT.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../USER_GUIDE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Features
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ask-forge.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ask Forge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BUSINESS_VALUE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Value
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../estate-analysis.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estate Intelligence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SKILLS_KNOWLEDGE_BASE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Knowledge Base
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/SUPPORT.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/SECURITY.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/CONTRIBUTING.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release Notes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Release Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_07_21.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-07-21
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-26
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="RELEASE_NOTES_2026_05_26.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-26
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#v102-deploysh-zero-touch-lakebase-sp-grant-bootstrap-destroy-prompt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v1.0.2 -- deploy.sh: zero-touch Lakebase + SP grant bootstrap + --destroy prompt
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.0.2 -- deploy.sh: zero-touch Lakebase + SP grant bootstrap + --destroy prompt">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bug-fixes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bug Fixes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#improvements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Improvements
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Documentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#behavior-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Behavior Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Known Limitations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#outcome-map-registry-consolidation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Outcome map registry consolidation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Outcome map registry consolidation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bug-fixes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bug Fixes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#improvements_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Improvements
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#behavior-changes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Behavior Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#known-limitations_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Known Limitations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#all-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        All Commits
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_05_11.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_05_02.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-02
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_04_30.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-04-30
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_04_16.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-04-16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_31.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-31
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_19.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-19
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_18.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-18
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_16.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_15.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-15
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_14.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-14
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_13.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-13
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_12.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-12
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_11.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_10.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_09.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-09
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_07.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-07
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_06.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-06
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_05.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-05
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_04.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-04
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026-02-27.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-02-27
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026-02-25.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-02-25
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="release-notes-2026-05-26">Release Notes -- 2026-05-26<a class="headerlink" href="#release-notes-2026-05-26" title="Permanent link">&para;</a></h1>
+<p><strong>Databricks Forge v1.0.2</strong></p>
+<hr />
+<h2 id="v102-deploysh-zero-touch-lakebase-sp-grant-bootstrap-destroy-prompt">v1.0.2 -- <code>deploy.sh</code>: zero-touch Lakebase + SP grant bootstrap + <code>--destroy</code> prompt<a class="headerlink" href="#v102-deploysh-zero-touch-lakebase-sp-grant-bootstrap-destroy-prompt" title="Permanent link">&para;</a></h2>
+<h3 id="bug-fixes">Bug Fixes<a class="headerlink" href="#bug-fixes" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>Silent missing <code>postgres</code> binding.</strong> <code>./deploy.sh</code> (no Lakebase flags)
+  previously printed <code>Postgres binding: (not set - app must already have
+  postgres resource)</code>, deployed an app with no <code>postgres</code> resource, and
+  the app crashed on every startup with
+  <code>FATAL: Lakebase resource binding env vars missing</code>. The deploy script
+  now <strong>auto-provisions</strong> a per-app Lakebase project (named after
+  <code>--app-name</code>, sanitized to <code>[a-z0-9-]{1,63}</code>), default
+  <code>databricks_postgres</code> database, and waits for the endpoint to become
+  <code>ACTIVE</code> before continuing. Re-deploys discover the existing <code>postgres</code>
+  resource on the app and reuse the same binding. A hard pre-deploy
+  guard now refuses to proceed if the binding can't be resolved.</p>
+</li>
+<li>
+<p><strong>App service principal lacked <code>public</code> schema permissions.</strong> On a
+  fresh Lakebase project, the <code>public</code> schema is owned by the deploying
+  user, and the SP role minted by Lakebase on first bind had zero
+  privileges. <code>prisma db push</code> in <code>scripts/start.sh</code> failed with
+  <code>permission denied for schema public</code>. <code>deploy.sh</code> now runs a new
+  <code>bootstrap_lakebase_sp_grants</code> step <strong>as the project owner</strong> which:</p>
+</li>
+<li>installs <code>pgvector</code> + <code>databricks_auth</code> extensions,</li>
+<li>ensures the SP DB role exists (defensive; Lakebase mints it on
+    first connect),</li>
+<li>grants <code>CONNECT</code> + <code>USAGE</code>/<code>CREATE</code> on <code>public</code> + table/sequence
+    privileges + <code>ALTER DEFAULT PRIVILEGES</code>,</li>
+<li>transfers ownership of any pre-existing <code>public.*</code> tables to the SP
+    so Prisma can <code>ALTER</code>/<code>DROP</code> them on schema migrations.</li>
+</ul>
+<p>Idempotent. If the deploying user isn't the project owner (a teammate
+  re-deploying), the step skip-warns rather than failing — the original
+  deploy already applied the grants. This also self-heals the
+  cross-tool case where <code>.deploy_local.sh</code> previously created tables
+  owned by <code>forge_local_dev</code>: re-running <code>./deploy.sh</code> reassigns
+  ownership to the SP.</p>
+<ul>
+<li><strong><code>--destroy</code> silently left Lakebase project + data in place.</strong> The
+  destroy flow now <strong>prompts</strong> about deleting the associated Lakebase
+  project after the app is removed. Default answer is <em>keep</em> (data
+  preservation wins). Non-interactive flags: <code>--destroy-database</code>
+  (soft delete, recoverable), <code>--purge-database</code> (hard delete,
+  immediate), <code>--keep-database</code> (skip the prompt, preserve — default
+  when run in a non-TTY context like CI).</li>
+</ul>
+<h3 id="improvements">Improvements<a class="headerlink" href="#improvements" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>Deployer gets SQL Editor access by default.</strong> When <code>deploy.sh</code>
+  auto-provisions the project AND <code>--lakebase-bootstrap-user</code> is unset,
+  the deploying user's email is used so they get a Databricks OAuth
+  role on the new database immediately — no extra flag needed to
+  inspect their own deploy. Opt out with <code>--lakebase-bootstrap-user ""</code>.</p>
+</li>
+<li>
+<p><strong>Scale-to-zero is now configured at the management plane.</strong> Lakebase
+  Autoscaling treats scale-to-zero (<code>suspend_timeout_duration</code> in the
+  REST API) as an immutable project property, set only at project
+  creation via <code>databricks postgres create-project ... --json
+  '{"spec":{"default_endpoint_settings":{"suspend_timeout_duration":"300s"}}}'</code>.
+  <code>deploy.sh</code> now bakes the value into the <code>create-project</code> payload
+  when it auto-provisions a project (default <code>300s</code>), with operator
+  override via <code>--lakebase-scale-to-zero-seconds N</code>. Re-deploys against
+  an existing project leave the setting alone; passing
+  <code>--lakebase-scale-to-zero-seconds</code> on a re-deploy emits a warning
+  explaining the value is immutable post-creation (workaround:
+  destroy + redeploy, or migrate to a fresh project via
+  <code>--lakebase-project-id NEW</code>). The configure helper is now a
+  reporting-only step that prints the project's actual configured
+  value during every deploy.</p>
+</li>
+</ul>
+<p>The legacy <code>LAKEBASE_SCALE_TO_ZERO_TIMEOUT</code> env var and
+  <code>--lakebase-no-scale-to-zero</code> flag have been removed — they were
+  runtime-side concepts that never took effect at the management plane
+  (and surfaced as "unsupported parameter" errors when operators tried
+  the equivalent CLI command).</p>
+<ul>
+<li><strong>New flags.</strong></li>
+<li><code>--lakebase-project-id ID</code> — override the auto-derived project ID.</li>
+<li><code>--lakebase-scale-to-zero-seconds N</code> — branch scale-to-zero timeout.</li>
+<li>
+<p><code>--destroy-database</code> / <code>--purge-database</code> / <code>--keep-database</code> —
+    non-interactive destroy choices.</p>
+</li>
+<li>
+<p><strong>Relaxed flags.</strong> <code>--lakebase-branch</code> and <code>--lakebase-database</code> are
+  now optional (still paired — both or neither). They remain available
+  as power-user overrides to bind an existing, externally-managed
+  project/branch/database. The script validates that they are not
+  combined with <code>--lakebase-project-id</code>.</p>
+</li>
+</ul>
+<h3 id="documentation">Documentation<a class="headerlink" href="#documentation" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Comprehensive cleanup of stale flag references across <code>README.md</code>,
+  <code>QUICKSTART.md</code>, <code>docs/quickstart.md</code>, <code>docs/DEPLOYMENT.md</code>, and
+  <code>AGENTS.md</code>. The retired flags — <code>--lakebase-auth-mode</code>,
+  <code>--lakebase-native-user</code>, <code>--lakebase-native-password</code>,
+  <code>--rotate-lakebase-native-password</code>, <code>--print-generated-native-password</code>,
+  <code>--lakebase-runtime-mode</code>, <code>--lakebase-enable-pooler-experiment</code>,
+  <code>--lakebase-scale-to-zero-timeout</code>, <code>--lakebase-no-scale-to-zero</code> —
+  were documented as if still supported even though <code>deploy.sh</code> no
+  longer accepts them.</li>
+<li>New "Lakebase auto-provisioning" section in <code>docs/DEPLOYMENT.md</code>
+  explaining the full lifecycle (resolution → endpoint-active wait →
+  scale-to-zero config → SP grant bootstrap → deployer-as-bootstrap
+  default → destroy prompt).</li>
+<li>Updated env-var table in <code>README.md</code>: replaced retired runtime
+  variables (<code>LAKEBASE_AUTH_MODE</code>, <code>LAKEBASE_NATIVE_USER</code>,
+  <code>LAKEBASE_NATIVE_PASSWORD</code>, <code>LAKEBASE_POOLER_HOST</code>,
+  <code>LAKEBASE_USERNAME</code>) with the current OAuth-only surface
+  (<code>PGHOST</code> / <code>PGUSER</code> / <code>PGDATABASE</code> / <code>LAKEBASE_ENDPOINT</code> /
+  <code>LAKEBASE_BOOTSTRAP_USER</code>).</li>
+</ul>
+<h3 id="behavior-changes">Behavior Changes<a class="headerlink" href="#behavior-changes" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>./deploy.sh</code> (no flags) now succeeds end-to-end on a clean
+  workspace — no manual Lakebase pre-provisioning required.</li>
+<li><code>./deploy.sh --destroy</code> is now interactive by default. Pass
+  <code>--keep-database</code> or <code>--destroy-database</code> to silence the prompt in CI.</li>
+<li>The success banner always prints the Postgres branch/database/endpoint
+  (no more "(not set)" branch) and adds an "Auto-provisioned project"
+  line when the script created the project on this run.</li>
+<li><code>--destroy --destroy-database</code> now finds projects auto-provisioned
+  with a uniqueness suffix (e.g. <code>forge-demo-69aa11f1</code> when the bare
+  <code>forge-demo</code> name was taken). Previously the destroy resolver only
+  looked for the exact <code>sanitize_lakebase_project_id "$APP_NAME"</code>
+  name and silently skipped suffixed projects.</li>
+<li><code>--destroy</code> no longer exits early when the app is already absent.
+  Previously, if <code>databricks apps delete</code> returned "does not exist"
+  (e.g. the app was deleted out-of-band via the Databricks UI or a
+  prior aborted run), the destroy flow returned before cleaning
+  workspace files or processing <code>--destroy-database</code>. The Lakebase
+  project would silently orphan and continue accruing cost. The
+  branch now falls through to workspace + Lakebase cleanup.</li>
+<li>Lakebase branch discovery prefers the branch explicitly marked
+  <code>status.default == true</code> (Lakebase guarantees exactly one),
+  falling back to the canonical <code>production</code> / <code>main</code> name, then
+  the first entry only as a last resort. Previously the picker
+  blindly took the first item returned by <code>list-branches</code>, which
+  could route the app to a developer sandbox branch on
+  multi-branch projects and serve incorrect data.</li>
+</ul>
+<h3 id="known-limitations">Known Limitations<a class="headerlink" href="#known-limitations" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong><code>--destroy --keep-database</code> followed by re-deploy will leave the
+  app in <code>CRASHED</code> state.</strong> Each Databricks Apps deploy mints a new
+  service-principal role. On a <em>preserved</em> Lakebase database, the
+  pre-existing tables and indexes are owned by the previous SP (now
+  gone). PostgreSQL requires the deploying user to be a member of the
+  new SP role <em>with <code>ADMIN OPTION</code></em> to transfer ownership; Lakebase
+  does <strong>not</strong> grant that option to the deployer. The new SP can
+  <code>SELECT</code>/<code>INSERT</code>/<code>UPDATE</code> existing tables but cannot <code>ALTER</code>/<code>DROP</code>
+  them, so Prisma's startup <code>db push</code> fails with
+  <code>must be owner of index idx_embeddings_hnsw</code> (or similar) and the
+  app crashes on first request.</li>
+</ul>
+<p><code>deploy.sh</code> now <strong>detects</strong> this gap, prints a clear <code>WARN</code> after
+  the SP grant bootstrap reporting <em>N pre-existing tables not
+  re-owned</em>, and surfaces the two workarounds:</p>
+<ol>
+<li><code>./deploy.sh --destroy --destroy-database</code> to wipe and start
+     fresh (preferred for non-production).</li>
+<li>Manually grant the deployer role membership on the new SP via
+     the Postgres SQL editor:
+     <code>GRANT "&lt;new-sp-uuid&gt;" TO "&lt;deployer-email&gt;" WITH ADMIN OPTION;</code>
+     then re-run <code>./deploy.sh</code> to retry the ownership transfer.</li>
+</ol>
+<p>Long-term fix on the table: move <code>prisma db push</code> from
+  <code>scripts/start.sh</code> (runs as SP) into <code>deploy.sh</code>'s management-plane
+  step (runs as deployer, who already owns the schema). Tracked
+  separately.</p>
+<hr />
+<h2 id="outcome-map-registry-consolidation">Outcome map registry consolidation<a class="headerlink" href="#outcome-map-registry-consolidation" title="Permanent link">&para;</a></h2>
+<h3 id="bug-fixes_1">Bug Fixes<a class="headerlink" href="#bug-fixes_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>Visible duplicates in the Outcomes browser.</strong> <code>INDUSTRY_OUTCOMES</code> previously
+  registered both the v2 split modules AND their legacy collapsed variants, so
+  the dropdown listed Retail twice (<code>retail</code> + <code>rcg</code>-as-"Retail &amp; Consumer
+  Goods"), Healthcare twice (<code>healthcare</code> + <code>hls</code>), and Sports Betting / Real
+  Money Gaming as a duplicate cluster. The legacy modules
+  (<code>rcg.ts</code>, <code>hls.ts</code>, <code>sports-betting.ts</code>) plus their <code>.enrichment.ts</code>
+  re-export shims have been <strong>deleted</strong>. <code>INDUSTRY_ALIAS_MAP</code> still resolves
+  legacy ids (<code>rcg</code>, <code>hls</code>, <code>sports-betting</code>) to the canonical v2 ids so old
+  <code>ForgeRun</code> rows continue to load.</p>
+</li>
+<li>
+<p><strong>Demo wizard auto-generated ad-hoc outcome maps.</strong> The research engine
+  contained a Pass 3.5 (<code>runOutcomeMapGeneration</code>) and Pass 3.5b
+  (<code>runEnrichmentOnlyGeneration</code>) that, when the classifier returned
+  <code>isNew: true</code>, fired an LLM to invent an outcome map and persisted it to
+  <code>forge_outcome_maps</code> stamped <code>createdBy='demo-wizard'</code>. Discovery itself
+  never created maps; this was a Demo Mode regression. The pass file, the
+  wizard's "New industry outcome map generated and saved" banner, the
+  <code>outcome-map-generation</code> phase label, the <code>OUTCOME_MAP_GENERATION_PROMPT</code>
+  and <code>ENRICHMENT_ONLY_GENERATION_PROMPT</code> templates, and the
+  <code>generatedOutcomeMap</code> field on <code>ResearchEngineResult</code> are all gone. The
+  classifier prompt is now closed-list — it MUST return one of the registered
+  industry ids — and the engine still routes the result through
+  <code>normalizeIndustryId</code> with a closest-match fallback so a degenerate LLM
+  response cannot bypass the registry.</p>
+</li>
+</ul>
+<h3 id="improvements_1">Improvements<a class="headerlink" href="#improvements_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Consultant-grade depth across the v2 split modules.</strong> RCG / HLS /
+  SPORTS_BETTING content (deep <code>whyChange</code> narratives,
+  <code>businessValue</code> outcome statements, <code>typicalDataEntities</code>, and
+  <code>typicalSourceSystems</code> per use case) was lifted into the canonical v2
+  modules:</li>
+<li><code>rcg.ts</code> → split across <code>retail.ts</code> (omni-channel fulfilment, CDP /
+    real-time personalisation, multi-brand loyalty, store labour /
+    in-store execution, competitor pricing) and <code>consumer-goods.ts</code>
+    (supplier risk + demand forecasting, retailer-supplier collaboration,
+    field operations, knowledge management, consumer sentiment).</li>
+<li><code>hls.ts</code> → split across <code>healthcare.ts</code> (patient care, population
+    health, claims, payer ops) and <code>life-sciences.ts</code> (drug discovery,
+    clinical trials, pharmacovigilance). Cross-cutting compliance use
+    cases got authored on both sides with industry-appropriate sourcing.</li>
+<li><code>sports-betting.ts</code> → folded wholesale into <code>real-money-gaming.ts</code>.</li>
+<li><strong>Five thin v2 modules uplifted to the same bar.</strong> <code>capital-markets.ts</code>,
+  <code>media-advertising.ts</code>, <code>energy-utilities.ts</code>, <code>games.ts</code>, and
+  <code>digital-natives.ts</code> previously had only name + 1-line description per
+  use case. Each now ships deep <code>whyChange</code> prose, quantified
+  <code>businessValue</code> outcomes (sourced from the existing
+  <code>*.enrichment.ts</code> <code>kpiTarget</code> + <code>benchmarkImpact</code> data), 4-6
+  <code>typicalDataEntities</code>, and 3-5 <code>typicalSourceSystems</code> per reference
+  use case.</li>
+<li><strong>Master Repository converter writes directly to v2.</strong>
+  <code>scripts/convert-master-repo.mjs</code> now maps the XLSX names directly to
+  the canonical v2 ids (<code>Retail</code> → <code>retail</code>, <code>Consumer Goods</code> →
+  <code>consumer-goods</code>, <code>Life Sciences</code> → <code>life-sciences</code>, <code>Healthcare</code> →
+  <code>healthcare</code>, <code>Real Money Gaming [Digital]</code> → <code>real-money-gaming</code>).
+  Future re-runs no longer round-trip through the legacy id namespace.</li>
+</ul>
+<h3 id="behavior-changes_1">Behavior Changes<a class="headerlink" href="#behavior-changes_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The Outcomes browser dropdown is shorter and free of duplicates. Three
+  legacy entries (<code>rcg</code>, <code>hls</code>, <code>sports-betting</code>) are gone from the visible
+  list; they continue to resolve to canonical ids for existing
+  <code>ForgeRun.config.industry</code> rows.</li>
+<li>The Demo wizard timeline no longer shows an "Industry Knowledge" step
+  and never writes to <code>forge_outcome_maps</code>. If the classifier picks an id
+  that is somehow unmapped, the engine logs a server-side warning and
+  falls back to the closest registered industry — it never papers over
+  the gap with a per-customer LLM-generated map.</li>
+<li><code>forge_outcome_maps</code> rows previously stamped <code>createdBy='demo-wizard'</code>
+  are NOT auto-deleted; they continue to override the (now-richer)
+  built-ins for any colliding <code>industryId</code>. To purge them in one shot:
+  <code>prisma.forgeOutcomeMap.deleteMany({ where: { createdBy: "demo-wizard" } })</code>.</li>
+</ul>
+<h3 id="known-limitations_1">Known Limitations<a class="headerlink" href="#known-limitations_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The per-industry benchmark packs in <code>data/benchmark/{rcg,hls,sports-betting}*.json</code>
+  remain on disk. They're keyed by the legacy industry ids and are still
+  consulted by older runs that resolve through <code>INDUSTRY_ALIAS_MAP</code>.
+  Retiring them properly needs a benchmark migration tracked separately.</li>
+</ul>
+<hr />
+<h2 id="all-commits">All Commits<a class="headerlink" href="#all-commits" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Hash</th>
+<th>Summary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>(pending)</em></td>
+<td>feat(deploy): auto-provision Lakebase project + SP grant bootstrap (zero-flag deploy)</td>
+</tr>
+<tr>
+<td><em>(pending)</em></td>
+<td>feat(deploy): <code>--destroy</code> prompts about Lakebase project + <code>--destroy-database</code> / <code>--purge-database</code> / <code>--keep-database</code> flags</td>
+</tr>
+<tr>
+<td><em>(pending)</em></td>
+<td>feat(deploy): scale-to-zero baked into <code>create-project</code> payload (immutable post-creation, reporting on re-deploy)</td>
+</tr>
+<tr>
+<td><em>(pending)</em></td>
+<td>feat(deploy): destroy resolver finds suffixed Lakebase projects (<code>&lt;app&gt;-&lt;8hex&gt;</code>) when the bare name is taken</td>
+</tr>
+<tr>
+<td><em>(pending)</em></td>
+<td>feat(deploy): SP-grant bootstrap detects the <code>--keep-database</code> ownership gap and surfaces actionable workarounds</td>
+</tr>
+<tr>
+<td><em>(pending)</em></td>
+<td>fix(deploy): destroy continues to workspace + Lakebase cleanup when the app is already absent</td>
+</tr>
+<tr>
+<td><em>(pending)</em></td>
+<td>fix(deploy): pick the branch with <code>status.default == true</code> (fall back to <code>production</code>/<code>main</code>) instead of <code>list-branches[0]</code></td>
+</tr>
+<tr>
+<td><em>(pending)</em></td>
+<td>docs: clean up retired Lakebase flag references across README, QUICKSTART, docs/DEPLOYMENT, AGENTS</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "toc.integrate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

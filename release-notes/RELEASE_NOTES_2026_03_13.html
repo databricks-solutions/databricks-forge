@@ -1,0 +1,2438 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Turn Unity Catalog metadata into business value in days, not quarters">
+      
+      
+      
+        <link rel="canonical" href="https://databricks-solutions.github.io/databricks-forge/release-notes/RELEASE_NOTES_2026_03_13.html">
+      
+      
+        <link rel="prev" href="RELEASE_NOTES_2026_03_14.html">
+      
+      
+        <link rel="next" href="RELEASE_NOTES_2026_03_12.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../images/databricks-icon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>2026-03-13 - Databricks Forge</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#release-notes-2026-03-13" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Databricks Forge" class="md-header__button md-logo" aria-label="Databricks Forge" data-md-component="logo">
+      
+  <img src="../images/databricks-icon.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Databricks Forge
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2026-03-13
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/databricks-solutions/databricks-forge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    databricks-solutions/databricks-forge
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Databricks Forge" class="md-nav__button md-logo" aria-label="Databricks Forge" data-md-component="logo">
+      
+  <img src="../images/databricks-icon.svg" alt="logo">
+
+    </a>
+    Databricks Forge
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/databricks-solutions/databricks-forge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    databricks-solutions/databricks-forge
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DEPLOYMENT.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../USER_GUIDE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Features
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ask-forge.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ask Forge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BUSINESS_VALUE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Value
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../estate-analysis.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estate Intelligence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SKILLS_KNOWLEDGE_BASE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Knowledge Base
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/SUPPORT.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/SECURITY.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/CONTRIBUTING.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release Notes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Release Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_07_21.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-07-21
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_05_26.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-26
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_05_11.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_05_02.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-02
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_04_30.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-04-30
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_04_16.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-04-16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_31.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-31
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_19.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-19
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_18.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-18
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_16.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_15.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-15
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_14.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-14
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-13
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="RELEASE_NOTES_2026_03_13.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-13
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#v0290-async-genie-builds-from-ask-forge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v0.29.0 -- Async Genie Builds from Ask Forge
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v0.29.0 -- Async Genie Builds from Ask Forge">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        New Features
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="New Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#async-fire-and-forget-genie-space-builds-from-ask-forge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Async Fire-and-Forget Genie Space Builds from Ask Forge
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-progress-toast-with-cancel-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build Progress Toast with Cancel Support
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#genie-deploy-dialog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Genie Deploy Dialog
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#source-badges-on-genie-studio-job-tiles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source Badges on Genie Studio Job Tiles
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-in-progress-sidebar-indicator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build-in-Progress Sidebar Indicator
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#page-refresh-resilience" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Page Refresh Resilience
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#improvements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Improvements
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Improvements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#abortsignal-threading-in-fast-genie-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AbortSignal Threading in Fast Genie Engine
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shared-deploy-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shared Deploy Utilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unified-build-job-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unified Build Job Provider
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#progress-callbacks-in-fast-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Progress Callbacks in Fast Engine
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v0291-scoped-structured-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v0.29.1 -- Scoped Structured Logging
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v0.29.1 -- Scoped Structured Logging">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#improvements_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Improvements
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Improvements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scoped-structured-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scoped Structured Logging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updated-logger-port-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Updated Logger Port Interface
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v0292-metric-view-quality-review-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v0.29.2 -- Metric View Quality &amp; Review Performance
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v0.29.2 -- Metric View Quality &amp; Review Performance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bug-fixes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bug Fixes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#improvements_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Improvements
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Improvements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sql-review-429-overflow-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SQL Review 429 Overflow Routing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#global-sql-review-concurrency-limiter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Global SQL Review Concurrency Limiter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-dry-run-llm-repair-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Post-Dry-Run LLM Repair Loop
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v0300-genie-engine-performance-overhaul" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v0.30.0 -- Genie Engine Performance Overhaul
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v0.30.0 -- Genie Engine Performance Overhaul">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-features_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        New Features
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="New Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hierarchical-domain-progress-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hierarchical Domain Progress UI
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#improvements_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Improvements
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Improvements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#genie-engine-performance-overhaul" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Genie Engine Performance Overhaul
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#empty-llm-response-resilience" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Empty LLM Response Resilience
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v0310-quality-presets-performance-model-bundle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v0.31.0 -- Quality Presets + Performance Model Bundle
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v0.31.0 -- Quality Presets + Performance Model Bundle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-features_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        New Features
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="New Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quality-preset-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quality Preset System
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-model-bundle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Model Bundle
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#improvements_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Improvements
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Improvements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#budget-driven-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Budget-Driven Generation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#right-sized-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Right-Sized Output
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cross-surface-wiring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-Surface Wiring
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bug-fixes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bug Fixes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-changes_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v0311-model-compatibility-guards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v0.31.1 -- Model Compatibility Guards
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v0.31.1 -- Model Compatibility Guards">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bug-fixes_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bug Fixes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#improvements_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Improvements
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Improvements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#per-call-model-observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Per-call model observability
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verified-model-capability-registry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verified model capability registry
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v0312-progressive-429-backoff-8k-token-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v0.31.2 -- Progressive 429 Backoff + 8K Token Optimization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v0.31.2 -- Progressive 429 Backoff + 8K Token Optimization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#improvements_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Improvements
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Improvements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#progressive-429-backoff-10s-20s-30s" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Progressive 429 Backoff (10s / 20s / 30s)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gemini-31-flash-lite-promoted-to-generation-tier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gemini 3.1 Flash Lite Promoted to Generation Tier
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trusted-asset-prompt-rework-for-8k-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trusted Asset Prompt Rework for 8K Models
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metric-view-yaml-only-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metric View YAML-Only Output
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lower-concurrency-caps-for-rate-limit-prone-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lower Concurrency Caps for Rate-Limit-Prone Models
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quality-preset-token-budget-reductions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quality Preset Token Budget Reductions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#column-intelligence-and-benchmark-default-maxtokens-lowered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Column Intelligence and Benchmark Default maxTokens Lowered
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#429-diagnostics-raw-retry-after-header-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        429 Diagnostics: Raw Retry-After Header Logging
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#all-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        All Commits
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_12.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-12
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_11.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_10.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_09.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-09
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_07.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-07
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_06.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-06
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_05.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-05
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026_03_04.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-04
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026-02-27.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-02-27
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="RELEASE_NOTES_2026-02-25.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-02-25
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="release-notes-2026-03-13">Release Notes -- 2026-03-13<a class="headerlink" href="#release-notes-2026-03-13" title="Permanent link">&para;</a></h1>
+<p><strong>Databricks Forge v0.29.0 → v0.31.2</strong></p>
+<hr />
+<h2 id="v0290-async-genie-builds-from-ask-forge">v0.29.0 -- Async Genie Builds from Ask Forge<a class="headerlink" href="#v0290-async-genie-builds-from-ask-forge" title="Permanent link">&para;</a></h2>
+<h3 id="new-features">New Features<a class="headerlink" href="#new-features" title="Permanent link">&para;</a></h3>
+<h4 id="async-fire-and-forget-genie-space-builds-from-ask-forge">Async Fire-and-Forget Genie Space Builds from Ask Forge<a class="headerlink" href="#async-fire-and-forget-genie-space-builds-from-ask-forge" title="Permanent link">&para;</a></h4>
+<p>Ask Forge Genie Space creation is now fully asynchronous, eliminating SSE/upstream request timeouts. When a user triggers "Create Genie Space" from Ask Forge, the build starts in the background and the user can continue their conversation immediately. A persistent progress toast in the bottom-right shows real-time build status with cancel, retry, and deploy actions. Completed builds can be deployed directly from the toast or from Genie Studio.</p>
+<h4 id="build-progress-toast-with-cancel-support">Build Progress Toast with Cancel Support<a class="headerlink" href="#build-progress-toast-with-cancel-support" title="Permanent link">&para;</a></h4>
+<p>A new persistent <code>sonner</code> toast component tracks Genie Space builds across the application. The toast displays a progress bar, current step message, and percentage. Users can cancel running builds at any time. On completion, the toast transitions to a deploy-ready state with one-click deployment or a link to Genie Studio.</p>
+<h4 id="genie-deploy-dialog">Genie Deploy Dialog<a class="headerlink" href="#genie-deploy-dialog" title="Permanent link">&para;</a></h4>
+<p>A lightweight deploy dialog extracted from the original GenieBuilderModal provides quality gate enforcement, metric view schema selection, and a streamlined deploy flow. Reuses shared deploy logic for consistent behavior across all build surfaces.</p>
+<h4 id="source-badges-on-genie-studio-job-tiles">Source Badges on Genie Studio Job Tiles<a class="headerlink" href="#source-badges-on-genie-studio-job-tiles" title="Permanent link">&para;</a></h4>
+<p>Build jobs in Genie Studio now display their origin (Ask Forge, Schema Scan, or Requirements) as a compact badge. Completed jobs also show whether they have been deployed, and conversation context is displayed when available.</p>
+<h4 id="build-in-progress-sidebar-indicator">Build-in-Progress Sidebar Indicator<a class="headerlink" href="#build-in-progress-sidebar-indicator" title="Permanent link">&para;</a></h4>
+<p>The Genie Studio navigation item shows a pulsing violet dot when any Genie Space build is actively running, giving users visibility across the entire application.</p>
+<h4 id="page-refresh-resilience">Page Refresh Resilience<a class="headerlink" href="#page-refresh-resilience" title="Permanent link">&para;</a></h4>
+<p>Active build job IDs are persisted in localStorage. When the page reloads, the layout-level provider restores progress toasts for any still-running or completed-but-undeployed builds.</p>
+<h3 id="improvements">Improvements<a class="headerlink" href="#improvements" title="Permanent link">&para;</a></h3>
+<h4 id="abortsignal-threading-in-fast-genie-engine">AbortSignal Threading in Fast Genie Engine<a class="headerlink" href="#abortsignal-threading-in-fast-genie-engine" title="Permanent link">&para;</a></h4>
+<p><code>runFastGenieEngine</code> now correctly destructures and threads <code>AbortSignal</code> through all four async LLM calls (expressions, instructions, example queries, title generation) with step-boundary abort checks. This fixes a bug where cancelling a fast build had no effect.</p>
+<h4 id="shared-deploy-utilities">Shared Deploy Utilities<a class="headerlink" href="#shared-deploy-utilities" title="Permanent link">&para;</a></h4>
+<p>Deploy logic (API call, polling, quality gate, metric view payload, embeddings backfill) has been extracted into <code>lib/genie/deploy-utils.ts</code> with both a pure function (<code>deployGenieSpace</code>) and a React hook (<code>useGenieDeploy</code>). The <code>PATCH /api/genie-spaces/generate</code> endpoint allows writing <code>deployedSpaceId</code> back to the job store for cross-surface coordination.</p>
+<h4 id="unified-build-job-provider">Unified Build Job Provider<a class="headerlink" href="#unified-build-job-provider" title="Permanent link">&para;</a></h4>
+<p>A new <code>GenieBuildProvider</code> React context replaces local polling in the Genie Studio page with a shared <code>useGenieBuildJobs</code> hook. This eliminates duplicate polling and provides consistent job state across Ask Forge, Genie Studio, and the sidebar nav.</p>
+<h4 id="progress-callbacks-in-fast-engine">Progress Callbacks in Fast Engine<a class="headerlink" href="#progress-callbacks-in-fast-engine" title="Permanent link">&para;</a></h4>
+<p><code>runFastGenieEngine</code> now reports progress via <code>onProgress</code> callbacks at each step (metadata scraping, expression generation, instruction generation, query generation, assembly, quality checks), enabling real-time progress feedback in the async toast.</p>
+<hr />
+<h2 id="v0291-scoped-structured-logging">v0.29.1 -- Scoped Structured Logging<a class="headerlink" href="#v0291-scoped-structured-logging" title="Permanent link">&para;</a></h2>
+<h3 id="improvements_1">Improvements<a class="headerlink" href="#improvements_1" title="Permanent link">&para;</a></h3>
+<h4 id="scoped-structured-logging">Scoped Structured Logging<a class="headerlink" href="#scoped-structured-logging" title="Permanent link">&para;</a></h4>
+<p>Introduced <code>createScopedLogger</code> factory that produces loggers carrying immutable structured context -- <code>origin</code>, <code>task</code>, <code>module</code>, <code>fn</code>, <code>runId</code>, <code>errorCategory</code>, and <code>phase</code> -- through every log entry. Replaced the flat singleton logger across 51 files covering the full stack:</p>
+<ul>
+<li><strong>Pipeline Engine</strong> -- root logger per run with per-step children carrying <code>task</code> and <code>module</code>; automatic lifecycle <code>start</code>/<code>end</code> entries with <code>durationMs</code> via the <code>logStep</code> wrapper.</li>
+<li><strong>All 10 pipeline steps</strong> -- use <code>ctx.logger</code> with <code>fn</code> and <code>errorCategory</code> on every warn/error; removed manual <code>[step-name]</code> prefixes and redundant <code>{ runId }</code> metadata.</li>
+<li><strong>Genie, Comment, Dashboard, and Estate Scan engines</strong> -- orchestrators create scoped loggers with <code>origin</code> set to <code>GenieEngine</code>, <code>CommentEngine</code>, <code>DashboardEngine</code>, or <code>EstateScan</code>; sub-passes receive child loggers.</li>
+<li><strong>9 high-priority API routes</strong> -- use <code>apiLogger(route, method, { runId })</code> for request-scoped logging.</li>
+<li><strong>8 infrastructure modules</strong> -- <code>prisma.ts</code>, <code>provision.ts</code>, <code>embed-pipeline.ts</code>, <code>assistant/engine.ts</code>, <code>context-builder.ts</code>, <code>rate-limiter.ts</code>, <code>sql-reviewer.ts</code>, <code>llm-cache.ts</code>.</li>
+</ul>
+<p>Key capabilities:
+- <strong><code>child(extra)</code></strong> -- nest loggers by adding task/module context without losing parent context.
+- <strong><code>timed(message, work)</code></strong> -- auto-emit paired <code>start</code>/<code>end</code> entries with <code>durationMs</code>.
+- <strong>Error categories</strong> -- standardised <code>errorCategory</code> values (<code>llm_timeout</code>, <code>sql_hallucination</code>, <code>schema_validation</code>, <code>auth</code>, <code>db</code>, <code>network</code>, etc.) for pattern matching.
+- <strong>Dev breadcrumbs</strong> -- human-readable <code>origin &gt; task &gt; fn | message (phase)</code> format with correlation ID tags.
+- <strong>Production JSON</strong> -- every entry includes <code>origin</code>, <code>task</code>, <code>module</code>, <code>fn</code>, <code>runId</code>, <code>phase</code>, <code>errorCategory</code> for structured querying.
+- <strong>Backward compatible</strong> -- the singleton <code>logger</code> continues to work; unmigrated files function unchanged.</p>
+<h4 id="updated-logger-port-interface">Updated Logger Port Interface<a class="headerlink" href="#updated-logger-port-interface" title="Permanent link">&para;</a></h4>
+<p><code>ScopedLogger</code> extends <code>Logger</code> with <code>child()</code>, <code>timed()</code>, and <code>context</code> -- any code typed <code>Logger</code> accepts a <code>ScopedLogger</code> without changes.</p>
+<h3 id="other-changes">Other Changes<a class="headerlink" href="#other-changes" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Added optional <code>logger</code> field to <code>PipelineContext</code> for scoped logger injection.</li>
+<li>Updated 9 test files to include <code>createScopedLogger</code> in logger mocks.</li>
+</ul>
+<hr />
+<h2 id="v0292-metric-view-quality-review-performance">v0.29.2 -- Metric View Quality &amp; Review Performance<a class="headerlink" href="#v0292-metric-view-quality-review-performance" title="Permanent link">&para;</a></h2>
+<h3 id="bug-fixes">Bug Fixes<a class="headerlink" href="#bug-fixes" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Metric view placeholder catalog references</strong> -- The LLM sometimes copied the literal <code>catalog.schema</code> placeholder from the prompt examples into generated DDL, causing <code>NO_SUCH_CATALOG_EXCEPTION</code> dry-run failures. The prompt now injects the real catalog.schema scope, and a post-processing safety net replaces any residual placeholders.</li>
+<li><strong>Trusted-asset batch review parse failures</strong> -- Batch review responses for trusted assets failed to parse 100% of the time due to output truncation and minimal JSON parsing. Replaced <code>JSON.parse</code> with <code>parseLLMJson</code> (handles truncation recovery, preamble stripping, malformed JSON) and doubled <code>maxTokens</code> per item when <code>requestFix</code> is true.</li>
+<li><strong>Metric view dry-run timeout risk</strong> -- <code>dryRunMetricViewDdl</code> used default SQL timeouts allowing up to ~10 minutes of polling per proposal. Now uses explicit 30s <code>waitTimeout</code> and 35s <code>submitTimeoutMs</code> to prevent domain-blocking hangs.</li>
+</ul>
+<h3 id="improvements_2">Improvements<a class="headerlink" href="#improvements_2" title="Permanent link">&para;</a></h3>
+<h4 id="sql-review-429-overflow-routing">SQL Review 429 Overflow Routing<a class="headerlink" href="#sql-review-429-overflow-routing" title="Permanent link">&para;</a></h4>
+<p>When the <code>sql</code>-tier review endpoint (<code>databricks-gpt-5-4</code>) enters 429 backoff, the task router now overflows to any unblocked pool endpoint instead of queuing behind the 60s circuit breaker. This allows Claude models to absorb review load during rate-limit storms.</p>
+<h4 id="global-sql-review-concurrency-limiter">Global SQL Review Concurrency Limiter<a class="headerlink" href="#global-sql-review-concurrency-limiter" title="Permanent link">&para;</a></h4>
+<p>Added a cross-domain concurrency cap (4 concurrent) on all <code>reviewChatCompletion</code> calls. With 8+ domains running reviews in parallel, this prevents burst pressure on the review endpoint and reduces 429 activations.</p>
+<h4 id="post-dry-run-llm-repair-loop">Post-Dry-Run LLM Repair Loop<a class="headerlink" href="#post-dry-run-llm-repair-loop" title="Permanent link">&para;</a></h4>
+<p>Metric view proposals that pass static validation but fail dry-run with repairable errors (e.g. <code>METRIC_VIEW_INVALID_VIEW_DEFINITION</code>, <code>UNRESOLVED_COLUMN</code>) now get a second-chance LLM repair attempt. The repaired DDL is re-validated and re-dry-run before acceptance.</p>
+<hr />
+<h2 id="v0300-genie-engine-performance-overhaul">v0.30.0 -- Genie Engine Performance Overhaul<a class="headerlink" href="#v0300-genie-engine-performance-overhaul" title="Permanent link">&para;</a></h2>
+<h3 id="new-features_1">New Features<a class="headerlink" href="#new-features_1" title="Permanent link">&para;</a></h3>
+<h4 id="hierarchical-domain-progress-ui">Hierarchical Domain Progress UI<a class="headerlink" href="#hierarchical-domain-progress-ui" title="Permanent link">&para;</a></h4>
+<p>Added a rich, collapsible per-domain progress panel to the Genie Engine workbench. Each domain shows its current phase (expressions, joins, assets, assembly), a thin progress bar, status icon, and elapsed time. The top-level bar remains for overall progress while the detail panel provides granular visibility into long-running generation jobs.</p>
+<h3 id="improvements_3">Improvements<a class="headerlink" href="#improvements_3" title="Permanent link">&para;</a></h3>
+<h4 id="genie-engine-performance-overhaul">Genie Engine Performance Overhaul<a class="headerlink" href="#genie-engine-performance-overhaul" title="Permanent link">&para;</a></h4>
+<p>Dramatic runtime reduction targeting sub-5 minutes (from ~17 minutes) through six optimization strategies:
+- <strong>Parallel subdomain processing</strong>: Metric view generation now runs up to 3 subdomains concurrently via <code>mapWithConcurrency</code> instead of sequentially.
+- <strong>Parallel dry-run validation</strong>: All metric view dry-runs execute concurrently via <code>Promise.all</code> instead of one-by-one.
+- <strong>Smarter model routing</strong>: Opus models restricted to reasoning-only tier; semantic expressions downgraded to classification tier for faster inference.
+- <strong>Reduced SQL review overhead</strong>: Metric view and join inference reviews disabled by default (validated by YAML parser + dry-run instead); <code>SQL_REVIEW_CONCURRENCY</code> bumped from 4 to 6.
+- <strong>Lower token budgets</strong>: <code>maxTokens</code> reduced across all passes -- semantic expressions (8K to 4K), trusted assets (32K to 12K), benchmarks (32K to 8K), metric views (32K to 16K), column intelligence (32K to 12K).
+- <strong>Skip metric view planning</strong>: New <code>skipMetricViewPlanning</code> config option (default: true) eliminates an LLM call per domain.</p>
+<h4 id="empty-llm-response-resilience">Empty LLM Response Resilience<a class="headerlink" href="#empty-llm-response-resilience" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Empty content from Model Serving is now detected inside the retry loop, triggering genuine retries with exponential backoff (up to 3 attempts).</li>
+<li>Empty responses are never cached, preventing cache poisoning that caused downstream parse failures.</li>
+<li>Diagnostic logging added in <code>model-serving.ts</code> and <code>sql-reviewer.ts</code> for traceability.</li>
+<li>Review surface env var is restored in a <code>finally</code> block to prevent cross-feature side effects.</li>
+</ul>
+<hr />
+<h2 id="v0310-quality-presets-performance-model-bundle">v0.31.0 -- Quality Presets + Performance Model Bundle<a class="headerlink" href="#v0310-quality-presets-performance-model-bundle" title="Permanent link">&para;</a></h2>
+<h3 id="new-features_2">New Features<a class="headerlink" href="#new-features_2" title="Permanent link">&para;</a></h3>
+<h4 id="quality-preset-system">Quality Preset System<a class="headerlink" href="#quality-preset-system" title="Permanent link">&para;</a></h4>
+<p>User-configurable Speed / Balanced / Premium presets that control the Genie Engine's speed-vs-richness trade-off. Each preset defines a <code>GenerationBudget</code> governing target counts for measures, filters, dimensions, trusted assets, and benchmarks, along with domain concurrency, review surface enablement, and maxTokens per LLM call. The default preset is <strong>Balanced</strong>. Accessible from the Settings page under the Genie Engine section.</p>
+<h4 id="performance-model-bundle">Performance Model Bundle<a class="headerlink" href="#performance-model-bundle" title="Permanent link">&para;</a></h4>
+<p>Three new high-throughput models added to the model registry: <code>databricks-gemini-3-1-flash-lite</code> (priority 0, classification + lightweight), <code>databricks-llama-4-maverick</code> (priority 0, generation + classification), and <code>databricks-gemini-3-flash</code> (priority 1, generation + classification + lightweight). A new <code>DATABRICKS_SERVING_ENDPOINT_LIGHTWEIGHT</code> env var and <code>--lightweight-endpoint</code> deploy flag bind the 7th model slot.</p>
+<h3 id="improvements_4">Improvements<a class="headerlink" href="#improvements_4" title="Permanent link">&para;</a></h3>
+<h4 id="budget-driven-generation">Budget-Driven Generation<a class="headerlink" href="#budget-driven-generation" title="Permanent link">&para;</a></h4>
+<p>All Genie Engine passes (semantic expressions, trusted assets, benchmarks) now accept budget parameters instead of using hardcoded target counts and maxTokens. Worker A/B/C prompts, use case caps, and benchmarks-per-batch are all driven by the resolved budget.</p>
+<h4 id="right-sized-output">Right-Sized Output<a class="headerlink" href="#right-sized-output" title="Permanent link">&para;</a></h4>
+<p>Speed preset generates lean spaces (4 measures A / 2 measures B / 4 filters / 4 dimensions, 3 concurrent domains, metric views disabled). Premium produces maximum richness (15/10/12/12, 10 concurrent domains, all review surfaces enabled). Balanced sits in the middle as the recommended default.</p>
+<h4 id="cross-surface-wiring">Cross-Surface Wiring<a class="headerlink" href="#cross-surface-wiring" title="Permanent link">&para;</a></h4>
+<p>Quality preset flows through the pipeline Genie workbench, ad-hoc Genie engine (Scan Schema, Upload Requirements), and Ask Forge conversational builder. All surfaces respect the user's chosen preset.</p>
+<h3 id="bug-fixes_1">Bug Fixes<a class="headerlink" href="#bug-fixes_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Metric view dry-run collision</strong> -- Parallel dry-runs could create <code>TABLE_OR_VIEW_ALREADY_EXISTS</code> errors due to identical temp table names. Fixed by appending a UUID suffix to the temp table name.</li>
+<li><strong>SQL review maxTokens cap</strong> -- Batch review calls were capped at 16,384 tokens, causing truncation on large batches. Increased to 32,768.</li>
+</ul>
+<h3 id="other-changes_1">Other Changes<a class="headerlink" href="#other-changes_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Deploy script updated with <code>--lightweight-endpoint</code> flag, resource binding, env var injection, and success banner.</li>
+<li>Model registry tests expanded with 5 new test cases for performance bundle models (15/15 passing).</li>
+<li>AGENTS.md updated to document quality presets, <code>GenerationBudget</code>, performance bundle, and the lightweight endpoint deploy flag.</li>
+</ul>
+<hr />
+<h2 id="v0311-model-compatibility-guards">v0.31.1 -- Model Compatibility Guards<a class="headerlink" href="#v0311-model-compatibility-guards" title="Permanent link">&para;</a></h2>
+<h3 id="bug-fixes_2">Bug Fixes<a class="headerlink" href="#bug-fixes_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>Reasoning model content parsing</strong> -- Fixed <code>e.replace is not a function</code> and <code>e.trim is not a function</code> crashes when Gemini 3 models return array-of-blocks content (reasoning + text blocks) instead of a plain string. New <code>extractContentText()</code> safely extracts text from both formats.</p>
+</li>
+<li>
+<p><strong>JSON mode 400 errors</strong> -- Replaced string-matching <code>supportsJsonResponseFormat()</code> with a registry-backed lookup. Only GPT-5.x models (verified <code>supportsJsonMode: true</code>) now receive <code>response_format: json_object</code>. Gemini, Llama, and Claude models no longer trigger <code>400 BAD_REQUEST</code> from unsupported JSON mode requests.</p>
+</li>
+<li>
+<p><strong>maxTokens exceeds model limit</strong> -- Added automatic token clamping in both <code>chatCompletion</code> and <code>chatCompletionStream</code>. Requests for 12288 tokens to Gemini Flash Lite (max 8192) are now silently clamped instead of returning <code>400 BAD_REQUEST</code>.</p>
+</li>
+<li>
+<p><strong>GPT-5.4 empty responses (finishReason=length)</strong> -- Doubled the SQL reviewer per-item token budget (1024-&gt;2048 review, 2048-&gt;4096 fix) and added a 16384 token floor. GPT-5.4's hidden reasoning tokens no longer exhaust the budget before producing visible output.</p>
+</li>
+<li>
+<p><strong>Unknown model rejection</strong> -- <code>templateFor()</code> now returns <code>null</code> for unrecognised models, and <code>buildPool()</code> skips them with a warning log. Prevents undefined-capability models from entering the pool with permissive defaults.</p>
+</li>
+<li>
+<p><strong>Codex model removal</strong> -- Removed <code>databricks-gpt-5-3-codex</code> from <code>KNOWN_MODELS</code>. All Codex models require the Responses API (AI Gateway beta only) and are not supported until GA.</p>
+</li>
+</ul>
+<h3 id="improvements_5">Improvements<a class="headerlink" href="#improvements_5" title="Permanent link">&para;</a></h3>
+<h4 id="per-call-model-observability">Per-call model observability<a class="headerlink" href="#per-call-model-observability" title="Permanent link">&para;</a></h4>
+<p>Every <code>chatCompletion</code> call now logs the endpoint, requested maxTokens, JSON mode, and model capabilities. <code>resolveEndpoint</code> logs tier, chosen endpoint, and resolution source at debug level. All Genie Engine passes (semantic expressions, trusted assets, benchmarks, column intelligence, instructions) include the endpoint in their status logs.</p>
+<h4 id="verified-model-capability-registry">Verified model capability registry<a class="headerlink" href="#verified-model-capability-registry" title="Permanent link">&para;</a></h4>
+<p><code>KNOWN_MODELS</code> in <code>model-registry.ts</code> now includes <code>supportsJsonMode</code> and <code>maxOutputTokens</code> for every supported model, sourced from Databricks documentation. New <code>getModelCapabilities()</code> public API enables any module to query model limits. Pool startup summary now includes JSON mode support and max output tokens per endpoint.</p>
+<hr />
+<h2 id="v0312-progressive-429-backoff-8k-token-optimization">v0.31.2 -- Progressive 429 Backoff + 8K Token Optimization<a class="headerlink" href="#v0312-progressive-429-backoff-8k-token-optimization" title="Permanent link">&para;</a></h2>
+<h3 id="improvements_6">Improvements<a class="headerlink" href="#improvements_6" title="Permanent link">&para;</a></h3>
+<h4 id="progressive-429-backoff-10s-20s-30s">Progressive 429 Backoff (10s / 20s / 30s)<a class="headerlink" href="#progressive-429-backoff-10s-20s-30s" title="Permanent link">&para;</a></h4>
+<p>Replaced the flat 60-second rate-limit backoff with a progressive escalation ladder: first 429 triggers a 10-second pause, second escalates to 20 seconds, and third+ caps at 30 seconds. Successful calls immediately reset the counter and lift the block. Saves ~50 seconds per rate-limit incident.</p>
+<h4 id="gemini-31-flash-lite-promoted-to-generation-tier">Gemini 3.1 Flash Lite Promoted to Generation Tier<a class="headerlink" href="#gemini-31-flash-lite-promoted-to-generation-tier" title="Permanent link">&para;</a></h4>
+<p>Flash Lite is now the preferred model for all generation tasks (trusted assets, metric views, benchmarks, example queries) in addition to classification and lightweight tiers. Llama Maverick is demoted to overflow/backup (priority 1). Based on testing, Flash Lite is both faster and higher quality.</p>
+<h4 id="trusted-asset-prompt-rework-for-8k-models">Trusted Asset Prompt Rework for 8K Models<a class="headerlink" href="#trusted-asset-prompt-rework-for-8k-models" title="Permanent link">&para;</a></h4>
+<p>Condensed the trusted assets system prompt by ~50%, reduced batch size from 3 to 2 use cases per LLM call, and lowered default maxTokens from 12,288 to 6,144. Each batch now produces 1-2 complete parameterized queries that fit comfortably within 8K model output limits, eliminating truncated JSON.</p>
+<h4 id="metric-view-yaml-only-output">Metric View YAML-Only Output<a class="headerlink" href="#metric-view-yaml-only-output" title="Permanent link">&para;</a></h4>
+<p>The LLM now returns only the YAML body for metric view proposals; the DDL wrapper (<code>CREATE OR REPLACE VIEW ... WITH METRICS LANGUAGE YAML AS $$ ... $$</code>) is built programmatically via the new <code>buildMetricViewDdl()</code> helper. This halves output token usage per proposal. The YAML spec reference embedded in the prompt was condensed from ~140 lines to ~30 lines. Max proposals reduced from 3 to 2 per subdomain.</p>
+<h4 id="lower-concurrency-caps-for-rate-limit-prone-models">Lower Concurrency Caps for Rate-Limit-Prone Models<a class="headerlink" href="#lower-concurrency-caps-for-rate-limit-prone-models" title="Permanent link">&para;</a></h4>
+<p>Reduced max concurrent requests: Llama Maverick 10→6, GPT-5.4 6→4, Gemini Flash 8→8 (unchanged). Prevents 429 storms on pay-per-token endpoints with tight per-second output token limits.</p>
+<h4 id="quality-preset-token-budget-reductions">Quality Preset Token Budget Reductions<a class="headerlink" href="#quality-preset-token-budget-reductions" title="Permanent link">&para;</a></h4>
+<p>All three quality presets now use token budgets that fit within the 8,192-token output ceiling of the majority of pool models:
+- <strong>Balanced</strong>: trustedAssets 12,288→6,144, benchmarks 6,144→4,096
+- <strong>Speed</strong>: trustedAssets 8,192→4,096, benchmarks 4,096→3,072
+- <strong>Premium</strong>: trustedAssets 32,768→8,192, benchmarks 8,192→6,144</p>
+<h4 id="column-intelligence-and-benchmark-default-maxtokens-lowered">Column Intelligence and Benchmark Default maxTokens Lowered<a class="headerlink" href="#column-intelligence-and-benchmark-default-maxtokens-lowered" title="Permanent link">&para;</a></h4>
+<p>Hardcoded maxTokens in column intelligence (12,288→6,144) and benchmark generation (8,192→6,144) now leave headroom within 8K model limits. These defaults are used by the ad-hoc Genie Engine which bypasses quality preset budgets.</p>
+<h4 id="429-diagnostics-raw-retry-after-header-logging">429 Diagnostics: Raw Retry-After Header Logging<a class="headerlink" href="#429-diagnostics-raw-retry-after-header-logging" title="Permanent link">&para;</a></h4>
+<p>Both regular and streaming LLM call paths now log the raw <code>Retry-After</code> header value (or <code>(none)</code>) on 429 responses, confirming whether Databricks sends one and enabling future tuning of backoff parameters.</p>
+<hr />
+<h2 id="all-commits">All Commits<a class="headerlink" href="#all-commits" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Hash</th>
+<th>Summary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>f4be01c</code></td>
+<td>feat: async fire-and-forget Genie Space builds from Ask Forge</td>
+</tr>
+<tr>
+<td><code>2e3f70d</code></td>
+<td>refactor: introduce scoped logging with origin, module, and error category tracking</td>
+</tr>
+<tr>
+<td><code>21eb93d</code></td>
+<td>fix: Genie Engine metric view quality and review performance</td>
+</tr>
+<tr>
+<td><code>ea69642</code></td>
+<td>feat: Genie Engine performance overhaul + hierarchical progress UI + empty response resilience</td>
+</tr>
+<tr>
+<td><code>94f6448</code></td>
+<td>chore: format codebase with Prettier</td>
+</tr>
+<tr>
+<td><code>2cff418</code></td>
+<td>feat: quality preset system with performance model bundle</td>
+</tr>
+<tr>
+<td><code>a95199e</code></td>
+<td>fix: model compatibility guards -- content parsing, JSON mode gate, token clamping, and per-call logging</td>
+</tr>
+<tr>
+<td><em>(pending)</em></td>
+<td>fix: progressive 429 backoff, Flash Lite generation tier, prompt rework for 8K models</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "toc.integrate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

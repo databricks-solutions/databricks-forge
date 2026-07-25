@@ -1,0 +1,3753 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Turn Unity Catalog metadata into business value in days, not quarters">
+      
+      
+      
+        <link rel="canonical" href="https://databricks-solutions.github.io/databricks-forge/estate-analysis.html">
+      
+      
+        <link rel="prev" href="BUSINESS_VALUE.html">
+      
+      
+        <link rel="next" href="SKILLS_KNOWLEDGE_BASE.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="images/databricks-icon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>Estate Intelligence - Databricks Forge</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#estate-analysis-how-the-data-estate-intelligence-engine-works" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="Databricks Forge" class="md-header__button md-logo" aria-label="Databricks Forge" data-md-component="logo">
+      
+  <img src="images/databricks-icon.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Databricks Forge
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Estate Intelligence
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/databricks-solutions/databricks-forge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    databricks-solutions/databricks-forge
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Databricks Forge" class="md-nav__button md-logo" aria-label="Databricks Forge" data-md-component="logo">
+      
+  <img src="images/databricks-icon.svg" alt="logo">
+
+    </a>
+    Databricks Forge
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/databricks-solutions/databricks-forge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    databricks-solutions/databricks-forge
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="quickstart.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="DEPLOYMENT.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="USER_GUIDE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Features
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ask-forge.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ask Forge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="BUSINESS_VALUE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Value
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estate Intelligence
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="estate-analysis.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estate Intelligence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-this-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why This Matters
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Why This Matters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#for-data-leaders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        For Data Leaders
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-technical-teams" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        For Technical Teams
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture Diagram
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#forgeenvironmentscan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ForgeEnvironmentScan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forgetabledetail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ForgeTableDetail
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forgetablehistorysummary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ForgeTableHistorySummary
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forgetablelineage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ForgeTableLineage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forgetableinsight" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ForgeTableInsight
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pipeline-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pipeline Flow
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pipeline Flow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-1-table-discovery-metadata-listing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 1: Table Discovery &amp; Metadata Listing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-2-lineage-walking-bfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2: Lineage Walking (BFS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-3-deep-metadata-enrichment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 3: Deep Metadata Enrichment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-4-tag-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 4: Tag Collection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-5-health-scoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 5: Health Scoring
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-6-llm-intelligence-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 6: LLM Intelligence Layer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-7-persistence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 7: Persistence
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#llm-intelligence-passes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LLM Intelligence Passes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LLM Intelligence Passes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pass-1-domain-categorisation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pass 1: Domain Categorisation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pass-2-pii-sensitivity-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pass 2: PII &amp; Sensitivity Detection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pass-3-auto-generated-descriptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pass 3: Auto-Generated Descriptions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pass-4-redundancy-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pass 4: Redundancy Detection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pass-5-implicit-relationship-discovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pass 5: Implicit Relationship Discovery
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pass-6-medallion-tier-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pass 6: Medallion Tier Classification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pass-7-data-product-identification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pass 7: Data Product Identification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-pass-governance-gap-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Post-Pass: Governance Gap Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lineage-walker-deep-dive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lineage Walker Deep Dive
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lineage Walker Deep Dive">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Algorithm
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graceful-degradation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Graceful Degradation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#health-scoring-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Health Scoring Rules
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#erd-generation-visualisation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ERD Generation &amp; Visualisation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ERD Generation &amp; Visualisation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#graph-building-libexporterd-generatorts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Graph Building (lib/export/erd-generator.ts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filtering-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filtering Options
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mermaid-export" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mermaid Export
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interactive-viewer-componentsenvironmenterd-viewertsx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interactive Viewer (components/environment/erd-viewer.tsx)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aggregate-estate-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aggregate Estate View
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Aggregate Estate View">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Purpose
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#merge-strategy-liblakebaseenvironment-scansts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Merge Strategy (lib/lakebase/environment-scans.ts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-design-decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Design Decisions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#executive-summary-intelligence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executive Summary Intelligence
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Executive Summary Intelligence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#business-perspective" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Business Perspective
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#technical-detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Technical Detail
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#severity-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Severity Levels
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scan-progress-live-feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scan Progress &amp; Live Feedback
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scan Progress &amp; Live Feedback">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#progress-phases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Progress Phases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#live-counters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Live Counters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#excel-export" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Excel Export
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#privacy-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Privacy Model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#row-size-statistics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Row &amp; Size Statistics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Row &amp; Size Statistics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sources-of-row-counts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sources of Row Counts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where-row-counts-appear" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where Row Counts Appear
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#governance-score-on-table-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Governance Score on Table Details
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#constants-tuning-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Constants &amp; Tuning Parameters
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="SKILLS_KNOWLEDGE_BASE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Knowledge Base
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/SUPPORT.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/SECURITY.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/CONTRIBUTING.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release Notes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Release Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_07_21.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-07-21
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_05_26.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-26
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_05_11.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_05_02.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-02
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_04_30.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-04-30
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_04_16.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-04-16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_31.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-31
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_19.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-19
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_18.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-18
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_16.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_15.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-15
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_14.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-14
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_13.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-13
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_12.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-12
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_11.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_10.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_09.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-09
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_07.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-07
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_06.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-06
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_05.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-05
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_04.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-04
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026-02-27.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-02-27
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026-02-25.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-02-25
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="estate-analysis-how-the-data-estate-intelligence-engine-works">Estate Analysis -- How the Data Estate Intelligence Engine Works<a class="headerlink" href="#estate-analysis-how-the-data-estate-intelligence-engine-works" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>A comprehensive guide to the environment scanning pipeline, metadata enrichment, LLM intelligence layer, lineage walking, health scoring, ERD generation, aggregate estate view, and executive reporting behind Databricks Forge.</p>
+</blockquote>
+<hr />
+<h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#why-this-matters">Why This Matters</a></li>
+<li><a href="#architecture-diagram">Architecture Diagram</a></li>
+<li><a href="#data-model">Data Model</a></li>
+<li><a href="#pipeline-flow">Pipeline Flow</a></li>
+<li><a href="#phase-1-table-discovery--metadata-listing">Phase 1: Table Discovery &amp; Metadata Listing</a></li>
+<li><a href="#phase-2-lineage-walking-bfs">Phase 2: Lineage Walking (BFS)</a></li>
+<li><a href="#phase-3-deep-metadata-enrichment">Phase 3: Deep Metadata Enrichment</a></li>
+<li><a href="#phase-4-tag-collection">Phase 4: Tag Collection</a></li>
+<li><a href="#phase-5-health-scoring">Phase 5: Health Scoring</a></li>
+<li><a href="#phase-6-llm-intelligence-layer">Phase 6: LLM Intelligence Layer</a></li>
+<li><a href="#phase-7-persistence">Phase 7: Persistence</a></li>
+<li><a href="#llm-intelligence-passes">LLM Intelligence Passes</a></li>
+<li><a href="#pass-1-domain-categorisation">Pass 1: Domain Categorisation</a></li>
+<li><a href="#pass-2-pii--sensitivity-detection">Pass 2: PII &amp; Sensitivity Detection</a></li>
+<li><a href="#pass-3-auto-generated-descriptions">Pass 3: Auto-Generated Descriptions</a></li>
+<li><a href="#pass-4-redundancy-detection">Pass 4: Redundancy Detection</a></li>
+<li><a href="#pass-5-implicit-relationship-discovery">Pass 5: Implicit Relationship Discovery</a></li>
+<li><a href="#pass-6-medallion-tier-classification">Pass 6: Medallion Tier Classification</a></li>
+<li><a href="#pass-7-data-product-identification">Pass 7: Data Product Identification</a></li>
+<li><a href="#post-pass-governance-gap-analysis">Post-Pass: Governance Gap Analysis</a></li>
+<li><a href="#lineage-walker-deep-dive">Lineage Walker Deep Dive</a></li>
+<li><a href="#health-scoring-rules">Health Scoring Rules</a></li>
+<li><a href="#erd-generation--visualisation">ERD Generation &amp; Visualisation</a></li>
+<li><a href="#aggregate-estate-view">Aggregate Estate View</a></li>
+<li><a href="#executive-summary-intelligence">Executive Summary Intelligence</a></li>
+<li><a href="#scan-progress--live-feedback">Scan Progress &amp; Live Feedback</a></li>
+<li><a href="#excel-export">Excel Export</a></li>
+<li><a href="#api-reference">API Reference</a></li>
+<li><a href="#privacy-model">Privacy Model</a></li>
+<li><a href="#constants--tuning-parameters">Constants &amp; Tuning Parameters</a></li>
+</ul>
+<hr />
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The <strong>Data Estate Intelligence Engine</strong> is a standalone scanning pipeline that analyses your entire Databricks Unity Catalog environment. Unlike the Discovery pipeline (which generates use cases), the Estate engine answers a fundamentally different question:</p>
+<blockquote>
+<p><strong>"What data do we actually have, how is it connected, how healthy is it, and what should we do about it?"</strong></p>
+</blockquote>
+<p>The engine performs a deep, non-invasive scan of your Unity Catalog metadata -- table structures, lineage graphs, Delta history, tags, properties -- and then applies eight distinct LLM intelligence passes to produce a rich, categorised, scored view of your data landscape.</p>
+<p>The output is a <strong>holistic estate view</strong> that combines:</p>
+<ul>
+<li><strong>Structural metadata</strong>: sizes, formats, partitions, clustering, Delta protocol versions</li>
+<li><strong>Operational health</strong>: maintenance gaps, streaming patterns, staleness detection</li>
+<li><strong>Data lineage</strong>: upstream/downstream dependency graphs via system tables</li>
+<li><strong>Business intelligence</strong>: domain categorisation, data product identification, tier classification</li>
+<li><strong>Risk &amp; governance</strong>: PII detection, sensitivity classification, governance scoring, gap analysis</li>
+<li><strong>Relationship mapping</strong>: explicit FKs plus LLM-discovered implicit relationships</li>
+<li><strong>Redundancy detection</strong>: duplicate and overlapping table identification</li>
+</ul>
+<p>Multiple scans across different scopes (catalogs, schemas) are merged into a single <strong>aggregate estate view</strong> that represents the latest known state of your entire data landscape.</p>
+<hr />
+<h2 id="why-this-matters">Why This Matters<a class="headerlink" href="#why-this-matters" title="Permanent link">&para;</a></h2>
+<h3 id="for-data-leaders">For Data Leaders<a class="headerlink" href="#for-data-leaders" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Challenge</th>
+<th>How the Estate Engine Helps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"We don't know what data we have"</td>
+<td>Automated discovery with LLM-generated descriptions for every table</td>
+</tr>
+<tr>
+<td>"We can't find data across teams"</td>
+<td>Domain categorisation and data product identification create a searchable catalogue</td>
+</tr>
+<tr>
+<td>"We're not sure where PII lives"</td>
+<td>Column-level PII detection with regulation mapping (GDPR, CCPA, HIPAA)</td>
+</tr>
+<tr>
+<td>"Our data quality is inconsistent"</td>
+<td>Health scoring flags maintenance gaps, stale tables, and missing governance</td>
+</tr>
+<tr>
+<td>"We have duplicate datasets"</td>
+<td>Redundancy detection identifies overlapping tables with actionable recommendations</td>
+</tr>
+<tr>
+<td>"We don't understand data dependencies"</td>
+<td>Lineage walking + implicit relationship discovery maps the full dependency graph</td>
+</tr>
+<tr>
+<td>"We need to report on data governance"</td>
+<td>Governance scorecard with per-table scoring and priority-ranked gap analysis</td>
+</tr>
+</tbody>
+</table>
+<h3 id="for-technical-teams">For Technical Teams<a class="headerlink" href="#for-technical-teams" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Challenge</th>
+<th>How the Estate Engine Helps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Undocumented tables</td>
+<td>Auto-generated descriptions for tables without comments</td>
+</tr>
+<tr>
+<td>Missing OPTIMIZE/VACUUM</td>
+<td>Health scoring flags tables that haven't been maintained in 30+ days</td>
+</tr>
+<tr>
+<td>Small file problem</td>
+<td>Detects tables with average file sizes below 32 MB</td>
+</tr>
+<tr>
+<td>Unknown lineage</td>
+<td>BFS lineage walk discovers upstream/downstream dependencies automatically</td>
+</tr>
+<tr>
+<td>Implicit relationships</td>
+<td>LLM identifies FK-like column relationships even without formal constraints</td>
+</tr>
+<tr>
+<td>Medallion architecture gaps</td>
+<td>Tier classification reveals tables that don't fit the bronze/silver/gold pattern</td>
+</tr>
+<tr>
+<td>Delta protocol drift</td>
+<td>Flags tables running outdated Delta reader/writer versions</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="architecture-diagram">Architecture Diagram<a class="headerlink" href="#architecture-diagram" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>                          ┌─────────────────────────┐
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>                          │   Unity Catalog Estate   │
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>                          │  ┌─────┐ ┌─────┐ ┌────┐ │
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>                          │  │Cat A│ │Cat B│ │ .. │ │
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>                          │  └──┬──┘ └──┬──┘ └──┬─┘ │
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>                          └─────┼───────┼───────┼───┘
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>                                │       │       │
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>                    ┌───────────▼───────▼───────▼──────────┐
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>                    │   Phase 1: Table &amp; Column Discovery   │
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>                    │   SHOW TABLES / information_schema     │
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>                    │   + table types + comments + columns   │
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>                    └──────────────────┬───────────────────┘
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>                                       │
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>                    ┌──────────────────▼───────────────────┐
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>                    │   Phase 2: Lineage Walking (BFS)      │
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>                    │   system.access.table_lineage          │
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>                    │   depth=3, both directions             │
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>                    │   → discovered tables added to scope   │
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>                    └──────────────────┬───────────────────┘
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>                                       │
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>                    ┌──────────────────▼───────────────────┐
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>                    │   Phase 3: Deep Enrichment            │
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>                    │   DESCRIBE DETAIL  → size, files,     │
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>                    │                      format, location  │
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>                    │   DESCRIBE HISTORY → write patterns,   │
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>                    │                      ops, maintenance   │
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>                    │   SHOW TBLPROPERTIES → CDF, auto-opt   │
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>                    │   (with VIEW fallback for non-tables)  │
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>                    └──────────────────┬───────────────────┘
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>                                       │
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>                    ┌──────────────────▼───────────────────┐
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>                    │   Phase 4: Tags                       │
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>                    │   information_schema.table_tags        │
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>                    │   information_schema.column_tags       │
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>                    └──────────────────┬───────────────────┘
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>                                       │
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>                    ┌──────────────────▼───────────────────┐
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>                    │   Phase 5: Health Scoring              │
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>                    │   8 rules, score 0-100                 │
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>                    │   Issues + recommendations per table   │
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>                    └──────────────────┬───────────────────┘
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>                                       │
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>                    ┌──────────────────▼───────────────────┐
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>                    │   Phase 6: LLM Intelligence Layer      │
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>                    │   8 passes via Model Serving            │
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>                    │                                         │
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>                    │   ┌─────────────┐  ┌──────────────┐   │
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>                    │   │  Domains    │  │  PII / Sens   │   │
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>                    │   └─────────────┘  └──────────────┘   │
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>                    │   ┌─────────────┐  ┌──────────────┐   │
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>                    │   │ Descriptions│  │  Redundancy   │   │
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>                    │   └─────────────┘  └──────────────┘   │
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>                    │   ┌─────────────┐  ┌──────────────┐   │
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>                    │   │ Implicit FKs│  │  Medallion    │   │
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>                    │   └─────────────┘  └──────────────┘   │
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>                    │   ┌─────────────┐  ┌──────────────┐   │
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>                    │   │Data Products│  │  Governance   │   │
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>                    │   └─────────────┘  └──────────────┘   │
+<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>                    └──────────────────┬───────────────────┘
+<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>                                       │
+<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>                    ┌──────────────────▼───────────────────┐
+<a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>                    │   Phase 7: Persist to Lakebase         │
+<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>                    │   5 tables: scans, details, histories, │
+<a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>                    │   lineage, insights                     │
+<a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>                    └──────────────────┬───────────────────┘
+<a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>                                       │
+<a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>              ┌────────────────────────┼───────────────────────┐
+<a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>              │                        │                       │
+<a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>    ┌─────────▼─────────┐  ┌─────────▼─────────┐  ┌─────────▼──────────┐
+<a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>    │  Aggregate Estate  │  │   ERD / Lineage    │  │    Excel Export     │
+<a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>    │  View (merge all   │  │   Graph Viewer     │  │    12 sheets        │
+<a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>    │  scans, latest     │  │   (React Flow)     │  │                     │
+<a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>    │  per table wins)   │  │                    │  │                     │
+<a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>    └────────────────────┘  └────────────────────┘  └────────────────────┘
+</code></pre></div>
+<hr />
+<h2 id="data-model">Data Model<a class="headerlink" href="#data-model" title="Permanent link">&para;</a></h2>
+<p>The estate feature persists scan results into five Lakebase (Prisma-managed) tables.</p>
+<h3 id="forgeenvironmentscan">ForgeEnvironmentScan<a class="headerlink" href="#forgeenvironmentscan" title="Permanent link">&para;</a></h3>
+<p>The root record for each scanning session.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>scanId</code></td>
+<td>String (PK)</td>
+<td>Unique scan identifier</td>
+</tr>
+<tr>
+<td><code>runId</code></td>
+<td>String?</td>
+<td>Links to discovery pipeline run (if triggered from there)</td>
+</tr>
+<tr>
+<td><code>ucPath</code></td>
+<td>String</td>
+<td>Unity Catalog scope scanned (e.g. <code>catalog.schema</code>)</td>
+</tr>
+<tr>
+<td><code>tableCount</code></td>
+<td>Int</td>
+<td>Total tables discovered</td>
+</tr>
+<tr>
+<td><code>totalSizeBytes</code></td>
+<td>BigInt</td>
+<td>Sum of all table sizes</td>
+</tr>
+<tr>
+<td><code>totalRows</code></td>
+<td>BigInt</td>
+<td>Sum of all row counts (where statistics available)</td>
+</tr>
+<tr>
+<td><code>totalFiles</code></td>
+<td>Int</td>
+<td>Sum of all file counts</td>
+</tr>
+<tr>
+<td><code>tablesWithStreaming</code></td>
+<td>Int</td>
+<td>Tables with streaming writes</td>
+</tr>
+<tr>
+<td><code>tablesWithCDF</code></td>
+<td>Int</td>
+<td>Tables with Change Data Feed enabled</td>
+</tr>
+<tr>
+<td><code>tablesNeedingOptimize</code></td>
+<td>Int</td>
+<td>Tables flagged for OPTIMIZE</td>
+</tr>
+<tr>
+<td><code>tablesNeedingVacuum</code></td>
+<td>Int</td>
+<td>Tables flagged for VACUUM</td>
+</tr>
+<tr>
+<td><code>lineageDiscoveredCount</code></td>
+<td>Int</td>
+<td>Tables found via lineage walk (not in original scope)</td>
+</tr>
+<tr>
+<td><code>domainCount</code></td>
+<td>Int</td>
+<td>Distinct business domains identified</td>
+</tr>
+<tr>
+<td><code>piiTablesCount</code></td>
+<td>Int</td>
+<td>Tables containing PII columns</td>
+</tr>
+<tr>
+<td><code>redundancyPairsCount</code></td>
+<td>Int</td>
+<td>Redundant table pairs detected</td>
+</tr>
+<tr>
+<td><code>dataProductCount</code></td>
+<td>Int</td>
+<td>Logical data products identified</td>
+</tr>
+<tr>
+<td><code>avgGovernanceScore</code></td>
+<td>Float</td>
+<td>Mean governance score (0--100)</td>
+</tr>
+<tr>
+<td><code>scanDurationMs</code></td>
+<td>Int?</td>
+<td>Wall-clock scan duration</td>
+</tr>
+<tr>
+<td><code>scanSummaryJson</code></td>
+<td>String?</td>
+<td>Summary statistics as JSON</td>
+</tr>
+<tr>
+<td><code>passResultsJson</code></td>
+<td>String?</td>
+<td>Per-pass result metadata</td>
+</tr>
+<tr>
+<td><code>createdAt</code></td>
+<td>DateTime</td>
+<td>Scan timestamp</td>
+</tr>
+</tbody>
+</table>
+<h3 id="forgetabledetail">ForgeTableDetail<a class="headerlink" href="#forgetabledetail" title="Permanent link">&para;</a></h3>
+<p>One record per table, containing structural metadata and LLM-enriched fields.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tableFqn</code></td>
+<td>String</td>
+<td>Fully qualified name (<code>catalog.schema.table</code>)</td>
+</tr>
+<tr>
+<td><code>tableType</code></td>
+<td>String?</td>
+<td><code>TABLE</code> or <code>VIEW</code></td>
+</tr>
+<tr>
+<td><code>comment</code></td>
+<td>String?</td>
+<td>Original table comment from UC</td>
+</tr>
+<tr>
+<td><code>generatedDescription</code></td>
+<td>String?</td>
+<td>LLM-generated description (when comment is missing)</td>
+</tr>
+<tr>
+<td><code>format</code> / <code>provider</code></td>
+<td>String?</td>
+<td>Delta, Parquet, etc.</td>
+</tr>
+<tr>
+<td><code>location</code></td>
+<td>String?</td>
+<td>Storage path</td>
+</tr>
+<tr>
+<td><code>isManaged</code></td>
+<td>Boolean</td>
+<td>Managed vs external table</td>
+</tr>
+<tr>
+<td><code>owner</code></td>
+<td>String?</td>
+<td>Table owner</td>
+</tr>
+<tr>
+<td><code>sizeInBytes</code></td>
+<td>BigInt?</td>
+<td>Table size</td>
+</tr>
+<tr>
+<td><code>numRows</code></td>
+<td>BigInt?</td>
+<td>Row count (from <code>spark.sql.statistics.numRows</code> property or <code>operationMetrics</code>)</td>
+</tr>
+<tr>
+<td><code>numFiles</code></td>
+<td>Int?</td>
+<td>Number of files</td>
+</tr>
+<tr>
+<td><code>partitionColumns</code></td>
+<td>String?</td>
+<td>JSON array of partition columns</td>
+</tr>
+<tr>
+<td><code>clusteringColumns</code></td>
+<td>String?</td>
+<td>JSON array of clustering columns</td>
+</tr>
+<tr>
+<td><code>deltaMinReaderVersion</code> / <code>deltaMinWriterVersion</code></td>
+<td>Int?</td>
+<td>Delta protocol versions</td>
+</tr>
+<tr>
+<td><code>cdfEnabled</code></td>
+<td>Boolean</td>
+<td>Change Data Feed enabled</td>
+</tr>
+<tr>
+<td><code>autoOptimize</code></td>
+<td>Boolean</td>
+<td>Auto-optimize enabled</td>
+</tr>
+<tr>
+<td><code>dataDomain</code> / <code>dataSubdomain</code></td>
+<td>String?</td>
+<td>LLM-assigned business domain</td>
+</tr>
+<tr>
+<td><code>dataTier</code></td>
+<td>String?</td>
+<td>bronze / silver / gold / system</td>
+</tr>
+<tr>
+<td><code>sensitivityLevel</code></td>
+<td>String?</td>
+<td>PII / confidential / internal / public</td>
+</tr>
+<tr>
+<td><code>governancePriority</code></td>
+<td>String?</td>
+<td>critical / high / medium / low</td>
+</tr>
+<tr>
+<td><code>governanceScore</code></td>
+<td>Float?</td>
+<td>Per-table governance score (0--100)</td>
+</tr>
+<tr>
+<td><code>discoveredVia</code></td>
+<td>String</td>
+<td><code>"selected"</code> or <code>"lineage"</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="forgetablehistorysummary">ForgeTableHistorySummary<a class="headerlink" href="#forgetablehistorysummary" title="Permanent link">&para;</a></h3>
+<p>Delta history insights per table.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tableFqn</code></td>
+<td>String</td>
+<td>Table identifier</td>
+</tr>
+<tr>
+<td><code>lastWriteTimestamp</code></td>
+<td>String?</td>
+<td>Most recent write</td>
+</tr>
+<tr>
+<td><code>lastWriteOperation</code></td>
+<td>String?</td>
+<td>Operation type of last write</td>
+</tr>
+<tr>
+<td><code>lastWriteRows</code></td>
+<td>BigInt?</td>
+<td>Rows affected in last write (from <code>operationMetrics.numOutputRows</code>)</td>
+</tr>
+<tr>
+<td><code>lastWriteBytes</code></td>
+<td>BigInt?</td>
+<td>Bytes written in last write (from <code>operationMetrics.numOutputBytes</code>)</td>
+</tr>
+<tr>
+<td><code>totalWriteOps</code></td>
+<td>Int</td>
+<td>Count of all write operations</td>
+</tr>
+<tr>
+<td><code>totalStreamingOps</code></td>
+<td>Int</td>
+<td>Streaming write count</td>
+</tr>
+<tr>
+<td><code>totalOptimizeOps</code></td>
+<td>Int</td>
+<td>OPTIMIZE operations</td>
+</tr>
+<tr>
+<td><code>totalVacuumOps</code></td>
+<td>Int</td>
+<td>VACUUM operations</td>
+</tr>
+<tr>
+<td><code>totalMergeOps</code></td>
+<td>Int</td>
+<td>MERGE operations</td>
+</tr>
+<tr>
+<td><code>hasStreamingWrites</code></td>
+<td>Boolean</td>
+<td>Whether table receives streaming data</td>
+</tr>
+<tr>
+<td><code>historyDays</code></td>
+<td>Int</td>
+<td>Span of available history</td>
+</tr>
+<tr>
+<td><code>healthScore</code></td>
+<td>Float?</td>
+<td>Computed health score (0--100)</td>
+</tr>
+<tr>
+<td><code>issuesJson</code></td>
+<td>String?</td>
+<td>JSON array of detected issues</td>
+</tr>
+<tr>
+<td><code>recommendationsJson</code></td>
+<td>String?</td>
+<td>JSON array of recommendations</td>
+</tr>
+</tbody>
+</table>
+<h3 id="forgetablelineage">ForgeTableLineage<a class="headerlink" href="#forgetablelineage" title="Permanent link">&para;</a></h3>
+<p>Directed edges in the data lineage graph.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sourceTableFqn</code></td>
+<td>String</td>
+<td>Upstream table</td>
+</tr>
+<tr>
+<td><code>targetTableFqn</code></td>
+<td>String</td>
+<td>Downstream table</td>
+</tr>
+<tr>
+<td><code>sourceType</code> / <code>targetType</code></td>
+<td>String?</td>
+<td>TABLE or VIEW</td>
+</tr>
+<tr>
+<td><code>entityType</code></td>
+<td>String?</td>
+<td>Entity type from system table</td>
+</tr>
+<tr>
+<td><code>lastEventTime</code></td>
+<td>String?</td>
+<td>Most recent lineage event</td>
+</tr>
+<tr>
+<td><code>eventCount</code></td>
+<td>Int</td>
+<td>Number of observed events</td>
+</tr>
+</tbody>
+</table>
+<h3 id="forgetableinsight">ForgeTableInsight<a class="headerlink" href="#forgetableinsight" title="Permanent link">&para;</a></h3>
+<p>LLM-generated insights with typed payloads.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>insightType</code></td>
+<td>String</td>
+<td><code>pii_detection</code>, <code>redundancy</code>, <code>implicit_relationship</code>, <code>data_product</code>, <code>governance_gap</code></td>
+</tr>
+<tr>
+<td><code>tableFqn</code></td>
+<td>String?</td>
+<td>Related table (null for cross-table insights)</td>
+</tr>
+<tr>
+<td><code>payloadJson</code></td>
+<td>String</td>
+<td>Structured JSON payload (schema varies by type)</td>
+</tr>
+<tr>
+<td><code>severity</code></td>
+<td>String</td>
+<td><code>info</code>, <code>medium</code>, <code>high</code>, <code>critical</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="pipeline-flow">Pipeline Flow<a class="headerlink" href="#pipeline-flow" title="Permanent link">&para;</a></h2>
+<p>The estate scan pipeline (<code>lib/pipeline/standalone-scan.ts</code>) executes seven sequential phases. Each phase updates a real-time progress tracker that the UI polls for live feedback.</p>
+<h3 id="phase-1-table-discovery-metadata-listing">Phase 1: Table Discovery &amp; Metadata Listing<a class="headerlink" href="#phase-1-table-discovery-metadata-listing" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose</strong>: Discover all tables and views within the selected Unity Catalog scope.</p>
+<p><strong>Operations</strong>:
+1. Parse the UC scope string (e.g. <code>my_catalog.my_schema</code>) into catalog/schema pairs
+2. <code>SHOW TABLES IN schema</code> for each schema to get table names
+3. <code>information_schema.tables</code> query to get accurate <code>table_type</code> (TABLE vs VIEW)
+4. Merge table types into discovered tables
+5. Fetch table comments (<code>information_schema.tables.comment</code>)
+6. <code>information_schema.columns</code> for column names, types, and ordinal positions
+7. <code>information_schema.table_constraints</code> + <code>referential_constraints</code> for foreign keys</p>
+<p><strong>Output</strong>: <code>allTables[]</code>, <code>allColumns[]</code>, <code>allFKs[]</code></p>
+<p><strong>Progress updates</strong>: Tables found count, columns found count</p>
+<h3 id="phase-2-lineage-walking-bfs">Phase 2: Lineage Walking (BFS)<a class="headerlink" href="#phase-2-lineage-walking-bfs" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose</strong>: Discover upstream and downstream dependencies that may live outside the selected scope.</p>
+<p><strong>Operations</strong>:
+1. Check <code>system.access.table_lineage</code> accessibility
+2. BFS traversal from seed tables (all discovered in Phase 1)
+3. Query lineage edges in both directions up to depth 3
+4. Deduplicate edges, add newly discovered tables to the enrichment scope</p>
+<p><strong>Output</strong>: <code>lineageGraph</code> (edges + discoveredTables)</p>
+<p><strong>Progress updates</strong>: Lineage edges found, lineage tables discovered</p>
+<h3 id="phase-3-deep-metadata-enrichment">Phase 3: Deep Metadata Enrichment<a class="headerlink" href="#phase-3-deep-metadata-enrichment" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose</strong>: Gather detailed structural and operational metadata for every table.</p>
+<p><strong>Operations</strong> (per table, concurrency 5):
+1. <code>DESCRIBE DETAIL</code> -- size, files, format, location, partition/clustering columns, owner, Delta protocol
+2. <code>DESCRIBE HISTORY</code> (limit 100) -- write patterns, operation counts, maintenance timestamps, plus <code>operationMetrics</code> parsing for <code>lastWriteRows</code> and <code>lastWriteBytes</code>
+3. <code>SHOW TBLPROPERTIES</code> -- CDF, auto-optimize, custom properties, and <code>spark.sql.statistics.numRows</code> for row counts</p>
+<p><strong>View handling</strong>: Views don't support <code>DESCRIBE DETAIL</code> or <code>DESCRIBE HISTORY</code>. The engine catches these errors gracefully and creates fallback detail records with <code>tableType: "VIEW"</code>, ensuring views always appear in the estate.</p>
+<p><strong>Output</strong>: <code>enrichmentResults</code> Map (tableFqn -&gt; { detail, history, properties })</p>
+<p><strong>Progress updates</strong>: Enriched X of Y tables</p>
+<h3 id="phase-4-tag-collection">Phase 4: Tag Collection<a class="headerlink" href="#phase-4-tag-collection" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose</strong>: Collect Unity Catalog tags applied to tables and columns.</p>
+<p><strong>Operations</strong>:
+1. <code>information_schema.table_tags</code> -- table-level tags
+2. <code>information_schema.column_tags</code> -- column-level tags</p>
+<p><strong>Output</strong>: <code>allTableTags[]</code>, <code>allColumnTags[]</code></p>
+<h3 id="phase-5-health-scoring">Phase 5: Health Scoring<a class="headerlink" href="#phase-5-health-scoring" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose</strong>: Compute a maintenance health score (0--100) for each table based on operational patterns.</p>
+<p><strong>Operations</strong>: Apply eight rule-based checks against each table's detail and history records (see <a href="#health-scoring-rules">Health Scoring Rules</a>).</p>
+<p><strong>Output</strong>: <code>healthScores</code> Map (tableFqn -&gt; { score, issues, recommendations })</p>
+<h3 id="phase-6-llm-intelligence-layer">Phase 6: LLM Intelligence Layer<a class="headerlink" href="#phase-6-llm-intelligence-layer" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose</strong>: Apply eight LLM passes to extract business intelligence, classify data, detect risks, and identify governance gaps.</p>
+<p>This is the most compute-intensive phase. Tables are batched (typically 40 per batch) and processed via the Databricks Model Serving chat completions API. See <a href="#llm-intelligence-passes">LLM Intelligence Passes</a> for full details.</p>
+<p><strong>Output</strong>: Domains, sensitivities, descriptions, redundancies, implicit relationships, tiers, data products, governance scores</p>
+<p><strong>Progress updates</strong>: Current LLM pass name, domains found, PII tables detected</p>
+<h3 id="phase-7-persistence">Phase 7: Persistence<a class="headerlink" href="#phase-7-persistence" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose</strong>: Save all collected and computed data to Lakebase.</p>
+<p><strong>Operations</strong>: Single transactional write to five tables:
+1. <code>forge_environment_scans</code> -- scan-level summary
+2. <code>forge_table_details</code> -- per-table structural + LLM metadata
+3. <code>forge_table_history_summaries</code> -- per-table history insights
+4. <code>forge_table_lineage</code> -- lineage edges
+5. <code>forge_table_insights</code> -- LLM insights (PII, redundancy, relationships, products, governance)</p>
+<hr />
+<h2 id="llm-intelligence-passes">LLM Intelligence Passes<a class="headerlink" href="#llm-intelligence-passes" title="Permanent link">&para;</a></h2>
+<p>All LLM calls use the Databricks Model Serving chat completions API with <code>temperature: 0.2</code> for deterministic output. Prompts request JSON output and include explicit output schemas.</p>
+<h3 id="pass-1-domain-categorisation">Pass 1: Domain Categorisation<a class="headerlink" href="#pass-1-domain-categorisation" title="Permanent link">&para;</a></h3>
+<p><strong>Goal</strong>: Assign each table to a business domain and subdomain.</p>
+<p><strong>Input per table</strong>: <code>{ table_fqn, columns[], comment, tags[] }</code></p>
+<p><strong>Batch size</strong>: 40 tables</p>
+<p><strong>Prompt strategy</strong>: Provide a predefined domain taxonomy (Finance, Customer, Product, Operations, HR, Marketing, etc.) and ask the LLM to categorise each table based on its name, column names, and any existing comments or tags. Lineage context is included so the LLM can see related tables.</p>
+<p><strong>Output</strong>: <code>[{ table_fqn, domain, subdomain }]</code> grouped into <code>DataDomain[]</code></p>
+<p><strong>Business value</strong>: Creates an instant, automated data catalogue with business-meaningful groupings. Teams can find data by business function rather than technical schema names.</p>
+<h3 id="pass-2-pii-sensitivity-detection">Pass 2: PII &amp; Sensitivity Detection<a class="headerlink" href="#pass-2-pii-sensitivity-detection" title="Permanent link">&para;</a></h3>
+<p><strong>Goal</strong>: Identify columns that contain personally identifiable information or sensitive data.</p>
+<p><strong>Input per table</strong>: <code>{ table_fqn, columns[{ name, type }] }</code></p>
+<p><strong>Batch size</strong>: 40 tables</p>
+<p><strong>Prompt strategy</strong>: Classify each column into sensitivity categories -- PII (names, emails, phone numbers, addresses), Financial (account numbers, salaries), Health (medical records), Authentication (passwords, tokens), Internal, or Public. Include confidence levels and applicable regulations.</p>
+<p><strong>Output</strong>: <code>[{ table_fqn, column_name, classification, confidence, reason, regulation }]</code></p>
+<p><strong>Business value</strong>: Enables compliance teams to quickly identify where regulated data lives without manual column-by-column review. Maps directly to GDPR, CCPA, HIPAA, and SOX requirements.</p>
+<h3 id="pass-3-auto-generated-descriptions">Pass 3: Auto-Generated Descriptions<a class="headerlink" href="#pass-3-auto-generated-descriptions" title="Permanent link">&para;</a></h3>
+<p><strong>Goal</strong>: Generate human-readable descriptions for tables that lack comments.</p>
+<p><strong>Input</strong>: Only tables where <code>comment</code> is null or empty</p>
+<p><strong>Batch size</strong>: 40 tables</p>
+<p><strong>Prompt strategy</strong>: Given the table name, column names/types, and domain context, generate a concise 1--2 sentence catalogue description.</p>
+<p><strong>Output</strong>: <code>[{ table_fqn, description }]</code> stored as <code>generatedDescription</code></p>
+<p><strong>Business value</strong>: Dramatically improves data discoverability. Analysts can search and understand tables without contacting the engineering team that created them.</p>
+<h3 id="pass-4-redundancy-detection">Pass 4: Redundancy Detection<a class="headerlink" href="#pass-4-redundancy-detection" title="Permanent link">&para;</a></h3>
+<p><strong>Goal</strong>: Find duplicate, overlapping, or backup tables.</p>
+<p><strong>Input</strong>: All tables in the scan</p>
+<p><strong>Batch size</strong>: 80 tables (larger batch to enable cross-table comparison)</p>
+<p><strong>Prompt strategy</strong>: Compare table names and column schemas across all tables. Flag pairs with &gt;=80% column overlap, naming patterns that suggest backups (<code>_bak</code>, <code>_old</code>, <code>_v2</code>), or staging tables that duplicate production.</p>
+<p><strong>Output</strong>: <code>[{ tableA, tableB, similarityPercent, sharedColumns[], reason, recommendation }]</code></p>
+<p><strong>Deduplication</strong>: Results are deduplicated by sorting <code>tableA|tableB</code> alphabetically to avoid counting the same pair twice.</p>
+<p><strong>Business value</strong>: Identifies cost savings from decommissioning redundant tables and reduces confusion from analysts querying the wrong copy of data.</p>
+<h3 id="pass-5-implicit-relationship-discovery">Pass 5: Implicit Relationship Discovery<a class="headerlink" href="#pass-5-implicit-relationship-discovery" title="Permanent link">&para;</a></h3>
+<p><strong>Goal</strong>: Infer foreign-key-like relationships from column names and types, even when no formal constraints exist.</p>
+<p><strong>Input</strong>: All tables with their columns</p>
+<p><strong>Batch size</strong>: 60 tables</p>
+<p><strong>Prompt strategy</strong>: Look for naming patterns (<code>user_id</code> in one table matching <code>id</code> in a <code>users</code> table), shared column names across tables, and type-compatible join candidates. Assign confidence levels.</p>
+<p><strong>Output</strong>: <code>[{ sourceTableFqn, sourceColumn, targetTableFqn, targetColumn, confidence, reasoning }]</code></p>
+<p><strong>Business value</strong>: Reveals the actual join paths analysts use in practice, even in schema-on-read environments where formal FKs are rarely defined. Powers the ERD visualisation.</p>
+<h3 id="pass-6-medallion-tier-classification">Pass 6: Medallion Tier Classification<a class="headerlink" href="#pass-6-medallion-tier-classification" title="Permanent link">&para;</a></h3>
+<p><strong>Goal</strong>: Classify each table into the Medallion architecture tiers.</p>
+<p><strong>Input</strong>: Tables with lineage context (upstream/downstream relationships)</p>
+<p><strong>Batch size</strong>: 40 tables</p>
+<p><strong>Prompt strategy</strong>: Using the table's position in the lineage graph, its naming conventions, column structure, and domain, classify as:
+- <strong>Bronze</strong>: Raw ingestion, minimal transformation
+- <strong>Silver</strong>: Cleansed, conformed, joined
+- <strong>Gold</strong>: Business-ready aggregates, features, reports
+- <strong>System</strong>: Internal/technical tables</p>
+<p><strong>Output</strong>: <code>[{ table_fqn, tier, reasoning }]</code></p>
+<p><strong>Business value</strong>: Validates whether the organisation's data architecture follows the intended Medallion pattern and highlights tables that may be misclassified or need restructuring.</p>
+<h3 id="pass-7-data-product-identification">Pass 7: Data Product Identification<a class="headerlink" href="#pass-7-data-product-identification" title="Permanent link">&para;</a></h3>
+<p><strong>Goal</strong>: Identify logical data products -- cohesive groups of tables that serve a business function.</p>
+<p><strong>Input</strong>: Tables, domains, lineage graph (minimum 3 tables required)</p>
+<p><strong>Batch size</strong>: All tables (single pass)</p>
+<p><strong>Prompt strategy</strong>: Group related tables by domain, lineage connectivity, and business purpose into named data products. Assign maturity levels:
+- <strong>Raw</strong>: Unmanaged collection of related tables
+- <strong>Curated</strong>: Documented with some governance
+- <strong>Productised</strong>: Well-governed, SLA-backed, consumer-ready</p>
+<p><strong>Output</strong>: <code>[{ productName, description, tables[], primaryDomain, maturityLevel, ownerHint }]</code></p>
+<p><strong>Business value</strong>: Shifts the organisation from thinking about individual tables to thinking about data products. Identifies candidates for data mesh / data product initiatives and highlights maturity gaps.</p>
+<h3 id="post-pass-governance-gap-analysis">Post-Pass: Governance Gap Analysis<a class="headerlink" href="#post-pass-governance-gap-analysis" title="Permanent link">&para;</a></h3>
+<p><strong>Goal</strong>: Score each table's governance posture and identify specific gaps with remediation recommendations.</p>
+<p><strong>Input</strong>: Pre-computed gap categories per table:
+- <code>no_description</code> -- missing table comment
+- <code>no_owner</code> -- no owner set
+- <code>no_tags</code> -- no tags applied
+- <code>pii_untagged</code> -- PII detected but no sensitivity tags
+- <code>no_lineage</code> -- no lineage edges found
+- <code>stale_optimize</code> -- OPTIMIZE overdue
+- <code>stale_vacuum</code> -- VACUUM overdue
+- <code>stale_data</code> -- no recent writes</p>
+<p><strong>Batch size</strong>: 40 tables</p>
+<p><strong>Prompt strategy</strong>: Score governance 0--100 and list gaps with severity (critical/high/medium/low), detailed description, and specific recommendations.</p>
+<p><strong>Output</strong>: <code>[{ tableFqn, overallScore, gaps[{ category, severity, detail, recommendation }] }]</code></p>
+<p><strong>Business value</strong>: Provides an actionable governance scorecard that can be tracked over time. Enables data stewards to prioritise remediation by severity.</p>
+<hr />
+<h2 id="lineage-walker-deep-dive">Lineage Walker Deep Dive<a class="headerlink" href="#lineage-walker-deep-dive" title="Permanent link">&para;</a></h2>
+<p>The lineage walker (<code>lib/queries/lineage.ts</code>) uses breadth-first search to discover data dependencies.</p>
+<h3 id="algorithm">Algorithm<a class="headerlink" href="#algorithm" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>FUNCTION walkLineage(seedTables, maxDepth=3, direction=&quot;both&quot;):
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>  1. Check accessibility: SELECT 1 FROM system.access.table_lineage LIMIT 1
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>     → If inaccessible, return empty graph (graceful degradation)
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>  2. Initialise:
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>     visited = Set(seedTables)
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>     frontier = seedTables
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>     allEdges = []
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>  3. For depth 1..maxDepth:
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>     a. Query lineage for current frontier:
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>        SELECT source_table_full_name, target_table_full_name,
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>               source_type, target_type, entity_type,
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>               MAX(event_time), COUNT(*)
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>        FROM system.access.table_lineage
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>        WHERE target_table_full_name IN (frontier)  -- upstream
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>           OR source_table_full_name IN (frontier)  -- downstream
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>        GROUP BY source, target, source_type, target_type, entity_type
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>     b. Collect new edges
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>     c. Identify newly discovered tables (not in visited set)
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>     d. Add to visited, form next frontier
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>  4. Deduplicate edges:
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>     Key = sourceTableFqn|targetTableFqn|entityType
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>     Keep edge with highest eventCount
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>  RETURN { edges[], discoveredTables[], depth }
+</code></pre></div>
+<h3 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Max</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>maxDepth</code></td>
+<td>3</td>
+<td>5</td>
+<td>BFS traversal depth</td>
+</tr>
+<tr>
+<td><code>direction</code></td>
+<td><code>"both"</code></td>
+<td>--</td>
+<td><code>"both"</code>, <code>"upstream"</code>, or <code>"downstream"</code></td>
+</tr>
+<tr>
+<td><code>maxDiscoveredTables</code></td>
+<td>500</td>
+<td>--</td>
+<td>Safety limit to prevent runaway expansion</td>
+</tr>
+</tbody>
+</table>
+<h3 id="graceful-degradation">Graceful Degradation<a class="headerlink" href="#graceful-degradation" title="Permanent link">&para;</a></h3>
+<p>If <code>system.access.table_lineage</code> is not accessible (insufficient permissions or system tables not enabled), the walker returns an empty graph and the scan continues without lineage data. This is logged as a warning but does not fail the scan.</p>
+<hr />
+<h2 id="health-scoring-rules">Health Scoring Rules<a class="headerlink" href="#health-scoring-rules" title="Permanent link">&para;</a></h2>
+<p>Each table starts with a score of 100. Rules deduct points for detected issues.</p>
+<table>
+<thead>
+<tr>
+<th>Rule ID</th>
+<th>Deduction</th>
+<th>Condition</th>
+<th>Issue Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>no_optimize_30d</code></td>
+<td>-15</td>
+<td>No OPTIMIZE operation in 30 days</td>
+<td>Table may have small file accumulation</td>
+</tr>
+<tr>
+<td><code>no_vacuum_30d</code></td>
+<td>-15</td>
+<td>No VACUUM operation in 30 days</td>
+<td>Old files not cleaned up, wasting storage</td>
+</tr>
+<tr>
+<td><code>small_file_problem</code></td>
+<td>-20</td>
+<td>Average file size &lt; 32 MB</td>
+<td>Small files degrade query performance</td>
+</tr>
+<tr>
+<td><code>no_comment</code></td>
+<td>-10</td>
+<td>Table has no comment/description</td>
+<td>Poor discoverability for other users</td>
+</tr>
+<tr>
+<td><code>high_partition_count</code></td>
+<td>-10</td>
+<td>&gt; 100 partition columns</td>
+<td>Over-partitioning causes metadata overhead</td>
+</tr>
+<tr>
+<td><code>stale_data_90d</code></td>
+<td>-15</td>
+<td>No write operations in 90 days</td>
+<td>Table may be abandoned or unused</td>
+</tr>
+<tr>
+<td><code>no_cdf_with_streaming</code></td>
+<td>-10</td>
+<td>Has streaming writes but CDF disabled</td>
+<td>Downstream consumers can't track changes</td>
+</tr>
+<tr>
+<td><code>outdated_delta_protocol</code></td>
+<td>-5</td>
+<td>Reader version &lt; 2</td>
+<td>Missing performance features from newer protocol</td>
+</tr>
+<tr>
+<td><code>empty_table</code></td>
+<td>-10</td>
+<td>Table has zero rows (not a view)</td>
+<td>May indicate failed ingestion or abandoned asset</td>
+</tr>
+<tr>
+<td><code>very_large_table</code></td>
+<td>-5</td>
+<td>Table has &gt; 1 billion rows</td>
+<td>Needs careful partitioning, clustering, and maintenance scheduling</td>
+</tr>
+</tbody>
+</table>
+<p>Each rule generates:
+- An <strong>issue</strong> description explaining the problem
+- A <strong>recommendation</strong> with specific remediation steps</p>
+<hr />
+<h2 id="erd-generation-visualisation">ERD Generation &amp; Visualisation<a class="headerlink" href="#erd-generation-visualisation" title="Permanent link">&para;</a></h2>
+<h3 id="graph-building-libexporterd-generatorts">Graph Building (<code>lib/export/erd-generator.ts</code>)<a class="headerlink" href="#graph-building-libexporterd-generatorts" title="Permanent link">&para;</a></h3>
+<p>The ERD graph is built from three data sources:</p>
+<ol>
+<li><strong>Nodes</strong>: One node per table from <code>ForgeTableDetail</code>, with:</li>
+<li><code>tableFqn</code>, <code>displayName</code> (short name)</li>
+<li><code>domain</code>, <code>tier</code> (from LLM passes)</li>
+<li><code>hasPII</code> flag (from sensitivity detection)</li>
+<li><code>size</code> (from DESCRIBE DETAIL)</li>
+<li>
+<p><code>rowCount</code> (from table statistics or operation metrics)</p>
+</li>
+<li>
+<p><strong>Edges -- Implicit Relationships</strong>: Extracted from <code>ForgeTableInsight</code> where <code>insightType === "implicit_relationship"</code>. These are LLM-discovered join paths without formal FK constraints.</p>
+</li>
+<li>
+<p><strong>Edges -- Lineage</strong>: From <code>ForgeTableLineage</code> records. These represent actual data flow (ETL pipelines, views, streaming).</p>
+</li>
+</ol>
+<h3 id="filtering-options">Filtering Options<a class="headerlink" href="#filtering-options" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>includeImplicit</code></td>
+<td><code>true</code></td>
+<td>Show LLM-discovered implicit relationships</td>
+</tr>
+<tr>
+<td><code>includeLineage</code></td>
+<td><code>true</code></td>
+<td>Show lineage data flow edges</td>
+</tr>
+<tr>
+<td><code>domain</code></td>
+<td>all</td>
+<td>Filter to a specific business domain</td>
+</tr>
+</tbody>
+</table>
+<h3 id="mermaid-export">Mermaid Export<a class="headerlink" href="#mermaid-export" title="Permanent link">&para;</a></h3>
+<p>Two Mermaid diagram formats are available:</p>
+<ul>
+<li><strong><code>generateMermaidERD</code></strong>: ER diagram with entities and relationships (FK = solid line, implicit = dotted line)</li>
+<li><strong><code>generateMermaidLineageFlow</code></strong>: Flowchart LR with directional lineage edges</li>
+</ul>
+<h3 id="interactive-viewer-componentsenvironmenterd-viewertsx">Interactive Viewer (<code>components/environment/erd-viewer.tsx</code>)<a class="headerlink" href="#interactive-viewer-componentsenvironmenterd-viewertsx" title="Permanent link">&para;</a></h3>
+<p>The UI uses <strong>React Flow</strong> (@xyflow/react) with <strong>dagre</strong> auto-layout:</p>
+<ul>
+<li><strong>Node rendering</strong>: Tables as cards with domain badge, tier badge, PII indicator, row count, and storage size</li>
+<li><strong>Edge types</strong>:</li>
+<li>Solid blue: explicit foreign keys</li>
+<li>Dashed orange: LLM-discovered implicit relationships</li>
+<li>Dotted grey: lineage data flows</li>
+<li><strong>Features</strong>: Drag-and-drop repositioning, zoom, pan, minimap, controls</li>
+</ul>
+<hr />
+<h2 id="aggregate-estate-view">Aggregate Estate View<a class="headerlink" href="#aggregate-estate-view" title="Permanent link">&para;</a></h2>
+<h3 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h3>
+<p>Individual scans cover specific UC scopes (one catalog, one schema). The <strong>aggregate estate view</strong> merges all historical scans into a single, holistic picture of the entire data landscape.</p>
+<h3 id="merge-strategy-liblakebaseenvironment-scansts">Merge Strategy (<code>lib/lakebase/environment-scans.ts</code>)<a class="headerlink" href="#merge-strategy-liblakebaseenvironment-scansts" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>FUNCTION getAggregateEstateView():
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>  1. Load all scans ordered by createdAt DESC (newest first)
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>  2. Details: Query all ForgeTableDetail records
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>     → Keep FIRST (newest) record per tableFqn
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>     → Newer scans always override older ones
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>  3. Histories: Query all ForgeTableHistorySummary records
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>     → Keep FIRST (newest) per tableFqn
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>  4. Lineage: Query all ForgeTableLineage records
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>     → Key: sourceTableFqn::targetTableFqn
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>     → Keep FIRST (newest) per edge
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>  5. Insights: Query all ForgeTableInsight records
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>     → Key: insightType::tableFqn
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>     → Keep FIRST (newest) per insight type per table
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>  6. Compute aggregate stats:
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>     - totalTables (unique tableFqns)
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>     - totalScans (count of all scans)
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>     - totalSizeBytes (sum)
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>     - totalRows (sum of numRows where available)
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>     - domainCount (distinct domains)
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>     - piiTablesCount (from sensitivity data)
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>     - avgGovernanceScore (mean of per-table governance scores)
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>     - oldestScanAt / newestScanAt
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>     - coverageByScope (scan-level breakdown)
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>
+<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>  RETURN { details, histories, lineage, insights, stats }
+</code></pre></div>
+<h3 id="key-design-decisions">Key Design Decisions<a class="headerlink" href="#key-design-decisions" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Latest wins</strong>: When the same table appears in multiple scans, the newest scan's data takes precedence. This ensures the aggregate view reflects the current state.</li>
+<li><strong>Additive scope</strong>: Scans of different scopes are additive. Scan <code>catalog_a</code> then scan <code>catalog_b</code> and the aggregate contains both.</li>
+<li><strong>Coverage transparency</strong>: The <code>coverageByScope</code> array lets users see which scans contribute to the aggregate and when each was last refreshed.</li>
+</ul>
+<hr />
+<h2 id="executive-summary-intelligence">Executive Summary Intelligence<a class="headerlink" href="#executive-summary-intelligence" title="Permanent link">&para;</a></h2>
+<p>The estate view includes an <strong>Executive Summary</strong> component that translates raw scan data into strategic findings. It operates in two layers:</p>
+<h3 id="business-perspective">Business Perspective<a class="headerlink" href="#business-perspective" title="Permanent link">&para;</a></h3>
+<p>Findings oriented toward data leaders, CDOs, and business stakeholders:</p>
+<table>
+<thead>
+<tr>
+<th>Finding</th>
+<th>Trigger</th>
+<th>Message Focus</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Your Data Landscape</td>
+<td>Always</td>
+<td>Scale of the estate, storage, scope -- framing the data asset</td>
+</tr>
+<tr>
+<td>Self-Service Readiness</td>
+<td>Undocumented tables exist</td>
+<td>Percentage of tables analysts can discover without help</td>
+</tr>
+<tr>
+<td>Business Data Products</td>
+<td>Data products identified</td>
+<td>Maturity breakdown (productised / curated / raw) and what it means for self-service</td>
+</tr>
+<tr>
+<td>Regulatory &amp; Privacy Exposure</td>
+<td>PII tables detected</td>
+<td>Number of tables with PII, regulation implications, remediation urgency</td>
+</tr>
+<tr>
+<td>Data Discoverability</td>
+<td>Tables missing domain categorisation</td>
+<td>Impact on analyst productivity and data-driven decision making</td>
+</tr>
+<tr>
+<td>Wasted Spend &amp; Inconsistency Risk</td>
+<td>Redundant tables found</td>
+<td>Storage cost implications and risk of conflicting data</td>
+</tr>
+</tbody>
+</table>
+<h3 id="technical-detail">Technical Detail<a class="headerlink" href="#technical-detail" title="Permanent link">&para;</a></h3>
+<p>Concise technical findings for platform engineers and data engineers:</p>
+<table>
+<thead>
+<tr>
+<th>Finding</th>
+<th>Trigger</th>
+<th>Message Focus</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Estate Composition</td>
+<td>Always</td>
+<td>Format breakdown, managed vs external, views, table types</td>
+</tr>
+<tr>
+<td>Undocumented Relationships</td>
+<td>Implicit relationships found</td>
+<td>Count and significance for query optimisation</td>
+</tr>
+<tr>
+<td>Governance Score</td>
+<td>Governance scores available</td>
+<td>Average score, distribution, lowest-scoring tables</td>
+</tr>
+<tr>
+<td>Views in the Estate</td>
+<td>Views present</td>
+<td>View count and lineage coverage</td>
+</tr>
+</tbody>
+</table>
+<h3 id="severity-levels">Severity Levels<a class="headerlink" href="#severity-levels" title="Permanent link">&para;</a></h3>
+<p>Each finding is assigned a severity that drives visual treatment:</p>
+<ul>
+<li><strong>Critical</strong>: Red icon -- immediate action required</li>
+<li><strong>High</strong>: Orange icon -- address soon</li>
+<li><strong>Medium</strong>: Yellow icon -- monitor and plan</li>
+<li><strong>Info</strong>: Blue icon -- awareness</li>
+</ul>
+<hr />
+<h2 id="scan-progress-live-feedback">Scan Progress &amp; Live Feedback<a class="headerlink" href="#scan-progress-live-feedback" title="Permanent link">&para;</a></h2>
+<h3 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h3>
+<p>The scan progress system uses an <strong>in-memory store</strong> (<code>lib/pipeline/scan-progress.ts</code>) with a 30-minute TTL per entry.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Client (UI)                    Server
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    │                              │
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    │  POST /api/environment-scan  │
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    │ ────────────────────────────►│  → Starts async scan
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    │  { scanId }                  │  → initScanProgress(scanId)
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    │ ◄────────────────────────────│
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    │                              │
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    │  GET .../progress (poll 2s)  │
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    │ ────────────────────────────►│  → getScanProgress(scanId)
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    │  { phase, counters, ... }    │
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>    │ ◄────────────────────────────│
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>    │                              │
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>    │  ... repeated polling ...    │
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>    │                              │
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>    │  { phase: &quot;complete&quot; }       │
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>    │ ◄────────────────────────────│  → Scan done, progress expires after 30m
+</code></pre></div>
+<h3 id="progress-phases">Progress Phases<a class="headerlink" href="#progress-phases" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>starting</code></td>
+<td>Scan initialising</td>
+</tr>
+<tr>
+<td><code>listing-tables</code></td>
+<td>Discovering tables and columns</td>
+</tr>
+<tr>
+<td><code>fetching-metadata</code></td>
+<td>Gathering initial metadata</td>
+</tr>
+<tr>
+<td><code>walking-lineage</code></td>
+<td>BFS lineage traversal</td>
+</tr>
+<tr>
+<td><code>enriching</code></td>
+<td>Running DESCRIBE DETAIL/HISTORY for each table</td>
+</tr>
+<tr>
+<td><code>fetching-tags</code></td>
+<td>Collecting table and column tags</td>
+</tr>
+<tr>
+<td><code>health-scoring</code></td>
+<td>Computing health scores</td>
+</tr>
+<tr>
+<td><code>llm-intelligence</code></td>
+<td>Running LLM passes (with current pass name)</td>
+</tr>
+<tr>
+<td><code>saving</code></td>
+<td>Persisting to Lakebase</td>
+</tr>
+<tr>
+<td><code>complete</code></td>
+<td>Scan finished successfully</td>
+</tr>
+<tr>
+<td><code>failed</code></td>
+<td>Scan failed (with error message)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="live-counters">Live Counters<a class="headerlink" href="#live-counters" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Counter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tablesFound</code></td>
+<td>Total tables discovered (including lineage-expanded)</td>
+</tr>
+<tr>
+<td><code>columnsFound</code></td>
+<td>Total columns discovered</td>
+</tr>
+<tr>
+<td><code>lineageTablesFound</code></td>
+<td>Tables discovered via lineage walk</td>
+</tr>
+<tr>
+<td><code>lineageEdgesFound</code></td>
+<td>Lineage edges found</td>
+</tr>
+<tr>
+<td><code>enrichedCount</code> / <code>enrichTotal</code></td>
+<td>Enrichment progress (X of Y)</td>
+</tr>
+<tr>
+<td><code>llmPass</code></td>
+<td>Current LLM pass name</td>
+</tr>
+<tr>
+<td><code>domainsFound</code></td>
+<td>Business domains identified</td>
+</tr>
+<tr>
+<td><code>piiDetected</code></td>
+<td>Tables with PII detected</td>
+</tr>
+<tr>
+<td><code>elapsedMs</code></td>
+<td>Wall-clock time since scan start</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="excel-export">Excel Export<a class="headerlink" href="#excel-export" title="Permanent link">&para;</a></h2>
+<p>The environment Excel export (<code>lib/export/environment-excel.ts</code>) generates a comprehensive 12-sheet workbook:</p>
+<table>
+<thead>
+<tr>
+<th>Sheet #</th>
+<th>Sheet Name</th>
+<th>Key Columns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Executive Summary</td>
+<td>Metric, Value</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Table Inventory</td>
+<td>FQN, Domain, Subdomain, Tier, Type, Format, Owner, Size, Files, Managed, Description, Created, Modified, Discovered Via</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Data Domains</td>
+<td>Domain, Subdomain, Table Count, Total Size, Tables</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Data Products</td>
+<td>Product Name, Description, Domain, Maturity, Owner, Tables</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Sensitivity &amp; PII</td>
+<td>Table FQN, Column, Classification, Confidence, Reason, Regulation</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Implicit Relationships</td>
+<td>Source Table, Source Column, Target Table, Target Column, Confidence, Reasoning</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Redundancy Report</td>
+<td>Table A, Table B, Similarity %, Shared Columns, Reason, Recommendation</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Governance Scorecard</td>
+<td>Table FQN, Score, Gap Categories, Top Gaps, Recommendations</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Table Health</td>
+<td>FQN, Domain, Health Score, Issues, Recommendations, Last OPTIMIZE, Last VACUUM, Streaming, CDF</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Lineage</td>
+<td>Source FQN, Target FQN, Source Type, Target Type, Entity Type, Last Event, Event Count</td>
+</tr>
+<tr>
+<td>11</td>
+<td>History Insights</td>
+<td>FQN, Total Writes, Streaming Ops, OPTIMIZE, VACUUM, MERGE, Last Write, History Span</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Tags &amp; Properties</td>
+<td>Table FQN, Source (Tag/Property), Name, Value</td>
+</tr>
+</tbody>
+</table>
+<p>Each sheet includes auto-fitted column widths, header styling, and data type formatting.</p>
+<hr />
+<h2 id="api-reference">API Reference<a class="headerlink" href="#api-reference" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/environment/aggregate</code></td>
+<td>GET</td>
+<td>Returns the merged aggregate estate view (all scans combined)</td>
+</tr>
+<tr>
+<td><code>/api/environment/aggregate/erd</code></td>
+<td>GET</td>
+<td>ERD graph for the aggregate estate. Params: <code>format</code> (json/mermaid), <code>includeImplicit</code>, <code>includeLineage</code>, <code>domain</code></td>
+</tr>
+<tr>
+<td><code>/api/environment-scan</code></td>
+<td>GET</td>
+<td>List all recent environment scans</td>
+</tr>
+<tr>
+<td><code>/api/environment-scan</code></td>
+<td>POST</td>
+<td>Start a new scan. Body: <code>{ ucMetadata }</code></td>
+</tr>
+<tr>
+<td><code>/api/environment-scan/[scanId]</code></td>
+<td>GET</td>
+<td>Full details of a specific scan</td>
+</tr>
+<tr>
+<td><code>/api/environment-scan/[scanId]/progress</code></td>
+<td>GET</td>
+<td>Live progress for an in-flight scan (404 when not tracked)</td>
+</tr>
+<tr>
+<td><code>/api/environment-scan/[scanId]/erd</code></td>
+<td>GET</td>
+<td>ERD graph for a specific scan. Params: <code>format</code>, <code>includeFKs</code>, <code>includeImplicit</code>, <code>includeLineage</code>, <code>domain</code></td>
+</tr>
+<tr>
+<td><code>/api/environment-scan/[scanId]/export</code></td>
+<td>GET</td>
+<td>Download Excel export. Params: <code>format=excel</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="privacy-model">Privacy Model<a class="headerlink" href="#privacy-model" title="Permanent link">&para;</a></h2>
+<p>The estate engine follows the same privacy principles as the discovery pipeline:</p>
+<ul>
+<li><strong>Metadata only</strong>: Only structural metadata is read -- table names, column names, types, comments, tags, and system table records. <strong>No data rows are ever accessed.</strong></li>
+<li><strong>System tables</strong>: Lineage data comes from <code>system.access.table_lineage</code>, which records data flow events without exposing row content.</li>
+<li><strong>LLM inputs</strong>: Only table names, column names, column types, comments, and tags are sent to the LLM. No data values, no sample rows, no query results.</li>
+<li><strong>LLM provider</strong>: All LLM calls go through Databricks Model Serving, keeping data within the Databricks security boundary.</li>
+<li><strong>Column-level PII detection</strong>: Inferred from column names and types only (e.g. <code>email</code>, <code>phone_number</code>, <code>ssn</code>), not from scanning actual values.</li>
+</ul>
+<hr />
+<h2 id="row-size-statistics">Row &amp; Size Statistics<a class="headerlink" href="#row-size-statistics" title="Permanent link">&para;</a></h2>
+<p>The estate engine extracts row counts and size data without running expensive <code>SELECT COUNT(*)</code> queries. Instead, it leverages existing metadata:</p>
+<h3 id="sources-of-row-counts">Sources of Row Counts<a class="headerlink" href="#sources-of-row-counts" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><strong>Table Properties</strong> (<code>SHOW TBLPROPERTIES</code>): The <code>spark.sql.statistics.numRows</code> property is populated when <code>ANALYZE TABLE</code> has been run on a table. This is the most reliable source.</p>
+</li>
+<li>
+<p><strong>Operation Metrics</strong> (<code>DESCRIBE HISTORY</code>): Delta table history records include <code>operationMetrics</code> JSON for write operations. The engine parses:</p>
+</li>
+<li><code>numOutputRows</code> (or <code>numTargetRowsInserted</code> for MERGE) → <code>lastWriteRows</code></li>
+<li>
+<p><code>numOutputBytes</code> (or <code>numAddedBytes</code>) → <code>lastWriteBytes</code></p>
+</li>
+<li>
+<p><strong>Priority</strong>: Table property stats take precedence. If unavailable, the engine falls back to operation metrics from the most recent write.</p>
+</li>
+</ol>
+<h3 id="where-row-counts-appear">Where Row Counts Appear<a class="headerlink" href="#where-row-counts-appear" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th>Field</th>
+<th>Display</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Aggregate summary card</td>
+<td><code>totalRows</code></td>
+<td>Formatted with K/M/B suffix</td>
+</tr>
+<tr>
+<td>Single scan summary card</td>
+<td><code>totalRows</code></td>
+<td>Formatted with K/M/B suffix</td>
+</tr>
+<tr>
+<td>Table list column</td>
+<td><code>numRows</code></td>
+<td>Formatted with K/M/B suffix</td>
+</tr>
+<tr>
+<td>ERD node (collapsed)</td>
+<td><code>rowCount</code></td>
+<td>Compact format (e.g. "1.2M rows")</td>
+</tr>
+<tr>
+<td>Excel: Executive Summary</td>
+<td>Total Rows metric</td>
+<td>Formatted</td>
+</tr>
+<tr>
+<td>Excel: Table Inventory</td>
+<td>Rows column</td>
+<td>Formatted</td>
+</tr>
+<tr>
+<td>Excel: History Insights</td>
+<td>Last Write Rows, Last Write Bytes</td>
+<td>Formatted</td>
+</tr>
+</tbody>
+</table>
+<h3 id="governance-score-on-table-details">Governance Score on Table Details<a class="headerlink" href="#governance-score-on-table-details" title="Permanent link">&para;</a></h3>
+<p>The <code>governanceScore</code> field on <code>ForgeTableDetail</code> is populated from the health scoring phase during scan persistence. This enables:
+- Per-table governance display in the table list (colour-coded: green ≥ 70, amber ≥ 40, red &lt; 40)
+- Accurate aggregate <code>avgGovernanceScore</code> computation across all tables
+- Filtering and sorting by governance quality</p>
+<hr />
+<h2 id="constants-tuning-parameters">Constants &amp; Tuning Parameters<a class="headerlink" href="#constants-tuning-parameters" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Location</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LLM batch size (default)</td>
+<td>40</td>
+<td><code>environment-intelligence.ts</code></td>
+<td>Tables per LLM batch</td>
+</tr>
+<tr>
+<td>LLM batch size (redundancy)</td>
+<td>80</td>
+<td><code>environment-intelligence.ts</code></td>
+<td>Larger batch for cross-table comparison</td>
+</tr>
+<tr>
+<td>LLM batch size (relationships)</td>
+<td>60</td>
+<td><code>environment-intelligence.ts</code></td>
+<td>Larger batch for relationship inference</td>
+</tr>
+<tr>
+<td>LLM temperature</td>
+<td>0.2</td>
+<td><code>environment-intelligence.ts</code></td>
+<td>Low temperature for deterministic output</td>
+</tr>
+<tr>
+<td>Enrichment concurrency</td>
+<td>5</td>
+<td><code>metadata-detail.ts</code></td>
+<td>Parallel DESCRIBE DETAIL/HISTORY calls</td>
+</tr>
+<tr>
+<td>Lineage max depth</td>
+<td>3 (max 5)</td>
+<td><code>lineage.ts</code></td>
+<td>BFS traversal depth</td>
+</tr>
+<tr>
+<td>Lineage max discovered tables</td>
+<td>500</td>
+<td><code>lineage.ts</code></td>
+<td>Safety limit for BFS expansion</td>
+</tr>
+<tr>
+<td>Health score starting</td>
+<td>100</td>
+<td><code>health-score.ts</code></td>
+<td>Perfect score before deductions</td>
+</tr>
+<tr>
+<td>Health deduction range</td>
+<td>5--20</td>
+<td><code>health-score.ts</code></td>
+<td>Per-rule deduction amounts</td>
+</tr>
+<tr>
+<td>Scan progress TTL</td>
+<td>30 min</td>
+<td><code>scan-progress.ts</code></td>
+<td>In-memory progress entry lifetime</td>
+</tr>
+<tr>
+<td>UI progress poll interval</td>
+<td>2 sec</td>
+<td><code>page.tsx</code></td>
+<td>Client-side polling frequency</td>
+</tr>
+<tr>
+<td>Small file threshold</td>
+<td>32 MB</td>
+<td><code>health-score.ts</code></td>
+<td>Below this = small file problem</td>
+</tr>
+<tr>
+<td>Stale data threshold</td>
+<td>90 days</td>
+<td><code>health-score.ts</code></td>
+<td>No writes = stale</td>
+</tr>
+<tr>
+<td>Maintenance threshold</td>
+<td>30 days</td>
+<td><code>health-score.ts</code></td>
+<td>No OPTIMIZE/VACUUM = overdue</td>
+</tr>
+<tr>
+<td>Empty table deduction</td>
+<td>-10</td>
+<td><code>health-score.ts</code></td>
+<td>Zero rows on non-view table</td>
+</tr>
+<tr>
+<td>Very large table deduction</td>
+<td>-5</td>
+<td><code>health-score.ts</code></td>
+<td>&gt; 1 billion rows</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "toc.integrate"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

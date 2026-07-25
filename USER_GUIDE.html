@@ -1,0 +1,3327 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Turn Unity Catalog metadata into business value in days, not quarters">
+      
+      
+      
+        <link rel="canonical" href="https://databricks-solutions.github.io/databricks-forge/USER_GUIDE.html">
+      
+      
+        <link rel="prev" href="DEPLOYMENT.html">
+      
+      
+        <link rel="next" href="ask-forge.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="images/databricks-icon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>User Guide - Databricks Forge</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#databricks-forge-user-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="Databricks Forge" class="md-header__button md-logo" aria-label="Databricks Forge" data-md-component="logo">
+      
+  <img src="images/databricks-icon.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Databricks Forge
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              User Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/databricks-solutions/databricks-forge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    databricks-solutions/databricks-forge
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Databricks Forge" class="md-nav__button md-logo" aria-label="Databricks Forge" data-md-component="logo">
+      
+  <img src="images/databricks-icon.svg" alt="logo">
+
+    </a>
+    Databricks Forge
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/databricks-solutions/databricks-forge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    databricks-solutions/databricks-forge
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="quickstart.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="DEPLOYMENT.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="USER_GUIDE.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Navigation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Dashboard
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-starting-a-new-discovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Starting a New Discovery
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Starting a New Discovery">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#discovery-depth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Discovery Depth
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#launching-the-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Launching the Run
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-pipeline-progress" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Pipeline Progress
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-run-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Run Results
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Run Results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-overview-tab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Overview Tab
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-use-cases-tab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Use Cases Tab
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-outcome-map-tab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Outcome Map Tab
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-genie-spaces-tab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 Genie Spaces Tab
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55-dashboards-tab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.5 Dashboards Tab
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#56-business-value-tab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.6 Business Value Tab
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#57-ai-observability-tab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.7 AI Observability Tab
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#58-exporting-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.8 Exporting Results
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-business-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Business Value
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Business Value">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-portfolio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Portfolio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-implementation-roadmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Implementation Roadmap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-stakeholder-intelligence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 Stakeholder Intelligence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-value-tracking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 Value Tracking
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-strategy-alignment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5 Strategy Alignment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#66-use-case-voting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.6 Use Case Voting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#67-portfolio-exports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.7 Portfolio Exports
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-genie-studio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Genie Studio
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Genie Studio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-creating-genie-spaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 Creating Genie Spaces
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-the-genie-studio-hub" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 The Genie Studio Hub
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-space-detail-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 Space Detail View
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74-health-scoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.4 Health Scoring
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#75-fix-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.5 Fix Workflow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#76-improve-with-genie-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.6 Improve with Genie Engine
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#77-benchmark-test-runner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.7 Benchmark Test Runner
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#78-auto-improve" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.8 Auto-Improve
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#79-workspace-sync" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.9 Workspace Sync
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-ask-forge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Ask Forge
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-ai-comments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. AI Comments
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-estate-intelligence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Estate Intelligence
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Estate Intelligence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#starting-a-scan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Starting a Scan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aggregate-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aggregate View
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-industry-outcome-maps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Industry Outcome Maps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-knowledge-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Knowledge Base
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-comparing-runs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Comparing Runs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-managing-runs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Managing Runs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Settings
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15. Settings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Profile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-sampling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Sampling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estate-scan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estate Scan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai-output-language" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AI / Output Language
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#semantic-search-and-rag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Semantic Search and RAG
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#discovery-depth-defaults" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Discovery Depth Defaults
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#genie-engine-defaults" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Genie Engine Defaults
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#export-and-naming" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Export and Naming
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#about" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        About
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-tips-and-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Tips and Best Practices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="16. Tips and Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#choosing-the-right-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choosing the Right Scope
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#discovery-depth_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Discovery Depth
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#improving-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Improving Results
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#working-with-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Working with Results
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#business-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Business Value
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#genie-studio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Genie Studio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ask-forge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ask Forge
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estate-intelligence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estate Intelligence
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Features
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ask-forge.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ask Forge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="BUSINESS_VALUE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Value
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="estate-analysis.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estate Intelligence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="SKILLS_KNOWLEDGE_BASE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Knowledge Base
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/SUPPORT.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/SECURITY.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/databricks-solutions/databricks-forge/blob/main/CONTRIBUTING.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Release Notes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Release Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_07_21.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-07-21
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_05_26.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-26
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_05_11.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_05_02.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-05-02
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_04_30.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-04-30
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_04_16.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-04-16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_31.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-31
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_19.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-19
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_18.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-18
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_16.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-16
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_15.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-15
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_14.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-14
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_13.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-13
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_12.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-12
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_11.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_10.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_09.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-09
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_07.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-07
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_06.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-06
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_05.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-05
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026_03_04.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-03-04
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026-02-27.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-02-27
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="release-notes/RELEASE_NOTES_2026-02-25.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2026-02-25
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="databricks-forge-user-guide">Databricks Forge -- User Guide<a class="headerlink" href="#databricks-forge-user-guide" title="Permanent link">&para;</a></h1>
+<p>This guide walks through every feature of Databricks Forge. It assumes the app is already deployed and you can access it in your browser. For deployment instructions, see the <a href="DEPLOYMENT.html">Deployment Guide</a>.</p>
+<hr />
+<h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="#1-navigation">1. Navigation</a></li>
+<li><a href="#2-dashboard">2. Dashboard</a></li>
+<li><a href="#3-starting-a-new-discovery">3. Starting a New Discovery</a></li>
+<li><a href="#4-pipeline-progress">4. Pipeline Progress</a></li>
+<li><a href="#5-run-results">5. Run Results</a></li>
+<li><a href="#51-overview-tab">5.1 Overview Tab</a></li>
+<li><a href="#52-use-cases-tab">5.2 Use Cases Tab</a></li>
+<li><a href="#53-outcome-map-tab">5.3 Outcome Map Tab</a></li>
+<li><a href="#54-genie-spaces-tab">5.4 Genie Spaces Tab</a></li>
+<li><a href="#55-dashboards-tab">5.5 Dashboards Tab</a></li>
+<li><a href="#56-business-value-tab">5.6 Business Value Tab</a></li>
+<li><a href="#57-ai-observability-tab">5.7 AI Observability Tab</a></li>
+<li><a href="#58-exporting-results">5.8 Exporting Results</a></li>
+<li><a href="#6-business-value">6. Business Value</a></li>
+<li><a href="#61-portfolio">6.1 Portfolio</a></li>
+<li><a href="#62-implementation-roadmap">6.2 Implementation Roadmap</a></li>
+<li><a href="#63-stakeholder-intelligence">6.3 Stakeholder Intelligence</a></li>
+<li><a href="#64-value-tracking">6.4 Value Tracking</a></li>
+<li><a href="#65-strategy-alignment">6.5 Strategy Alignment</a></li>
+<li><a href="#66-use-case-voting">6.6 Use Case Voting</a></li>
+<li><a href="#67-portfolio-exports">6.7 Portfolio Exports</a></li>
+<li><a href="#7-genie-studio">7. Genie Studio</a></li>
+<li><a href="#71-creating-genie-spaces">7.1 Creating Genie Spaces</a></li>
+<li><a href="#72-the-genie-studio-hub">7.2 The Genie Studio Hub</a></li>
+<li><a href="#73-space-detail-view">7.3 Space Detail View</a></li>
+<li><a href="#74-health-scoring">7.4 Health Scoring</a></li>
+<li><a href="#75-fix-workflow">7.5 Fix Workflow</a></li>
+<li><a href="#76-improve-with-genie-engine">7.6 Improve with Genie Engine</a></li>
+<li><a href="#77-benchmark-test-runner">7.7 Benchmark Test Runner</a></li>
+<li><a href="#78-auto-improve">7.8 Auto-Improve</a></li>
+<li><a href="#79-workspace-sync">7.9 Workspace Sync</a></li>
+<li><a href="#8-ask-forge">8. Ask Forge</a></li>
+<li><a href="#9-ai-comments">9. AI Comments</a></li>
+<li><a href="#10-estate-intelligence">10. Estate Intelligence</a></li>
+<li><a href="#11-industry-outcome-maps">11. Industry Outcome Maps</a></li>
+<li><a href="#12-knowledge-base">12. Knowledge Base</a></li>
+<li><a href="#13-comparing-runs">13. Comparing Runs</a></li>
+<li><a href="#14-managing-runs">14. Managing Runs</a></li>
+<li><a href="#15-settings">15. Settings</a></li>
+<li><a href="#16-tips-and-best-practices">16. Tips and Best Practices</a></li>
+</ul>
+<hr />
+<h2 id="1-navigation">1. Navigation<a class="headerlink" href="#1-navigation" title="Permanent link">&para;</a></h2>
+<p>The sidebar on the left provides access to all areas of the app, organised into sections.</p>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Menu Item</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Explore</strong></td>
+<td>Dashboard</td>
+<td>Home page with KPIs, charts, and recent activity</td>
+</tr>
+<tr>
+<td><strong>Explore</strong></td>
+<td>Ask Forge</td>
+<td>Conversational AI assistant with RAG-powered context</td>
+</tr>
+<tr>
+<td><strong>Explore</strong></td>
+<td>New Discovery</td>
+<td>Configure and launch a discovery pipeline run</td>
+</tr>
+<tr>
+<td><strong>Explore</strong></td>
+<td>Runs</td>
+<td>View and manage all pipeline runs</td>
+</tr>
+<tr>
+<td><strong>Genie Studio</strong></td>
+<td>Genie Studio</td>
+<td>Create, manage, and improve Genie Spaces</td>
+</tr>
+<tr>
+<td><strong>Genie Studio</strong></td>
+<td>Metadata Genie</td>
+<td>Genie Space scoped to your metadata for ad-hoc exploration</td>
+</tr>
+<tr>
+<td><strong>Estate</strong></td>
+<td>Overview</td>
+<td>Scan and explore your Unity Catalog data estate</td>
+</tr>
+<tr>
+<td><strong>Estate</strong></td>
+<td>AI Comments</td>
+<td>Generate and apply AI-powered catalog descriptions</td>
+</tr>
+<tr>
+<td><strong>Business Value</strong></td>
+<td>Portfolio</td>
+<td>Cross-run portfolio with financial estimates and strategy themes</td>
+</tr>
+<tr>
+<td><strong>Business Value</strong></td>
+<td>Roadmap</td>
+<td>Delivery phases with effort, dependencies, and timeline</td>
+</tr>
+<tr>
+<td><strong>Business Value</strong></td>
+<td>Stakeholders</td>
+<td>Champion identification and department impact mapping</td>
+</tr>
+<tr>
+<td><strong>Business Value</strong></td>
+<td>Value Tracking</td>
+<td>Lifecycle tracking from discovery to measured value</td>
+</tr>
+<tr>
+<td><strong>Business Value</strong></td>
+<td>Strategy</td>
+<td>Upload strategy documents and align to discovered opportunities</td>
+</tr>
+<tr>
+<td><strong>Business Value</strong></td>
+<td>Outcome Maps</td>
+<td>Industry-aligned reference outcome frameworks</td>
+</tr>
+<tr>
+<td><strong>Admin</strong></td>
+<td>Knowledge Base</td>
+<td>Upload documents to enrich AI context (RAG)</td>
+</tr>
+<tr>
+<td><strong>Admin</strong></td>
+<td>Settings</td>
+<td>Sampling, depth, Genie, export, and data management</td>
+</tr>
+<tr>
+<td><strong>Admin</strong></td>
+<td>Help</td>
+<td>Feature overview and getting started guidance</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Some items are conditionally visible. Ask Forge and Knowledge Base require an embedding endpoint to be configured.</p>
+</blockquote>
+<p>The sidebar also shows the app version at the bottom.</p>
+<hr />
+<h2 id="2-dashboard">2. Dashboard<a class="headerlink" href="#2-dashboard" title="Permanent link">&para;</a></h2>
+<p>The dashboard is the landing page. It gives you an at-a-glance summary of all discovery activity.</p>
+<p align="center">
+  <img src="images/guide-01-dashboard.png" alt="Dashboard" width="100%" />
+</p>
+
+<p><strong>What you see:</strong></p>
+<ul>
+<li><strong>KPI cards</strong> -- total runs, total use cases discovered, average overall score, number of business domains, and pipeline success rate.</li>
+<li><strong>Business Value summary</strong> -- total estimated value across all runs (links to the Portfolio).</li>
+<li><strong>Charts</strong> -- score distribution across all use cases, domain breakdown, and AI vs Statistical type split.</li>
+<li><strong>Recent runs</strong> -- the most recent pipeline runs with status, business name, use case count, and score. Click any row to open the run detail.</li>
+<li><strong>Activity feed</strong> -- a timeline of recent events (runs started, completed, exports, Genie deployments).</li>
+</ul>
+<p><strong>Actions:</strong></p>
+<ul>
+<li>Click <strong>Start New Discovery</strong> to go to the configuration form.</li>
+<li>Click <strong>View All</strong> to see the full runs list.</li>
+<li>Click any run row to jump to its results.</li>
+</ul>
+<blockquote>
+<p>If you have no runs yet, the dashboard shows an empty state with a guided "Configure, Discover, Export" flow.</p>
+</blockquote>
+<hr />
+<h2 id="3-starting-a-new-discovery">3. Starting a New Discovery<a class="headerlink" href="#3-starting-a-new-discovery" title="Permanent link">&para;</a></h2>
+<p>Navigate to <strong>New Discovery</strong> in the sidebar to configure and launch a pipeline run.</p>
+<p align="center">
+  <img src="images/guide-02-config-form.png" alt="Configuration form" width="100%" />
+</p>
+
+<h3 id="required-fields">Required Fields<a class="headerlink" href="#required-fields" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><strong>Business Name</strong> -- the organisation or project name. This is used in all LLM prompts to ground the analysis in your business context.</p>
+</li>
+<li>
+<p><strong>Unity Catalog Scope</strong> -- which catalogs, schemas, or tables to analyse. You have two modes:</p>
+</li>
+</ol>
+<p><strong>Catalog Browser</strong> (recommended) -- browse your Unity Catalog tree, expand catalogs and schemas, and select the scope. Selected items appear as badges below.</p>
+<p align="center">
+  <img src="images/guide-03-catalog-browser.png" alt="Catalog Browser" width="100%" />
+</p>
+
+<p><strong>Manual mode</strong> -- toggle to manual input and type comma-separated identifiers (e.g. <code>main.sales, main.finance</code>).</p>
+<p align="center">
+  <img src="images/guide-04-manual-mode.png" alt="Manual mode" width="100%" />
+</p>
+
+<h3 id="discovery-depth">Discovery Depth<a class="headerlink" href="#discovery-depth" title="Permanent link">&para;</a></h3>
+<p>Controls the volume and thoroughness of the analysis.</p>
+<p align="center">
+  <img src="images/guide-05-discovery-depth.png" alt="Discovery depth selector" width="100%" />
+</p>
+
+<table>
+<thead>
+<tr>
+<th>Depth</th>
+<th>Best for</th>
+<th>Behaviour</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Focused</strong></td>
+<td>Quick scans, demos</td>
+<td>Fewer use cases, higher quality floor, faster execution</td>
+</tr>
+<tr>
+<td><strong>Balanced</strong></td>
+<td>Most workloads (default)</td>
+<td>Good balance of coverage and quality</td>
+</tr>
+<tr>
+<td><strong>Comprehensive</strong></td>
+<td>Full estate analysis</td>
+<td>Maximum use case generation, deeper lineage walking</td>
+</tr>
+</tbody>
+</table>
+<h3 id="optional-fields">Optional Fields<a class="headerlink" href="#optional-fields" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Industry</strong> -- select your industry to auto-suggest relevant business domains and priorities. The pipeline can also auto-detect this from your metadata.</li>
+<li><strong>Business Priorities</strong> -- multi-select from 10 options (e.g. Increase Revenue, Reduce Cost, Mitigate Risk). These steer scoring so the most strategically aligned use cases rank highest.</li>
+<li><strong>Business Domains</strong> -- optionally focus the analysis on specific domains (e.g. Finance, Marketing). Suggested domains appear as quick-add buttons; you can also type custom ones.</li>
+<li><strong>Strategic Goals</strong> -- free-text goals for fine-grained prioritisation (auto-generated if left blank).</li>
+<li><strong>Output language</strong> -- the natural language used in AI-generated comments (table/column descriptions) and use case fields (name, statement, solution, business value, beneficiary, sponsor, technical design) is taken from the <strong>AI Comment Language</strong> preference in <strong>Settings → AI</strong> (<code>English</code>, <code>Português (Brasil)</code>, or <code>Español</code>). Technical identifiers (table names, AI/SQL function names) always remain in English. Updating the setting affects future runs only.</li>
+</ul>
+<h3 id="launching-the-run">Launching the Run<a class="headerlink" href="#launching-the-run" title="Permanent link">&para;</a></h3>
+<p>Click <strong>Start Discovery</strong> at the bottom. You will be redirected to the run detail page where you can watch the pipeline execute in real time.</p>
+<hr />
+<h2 id="4-pipeline-progress">4. Pipeline Progress<a class="headerlink" href="#4-pipeline-progress" title="Permanent link">&para;</a></h2>
+<p>Once a run starts, the run detail page shows a real-time progress view.</p>
+<p align="center">
+  <img src="images/guide-06-pipeline-running.png" alt="Pipeline in progress" width="100%" />
+</p>
+
+<p>The pipeline has 8 steps, executed sequentially:</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Name</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Business Context</strong></td>
+<td>Generates strategic goals, value chain, and revenue model via the LLM</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Metadata Extraction</strong></td>
+<td>Queries Unity Catalog <code>information_schema</code> for tables, columns, and foreign keys</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Table Filtering</strong></td>
+<td>Classifies each table as business-relevant or technical using the LLM</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Use Case Generation</strong></td>
+<td>Generates AI and statistical use cases in parallel batches</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Domain Clustering</strong></td>
+<td>Groups use cases into business domains and subdomains</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>Scoring &amp; Dedup</strong></td>
+<td>Scores every use case on priority, feasibility, and impact; removes duplicates</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>SQL Generation</strong></td>
+<td>Generates runnable Databricks SQL for each use case</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>Business Value Analysis</strong></td>
+<td>Financial quantification, roadmap phasing, executive synthesis, and stakeholder analysis</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Visual indicators:</strong></p>
+<ul>
+<li>Green circle with checkmark -- step completed</li>
+<li>Blue pulsing circle -- step currently running (with a status message, e.g. "Filtering tables (batch 3 of 5)...")</li>
+<li>Red circle -- step failed</li>
+<li>Grey circle -- step pending</li>
+</ul>
+<p>The progress bar and status message update every few seconds. You do not need to stay on the page -- the pipeline runs server-side and you can return later.</p>
+<blockquote>
+<p>If a step fails, the error message is displayed and the run status changes to <strong>Failed</strong>. You can review what went wrong and start a new discovery with adjusted settings.</p>
+</blockquote>
+<hr />
+<h2 id="5-run-results">5. Run Results<a class="headerlink" href="#5-run-results" title="Permanent link">&para;</a></h2>
+<p>When a pipeline run completes, the run detail page shows the full results across multiple tabs: <strong>Overview</strong>, <strong>Use Cases</strong>, <strong>Outcome Map</strong> (if an industry was selected), <strong>Genie Spaces</strong>, <strong>Dashboards</strong>, <strong>Business Value</strong>, and <strong>AI Observability</strong>.</p>
+<h3 id="51-overview-tab">5.1 Overview Tab<a class="headerlink" href="#51-overview-tab" title="Permanent link">&para;</a></h3>
+<p align="center">
+  <img src="images/guide-07-run-overview.png" alt="Run overview" width="100%" />
+</p>
+
+<p>The overview tab provides a high-level summary:</p>
+<ul>
+<li><strong>Summary cards</strong> -- Total Use Cases, Domains, AI Use Cases, Average Score.</li>
+<li><strong>Business Context</strong> -- the LLM-generated business context: industries, strategic goals, priorities, value chain, and revenue model.</li>
+<li><strong>Run Configuration</strong> -- the settings used for this run (depth, model, industry, languages, priorities).</li>
+</ul>
+<p><strong>Charts:</strong></p>
+<p align="center">
+  <img src="images/guide-08-run-charts.png" alt="Result charts" width="100%" />
+</p>
+
+<ul>
+<li><strong>Score Distribution</strong> -- histogram of overall scores across all use cases.</li>
+<li><strong>Domain Breakdown</strong> -- bar chart showing use case counts per business domain.</li>
+<li><strong>Type Split</strong> -- AI vs Statistical use case breakdown.</li>
+<li><strong>Pipeline Timeline</strong> -- duration of each pipeline step.</li>
+</ul>
+<p><strong>Schema Coverage:</strong></p>
+<p align="center">
+  <img src="images/guide-09-schema-coverage.png" alt="Schema coverage" width="100%" />
+</p>
+
+<p>Shows which tables from your Unity Catalog scope are referenced by generated use cases, how many were discovered via lineage, and the most frequently referenced tables.</p>
+<h3 id="52-use-cases-tab">5.2 Use Cases Tab<a class="headerlink" href="#52-use-cases-tab" title="Permanent link">&para;</a></h3>
+<p>Click the <strong>Use Cases</strong> tab to see the full table of generated use cases.</p>
+<p align="center">
+  <img src="images/guide-10-usecase-table.png" alt="Use case table" width="100%" />
+</p>
+
+<p><strong>Filtering and sorting:</strong></p>
+<ul>
+<li><strong>Search</strong> -- type to filter by use case name or statement.</li>
+<li><strong>Domain filter</strong> -- select a specific business domain.</li>
+<li><strong>Type filter</strong> -- show only AI or Statistical use cases.</li>
+<li><strong>Sort</strong> -- by overall score, name, or domain.</li>
+</ul>
+<p><strong>Use case detail:</strong></p>
+<p>Click any row to open the detail sheet.</p>
+<p align="center">
+  <img src="images/guide-11-usecase-detail.png" alt="Use case detail" width="100%" />
+</p>
+
+<p>The detail sheet shows:</p>
+<ul>
+<li><strong>Name</strong> and <strong>type</strong> (AI or Statistical)</li>
+<li><strong>Problem statement</strong> -- what business problem this use case addresses</li>
+<li><strong>Solution</strong> -- how the use case solves the problem</li>
+<li><strong>Business value</strong> -- the expected benefit</li>
+<li><strong>Beneficiary</strong> and <strong>Sponsor</strong></li>
+<li><strong>Analytics technique</strong> (e.g. ai_forecast, anomaly_detection)</li>
+<li><strong>Tables involved</strong> -- the Unity Catalog tables referenced</li>
+<li><strong>Scores</strong> -- Priority, Feasibility, Impact, and Overall (0--100)</li>
+<li><strong>SQL code</strong> -- the generated Databricks SQL query</li>
+</ul>
+<p>You can copy any section using the copy buttons.</p>
+<p><strong>Editing use cases:</strong></p>
+<p>Click the <strong>Edit</strong> button to modify the name, statement, or tables involved.</p>
+<p align="center">
+  <img src="images/guide-12-usecase-edit.png" alt="Editing a use case" width="33%" />
+</p>
+
+<p><strong>Adjusting scores:</strong></p>
+<p>Click <strong>Adjust Scores</strong> to override the system-generated scores with your own judgment using the sliders.</p>
+<p align="center">
+  <img src="images/guide-13-score-adjust.png" alt="Score adjustment sliders" width="33%" />
+</p>
+
+<ul>
+<li>Drag the <strong>Priority</strong>, <strong>Feasibility</strong>, and <strong>Impact</strong> sliders.</li>
+<li>The <strong>Overall</strong> score updates automatically.</li>
+<li>Click <strong>Apply</strong> to save, or <strong>Reset to System</strong> to revert to the AI-generated scores.</li>
+</ul>
+<h3 id="53-outcome-map-tab">5.3 Outcome Map Tab<a class="headerlink" href="#53-outcome-map-tab" title="Permanent link">&para;</a></h3>
+<p>When you select an industry during configuration, the <strong>Outcome Map</strong> tab appears on the completed run. It shows how your discovered use cases map to the industry's strategic outcomes, highlighting which outcomes are well-covered, partially covered, or have gaps.</p>
+<p align="center">
+  <img src="images/guide-40-run-outcome-map.png" alt="Run outcome map alignment" width="100%" />
+</p>
+
+<h3 id="54-genie-spaces-tab">5.4 Genie Spaces Tab<a class="headerlink" href="#54-genie-spaces-tab" title="Permanent link">&para;</a></h3>
+<p>The <strong>Genie Spaces</strong> tab shows AI-generated Genie Space recommendations for the run, grouped by business domain.</p>
+<p align="center">
+  <img src="images/guide-15-genie-tab.png" alt="Genie Space recommendations" width="100%" />
+</p>
+
+<p>Each recommendation includes a title, table count, and domain. You can:</p>
+<ul>
+<li><strong>Preview</strong> the space configuration (tables, measures, instructions, trusted assets).</li>
+<li><strong>Deploy</strong> individual spaces or select multiple and click <strong>Deploy Selected</strong>.</li>
+<li><strong>Edit engine config</strong> to adjust parameters (max tables, benchmarks, metric views) and re-generate.</li>
+</ul>
+<p>This tab also acts as the entry point to the Genie Workbench for per-run Genie Engine management.</p>
+<h3 id="55-dashboards-tab">5.5 Dashboards Tab<a class="headerlink" href="#55-dashboards-tab" title="Permanent link">&para;</a></h3>
+<p>The <strong>Dashboards</strong> tab shows AI/BI (Lakeview) dashboard recommendations generated from your use cases and domain metadata.</p>
+<p align="center">
+  <img src="images/guide-26-dashboards-tab.png" alt="Dashboard recommendations" width="100%" />
+</p>
+
+<p>Each recommendation includes a domain, description, and widget summary. You can:</p>
+<ul>
+<li><strong>Preview</strong> the dashboard layout and widget details.</li>
+<li><strong>Deploy</strong> to your Databricks workspace as a Lakeview dashboard.</li>
+<li><strong>Regenerate</strong> a dashboard if you want a different approach.</li>
+</ul>
+<h3 id="56-business-value-tab">5.6 Business Value Tab<a class="headerlink" href="#56-business-value-tab" title="Permanent link">&para;</a></h3>
+<p>The <strong>Business Value</strong> tab shows per-run financial analysis generated during step 8 of the pipeline.</p>
+<p align="center">
+  <img src="images/guide-41-run-bv-tab.png" alt="Per-run business value" width="100%" />
+</p>
+
+<p><strong>What you see:</strong></p>
+<ul>
+<li><strong>Value summary</strong> -- total estimated value for this run, broken down by category (cost savings, revenue uplift, risk reduction, efficiency gain).</li>
+<li><strong>Key Findings</strong> -- AI-generated strategic findings from the executive synthesis.</li>
+<li><strong>Recommendations</strong> and <strong>Risk Callouts</strong> -- extracted from the synthesis.</li>
+<li><strong>Roadmap phases</strong> -- how many use cases fall into Quick Wins, Foundation, and Transformation.</li>
+<li><strong>Rerun button</strong> -- re-run the Business Value Analysis step if you have edited or rescored use cases.</li>
+</ul>
+<p>For the cross-run portfolio view, see <a href="#6-business-value">Section 6: Business Value</a>.</p>
+<h3 id="57-ai-observability-tab">5.7 AI Observability Tab<a class="headerlink" href="#57-ai-observability-tab" title="Permanent link">&para;</a></h3>
+<p>The <strong>AI Observability</strong> tab provides transparency into every LLM call made during the pipeline run.</p>
+<p align="center">
+  <img src="images/guide-17-observability.png" alt="AI Observability" width="100%" />
+</p>
+
+<p><strong>Summary stats:</strong></p>
+<ul>
+<li>Total LLM calls, success rate, failure count, average call duration, and total LLM time.</li>
+</ul>
+<p><strong>Prompt logs:</strong></p>
+<p>Each row shows a pipeline step, the prompt template used, status (success/error), and duration. Expand any row to see:</p>
+<ul>
+<li><strong>Rendered prompt</strong> -- the full prompt sent to the model (with your business context and metadata injected).</li>
+<li><strong>Raw response</strong> -- the LLM's response.</li>
+<li><strong>Error details</strong> -- if the call failed, the error message.</li>
+</ul>
+<blockquote>
+<p>This is useful for debugging unexpected results, understanding why certain use cases were generated, or tuning prompt quality.</p>
+</blockquote>
+<h3 id="58-exporting-results">5.8 Exporting Results<a class="headerlink" href="#58-exporting-results" title="Permanent link">&para;</a></h3>
+<p>The export toolbar is available in the run detail header.</p>
+<p align="center">
+  <img src="images/guide-14-export-toolbar.png" alt="Export toolbar" width="100%" />
+</p>
+
+<table>
+<thead>
+<tr>
+<th>Export</th>
+<th>What you get</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Excel</strong></td>
+<td>Multi-sheet workbook with summary, all use cases (filterable), domain breakdown, and business value sheets</td>
+</tr>
+<tr>
+<td><strong>PowerPoint</strong></td>
+<td>Presentation deck with title slide, executive summary, domain breakdown, top use cases, and optional synthesis slides (findings, recommendations, risks)</td>
+</tr>
+<tr>
+<td><strong>PDF</strong></td>
+<td>Branded A4 landscape report with cover page, executive summary, domain pages, and individual use case pages</td>
+</tr>
+<tr>
+<td><strong>Deploy Notebooks</strong></td>
+<td>One SQL notebook per domain, deployed to your Databricks workspace</td>
+</tr>
+<tr>
+<td><strong>Environment Report</strong></td>
+<td>Excel export of the linked estate scan (if one was run)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Notebook deployment creates folders in your workspace at the configured path (default: <code>./forge_gen/</code>). A toast notification with a link to the workspace folder appears on success.</p>
+</blockquote>
+<p>For portfolio-level exports (cross-run), see <a href="#67-portfolio-exports">Section 6.7: Portfolio Exports</a>.</p>
+<hr />
+<h2 id="6-business-value">6. Business Value<a class="headerlink" href="#6-business-value" title="Permanent link">&para;</a></h2>
+<p>The <strong>Business Value</strong> section provides financially-grounded analysis across all your pipeline runs. Access it from the sidebar under the <strong>Business Value</strong> section.</p>
+<h3 id="61-portfolio">6.1 Portfolio<a class="headerlink" href="#61-portfolio" title="Permanent link">&para;</a></h3>
+<p>Navigate to <strong>Portfolio</strong> in the sidebar.</p>
+<p align="center">
+  <img src="images/guide-30-portfolio.png" alt="Portfolio overview" width="100%" />
+</p>
+
+<p>The portfolio aggregates business value data from all completed runs into a single view.</p>
+<p><strong>What you see:</strong></p>
+<ul>
+<li><strong>Hero cards</strong> -- Total Estimated Value, Quick Wins value, Delivered Value, and total Use Case count.</li>
+<li><strong>Portfolio Velocity</strong> -- a conversion funnel showing how many use cases have moved from Discovered through to Measured, with conversion and realisation rates.</li>
+<li><strong>Strategic Themes</strong> -- the top domains by estimated value.</li>
+<li><strong>Phase Distribution</strong> -- breakdown across Quick Wins, Foundation, and Transformation.</li>
+<li><strong>Domain Heatmap</strong> -- each domain with average score, feasibility, use case count, and value.</li>
+</ul>
+<p><strong>Drill-down:</strong></p>
+<p>Click any domain or phase card to expand and see the individual use cases within it, including value estimates and phase badges. Vote buttons are available in the drill-down view (see <a href="#66-use-case-voting">6.6 Use Case Voting</a>).</p>
+<h3 id="62-implementation-roadmap">6.2 Implementation Roadmap<a class="headerlink" href="#62-implementation-roadmap" title="Permanent link">&para;</a></h3>
+<p>Navigate to <strong>Roadmap</strong> in the sidebar.</p>
+<p align="center">
+  <img src="images/guide-31-roadmap.png" alt="Implementation Roadmap" width="100%" />
+</p>
+
+<p>The roadmap shows all use cases assigned to delivery phases:</p>
+<ul>
+<li><strong>Quick Wins</strong> -- achievable in weeks with existing capabilities.</li>
+<li><strong>Foundation</strong> -- requires months of work, possibly new data or processes.</li>
+<li><strong>Transformation</strong> -- multi-quarter initiatives that reshape how the business operates.</li>
+</ul>
+<p>Each phase includes a bar chart, effort estimates, dependencies, and enablers. Click a phase to drill down into its use cases.</p>
+<h3 id="63-stakeholder-intelligence">6.3 Stakeholder Intelligence<a class="headerlink" href="#63-stakeholder-intelligence" title="Permanent link">&para;</a></h3>
+<p>Navigate to <strong>Stakeholders</strong> in the sidebar.</p>
+<p align="center">
+  <img src="images/guide-32-stakeholders.png" alt="Stakeholder intelligence" width="100%" />
+</p>
+
+<p><strong>What you see:</strong></p>
+<ul>
+<li><strong>Recommended Champions</strong> -- the top 6 stakeholders identified as potential champions based on department alignment and use case coverage.</li>
+<li><strong>Department Impact</strong> -- a table showing each department's estimated value, use case count, and complexity.</li>
+<li><strong>Skills Assessment</strong> -- the distribution of use case types (AI, statistical, analytical) to inform team capability planning.</li>
+</ul>
+<p>Click any stakeholder to expand and see the linked use cases.</p>
+<h3 id="64-value-tracking">6.4 Value Tracking<a class="headerlink" href="#64-value-tracking" title="Permanent link">&para;</a></h3>
+<p>Navigate to <strong>Value Tracking</strong> in the sidebar.</p>
+<p align="center">
+  <img src="images/guide-33-tracking.png" alt="Value Tracking" width="100%" />
+</p>
+
+<p>Track every use case through its lifecycle:</p>
+<ul>
+<li><strong>Scorecard</strong> -- counts of use cases at each stage (Discovered, Planned, In Progress, Delivered, Measured).</li>
+<li><strong>Stage pipeline bar</strong> -- a visual representation of the lifecycle funnel.</li>
+<li><strong>Tracking table</strong> -- every use case with its current stage, owner, and days since last update.</li>
+</ul>
+<p><strong>Actions in the table:</strong></p>
+<ul>
+<li><strong>Change stage</strong> -- use the dropdown on each row to move a use case between stages.</li>
+<li><strong>Edit owner</strong> -- click the pencil icon to assign or change ownership.</li>
+<li><strong>Stalled indicators</strong> -- use cases with no stage change in 14+ days are highlighted in amber with a "Stalled" badge.</li>
+</ul>
+<blockquote>
+<p>Use Value Tracking to demonstrate progress from discovery through delivery. The stalled indicators help identify blockers before they become invisible.</p>
+</blockquote>
+<h3 id="65-strategy-alignment">6.5 Strategy Alignment<a class="headerlink" href="#65-strategy-alignment" title="Permanent link">&para;</a></h3>
+<p>Navigate to <strong>Strategy</strong> in the sidebar.</p>
+<p align="center">
+  <img src="images/guide-34-strategy.png" alt="Strategy alignment" width="100%" />
+</p>
+
+<p>Upload your organisation's strategy documents and see how discovered use cases align to strategic initiatives.</p>
+<p><strong>Workflow:</strong></p>
+<ol>
+<li>Click <strong>Upload Strategy</strong> and paste the text of your strategy document.</li>
+<li>The LLM parses it into structured initiatives.</li>
+<li>Each initiative shows an alignment badge: <strong>Supported</strong> (discovered use cases directly address it), <strong>Partial</strong> (related but not fully covered), or <strong>Blocked</strong> (no matching use cases found).</li>
+<li>Click any initiative to see which use cases support it.</li>
+</ol>
+<p>You can upload multiple strategy documents and delete them individually.</p>
+<h3 id="66-use-case-voting">6.6 Use Case Voting<a class="headerlink" href="#66-use-case-voting" title="Permanent link">&para;</a></h3>
+<p>Workshop-style voting is available in the <strong>Portfolio drill-down</strong> view. Each use case has a vote button that team members can use to signal which opportunities they consider highest priority.</p>
+<p>Voting blends data-driven AI scores with human judgement, making it ideal for collaborative prioritisation workshops.</p>
+<h3 id="67-portfolio-exports">6.7 Portfolio Exports<a class="headerlink" href="#67-portfolio-exports" title="Permanent link">&para;</a></h3>
+<p>The Portfolio page includes an <strong>Export</strong> dropdown with four formats:</p>
+<table>
+<thead>
+<tr>
+<th>Export</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Portfolio Excel</strong></td>
+<td>8-sheet workbook: Executive Summary, Key Findings, Recommendations, Risk Callouts, Domain Performance, Delivery Pipeline, Use Cases with ROI, Stakeholders</td>
+</tr>
+<tr>
+<td><strong>Portfolio PowerPoint</strong></td>
+<td>8-slide Databricks-branded deck with KPIs, findings, recommendations, risks, pipeline, domains, and stakeholders</td>
+</tr>
+<tr>
+<td><strong>Executive PDF</strong></td>
+<td>2-page brief: Page 1 has KPIs, findings, and recommendations; Page 2 has pipeline chart, domain heatmap, and risks</td>
+</tr>
+<tr>
+<td><strong>D4B Workshop Pack</strong></td>
+<td>5-section workshop deck: Case for Change, Executive Findings, Delivery Roadmap, Recommended Genie Spaces, Workshop Agenda</td>
+</tr>
+</tbody>
+</table>
+<p>These exports aggregate data across all runs, making them suitable for executive briefings and steering committees.</p>
+<hr />
+<h2 id="7-genie-studio">7. Genie Studio<a class="headerlink" href="#7-genie-studio" title="Permanent link">&para;</a></h2>
+<p><strong>Genie Studio</strong> is the unified hub for creating, managing, and continuously improving <a href="https://docs.databricks.com/en/genie/index.html">Databricks Genie Spaces</a>. Navigate to <strong>Genie Studio</strong> in the sidebar.</p>
+<h3 id="71-creating-genie-spaces">7.1 Creating Genie Spaces<a class="headerlink" href="#71-creating-genie-spaces" title="Permanent link">&para;</a></h3>
+<p>Forge provides five ways to create a Genie Space, depending on your starting point.</p>
+<p><strong>Scan Schema:</strong> Navigate to <strong>Genie Studio &gt; Create &gt; Scan Schema</strong>. Select a catalog and schema, optionally provide a business context hint, and click <strong>Scan</strong>. Forge profiles the tables, selects the most relevant ones via the LLM, and builds a production-grade space. You can review and adjust the selected tables before generating.</p>
+<p align="center">
+  <img src="images/guide-42-genie-scan-schema.png" alt="Scan Schema creation flow" width="100%" />
+</p>
+
+<p><strong>Upload Requirements:</strong> Navigate to <strong>Genie Studio &gt; Create &gt; Upload Requirements</strong>. Drop in a PDF, markdown, or text document that describes what you need. Forge extracts tables, questions, SQL patterns, join hints, and instructions, then generates a space that matches your brief.</p>
+<p align="center">
+  <img src="images/guide-43-genie-upload-reqs.png" alt="Upload Requirements creation flow" width="100%" />
+</p>
+
+<p><strong>Describe Your Space:</strong> Click <strong>Describe Your Space</strong> from the Genie Studio hub to open Ask Forge in Genie Builder mode. Describe what you need in plain language. The assistant gathers requirements through conversation and builds the space for you.</p>
+<p><strong>Pipeline Run:</strong> From any completed pipeline run, open the <strong>Genie Spaces</strong> tab. The Genie Engine generates domain-based recommendations automatically. Preview, edit the engine config, and deploy the spaces you want.</p>
+<p><strong>Import JSON:</strong> Click <strong>Import JSON</strong> on the Genie Studio hub and paste the JSON of any existing Genie Space. Forge analyses it, runs a health check, and shows improvement recommendations.</p>
+<h3 id="72-the-genie-studio-hub">7.2 The Genie Studio Hub<a class="headerlink" href="#72-the-genie-studio-hub" title="Permanent link">&para;</a></h3>
+<p>The main Genie Studio page shows all your Genie Spaces in a card layout.</p>
+<p align="center">
+  <img src="images/guide-44-genie-hub.png" alt="Genie Studio hub" width="100%" />
+</p>
+
+<p>Each card shows:</p>
+<ul>
+<li><strong>Space name</strong> and domain</li>
+<li><strong>Table and measure counts</strong></li>
+<li><strong>Health grade</strong> (A--F) with colour coding</li>
+<li><strong>Source</strong> -- whether the space was created from a pipeline, a schema scan, Ask Forge, or synced from the workspace</li>
+</ul>
+<p><strong>Actions:</strong></p>
+<ul>
+<li><strong>Search</strong> and <strong>sort</strong> (by health score, name, or table count).</li>
+<li><strong>Sync Spaces</strong> -- pull Genie Spaces from your Databricks workspace into Forge for health scoring and improvement.</li>
+<li><strong>Create</strong> entry point cards at the top for each creation path.</li>
+<li>Click any card to open the space detail view.</li>
+</ul>
+<h3 id="73-space-detail-view">7.3 Space Detail View<a class="headerlink" href="#73-space-detail-view" title="Permanent link">&para;</a></h3>
+<p>Click into any space to see the full detail view with tabs:</p>
+<ul>
+<li><strong>Overview</strong> -- title, description, tables, measures, filters, expressions, joins, instructions, sample questions, and trusted assets.</li>
+<li><strong>Health</strong> -- the full health report with category breakdowns and fixable issue indicators.</li>
+<li><strong>Benchmarks</strong> -- the test runner for evaluating query accuracy.</li>
+</ul>
+<p align="center">
+  <img src="images/guide-45-genie-detail.png" alt="Genie Space detail" width="100%" />
+</p>
+
+<p>The detail view header provides <strong>Deploy</strong>, <strong>Open in Databricks</strong>, <strong>Clone</strong>, and <strong>Trash</strong> actions.</p>
+<h3 id="74-health-scoring">7.4 Health Scoring<a class="headerlink" href="#74-health-scoring" title="Permanent link">&para;</a></h3>
+<p>Every Genie Space receives a health grade (A--F) computed from approximately 40 deterministic checks across 4 categories:</p>
+<ul>
+<li><strong>Data Sources</strong> -- column configurations, column descriptions, table count within optimal range.</li>
+<li><strong>Instructions</strong> -- join comments, example SQL usage guidance, text instructions.</li>
+<li><strong>Semantic Richness</strong> -- measures, filters, and expressions with display names, comments, synonyms, and instructions.</li>
+<li><strong>Quality Assurance</strong> -- benchmark questions, SQL quality, parameterised queries.</li>
+</ul>
+<p align="center">
+  <img src="images/guide-46-genie-health.png" alt="Health check report" width="100%" />
+</p>
+
+<p>Click any category to expand and see individual check results, including the current value versus the required threshold.</p>
+<p><strong>Quick wins</strong> are surfaced at the top -- these are the checks with the highest score impact that can be fixed automatically.</p>
+<h3 id="75-fix-workflow">7.5 Fix Workflow<a class="headerlink" href="#75-fix-workflow" title="Permanent link">&para;</a></h3>
+<p>Click <strong>Fix</strong> on any failing check or <strong>Fix All</strong> on the space to address fixable failures automatically. The fix system runs targeted engine passes:</p>
+<ul>
+<li><strong>Column intelligence</strong> -- adds display names, comments, and descriptions.</li>
+<li><strong>Semantic expressions</strong> -- generates missing measures, filters, and dimensions.</li>
+<li><strong>Trusted assets</strong> -- creates parameterised example queries.</li>
+<li><strong>Join inference</strong> -- adds comments explaining join relationships.</li>
+<li><strong>Benchmark generation</strong> -- creates test questions for quality assurance.</li>
+</ul>
+<p>After fixes are generated, an <strong>Optimisation Review</strong> shows the proposed changes in a diff preview. You can accept, discard, or clone the space with changes applied.</p>
+<h3 id="76-improve-with-genie-engine">7.6 Improve with Genie Engine<a class="headerlink" href="#76-improve-with-genie-engine" title="Permanent link">&para;</a></h3>
+<p>For deeper improvements, click <strong>Improve with Engine</strong> to run the full multi-pass Genie Engine against an existing space. A progress banner appears showing:</p>
+<ul>
+<li>Current pass name and progress percentage.</li>
+<li>Status message describing what is happening.</li>
+<li><strong>Cancel</strong> button to abort.</li>
+</ul>
+<p>The banner remains visible across all tabs. After completion, the Optimisation Review shows all proposed changes for your approval.</p>
+<h3 id="77-benchmark-test-runner">7.7 Benchmark Test Runner<a class="headerlink" href="#77-benchmark-test-runner" title="Permanent link">&para;</a></h3>
+<p>Navigate to the <strong>Benchmarks</strong> tab on any space to test Genie query accuracy.</p>
+<p align="center">
+  <img src="images/guide-47-genie-benchmarks.png" alt="Benchmark test runner" width="100%" />
+</p>
+
+<p><strong>Running tests:</strong></p>
+<ol>
+<li>Select individual questions or click <strong>Run All</strong> to test every benchmark.</li>
+<li>The button shows real-time progress (e.g. "Running 3/12...").</li>
+<li>Each test sends the question to the Databricks Genie Conversation API and compares the result.</li>
+</ol>
+<p><strong>Evaluation tiers:</strong></p>
+<ol>
+<li><strong>High SQL similarity</strong> (&gt;=90%) -- the generated SQL closely matches the expected SQL.</li>
+<li><strong>Result-set comparison</strong> -- column count and row count match expectations.</li>
+<li><strong>Basic SQL similarity</strong> (&gt;=60%) -- fallback threshold for structural similarity.</li>
+</ol>
+<p><strong>Failure diagnostics:</strong></p>
+<p>Failed tests display the failure category (e.g. wrong_tables, missing_join, wrong_aggregation), comparison method, SQL similarity score, and failure reason. Use these diagnostics to guide fixes.</p>
+<p><strong>Improve from benchmarks:</strong></p>
+<p>After labelling benchmark results as correct or incorrect (with optional feedback), click <strong>Improve</strong> to generate targeted fixes based on the failure patterns. The fixes go through Optimisation Review before applying.</p>
+<h3 id="78-auto-improve">7.8 Auto-Improve<a class="headerlink" href="#78-auto-improve" title="Permanent link">&para;</a></h3>
+<p>Navigate to <strong>Genie Studio &gt; Improve Existing</strong> to see all spaces with health scores and fixable issue counts.</p>
+<p align="center">
+  <img src="images/guide-48-genie-auto-improve.png" alt="Auto-improve page" width="100%" />
+</p>
+
+<p>Select a space and click <strong>Auto-Improve</strong> to start an iterative improvement loop:</p>
+<ol>
+<li>Run benchmarks against the deployed space.</li>
+<li>Analyse failures and generate targeted fixes.</li>
+<li>Apply fixes and re-run benchmarks.</li>
+<li>Repeat until the target score is met (default: 80%) or the maximum iterations are reached (default: 5).</li>
+</ol>
+<p>Progress is shown in real time with toast notifications on completion.</p>
+<h3 id="79-workspace-sync">7.9 Workspace Sync<a class="headerlink" href="#79-workspace-sync" title="Permanent link">&para;</a></h3>
+<p>Click <strong>Sync Spaces</strong> on the Genie Studio hub to pull all Genie Spaces from your Databricks workspace into Forge. Sync runs in the background and updates the space listing with metadata and health scores. This lets you health-check and improve spaces that were created outside of Forge.</p>
+<hr />
+<h2 id="8-ask-forge">8. Ask Forge<a class="headerlink" href="#8-ask-forge" title="Permanent link">&para;</a></h2>
+<p>Navigate to <strong>Ask Forge</strong> in the sidebar to open the conversational AI assistant.</p>
+<p align="center">
+  <img src="images/guide-25-ask-forge.png" alt="Ask Forge" width="100%" />
+</p>
+
+<p>Ask Forge is a RAG-powered assistant with context from your data estate, pipeline results, Knowledge Base documents, and Genie recommendations. It supports streaming responses with rich markdown formatting.</p>
+<p><strong>What you can do:</strong></p>
+<ul>
+<li><strong>Ask questions</strong> about your data, discovered use cases, business value, or data estate.</li>
+<li><strong>Propose SQL</strong> -- the assistant can generate SQL and validate it with EXPLAIN before suggesting execution.</li>
+<li><strong>Create Genie Spaces</strong> -- when you reference tables in conversation, the assistant can propose and build a Genie Space on the spot.</li>
+<li><strong>Deploy dashboards and notebooks</strong> -- trigger deployment actions directly from the chat.</li>
+<li><strong>Explore findings</strong> -- ask follow-up questions to drill into specific domains, use cases, or strategy alignment.</li>
+</ul>
+<p><strong>Features:</strong></p>
+<ul>
+<li><strong>Conversation history</strong> -- a ChatGPT-style sidebar lists previous conversations. You can rename or delete them.</li>
+<li><strong>Context panel</strong> -- a slide-out panel shows the tables, sources, and enrichments the assistant used to generate its answer.</li>
+<li><strong>Action cards</strong> -- clickable cards in responses let you navigate to relevant pages (e.g. View Portfolio, View Stakeholders, View Roadmap).</li>
+</ul>
+<blockquote>
+<p>Ask Forge requires an embedding endpoint to be configured (see Settings). It uses your Knowledge Base documents and pipeline data to provide grounded, contextual answers.</p>
+</blockquote>
+<hr />
+<h2 id="9-ai-comments">9. AI Comments<a class="headerlink" href="#9-ai-comments" title="Permanent link">&para;</a></h2>
+<p>Navigate to <strong>AI Comments</strong> under <strong>Estate</strong> in the sidebar.</p>
+<p align="center">
+  <img src="images/guide-35-ai-comments.png" alt="AI Comments" width="100%" />
+</p>
+
+<p>AI Comments generates industry-aware table and column descriptions for Unity Catalog, optimised for Genie Space discoverability and general metadata quality.</p>
+<p><strong>Workflow:</strong></p>
+<ol>
+<li><strong>Create a job</strong> -- select the catalog/schema scope and optionally set the industry.</li>
+<li><strong>Generate</strong> -- the engine runs in four phases: schema context analysis, table comments, column comments, and consistency review. Progress streams in real time.</li>
+<li><strong>Review</strong> -- browse tables in the left navigator. For each table, see old-vs-new comments side by side. Accept, reject, or edit individual proposals.</li>
+<li><strong>Apply</strong> -- click <strong>Apply All</strong> (or apply per-table) to execute DDL against Unity Catalog. The original comments are saved so you can <strong>Undo</strong> if needed.</li>
+</ol>
+<p><strong>Pre-flight check:</strong></p>
+<p>Before applying, Forge runs a permissions check (<code>SHOW GRANTS</code>) to verify you have the required <code>MODIFY</code> privileges on the target schemas.</p>
+<blockquote>
+<p>Running AI Comments before creating Genie Spaces significantly improves space health scores, because well-documented columns produce better semantic expressions and instructions.</p>
+</blockquote>
+<hr />
+<h2 id="10-estate-intelligence">10. Estate Intelligence<a class="headerlink" href="#10-estate-intelligence" title="Permanent link">&para;</a></h2>
+<p>Navigate to <strong>Overview</strong> under <strong>Estate</strong> in the sidebar. Estate Intelligence provides a holistic view of your Unity Catalog data estate, independent of discovery runs.</p>
+<h3 id="starting-a-scan">Starting a Scan<a class="headerlink" href="#starting-a-scan" title="Permanent link">&para;</a></h3>
+<p>Click <strong>New Scan</strong> and use the Catalog Browser to select which catalogs or schemas to scan.</p>
+<p align="center">
+  <img src="images/guide-23-estate-scan-setup.png" alt="Estate scan setup" width="100%" />
+</p>
+
+<p>Click <strong>Scan Environment</strong> to start. The scan runs through several phases: listing tables, fetching metadata (DESCRIBE DETAIL/HISTORY), walking lineage, enriching with LLM intelligence, scoring health, and saving results.</p>
+<h3 id="aggregate-view">Aggregate View<a class="headerlink" href="#aggregate-view" title="Permanent link">&para;</a></h3>
+<p>The aggregate view merges data from all scans to give you the latest picture of every table.</p>
+<p><strong>Summary tab:</strong></p>
+<p align="center">
+  <img src="images/guide-20-estate-summary.png" alt="Estate summary" width="100%" />
+</p>
+
+<ul>
+<li><strong>Data Maturity Score</strong> -- a composite 0--100 score across four pillars: Governance (documentation, tags, ownership, PII detection), Architecture (medallion tiers, redundancy, data products, lineage), Operations (health, OPTIMIZE/VACUUM, auto-optimize, clustering), and Analytics Readiness (use case density, schema coverage, domain coverage).</li>
+<li><strong>Maturity level</strong> -- Foundational, Developing, Established, Advanced, or Leading.</li>
+<li><strong>Executive Summary</strong> -- AI-generated business and technical findings about your data estate.</li>
+<li><strong>Stats</strong> -- total tables, total size, total rows, domains, average governance score, PII table count.</li>
+<li><strong>Scan trends</strong> -- how metrics have changed across scans (when you have 2 or more).</li>
+</ul>
+<p><strong>Tables tab:</strong></p>
+<p align="center">
+  <img src="images/guide-21-estate-tables.png" alt="Estate tables" width="100%" />
+</p>
+
+<p>A searchable, sortable list of every table in your estate with domain, tier (gold/silver/bronze), size, rows, owner, governance score, sensitivity level, last modified date, and discovery source.</p>
+<p><strong>ERD tab:</strong></p>
+<p align="center">
+  <img src="images/guide-22-estate-erd.png" alt="Entity Relationship Diagram" width="100%" />
+</p>
+
+<p>An interactive entity-relationship diagram showing tables as nodes and foreign key / lineage relationships as edges.</p>
+<p><strong>Table Coverage tab:</strong></p>
+<p>Links estate tables to discovered use cases from your pipeline runs. Tables with no use cases are highlighted as "untapped" opportunities.</p>
+<p><strong>Exporting:</strong></p>
+<p>From a single scan view, click <strong>Download Excel Report</strong> to get a comprehensive 12-sheet workbook covering executive summary, inventory, domains, PII, relationships, redundancy, governance, health, and lineage.</p>
+<hr />
+<h2 id="11-industry-outcome-maps">11. Industry Outcome Maps<a class="headerlink" href="#11-industry-outcome-maps" title="Permanent link">&para;</a></h2>
+<p>Navigate to <strong>Outcome Maps</strong> under <strong>Business Value</strong> in the sidebar.</p>
+<p align="center">
+  <img src="images/guide-24-outcomes-grid.png" alt="Industry Outcome Maps" width="100%" />
+</p>
+
+<p>Outcome maps are curated reference frameworks for specific industries. Each map contains strategic objectives, business priorities, and reference use cases that guide the discovery pipeline.</p>
+<p><strong>Browsing maps:</strong></p>
+<ul>
+<li>Search by industry name, priority, or use case.</li>
+<li>Click an industry card to see its detail view.</li>
+</ul>
+<p align="center">
+  <img src="images/guide-25-outcome-detail.png" alt="Outcome map detail" width="100%" />
+</p>
+
+<p>The detail view shows:</p>
+<ul>
+<li><strong>Objectives</strong> -- strategic business objectives for the industry.</li>
+<li><strong>Priorities</strong> -- expandable sections with associated reference use cases, KPIs, and target personas.</li>
+<li><strong>Reference use cases</strong> -- examples of what the pipeline should generate for this industry.</li>
+</ul>
+<p><strong>Using an outcome map:</strong></p>
+<p>Click <strong>Start Discovery with [Industry]</strong> to go to the New Discovery form with that industry pre-selected. The pipeline will use the outcome map to guide use case generation and scoring.</p>
+<p><strong>Ingesting new maps:</strong></p>
+<p>Click <strong>Ingest New Map</strong> to upload a markdown-formatted outcome map. The AI parses it into structured objectives, priorities, and use cases. You can review and edit before saving.</p>
+<hr />
+<h2 id="12-knowledge-base">12. Knowledge Base<a class="headerlink" href="#12-knowledge-base" title="Permanent link">&para;</a></h2>
+<p>Navigate to <strong>Knowledge Base</strong> under <strong>Admin</strong> in the sidebar.</p>
+<p align="center">
+  <img src="images/guide-27-knowledge-base.png" alt="Knowledge Base" width="100%" />
+</p>
+
+<p>The Knowledge Base lets you upload documents that enrich the AI context used by Ask Forge, the pipeline, and the Genie Engine.</p>
+<p><strong>Supported formats:</strong> PDF, Markdown, and plain text.</p>
+<p><strong>Categories:</strong> Strategy Pack, Data Dictionary, Governance Policy, Architecture Docs, Other.</p>
+<p><strong>Workflow:</strong></p>
+<ol>
+<li>Drag and drop files or use the file picker.</li>
+<li>Forge chunks the document (512 tokens, 64-token overlap), generates embeddings, and stores them in the vector index.</li>
+<li>The document appears in the list with a status badge: <strong>Processing</strong>, <strong>Ready</strong>, or <strong>Failed</strong>.</li>
+<li>Once ready, the document's content is available for RAG retrieval across the app.</li>
+</ol>
+<p><strong>Integration:</strong></p>
+<ul>
+<li><strong>Ask Forge</strong> retrieves relevant chunks when answering questions.</li>
+<li><strong>Pipeline</strong> uses knowledge base context during use case generation and scoring.</li>
+<li><strong>Genie Engine</strong> draws on uploaded documents for richer instructions and trusted assets.</li>
+<li><strong>Strategy Alignment</strong> can reference uploaded strategy documents.</li>
+</ul>
+<blockquote>
+<p>The Knowledge Base requires an embedding endpoint to be configured (see Settings).</p>
+</blockquote>
+<hr />
+<h2 id="13-comparing-runs">13. Comparing Runs<a class="headerlink" href="#13-comparing-runs" title="Permanent link">&para;</a></h2>
+<p>Navigate to <strong>Runs</strong> in the sidebar, then click <strong>Compare Runs</strong> (requires at least 2 completed runs).</p>
+<p align="center">
+  <img src="images/guide-18-compare.png" alt="Compare runs" width="100%" />
+</p>
+
+<p><strong>How to compare:</strong></p>
+<ol>
+<li>Select <strong>Run A</strong> and <strong>Run B</strong> from the dropdowns (only completed runs are shown).</li>
+<li>The page shows a side-by-side comparison:</li>
+<li><strong>Metrics</strong> -- use case count, average score, domain count, AI vs Statistical counts, with diff indicators.</li>
+<li><strong>Use case overlap</strong> -- how many use cases are unique to Run A, shared between both, and unique to Run B. Shared use cases are listed by name.</li>
+<li><strong>Configuration differences</strong> -- business name, UC metadata, AI model, priorities, and languages, highlighted when they differ.</li>
+</ol>
+<blockquote>
+<p>Comparing runs is useful after changing the scope, depth, or model to see what improved.</p>
+</blockquote>
+<hr />
+<h2 id="14-managing-runs">14. Managing Runs<a class="headerlink" href="#14-managing-runs" title="Permanent link">&para;</a></h2>
+<p>Navigate to <strong>Runs</strong> in the sidebar.</p>
+<p align="center">
+  <img src="images/guide-19-runs-list.png" alt="Runs list" width="100%" />
+</p>
+
+<p><strong>Features:</strong></p>
+<ul>
+<li><strong>Search</strong> -- filter runs by business name.</li>
+<li><strong>Status filter</strong> -- show All, Completed, Running, Pending, or Failed runs.</li>
+<li><strong>Sort</strong> -- by date (newest/oldest) or by name.</li>
+<li><strong>Pagination</strong> -- 15 runs per page.</li>
+</ul>
+<p><strong>Actions:</strong></p>
+<ul>
+<li>Click any row to open the run detail.</li>
+<li>Click the <strong>trash icon</strong> to delete a run (with confirmation dialog). This permanently removes the run and all its use cases.</li>
+<li>Click <strong>New Discovery</strong> to start a new run.</li>
+<li>Click <strong>Compare Runs</strong> to go to the comparison page (requires at least 2 completed runs).</li>
+</ul>
+<p><strong>Run header actions</strong> (on the run detail page):</p>
+<ul>
+<li><strong>Duplicate Config</strong> -- copies the run's configuration and opens the New Discovery form with all fields pre-filled. Useful for re-running with minor tweaks.</li>
+<li><strong>Compare</strong> -- opens the Compare page with this run pre-selected.</li>
+</ul>
+<hr />
+<h2 id="15-settings">15. Settings<a class="headerlink" href="#15-settings" title="Permanent link">&para;</a></h2>
+<p>Navigate to <strong>Settings</strong> under <strong>Admin</strong> in the sidebar.</p>
+<p align="center">
+  <img src="images/guide-26-settings.png" alt="Settings" width="100%" />
+</p>
+
+<h3 id="profile">Profile<a class="headerlink" href="#profile" title="Permanent link">&para;</a></h3>
+<p>Shows your user email and the Databricks workspace host the app is connected to.</p>
+<h3 id="data-sampling">Data Sampling<a class="headerlink" href="#data-sampling" title="Permanent link">&para;</a></h3>
+<p>Configure how many rows per table to sample during discovery and SQL generation.</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>0 (disabled)</strong></td>
+<td>Metadata only -- no row-level data is read (most private)</td>
+</tr>
+<tr>
+<td><strong>5--50 rows</strong></td>
+<td>Sample rows are sent to the AI model for improved SQL accuracy</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>When sampling is enabled, row-level data is sent to the AI model but is never persisted. It exists only in memory during the generation step.</p>
+</blockquote>
+<h3 id="estate-scan">Estate Scan<a class="headerlink" href="#estate-scan" title="Permanent link">&para;</a></h3>
+<p>Configure estate intelligence options:</p>
+<ul>
+<li><strong>Estate Scan Enabled</strong> -- enable or disable the estate scanning capability.</li>
+<li><strong>Asset Discovery Enabled</strong> -- enable discovery of data products and assets during scans.</li>
+<li><strong>Benchmarks Server Enabled</strong> -- enable server-side benchmark evaluation for Genie Spaces.</li>
+</ul>
+<h3 id="ai-output-language">AI / Output Language<a class="headerlink" href="#ai-output-language" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>AI Comment Language</strong> -- the natural language used by AI-generated table and column descriptions on the AI Comments page <strong>and</strong> by AI-generated content in the New Discovery pipeline (table/column comment enrichment + use case fields: name, statement, solution, business value, beneficiary, sponsor, technical design). Available values: <code>English</code> (default), <code>Português (Brasil)</code>, <code>Español</code>. Technical identifiers (FQNs, AI/SQL function names, JSON keys) always remain in English regardless of this setting.</li>
+</ul>
+<blockquote>
+<p>Other pipeline steps (table filtering, scoring, domain clustering, SQL generation) currently produce English output regardless of this setting. UI strings follow the browser locale via <code>next-intl</code>.</p>
+</blockquote>
+<h3 id="semantic-search-and-rag">Semantic Search and RAG<a class="headerlink" href="#semantic-search-and-rag" title="Permanent link">&para;</a></h3>
+<p>Configure the embedding and vector search capabilities that power Ask Forge and the Knowledge Base:</p>
+<ul>
+<li><strong>Semantic Search Enabled</strong> -- enable or disable RAG-powered features.</li>
+<li><strong>Embedding Count</strong> -- shows the number of embeddings currently stored.</li>
+<li><strong>Rebuild Embeddings</strong> -- re-index all pipeline data and knowledge base documents.</li>
+</ul>
+<blockquote>
+<p>This section only appears when an embedding endpoint is available.</p>
+</blockquote>
+<h3 id="discovery-depth-defaults">Discovery Depth Defaults<a class="headerlink" href="#discovery-depth-defaults" title="Permanent link">&para;</a></h3>
+<p>Set the default discovery depth and fine-tune per-depth parameters:</p>
+<ul>
+<li><strong>Batch target</strong> (min/max) -- how many use cases per batch the LLM generates.</li>
+<li><strong>Quality floor</strong> -- minimum score threshold below which use cases are filtered out.</li>
+<li><strong>Adaptive cap</strong> -- maximum total use cases per run.</li>
+<li><strong>Lineage depth</strong> -- how many hops to walk in the data lineage graph.</li>
+</ul>
+<p>Each depth (Focused, Balanced, Comprehensive) has independent defaults. Click <strong>Reset</strong> to restore factory settings.</p>
+<h3 id="genie-engine-defaults">Genie Engine Defaults<a class="headerlink" href="#genie-engine-defaults" title="Permanent link">&para;</a></h3>
+<p>Configure default behaviour for Genie Space generation:</p>
+<ul>
+<li><strong>Genie defaults</strong> -- max tables, benchmark count, metric views, time periods, trusted assets, and other engine parameters.</li>
+<li><strong>Deploy auth mode</strong> -- how Genie Spaces authenticate when deployed.</li>
+<li><strong>Question complexity</strong> -- the complexity level of auto-generated benchmark questions.</li>
+<li><strong>Metric Views server enabled</strong> -- enable metric view generation as part of the Genie Engine.</li>
+</ul>
+<h3 id="export-and-naming">Export and Naming<a class="headerlink" href="#export-and-naming" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Default export format</strong> -- which format is pre-selected when you export (Excel, PDF, PowerPoint, or Notebooks).</li>
+<li><strong>Notebook deployment path</strong> -- the workspace folder where SQL notebooks are deployed (default: <code>./forge_gen/</code>).</li>
+<li><strong>Catalog resource prefix</strong> -- prefix for deployed resources in Unity Catalog.</li>
+</ul>
+<h3 id="about">About<a class="headerlink" href="#about" title="Permanent link">&para;</a></h3>
+<p>Shows the current version, application name, and runtime environment.</p>
+<h3 id="data-management">Data Management<a class="headerlink" href="#data-management" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Clear local settings</strong> -- reset all browser-local preferences to defaults. Your Lakebase data (runs, use cases) is not affected.</li>
+<li><strong>Delete all data</strong> -- factory reset that removes all runs, use cases, Genie data, business value data, and estate scans from Lakebase. Use with caution.</li>
+</ul>
+<hr />
+<h2 id="16-tips-and-best-practices">16. Tips and Best Practices<a class="headerlink" href="#16-tips-and-best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="choosing-the-right-scope">Choosing the Right Scope<a class="headerlink" href="#choosing-the-right-scope" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Start small</strong> -- begin with a single schema to understand the output quality before scanning your entire catalog.</li>
+<li><strong>Business-relevant schemas</strong> -- focus on schemas that contain business data rather than system or staging tables. The table filtering step will remove technical tables, but a tighter scope means faster runs and more relevant results.</li>
+<li><strong>Multiple catalogs</strong> -- you can select across catalogs in a single run. Use this when business data spans multiple catalogs.</li>
+</ul>
+<h3 id="discovery-depth_1">Discovery Depth<a class="headerlink" href="#discovery-depth_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Focused</strong> is ideal for demos, quick assessments, or when you only have a few schemas. Runs complete in minutes.</li>
+<li><strong>Balanced</strong> is the default and works well for most production workloads. Good balance of breadth and quality.</li>
+<li><strong>Comprehensive</strong> generates the most use cases but takes longer and may require score adjustment to surface the best results. Use this for full estate analysis.</li>
+</ul>
+<h3 id="improving-results">Improving Results<a class="headerlink" href="#improving-results" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Set business priorities</strong> -- the more priorities you select, the better the scoring aligns with your strategic goals.</li>
+<li><strong>Add business domains</strong> -- if you know what domains matter (e.g. Finance, Customer, Supply Chain), adding them helps the clustering step produce cleaner groups.</li>
+<li><strong>Select an industry</strong> -- choosing an industry outcome map provides reference use cases that steer generation toward industry-specific patterns.</li>
+<li><strong>Enable data sampling</strong> -- even 5 rows per table significantly improves SQL accuracy by giving the LLM real column values and data patterns.</li>
+</ul>
+<h3 id="working-with-results">Working with Results<a class="headerlink" href="#working-with-results" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Adjust scores</strong> -- the AI scores are a starting point. Use the score sliders to reflect your team's priorities and knowledge. User-adjusted scores override the system scores in all exports.</li>
+<li><strong>Edit use cases</strong> -- refine names and statements to match your organisation's terminology before exporting.</li>
+<li><strong>Compare runs</strong> -- run the same scope with different depths or models, then compare to find the best configuration for your data.</li>
+<li><strong>Use voting</strong> -- run a prioritisation workshop with your team using the Portfolio drill-down. Combining AI scores with stakeholder votes produces better alignment.</li>
+</ul>
+<h3 id="business-value">Business Value<a class="headerlink" href="#business-value" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Review per-run first</strong> -- check the Business Value tab on a run to verify findings before looking at the cross-run portfolio.</li>
+<li><strong>Upload strategy</strong> -- adding a strategy document makes the alignment analysis much more valuable. Without it, you only get financial estimates and roadmap phasing.</li>
+<li><strong>Track progress</strong> -- update the Value Tracking page regularly to show leadership that discovery is translating into delivery.</li>
+<li><strong>Export for executives</strong> -- use the Portfolio PowerPoint or Executive PDF for steering committee updates. Use the D4B Workshop Pack for field-led workshops.</li>
+</ul>
+<h3 id="genie-studio">Genie Studio<a class="headerlink" href="#genie-studio" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Run AI Comments first</strong> -- generating column descriptions before creating Genie Spaces dramatically improves health scores and Genie query accuracy.</li>
+<li><strong>Start with Scan Schema for ad-hoc needs</strong> -- if you know the schema, Scan Schema is the fastest path to a working space.</li>
+<li><strong>Use Ask Forge for exploratory builds</strong> -- describe what you need in conversation and let the assistant build the space for you.</li>
+<li><strong>Sort by health score</strong> -- on the Improve page, sort by health score (worst first) to quickly find spaces that need attention.</li>
+<li><strong>Use Fix All before manual edits</strong> -- the automated fix strategies handle most common issues. Apply them first, then fine-tune manually.</li>
+<li><strong>Run benchmarks after fixes</strong> -- after Fix All or Engine Improve, run the benchmark test suite to verify accuracy improved.</li>
+<li><strong>Sync workspace spaces</strong> -- bring in existing Genie Spaces for health scoring to find quick improvement opportunities.</li>
+</ul>
+<h3 id="ask-forge">Ask Forge<a class="headerlink" href="#ask-forge" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Upload context first</strong> -- add relevant documents to the Knowledge Base and run at least one pipeline before using Ask Forge. The more context available, the better the answers.</li>
+<li><strong>Use action cards</strong> -- when the assistant suggests actions (View Portfolio, Deploy Notebook), click them to navigate directly.</li>
+<li><strong>Build Genie Spaces conversationally</strong> -- reference specific tables in your question and the assistant will offer to create a space.</li>
+</ul>
+<h3 id="estate-intelligence">Estate Intelligence<a class="headerlink" href="#estate-intelligence" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Run estate scans regularly</strong> -- scanning builds a historical view of your data estate. With 2+ scans, the dashboard shows trends in table counts, governance, and data maturity.</li>
+<li><strong>Use Table Coverage</strong> -- after running both an estate scan and a discovery, the Table Coverage tab highlights tables that are not yet covered by any use case -- these are untapped opportunities.</li>
+<li><strong>Monitor Data Maturity</strong> -- the maturity score gives leadership a single number to track improvement over time.</li>
+</ul>
+<hr />
+<p><em>For deployment and configuration, see the <a href="DEPLOYMENT.html">Deployment Guide</a>. For the value proposition, see the <a href="index.html">Home page</a>.</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "toc.integrate"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
