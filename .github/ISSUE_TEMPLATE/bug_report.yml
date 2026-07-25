@@ -1,5 +1,5 @@
 name: Bug Report
-description: Report a bug in Databricks Forge AI
+description: Report a bug in Databricks Forge
 labels: ["bug"]
 body:
   - type: markdown
@@ -68,8 +68,8 @@ body:
     id: version
     attributes:
       label: Forge Version
-      description: "Version from Settings > About or the sidebar footer (e.g. 0.24.0)."
-      placeholder: "0.24.0"
+      description: "Version from Settings > About or the sidebar footer (e.g. 1.0.4)."
+      placeholder: "1.0.4"
 
   - type: textarea
     id: environment
@@ -87,3 +87,11 @@ body:
       label: Relevant Logs
       description: Paste any relevant log output (browser console, server logs).
       render: shell
+
+  - type: checkboxes
+    id: redaction
+    attributes:
+      label: Sensitive information
+      options:
+        - label: I removed credentials, customer data, workspace URLs, resource IDs, and personal information.
+          required: true

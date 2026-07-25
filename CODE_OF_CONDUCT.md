@@ -47,8 +47,11 @@ an individual is officially representing the community in public spaces.
 ## Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behaviour may be
-reported to the project maintainers. All complaints will be reviewed and
-investigated promptly and fairly.
+reported to `@althrussell`. When confidentiality is required, use the
+repository's
+[private reporting form](https://github.com/databricks-solutions/databricks-forge/security/advisories/new)
+and begin the report title with `[CODE OF CONDUCT]`. All complaints will be
+reviewed and investigated fairly on a best-effort basis.
 
 ## Attribution
 

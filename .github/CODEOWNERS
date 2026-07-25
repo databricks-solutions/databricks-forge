@@ -14,10 +14,12 @@ prisma/                     @althrussell
 lib/dbx/                    @althrussell
 SECURITY.md                 @althrussell
 SECURITY_ARCHITECTURE.md    @althrussell
+SUPPORT.md                  @althrussell
+CONTRIBUTING.md             @althrussell
 
 # CI and repo configuration
 .github/                    @althrussell
 
 # Deployment
 deploy.sh                   @althrussell
-app.yml                     @althrussell
+app.yaml                    @althrussell

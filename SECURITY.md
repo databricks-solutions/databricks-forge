@@ -1,44 +1,27 @@
 # Security Policy
 
-## Reporting a Vulnerability
+## Reporting a vulnerability
 
-If you discover a security vulnerability in this project, please report it
-responsibly. **Do not open a public GitHub issue.**
+Do not open a public issue. Submit the report through
+[GitHub private vulnerability reporting](https://github.com/databricks-solutions/databricks-forge/security/advisories/new).
 
-### How to Report
+Include a description, reproduction steps or proof of concept, potential
+impact, and any suggested remediation. Remove customer data and credentials.
 
-Email your report to the maintainers with the subject line
-**"[SECURITY] Databricks Forge"**. Include:
+The maintainer will acknowledge a complete report on a best-effort basis.
+Coordinated disclosure timing will be agreed through the private advisory.
 
-- A description of the vulnerability
-- Steps to reproduce or a proof of concept
-- The potential impact
-- Any suggested fix (optional)
+## Supported version
 
-### What to Expect
+Only the latest commit on `main` is supported.
 
-- **Acknowledgement** within 5 business days
-- **Status update** within 15 business days
-- We will coordinate disclosure timing with you
+## Scope
 
-### Scope
-
-This policy covers the code in this repository. It does **not** cover:
-
-- The Databricks platform itself (report those via
-  [Databricks Security](https://www.databricks.com/trust/security))
-- Third-party dependencies (report those to the upstream project)
+This policy covers code in this repository. Databricks platform vulnerabilities
+must be reported through
+[Databricks Security](https://www.databricks.com/trust/security).
 
 ## Security Architecture
 
-For details on the application's security design, data flows, and threat
-mitigations, see [SECURITY_ARCHITECTURE.md](SECURITY_ARCHITECTURE.md).
-
-## Supported Versions
-
-Only the latest version on the `dev` branch receives security fixes.
-
-| Version | Supported |
-| ------- | --------- |
-| Latest `dev` | Yes |
-| Older commits | No |
+See [Security Architecture](SECURITY_ARCHITECTURE.md) for Forge's data flows,
+authentication model, and mitigations.

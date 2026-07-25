@@ -1,7 +1,7 @@
 # Contributing to Databricks Forge
 
-Thank you for your interest in contributing! This project is maintained by the
-Databricks Field Engineering team and welcomes community contributions.
+Thank you for your interest in contributing! This community-maintained
+Databricks Field Engineering accelerator welcomes contributions.
 
 > **Note:** This is NOT an official Databricks product. See [NOTICE](NOTICE) for
 > the full disclaimer.
@@ -10,7 +10,7 @@ Databricks Field Engineering team and welcomes community contributions.
 
 ### Prerequisites
 
-- [Node.js 20+](https://nodejs.org) and npm
+- [Node.js 20.9+](https://nodejs.org) and npm 10+
 - [Databricks CLI](https://docs.databricks.com/dev-tools/cli/install.html) installed and authenticated
 - A Databricks workspace with Unity Catalog, a SQL Warehouse, and a Model Serving endpoint
 
@@ -27,7 +27,7 @@ Databricks Field Engineering team and welcomes community contributions.
    bash .deploy_local.sh
    ```
    This creates `.env.local` with your workspace URL, warehouse, and Lakebase
-   credentials. See [QUICKSTART.md](QUICKSTART.md#local-development-no-serverless-egress) for details.
+   credentials. See the [Quick Start](docs/quickstart.md) for details.
 4. Start the dev server (`prisma generate` runs automatically):
    ```bash
    npm run dev
@@ -38,10 +38,14 @@ Databricks Field Engineering team and welcomes community contributions.
 Before submitting a PR, make sure all checks pass:
 
 ```bash
-npm run lint        # ESLint
-npm run typecheck   # TypeScript strict mode
-npm test            # Vitest unit tests
-npm run build       # Production build
+npm run check:public  # Public-release hygiene
+npm run format:check  # Prettier
+npm run lint          # ESLint
+npm run typecheck     # TypeScript strict mode
+npm test              # Vitest unit tests
+npm run test:quality  # Quality benchmark gate
+npm run test:e2e      # Mocked browser tests
+npm run build         # Production build
 ```
 
 ## How to Contribute
@@ -51,17 +55,24 @@ npm run build       # Production build
 - Search existing issues before opening a new one
 - Include steps to reproduce, expected behaviour, and actual behaviour
 - Include your Node.js version, OS, and browser (if relevant)
+- Ask usage questions in
+  [GitHub Discussions](https://github.com/databricks-solutions/databricks-forge/discussions)
+- Report vulnerabilities through
+  [GitHub private vulnerability reporting](https://github.com/databricks-solutions/databricks-forge/security/advisories/new),
+  never a public issue
 
 ### Submitting Pull Requests
 
-1. Create a feature branch from `dev`:
+1. Create a feature branch from `main`:
    ```bash
-   git checkout -b feature/your-feature dev
+   git switch main
+   git pull --ff-only
+   git switch -c feature/your-feature
    ```
 2. Make your changes following the conventions below
-3. Ensure all checks pass (`lint`, `typecheck`, `test`, `build`)
+3. Run the checks listed above
 4. Write a clear PR description explaining **what** and **why**
-5. Submit the PR against the `dev` branch
+5. Submit the PR against the `main` branch
 
 ### Code Conventions
 
@@ -85,4 +96,4 @@ By participating, you agree to uphold this code.
 ## License
 
 By contributing, you agree that your contributions will be licensed under the
-[Apache License 2.0](LICENSE).
+[Databricks License](LICENSE).

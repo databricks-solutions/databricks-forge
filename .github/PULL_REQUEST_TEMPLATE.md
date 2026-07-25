@@ -15,13 +15,18 @@ Closes #<!-- issue number -->
 
 ## Pre-Merge Checklist
 
+- [ ] `npm run check:public` passes
+- [ ] `npm run format:check` passes
 - [ ] `npm run lint` passes
 - [ ] `npm run typecheck` passes
 - [ ] `npm test` passes
+- [ ] `npm run test:quality` passes
+- [ ] `npm run build` passes
 - [ ] I have added tests that prove my fix / feature works
 - [ ] New and existing unit tests pass locally
 - [ ] I have updated documentation where applicable (AGENTS.md, docs/, CHANGELOG.md)
 - [ ] My changes generate no new warnings
+- [ ] I have not included credentials, customer data, workspace identifiers, or internal-only artifacts
 
 ## Screenshots / Recordings
 
