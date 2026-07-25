@@ -1,0 +1,1992 @@
+{
+  "common": {
+    "language": "Language",
+    "save": "Save",
+    "cancel": "Cancel",
+    "loading": "Loading…",
+    "close": "Close"
+  },
+  "accessibility": {
+    "skip_to_main": "Skip to main content",
+    "toggle_nav": "Toggle navigation",
+    "navigation": "Navigation"
+  },
+  "language_toggle": {
+    "label": "Language",
+    "tooltip": "Change interface language"
+  },
+  "theme_toggle": {
+    "label": "Toggle theme",
+    "active": "Active",
+    "options": {
+      "light": "Light",
+      "dark": "Dark",
+      "system": "System"
+    }
+  },
+  "sidebar": {
+    "expand": "Expand sidebar",
+    "collapse": "Collapse sidebar",
+    "sections": {
+      "explore": "Explore",
+      "genie": "Genie Studio",
+      "estate": "Estate",
+      "business_value": "Business Value",
+      "demo": "Demo",
+      "migrate": "Migrate",
+      "admin": "Admin",
+      "estate_discovery": "Estate",
+      "estate_health": "Estate · Health",
+      "value": "Value",
+      "planning": "Planning",
+      "library": "Library"
+    },
+    "items": {
+      "dashboard": "Dashboard",
+      "ask_forge": "Ask Forge",
+      "new_discovery": "New Discovery",
+      "runs": "Runs",
+      "genie_studio": "Genie Studio",
+      "metadata_genie": "Metadata Genie",
+      "overview": "Overview",
+      "ai_comments": "AI Comments",
+      "waf_assessment": "WAF Assessment",
+      "business_value": "Business Value",
+      "roadmap": "Roadmap",
+      "stakeholders": "Stakeholders",
+      "value_tracking": "Value Tracking",
+      "strategy": "Strategy",
+      "data_gap": "Data Gap",
+      "outcome_maps": "Outcome Maps",
+      "benchmarks": "Benchmarks",
+      "demo_studio": "Demo Studio",
+      "fabric_pbi": "Fabric / PBI",
+      "connections": "Connections",
+      "knowledge_base": "Knowledge Base",
+      "settings": "Settings",
+      "help": "Help",
+      "estate_programs": "Estate Programs"
+    }
+  },
+  "header": {
+    "page_titles": {
+      "dashboard": "Dashboard",
+      "new_discovery": "New Discovery",
+      "runs": "Pipeline Runs",
+      "compare_runs": "Compare Runs",
+      "estate_overview": "Estate Overview",
+      "waf_assessment": "WAF Assessment",
+      "compare_assessments": "Compare Assessments",
+      "benchmark_catalog": "Benchmark Catalog",
+      "outcome_maps": "Outcome Maps",
+      "ingest_outcome_map": "Ingest Outcome Map",
+      "genie_spaces": "Genie Spaces",
+      "metadata_genie": "Meta Data Genie",
+      "settings": "Settings",
+      "help": "Help",
+      "run_detail": "Run Detail"
+    }
+  },
+  "ask_forge": {
+    "label": "Ask Forge"
+  },
+  "search": {
+    "trigger": "Search…",
+    "dialog_title": "Search",
+    "dialog_description": "Semantic search across tables, use cases, insights, and documents",
+    "placeholder": "Search across your entire data estate…",
+    "searching": "Searching…",
+    "no_results": "No results found for “{query}”",
+    "empty_heading": "Search tables, use cases, insights, and more",
+    "empty_subtitle": "Results are ranked by semantic similarity",
+    "scopes": {
+      "all": "All",
+      "estate": "Tables",
+      "usecases": "Use Cases",
+      "genie": "Genie",
+      "insights": "Insights",
+      "documents": "Documents"
+    },
+    "kinds": {
+      "table_detail": "Table",
+      "column_profile": "Columns",
+      "use_case": "Use Case",
+      "business_context": "Business Context",
+      "genie_recommendation": "Genie Space",
+      "genie_question": "Genie Question",
+      "environment_insight": "Insight",
+      "table_health": "Health",
+      "data_product": "Data Product",
+      "outcome_map": "Outcome Map",
+      "lineage_context": "Lineage",
+      "document_chunk": "Document"
+    },
+    "provenance": {
+      "platform": "Platform",
+      "insight": "Insight",
+      "generated": "Generated",
+      "uploaded": "Uploaded",
+      "template": "Template"
+    },
+    "fallbacks": {
+      "document": "Document",
+      "business_context": "Business Context",
+      "genie_space": "Genie Space",
+      "outcome_map": "Outcome Map",
+      "insight": "Insight",
+      "chunk": "Chunk {index}"
+    }
+  },
+  "settings": {
+    "page": {
+      "title": "Settings",
+      "subtitle": "Configure application-wide defaults and preferences.",
+      "save_button": "Save Settings"
+    },
+    "toasts": {
+      "settings_saved": "Settings saved",
+      "embeddings_rebuilt": "Embeddings rebuilt successfully",
+      "embeddings_failed": "Failed to rebuild embeddings",
+      "embeddings_network_error": "Network error while rebuilding embeddings",
+      "local_cleared": "Local settings cleared",
+      "all_data_deleted": "All data deleted — app has been reset",
+      "delete_failed": "Failed to delete data"
+    },
+    "profile": {
+      "title": "Profile",
+      "description": "Your workspace identity and connection information",
+      "email_label": "User Email",
+      "email_unavailable": "Not available (local dev)",
+      "host_label": "Databricks Workspace",
+      "host_disconnected": "Not connected"
+    },
+    "industry": {
+      "title": "Industry",
+      "description": "Set your organisation's industry once here and it will be applied automatically to all new pipeline runs, AI comment jobs, and other kickoff flows. Per-job industry dropdowns are hidden when this is set.",
+      "label": "Industry",
+      "placeholder": "Select an industry...",
+      "not_set": "Not set",
+      "when_set": "All new jobs will use this industry. You can still change it per-run from the run detail page.",
+      "when_unset": "When not set, each job kickoff will show an industry dropdown for per-run selection."
+    },
+    "ai_output": {
+      "title": "AI Output Language",
+      "description": "Choose the language used by Forge when generating AI descriptions for tables and columns. This is independent from the UI language — identifiers (table names, columns, data types) always stay verbatim.",
+      "comment_language_label": "Comment generation language",
+      "comment_language_hint": "Used as the default for new AI Comment jobs. You can still override it per-job from the AI Comments page."
+    },
+    "data_sampling": {
+      "title": "Data Sampling",
+      "description": "Control whether sample rows are fetched from tables during use case discovery and SQL generation. Real data values help the AI understand what each table contains, producing more relevant use cases and more accurate SQL queries. Trade-off: reads row-level data and increases run time.",
+      "rows_label": "Rows per table",
+      "options": {
+        "disabled": "Disabled (metadata only)",
+        "n5": "5 rows per table",
+        "n10": "10 rows per table",
+        "n25": "25 rows per table",
+        "n50": "50 rows per table"
+      },
+      "privacy_heading": "Privacy & data access",
+      "privacy_body_pre": "When data sampling is enabled, Forge reads a small number of rows from each table during use case discovery and SQL generation. This data is sent to the AI model alongside the schema so it can understand real data values, formats, and patterns -- producing better use cases and more accurate SQL. Sampled data is",
+      "privacy_body_emphasis": "not",
+      "privacy_body_post": "persisted."
+    },
+    "estate_scan": {
+      "title": "Estate Scan",
+      "description": "Run environment intelligence (domain classification, PII detection, health scoring, lineage enrichment) during pipeline runs. This increases run time but provides a comprehensive estate view alongside use case discovery.",
+      "scan": {
+        "label": "Estate Scan during pipeline runs",
+        "enabled": "Enabled — metadata extraction will include full environment intelligence enrichment",
+        "disabled": "Disabled — pipeline runs will skip the estate scan enrichment pass (faster runs)"
+      },
+      "asset_discovery": {
+        "label": "Asset Discovery during pipeline runs",
+        "enabled": "Enabled — existing Genie spaces, dashboards, and metric views will be discovered and used to improve recommendations",
+        "disabled": "Disabled — recommendations are generated without awareness of existing analytics assets (faster runs)"
+      },
+      "benchmarks": {
+        "label": "Benchmark Catalog",
+        "unavailable": "Unavailable — server-side flag FORGE_BENCHMARKS_ENABLED is not set in the deployment configuration",
+        "enabled": "Enabled — industry benchmarks are embedded and injected into pipeline prompts and Ask Forge retrieval",
+        "disabled": "Disabled — pipeline uses generic advisory context; benchmark catalog page and API are hidden"
+      }
+    },
+    "semantic_search": {
+      "title": "Semantic Search & RAG",
+      "description": "Enable semantic search, knowledge base, and AI-grounded retrieval across your data estate. Turning this off hides search and knowledge base features but does not delete existing embeddings.",
+      "toggle": {
+        "label": "Semantic Search & RAG",
+        "enabled": "Enabled — global search, knowledge base, and AI-grounded retrieval are active",
+        "disabled": "Disabled — search bar and knowledge base are hidden; embeddings are preserved for re-activation"
+      },
+      "rebuild": {
+        "label": "Rebuild Embeddings",
+        "description": "Re-generate the vector knowledge base from all estate scans, pipelines, and documents.",
+        "vectors_stored": "{count} vectors currently stored.",
+        "running": "Rebuilding...",
+        "idle": "Rebuild"
+      }
+    },
+    "discovery_depth": {
+      "title": "Discovery Depth",
+      "description": "Configure the parameters for each discovery depth level and choose the default. Each level controls how many use cases are generated per batch, the minimum quality threshold, and the maximum output volume. You can still override the depth level per-run.",
+      "default_label": "Default depth for new runs",
+      "default_badge": "Default",
+      "options": {
+        "focused": {
+          "label": "Focused",
+          "description": "Fewer, highest-quality use cases"
+        },
+        "balanced": {
+          "label": "Balanced",
+          "description": "Good mix of breadth and quality"
+        },
+        "comprehensive": {
+          "label": "Comprehensive",
+          "description": "Maximum coverage across domains"
+        }
+      },
+      "batch_target_label": "Batch target (min-max use cases per batch)",
+      "batch_target_to": "to",
+      "quality_floor_label": "Quality floor (0-1, minimum overall score)",
+      "adaptive_cap_label": "Adaptive cap (max use cases in output)",
+      "lineage_depth_label": "Lineage depth (max hops to walk)",
+      "lineage_enabled_label": "Walk lineage",
+      "lineage_direction_label": "Lineage direction",
+      "lineage_direction_options": {
+        "upstream": "Upstream",
+        "both": "Both",
+        "downstream": "Downstream"
+      },
+      "reset_defaults": "Reset to defaults"
+    },
+    "genie": {
+      "title": "Genie Engine",
+      "description": "Global defaults for Genie Space generation. These apply to all new runs. Per-run configuration (glossary, custom SQL, column overrides, benchmarks, instructions) is still editable within each run.",
+      "engine": {
+        "label": "Genie Engine",
+        "enabled": "Enabled — LLM-powered Genie Space generation is active for all runs",
+        "disabled": "Disabled — Engine config will be read-only in runs; only legacy generation available"
+      },
+      "quality_preset": {
+        "label": "Quality Preset",
+        "options": {
+          "speed": {
+            "label": "Speed",
+            "desc": "Fastest generation with lean output"
+          },
+          "balanced": {
+            "label": "Balanced",
+            "desc": "Good quality at reasonable speed"
+          },
+          "premium": {
+            "label": "Premium",
+            "desc": "Maximum richness, longest generation"
+          }
+        }
+      },
+      "max_tables": {
+        "label": "Max tables per space",
+        "suffix": "Up to 30 tables per space"
+      },
+      "fiscal_month": {
+        "label": "Fiscal year start month"
+      },
+      "max_auto_spaces": {
+        "label": "Max spaces to auto-analyse",
+        "suffix": "0 = all domains (default). Limits auto-generation; you can always regenerate more from the Genie Workbench."
+      },
+      "entity_matching": {
+        "label": "Entity Matching",
+        "options": {
+          "auto": "Auto (from sample data)",
+          "manual": "Manual only",
+          "off": "Disabled"
+        },
+        "hint": "Auto uses sample data to detect value aliases (e.g. \"Florida\" → \"FL\")"
+      },
+      "question_complexity": {
+        "label": "Question Complexity",
+        "tip": "Controls the language style of sample questions generated for Genie Spaces. Simple: short plain-English questions. Medium: slightly more specific with business concepts. Complex: analytical language with trends, correlations, and technical terms.",
+        "surfaces": {
+          "genie_engine": "Genie Engine",
+          "adhoc_genie": "Adhoc Genie",
+          "metadata_genie": "Metadata Genie"
+        },
+        "options": {
+          "simple": "Simple",
+          "medium": "Medium",
+          "complex": "Complex"
+        },
+        "hint": "Simple produces short, everyday questions. Medium adds business context. Complex uses analytical language."
+      },
+      "deploy_auth": {
+        "label": "Deploy Authentication",
+        "tip": "Controls which identity is used when creating, updating, or deleting Genie Spaces in Databricks. User (OBO) uses the logged-in user's credentials; Service Principal uses the app's service principal.",
+        "options": {
+          "obo": "User (recommended)",
+          "sp": "Service Principal"
+        },
+        "hint_obo": "Spaces are created under your identity. You must have access to the referenced tables.",
+        "hint_sp": "Spaces are created under the app's service principal. The SP must have SELECT access to the referenced tables."
+      },
+      "toggles": {
+        "llm_refinement": {
+          "label": "LLM Refinement",
+          "description": "Use AI to generate semantic expressions, instructions, and trusted assets"
+        },
+        "trusted_assets": {
+          "label": "Trusted Assets",
+          "description": "Generate parameterized SQL queries and UDF definitions"
+        },
+        "auto_benchmarks": {
+          "label": "Auto Benchmarks",
+          "description": "Generate test questions with expected SQL to evaluate Genie accuracy"
+        },
+        "metric_views": {
+          "label": "Metric Views",
+          "description": "Propose metric view definitions (KPIs, dimensions, measures)"
+        },
+        "auto_time_periods": {
+          "label": "Auto Time Periods",
+          "description": "Generate standard date filters and dimensions (last week, last month, fiscal quarters)"
+        }
+      },
+      "months": {
+        "1": "January",
+        "2": "February",
+        "3": "March",
+        "4": "April",
+        "5": "May",
+        "6": "June",
+        "7": "July",
+        "8": "August",
+        "9": "September",
+        "10": "October",
+        "11": "November",
+        "12": "December"
+      }
+    },
+    "export": {
+      "title": "Export & Naming",
+      "description": "Default export format, notebook path, and naming prefix for Unity Catalog resources",
+      "format_label": "Default export format",
+      "format_options": {
+        "excel": "Excel (.xlsx)",
+        "pdf": "PDF",
+        "pptx": "PowerPoint (.pptx)",
+        "notebooks": "Databricks Notebooks"
+      },
+      "notebook_path_label": "Notebook deployment path",
+      "prefix_label": "Catalog resource prefix",
+      "prefix_tip": "Prefix applied to all Unity Catalog resources (views, metric views, tables) created by Forge. Makes it easy to identify Forge-generated objects in your database. Must be lowercase alphanumeric/underscores and end with an underscore.",
+      "prefix_example_pre": "Example: with prefix",
+      "prefix_example_view": "a metric view named",
+      "prefix_example_becomes": "becomes"
+    },
+    "about": {
+      "title": "About",
+      "description": "Application version and build information",
+      "version_label": "Version",
+      "app_label": "Application",
+      "app_value": "Databricks Forge",
+      "runtime_label": "Runtime",
+      "runtime_apps": "Next.js / Databricks Apps",
+      "runtime_local": "Next.js / Local Dev"
+    },
+    "feature_flags": {
+      "title": "Feature Flags",
+      "description": "Workspace-shared runtime toggles. Changes take effect for everyone in this workspace without redeploying the app.",
+      "demo_mode": {
+        "label": "Demo Mode",
+        "enabled": "Enabled. The Demo Wizard appears in the sidebar and Settings; demo APIs are available.",
+        "disabled": "Disabled. Demo APIs return 404 and the Demo Wizard is hidden.",
+        "loading": "Loading current state…",
+        "toast_enabled": "Demo Mode enabled",
+        "toast_disabled": "Demo Mode disabled"
+      }
+    },
+    "data_management": {
+      "title": "Data Management",
+      "description": "Manage local settings and cached data",
+      "clear": {
+        "label": "Clear local settings",
+        "description": "Reset all preferences to their defaults. This does not affect pipeline runs or use cases stored in Lakebase.",
+        "button": "Clear",
+        "dialog": {
+          "title": "Clear local settings?",
+          "body": "This will reset all preferences (data sampling, export format, notebook path) to their defaults. Pipeline runs and data are not affected.",
+          "cancel": "Cancel",
+          "confirm": "Clear Settings"
+        }
+      },
+      "delete": {
+        "label": "Delete all data",
+        "description": "Permanently delete all pipeline runs, use cases, environment scans, Genie spaces, conversations, exports, and cached data. This cannot be undone.",
+        "button_idle": "Delete All",
+        "button_busy": "Deleting…",
+        "dialog": {
+          "title": "Delete all application data?",
+          "body": "This will permanently delete all pipeline runs, use cases, environment scans, Genie recommendations, dashboards, exports, prompt logs, and cached metadata. Local settings will also be reset. This action cannot be undone.",
+          "cancel": "Cancel",
+          "confirm": "Delete Everything"
+        }
+      }
+    },
+    "demo": {
+      "title": "Demo Mode",
+      "description": "Generate custom synthetic demo datasets for customer engagements. Research a company, design tables, and write directly to Unity Catalog.",
+      "launch_button": "Launch Demo Wizard",
+      "view_sessions": "View All Sessions"
+    }
+  },
+  "comments": {
+    "page": {
+      "title": "AI Comments",
+      "subtitle": "Generate and apply industry-aware descriptions for tables and columns in Unity Catalog.",
+      "all_jobs": "All Jobs",
+      "new_job": "New Job",
+      "open": "Open"
+    },
+    "empty": {
+      "title": "No comment jobs yet",
+      "description": "Generate AI-powered descriptions for your tables and columns. Review, edit, and apply them directly to Unity Catalog.",
+      "create_first": "Create Your First Job"
+    },
+    "jobs": {
+      "tables_columns": "{tables} tables, {columns} columns",
+      "applied_suffix": ", {applied} applied"
+    },
+    "review": {
+      "select_table": "Select a table from the left panel",
+      "no_proposals": "No proposals generated yet",
+      "starting_generation": "Starting generation..."
+    },
+    "dialog": {
+      "title": "New Comment Job",
+      "description": "Select the Unity Catalog scope and optionally choose an industry for domain-specific descriptions.",
+      "scope_title": "Select Scope",
+      "scope_description": "Browse Unity Catalog and select catalogs, schemas, or individual tables.",
+      "industry_title": "Industry Context (optional)",
+      "industry_description": "Enrich descriptions with domain-specific terminology.",
+      "industry_placeholder": "No industry (generic descriptions)",
+      "industry_none": "No industry",
+      "industry_from_settings": "From Settings",
+      "industry_set_globally_pre": "Industry is set globally in",
+      "industry_set_globally_settings": "Settings",
+      "language_title": "Output Language",
+      "language_description_pre": "Language for the generated descriptions. Identifiers (table names, columns, data types) stay verbatim. Default comes from",
+      "language_description_settings": "Settings",
+      "cancel": "Cancel",
+      "generate": "Generate AI Comments"
+    },
+    "catalog_browser": {
+      "search_placeholder": "Search catalogs, schemas, and tables...",
+      "refresh": "Refresh",
+      "exclude_placeholder": "Exclude by pattern (e.g. stg_*, *_backup, __databricks*)",
+      "exclude": "Exclude",
+      "no_results": "No results match “{query}”",
+      "no_catalogs": "No catalogs found in this workspace.",
+      "no_catalogs_hint": "This may happen if the warehouse just started. Try refreshing, or check that your SQL Warehouse has access to Unity Catalog.",
+      "retry": "Retry",
+      "warehouse_unavailable": "SQL Warehouse is not responding. It may still be starting up.",
+      "insufficient_permissions": "You don't have permission to view catalogs. Contact your workspace admin.",
+      "load_failed": "Failed to load catalogs",
+      "included": "Included ({count})",
+      "excluded": "Excluded ({count})",
+      "starting_warehouse": "Starting SQL Warehouse..."
+    },
+    "toasts": {
+      "load_failed": "Failed to load job data",
+      "select_scope": "Select at least one catalog, schema, or table",
+      "generation_failed": "Generation failed",
+      "lost_contact": "Lost contact with generation. Check job list.",
+      "generation_complete": "Generation complete",
+      "generation_summary": "{tables} tables, {columns} columns",
+      "update_failed": "Failed to update proposals",
+      "applied_count": "Applied {count} comments",
+      "applied_for_table": "Applied {count} comments for {table}",
+      "applied_failed_suffix": "{count} failed",
+      "apply_failed": "Apply failed",
+      "undone_count": "Undone {count} comments",
+      "undo_failed": "Undo failed",
+      "resync_success": "Refreshed {count} comments for {table}",
+      "resync_failed": "Resync failed",
+      "job_deleted": "Job deleted",
+      "delete_failed": "Failed to delete job"
+    }
+  },
+  "assessment": {
+    "page": {
+      "title": "WAF Assessment",
+      "subtitle_pre": "Self-assess your workspace against the Databricks Well-Architected Framework. Forge runs deterministic SQL over",
+      "subtitle_post": "and links failing controls to remediation engines.",
+      "export_csv": "Export CSV",
+      "open_dashboard": "Open dashboard",
+      "open_dashboard_title": "Open the Forge WAF Lakeview dashboard",
+      "generate_dashboard": "Generate dashboard",
+      "generate_dashboard_title": "Create the Forge WAF Lakeview dashboard",
+      "regenerate_dashboard": "Regenerate dashboard",
+      "regenerate_dashboard_title": "Update the Forge WAF Lakeview dashboard with the latest template",
+      "open_genie": "Open Genie",
+      "open_genie_title": "Open the Forge WAF Genie space",
+      "generate_genie": "Generate Genie",
+      "generate_genie_title": "Create the Forge WAF Genie space",
+      "regenerate_genie": "Regenerate Genie",
+      "regenerate_genie_title": "Update the Forge WAF Genie space with the latest instructions and language",
+      "run_assessment": "Run assessment",
+      "rerun_assessment": "Re-run assessment"
+    },
+    "empty_state": {
+      "title": "No assessment yet",
+      "description_pre": "Click",
+      "description_run": "Run assessment",
+      "description_post": "to score this workspace against the Databricks WAF. The first run takes about 20-40 seconds on a warm warehouse.",
+      "failed_title": "Latest run failed",
+      "failed_description": "The most recent assessment run did not complete. Review the history below and try again."
+    },
+    "partial_run": {
+      "title": "Partial run"
+    },
+    "score_label": {
+      "mature": "Mature",
+      "progressing": "Progressing",
+      "at_risk": "At Risk",
+      "critical": "Critical",
+      "none": "—"
+    },
+    "overview": {
+      "overall": "Overall",
+      "controls_met": "{met} of {total} controls met",
+      "last_run_pre": "last run",
+      "qualitative": "Qualitative",
+      "no_controls": "No controls",
+      "complete": "Complete",
+      "pending": "{count} pending",
+      "answer_pending": "Answer the manual controls in the Qualitative tab.",
+      "all_answered": "All manual controls answered."
+    },
+    "tabs": {
+      "failing": "Failing ({count})",
+      "qualitative": "Qualitative ({answered}/{total})",
+      "ignored": "Ignored ({count})",
+      "history": "History ({count})",
+      "all_passed": "All controls passed their thresholds. Nice work."
+    },
+    "pillar_short": {
+      "governance": "Governance",
+      "interoperability_usability": "Interop & Usability",
+      "operational_excellence": "Operational Excellence",
+      "security_compliance_privacy": "Security & Compliance",
+      "reliability": "Reliability",
+      "cost_optimisation": "Cost",
+      "performance_efficiency": "Performance"
+    },
+    "pillar_full": {
+      "governance": "Data and AI Governance",
+      "interoperability_usability": "Interoperability and Usability",
+      "operational_excellence": "Operational Excellence",
+      "security_compliance_privacy": "Security, Compliance and Privacy",
+      "reliability": "Reliability",
+      "performance_efficiency": "Performance Efficiency",
+      "cost_optimisation": "Cost Optimisation"
+    },
+    "pillar_header": {
+      "controls_met": "{met} / {total} controls met",
+      "failing_sorted": "{count} failing — sorted to the top"
+    },
+    "results_table": {
+      "control": "Control",
+      "pillar": "Pillar",
+      "best_practice": "Best practice",
+      "score": "Score",
+      "threshold": "Threshold",
+      "status": "Status",
+      "action": "Action",
+      "met": "Met",
+      "not_met": "Not Met",
+      "recommendation": "Recommendation",
+      "ask_forge": "Ask Forge",
+      "ignore_title": "Mark this control as not applicable to this workspace"
+    },
+    "history": {
+      "no_runs": "No previous runs.",
+      "when": "When",
+      "status": "Status",
+      "overall": "Overall",
+      "governance": "Governance",
+      "iu": "IU",
+      "oe": "OE",
+      "scp": "SCP",
+      "reliability": "Reliability",
+      "cost": "Cost",
+      "performance": "Performance",
+      "met_total": "Met / Total",
+      "compare": "Compare",
+      "vs_latest": "vs. latest",
+      "latest": "(latest)"
+    },
+    "ignored": {
+      "empty": "No controls or resources are currently excluded from scoring.",
+      "control": "Control",
+      "scope": "Scope",
+      "reason": "Reason",
+      "ignored_at": "Ignored at",
+      "by": "By",
+      "restore": "Restore",
+      "whole_control": "Whole control"
+    },
+    "qualitative": {
+      "empty": "No qualitative controls in the catalog.",
+      "intro_pre": "Answer each best practice with",
+      "yes": "Yes",
+      "partial": "Partial",
+      "no": "No",
+      "na": "N/A",
+      "intro_yes_score": "(100)",
+      "intro_partial_score": "(50)",
+      "intro_no_score": "(0)",
+      "intro_na_score": "(excluded)",
+      "intro_post": "Saved responses feed every future assessment run — re-run the assessment to see the updated pillar scores.",
+      "answered": "Answered",
+      "pending_response": "Pending response",
+      "notes_placeholder": "Optional notes (evidence, owner, expected remediation date)...",
+      "save": "Save",
+      "last_updated": "Last updated {date}",
+      "saved_toast": "Saved {wafId}",
+      "pick_answer": "Pick an answer first",
+      "save_failed": "Failed to save response"
+    },
+    "actions": {
+      "fix_with_forge": "Fix with Forge",
+      "open_estate": "Open Estate",
+      "ask_forge": "Ask Forge",
+      "open_docs": "Open docs"
+    },
+    "toasts": {
+      "completed": "Assessment completed",
+      "failed": "Assessment failed",
+      "load_failed": "Failed to load assessment",
+      "start_failed": "Failed to start assessment",
+      "dashboard_failed": "Failed to deploy dashboard",
+      "genie_failed": "Failed to deploy Genie space",
+      "dashboard_action": "Dashboard {action}",
+      "genie_action": "Genie space {action}",
+      "open": "Open",
+      "ignore_prompt": "Why is {wafId} not applicable to this workspace? (this will be persisted as an audit trail)",
+      "ignored_success": "{wafId} will be excluded from the next run",
+      "restore_success": "{wafId} restored",
+      "ignore_failed": "Failed to ignore {wafId}",
+      "restore_failed": "Failed to restore {wafId}"
+    },
+    "controls": {
+      "DG-01-01": {
+        "best_practice": "Establish data governance process",
+        "principle": "Unify data and AI management"
+      },
+      "DG-01-02": {
+        "best_practice": "Manage metadata for all data assets in one place",
+        "principle": "Unify data and AI management"
+      },
+      "DG-01-03": {
+        "best_practice": "Track data and AI lineage to drive visibility of the data",
+        "principle": "Unify data and AI management"
+      },
+      "DG-01-04": {
+        "best_practice": "Add consistent descriptions to your metadata",
+        "principle": "Unify data and AI management"
+      },
+      "DG-01-05": {
+        "best_practice": "Allow easy data discovery for data consumers",
+        "principle": "Unify data and AI management"
+      },
+      "DG-01-06": {
+        "best_practice": "Govern AI assets together with data",
+        "principle": "Unify data and AI management"
+      },
+      "DG-02-01": {
+        "best_practice": "Centralize access control for all data and AI assets",
+        "principle": "Unify data and AI security"
+      },
+      "DG-02-02": {
+        "best_practice": "Configure audit logging",
+        "principle": "Unify data and AI security"
+      },
+      "DG-02-03": {
+        "best_practice": "Audit data platform events",
+        "principle": "Unify data and AI security"
+      },
+      "DG-03-01": {
+        "best_practice": "Define and document data quality standards",
+        "principle": "Establish data quality standards"
+      },
+      "DG-03-02": {
+        "best_practice": "Use data quality tools for profiling, cleansing, validating, and monitoring data",
+        "principle": "Establish data quality standards"
+      },
+      "DG-03-03": {
+        "best_practice": "Implement and enforce standardized data formats and definitions",
+        "principle": "Establish data quality standards"
+      },
+      "DG-EX01-01": {
+        "best_practice": "Classify data assets by sensitivity (PII, Confidential, Internal, Public)",
+        "principle": "Data classification (extended)"
+      },
+      "IU-01-01": {
+        "best_practice": "Use standard and reusable integration patterns for external integration",
+        "principle": "Define standards for integration"
+      },
+      "IU-01-02": {
+        "best_practice": "Use optimized connectors to ingest data sources into the lakehouse",
+        "principle": "Define standards for integration"
+      },
+      "IU-01-03": {
+        "best_practice": "Use certified partner tools",
+        "principle": "Define standards for integration"
+      },
+      "IU-01-04": {
+        "best_practice": "Reduce complexity of data engineering pipelines",
+        "principle": "Define standards for integration"
+      },
+      "IU-02-01": {
+        "best_practice": "Use open data formats",
+        "principle": "Utilize open interfaces and data formats"
+      },
+      "IU-02-02": {
+        "best_practice": "Enable secure data sharing for all data and AI assets",
+        "principle": "Utilize open interfaces and data formats"
+      },
+      "IU-02-03": {
+        "best_practice": "Use open standards for your AI workflows",
+        "principle": "Utilize open interfaces and data formats"
+      },
+      "IU-03-01": {
+        "best_practice": "Provide a self-service experience across the platform",
+        "principle": "Simplify new use case implementation"
+      },
+      "IU-03-02": {
+        "best_practice": "Use serverless services",
+        "principle": "Simplify new use case implementation"
+      },
+      "IU-03-03": {
+        "best_practice": "Use pre-defined compute templates",
+        "principle": "Simplify new use case implementation"
+      },
+      "IU-03-04": {
+        "best_practice": "Use AI capabilities to increase productivity",
+        "principle": "Simplify new use case implementation"
+      },
+      "IU-04-01": {
+        "best_practice": "Offer reusable data-as-products that the business can trust",
+        "principle": "Ensure data consistency and usability"
+      },
+      "IU-04-02": {
+        "best_practice": "Publish data products semantically consistent across the enterprise",
+        "principle": "Ensure data consistency and usability"
+      },
+      "IU-04-03": {
+        "best_practice": "Provide a central catalog for discovery and lineage",
+        "principle": "Ensure data consistency and usability"
+      },
+      "OE-01-01": {
+        "best_practice": "Create a dedicated Lakehouse operations team",
+        "principle": "Optimize build and release processes"
+      },
+      "OE-01-02": {
+        "best_practice": "Use enterprise source code management (SCM)",
+        "principle": "Optimize build and release processes"
+      },
+      "OE-01-03": {
+        "best_practice": "Standardize DevOps processes (CI/CD)",
+        "principle": "Optimize build and release processes"
+      },
+      "OE-01-04": {
+        "best_practice": "Standardize MLOps processes across enterprise",
+        "principle": "Optimize build and release processes"
+      },
+      "OE-01-05": {
+        "best_practice": "Define environment isolation strategy",
+        "principle": "Optimize build and release processes"
+      },
+      "OE-01-06": {
+        "best_practice": "Streamline the usage and management of various\nlarge language model (LLM) providers",
+        "principle": "Optimize build and release processes"
+      },
+      "OE-01-07": {
+        "best_practice": "Define catalog strategy for your enterprise",
+        "principle": "Optimize build and release processes"
+      },
+      "OE-01-08": {
+        "best_practice": "Compare LLM outputs on set prompts",
+        "principle": "Optimize build and release processes"
+      },
+      "OE-01-09": {
+        "best_practice": "Build models with all representative, accurate and relevant data sources",
+        "principle": "Optimize build and release processes"
+      },
+      "OE-02-01": {
+        "best_practice": "Use Infrastructure as Code for deployments and maintenance",
+        "principle": "Automate deployments and workloads"
+      },
+      "OE-02-02": {
+        "best_practice": "Standardize compute configurations",
+        "principle": "Automate deployments and workloads"
+      },
+      "OE-02-03": {
+        "best_practice": "Use automated workflows for jobs",
+        "principle": "Automate deployments and workloads"
+      },
+      "OE-02-04": {
+        "best_practice": "Use automated and event driven file ingestion",
+        "principle": "Automate deployments and workloads"
+      },
+      "OE-02-05": {
+        "best_practice": "Use ETL frameworks for data pipelines",
+        "principle": "Automate deployments and workloads"
+      },
+      "OE-02-06": {
+        "best_practice": "Follow the deploy-code approach for ML workloads",
+        "principle": "Automate deployments and workloads"
+      },
+      "OE-02-07": {
+        "best_practice": "Use a model registry to decouple code and model lifecycle",
+        "principle": "Automate deployments and workloads"
+      },
+      "OE-02-08": {
+        "best_practice": "Automate ML experiment tracking",
+        "principle": "Automate deployments and workloads"
+      },
+      "OE-02-09": {
+        "best_practice": "Reuse the same infrastructure to manage ML pipelines",
+        "principle": "Automate deployments and workloads"
+      },
+      "OE-02-10": {
+        "best_practice": "Utilize declarative management for complex data and ML pipelines",
+        "principle": "Automate deployments and workloads"
+      },
+      "OE-02-11": {
+        "best_practice": "Automate LLM evaluation",
+        "principle": "Automate deployments and workloads"
+      },
+      "OE-03-01": {
+        "best_practice": "Establish monitoring processes",
+        "principle": "Set up Monitoring, Alerting and Logging"
+      },
+      "OE-03-02": {
+        "best_practice": "Use native and external tools for platform monitoring",
+        "principle": "Set up Monitoring, Alerting and Logging"
+      },
+      "OE-03-03": {
+        "best_practice": "Establish an incident response strategy",
+        "principle": "Set up Monitoring, Alerting and Logging"
+      },
+      "OE-03-04": {
+        "best_practice": "Triggering actions in response to a specific event",
+        "principle": "Set up Monitoring, Alerting and Logging"
+      },
+      "OE-04-01": {
+        "best_practice": "Manage service limits and quotas",
+        "principle": "Manage capacity and quotas"
+      },
+      "OE-04-02": {
+        "best_practice": "Invest in capacity planning",
+        "principle": "Manage capacity and quotas"
+      },
+      "OE-EX01-01": {
+        "best_practice": "Tier workloads by business criticality (tier-1 / tier-2 / tier-3)",
+        "principle": "Workload criticality (extended)"
+      },
+      "OE-EX02-01": {
+        "best_practice": "Formalize SDLC for production workloads (PR review, tests, approvals)",
+        "principle": "Operational governance (extended)"
+      },
+      "OE-EX02-02": {
+        "best_practice": "Establish FinOps practice (cost ownership, regular reviews, chargeback)",
+        "principle": "Operational governance (extended)"
+      },
+      "OE-EX02-03": {
+        "best_practice": "Standardize operations: runbooks, on-call rotation, post-mortems",
+        "principle": "Operational governance (extended)"
+      },
+      "SCP-01-01": {
+        "best_practice": "Authenticate via single sign-on.",
+        "principle": "Manage identity and access using least privilege"
+      },
+      "SCP-01-02": {
+        "best_practice": "Use multifactor authentication.",
+        "principle": "Manage identity and access using least privilege"
+      },
+      "SCP-01-03": {
+        "best_practice": "Disable local passwords.",
+        "principle": "Manage identity and access using least privilege"
+      },
+      "SCP-01-04": {
+        "best_practice": "Set complex local passwords.",
+        "principle": "Manage identity and access using least privilege"
+      },
+      "SCP-01-05": {
+        "best_practice": "Separate admin accounts from normal user accounts.",
+        "principle": "Manage identity and access using least privilege"
+      },
+      "SCP-01-06": {
+        "best_practice": "Use token management.",
+        "principle": "Manage identity and access using least privilege"
+      },
+      "SCP-01-07": {
+        "best_practice": "SCIM synchronization of users and groups.",
+        "principle": "Manage identity and access using least privilege"
+      },
+      "SCP-01-08": {
+        "best_practice": "Limit cluster creation rights.",
+        "principle": "Manage identity and access using least privilege"
+      },
+      "SCP-01-09": {
+        "best_practice": "Store and use secrets securely.",
+        "principle": "Manage identity and access using least privilege"
+      },
+      "SCP-01-10": {
+        "best_practice": "Cross-account IAM role configuration.",
+        "principle": "Manage identity and access using least privilege"
+      },
+      "SCP-01-11": {
+        "best_practice": "Customer-approved workspace login.",
+        "principle": "Manage identity and access using least privilege"
+      },
+      "SCP-01-12": {
+        "best_practice": "Use clusters that support user isolation.",
+        "principle": "Manage identity and access using least privilege"
+      },
+      "SCP-01-13": {
+        "best_practice": "Use service principals to run production jobs.",
+        "principle": "Manage identity and access using least privilege"
+      },
+      "SCP-02-01": {
+        "best_practice": "Avoid storing production data in DBFS.",
+        "principle": "Protect data in transit and at rest"
+      },
+      "SCP-02-02": {
+        "best_practice": "Secure access to cloud storage.",
+        "principle": "Protect data in transit and at rest"
+      },
+      "SCP-02-03": {
+        "best_practice": "Use data exfiltration settings within the admin console.",
+        "principle": "Protect data in transit and at rest"
+      },
+      "SCP-02-04": {
+        "best_practice": "Use bucket versioning.",
+        "principle": "Protect data in transit and at rest"
+      },
+      "SCP-02-05": {
+        "best_practice": "Encrypt storage and restrict access.",
+        "principle": "Protect data in transit and at rest"
+      },
+      "SCP-02-06": {
+        "best_practice": "Add a customer-managed key for managed services.",
+        "principle": "Protect data in transit and at rest"
+      },
+      "SCP-02-07": {
+        "best_practice": "Add a customer-managed key for workspace storage.",
+        "principle": "Protect data in transit and at rest"
+      },
+      "SCP-03-01": {
+        "best_practice": "Deploy with a customer-managed VPC or VNet.",
+        "principle": "Secure your network and identify and protect endpoints"
+      },
+      "SCP-03-02": {
+        "best_practice": "Use IP access lists.",
+        "principle": "Secure your network and identify and protect endpoints"
+      },
+      "SCP-03-03": {
+        "best_practice": "Implement network exfiltration protections.",
+        "principle": "Secure your network and identify and protect endpoints"
+      },
+      "SCP-03-04": {
+        "best_practice": "Apply VPC service controls.",
+        "principle": "Secure your network and identify and protect endpoints"
+      },
+      "SCP-03-05": {
+        "best_practice": "Use VPC endpoint policies.",
+        "principle": "Secure your network and identify and protect endpoints"
+      },
+      "SCP-03-06": {
+        "best_practice": "Configure Private Link.",
+        "principle": "Secure your network and identify and protect endpoints"
+      },
+      "SCP-04-01": {
+        "best_practice": "Review the Shared Responsibility Model.",
+        "principle": "Review the Shared Responsibility Model"
+      },
+      "SCP-05-01": {
+        "best_practice": "Review the Databricks compliance programs.",
+        "principle": "Meet compliance and data privacy requirements"
+      },
+      "SCP-06-01": {
+        "best_practice": "Monitor workspace using System tables",
+        "principle": "Monitor system security"
+      },
+      "SCP-06-02": {
+        "best_practice": "Use Databricks audit log.",
+        "principle": "Monitor system security"
+      },
+      "SCP-06-03": {
+        "best_practice": "Monitor provisioning activities.",
+        "principle": "Monitor system security"
+      },
+      "SCP-06-04": {
+        "best_practice": "Use Enhanced Security Monitoring or Compliance Security Profile",
+        "principle": "Monitor system security"
+      },
+      "SCP-06-05": {
+        "best_practice": "Configure tagging to monitor usage and enable charge-back.",
+        "principle": "Monitor system security"
+      },
+      "SCP-07-01": {
+        "best_practice": "Use AWS Nitro instances.",
+        "principle": "Generic controls"
+      },
+      "SCP-07-02": {
+        "best_practice": "Service quotas.",
+        "principle": "Generic controls"
+      },
+      "SCP-07-03": {
+        "best_practice": "Leverage CI/CD processes to scan code for hard-coded secrets.",
+        "principle": "Generic controls"
+      },
+      "SCP-07-04": {
+        "best_practice": "Isolate sensitive workloads into different workspaces.",
+        "principle": "Generic controls"
+      },
+      "SCP-07-05": {
+        "best_practice": "Controlling libraries.",
+        "principle": "Generic controls"
+      },
+      "SCP-EX01-01": {
+        "best_practice": "Use Automatic Identity Management (Azure) or SCIM via corporate IdP (AWS/GCP)",
+        "principle": "Identity and access management (extended)"
+      },
+      "SCP-EX01-02": {
+        "best_practice": "Workspaces are identity-federated",
+        "principle": "Identity and access management (extended)"
+      },
+      "SCP-EX01-03": {
+        "best_practice": "Bind groups to corporate IdP, not local Databricks groups",
+        "principle": "Identity and access management (extended)"
+      },
+      "SCP-EX01-04": {
+        "best_practice": "Assign workspace entitlements via groups, not individual users",
+        "principle": "Identity and access management (extended)"
+      },
+      "SCP-EX01-05": {
+        "best_practice": "Assign Unity Catalog permissions via groups, not individual users",
+        "principle": "Identity and access management (extended)"
+      },
+      "SCP-EX01-06": {
+        "best_practice": "Audit identity sync events regularly",
+        "principle": "Identity and access management (extended)"
+      },
+      "SCP-EX02-01": {
+        "best_practice": "Encrypt data in transit (Spark wire encryption, TLS-only storage, Compliance Security Profile)",
+        "principle": "Data protection (extended)"
+      },
+      "R-01-01": {
+        "best_practice": "Use a data format that supports ACID transactions",
+        "principle": "Design for failure"
+      },
+      "R-01-02": {
+        "best_practice": "Use a resilient distributed data engine for all workloads",
+        "principle": "Design for failure"
+      },
+      "R-01-03": {
+        "best_practice": "Automatically rescue invalid or nonconforming data",
+        "principle": "Design for failure"
+      },
+      "R-01-04": {
+        "best_practice": "Configure jobs for automatic retries and termination",
+        "principle": "Design for failure"
+      },
+      "R-01-05": {
+        "best_practice": "Use a scalable and production-grade model serving infrastructure",
+        "principle": "Design for failure"
+      },
+      "R-01-06": {
+        "best_practice": "Use managed services for your workloads",
+        "principle": "Design for failure"
+      },
+      "R-02-01": {
+        "best_practice": "Use a layered storage architecture",
+        "principle": "Manage data quality"
+      },
+      "R-02-02": {
+        "best_practice": "Improve data integrity by reducing data redundancy",
+        "principle": "Manage data quality"
+      },
+      "R-02-03": {
+        "best_practice": "Actively manage schemas",
+        "principle": "Manage data quality"
+      },
+      "R-02-04": {
+        "best_practice": "Use constraints and data expectations",
+        "principle": "Manage data quality"
+      },
+      "R-02-05": {
+        "best_practice": "Take a data-centric approach to machine learning",
+        "principle": "Manage data quality"
+      },
+      "R-03-01": {
+        "best_practice": "Enable autoscaling for ETL workloads",
+        "principle": "Design for autoscaling"
+      },
+      "R-03-02": {
+        "best_practice": "Use autoscaling for SQL Warehouses",
+        "principle": "Design for autoscaling"
+      },
+      "R-04-01": {
+        "best_practice": "Recover from Structured Streaming query failures",
+        "principle": "Test recovery procedures"
+      },
+      "R-04-02": {
+        "best_practice": "Recover ETL jobs using data time travel capabilities",
+        "principle": "Test recovery procedures"
+      },
+      "R-04-03": {
+        "best_practice": "Leverage a job automation framework with built-in recovery",
+        "principle": "Test recovery procedures"
+      },
+      "R-04-04": {
+        "best_practice": "Configure a disaster recovery pattern",
+        "principle": "Test recovery procedures"
+      },
+      "R-05-01": {
+        "best_practice": "Monitor data platform events",
+        "principle": "Monitor platform events"
+      },
+      "R-05-02": {
+        "best_practice": "Monitor cloud events",
+        "principle": "Monitor platform events"
+      },
+      "R-EX01-01": {
+        "best_practice": "Conduct Failure Mode Analysis (FMA) for tier-1 workloads",
+        "principle": "Resilience engineering (extended)"
+      },
+      "R-EX01-02": {
+        "best_practice": "Test disaster recovery and resiliency regularly (chaos drills)",
+        "principle": "Resilience engineering (extended)"
+      },
+      "PE-01-01": {
+        "best_practice": "Use serverless architecture",
+        "principle": "Utilize serverless capabilities"
+      },
+      "PE-01-02": {
+        "best_practice": "Use an enterprise grade model serving service",
+        "principle": "Utilize serverless capabilities"
+      },
+      "PE-02-01": {
+        "best_practice": "Understand your data ingestion and access patterns",
+        "principle": "Design workloads for performance"
+      },
+      "PE-02-02": {
+        "best_practice": "Use parallel computation where it is beneficial",
+        "principle": "Design workloads for performance"
+      },
+      "PE-02-03": {
+        "best_practice": "Analyze the whole chain of execution",
+        "principle": "Design workloads for performance"
+      },
+      "PE-02-04": {
+        "best_practice": "Prefer larger clusters",
+        "principle": "Design workloads for performance"
+      },
+      "PE-02-05": {
+        "best_practice": "Use native Spark operations",
+        "principle": "Design workloads for performance"
+      },
+      "PE-02-06": {
+        "best_practice": "Use native platform engines",
+        "principle": "Design workloads for performance"
+      },
+      "PE-02-07": {
+        "best_practice": "Understand your hardware and workload type",
+        "principle": "Design workloads for performance"
+      },
+      "PE-02-08": {
+        "best_practice": "Use caching",
+        "principle": "Design workloads for performance"
+      },
+      "PE-02-09": {
+        "best_practice": "Use compaction",
+        "principle": "Design workloads for performance"
+      },
+      "PE-02-10": {
+        "best_practice": "Use data skipping",
+        "principle": "Design workloads for performance"
+      },
+      "PE-02-11": {
+        "best_practice": "Enable Predictive Optimization on your metastore",
+        "principle": "Design workloads for performance"
+      },
+      "PE-02-12": {
+        "best_practice": "Avoid over-partitioning",
+        "principle": "Design workloads for performance"
+      },
+      "PE-02-14": {
+        "best_practice": "Consider file size tuning",
+        "principle": "Design workloads for performance"
+      },
+      "PE-02-15": {
+        "best_practice": "Optimize join performance",
+        "principle": "Design workloads for performance"
+      },
+      "PE-02-16": {
+        "best_practice": "Run analyze table to collect table statistics",
+        "principle": "Design workloads for performance"
+      },
+      "PE-03-01": {
+        "best_practice": "Test on data representative of production data",
+        "principle": "Run performance testing"
+      },
+      "PE-03-02": {
+        "best_practice": "Take prewarming of resources into account",
+        "principle": "Run performance testing"
+      },
+      "PE-03-03": {
+        "best_practice": "Identify bottlenecks",
+        "principle": "Run performance testing"
+      },
+      "PE-04-01": {
+        "best_practice": "Monitor query performanance",
+        "principle": "Monitor performance"
+      },
+      "PE-04-02": {
+        "best_practice": "Monitor streaming workloads",
+        "principle": "Monitor performance"
+      },
+      "PE-04-03": {
+        "best_practice": "Monitor job performance",
+        "principle": "Monitor performance"
+      },
+      "CO-01-01": {
+        "best_practice": "Use performance optimized data formats",
+        "principle": "Choose optimal resources"
+      },
+      "CO-01-02": {
+        "best_practice": "Use job clusters",
+        "principle": "Choose optimal resources"
+      },
+      "CO-01-03": {
+        "best_practice": "Use SQL warehouse for SQL workloads",
+        "principle": "Choose optimal resources"
+      },
+      "CO-01-04": {
+        "best_practice": "Use up-to-date runtimes for your workloads",
+        "principle": "Choose optimal resources"
+      },
+      "CO-01-05": {
+        "best_practice": "Only use GPUs for the right workloads",
+        "principle": "Choose optimal resources"
+      },
+      "CO-01-06": {
+        "best_practice": "Use Serverless for your workloads",
+        "principle": "Choose optimal resources"
+      },
+      "CO-01-07": {
+        "best_practice": "Use the right instance type",
+        "principle": "Choose optimal resources"
+      },
+      "CO-01-08": {
+        "best_practice": "Choose the most efficient cluster size",
+        "principle": "Choose optimal resources"
+      },
+      "CO-01-09": {
+        "best_practice": "Evaluate performance optimized query engines",
+        "principle": "Choose optimal resources"
+      },
+      "CO-02-01": {
+        "best_practice": "Leverage auto-scaling compute",
+        "principle": "Dynamically allocate resources"
+      },
+      "CO-02-02": {
+        "best_practice": "Use auto termination",
+        "principle": "Dynamically allocate resources"
+      },
+      "CO-02-03": {
+        "best_practice": "Use compute policies to control costs",
+        "principle": "Dynamically allocate resources"
+      },
+      "CO-03-01": {
+        "best_practice": "Monitor costs",
+        "principle": "Monitor and control cost"
+      },
+      "CO-03-02": {
+        "best_practice": "Tag clusters for cost attribution",
+        "principle": "Monitor and control cost"
+      },
+      "CO-03-03": {
+        "best_practice": "Implement observability to track & chargeback cost",
+        "principle": "Monitor and control cost"
+      },
+      "CO-03-04": {
+        "best_practice": "Share cost reports regularly",
+        "principle": "Monitor and control cost"
+      },
+      "CO-03-05": {
+        "best_practice": "Monitor and manage Delta Sharing egress costs",
+        "principle": "Monitor and control cost"
+      },
+      "CO-04-01": {
+        "best_practice": "Balance always-on and triggered streaming",
+        "principle": "Design cost-effective workloads"
+      },
+      "CO-04-02": {
+        "best_practice": "Balance between on-demand and capacity excess instances",
+        "principle": "Design cost-effective workloads"
+      },
+      "CO-EX01-01": {
+        "best_practice": "Decommission unused resources (idle jobs, tables, model endpoints, notebooks, workspaces)",
+        "principle": "Resource lifecycle (extended)"
+      }
+    }
+  },
+  "portfolio": {
+    "title": "Portfolio State of the Nation",
+    "subtitle": "A cross-estate roll-up of your organisation's data estate readiness, fragmentation, and federated opportunities.",
+    "run_synthesis": "Run synthesis",
+    "export_pdf": "Export board pack",
+    "retry": "Try again",
+    "loading": "Loading portfolio",
+    "synthesis_error": "Couldn't run the portfolio synthesis. Try again.",
+    "export_error": "Couldn't generate the board pack. Try again.",
+    "error_title": "Couldn't load the portfolio",
+    "error_description": "Something went wrong building the portfolio roll-up. Try again.",
+    "forbidden_title": "Portfolio access required",
+    "forbidden_description": "The cross-estate Portfolio tier is restricted to org-admins. Ask an administrator to add you to the allowlist.",
+    "access": {
+      "manage": "Manage access",
+      "title": "Portfolio access",
+      "description": "Org-admins can view the cross-estate portfolio. Grant or revoke access here — changes take effect immediately, no redeploy.",
+      "email_placeholder": "name@company.com",
+      "email_label": "Administrator email",
+      "email_help": "Enter the email address of the person who should receive portfolio access.",
+      "add": "Add",
+      "empty": "No admins yet.",
+      "granted_by": "Added by {email}",
+      "config_badge": "From config",
+      "revoke": "Revoke access",
+      "granted": "Granted portfolio access to {email}.",
+      "revoked": "Revoked portfolio access for {email}.",
+      "grant_error": "Couldn't grant access. Try again.",
+      "revoke_error": "Couldn't revoke access. Try again.",
+      "load_error": "Couldn't load the admin list.",
+      "invalid_email": "Enter a valid email address."
+    },
+    "synthesis_empty_title": "No cross-estate synthesis yet",
+    "synthesis_empty_description": "Run the synthesis to detect cross-estate fragmentation, federated opportunities, and the org uplift plan.",
+    "kpi": {
+      "avg_readiness": "Avg readiness",
+      "estates": "Estates",
+      "scans": "Scans",
+      "tables": "Tables",
+      "value_at_risk": "Value at risk"
+    },
+    "inventory": {
+      "title": "Enterprise inventory",
+      "description": "Totals across every scanned estate in the organisation.",
+      "domains": "Domains",
+      "data_products": "Data products",
+      "ai_models": "AI models",
+      "pii_tables": "PII tables",
+      "genie_spaces": "Genie spaces",
+      "dashboards": "Dashboards",
+      "metric_views": "Metric views"
+    },
+    "fragmentation": {
+      "title": "Cross-estate fragmentation",
+      "description": "The same business entity modelled independently across multiple estates.",
+      "empty": "No cross-estate fragmentation detected.",
+      "estate_count": "{count, plural, one {# estate} other {# estates}}",
+      "tables": "{count, plural, one {# table} other {# tables}}",
+      "quoted_entity": "“{label}”"
+    },
+    "opportunities": {
+      "title": "Federated opportunities",
+      "empty": "No federated opportunities identified."
+    },
+    "uplift": {
+      "title": "Org operating-model uplift plan",
+      "description": "Sequenced actions to raise org-wide readiness, with cost and value estimates.",
+      "empty": "No uplift actions identified.",
+      "phase": "Phase {phase}",
+      "owner": "Owner",
+      "effort": "Effort",
+      "cost": "Cost",
+      "value": "Value"
+    },
+    "severity": {
+      "critical": "Critical",
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    }
+  },
+  "estate_intelligence": {
+    "landing": {
+      "title": "State of the Nation",
+      "subtitle": "Where your data estate stands today — readiness, the risks to address, and the highest-value moves to make next.",
+      "cta_scan": "Scan your estate",
+      "cta_regenerate": "Regenerate diagnosis",
+      "generating": "Generating diagnosis…",
+      "loading": "Loading estate diagnosis",
+      "empty_title": "No estate diagnosis yet",
+      "empty_description": "Run an estate scan to produce an evidence-backed readiness scorecard and executive brief.",
+      "error_title": "Couldn't load the estate diagnosis",
+      "error_description": "Something went wrong building the State of the Nation. Try again.",
+      "last_generated": "Diagnosis generated {date}"
+    },
+    "readiness": {
+      "title": "Readiness scorecard",
+      "overall": "Overall readiness",
+      "out_of": "out of 100",
+      "score": "Score",
+      "subscores": {
+        "governance": "Governance",
+        "quality": "Quality",
+        "freshness": "Freshness",
+        "documentation": "Documentation",
+        "analyticsMaturity": "Analytics maturity",
+        "cost": "Cost efficiency"
+      },
+      "band": {
+        "leading": "Leading",
+        "established": "Established",
+        "developing": "Developing",
+        "nascent": "Nascent"
+      }
+    },
+    "brief": {
+      "title": "Executive brief",
+      "estate_shape": "Estate shape",
+      "strengths": "Strengths",
+      "critical_risks": "Critical risks",
+      "quick_wins": "Quick wins",
+      "strategic_recommendations": "Strategic recommendations",
+      "situation": "Situation",
+      "complication": "Complication",
+      "resolution": "Resolution"
+    },
+    "value_at_risk": {
+      "title": "Value at risk",
+      "range": "{low} – {mid} – {high}",
+      "caption": "Estimated annual value exposed by the gaps below (low / mid / high)."
+    },
+    "findings": {
+      "title": "Key findings",
+      "strengths_tab": "Strengths",
+      "risks_tab": "Risks",
+      "quick_wins_tab": "Quick wins",
+      "empty": "No findings in this category.",
+      "evidence_label": "Evidence",
+      "action_label": "Recommended action",
+      "severity": {
+        "critical": "Critical",
+        "high": "High",
+        "medium": "Medium",
+        "low": "Low",
+        "positive": "Strength"
+      },
+      "evidence_tier": {
+        "sourced": "Sourced",
+        "benchmark": "Benchmark",
+        "inferred": "Inferred"
+      }
+    },
+    "actions": {
+      "opportunities": "Discover use cases",
+      "comments": "Generate documentation",
+      "genie": "Build a Genie space",
+      "data-gap": "Run data gap analysis",
+      "waf": "Open WAF assessment",
+      "business-value": "Quantify business value"
+    },
+    "sequence": {
+      "title": "Scan sequence",
+      "run": "Run sequence",
+      "pause": "Pause",
+      "resume": "Resume",
+      "cancel": "Cancel",
+      "status_planned": "Planned",
+      "status_queued": "Queued",
+      "status_running": "Running",
+      "status_completed": "Completed",
+      "status_failed": "Failed",
+      "status_paused": "Paused",
+      "status_cancelled": "Cancelled",
+      "paused_toast": "Sequence paused — running scope will finish.",
+      "resumed_toast": "Sequence resumed.",
+      "cancelled_toast": "Sequence cancelled."
+    },
+    "export": {
+      "board_pack_pdf": "Board pack (PDF)",
+      "detail_excel": "Estate detail (Excel)"
+    }
+  },
+  "configure": {
+    "title": "New Discovery Run",
+    "subtitle": "Configure your business context and Unity Catalog scope, then let Forge discover use cases.",
+    "source": {
+      "readyTitle": "Discovery from estate scan",
+      "tables": "{count, plural, one {# table} other {# tables}}",
+      "readyDescription": "This run will reuse metadata already captured by the estate scan instead of scanning Unity Catalog again. Remove it to run a live extraction.",
+      "loading": "Loading estate scan…",
+      "errorTitle": "Estate scan unavailable",
+      "continueLive": "Continue with live extraction",
+      "errors": {
+        "unauthorized": "You do not have access to this estate scan. Ask the owner to share it, or start a live extraction.",
+        "missing": "That estate scan no longer exists. Start a live extraction instead.",
+        "incomplete": "This estate scan has not finished. Wait for it to complete, or start a live extraction.",
+        "error": "Could not load the estate scan. Start a live extraction instead."
+      }
+    },
+    "tips": {
+      "title": "Tips for best results",
+      "companyName": "Use the full company name for more accurate industry context.",
+      "scope": "Start with one catalog or schema for faster results, then expand the scope in later runs.",
+      "priorities": "Select two or three business priorities that match your current strategic focus.",
+      "model": "The default AI model works well for most use cases. Use a larger model for more creative or nuanced results."
+    }
+  },
+  "estate_explorer": {
+    "includePatterns": {
+      "label": "Include only (optional)",
+      "description": "Keep only tables matching these patterns. Leave empty to scan everything. Wildcards: <code>*</code>, <code>?</code>. Examples: <code>*_fact</code>, <code>gold_*</code>.",
+      "placeholder": "e.g. *_fact",
+      "add": "Add",
+      "duplicate": "Pattern already added",
+      "remove": "Remove {pattern}",
+      "validation": {
+        "empty": "Pattern cannot be empty.",
+        "match_all": "A single * would match every table. Use a more specific pattern.",
+        "invalid_characters": "Use only letters, numbers, _, -, ., *, and ?.",
+        "too_long": "Pattern must be 200 characters or fewer."
+      }
+    },
+    "relationships": {
+      "errorTitle": "Couldn’t load relationships",
+      "errorDescription": "Something went wrong while fetching the relationship graph.",
+      "retry": "Try again",
+      "emptyTitle": "No relationships found",
+      "emptyDescription": "This scan did not capture lineage or inferred relationships. Run it again with a deeper lineage depth to map dependencies across tables.",
+      "connectedTables": "{count, plural, one {# table connected} other {# tables connected}}",
+      "stats": {
+        "all": "Relationships",
+        "crossDomain": "Cross-domain",
+        "crossCatalog": "Cross-catalog",
+        "crossSchema": "Cross-schema"
+      },
+      "hints": {
+        "crossDomain": "Span two business domains",
+        "crossCatalog": "Span two catalogs",
+        "crossSchema": "Span two schemas"
+      },
+      "allRelationships": "All relationships",
+      "shown": "{count, plural, one {# shown} other {# shown}}{capped, select, yes { (capped at 1,000)} other {}}",
+      "columns": {
+        "source": "Source",
+        "target": "Target",
+        "via": "Via",
+        "boundaries": "Boundaries"
+      },
+      "boundary": {
+        "domain": "domain",
+        "catalog": "catalog",
+        "schema": "schema"
+      },
+      "via": {
+        "lineage": "Lineage",
+        "foreign_key": "Foreign key",
+        "inferred": "Inferred",
+        "relationship": "Relationship"
+      },
+      "noMatches": "No relationships match this filter.",
+      "showingLimit": "Showing {shown} of {total}."
+    },
+    "domain": {
+      "emptyTitle": "No domain classification yet",
+      "emptyDescription": "Run an estate scan with intelligence enabled to classify tables into data domains.",
+      "title": "Domain map",
+      "domainsDescription": "Each bubble is a data domain, sized by {metric}. Select one to zoom in.",
+      "subdomainsDescription": "Subdomains of {domain}, sized by {metric}. Select one to see tables.",
+      "tablesDescription": "Tables in {group}, largest first. Select one for details.",
+      "metric": {
+        "rows": "row volume",
+        "tables": "table count",
+        "size": "storage"
+      },
+      "metricControl": {
+        "rows": "Rows",
+        "tables": "Tables",
+        "size": "Size"
+      },
+      "color": {
+        "tier": "Tier",
+        "catalog": "Catalog"
+      },
+      "rowsCount": "{count, plural, one {# row} other {# rows}}",
+      "tablesCount": "{count, plural, one {# table} other {# tables}}",
+      "groupTooltip": "{name}\n{tables, plural, one {# table} other {# tables}} · {rows, plural, one {# row} other {# rows}} · {size}",
+      "storageSize": "{value} {unit}",
+      "units": {
+        "B": "B",
+        "KB": "KB",
+        "MB": "MB",
+        "GB": "GB",
+        "TB": "TB"
+      },
+      "mapView": "Map view",
+      "listView": "List view",
+      "breadcrumb": "Breadcrumb",
+      "estate": "Estate",
+      "domainBubbleMap": "Domain bubble map",
+      "tableBubbleMap": "Table bubble map",
+      "openGroup": "{name}: {tables, plural, one {# table} other {# tables}}, {rows}, {size}. Open.",
+      "openTable": "{name}: {rows}, {size}. Open table details.",
+      "openGroupList": "{name}: {count, plural, one {# table} other {# tables}}. Open.",
+      "openTableList": "{name}: open table details.",
+      "noTables": "No tables in this group.",
+      "largest": "Largest",
+      "ungrouped": "Ungrouped",
+      "adjustGrouping": "Adjust grouping",
+      "columns": {
+        "group": "Group",
+        "tables": "Tables",
+        "metric": "Metric",
+        "table": "Table",
+        "rows": "Rows",
+        "size": "Size",
+        "tier": "Tier"
+      },
+      "fields": {
+        "domain": "Domain",
+        "subdomain": "Subdomain",
+        "tier": "Tier",
+        "type": "Type",
+        "rows": "Rows",
+        "size": "Size",
+        "files": "Files",
+        "format": "Format",
+        "owner": "Owner",
+        "updated": "Updated",
+        "lastUpdated": "Last updated",
+        "sensitivity": "Sensitivity"
+      },
+      "features": {
+        "liquidClustering": "Liquid clustering",
+        "deletionVectors": "Deletion vectors",
+        "changeDataFeed": "Change data feed",
+        "autoOptimize": "Auto-optimize"
+      }
+    }
+  },
+  "estateRoot": {
+    "header": {
+      "title": "Estate Overview",
+      "subtitle": "Holistic view of your data estate — latest data per table from all discovery runs and environment scans.",
+      "backLabel": "Back to estate overview",
+      "combinedScans": "{count, plural, one {Combined from # scan} other {Combined from # scans}}",
+      "scanTitle": "Scan: {scope}",
+      "pipelineRun": "From pipeline run {id}",
+      "standalone": "Standalone scan",
+      "manage": "Manage estate programs",
+      "manageDescription": "Group multiple environment scans into one company-level estate and run them area by area."
+    },
+    "actions": {
+      "exporting": "Exporting…",
+      "report": "Environment Report",
+      "newScan": "New Scan",
+      "scanning": "Scanning…",
+      "scan": "Scan Environment"
+    },
+    "toast": {
+      "loadDetailsFailed": "Failed to load scan details",
+      "deleted": "Scan deleted",
+      "deleteFailed": "Failed to delete scan",
+      "selectScope": "Select at least one catalog or schema to scan.",
+      "started": "Scan started: {id}…",
+      "startFailed": "Failed to start environment scan",
+      "complete": "Scan complete! Loading results…",
+      "failed": "Scan failed.",
+      "missingProgress": "Scan failed — no progress or results found. Check the logs.",
+      "timedOut": "Scan timed out. Check the logs.",
+      "exported": "Environment report downloaded",
+      "exportFailed": "Failed to export report"
+    },
+    "waf": {
+      "focused": "Focused on <strong>{focus}</strong> — from your latest WAF assessment.",
+      "back": "Back to assessment",
+      "reasons": {
+        "lineage": "lineage coverage",
+        "tags": "table tagging",
+        "format": "table formats",
+        "managedTables": "managed tables",
+        "accessControl": "access control",
+        "quality": "data quality",
+        "dltExpectations": "DLT expectations",
+        "constraints": "table constraints",
+        "runtimeVersions": "runtime versions",
+        "photon": "Photon usage",
+        "costAttributionTags": "cost-attribution tagging"
+      }
+    },
+    "newScan": {
+      "title": "Start a New Scan",
+      "description": "Browse your Unity Catalog and select catalogs, schemas, or individual tables to scan. Results are merged into the estate view.",
+      "walkLineage": "Walk lineage",
+      "direction": "Direction",
+      "directions": { "upstream": "Upstream", "downstream": "Downstream", "both": "Both" },
+      "scope": "Scope: {scope}",
+      "selectPrompt": "Select at least one catalog or schema above."
+    },
+    "empty": {
+      "estateTitle": "No estate data yet",
+      "estateDescription": "Run a discovery pipeline or start a standalone environment scan to populate the estate view.",
+      "start": "Start Your First Scan",
+      "diagnosisTitle": "No estate diagnosis yet",
+      "diagnosisDescription": "Run a scan to see where this estate stands — readiness, risks, and the highest-value next moves.",
+      "relationshipsTitle": "No relationships yet",
+      "relationshipsDescription": "Run a scan to map lineage and inferred relationships across catalogs and schemas.",
+      "erd": "No ERD data available."
+    },
+    "tabs": {
+      "state": "State of the Nation",
+      "summary": "Summary",
+      "domains": "Domains",
+      "relationships": "Relationships",
+      "tables": "Tables ({count})",
+      "coverage": "Table Coverage",
+      "governance": "Governance",
+      "export": "Export",
+      "portfolio": "Portfolio",
+      "portfolioHelp": "Cross-estate CDO roll-up: enterprise inventory, fragmentation, and the federated uplift plan across every scanned estate."
+    },
+    "tables": {
+      "filter": "Filter by table name or domain…",
+      "headers": {
+        "table": "Table",
+        "domain": "Domain",
+        "tier": "Tier",
+        "size": "Size",
+        "rows": "Rows",
+        "owner": "Owner",
+        "governance": "Gov.",
+        "sensitivity": "Sensitivity",
+        "modified": "Modified",
+        "via": "Via"
+      },
+      "help": {
+        "table": "Fully qualified table name (catalog.schema.table) with its description if one exists — either human-authored or AI-generated.",
+        "domain": "Business domain assigned by AI analysis. Groups tables by the business function they serve.",
+        "tier": "Medallion architecture tier: bronze is raw, silver is cleansed, gold is analytics-ready, and system is internal.",
+        "size": "Physical storage size of the table on disk. Views and inaccessible tables may not report a size.",
+        "rows": "Total row count from Delta table statistics. A missing value means statistics are not yet available.",
+        "owner": "The Unity Catalog owner of this table. Tables without owners lack clear accountability.",
+        "governance": "Governance score from 0 to 100 based on documentation, ownership, tagging, sensitivity labels, and maintenance.",
+        "sensitivity": "Data sensitivity classification determined by AI. Confidential or restricted data may require additional controls.",
+        "modified": "When this table was last modified. Helps identify stale or abandoned datasets.",
+        "via": "How this table was discovered: selected directly or found by following lineage."
+      },
+      "empty": "No tables found",
+      "showing": "Showing {shown} of {total} tables"
+    },
+    "export": {
+      "title": "Environment Report",
+      "description": "Download a comprehensive Excel report for this scan with executive summary, table inventory, domains, data products, PII analysis, relationships, redundancy, governance, table health, lineage, and more.",
+      "download": "Download Excel Report"
+    }
+  },
+  "estatePrograms": {
+    "title": "Estate Programs",
+    "subtitle": "An estate program stitches many environment scans into one company-level view, so a large estate can be scanned area by area and reviewed as a single ontology.",
+    "manageEntry": "Manage estate programs",
+    "manageEntryDescription": "Group multiple environment scans into one company-level estate and run them area by area.",
+    "newProgram": "New program",
+    "howItWorks": {
+      "step1Title": "Create a program",
+      "step1Body": "Name the company and pick its industry. This scopes the whole estate to one view.",
+      "step2Title": "Plan & run the scan sequence",
+      "step2Body": "Add one scope per business area (catalog or catalog.schema). Forge scans them in sequence.",
+      "step3Title": "Review the ontology",
+      "step3Body": "Browse the company → domain → entity → table tree, readiness, and export the board pack."
+    },
+    "form": {
+      "title": "New estate program",
+      "description": "Step 1 — name the company and choose its industry. You'll add scan scopes next.",
+      "nameLabel": "Company / program name",
+      "namePlaceholder": "e.g. the customer or business unit name",
+      "industryLabel": "Industry",
+      "industryPlaceholder": "Select an industry...",
+      "industryNone": "Not specified",
+      "industryLoading": "Loading industries…",
+      "descriptionLabel": "Description (optional)",
+      "descriptionPlaceholder": "Short note about this engagement",
+      "advanced": "Advanced context",
+      "subVerticalLabel": "Sub-vertical (optional)",
+      "subVerticalPlaceholder": "e.g. National Oil Company",
+      "subVerticalHelp": "Narrows industry terminology and ontology grouping.",
+      "orgContextLabel": "Organisation context (optional)",
+      "orgContextPlaceholder": "Concise operating model or business context for estate analysis",
+      "orgContextHelp": "Used as transient AI grounding; it is not copied onto scan rows.",
+      "create": "Create program",
+      "creating": "Creating…",
+      "cancel": "Cancel"
+    },
+    "detail": {
+      "errors": {
+        "load": "Failed to load estate program",
+        "selectScope": "Select at least one catalog or schema from Unity Catalog",
+        "addScopes": "Failed to add scopes",
+        "removeScope": "Failed to remove scope",
+        "removeActive": "Wait for the queued or running scope to finish before removing it.",
+        "deleteActive": "Cancel the running scan sequence before deleting this program.",
+        "delete": "Failed to delete program",
+        "start": "Failed to start the scan sequence",
+        "control": "Failed to {action} the sequence"
+      },
+      "toast": {
+        "scopesAdded": "{count, plural, one {Added # scope to the sequence} other {Added # scopes to the sequence}}",
+        "scopeRemoved": "Scope removed",
+        "deleted": "Estate program deleted",
+        "noPlanned": "No planned scopes remain to run.",
+        "started": "Started scanning: {label}",
+        "pause": "Sequence paused.",
+        "resume": "Sequence resumed.",
+        "cancel": "Sequence cancelled."
+      },
+      "deleteConfirm": "Delete this estate program? The program and its scan sequence will be removed. The underlying environment scans will remain available in Estate Overview.",
+      "states": {
+        "notFoundTitle": "Program not found",
+        "notFoundDescription": "This estate program does not exist or has been deleted.",
+        "forbiddenTitle": "You don’t have access",
+        "forbiddenDescription": "You do not have permission to view this program.",
+        "back": "Back to Estate Programs",
+        "errorTitle": "Couldn’t load this program",
+        "errorDescription": "Something went wrong while loading the estate program.",
+        "retry": "Try again"
+      },
+      "next": {
+        "planTitle": "Step 2 — Plan the scan sequence",
+        "planBody": "Add one scope per business area in the Scan sequence tab, then run them.",
+        "scanningTitle": "Scanning… {complete} of {total} complete",
+        "scanningBody": "Forge is scanning each scope in sequence. This view refreshes automatically.",
+        "runTitle": "{count, plural, one {Step 2 — Run the sequence (# scope planned)} other {Step 2 — Run the sequence (# scopes planned)}}",
+        "runBody": "Run the sequence to scan the next planned area. Scopes run one at a time and continue automatically.",
+        "reviewTitle": "Step 3 — Review the estate",
+        "reviewBody": "All scopes are scanned. Browse the ontology, review quality, and export the board pack."
+      },
+      "actions": {
+        "run": "Run sequence",
+        "scanning": "Scanning…",
+        "pause": "pause",
+        "resume": "resume",
+        "cancel": "cancel",
+        "resumeCount": "Resume ({count})",
+        "pauseTitle": "Hold scopes that have not started",
+        "cancelTitle": "Cancel remaining scopes",
+        "delete": "Delete this program"
+      },
+      "exports": {
+        "pdf": "Board pack (PDF)",
+        "pdfTitle": "Executive PDF board pack",
+        "excel": "Detail data",
+        "excelTitle": "Detailed workbook by table"
+      },
+      "explainer": "An <strong>estate program</strong> groups multiple <link>environment scans</link> into one company view. Each scope produces a normal estate scan and attaches it to this program. Deleting the program keeps those scans and removes only the grouping and planned sequence.",
+      "progress": "Scanning {label} · {complete} of {total} complete",
+      "views": {
+        "executive": "Executive summary",
+        "detail": "Detail"
+      },
+      "executiveEmpty": "The executive summary appears after at least one scan completes. Switch to <detail>Detail</detail> to plan and run the scan sequence.",
+      "tabs": {
+        "sequence": "{count, plural, =0 {Scan sequence} other {Scan sequence (#)}}",
+        "ontology": "Ontology",
+        "relationships": "Relationships",
+        "coverage": "Scan coverage",
+        "quality": "Quality and tiers"
+      },
+      "empty": {
+        "ontology": "No scans yet. Add scopes in Scan sequence and run them to build the ontology.",
+        "relationships": "No scans yet. Relationships appear after at least one scope completes."
+      },
+      "coverage": {
+        "title": "Scanned business areas",
+        "empty": "No scans are attached to this program yet.",
+        "row": "{count, plural, one {# table} other {# tables}} · {date}"
+      },
+      "quality": {
+        "tierTitle": "Tier distribution",
+        "metadataTitle": "Metadata quality coverage",
+        "tier": "{tier} {count}",
+        "bronze": "Bronze",
+        "silver": "Silver",
+        "gold": "Gold",
+        "system": "System",
+        "untiered": "Untiered",
+        "description": "Tables with a description",
+        "owner": "Tables with an owner",
+        "tierCoverage": "Tables with a tier",
+        "domain": "Tables with a domain"
+      },
+      "readOnly": "You have view-only access to this program. The program owner manages scan scopes and run controls.",
+      "retry": {
+        "action": "Retry",
+        "retrying": "Retrying…",
+        "label": "Retry failed scope {label}",
+        "started": "Retry started for {label}",
+        "active": "Wait for the active scope to finish before retrying this scope.",
+        "exhausted": "This scope has reached the maximum number of retry attempts.",
+        "noLongerFailed": "This scope is no longer available to retry. Refresh the page.",
+        "failed": "Failed to retry this scope."
+      },
+      "sequence": {
+        "title": "Scan sequence",
+        "addTitle": "1. Add scan scopes",
+        "addDescription": "Select one or more Unity Catalog catalogs or schemas. Each selection becomes one step in the sequence.",
+        "advanced": "Advanced scope options",
+        "includeLabel": "Include patterns (optional)",
+        "includePlaceholder": "fact_*, dim_*",
+        "includeHelp": "Only matching tables are scanned; exclusions still take precedence.",
+        "workspaceLabel": "Workspace ID (optional)",
+        "workspacePlaceholder": "Databricks workspace ID",
+        "teamLabel": "Team label (optional)",
+        "teamPlaceholder": "e.g. Upstream Data",
+        "addButton": "{count, plural, =0 {Add to sequence} one {Add # to sequence} other {Add # to sequence}}",
+        "selected": "{count, plural, one {# selected} other {# selected}}",
+        "runTitle": "2. Run the sequence",
+        "runPlanned": "{count, plural, one {Run # planned scope} other {Run # planned scopes}}",
+        "empty": "No scopes yet. Add at least one above, then run the sequence. Forge scans one at a time and continues automatically.",
+        "includeValue": "include: {value}",
+        "workspaceValue": "workspace: {value}",
+        "teamValue": "team: {value}",
+        "remove": "Remove from sequence",
+        "removeLabel": "Remove {label} from sequence"
+      },
+      "status": {
+        "planned": "Planned",
+        "queued": "Queued",
+        "running": "Running",
+        "complete": "Complete",
+        "failed": "Failed",
+        "paused": "Paused",
+        "cancelled": "Cancelled"
+      }
+    },
+    "empty": "No estate programs yet. Create one to start stitching scans into a company estate.",
+    "emptyCtaHint": "Click New program to begin.",
+    "scopesCount": "{count, plural, one {# scope} other {# scopes}}",
+    "scansCount": "{count, plural, one {# scan} other {# scans}}",
+    "toast": {
+      "loadFailed": "Failed to load estate programs",
+      "created": "Estate program created",
+      "createFailed": "Failed to create program",
+      "nameRequired": "Program name is required"
+    }
+  }
+}

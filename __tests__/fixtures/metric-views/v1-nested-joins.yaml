@@ -1,0 +1,31 @@
+version: "1.1"
+source: |
+  SELECT *
+  FROM samples.tpch.orders
+  WHERE o_totalprice > 0
+joins:
+  - name: customer
+    source: samples.tpch.customer
+    on: source.o_custkey = customer.c_custkey
+    joins:
+      - name: nation
+        source: samples.tpch.nation
+        on: customer.c_nationkey = nation.n_nationkey
+        joins:
+          - name: region
+            source: samples.tpch.region
+            using:
+              - r_regionkey
+dimensions:
+  - name: customer_name
+    expr: customer.c_name
+  - name: nation_name
+    expr: customer.nation.n_name
+    display_name: Nation
+  - name: region_name
+    expr: customer.nation.region.r_name
+    synonyms:
+      - territory
+measures:
+  - name: order_count
+    expr: COUNT(1)

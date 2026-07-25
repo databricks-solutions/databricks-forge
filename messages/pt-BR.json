@@ -1,0 +1,1989 @@
+{
+  "common": {
+    "language": "Idioma",
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "loading": "Carregando…",
+    "close": "Fechar"
+  },
+  "accessibility": {
+    "skip_to_main": "Ir para o conteúdo principal",
+    "toggle_nav": "Alternar navegação",
+    "navigation": "Navegação"
+  },
+  "language_toggle": {
+    "label": "Idioma",
+    "tooltip": "Alterar idioma da interface"
+  },
+  "theme_toggle": {
+    "label": "Alternar tema",
+    "active": "Ativo",
+    "options": {
+      "light": "Claro",
+      "dark": "Escuro",
+      "system": "Sistema"
+    }
+  },
+  "sidebar": {
+    "expand": "Expandir menu lateral",
+    "collapse": "Recolher menu lateral",
+    "sections": {
+      "explore": "Explorar",
+      "genie": "Genie Studio",
+      "estate": "Patrimônio de Dados",
+      "business_value": "Valor de Negócio",
+      "demo": "Demo",
+      "migrate": "Migrar",
+      "admin": "Administração",
+      "estate_discovery": "Patrimônio",
+      "estate_health": "Patrimônio · Saúde",
+      "value": "Valor",
+      "planning": "Planejamento",
+      "library": "Biblioteca"
+    },
+    "items": {
+      "dashboard": "Painel",
+      "ask_forge": "Pergunte ao Forge",
+      "new_discovery": "Nova Descoberta",
+      "runs": "Execuções",
+      "genie_studio": "Genie Studio",
+      "metadata_genie": "Genie de Metadados",
+      "overview": "Visão Geral",
+      "ai_comments": "Comentários de IA",
+      "waf_assessment": "Avaliação WAF",
+      "business_value": "Valor de Negócio",
+      "roadmap": "Roadmap",
+      "stakeholders": "Stakeholders",
+      "value_tracking": "Acompanhamento de Valor",
+      "strategy": "Estratégia",
+      "data_gap": "Gap de Dados",
+      "outcome_maps": "Mapas de Resultados",
+      "benchmarks": "Benchmarks",
+      "demo_studio": "Demo Studio",
+      "fabric_pbi": "Fabric / PBI",
+      "connections": "Conexões",
+      "knowledge_base": "Base de Conhecimento",
+      "settings": "Configurações",
+      "help": "Ajuda",
+      "estate_programs": "Programas de Patrimônio"
+    }
+  },
+  "header": {
+    "page_titles": {
+      "dashboard": "Painel",
+      "new_discovery": "Nova Descoberta",
+      "runs": "Execuções de Pipeline",
+      "compare_runs": "Comparar Execuções",
+      "estate_overview": "Visão Geral do Patrimônio",
+      "waf_assessment": "Avaliação WAF",
+      "compare_assessments": "Comparar Avaliações",
+      "benchmark_catalog": "Catálogo de Benchmarks",
+      "outcome_maps": "Mapas de Resultados",
+      "ingest_outcome_map": "Importar Mapa de Resultados",
+      "genie_spaces": "Genie Spaces",
+      "metadata_genie": "Genie de Metadados",
+      "settings": "Configurações",
+      "help": "Ajuda",
+      "run_detail": "Detalhe da Execução"
+    }
+  },
+  "ask_forge": {
+    "label": "Pergunte ao Forge"
+  },
+  "search": {
+    "trigger": "Buscar…",
+    "dialog_title": "Buscar",
+    "dialog_description": "Busca semântica em tabelas, casos de uso, insights e documentos",
+    "placeholder": "Busque em todo o seu patrimônio de dados…",
+    "searching": "Buscando…",
+    "no_results": "Nenhum resultado para “{query}”",
+    "empty_heading": "Busque tabelas, casos de uso, insights e mais",
+    "empty_subtitle": "Resultados ordenados por similaridade semântica",
+    "scopes": {
+      "all": "Todos",
+      "estate": "Tabelas",
+      "usecases": "Casos de Uso",
+      "genie": "Genie",
+      "insights": "Insights",
+      "documents": "Documentos"
+    },
+    "kinds": {
+      "table_detail": "Tabela",
+      "column_profile": "Colunas",
+      "use_case": "Caso de Uso",
+      "business_context": "Contexto de Negócio",
+      "genie_recommendation": "Genie Space",
+      "genie_question": "Pergunta Genie",
+      "environment_insight": "Insight",
+      "table_health": "Saúde",
+      "data_product": "Produto de Dados",
+      "outcome_map": "Mapa de Resultados",
+      "lineage_context": "Linhagem",
+      "document_chunk": "Documento"
+    },
+    "provenance": {
+      "platform": "Plataforma",
+      "insight": "Insight",
+      "generated": "Gerado",
+      "uploaded": "Enviado",
+      "template": "Modelo"
+    },
+    "fallbacks": {
+      "document": "Documento",
+      "business_context": "Contexto de Negócio",
+      "genie_space": "Genie Space",
+      "outcome_map": "Mapa de Resultados",
+      "insight": "Insight",
+      "chunk": "Trecho {index}"
+    }
+  },
+  "settings": {
+    "page": {
+      "title": "Configurações",
+      "subtitle": "Configure padrões e preferências para toda a aplicação.",
+      "save_button": "Salvar Configurações"
+    },
+    "toasts": {
+      "settings_saved": "Configurações salvas",
+      "embeddings_rebuilt": "Embeddings reconstruídos com sucesso",
+      "embeddings_failed": "Falha ao reconstruir embeddings",
+      "embeddings_network_error": "Erro de rede ao reconstruir embeddings",
+      "local_cleared": "Configurações locais limpas",
+      "all_data_deleted": "Todos os dados foram excluídos — a aplicação foi redefinida",
+      "delete_failed": "Falha ao excluir dados"
+    },
+    "profile": {
+      "title": "Perfil",
+      "description": "Identidade do seu workspace e informações de conexão",
+      "email_label": "E-mail do Usuário",
+      "email_unavailable": "Indisponível (dev local)",
+      "host_label": "Workspace Databricks",
+      "host_disconnected": "Não conectado"
+    },
+    "industry": {
+      "title": "Setor",
+      "description": "Defina o setor da sua organização aqui uma vez e ele será aplicado automaticamente a todas as novas execuções de pipeline, jobs de comentários de IA e outros fluxos de início. Os dropdowns de setor por job ficam ocultos quando isso é definido.",
+      "label": "Setor",
+      "placeholder": "Selecione um setor...",
+      "not_set": "Não definido",
+      "when_set": "Todos os novos jobs usarão este setor. Você ainda pode alterá-lo por execução na página de detalhes da execução.",
+      "when_unset": "Quando não definido, cada início de job mostrará um dropdown de setor para seleção por execução."
+    },
+    "ai_output": {
+      "title": "Idioma das saídas de IA",
+      "description": "Escolha o idioma que o Forge usa para gerar descrições de IA para tabelas e colunas. É independente do idioma da interface — identificadores (nomes de tabelas, colunas, tipos de dados) permanecem sempre no original.",
+      "comment_language_label": "Idioma da geração de comentários",
+      "comment_language_hint": "Usado como padrão para novos jobs de AI Comments. Você ainda pode alterá-lo em cada job a partir da página de AI Comments."
+    },
+    "data_sampling": {
+      "title": "Amostragem de Dados",
+      "description": "Controla se linhas de exemplo são lidas das tabelas durante a descoberta de casos de uso e geração de SQL. Valores reais ajudam a IA a entender o conteúdo de cada tabela, produzindo casos de uso mais relevantes e SQL mais preciso. Trade-off: lê dados a nível de linha e aumenta o tempo de execução.",
+      "rows_label": "Linhas por tabela",
+      "options": {
+        "disabled": "Desativado (apenas metadados)",
+        "n5": "5 linhas por tabela",
+        "n10": "10 linhas por tabela",
+        "n25": "25 linhas por tabela",
+        "n50": "50 linhas por tabela"
+      },
+      "privacy_heading": "Privacidade e acesso a dados",
+      "privacy_body_pre": "Quando a amostragem está ativada, o Forge lê algumas linhas de cada tabela durante a descoberta de casos de uso e geração de SQL. Esses dados são enviados ao modelo de IA junto com o esquema para que ele entenda valores, formatos e padrões reais — produzindo melhores casos de uso e SQL mais preciso. Os dados amostrados",
+      "privacy_body_emphasis": "não",
+      "privacy_body_post": "são persistidos."
+    },
+    "estate_scan": {
+      "title": "Varredura do Patrimônio",
+      "description": "Executa inteligência de ambiente (classificação de domínio, detecção de PII, scoring de saúde, enriquecimento de linhagem) durante execuções de pipeline. Aumenta o tempo de execução, mas fornece uma visão abrangente do patrimônio junto com a descoberta de casos de uso.",
+      "scan": {
+        "label": "Varredura do Patrimônio durante execuções de pipeline",
+        "enabled": "Ativado — a extração de metadados incluirá enriquecimento completo de inteligência de ambiente",
+        "disabled": "Desativado — execuções de pipeline pularão o passo de enriquecimento (execuções mais rápidas)"
+      },
+      "asset_discovery": {
+        "label": "Descoberta de Ativos durante execuções de pipeline",
+        "enabled": "Ativado — Genie Spaces, dashboards e metric views existentes serão descobertos e usados para melhorar recomendações",
+        "disabled": "Desativado — recomendações são geradas sem ciência dos ativos analíticos existentes (execuções mais rápidas)"
+      },
+      "benchmarks": {
+        "label": "Catálogo de Benchmarks",
+        "unavailable": "Indisponível — flag do servidor FORGE_BENCHMARKS_ENABLED não está definida na configuração do deploy",
+        "enabled": "Ativado — benchmarks setoriais são incorporados e injetados em prompts e na recuperação do Ask Forge",
+        "disabled": "Desativado — pipeline usa contexto consultivo genérico; página e API do catálogo ficam ocultas"
+      }
+    },
+    "semantic_search": {
+      "title": "Busca Semântica e RAG",
+      "description": "Habilita busca semântica, base de conhecimento e recuperação fundamentada em IA em todo o patrimônio de dados. Desativar oculta busca e base de conhecimento, mas não exclui embeddings existentes.",
+      "toggle": {
+        "label": "Busca Semântica e RAG",
+        "enabled": "Ativado — busca global, base de conhecimento e recuperação fundamentada em IA estão ativas",
+        "disabled": "Desativado — barra de busca e base de conhecimento ficam ocultas; embeddings são preservados para reativação"
+      },
+      "rebuild": {
+        "label": "Reconstruir Embeddings",
+        "description": "Regenera a base vetorial de conhecimento a partir de todas as varreduras, pipelines e documentos.",
+        "vectors_stored": "{count} vetores armazenados atualmente.",
+        "running": "Reconstruindo...",
+        "idle": "Reconstruir"
+      }
+    },
+    "discovery_depth": {
+      "title": "Profundidade de Descoberta",
+      "description": "Configure os parâmetros de cada nível de profundidade e escolha o padrão. Cada nível controla quantos casos de uso são gerados por lote, o limite mínimo de qualidade e o volume máximo de saída. Você ainda pode sobrescrever a profundidade por execução.",
+      "default_label": "Profundidade padrão para novas execuções",
+      "default_badge": "Padrão",
+      "options": {
+        "focused": {
+          "label": "Focada",
+          "description": "Menos casos de uso, com a maior qualidade"
+        },
+        "balanced": {
+          "label": "Equilibrada",
+          "description": "Bom equilíbrio entre amplitude e qualidade"
+        },
+        "comprehensive": {
+          "label": "Abrangente",
+          "description": "Cobertura máxima entre domínios"
+        }
+      },
+      "batch_target_label": "Alvo do lote (mín-máx casos de uso por lote)",
+      "batch_target_to": "a",
+      "quality_floor_label": "Piso de qualidade (0-1, score mínimo geral)",
+      "adaptive_cap_label": "Limite adaptativo (máx casos de uso na saída)",
+      "lineage_depth_label": "Profundidade de linhagem (máx hops a percorrer)",
+      "lineage_enabled_label": "Percorrer linhagem",
+      "lineage_direction_label": "Direção da linhagem",
+      "lineage_direction_options": {
+        "upstream": "Upstream (origens)",
+        "both": "Ambos",
+        "downstream": "Downstream (consumidores)"
+      },
+      "reset_defaults": "Restaurar padrões"
+    },
+    "genie": {
+      "title": "Engine Genie",
+      "description": "Padrões globais para geração de Genie Spaces. Aplicam-se a todas as novas execuções. A configuração por execução (glossário, SQL customizado, overrides de coluna, benchmarks, instruções) continua editável dentro de cada execução.",
+      "engine": {
+        "label": "Engine Genie",
+        "enabled": "Ativado — geração de Genie Space com LLM está ativa para todas as execuções",
+        "disabled": "Desativado — config do Engine ficará somente leitura nas execuções; apenas geração legada disponível"
+      },
+      "quality_preset": {
+        "label": "Preset de Qualidade",
+        "options": {
+          "speed": {
+            "label": "Velocidade",
+            "desc": "Geração mais rápida com saída enxuta"
+          },
+          "balanced": {
+            "label": "Equilibrado",
+            "desc": "Boa qualidade em velocidade razoável"
+          },
+          "premium": {
+            "label": "Premium",
+            "desc": "Riqueza máxima, geração mais longa"
+          }
+        }
+      },
+      "max_tables": {
+        "label": "Máx. tabelas por space",
+        "suffix": "Até 30 tabelas por space"
+      },
+      "fiscal_month": {
+        "label": "Mês de início do ano fiscal"
+      },
+      "max_auto_spaces": {
+        "label": "Máx. spaces para auto-análise",
+        "suffix": "0 = todos os domínios (padrão). Limita a auto-geração; você sempre pode regenerar mais a partir do Genie Workbench."
+      },
+      "entity_matching": {
+        "label": "Correspondência de Entidades",
+        "options": {
+          "auto": "Automático (a partir de dados de amostra)",
+          "manual": "Apenas manual",
+          "off": "Desativado"
+        },
+        "hint": "Automático usa dados de amostra para detectar aliases (por ex. \"Florida\" → \"FL\")"
+      },
+      "question_complexity": {
+        "label": "Complexidade das Perguntas",
+        "tip": "Controla o estilo de linguagem das perguntas de exemplo geradas para Genie Spaces. Simples: perguntas curtas em linguagem cotidiana. Médio: um pouco mais específicas com conceitos de negócio. Complexo: linguagem analítica com tendências, correlações e termos técnicos.",
+        "surfaces": {
+          "genie_engine": "Engine Genie",
+          "adhoc_genie": "Genie Adhoc",
+          "metadata_genie": "Genie de Metadados"
+        },
+        "options": {
+          "simple": "Simples",
+          "medium": "Médio",
+          "complex": "Complexo"
+        },
+        "hint": "Simples gera perguntas curtas e cotidianas. Médio adiciona contexto de negócio. Complexo usa linguagem analítica."
+      },
+      "deploy_auth": {
+        "label": "Autenticação no Deploy",
+        "tip": "Controla qual identidade é usada ao criar, atualizar ou excluir Genie Spaces no Databricks. Usuário (OBO) usa as credenciais do usuário logado; Service Principal usa o service principal da aplicação.",
+        "options": {
+          "obo": "Usuário (recomendado)",
+          "sp": "Service Principal"
+        },
+        "hint_obo": "Os spaces são criados sob sua identidade. Você precisa ter acesso às tabelas referenciadas.",
+        "hint_sp": "Os spaces são criados sob o service principal da aplicação. O SP precisa ter acesso SELECT às tabelas referenciadas."
+      },
+      "toggles": {
+        "llm_refinement": {
+          "label": "Refinamento por LLM",
+          "description": "Usar IA para gerar expressões semânticas, instruções e ativos confiáveis"
+        },
+        "trusted_assets": {
+          "label": "Ativos Confiáveis",
+          "description": "Gerar consultas SQL parametrizadas e definições de UDF"
+        },
+        "auto_benchmarks": {
+          "label": "Benchmarks Automáticos",
+          "description": "Gerar perguntas de teste com SQL esperado para avaliar a precisão do Genie"
+        },
+        "metric_views": {
+          "label": "Metric Views",
+          "description": "Propor definições de metric views (KPIs, dimensões, medidas)"
+        },
+        "auto_time_periods": {
+          "label": "Períodos Automáticos",
+          "description": "Gerar filtros e dimensões de data padrão (última semana, último mês, trimestres fiscais)"
+        }
+      },
+      "months": {
+        "1": "Janeiro",
+        "2": "Fevereiro",
+        "3": "Março",
+        "4": "Abril",
+        "5": "Maio",
+        "6": "Junho",
+        "7": "Julho",
+        "8": "Agosto",
+        "9": "Setembro",
+        "10": "Outubro",
+        "11": "Novembro",
+        "12": "Dezembro"
+      }
+    },
+    "export": {
+      "title": "Exportação e Nomeação",
+      "description": "Formato padrão de exportação, caminho do notebook e prefixo de nomeação para recursos do Unity Catalog",
+      "format_label": "Formato padrão de exportação",
+      "format_options": {
+        "excel": "Excel (.xlsx)",
+        "pdf": "PDF",
+        "pptx": "PowerPoint (.pptx)",
+        "notebooks": "Notebooks Databricks"
+      },
+      "notebook_path_label": "Caminho de deploy de notebooks",
+      "prefix_label": "Prefixo de recursos do catálogo",
+      "prefix_tip": "Prefixo aplicado a todos os recursos do Unity Catalog (views, metric views, tabelas) criados pelo Forge. Facilita identificar objetos gerados pelo Forge no banco. Deve ser alfanumérico minúsculo / sublinhados e terminar com underscore.",
+      "prefix_example_pre": "Exemplo: com prefixo",
+      "prefix_example_view": "uma metric view chamada",
+      "prefix_example_becomes": "torna-se"
+    },
+    "about": {
+      "title": "Sobre",
+      "description": "Versão da aplicação e informações de build",
+      "version_label": "Versão",
+      "app_label": "Aplicação",
+      "app_value": "Databricks Forge",
+      "runtime_label": "Runtime",
+      "runtime_apps": "Next.js / Databricks Apps",
+      "runtime_local": "Next.js / Dev Local"
+    },
+    "feature_flags": {
+      "title": "Feature Flags",
+      "description": "Alternâncias de runtime compartilhadas no workspace. As alterações afetam todos os usuários sem precisar reimplantar o app.",
+      "demo_mode": {
+        "label": "Modo Demo",
+        "enabled": "Ativado. O Assistente Demo aparece na barra lateral e em Configurações; as APIs de demo estão disponíveis.",
+        "disabled": "Desativado. As APIs de demo retornam 404 e o Assistente Demo fica oculto.",
+        "loading": "Carregando estado atual…",
+        "toast_enabled": "Modo Demo ativado",
+        "toast_disabled": "Modo Demo desativado"
+      }
+    },
+    "data_management": {
+      "title": "Gerenciamento de Dados",
+      "description": "Gerencie configurações locais e dados em cache",
+      "clear": {
+        "label": "Limpar configurações locais",
+        "description": "Restaurar todas as preferências para os padrões. Não afeta execuções de pipeline nem casos de uso armazenados no Lakebase.",
+        "button": "Limpar",
+        "dialog": {
+          "title": "Limpar configurações locais?",
+          "body": "Isto restaurará todas as preferências (amostragem, formato de exportação, caminho de notebook) para os padrões. Execuções de pipeline e dados não são afetados.",
+          "cancel": "Cancelar",
+          "confirm": "Limpar Configurações"
+        }
+      },
+      "delete": {
+        "label": "Excluir todos os dados",
+        "description": "Excluir permanentemente todas as execuções, casos de uso, varreduras de ambiente, Genie Spaces, conversas, exportações e dados em cache. Não pode ser desfeito.",
+        "button_idle": "Excluir Tudo",
+        "button_busy": "Excluindo…",
+        "dialog": {
+          "title": "Excluir todos os dados da aplicação?",
+          "body": "Isto excluirá permanentemente todas as execuções, casos de uso, varreduras de ambiente, recomendações Genie, dashboards, exportações, logs de prompt e metadados em cache. As configurações locais também serão redefinidas. Esta ação não pode ser desfeita.",
+          "cancel": "Cancelar",
+          "confirm": "Excluir Tudo"
+        }
+      }
+    },
+    "demo": {
+      "title": "Modo Demo",
+      "description": "Gere conjuntos sintéticos personalizados de dados de demo para engajamentos com clientes. Pesquise uma empresa, projete tabelas e escreva diretamente no Unity Catalog.",
+      "launch_button": "Iniciar Assistente Demo",
+      "view_sessions": "Ver Todas as Sessões"
+    }
+  },
+  "comments": {
+    "page": {
+      "title": "Comentários com IA",
+      "subtitle": "Gere e aplique descrições com contexto de indústria para tabelas e colunas no Unity Catalog.",
+      "all_jobs": "Todos os jobs",
+      "new_job": "Novo job",
+      "open": "Abrir"
+    },
+    "empty": {
+      "title": "Nenhum job de comentário ainda",
+      "description": "Gere descrições com IA para suas tabelas e colunas. Revise, edite e aplique direto no Unity Catalog.",
+      "create_first": "Criar seu primeiro job"
+    },
+    "jobs": {
+      "tables_columns": "{tables} tabelas, {columns} colunas",
+      "applied_suffix": ", {applied} aplicados"
+    },
+    "review": {
+      "select_table": "Selecione uma tabela no painel à esquerda",
+      "no_proposals": "Nenhuma proposta gerada ainda",
+      "starting_generation": "Iniciando geração..."
+    },
+    "dialog": {
+      "title": "Novo job de comentário",
+      "description": "Selecione o escopo no Unity Catalog e, opcionalmente, escolha uma indústria para descrições específicas do domínio.",
+      "scope_title": "Selecionar escopo",
+      "scope_description": "Navegue pelo Unity Catalog e selecione catálogos, schemas ou tabelas específicas.",
+      "industry_title": "Contexto da indústria (opcional)",
+      "industry_description": "Enriqueça as descrições com terminologia específica do domínio.",
+      "industry_placeholder": "Sem indústria (descrições genéricas)",
+      "industry_none": "Sem indústria",
+      "industry_from_settings": "Definido em Configurações",
+      "industry_set_globally_pre": "A indústria é definida globalmente em",
+      "industry_set_globally_settings": "Configurações",
+      "language_title": "Idioma de saída",
+      "language_description_pre": "Idioma das descrições geradas. Identificadores (nomes de tabelas, colunas, tipos de dados) permanecem como estão. O padrão vem de",
+      "language_description_settings": "Configurações",
+      "cancel": "Cancelar",
+      "generate": "Gerar comentários com IA"
+    },
+    "catalog_browser": {
+      "search_placeholder": "Buscar catálogos, schemas e tabelas...",
+      "refresh": "Atualizar",
+      "exclude_placeholder": "Excluir por padrão (ex.: stg_*, *_backup, __databricks*)",
+      "exclude": "Excluir",
+      "no_results": "Nenhum resultado para “{query}”",
+      "no_catalogs": "Nenhum catálogo encontrado neste workspace.",
+      "no_catalogs_hint": "Isso pode acontecer se o warehouse acabou de iniciar. Tente atualizar ou verifique se o SQL Warehouse tem acesso ao Unity Catalog.",
+      "retry": "Tentar novamente",
+      "warehouse_unavailable": "SQL Warehouse não está respondendo. Ele pode ainda estar iniciando.",
+      "insufficient_permissions": "Você não tem permissão para visualizar catálogos. Fale com o admin do workspace.",
+      "load_failed": "Falha ao carregar catálogos",
+      "included": "Incluídos ({count})",
+      "excluded": "Excluídos ({count})",
+      "starting_warehouse": "Iniciando SQL Warehouse..."
+    },
+    "toasts": {
+      "load_failed": "Falha ao carregar dados do job",
+      "select_scope": "Selecione ao menos um catálogo, schema ou tabela",
+      "generation_failed": "Geração falhou",
+      "lost_contact": "Perdemos contato com a geração. Verifique a lista de jobs.",
+      "generation_complete": "Geração concluída",
+      "generation_summary": "{tables} tabelas, {columns} colunas",
+      "update_failed": "Falha ao atualizar propostas",
+      "applied_count": "{count} comentários aplicados",
+      "applied_for_table": "{count} comentários aplicados em {table}",
+      "applied_failed_suffix": "{count} com falha",
+      "apply_failed": "Falha ao aplicar",
+      "undone_count": "{count} comentários revertidos",
+      "undo_failed": "Falha ao reverter",
+      "resync_success": "{count} comentários atualizados em {table}",
+      "resync_failed": "Falha ao ressincronizar",
+      "job_deleted": "Job removido",
+      "delete_failed": "Falha ao remover job"
+    }
+  },
+  "assessment": {
+    "page": {
+      "title": "Avaliação WAF",
+      "subtitle_pre": "Avalie seu workspace contra o Databricks Well-Architected Framework. O Forge executa SQL determinístico em",
+      "subtitle_post": "e liga controles que não passaram a engines de remediação.",
+      "export_csv": "Exportar CSV",
+      "open_dashboard": "Abrir dashboard",
+      "open_dashboard_title": "Abrir o dashboard Lakeview do Forge WAF",
+      "generate_dashboard": "Gerar dashboard",
+      "generate_dashboard_title": "Criar o dashboard Lakeview do Forge WAF",
+      "regenerate_dashboard": "Regerar dashboard",
+      "regenerate_dashboard_title": "Atualizar o dashboard Lakeview do Forge WAF com o template mais recente",
+      "open_genie": "Abrir Genie",
+      "open_genie_title": "Abrir o Genie space do Forge WAF",
+      "generate_genie": "Gerar Genie",
+      "generate_genie_title": "Criar o Genie space do Forge WAF",
+      "regenerate_genie": "Regerar Genie",
+      "regenerate_genie_title": "Atualizar o Genie space do Forge WAF com instruções e idioma mais recentes",
+      "run_assessment": "Executar avaliação",
+      "rerun_assessment": "Executar novamente"
+    },
+    "empty_state": {
+      "title": "Nenhuma avaliação ainda",
+      "description_pre": "Clique em",
+      "description_run": "Executar avaliação",
+      "description_post": "para pontuar este workspace contra o WAF da Databricks. A primeira execução leva cerca de 20-40 segundos em um warehouse aquecido.",
+      "failed_title": "A última execução falhou",
+      "failed_description": "A execução mais recente da avaliação não foi concluída. Veja o histórico abaixo e tente novamente."
+    },
+    "partial_run": {
+      "title": "Execução parcial"
+    },
+    "score_label": {
+      "mature": "Maduro",
+      "progressing": "Em evolução",
+      "at_risk": "Em risco",
+      "critical": "Crítico",
+      "none": "—"
+    },
+    "overview": {
+      "overall": "Geral",
+      "controls_met": "{met} de {total} controles atendidos",
+      "last_run_pre": "última execução",
+      "qualitative": "Qualitativo",
+      "no_controls": "Sem controles",
+      "complete": "Completo",
+      "pending": "{count} pendente(s)",
+      "answer_pending": "Responda os controles manuais na aba Qualitativo.",
+      "all_answered": "Todos os controles manuais foram respondidos."
+    },
+    "tabs": {
+      "failing": "Falhando ({count})",
+      "qualitative": "Qualitativo ({answered}/{total})",
+      "ignored": "Ignorados ({count})",
+      "history": "Histórico ({count})",
+      "all_passed": "Todos os controles atingiram seus thresholds. Bom trabalho."
+    },
+    "pillar_short": {
+      "governance": "Governança",
+      "interoperability_usability": "Interop. & Usabilidade",
+      "operational_excellence": "Excelência Operacional",
+      "security_compliance_privacy": "Segurança & Compliance",
+      "reliability": "Confiabilidade",
+      "cost_optimisation": "Custo",
+      "performance_efficiency": "Performance"
+    },
+    "pillar_full": {
+      "governance": "Governança de Dados e IA",
+      "interoperability_usability": "Interoperabilidade e Usabilidade",
+      "operational_excellence": "Excelência Operacional",
+      "security_compliance_privacy": "Segurança, Compliance e Privacidade",
+      "reliability": "Confiabilidade",
+      "performance_efficiency": "Eficiência de Performance",
+      "cost_optimisation": "Otimização de Custo"
+    },
+    "pillar_header": {
+      "controls_met": "{met} / {total} controles atendidos",
+      "failing_sorted": "{count} falhando — ordenados no topo"
+    },
+    "results_table": {
+      "control": "Controle",
+      "pillar": "Pilar",
+      "best_practice": "Boa prática",
+      "score": "Pontuação",
+      "threshold": "Threshold",
+      "status": "Status",
+      "action": "Ação",
+      "met": "Atendido",
+      "not_met": "Não atendido",
+      "recommendation": "Recomendação",
+      "ask_forge": "Perguntar ao Forge",
+      "ignore_title": "Marcar este controle como não aplicável a este workspace"
+    },
+    "history": {
+      "no_runs": "Sem execuções anteriores.",
+      "when": "Quando",
+      "status": "Status",
+      "overall": "Geral",
+      "governance": "Governança",
+      "iu": "IU",
+      "oe": "OE",
+      "scp": "SCP",
+      "reliability": "Confiab.",
+      "cost": "Custo",
+      "performance": "Performance",
+      "met_total": "Atendidos / Total",
+      "compare": "Comparar",
+      "vs_latest": "vs. mais recente",
+      "latest": "(mais recente)"
+    },
+    "ignored": {
+      "empty": "Nenhum controle ou recurso está atualmente excluído da pontuação.",
+      "control": "Controle",
+      "scope": "Escopo",
+      "reason": "Motivo",
+      "ignored_at": "Ignorado em",
+      "by": "Por",
+      "restore": "Restaurar",
+      "whole_control": "Controle inteiro"
+    },
+    "qualitative": {
+      "empty": "Nenhum controle qualitativo no catálogo.",
+      "intro_pre": "Responda cada boa prática com",
+      "yes": "Sim",
+      "partial": "Parcial",
+      "no": "Não",
+      "na": "N/A",
+      "intro_yes_score": "(100)",
+      "intro_partial_score": "(50)",
+      "intro_no_score": "(0)",
+      "intro_na_score": "(excluído)",
+      "intro_post": "Respostas salvas alimentam todas as execuções futuras — re-execute a avaliação para ver as pontuações atualizadas.",
+      "answered": "Respondido",
+      "pending_response": "Resposta pendente",
+      "notes_placeholder": "Notas opcionais (evidência, dono, prazo de remediação)...",
+      "save": "Salvar",
+      "last_updated": "Atualizado em {date}",
+      "saved_toast": "{wafId} salvo",
+      "pick_answer": "Escolha uma resposta primeiro",
+      "save_failed": "Falha ao salvar resposta"
+    },
+    "actions": {
+      "fix_with_forge": "Corrigir com Forge",
+      "open_estate": "Abrir Estate",
+      "ask_forge": "Perguntar ao Forge",
+      "open_docs": "Abrir docs"
+    },
+    "toasts": {
+      "completed": "Avaliação concluída",
+      "failed": "Avaliação falhou",
+      "load_failed": "Falha ao carregar avaliação",
+      "start_failed": "Falha ao iniciar avaliação",
+      "dashboard_failed": "Falha ao publicar dashboard",
+      "genie_failed": "Falha ao publicar Genie space",
+      "dashboard_action": "Dashboard {action}",
+      "genie_action": "Genie space {action}",
+      "open": "Abrir",
+      "ignore_prompt": "Por que {wafId} não é aplicável a este workspace? (será persistido como trilha de auditoria)",
+      "ignored_success": "{wafId} será excluído da próxima execução",
+      "restore_success": "{wafId} restaurado",
+      "ignore_failed": "Falha ao ignorar {wafId}",
+      "restore_failed": "Falha ao restaurar {wafId}"
+    },
+    "controls": {
+      "DG-01-01": {
+        "best_practice": "Estabelecer processo de governança de dados",
+        "principle": "Unificar a gestão de dados e IA"
+      },
+      "DG-01-02": {
+        "best_practice": "Gerenciar metadados de todos os ativos de dados em um único lugar",
+        "principle": "Unificar a gestão de dados e IA"
+      },
+      "DG-01-03": {
+        "best_practice": "Rastrear linhagem de dados e IA para garantir visibilidade dos dados",
+        "principle": "Unificar a gestão de dados e IA"
+      },
+      "DG-01-04": {
+        "best_practice": "Adicionar descrições consistentes aos metadados",
+        "principle": "Unificar a gestão de dados e IA"
+      },
+      "DG-01-05": {
+        "best_practice": "Permitir descoberta fácil de dados pelos consumidores",
+        "principle": "Unificar a gestão de dados e IA"
+      },
+      "DG-01-06": {
+        "best_practice": "Governar ativos de IA junto com os dados",
+        "principle": "Unificar a gestão de dados e IA"
+      },
+      "DG-02-01": {
+        "best_practice": "Centralizar o controle de acesso para todos os ativos de dados e IA",
+        "principle": "Unificar a segurança de dados e IA"
+      },
+      "DG-02-02": {
+        "best_practice": "Configurar logging de auditoria",
+        "principle": "Unificar a segurança de dados e IA"
+      },
+      "DG-02-03": {
+        "best_practice": "Auditar eventos da plataforma de dados",
+        "principle": "Unificar a segurança de dados e IA"
+      },
+      "DG-03-01": {
+        "best_practice": "Definir e documentar padrões de qualidade de dados",
+        "principle": "Estabelecer padrões de qualidade de dados"
+      },
+      "DG-03-02": {
+        "best_practice": "Usar ferramentas de qualidade de dados para profiling, limpeza, validação e monitoramento",
+        "principle": "Estabelecer padrões de qualidade de dados"
+      },
+      "DG-03-03": {
+        "best_practice": "Implementar e aplicar formatos e definições de dados padronizados",
+        "principle": "Estabelecer padrões de qualidade de dados"
+      },
+      "DG-EX01-01": {
+        "best_practice": "Classificar ativos de dados por sensibilidade (PII, Confidencial, Interno, Público)",
+        "principle": "Classificação de dados (estendida)"
+      },
+      "IU-01-01": {
+        "best_practice": "Usar padrões de integração reutilizáveis para integração externa",
+        "principle": "Definir padrões para integração"
+      },
+      "IU-01-02": {
+        "best_practice": "Usar conectores otimizados para ingerir fontes de dados no lakehouse",
+        "principle": "Definir padrões para integração"
+      },
+      "IU-01-03": {
+        "best_practice": "Usar ferramentas de parceiros certificados",
+        "principle": "Definir padrões para integração"
+      },
+      "IU-01-04": {
+        "best_practice": "Reduzir a complexidade dos pipelines de engenharia de dados",
+        "principle": "Definir padrões para integração"
+      },
+      "IU-02-01": {
+        "best_practice": "Usar formatos de dados abertos",
+        "principle": "Utilizar interfaces e formatos de dados abertos"
+      },
+      "IU-02-02": {
+        "best_practice": "Habilitar compartilhamento seguro de dados para todos os ativos de dados e IA",
+        "principle": "Utilizar interfaces e formatos de dados abertos"
+      },
+      "IU-02-03": {
+        "best_practice": "Usar padrões abertos para seus fluxos de IA",
+        "principle": "Utilizar interfaces e formatos de dados abertos"
+      },
+      "IU-03-01": {
+        "best_practice": "Oferecer experiência de self-service em toda a plataforma",
+        "principle": "Simplificar a implementação de novos casos de uso"
+      },
+      "IU-03-02": {
+        "best_practice": "Usar serviços serverless",
+        "principle": "Simplificar a implementação de novos casos de uso"
+      },
+      "IU-03-03": {
+        "best_practice": "Usar templates de compute predefinidos",
+        "principle": "Simplificar a implementação de novos casos de uso"
+      },
+      "IU-03-04": {
+        "best_practice": "Usar capacidades de IA para aumentar a produtividade",
+        "principle": "Simplificar a implementação de novos casos de uso"
+      },
+      "IU-04-01": {
+        "best_practice": "Oferecer dados-como-produto reutilizáveis em que o negócio possa confiar",
+        "principle": "Garantir consistência e usabilidade dos dados"
+      },
+      "IU-04-02": {
+        "best_practice": "Publicar produtos de dados semanticamente consistentes em toda a empresa",
+        "principle": "Garantir consistência e usabilidade dos dados"
+      },
+      "IU-04-03": {
+        "best_practice": "Fornecer um catálogo central para descoberta e linhagem",
+        "principle": "Garantir consistência e usabilidade dos dados"
+      },
+      "OE-01-01": {
+        "best_practice": "Criar uma equipe dedicada de operações do Lakehouse",
+        "principle": "Otimizar processos de build e release"
+      },
+      "OE-01-02": {
+        "best_practice": "Usar gerenciamento de código-fonte (SCM) corporativo",
+        "principle": "Otimizar processos de build e release"
+      },
+      "OE-01-03": {
+        "best_practice": "Padronizar processos de DevOps (CI/CD)",
+        "principle": "Otimizar processos de build e release"
+      },
+      "OE-01-04": {
+        "best_practice": "Padronizar processos de MLOps em toda a empresa",
+        "principle": "Otimizar processos de build e release"
+      },
+      "OE-01-05": {
+        "best_practice": "Definir estratégia de isolamento de ambientes",
+        "principle": "Otimizar processos de build e release"
+      },
+      "OE-01-06": {
+        "best_practice": "Simplificar o uso e a gestão de diversos provedores de LLM",
+        "principle": "Otimizar processos de build e release"
+      },
+      "OE-01-07": {
+        "best_practice": "Definir a estratégia de catálogos para sua empresa",
+        "principle": "Otimizar processos de build e release"
+      },
+      "OE-01-08": {
+        "best_practice": "Comparar saídas de LLMs em prompts pré-definidos",
+        "principle": "Otimizar processos de build e release"
+      },
+      "OE-01-09": {
+        "best_practice": "Construir modelos com fontes de dados representativas, precisas e relevantes",
+        "principle": "Otimizar processos de build e release"
+      },
+      "OE-02-01": {
+        "best_practice": "Usar Infraestrutura como Código para implantações e manutenção",
+        "principle": "Automatizar implantações e cargas de trabalho"
+      },
+      "OE-02-02": {
+        "best_practice": "Padronizar configurações de compute",
+        "principle": "Automatizar implantações e cargas de trabalho"
+      },
+      "OE-02-03": {
+        "best_practice": "Usar workflows automatizados para jobs",
+        "principle": "Automatizar implantações e cargas de trabalho"
+      },
+      "OE-02-04": {
+        "best_practice": "Usar ingestão de arquivos automatizada e orientada a eventos",
+        "principle": "Automatizar implantações e cargas de trabalho"
+      },
+      "OE-02-05": {
+        "best_practice": "Usar frameworks de ETL para pipelines de dados",
+        "principle": "Automatizar implantações e cargas de trabalho"
+      },
+      "OE-02-06": {
+        "best_practice": "Adotar a abordagem deploy-code para cargas de trabalho de ML",
+        "principle": "Automatizar implantações e cargas de trabalho"
+      },
+      "OE-02-07": {
+        "best_practice": "Usar um model registry para desacoplar ciclo de vida de código e modelo",
+        "principle": "Automatizar implantações e cargas de trabalho"
+      },
+      "OE-02-08": {
+        "best_practice": "Automatizar o tracking de experimentos de ML",
+        "principle": "Automatizar implantações e cargas de trabalho"
+      },
+      "OE-02-09": {
+        "best_practice": "Reutilizar a mesma infraestrutura para gerenciar pipelines de ML",
+        "principle": "Automatizar implantações e cargas de trabalho"
+      },
+      "OE-02-10": {
+        "best_practice": "Utilizar gestão declarativa para pipelines complexos de dados e ML",
+        "principle": "Automatizar implantações e cargas de trabalho"
+      },
+      "OE-02-11": {
+        "best_practice": "Automatizar a avaliação de LLMs",
+        "principle": "Automatizar implantações e cargas de trabalho"
+      },
+      "OE-03-01": {
+        "best_practice": "Estabelecer processos de monitoramento",
+        "principle": "Configurar Monitoramento, Alertas e Logging"
+      },
+      "OE-03-02": {
+        "best_practice": "Usar ferramentas nativas e externas para monitoramento da plataforma",
+        "principle": "Configurar Monitoramento, Alertas e Logging"
+      },
+      "OE-03-03": {
+        "best_practice": "Estabelecer uma estratégia de resposta a incidentes",
+        "principle": "Configurar Monitoramento, Alertas e Logging"
+      },
+      "OE-03-04": {
+        "best_practice": "Disparar ações em resposta a um evento específico",
+        "principle": "Configurar Monitoramento, Alertas e Logging"
+      },
+      "OE-04-01": {
+        "best_practice": "Gerenciar limites e cotas de serviço",
+        "principle": "Gerenciar capacidade e cotas"
+      },
+      "OE-04-02": {
+        "best_practice": "Investir em planejamento de capacidade",
+        "principle": "Gerenciar capacidade e cotas"
+      },
+      "OE-EX01-01": {
+        "best_practice": "Classificar cargas de trabalho por criticidade de negócio (tier-1 / tier-2 / tier-3)",
+        "principle": "Criticidade de cargas de trabalho (estendida)"
+      },
+      "OE-EX02-01": {
+        "best_practice": "Formalizar SDLC para cargas de trabalho em produção (revisão de PR, testes, aprovações)",
+        "principle": "Governança operacional (estendida)"
+      },
+      "OE-EX02-02": {
+        "best_practice": "Estabelecer prática de FinOps (ownership de custos, revisões periódicas, chargeback)",
+        "principle": "Governança operacional (estendida)"
+      },
+      "OE-EX02-03": {
+        "best_practice": "Padronizar operações: runbooks, rotação de plantão, post-mortems",
+        "principle": "Governança operacional (estendida)"
+      },
+      "SCP-01-01": {
+        "best_practice": "Autenticar via single sign-on.",
+        "principle": "Gerenciar identidade e acesso com privilégio mínimo"
+      },
+      "SCP-01-02": {
+        "best_practice": "Usar autenticação multifator.",
+        "principle": "Gerenciar identidade e acesso com privilégio mínimo"
+      },
+      "SCP-01-03": {
+        "best_practice": "Desabilitar senhas locais.",
+        "principle": "Gerenciar identidade e acesso com privilégio mínimo"
+      },
+      "SCP-01-04": {
+        "best_practice": "Definir senhas locais complexas.",
+        "principle": "Gerenciar identidade e acesso com privilégio mínimo"
+      },
+      "SCP-01-05": {
+        "best_practice": "Separar contas administrativas de contas de usuário comum.",
+        "principle": "Gerenciar identidade e acesso com privilégio mínimo"
+      },
+      "SCP-01-06": {
+        "best_practice": "Usar gerenciamento de tokens.",
+        "principle": "Gerenciar identidade e acesso com privilégio mínimo"
+      },
+      "SCP-01-07": {
+        "best_practice": "Sincronização SCIM de usuários e grupos.",
+        "principle": "Gerenciar identidade e acesso com privilégio mínimo"
+      },
+      "SCP-01-08": {
+        "best_practice": "Limitar direitos de criação de cluster.",
+        "principle": "Gerenciar identidade e acesso com privilégio mínimo"
+      },
+      "SCP-01-09": {
+        "best_practice": "Armazenar e usar segredos de forma segura.",
+        "principle": "Gerenciar identidade e acesso com privilégio mínimo"
+      },
+      "SCP-01-10": {
+        "best_practice": "Configuração de IAM role entre contas.",
+        "principle": "Gerenciar identidade e acesso com privilégio mínimo"
+      },
+      "SCP-01-11": {
+        "best_practice": "Login de workspace aprovado pelo cliente.",
+        "principle": "Gerenciar identidade e acesso com privilégio mínimo"
+      },
+      "SCP-01-12": {
+        "best_practice": "Usar clusters que suportam isolamento de usuário.",
+        "principle": "Gerenciar identidade e acesso com privilégio mínimo"
+      },
+      "SCP-01-13": {
+        "best_practice": "Usar service principals para executar jobs em produção.",
+        "principle": "Gerenciar identidade e acesso com privilégio mínimo"
+      },
+      "SCP-02-01": {
+        "best_practice": "Evitar armazenar dados de produção no DBFS.",
+        "principle": "Proteger dados em trânsito e em repouso"
+      },
+      "SCP-02-02": {
+        "best_practice": "Proteger o acesso ao armazenamento em nuvem.",
+        "principle": "Proteger dados em trânsito e em repouso"
+      },
+      "SCP-02-03": {
+        "best_practice": "Usar configurações de exfiltração de dados no console administrativo.",
+        "principle": "Proteger dados em trânsito e em repouso"
+      },
+      "SCP-02-04": {
+        "best_practice": "Usar versionamento de bucket.",
+        "principle": "Proteger dados em trânsito e em repouso"
+      },
+      "SCP-02-05": {
+        "best_practice": "Criptografar o armazenamento e restringir o acesso.",
+        "principle": "Proteger dados em trânsito e em repouso"
+      },
+      "SCP-02-06": {
+        "best_practice": "Adicionar uma chave gerenciada pelo cliente para serviços gerenciados.",
+        "principle": "Proteger dados em trânsito e em repouso"
+      },
+      "SCP-02-07": {
+        "best_practice": "Adicionar uma chave gerenciada pelo cliente para o armazenamento do workspace.",
+        "principle": "Proteger dados em trânsito e em repouso"
+      },
+      "SCP-03-01": {
+        "best_practice": "Implantar com VPC ou VNet gerenciada pelo cliente.",
+        "principle": "Proteger sua rede e identificar e proteger endpoints"
+      },
+      "SCP-03-02": {
+        "best_practice": "Usar listas de IP permitidas.",
+        "principle": "Proteger sua rede e identificar e proteger endpoints"
+      },
+      "SCP-03-03": {
+        "best_practice": "Implementar proteções contra exfiltração de rede.",
+        "principle": "Proteger sua rede e identificar e proteger endpoints"
+      },
+      "SCP-03-04": {
+        "best_practice": "Aplicar VPC service controls.",
+        "principle": "Proteger sua rede e identificar e proteger endpoints"
+      },
+      "SCP-03-05": {
+        "best_practice": "Usar políticas de VPC endpoint.",
+        "principle": "Proteger sua rede e identificar e proteger endpoints"
+      },
+      "SCP-03-06": {
+        "best_practice": "Configurar Private Link.",
+        "principle": "Proteger sua rede e identificar e proteger endpoints"
+      },
+      "SCP-04-01": {
+        "best_practice": "Revisar o Modelo de Responsabilidade Compartilhada.",
+        "principle": "Revisar o Modelo de Responsabilidade Compartilhada"
+      },
+      "SCP-05-01": {
+        "best_practice": "Revisar os programas de compliance da Databricks.",
+        "principle": "Atender requisitos de compliance e privacidade de dados"
+      },
+      "SCP-06-01": {
+        "best_practice": "Monitorar workspace usando System tables",
+        "principle": "Monitorar a segurança do sistema"
+      },
+      "SCP-06-02": {
+        "best_practice": "Usar o log de auditoria do Databricks.",
+        "principle": "Monitorar a segurança do sistema"
+      },
+      "SCP-06-03": {
+        "best_practice": "Monitorar atividades de provisionamento.",
+        "principle": "Monitorar a segurança do sistema"
+      },
+      "SCP-06-04": {
+        "best_practice": "Usar Enhanced Security Monitoring ou Compliance Security Profile",
+        "principle": "Monitorar a segurança do sistema"
+      },
+      "SCP-06-05": {
+        "best_practice": "Configurar tagging para monitorar uso e habilitar charge-back.",
+        "principle": "Monitorar a segurança do sistema"
+      },
+      "SCP-07-01": {
+        "best_practice": "Usar instâncias AWS Nitro.",
+        "principle": "Controles genéricos"
+      },
+      "SCP-07-02": {
+        "best_practice": "Cotas de serviço.",
+        "principle": "Controles genéricos"
+      },
+      "SCP-07-03": {
+        "best_practice": "Usar processos de CI/CD para escanear código em busca de segredos hard-coded.",
+        "principle": "Controles genéricos"
+      },
+      "SCP-07-04": {
+        "best_practice": "Isolar cargas de trabalho sensíveis em workspaces diferentes.",
+        "principle": "Controles genéricos"
+      },
+      "SCP-07-05": {
+        "best_practice": "Controlar bibliotecas.",
+        "principle": "Controles genéricos"
+      },
+      "SCP-EX01-01": {
+        "best_practice": "Usar Automatic Identity Management (Azure) ou SCIM via IdP corporativo (AWS/GCP)",
+        "principle": "Gestão de identidade e acesso (estendida)"
+      },
+      "SCP-EX01-02": {
+        "best_practice": "Workspaces federados por identidade",
+        "principle": "Gestão de identidade e acesso (estendida)"
+      },
+      "SCP-EX01-03": {
+        "best_practice": "Vincular grupos ao IdP corporativo, não a grupos locais do Databricks",
+        "principle": "Gestão de identidade e acesso (estendida)"
+      },
+      "SCP-EX01-04": {
+        "best_practice": "Atribuir entitlements de workspace via grupos, não usuários individuais",
+        "principle": "Gestão de identidade e acesso (estendida)"
+      },
+      "SCP-EX01-05": {
+        "best_practice": "Atribuir permissões do Unity Catalog via grupos, não usuários individuais",
+        "principle": "Gestão de identidade e acesso (estendida)"
+      },
+      "SCP-EX01-06": {
+        "best_practice": "Auditar eventos de sincronização de identidade regularmente",
+        "principle": "Gestão de identidade e acesso (estendida)"
+      },
+      "SCP-EX02-01": {
+        "best_practice": "Criptografar dados em trânsito (Spark wire encryption, storage somente TLS, Compliance Security Profile)",
+        "principle": "Proteção de dados (estendida)"
+      },
+      "R-01-01": {
+        "best_practice": "Usar um formato de dados que suporte transações ACID",
+        "principle": "Projetar para falhas"
+      },
+      "R-01-02": {
+        "best_practice": "Usar um motor de dados distribuído resiliente para todas as cargas de trabalho",
+        "principle": "Projetar para falhas"
+      },
+      "R-01-03": {
+        "best_practice": "Resgatar automaticamente dados inválidos ou não conformes",
+        "principle": "Projetar para falhas"
+      },
+      "R-01-04": {
+        "best_practice": "Configurar jobs para retentativas automáticas e término",
+        "principle": "Projetar para falhas"
+      },
+      "R-01-05": {
+        "best_practice": "Usar uma infraestrutura de model serving escalável e pronta para produção",
+        "principle": "Projetar para falhas"
+      },
+      "R-01-06": {
+        "best_practice": "Usar serviços gerenciados para suas cargas de trabalho",
+        "principle": "Projetar para falhas"
+      },
+      "R-02-01": {
+        "best_practice": "Usar uma arquitetura de armazenamento em camadas",
+        "principle": "Gerenciar a qualidade dos dados"
+      },
+      "R-02-02": {
+        "best_practice": "Melhorar a integridade dos dados reduzindo a redundância",
+        "principle": "Gerenciar a qualidade dos dados"
+      },
+      "R-02-03": {
+        "best_practice": "Gerenciar schemas ativamente",
+        "principle": "Gerenciar a qualidade dos dados"
+      },
+      "R-02-04": {
+        "best_practice": "Usar constraints e expectations de dados",
+        "principle": "Gerenciar a qualidade dos dados"
+      },
+      "R-02-05": {
+        "best_practice": "Adotar uma abordagem centrada em dados para machine learning",
+        "principle": "Gerenciar a qualidade dos dados"
+      },
+      "R-03-01": {
+        "best_practice": "Habilitar autoscaling para cargas de trabalho de ETL",
+        "principle": "Projetar para escalabilidade automática"
+      },
+      "R-03-02": {
+        "best_practice": "Usar autoscaling para SQL Warehouses",
+        "principle": "Projetar para escalabilidade automática"
+      },
+      "R-04-01": {
+        "best_practice": "Recuperar de falhas de queries do Structured Streaming",
+        "principle": "Testar procedimentos de recuperação"
+      },
+      "R-04-02": {
+        "best_practice": "Recuperar jobs de ETL usando capacidades de time travel de dados",
+        "principle": "Testar procedimentos de recuperação"
+      },
+      "R-04-03": {
+        "best_practice": "Aproveitar um framework de automação de jobs com recuperação embutida",
+        "principle": "Testar procedimentos de recuperação"
+      },
+      "R-04-04": {
+        "best_practice": "Configurar um padrão de disaster recovery",
+        "principle": "Testar procedimentos de recuperação"
+      },
+      "R-05-01": {
+        "best_practice": "Monitorar eventos da plataforma de dados",
+        "principle": "Monitorar eventos da plataforma"
+      },
+      "R-05-02": {
+        "best_practice": "Monitorar eventos da nuvem",
+        "principle": "Monitorar eventos da plataforma"
+      },
+      "R-EX01-01": {
+        "best_practice": "Conduzir Análise de Modos de Falha (FMA) para cargas de trabalho tier-1",
+        "principle": "Engenharia de resiliência (estendida)"
+      },
+      "R-EX01-02": {
+        "best_practice": "Testar disaster recovery e resiliência regularmente (chaos drills)",
+        "principle": "Engenharia de resiliência (estendida)"
+      },
+      "PE-01-01": {
+        "best_practice": "Usar arquitetura serverless",
+        "principle": "Utilizar capacidades serverless"
+      },
+      "PE-01-02": {
+        "best_practice": "Usar um serviço de model serving de nível corporativo",
+        "principle": "Utilizar capacidades serverless"
+      },
+      "PE-02-01": {
+        "best_practice": "Compreender seus padrões de ingestão e acesso a dados",
+        "principle": "Projetar cargas de trabalho para performance"
+      },
+      "PE-02-02": {
+        "best_practice": "Usar computação paralela onde for benéfico",
+        "principle": "Projetar cargas de trabalho para performance"
+      },
+      "PE-02-03": {
+        "best_practice": "Analisar toda a cadeia de execução",
+        "principle": "Projetar cargas de trabalho para performance"
+      },
+      "PE-02-04": {
+        "best_practice": "Preferir clusters maiores",
+        "principle": "Projetar cargas de trabalho para performance"
+      },
+      "PE-02-05": {
+        "best_practice": "Usar operações nativas do Spark",
+        "principle": "Projetar cargas de trabalho para performance"
+      },
+      "PE-02-06": {
+        "best_practice": "Usar motores nativos da plataforma",
+        "principle": "Projetar cargas de trabalho para performance"
+      },
+      "PE-02-07": {
+        "best_practice": "Compreender seu hardware e o tipo de carga de trabalho",
+        "principle": "Projetar cargas de trabalho para performance"
+      },
+      "PE-02-08": {
+        "best_practice": "Usar caching",
+        "principle": "Projetar cargas de trabalho para performance"
+      },
+      "PE-02-09": {
+        "best_practice": "Usar compactação",
+        "principle": "Projetar cargas de trabalho para performance"
+      },
+      "PE-02-10": {
+        "best_practice": "Usar data skipping",
+        "principle": "Projetar cargas de trabalho para performance"
+      },
+      "PE-02-11": {
+        "best_practice": "Habilitar Predictive Optimization no seu metastore",
+        "principle": "Projetar cargas de trabalho para performance"
+      },
+      "PE-02-12": {
+        "best_practice": "Evitar particionamento excessivo",
+        "principle": "Projetar cargas de trabalho para performance"
+      },
+      "PE-02-14": {
+        "best_practice": "Considerar ajuste de tamanho de arquivo",
+        "principle": "Projetar cargas de trabalho para performance"
+      },
+      "PE-02-15": {
+        "best_practice": "Otimizar a performance de joins",
+        "principle": "Projetar cargas de trabalho para performance"
+      },
+      "PE-02-16": {
+        "best_practice": "Executar analyze table para coletar estatísticas de tabelas",
+        "principle": "Projetar cargas de trabalho para performance"
+      },
+      "PE-03-01": {
+        "best_practice": "Testar com dados representativos da produção",
+        "principle": "Executar testes de performance"
+      },
+      "PE-03-02": {
+        "best_practice": "Considerar o pré-aquecimento de recursos",
+        "principle": "Executar testes de performance"
+      },
+      "PE-03-03": {
+        "best_practice": "Identificar gargalos",
+        "principle": "Executar testes de performance"
+      },
+      "PE-04-01": {
+        "best_practice": "Monitorar a performance de queries",
+        "principle": "Monitorar performance"
+      },
+      "PE-04-02": {
+        "best_practice": "Monitorar cargas de trabalho de streaming",
+        "principle": "Monitorar performance"
+      },
+      "PE-04-03": {
+        "best_practice": "Monitorar a performance de jobs",
+        "principle": "Monitorar performance"
+      },
+      "CO-01-01": {
+        "best_practice": "Usar formatos de dados otimizados para performance",
+        "principle": "Escolher os recursos ideais"
+      },
+      "CO-01-02": {
+        "best_practice": "Usar job clusters",
+        "principle": "Escolher os recursos ideais"
+      },
+      "CO-01-03": {
+        "best_practice": "Usar SQL warehouse para cargas de trabalho SQL",
+        "principle": "Escolher os recursos ideais"
+      },
+      "CO-01-04": {
+        "best_practice": "Usar runtimes atualizados para suas cargas de trabalho",
+        "principle": "Escolher os recursos ideais"
+      },
+      "CO-01-05": {
+        "best_practice": "Usar GPUs apenas para as cargas de trabalho adequadas",
+        "principle": "Escolher os recursos ideais"
+      },
+      "CO-01-06": {
+        "best_practice": "Usar Serverless para suas cargas de trabalho",
+        "principle": "Escolher os recursos ideais"
+      },
+      "CO-01-07": {
+        "best_practice": "Usar o tipo de instância adequado",
+        "principle": "Escolher os recursos ideais"
+      },
+      "CO-01-08": {
+        "best_practice": "Escolher o tamanho de cluster mais eficiente",
+        "principle": "Escolher os recursos ideais"
+      },
+      "CO-01-09": {
+        "best_practice": "Avaliar motores de query otimizados para performance",
+        "principle": "Escolher os recursos ideais"
+      },
+      "CO-02-01": {
+        "best_practice": "Aproveitar compute com auto-scaling",
+        "principle": "Alocar recursos dinamicamente"
+      },
+      "CO-02-02": {
+        "best_practice": "Usar auto termination",
+        "principle": "Alocar recursos dinamicamente"
+      },
+      "CO-02-03": {
+        "best_practice": "Usar políticas de compute para controlar custos",
+        "principle": "Alocar recursos dinamicamente"
+      },
+      "CO-03-01": {
+        "best_practice": "Monitorar custos",
+        "principle": "Monitorar e controlar custos"
+      },
+      "CO-03-02": {
+        "best_practice": "Etiquetar clusters para atribuição de custo",
+        "principle": "Monitorar e controlar custos"
+      },
+      "CO-03-03": {
+        "best_practice": "Implementar observabilidade para rastrear e fazer chargeback de custos",
+        "principle": "Monitorar e controlar custos"
+      },
+      "CO-03-04": {
+        "best_practice": "Compartilhar relatórios de custo regularmente",
+        "principle": "Monitorar e controlar custos"
+      },
+      "CO-03-05": {
+        "best_practice": "Monitorar e gerenciar custos de egress do Delta Sharing",
+        "principle": "Monitorar e controlar custos"
+      },
+      "CO-04-01": {
+        "best_practice": "Equilibrar streaming always-on e triggered",
+        "principle": "Projetar cargas de trabalho com bom custo-benefício"
+      },
+      "CO-04-02": {
+        "best_practice": "Equilibrar entre instâncias on-demand e capacity excess",
+        "principle": "Projetar cargas de trabalho com bom custo-benefício"
+      },
+      "CO-EX01-01": {
+        "best_practice": "Descomissionar recursos não utilizados (jobs ociosos, tabelas, model endpoints, notebooks, workspaces)",
+        "principle": "Ciclo de vida de recursos (estendido)"
+      }
+    }
+  },
+  "portfolio": {
+    "title": "Estado da Nação do Portfólio",
+    "subtitle": "Uma consolidação entre patrimônios da maturidade, fragmentação e oportunidades federadas do patrimônio de dados da sua organização.",
+    "run_synthesis": "Executar síntese",
+    "export_pdf": "Exportar board pack",
+    "retry": "Tentar novamente",
+    "loading": "Carregando portfólio",
+    "synthesis_error": "Não foi possível executar a síntese do portfólio. Tente novamente.",
+    "export_error": "Não foi possível gerar o board pack. Tente novamente.",
+    "error_title": "Não foi possível carregar o portfólio",
+    "error_description": "Algo deu errado ao montar a consolidação do portfólio. Tente novamente.",
+    "forbidden_title": "Acesso ao portfólio necessário",
+    "forbidden_description": "O nível Portfólio entre patrimônios é restrito a administradores da organização. Peça a um administrador para adicioná-lo à lista de permissões.",
+    "access": {
+      "manage": "Gerenciar acesso",
+      "title": "Acesso ao portfólio",
+      "description": "Administradores da organização podem ver o portfólio entre patrimônios. Conceda ou revogue o acesso aqui — as mudanças entram em vigor imediatamente, sem redeploy.",
+      "email_placeholder": "nome@empresa.com",
+      "email_label": "E-mail do administrador",
+      "email_help": "Informe o e-mail da pessoa que deve receber acesso ao portfólio.",
+      "add": "Adicionar",
+      "empty": "Ainda não há administradores.",
+      "granted_by": "Adicionado por {email}",
+      "config_badge": "Da configuração",
+      "revoke": "Revogar acesso",
+      "granted": "Acesso ao portfólio concedido a {email}.",
+      "revoked": "Acesso ao portfólio revogado para {email}.",
+      "grant_error": "Não foi possível conceder o acesso. Tente novamente.",
+      "revoke_error": "Não foi possível revogar o acesso. Tente novamente.",
+      "load_error": "Não foi possível carregar a lista de administradores.",
+      "invalid_email": "Insira um endereço de e-mail válido."
+    },
+    "synthesis_empty_title": "Ainda não há síntese entre patrimônios",
+    "synthesis_empty_description": "Execute a síntese para detectar fragmentação entre patrimônios, oportunidades federadas e o plano de evolução da organização.",
+    "kpi": {
+      "avg_readiness": "Maturidade média",
+      "estates": "Patrimônios",
+      "scans": "Varreduras",
+      "tables": "Tabelas",
+      "value_at_risk": "Valor em risco"
+    },
+    "inventory": {
+      "title": "Inventário corporativo",
+      "description": "Totais em todos os patrimônios varridos da organização.",
+      "domains": "Domínios",
+      "data_products": "Produtos de dados",
+      "ai_models": "Modelos de IA",
+      "pii_tables": "Tabelas com PII",
+      "genie_spaces": "Espaços Genie",
+      "dashboards": "Dashboards",
+      "metric_views": "Metric views"
+    },
+    "fragmentation": {
+      "title": "Fragmentação entre patrimônios",
+      "description": "A mesma entidade de negócio modelada de forma independente em vários patrimônios.",
+      "empty": "Nenhuma fragmentação entre patrimônios detectada.",
+      "estate_count": "{count, plural, one {# patrimônio} other {# patrimônios}}",
+      "tables": "{count, plural, one {# tabela} other {# tabelas}}",
+      "quoted_entity": "“{label}”"
+    },
+    "opportunities": {
+      "title": "Oportunidades federadas",
+      "empty": "Nenhuma oportunidade federada identificada."
+    },
+    "uplift": {
+      "title": "Plano de evolução do modelo operacional",
+      "description": "Ações sequenciadas para elevar a maturidade de toda a organização, com estimativas de custo e valor.",
+      "empty": "Nenhuma ação de evolução identificada.",
+      "phase": "Fase {phase}",
+      "owner": "Responsável",
+      "effort": "Esforço",
+      "cost": "Custo",
+      "value": "Valor"
+    },
+    "severity": {
+      "critical": "Crítica",
+      "high": "Alta",
+      "medium": "Média",
+      "low": "Baixa"
+    }
+  },
+  "estate_intelligence": {
+    "landing": {
+      "title": "Estado da Nação",
+      "subtitle": "Onde seu patrimônio de dados está hoje — prontidão, os riscos a resolver e os próximos passos de maior valor.",
+      "cta_scan": "Escanear seu patrimônio",
+      "cta_regenerate": "Regenerar diagnóstico",
+      "generating": "Gerando diagnóstico…",
+      "loading": "Carregando diagnóstico do patrimônio",
+      "empty_title": "Ainda não há diagnóstico do patrimônio",
+      "empty_description": "Execute uma varredura do patrimônio para produzir um scorecard de prontidão baseado em evidências e um resumo executivo.",
+      "error_title": "Não foi possível carregar o diagnóstico do patrimônio",
+      "error_description": "Algo deu errado ao construir o Estado da Nação. Tente novamente.",
+      "last_generated": "Diagnóstico gerado em {date}"
+    },
+    "readiness": {
+      "title": "Scorecard de prontidão",
+      "overall": "Prontidão geral",
+      "out_of": "de 100",
+      "score": "Pontuação",
+      "subscores": {
+        "governance": "Governança",
+        "quality": "Qualidade",
+        "freshness": "Atualidade",
+        "documentation": "Documentação",
+        "analyticsMaturity": "Maturidade analítica",
+        "cost": "Eficiência de custo"
+      },
+      "band": {
+        "leading": "Líder",
+        "established": "Estabelecido",
+        "developing": "Em desenvolvimento",
+        "nascent": "Inicial"
+      }
+    },
+    "brief": {
+      "title": "Resumo executivo",
+      "estate_shape": "Perfil do patrimônio",
+      "strengths": "Pontos fortes",
+      "critical_risks": "Riscos críticos",
+      "quick_wins": "Ganhos rápidos",
+      "strategic_recommendations": "Recomendações estratégicas",
+      "situation": "Situação",
+      "complication": "Complicação",
+      "resolution": "Resolução"
+    },
+    "value_at_risk": {
+      "title": "Valor em risco",
+      "range": "{low} – {mid} – {high}",
+      "caption": "Valor anual estimado exposto pelas lacunas abaixo (baixo / médio / alto)."
+    },
+    "findings": {
+      "title": "Principais descobertas",
+      "strengths_tab": "Pontos fortes",
+      "risks_tab": "Riscos",
+      "quick_wins_tab": "Ganhos rápidos",
+      "empty": "Nenhuma descoberta nesta categoria.",
+      "evidence_label": "Evidência",
+      "action_label": "Ação recomendada",
+      "severity": {
+        "critical": "Crítico",
+        "high": "Alto",
+        "medium": "Médio",
+        "low": "Baixo",
+        "positive": "Ponto forte"
+      },
+      "evidence_tier": {
+        "sourced": "Com fonte",
+        "benchmark": "Benchmark",
+        "inferred": "Inferido"
+      }
+    },
+    "actions": {
+      "opportunities": "Descobrir casos de uso",
+      "comments": "Gerar documentação",
+      "genie": "Criar um espaço Genie",
+      "data-gap": "Executar análise de lacunas de dados",
+      "waf": "Abrir avaliação WAF",
+      "business-value": "Quantificar valor de negócio"
+    },
+    "sequence": {
+      "title": "Sequência de varredura",
+      "run": "Executar sequência",
+      "pause": "Pausar",
+      "resume": "Retomar",
+      "cancel": "Cancelar",
+      "status_planned": "Planejado",
+      "status_queued": "Na fila",
+      "status_running": "Em execução",
+      "status_completed": "Concluído",
+      "status_failed": "Falhou",
+      "status_paused": "Pausado",
+      "status_cancelled": "Cancelado",
+      "paused_toast": "Sequência pausada — o escopo em execução será concluído.",
+      "resumed_toast": "Sequência retomada.",
+      "cancelled_toast": "Sequência cancelada."
+    },
+    "export": {
+      "board_pack_pdf": "Pacote executivo (PDF)",
+      "detail_excel": "Detalhe do patrimônio (Excel)"
+    }
+  },
+  "configure": {
+    "title": "Nova execução de descoberta",
+    "subtitle": "Configure o contexto de negócio e o escopo do Unity Catalog para o Forge descobrir casos de uso.",
+    "source": {
+      "readyTitle": "Descoberta a partir de varredura do patrimônio",
+      "tables": "{count, plural, one {# tabela} other {# tabelas}}",
+      "readyDescription": "Esta execução reutilizará os metadados já capturados pela varredura, sem varrer o Unity Catalog novamente. Remova a origem para fazer uma extração ao vivo.",
+      "loading": "Carregando varredura do patrimônio…",
+      "errorTitle": "Varredura do patrimônio indisponível",
+      "continueLive": "Continuar com extração ao vivo",
+      "errors": {
+        "unauthorized": "Você não tem acesso a esta varredura. Peça ao proprietário para compartilhá-la ou inicie uma extração ao vivo.",
+        "missing": "Esta varredura não existe mais. Inicie uma extração ao vivo.",
+        "incomplete": "Esta varredura ainda não terminou. Aguarde a conclusão ou inicie uma extração ao vivo.",
+        "error": "Não foi possível carregar a varredura. Inicie uma extração ao vivo."
+      }
+    },
+    "tips": {
+      "title": "Dicas para melhores resultados",
+      "companyName": "Use o nome completo da empresa para obter um contexto de setor mais preciso.",
+      "scope": "Comece com um catálogo ou esquema para obter resultados mais rápidos e amplie o escopo nas execuções seguintes.",
+      "priorities": "Selecione duas ou três prioridades de negócio alinhadas ao foco estratégico atual.",
+      "model": "O modelo de IA padrão atende à maioria dos casos. Use um modelo maior para resultados mais criativos ou detalhados."
+    }
+  },
+  "estate_explorer": {
+    "includePatterns": {
+      "label": "Incluir somente (opcional)",
+      "description": "Mantenha somente tabelas que correspondam a estes padrões. Deixe vazio para varrer tudo. Curingas: <code>*</code>, <code>?</code>. Exemplos: <code>*_fact</code>, <code>gold_*</code>.",
+      "placeholder": "ex.: *_fact",
+      "add": "Adicionar",
+      "duplicate": "Padrão já adicionado",
+      "remove": "Remover {pattern}",
+      "validation": {
+        "empty": "O padrão não pode ficar vazio.",
+        "match_all": "Um único * corresponderia a todas as tabelas. Use um padrão mais específico.",
+        "invalid_characters": "Use somente letras, números, _, -, ., * e ?.",
+        "too_long": "O padrão deve ter no máximo 200 caracteres."
+      }
+    },
+    "relationships": {
+      "errorTitle": "Não foi possível carregar os relacionamentos",
+      "errorDescription": "Ocorreu um erro ao buscar o grafo de relacionamentos.",
+      "retry": "Tentar novamente",
+      "emptyTitle": "Nenhum relacionamento encontrado",
+      "emptyDescription": "Esta varredura não capturou linhagem nem relacionamentos inferidos. Execute-a novamente com maior profundidade de linhagem.",
+      "connectedTables": "{count, plural, one {# tabela conectada} other {# tabelas conectadas}}",
+      "stats": {
+        "all": "Relacionamentos",
+        "crossDomain": "Entre domínios",
+        "crossCatalog": "Entre catálogos",
+        "crossSchema": "Entre esquemas"
+      },
+      "hints": {
+        "crossDomain": "Abrangem dois domínios de negócio",
+        "crossCatalog": "Abrangem dois catálogos",
+        "crossSchema": "Abrangem dois esquemas"
+      },
+      "allRelationships": "Todos os relacionamentos",
+      "shown": "{count, plural, one {# exibido} other {# exibidos}}{capped, select, yes { (limitado a 1.000)} other {}}",
+      "columns": {
+        "source": "Origem",
+        "target": "Destino",
+        "via": "Via",
+        "boundaries": "Limites"
+      },
+      "boundary": {
+        "domain": "domínio",
+        "catalog": "catálogo",
+        "schema": "esquema"
+      },
+      "via": {
+        "lineage": "Linhagem",
+        "foreign_key": "Chave estrangeira",
+        "inferred": "Inferido",
+        "relationship": "Relacionamento"
+      },
+      "noMatches": "Nenhum relacionamento corresponde a este filtro.",
+      "showingLimit": "Exibindo {shown} de {total}."
+    },
+    "domain": {
+      "emptyTitle": "Ainda não há classificação de domínio",
+      "emptyDescription": "Execute uma varredura com inteligência ativada para classificar as tabelas em domínios de dados.",
+      "title": "Mapa de domínios",
+      "domainsDescription": "Cada bolha representa um domínio de dados, dimensionado por {metric}. Selecione para ampliar.",
+      "subdomainsDescription": "Subdomínios de {domain}, dimensionados por {metric}. Selecione para ver as tabelas.",
+      "tablesDescription": "Tabelas em {group}, da maior para a menor. Selecione para ver detalhes.",
+      "metric": {
+        "rows": "volume de linhas",
+        "tables": "quantidade de tabelas",
+        "size": "armazenamento"
+      },
+      "metricControl": {
+        "rows": "Linhas",
+        "tables": "Tabelas",
+        "size": "Tamanho"
+      },
+      "color": {
+        "tier": "Camada",
+        "catalog": "Catálogo"
+      },
+      "rowsCount": "{count, plural, one {# linha} other {# linhas}}",
+      "tablesCount": "{count, plural, one {# tabela} other {# tabelas}}",
+      "groupTooltip": "{name}\n{tables, plural, one {# tabela} other {# tabelas}} · {rows, plural, one {# linha} other {# linhas}} · {size}",
+      "storageSize": "{value} {unit}",
+      "units": {
+        "B": "B",
+        "KB": "KB",
+        "MB": "MB",
+        "GB": "GB",
+        "TB": "TB"
+      },
+      "mapView": "Visualização em mapa",
+      "listView": "Visualização em lista",
+      "breadcrumb": "Navegação estrutural",
+      "estate": "Patrimônio",
+      "domainBubbleMap": "Mapa de bolhas de domínios",
+      "tableBubbleMap": "Mapa de bolhas de tabelas",
+      "openGroup": "{name}: {tables, plural, one {# tabela} other {# tabelas}}, {rows}, {size}. Abrir.",
+      "openTable": "{name}: {rows}, {size}. Abrir detalhes da tabela.",
+      "openGroupList": "{name}: {count, plural, one {# tabela} other {# tabelas}}. Abrir.",
+      "openTableList": "{name}: abrir detalhes da tabela.",
+      "noTables": "Nenhuma tabela neste grupo.",
+      "largest": "Maior",
+      "ungrouped": "Sem agrupamento",
+      "adjustGrouping": "Ajustar agrupamento",
+      "columns": {
+        "group": "Grupo",
+        "tables": "Tabelas",
+        "metric": "Métrica",
+        "table": "Tabela",
+        "rows": "Linhas",
+        "size": "Tamanho",
+        "tier": "Camada"
+      },
+      "fields": {
+        "domain": "Domínio",
+        "subdomain": "Subdomínio",
+        "tier": "Camada",
+        "type": "Tipo",
+        "rows": "Linhas",
+        "size": "Tamanho",
+        "files": "Arquivos",
+        "format": "Formato",
+        "owner": "Proprietário",
+        "updated": "Atualizada",
+        "lastUpdated": "Última atualização",
+        "sensitivity": "Sensibilidade"
+      },
+      "features": {
+        "liquidClustering": "Clusterização líquida",
+        "deletionVectors": "Vetores de exclusão",
+        "changeDataFeed": "Feed de alterações",
+        "autoOptimize": "Otimização automática"
+      }
+    }
+  },
+  "estateRoot": {
+    "header": {
+      "title": "Visão geral do ambiente de dados",
+      "subtitle": "Visão completa do seu ambiente de dados — os dados mais recentes de cada tabela em todas as descobertas e varreduras.",
+      "backLabel": "Voltar à visão geral do ambiente",
+      "combinedScans": "{count, plural, one {Combinado de # varredura} other {Combinado de # varreduras}}",
+      "scanTitle": "Varredura: {scope}",
+      "pipelineRun": "Da execução de pipeline {id}",
+      "standalone": "Varredura independente",
+      "manage": "Gerenciar programas de ambiente",
+      "manageDescription": "Agrupe várias varreduras em uma visão corporativa e execute-as por área."
+    },
+    "actions": {
+      "exporting": "Exportando…",
+      "report": "Relatório do ambiente",
+      "newScan": "Nova varredura",
+      "scanning": "Varrendo…",
+      "scan": "Varrer ambiente"
+    },
+    "toast": {
+      "loadDetailsFailed": "Não foi possível carregar os detalhes da varredura",
+      "deleted": "Varredura excluída",
+      "deleteFailed": "Não foi possível excluir a varredura",
+      "selectScope": "Selecione pelo menos um catálogo ou esquema para varrer.",
+      "started": "Varredura iniciada: {id}…",
+      "startFailed": "Não foi possível iniciar a varredura do ambiente",
+      "complete": "Varredura concluída! Carregando resultados…",
+      "failed": "Falha na varredura.",
+      "missingProgress": "Falha na varredura — nenhum progresso ou resultado encontrado. Consulte os logs.",
+      "timedOut": "A varredura excedeu o tempo limite. Consulte os logs.",
+      "exported": "Relatório do ambiente baixado",
+      "exportFailed": "Não foi possível exportar o relatório"
+    },
+    "waf": {
+      "focused": "Foco em <strong>{focus}</strong> — com base na avaliação WAF mais recente.",
+      "back": "Voltar à avaliação",
+      "reasons": {
+        "lineage": "cobertura de linhagem",
+        "tags": "marcação de tabelas",
+        "format": "formatos de tabela",
+        "managedTables": "tabelas gerenciadas",
+        "accessControl": "controle de acesso",
+        "quality": "qualidade de dados",
+        "dltExpectations": "expectativas DLT",
+        "constraints": "restrições de tabela",
+        "runtimeVersions": "versões de runtime",
+        "photon": "uso do Photon",
+        "costAttributionTags": "marcação para atribuição de custos"
+      }
+    },
+    "newScan": {
+      "title": "Iniciar nova varredura",
+      "description": "Navegue pelo Unity Catalog e selecione catálogos, esquemas ou tabelas para varrer. Os resultados serão incorporados à visão do ambiente.",
+      "walkLineage": "Percorrer linhagem",
+      "direction": "Direção",
+      "directions": { "upstream": "A montante", "downstream": "A jusante", "both": "Ambas" },
+      "scope": "Escopo: {scope}",
+      "selectPrompt": "Selecione pelo menos um catálogo ou esquema acima."
+    },
+    "empty": {
+      "estateTitle": "Ainda não há dados do ambiente",
+      "estateDescription": "Execute um pipeline de descoberta ou inicie uma varredura independente para preencher esta visão.",
+      "start": "Iniciar a primeira varredura",
+      "diagnosisTitle": "Ainda não há diagnóstico do ambiente",
+      "diagnosisDescription": "Execute uma varredura para avaliar a prontidão, os riscos e as próximas ações de maior valor.",
+      "relationshipsTitle": "Ainda não há relacionamentos",
+      "relationshipsDescription": "Execute uma varredura para mapear a linhagem e os relacionamentos inferidos entre catálogos e esquemas.",
+      "erd": "Não há dados de DER disponíveis."
+    },
+    "tabs": {
+      "state": "Estado do ambiente",
+      "summary": "Resumo",
+      "domains": "Domínios",
+      "relationships": "Relacionamentos",
+      "tables": "Tabelas ({count})",
+      "coverage": "Cobertura de tabelas",
+      "governance": "Governança",
+      "export": "Exportar",
+      "portfolio": "Portfólio",
+      "portfolioHelp": "Consolidação executiva entre ambientes: inventário corporativo, fragmentação e plano federado de evolução."
+    },
+    "tables": {
+      "filter": "Filtrar por nome da tabela ou domínio…",
+      "headers": {
+        "table": "Tabela",
+        "domain": "Domínio",
+        "tier": "Camada",
+        "size": "Tamanho",
+        "rows": "Linhas",
+        "owner": "Proprietário",
+        "governance": "Gov.",
+        "sensitivity": "Sensibilidade",
+        "modified": "Modificada",
+        "via": "Origem"
+      },
+      "help": {
+        "table": "Nome totalmente qualificado da tabela e sua descrição, quando disponível.",
+        "domain": "Domínio de negócio atribuído pela análise de IA.",
+        "tier": "Camada da arquitetura medalhão: bronze é bruta, prata é tratada, ouro está pronta para análise e sistema é interna.",
+        "size": "Tamanho físico da tabela em disco. Exibições e tabelas inacessíveis podem não informar o tamanho.",
+        "rows": "Total de linhas segundo as estatísticas Delta. A ausência do valor indica que as estatísticas ainda não estão disponíveis.",
+        "owner": "Proprietário da tabela no Unity Catalog. Tabelas sem proprietário não têm responsabilidade claramente definida.",
+        "governance": "Pontuação de governança de 0 a 100 baseada em documentação, propriedade, tags, sensibilidade e manutenção.",
+        "sensitivity": "Classificação de sensibilidade determinada por IA. Dados confidenciais ou restritos podem exigir controles adicionais.",
+        "modified": "Data da última modificação da tabela. Ajuda a identificar dados obsoletos ou abandonados.",
+        "via": "Como a tabela foi descoberta: selecionada diretamente ou encontrada pela linhagem."
+      },
+      "empty": "Nenhuma tabela encontrada",
+      "showing": "Mostrando {shown} de {total} tabelas"
+    },
+    "export": {
+      "title": "Relatório do ambiente",
+      "description": "Baixe um relatório Excel completo com resumo executivo, inventário, domínios, produtos de dados, análise de PII, relacionamentos, governança, saúde das tabelas, linhagem e muito mais.",
+      "download": "Baixar relatório Excel"
+    }
+  },
+  "estatePrograms": {
+    "title": "Programas de patrimônio",
+    "subtitle": "Um programa de patrimônio reúne várias varreduras de ambiente em uma visão única no nível da empresa, para que um grande patrimônio possa ser varrido área por área e revisado como uma única ontologia.",
+    "manageEntry": "Gerenciar programas de patrimônio",
+    "manageEntryDescription": "Agrupe várias varreduras de ambiente em um patrimônio no nível da empresa e execute-as área por área.",
+    "newProgram": "Novo programa",
+    "howItWorks": {
+      "step1Title": "Crie um programa",
+      "step1Body": "Nomeie a empresa e escolha o setor. Isso define o escopo de todo o patrimônio em uma visão.",
+      "step2Title": "Planeje e execute a sequência de varredura",
+      "step2Body": "Adicione um escopo por área de negócio (catálogo ou catálogo.esquema). O Forge varre em sequência.",
+      "step3Title": "Revise a ontologia",
+      "step3Body": "Navegue pela árvore empresa → domínio → entidade → tabela, prontidão e exporte o pacote executivo."
+    },
+    "form": {
+      "title": "Novo programa de patrimônio",
+      "description": "Etapa 1 — nomeie a empresa e escolha o setor. Você adicionará os escopos de varredura em seguida.",
+      "nameLabel": "Nome da empresa / programa",
+      "namePlaceholder": "ex.: nome do cliente ou unidade de negócio",
+      "industryLabel": "Setor",
+      "industryPlaceholder": "Selecione um setor...",
+      "industryNone": "Não especificado",
+      "industryLoading": "Carregando setores…",
+      "descriptionLabel": "Descrição (opcional)",
+      "descriptionPlaceholder": "Breve nota sobre este engajamento",
+      "advanced": "Contexto avançado",
+      "subVerticalLabel": "Subsegmento (opcional)",
+      "subVerticalPlaceholder": "ex.: Empresa Nacional de Petróleo",
+      "subVerticalHelp": "Refina a terminologia do setor e o agrupamento da ontologia.",
+      "orgContextLabel": "Contexto organizacional (opcional)",
+      "orgContextPlaceholder": "Modelo operacional conciso ou contexto de negócio para análise do patrimônio",
+      "orgContextHelp": "Usado como fundamentação transitória de IA; não é copiado para as linhas de varredura.",
+      "create": "Criar programa",
+      "creating": "Criando…",
+      "cancel": "Cancelar"
+    },
+    "detail": {
+      "errors": {
+        "load": "Falha ao carregar o programa de patrimônio",
+        "selectScope": "Selecione pelo menos um catálogo ou esquema do Unity Catalog",
+        "addScopes": "Falha ao adicionar escopos",
+        "removeScope": "Falha ao remover o escopo",
+        "removeActive": "Aguarde a conclusão do escopo na fila ou em execução antes de removê-lo.",
+        "deleteActive": "Cancele a sequência em execução antes de excluir este programa.",
+        "delete": "Falha ao excluir o programa",
+        "start": "Falha ao iniciar a sequência de varredura",
+        "control": "Falha ao {action} a sequência"
+      },
+      "toast": {
+        "scopesAdded": "{count, plural, one {# escopo adicionado à sequência} other {# escopos adicionados à sequência}}",
+        "scopeRemoved": "Escopo removido",
+        "deleted": "Programa de patrimônio excluído",
+        "noPlanned": "Não há escopos planejados para executar.",
+        "started": "Varredura iniciada: {label}",
+        "pause": "Sequência pausada.",
+        "resume": "Sequência retomada.",
+        "cancel": "Sequência cancelada."
+      },
+      "deleteConfirm": "Excluir este programa de patrimônio? O programa e sua sequência serão removidos. As varreduras de ambiente permanecerão disponíveis na Visão geral do patrimônio.",
+      "states": {
+        "notFoundTitle": "Programa não encontrado",
+        "notFoundDescription": "Este programa não existe ou foi excluído.",
+        "forbiddenTitle": "Você não tem acesso",
+        "forbiddenDescription": "Você não tem permissão para visualizar este programa.",
+        "back": "Voltar aos Programas de patrimônio",
+        "errorTitle": "Não foi possível carregar este programa",
+        "errorDescription": "Ocorreu um erro ao carregar o programa de patrimônio.",
+        "retry": "Tentar novamente"
+      },
+      "next": {
+        "planTitle": "Etapa 2 — Planeje a sequência de varredura",
+        "planBody": "Adicione um escopo por área de negócio na guia Sequência de varredura e execute-os.",
+        "scanningTitle": "Varrendo… {complete} de {total} concluídos",
+        "scanningBody": "O Forge está varrendo cada escopo em sequência. Esta visualização é atualizada automaticamente.",
+        "runTitle": "{count, plural, one {Etapa 2 — Execute a sequência (# escopo planejado)} other {Etapa 2 — Execute a sequência (# escopos planejados)}}",
+        "runBody": "Execute a sequência para varrer a próxima área planejada. Os escopos são processados um por vez.",
+        "reviewTitle": "Etapa 3 — Revise o patrimônio",
+        "reviewBody": "Todos os escopos foram varridos. Navegue pela ontologia, revise a qualidade e exporte o pacote executivo."
+      },
+      "actions": {
+        "run": "Executar sequência",
+        "scanning": "Varrendo…",
+        "pause": "pausar",
+        "resume": "retomar",
+        "cancel": "cancelar",
+        "resumeCount": "Retomar ({count})",
+        "pauseTitle": "Reter escopos ainda não iniciados",
+        "cancelTitle": "Cancelar escopos restantes",
+        "delete": "Excluir este programa"
+      },
+      "exports": {
+        "pdf": "Pacote executivo (PDF)",
+        "pdfTitle": "Pacote executivo em PDF",
+        "excel": "Dados detalhados",
+        "excelTitle": "Pasta detalhada por tabela"
+      },
+      "explainer": "Um <strong>programa de patrimônio</strong> agrupa várias <link>varreduras de ambiente</link> em uma visão da empresa. Cada escopo produz uma varredura normal e a vincula ao programa. Excluir o programa preserva essas varreduras e remove somente o agrupamento e a sequência planejada.",
+      "progress": "Varrendo {label} · {complete} de {total} concluídos",
+      "views": { "executive": "Resumo executivo", "detail": "Detalhes" },
+      "executiveEmpty": "O resumo executivo aparece após a conclusão da primeira varredura. Acesse <detail>Detalhes</detail> para planejar e executar a sequência.",
+      "tabs": {
+        "sequence": "{count, plural, =0 {Sequência de varredura} other {Sequência de varredura (#)}}",
+        "ontology": "Ontologia",
+        "relationships": "Relacionamentos",
+        "coverage": "Cobertura da varredura",
+        "quality": "Qualidade e camadas"
+      },
+      "empty": {
+        "ontology": "Ainda não há varreduras. Adicione escopos na sequência e execute-os para criar a ontologia.",
+        "relationships": "Ainda não há varreduras. Os relacionamentos aparecem após a conclusão de um escopo."
+      },
+      "coverage": {
+        "title": "Áreas de negócio varridas",
+        "empty": "Ainda não há varreduras vinculadas a este programa.",
+        "row": "{count, plural, one {# tabela} other {# tabelas}} · {date}"
+      },
+      "quality": {
+        "tierTitle": "Distribuição por camada",
+        "metadataTitle": "Cobertura da qualidade de metadados",
+        "tier": "{tier} {count}",
+        "bronze": "Bronze",
+        "silver": "Prata",
+        "gold": "Ouro",
+        "system": "Sistema",
+        "untiered": "Sem camada",
+        "description": "Tabelas com descrição",
+        "owner": "Tabelas com proprietário",
+        "tierCoverage": "Tabelas com camada",
+        "domain": "Tabelas com domínio"
+      },
+      "readOnly": "Você tem acesso somente para visualização. O proprietário gerencia os escopos e os controles de execução.",
+      "retry": {
+        "action": "Tentar novamente",
+        "retrying": "Tentando novamente…",
+        "label": "Tentar novamente o escopo com falha {label}",
+        "started": "Nova tentativa iniciada para {label}",
+        "active": "Aguarde a conclusão do escopo ativo antes de tentar este novamente.",
+        "exhausted": "Este escopo atingiu o número máximo de tentativas.",
+        "noLongerFailed": "Este escopo não está mais disponível para nova tentativa. Atualize a página.",
+        "failed": "Não foi possível tentar este escopo novamente."
+      },
+      "sequence": {
+        "title": "Sequência de varredura",
+        "addTitle": "1. Adicione escopos",
+        "addDescription": "Selecione um ou mais catálogos ou esquemas do Unity Catalog. Cada seleção vira uma etapa da sequência.",
+        "advanced": "Opções avançadas do escopo",
+        "includeLabel": "Padrões de inclusão (opcional)",
+        "includePlaceholder": "fact_*, dim_*",
+        "includeHelp": "Somente tabelas correspondentes são varridas; exclusões continuam tendo precedência.",
+        "workspaceLabel": "ID do workspace (opcional)",
+        "workspacePlaceholder": "ID do workspace Databricks",
+        "teamLabel": "Rótulo da equipe (opcional)",
+        "teamPlaceholder": "ex.: Dados de upstream",
+        "addButton": "{count, plural, =0 {Adicionar à sequência} one {Adicionar # à sequência} other {Adicionar # à sequência}}",
+        "selected": "{count, plural, one {# selecionado} other {# selecionados}}",
+        "runTitle": "2. Execute a sequência",
+        "runPlanned": "{count, plural, one {Executar # escopo planejado} other {Executar # escopos planejados}}",
+        "empty": "Ainda não há escopos. Adicione pelo menos um e execute a sequência. O Forge processa um por vez automaticamente.",
+        "includeValue": "incluir: {value}",
+        "workspaceValue": "workspace: {value}",
+        "teamValue": "equipe: {value}",
+        "remove": "Remover da sequência",
+        "removeLabel": "Remover {label} da sequência"
+      },
+      "status": {
+        "planned": "Planejado",
+        "queued": "Na fila",
+        "running": "Em execução",
+        "complete": "Concluído",
+        "failed": "Falhou",
+        "paused": "Pausado",
+        "cancelled": "Cancelado"
+      }
+    },
+    "empty": "Nenhum programa de patrimônio ainda. Crie um para começar a reunir varreduras em um patrimônio de empresa.",
+    "emptyCtaHint": "Clique em Novo programa para começar.",
+    "scopesCount": "{count, plural, one {# escopo} other {# escopos}}",
+    "scansCount": "{count, plural, one {# varredura} other {# varreduras}}",
+    "toast": {
+      "loadFailed": "Falha ao carregar os programas de patrimônio",
+      "created": "Programa de patrimônio criado",
+      "createFailed": "Falha ao criar o programa",
+      "nameRequired": "O nome do programa é obrigatório"
+    }
+  }
+}

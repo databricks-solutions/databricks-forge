@@ -1,0 +1,24 @@
+version: "1.1"
+source: samples.tpch.orders
+comment: "Orders metrics: revenue, volume & customer reach"
+filter: o_orderdate >= DATE '1992-01-01'
+dimensions:
+  - name: order_month
+    expr: DATE_TRUNC('MONTH', o_orderdate)
+    comment: "Calendar month"
+    display_name: Order Month
+    synonyms:
+      - month
+      - order period
+measures:
+  - name: total_revenue
+    expr: SUM(o_totalprice)
+    comment: "Gross order revenue"
+    display_name: Total Revenue
+    format: currency
+  - name: revenue_per_customer
+    expr: SUM(o_totalprice) / COUNT(DISTINCT o_custkey)
+    format: decimal(2)
+  - name: open_order_revenue
+    expr: SUM(o_totalprice) FILTER (WHERE o_orderstatus = 'O')
+    format: currency

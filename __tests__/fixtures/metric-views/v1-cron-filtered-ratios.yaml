@@ -1,0 +1,24 @@
+version: "1.1"
+source: samples.tpch.orders
+dimensions:
+  - name: order_month
+    expr: DATE_TRUNC('MONTH', o_orderdate)
+measures:
+  - name: open_revenue_per_customer
+    expr: SUM(o_totalprice) FILTER (WHERE o_orderstatus = 'O') / COUNT(DISTINCT o_custkey) FILTER (WHERE o_orderstatus = 'O')
+  - name: open_revenue_per_all_customers
+    expr: SUM(o_totalprice) FILTER (WHERE o_orderstatus = 'O') / COUNT(DISTINCT o_custkey)
+  - name: wrapped_open_revenue_ratio
+    expr: (SUM(o_totalprice) FILTER (WHERE o_orderstatus = 'O') / COUNT(DISTINCT o_custkey))
+materialization:
+  schedule:
+    quartz_cron: 0 0 6 * * ?
+    timezone: America/Los_Angeles
+  mode: strict
+  materialized_views:
+    - name: monthly_open_revenue
+      type: aggregated
+      dimensions:
+        - order_month
+      measures:
+        - open_revenue_per_customer

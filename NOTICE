@@ -1,0 +1,33 @@
+Databricks Forge
+Copyright 2024-2026 Databricks, Inc.
+
+================================================================================
+SUPPORT
+================================================================================
+
+Databricks Forge is a community-maintained Field Engineering accelerator.
+Databricks does not offer official product support or an SLA for this project.
+Community support is best effort through:
+
+  https://github.com/databricks-solutions/databricks-forge/blob/main/SUPPORT.md
+
+The community maintainer is @althrussell.
+
+================================================================================
+THIRD-PARTY NOTICES
+================================================================================
+
+This project includes or depends on the following open-source software:
+
+  - Next.js (MIT License) - https://github.com/vercel/next.js
+  - React (MIT License) - https://github.com/facebook/react
+  - Tailwind CSS (MIT License) - https://github.com/tailwindlabs/tailwindcss
+  - shadcn/ui (MIT License) - https://github.com/shadcn-ui/ui
+  - pptxgenjs (MIT License) - https://github.com/gitbrent/PptxGenJS
+  - PDFKit (MIT License) - https://github.com/foliojs/pdfkit
+  - ExcelJS (MIT License) - https://github.com/exceljs/exceljs
+  - Zod (MIT License) - https://github.com/colinhacks/zod
+  - Lucide Icons (ISC License) - https://github.com/lucide-icons/lucide
+
+For a complete list of dependencies and their licenses, see package.json and
+run `npm ls --all` in the project root.

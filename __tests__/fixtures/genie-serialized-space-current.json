@@ -1,0 +1,63 @@
+{
+  "version": 2,
+  "config": {
+    "sample_questions": []
+  },
+  "data_sources": {
+    "tables": [
+      {
+        "identifier": "main.sales.orders"
+      }
+    ]
+  },
+  "instructions": {
+    "text_instructions": [],
+    "example_question_sqls": [],
+    "join_specs": [],
+    "sql_snippets": {
+      "measures": [
+        {
+          "id": "measure-total-revenue",
+          "alias": "total_revenue",
+          "display_name": "Total Revenue",
+          "sql": ["SUM(main.sales.orders.amount)"],
+          "comment": ["Gross order revenue"],
+          "synonyms": ["sales"]
+        },
+        {
+          "id": "malformed-measure",
+          "alias": "bad",
+          "sql": []
+        }
+      ],
+      "filters": [
+        {
+          "id": "filter-order-date",
+          "display_name": "Order Date",
+          "sql": ["main.sales.orders.event_date"],
+          "comment": ["Filter by order date"],
+          "synonyms": ["date"]
+        },
+        {
+          "id": "malformed-filter",
+          "sql": ["main.sales.orders.category"]
+        }
+      ],
+      "expressions": [
+        {
+          "id": "dimension-category",
+          "alias": "category",
+          "display_name": "Order Category",
+          "sql": ["main.sales.orders.category"],
+          "instruction": ["Use for category grouping"],
+          "synonyms": ["type"]
+        },
+        {
+          "id": "malformed-expression",
+          "alias": "empty",
+          "sql": []
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Usage questions
+    url: https://github.com/databricks-solutions/databricks-forge/discussions
+    about: Ask how-to and deployment questions in Discussions.
+  - name: Security vulnerability
+    url: https://github.com/databricks-solutions/databricks-forge/security/advisories/new
+    about: Report vulnerabilities privately. Do not open a public issue.

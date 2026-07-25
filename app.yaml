@@ -1,0 +1,71 @@
+# Databricks Apps runtime configuration
+# Resources and scopes are bound automatically by deploy.sh.
+#
+# Resource bindings (set by deploy.sh via Apps API):
+#   sql-warehouse              → DATABRICKS_WAREHOUSE_ID
+#   serving-endpoint           → DATABRICKS_SERVING_ENDPOINT
+#   serving-endpoint-fast      → DATABRICKS_SERVING_ENDPOINT_FAST
+#   serving-endpoint-embedding → DATABRICKS_EMBEDDING_ENDPOINT
+#   serving-endpoint-review    → DATABRICKS_REVIEW_ENDPOINT
+#   postgres                   → PGHOST / PGPORT / PGDATABASE / PGUSER / PGSSLMODE
+#                                 (Lakebase Postgres database bound as an app
+#                                  resource — branch + database resource names
+#                                  are passed by deploy.sh.)
+#   LAKEBASE_ENDPOINT          → static `value` injected by deploy.sh
+#                                 (the platform does NOT inject the endpoint
+#                                  resource path; deploy.sh discovers it via
+#                                  `databricks postgres list-endpoints`)
+#
+# User authorization scopes (set by deploy.sh via Apps API):
+#   sql, catalog.tables:read, catalog.schemas:read,
+#   catalog.catalogs:read, files.files, dashboards.genie
+#
+# Auth model:
+#   - SQL queries run as the logged-in user (OBO via x-forwarded-access-token)
+#   - Genie Space management uses user OBO by default (configurable in Settings)
+#   - Model Serving, Workspace API run as the app service principal
+#   - Background pipeline tasks fall back to service principal
+#
+# Lakebase auth model:
+#   - The `postgres` resource binding gives the app SP CAN_CONNECT_AND_CREATE on
+#     the bound database. The platform injects PGHOST/PGPORT/PGDATABASE/PGUSER/
+#     PGSSLMODE; we declare LAKEBASE_ENDPOINT below so the runtime can mint
+#     short-lived OAuth Postgres tokens via POST /api/2.0/postgres/credentials.
+#   - No `forge_app_runtime` native role, no static password — everything is
+#     OAuth and rotates every ~hour.
+#
+# Optional cost-governance env vars (injected by deploy.sh when set):
+#   FORGE_BUDGET_POLICY_ID -- serverless budget policy attached to the
+#     Lakebase project for cost attribution. The same policy is also
+#     attached to the Databricks App itself via the Apps API. Unset by
+#     default; no effect when missing.
+#   FORGE_CUSTOM_TAGS -- JSON array of {"key","value"} objects applied
+#     to the Lakebase project only. The Databricks Apps API does not
+#     accept tags on the App resource, so this variable does not affect
+#     the App. Unset by default; no effect when missing.
+
+command:
+  - "sh"
+  - "scripts/start.sh"
+
+env:
+  - name: DATABRICKS_WAREHOUSE_ID
+    valueFrom: sql-warehouse
+  - name: DATABRICKS_SERVING_ENDPOINT
+    valueFrom: serving-endpoint
+  - name: DATABRICKS_SERVING_ENDPOINT_FAST
+    valueFrom: serving-endpoint-fast
+  - name: DATABRICKS_EMBEDDING_ENDPOINT
+    valueFrom: serving-endpoint-embedding
+  - name: DATABRICKS_REVIEW_ENDPOINT
+    valueFrom: serving-endpoint-review
+  - name: FORGE_SEED_BENCHMARKS
+    value: "false"
+  - name: FORGE_SEED_BENCHMARKS_ALL_INDUSTRIES
+    value: "false"
+  - name: DATABRICKS_SERVING_ENDPOINT_REASONING_2
+    valueFrom: serving-endpoint-reasoning-2
+  - name: DATABRICKS_SERVING_ENDPOINT_GENERATION
+    valueFrom: serving-endpoint-generation
+  - name: DATABRICKS_SERVING_ENDPOINT_LIGHTWEIGHT
+    valueFrom: serving-endpoint-lightweight
