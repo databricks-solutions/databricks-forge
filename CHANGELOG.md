@@ -5,6 +5,36 @@ All notable changes to Databricks Forge will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.4] - 2026-07-25
+
+### Added
+
+- Clean public baseline in
+  `databricks-solutions/databricks-forge`, with private development history
+  retained outside the public repository.
+- Customer-first deployment, verification, update, rollback, and cleanup
+  guidance.
+- Public-release hygiene guard, Gitleaks workflow, strict documentation build,
+  and blocking critical dependency audit.
+- Community support policy, private vulnerability reporting, and organization
+  issue, discussion, and contribution workflows.
+
+### Changed
+
+- Public dependency resolution now uses `registry.npmjs.org` without CI
+  lockfile rewriting.
+- Repository links, ownership, Pages configuration, and release guidance now
+  use the `databricks-solutions` organization.
+- Deployment examples no longer contain personal, environment-specific, or
+  credential-shaped values.
+
+### Security
+
+- Excluded internal agent artifacts and historical planning material from the
+  public baseline.
+- Removed or cropped screenshots containing workspace, database endpoint, and
+  personal identity details.
+
 ## [0.4.0] - 2026-02-22
 
 ### Added

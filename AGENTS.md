@@ -10,6 +10,24 @@ business context, point at their UC catalogs/schemas, and the app generates
 scored, categorised use cases with optional SQL code, exported as Excel, PDF,
 PowerPoint, or deployed as SQL notebooks.
 
+## Public Repository Contract
+
+The canonical repository is
+`https://github.com/databricks-solutions/databricks-forge`. This is a
+customer-facing, community-maintained Field Engineering accelerator.
+
+- Branch all contributions from and target pull requests to `main`.
+- Keep tracked dependencies installable from public package registries.
+- Never commit private repository URLs, personal workspace values, credentials,
+  customer data, or internal-only agent artifacts.
+- Do not track `.claude/`, `.superpowers/`, or `docs/superpowers/`.
+- Run `npm run check:public` with the normal lint, typecheck, test, quality, and
+  build checks before opening a pull request.
+- Direct usage questions to GitHub Discussions, bugs to GitHub Issues, and
+  vulnerabilities to private vulnerability reporting.
+- Treat `SUPPORT.md`, `SECURITY.md`, `CONTRIBUTING.md`, and `NOTICE` as the
+  public operational contract.
+
 ## Tech Stack
 
 | Layer          | Technology                                           |

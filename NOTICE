@@ -5,8 +5,13 @@ Copyright 2024-2026 Databricks, Inc.
 SUPPORT
 ================================================================================
 
-Databricks does not offer official support for this project. For any issues,
-please open a GitHub issue and the team will respond on a best-effort basis.
+Databricks Forge is a community-maintained Field Engineering accelerator.
+Databricks does not offer official product support or an SLA for this project.
+Community support is best effort through:
+
+  https://github.com/databricks-solutions/databricks-forge/blob/main/SUPPORT.md
+
+The community maintainer is @althrussell.
 
 ================================================================================
 THIRD-PARTY NOTICES
