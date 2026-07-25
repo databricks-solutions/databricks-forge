@@ -1,0 +1,23 @@
+# Default owner for everything in the repo
+*                           @althrussell
+
+# Core pipeline engine
+lib/pipeline/               @althrussell
+
+# Genie engine
+lib/genie/                  @althrussell
+
+# Database schema and migrations
+prisma/                     @althrussell
+
+# Security-sensitive modules
+lib/dbx/                    @althrussell
+SECURITY.md                 @althrussell
+SECURITY_ARCHITECTURE.md    @althrussell
+
+# CI and repo configuration
+.github/                    @althrussell
+
+# Deployment
+deploy.sh                   @althrussell
+app.yml                     @althrussell

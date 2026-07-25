@@ -1,0 +1,27 @@
+version: "1.1"
+source: samples.tpch.orders
+dimensions:
+  - name: order_date
+    expr: o_orderdate
+  - name: order_year
+    expr: EXTRACT(YEAR FROM o_orderdate)
+measures:
+  - name: running_revenue
+    expr: SUM(o_totalprice)
+    window:
+      - order: order_date
+        range: cumulative
+        semiadditive: last
+  - name: trailing_7_day_orders
+    expr: COUNT(1)
+    window:
+      - order: order_date
+        range: trailing 7 day
+        semiadditive: first
+  - name: ytd_revenue
+    expr: SUM(o_totalprice)
+    window:
+      - order: order_date
+        range: cumulative
+      - order: order_year
+        range: current

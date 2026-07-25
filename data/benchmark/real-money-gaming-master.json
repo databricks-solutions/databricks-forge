@@ -1,0 +1,1240 @@
+{
+  "$schema": "master-repository-benchmarks-v2",
+  "industry": "real-money-gaming",
+  "industryName": "Real Money Gaming (Digital)",
+  "generatedAt": "2026-05-14T08:46:04.346Z",
+  "records": [
+    {
+      "kind": "kpi",
+      "title": "Bettor360 -- Revenue uplift",
+      "summary": "Revenue uplift: +10% improvement. Unified, queryable 360° view for service, trading, and marketing.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/...personalization-right-or-wrong",
+      "publisher": "McKinsey -- Next in Personalization Report",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "Revenue uplift",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- Next in Personalization Report."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "Users_int × hrs_saved_wk × 52 × cost_hr × adopt × cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Next Best Bet -- Sales uplift",
+      "summary": "Sales uplift: +2% improvement. Contextual recommendations of markets/legs based on player context and live slate.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/.../unlocking-the-next-frontier-of-personalized-marketing",
+      "publisher": "McKinsey -- Unlocking Targeted Promotions",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "Sales uplift",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- Unlocking Targeted Promotions."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "Impr_y × Δbet_rate × GGR_per_bet × adopt × cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Responsible Gaming -- Problem gambling incidents",
+      "summary": "Problem gambling incidents: -20% improvement. Detect markers of harm and trigger interventions/limits.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "UK Gambling Commission -- Responsible Gambling Insights",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "Problem gambling incidents",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- UK Gambling Commission -- Responsible Gambling Insights."
+      },
+      "economicPattern": "Risk Avoidance (Compliance / Penalties / Outage Impact)",
+      "economicFormula": "RG_events_y × Δcost_event × prevent_rate × cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Segmentation -- Conversion rate",
+      "summary": "Conversion rate: +10% improvement. Create actionable player cohorts for lifecycle programs.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Media",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "Conversion rate",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Media."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "Cohorts_y × hrs_saved_cohort × cost_hr × adopt × cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "(Re)Marketing -- Marketing ROI",
+      "summary": "Marketing ROI: +30% improvement. Orchestrate retention/reactivation and upsell journeys.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/...personalization-right-or-wrong",
+      "publisher": "McKinsey -- Next in Personalization Report",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "Marketing ROI",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- Next in Personalization Report."
+      },
+      "economicPattern": "Churn Reduction (Retention / LTV Protection)",
+      "economicFormula": "At_risk_users_y × Δretain_rate × GGR_user_y × adopt × cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Detect Fraud During Bet -- Fraud losses",
+      "summary": "Fraud losses: -50% improvement. Stop account/device abuse and arb during bet placement.",
+      "source_type": "open_report",
+      "source_url": "https://www.cognizant.com/.../ai-machine-learning-fraud-detection",
+      "publisher": "Cognizant -- AI Fraud Detection Case Study",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "Fraud losses",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Cognizant -- AI Fraud Detection Case Study."
+      },
+      "economicPattern": "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
+      "economicFormula": "Fraud_loss_bet_y × prevent_rate × precision × cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Greater Fan Experience -- Customer satisfaction",
+      "summary": "Customer satisfaction: +20% improvement. Tailor UX/content, simplify decisions, reduce friction.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Media",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "Customer satisfaction",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Media."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "Active_users_y × Δsessions_user × GGR_session × adopt × cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Cohort Analysis -- LTV per cohort",
+      "summary": "LTV per cohort: +10% improvement. Measure cohorts (by join date, product, promo) over time.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Media",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "LTV per cohort",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Media."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "Reports_y × hrs_saved_report × cost_hr × adopt × cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Detect Fraud At Withdrawal -- Fraud losses",
+      "summary": "Fraud losses: -50% improvement. Catch mule accounts, bonus abuse, AML before payout.",
+      "source_type": "open_report",
+      "source_url": "https://www.cognizant.com/.../ai-machine-learning-fraud-detection",
+      "publisher": "Cognizant -- AI Fraud Detection Case Study",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "Fraud losses",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Cognizant -- AI Fraud Detection Case Study."
+      },
+      "economicPattern": "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
+      "economicFormula": "Fraud_payout_y × block_rate × precision × cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Journey Analytics -- Funnel drop-off rate",
+      "summary": "Funnel drop-off rate: -15% improvement. Map journeys and drop-offs to optimize funnels.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Retail",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "Funnel drop-off rate",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Retail."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "Visits_y × Δconv_funnel × GGR_new_user_y × adopt × cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Pre-VIP Engagement -- VIP conversion rate",
+      "summary": "VIP conversion rate: +20% improvement. Identify rising value and trigger host outreach early.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Media",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "VIP conversion rate",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Media."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "Candidates_y × ΔVIP_conv × ΔGGR_VIP_y × adopt × cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Toxicity Mitigation -- Toxic incidents",
+      "summary": "Toxic incidents: -80% improvement. Classify and act on abusive chat/voice/text.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "Google Jigsaw -- Perspective API Study",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "Toxic incidents",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Google Jigsaw -- Perspective API Study."
+      },
+      "economicPattern": "Churn Reduction (Retention / LTV Protection)",
+      "economicFormula": "Affected_users_y × Δretain_rate × GGR_user_y × adopt × cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Identity Resolution -- Duplicate accounts",
+      "summary": "Duplicate accounts: -90% improvement. Resolve cross-device/person IDs with privacy controls.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Media",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "Duplicate accounts",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Media."
+      },
+      "economicPattern": "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
+      "economicFormula": "Promo_value_y × Δabuse_rate × adopt × cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Promotions -- Marketing ROI",
+      "summary": "Marketing ROI: +30% improvement. Optimize promo targeting, caps, and ROI.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/...personalization-right-or-wrong",
+      "publisher": "McKinsey -- Next in Personalization Report",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "Marketing ROI",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- Next in Personalization Report."
+      },
+      "economicPattern": "Waste Reduction (Spoilage / Returns / Write-downs)",
+      "economicFormula": "Promo_spend_y × Δwaste_rate × adopt × cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Churn Prediction -- Churn rate",
+      "summary": "Churn rate: -15% improvement. Predict lapse risk and trigger save plays.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/.../model-makeover-turning-a-telco-...",
+      "publisher": "McKinsey -- Telco Techco Transformation",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "Churn rate",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- Telco Techco Transformation."
+      },
+      "economicPattern": "Churn Reduction (Retention / LTV Protection)",
+      "economicFormula": "At_risk_users_y × Δretain_rate × GGR_user_y × adopt × cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Single Wallet -- Customer drop-off (due to transfers)",
+      "summary": "Customer drop-off (due to transfers): -25% improvement. Provide a unified, compliant wallet across products.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Financial Services",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "Customer drop-off (due to transfers)",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Financial Services."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "Wallet_users_y × Δcross_prod_rate × ΔGGR_user_y × adopt × cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Personalization -- Revenue uplift",
+      "summary": "Revenue uplift: +10% improvement. Dynamic content/markets/UX by context.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/...personalization-right-or-wrong",
+      "publisher": "McKinsey -- Next in Personalization Report",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "Revenue uplift",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- Next in Personalization Report."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "Impr_y × Δbet_rate × GGR_per_bet × adopt × cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Early VIP Identification -- VIP conversion rate",
+      "summary": "VIP conversion rate: +20% improvement. Find high-potential bettors quickly.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Media",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "VIP conversion rate",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Media."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "New_users_y × ΔVIP_conv × ΔGGR_VIP_y × adopt × cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Loyalty Programs -- Customer retention",
+      "summary": "Customer retention: +5% improvement. Tier rules, accrual/redemption optimization.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Financial Services",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "Customer retention",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Financial Services."
+      },
+      "economicPattern": "Churn Reduction (Retention / LTV Protection)",
+      "economicFormula": "Members_y × Δretain_rate × GGR_member_y × adopt × cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Bet Lines Optimization -- Hold margin",
+      "summary": "Hold margin: +2% improvement. Optimize pricing/limits to balance hold vs. handle.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "NJ Division of Gaming -- Sports Betting Report",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "Hold margin",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- NJ Division of Gaming -- Sports Betting Report."
+      },
+      "economicPattern": "Price Realization (Yield / Rate Optimization)",
+      "economicFormula": "Handle_opt_y × Δhold_pct × adopt × cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Real Time In Game Lines -- In-play handle",
+      "summary": "In-play handle: +5% improvement. Streamed pricing based on live state.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "Lund University -- In-Play Betting Study",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "In-play handle",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Lund University -- In-Play Betting Study."
+      },
+      "economicPattern": "Price Realization (Yield / Rate Optimization)",
+      "economicFormula": "Handle_live_y × Δhold_pct × adopt × cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Information Summarization -- Customer satisfaction",
+      "summary": "Customer satisfaction: +10% improvement. Summarize stats, rules, promos into bite-size explainers.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Media",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "Customer satisfaction",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Media."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "Views_y × Δbet_conv × GGR_per_conv × adopt × cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Bet Carousels -- Click-through rate (CTR)",
+      "summary": "Click-through rate (CTR): +15% improvement. Rank/order markets on home/league pages.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Media",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "Click-through rate (CTR)",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Media."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "Pageviews_y × Δclick_to_bet × GGR_per_click × adopt × cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Risk Profiling -- Fraud losses",
+      "summary": "Fraud losses: -20% improvement. Assess player/market risk to set limits and monitoring.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "FATF -- Casino Risk-Based Approach Report",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "Fraud losses",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- FATF -- Casino Risk-Based Approach Report."
+      },
+      "economicPattern": "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
+      "economicFormula": "Highrisk_loss_y × Δloss_rate × adopt × cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Suggested Promotions -- Conversion rate",
+      "summary": "Conversion rate: +3% improvement. Next-best-offer for engagement and margin.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/.../unlocking-the-next-frontier-of-personalized-marketing",
+      "publisher": "McKinsey -- Next in Personalization (Targeted promotions)",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "Conversion rate",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- Next in Personalization (Targeted promotions)."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "Offers_y × Δaccept_rate × Net_GGR_offer × adopt × cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Rated Play -- Comp expense",
+      "summary": "Comp expense: -5% improvement. Compute ADT/TTD/handle-per-hour equivalents digitally.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Media",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "Comp expense",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Media."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "Ratings_y × hrs_saved_rating × cost_hr × adopt × cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Informed Bets -- Betting volume",
+      "summary": "Betting volume: +5% improvement. Provide context (injuries, form) and explain lines.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Media",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "Betting volume",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Media."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "Views_y × Δbet_rate × GGR_per_bet × adopt × cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Game Data -- Data errors",
+      "summary": "Data errors: -90% improvement. Curate complete, reliable game/event data for products.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Media",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "Data errors",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Media."
+      },
+      "economicPattern": "Risk Avoidance (Compliance / Penalties / Outage Impact)",
+      "economicFormula": "Δdowntime_hrs_y × GGR_per_hr × cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Understanding Lines -- Customer complaints",
+      "summary": "Customer complaints: -20% improvement. Explain pricing/hold/vig to users simply.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Media",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "Customer complaints",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Media."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "Views_y × Δbet_conv × GGR_per_conv × adopt × cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Optimize Hold and Yield -- Hold percentage",
+      "summary": "Hold percentage: +2% improvement. Balance promos, pricing, and limits to target hold.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "NJ DGE -- Sports Wagering Performance Report",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "Hold percentage",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- NJ DGE -- Sports Wagering Performance Report."
+      },
+      "economicPattern": "Price Realization (Yield / Rate Optimization)",
+      "economicFormula": "Handle_y × Δhold_pct × adopt × cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Parlay Optimization -- Parlay uptake",
+      "summary": "Parlay uptake: +10% improvement. Construct/prioritize parlay offers to maximize margin and UX.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "NJ DGE -- Sports Wagering Performance Report",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "Parlay uptake",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- NJ DGE -- Sports Wagering Performance Report."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "Parlay_impr_y × Δparlay_bet_rate × GGR_per_parlay × adopt × cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Data and PII Governance -- Data breaches",
+      "summary": "Data breaches: -50% improvement. Classify/tag PII, enforce policies and subject rights.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Cross-Industry",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "Data breaches",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Cross-Industry."
+      },
+      "economicPattern": "Risk Avoidance (Compliance / Penalties / Outage Impact)",
+      "economicFormula": "PII_events_y × Δcost_event × prevent_rate × cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Internal Data Sharing -- Analysis time",
+      "summary": "Analysis time: -30% improvement. Governed sharing across teams/domains.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Cross-Industry",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "Analysis time",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Cross-Industry."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "Access_req_y × hrs_saved_req × cost_hr × adopt × cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Financial Reporting -- Financial close cycle time",
+      "summary": "Financial close cycle time: -75% improvement. Auditable gaming P&L, tax, and regulatory reports.",
+      "source_type": "open_report",
+      "source_url": "https://daily.financialexecutives.org/...",
+      "publisher": "FEI Daily -- Accelerating the Close Cycle",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "Financial close cycle time",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- FEI Daily -- Accelerating the Close Cycle."
+      },
+      "economicPattern": "Risk Avoidance (Compliance / Penalties / Outage Impact)",
+      "economicFormula": "Reports_y × Δerror_rate × Cost_error × cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "AI Powered Analytics -- Task completion time",
+      "summary": "Task completion time: -50% improvement. Natural-language analytics on KPIs, content, and journeys.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "Microsoft -- GitHub Copilot Field Study",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "Task completion time",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Microsoft -- GitHub Copilot Field Study."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "Queries_y × hrs_saved_query × cost_hr × adopt × cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Fraud Reporting -- Compliance reporting cost",
+      "summary": "Compliance reporting cost: -50% improvement. Generate SARs/CTR and case packages.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "FinCEN -- SAR Automation Brief",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "Compliance reporting cost",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- FinCEN -- SAR Automation Brief."
+      },
+      "economicPattern": "Risk Avoidance (Compliance / Penalties / Outage Impact)",
+      "economicFormula": "Cases_y × Δmiss_rate × Penalty_case × cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Data Discovery -- Data search time",
+      "summary": "Data search time: -50% improvement. Search/catalog datasets, owners, and definitions.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Cross-Industry",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "Data search time",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Cross-Industry."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "Searches_y × hrs_saved_search × cost_hr × adopt × cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Cyber Security DASL/Behavior -- Breach detection time",
+      "summary": "Breach detection time: -90% improvement. Detect anomalous access and risky behaviors via security data lake.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "Elastic -- AI Cybersecurity Case",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "Breach detection time",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Elastic -- AI Cybersecurity Case."
+      },
+      "economicPattern": "Risk Avoidance (Compliance / Penalties / Outage Impact)",
+      "economicFormula": "ExpSecLoss_y × Δloss_rate × cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "External Data Sharing -- Partnership insights speed",
+      "summary": "Partnership insights speed: +50% improvement. Privacy-safe partner measurement/activation.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Media",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "Partnership insights speed",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Media."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "Partner_impr_y × Δconv × GGR_new_user_y × adopt × cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "DSPM Integration -- Data exposure incidents",
+      "summary": "Data exposure incidents: -70% improvement. Classify sensitive data, monitor posture, auto-remediate.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "IBM -- Data Security Report",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "Data exposure incidents",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- IBM -- Data Security Report."
+      },
+      "economicPattern": "Risk Avoidance (Compliance / Penalties / Outage Impact)",
+      "economicFormula": "Sensitive_assets_y × Δincident_rate × Cost_incident × cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Empower Your Team -- Employee productivity",
+      "summary": "Employee productivity: +30% improvement. Copilots for ops/trading/CS with governed data access.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "Microsoft -- GitHub Copilot Field Study",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "Employee productivity",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Microsoft -- GitHub Copilot Field Study."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "Employees × hrs_saved_wk × 52 × cost_hr × adopt × cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Banned Players -- Ban enforcement success rate",
+      "summary": "Ban enforcement success rate: +90% improvement. Enforce bans/self-exclusions across systems.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "Gambling Commission -- Self-Exclusion Impact Report",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "Ban enforcement success rate",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Gambling Commission -- Self-Exclusion Impact Report."
+      },
+      "economicPattern": "Risk Avoidance (Compliance / Penalties / Outage Impact)",
+      "economicFormula": "Prohibited_txn_y × Δviolation_rate × Penalty_violation × cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Staff Optimization -- Staffing cost",
+      "summary": "Staffing cost: -20% improvement. Forecast/optimize CS, trading, and VIP staffing.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Cross-Industry",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "Staffing cost",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Cross-Industry."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "Labor_hrs_y × Δunproductive_pct × cost_hr × adopt × cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Procurement Analysis -- Vendor spend",
+      "summary": "Vendor spend: -10% improvement. Optimize vendor spend/renewals and SLA risk.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Cross-Industry",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "real-money-gaming",
+      "region": "global",
+      "metric_definition": "Vendor spend",
+      "methodology_note": "Master Repository benchmark for Real Money Gaming (Digital).",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "real-money-gaming",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Cross-Industry."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "Vendor_spend_y × Δsavings_rate × adopt × cap"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+name: Security audit
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 6 * * 1"
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: npm
+          registry-url: "https://registry.npmjs.org/"
+
+      - name: Run blocking production dependency audit
+        run: npm audit --audit-level=critical --omit=dev --omit=optional
+
+      - name: Build full audit report
+        if: always()
+        run: npm audit --json > npm-audit.json || true
+
+      - name: Upload audit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: npm-audit-${{ github.sha }}
+          path: npm-audit.json
+          if-no-files-found: ignore
+          retention-days: 30

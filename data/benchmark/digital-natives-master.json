@@ -1,0 +1,680 @@
+{
+  "$schema": "master-repository-benchmarks-v2",
+  "industry": "digital-natives",
+  "industryName": "Digital Natives",
+  "generatedAt": "2026-05-14T08:46:04.348Z",
+  "records": [
+    {
+      "kind": "kpi",
+      "title": "Customer Data Enrichment -- Conversion rate",
+      "summary": "Conversion rate: +10% improvement. Append trustworthy traits/ids to profiles in-stream for activation/compliance.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Technology",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "digital-natives",
+      "region": "global",
+      "metric_definition": "Conversion rate",
+      "methodology_note": "Master Repository benchmark for Digital Natives.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "digital-natives",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Technology."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "Profiles_yr * Δcost_append * A * C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Identity Resolution -- Match rate",
+      "summary": "Match rate: +20% improvement. Resolve people/devices across channels for targeting, measurement, and fraud controls.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Technology",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "digital-natives",
+      "region": "global",
+      "metric_definition": "Match rate",
+      "methodology_note": "Master Repository benchmark for Digital Natives.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "digital-natives",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Technology."
+      },
+      "economicPattern": "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
+      "economicFormula": "Events_yr * Δfraud_or_dup_rate * $loss_event * A * C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Real-time Personalization -- Revenue uplift",
+      "summary": "Revenue uplift: +10% improvement. Tailor content/offers per session with sub-second decisions.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/...personalization-right-or-wrong",
+      "publisher": "McKinsey -- The value of getting personalization right",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "digital-natives",
+      "region": "global",
+      "metric_definition": "Revenue uplift",
+      "methodology_note": "Master Repository benchmark for Digital Natives.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "digital-natives",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The value of getting personalization right."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "Sessions_yr * Δconv * Margin_conv * A * C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Resource Optimization -- Utilization rate",
+      "summary": "Utilization rate: +15% improvement. Allocate finite inventory/compute/slots to maximize fill rate, margin, and latency SLOs.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "Google -- Data Center Optimization Case",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "digital-natives",
+      "region": "global",
+      "metric_definition": "Utilization rate",
+      "methodology_note": "Master Repository benchmark for Digital Natives.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "digital-natives",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Google -- Data Center Optimization Case."
+      },
+      "economicPattern": "Price Realization (Yield / Rate Optimization)",
+      "economicFormula": "Units_yr * Δmargin_unit * A * C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Next-Best-Action Models -- Conversion rate",
+      "summary": "Conversion rate: +5% improvement. Predict the optimal message/offer/channel for each user in-the-moment.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/.../unlocking-the-next-frontier-of-personalized-marketing",
+      "publisher": "McKinsey -- Unlocking Targeted Promotions",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "digital-natives",
+      "region": "global",
+      "metric_definition": "Conversion rate",
+      "methodology_note": "Master Repository benchmark for Digital Natives.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "digital-natives",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- Unlocking Targeted Promotions."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "Eligible_yr * Δresponse * Margin_resp * A * C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Ad Spend ROI -- Advertising ROI",
+      "summary": "Advertising ROI: +10% improvement. Quantify incremental return by channel/creative to reallocate budget.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "Think with Google -- Marketing Mix Modeling Case",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "digital-natives",
+      "region": "global",
+      "metric_definition": "Advertising ROI",
+      "methodology_note": "Master Repository benchmark for Digital Natives.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "digital-natives",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Think with Google -- Marketing Mix Modeling Case."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "AdSpend_yr * Δwaste_pct * A * C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Campaign Optimization -- Campaign conversion rate",
+      "summary": "Campaign conversion rate: +20% improvement. Automate creatives/audiences/bids using experimentation & learning.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Technology",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "digital-natives",
+      "region": "global",
+      "metric_definition": "Campaign conversion rate",
+      "methodology_note": "Master Repository benchmark for Digital Natives.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "digital-natives",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Technology."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "Conversions_yr * Δconv * Margin_conv * A * C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Demand Forecasting -- Forecast error",
+      "summary": "Forecast error: -20% improvement. Forecast orders/supply by segment, geo, and time window.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "BCG -- Inventory & On-Shelf Availability Gains",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "digital-natives",
+      "region": "global",
+      "metric_definition": "Forecast error",
+      "methodology_note": "Master Repository benchmark for Digital Natives.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "digital-natives",
+        "Cash / Working Capital"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- BCG -- Inventory & On-Shelf Availability Gains."
+      },
+      "economicPattern": "Working Capital Improvement (Inventory / AR / AP Efficiency)",
+      "economicFormula": "AvgInv_$ * (ΔDOH/365) * WACC * A * C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Natural Language Insights -- Task completion time",
+      "summary": "Task completion time: -50% improvement. NLQ/LLM answers over governed metrics/datasets for business users.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "Microsoft -- GitHub Copilot Field Study",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "digital-natives",
+      "region": "global",
+      "metric_definition": "Task completion time",
+      "methodology_note": "Master Repository benchmark for Digital Natives.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "digital-natives",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Microsoft -- GitHub Copilot Field Study."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "Queries_yr * Δhrs_per_query * $/hr * A * C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Quality Data Assurance -- Data errors",
+      "summary": "Data errors: -70% improvement. Proactive monitoring to prevent bad data from breaking products/decisions.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "HBR -- Cost of Poor Data Quality",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "digital-natives",
+      "region": "global",
+      "metric_definition": "Data errors",
+      "methodology_note": "Master Repository benchmark for Digital Natives.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "digital-natives",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- HBR -- Cost of Poor Data Quality."
+      },
+      "economicPattern": "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
+      "economicFormula": "Incidents_yr * Δimpact_incident * A * C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Metrics Standardization -- Reporting discrepancies",
+      "summary": "Reporting discrepancies: -80% improvement. Establish a governed metrics layer for consistent reporting & experimentation.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "Medium -- Airbnb Minerva Metrics Platform",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "digital-natives",
+      "region": "global",
+      "metric_definition": "Reporting discrepancies",
+      "methodology_note": "Master Repository benchmark for Digital Natives.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "digital-natives",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Medium -- Airbnb Minerva Metrics Platform."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "Users_yr * Δhrs_recon_user * $/hr * A * C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Notebook Development -- Coding time",
+      "summary": "Coding time: -55% improvement. Productive, governed data science with assisted coding and dataset discovery.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "Microsoft -- GitHub Copilot Field Study",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "digital-natives",
+      "region": "global",
+      "metric_definition": "Coding time",
+      "methodology_note": "Master Repository benchmark for Digital Natives.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "digital-natives",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Microsoft -- GitHub Copilot Field Study."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "DS_hrs_saved_yr * $/hr * A * C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Behavioral Segmentation -- Revenue uplift",
+      "summary": "Revenue uplift: +10% improvement. Cluster users by behaviors/needs for targeting and product design.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/...personalization-right-or-wrong",
+      "publisher": "McKinsey -- Next in Personalization Report",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "digital-natives",
+      "region": "global",
+      "metric_definition": "Revenue uplift",
+      "methodology_note": "Master Repository benchmark for Digital Natives.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "digital-natives",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- Next in Personalization Report."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "TargetUsers_yr * Δconv * Margin_conv * A * C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Lifetime Value Modeling -- CLV:CAC ratio",
+      "summary": "CLV:CAC ratio: +20% improvement. Predict CLV by cohort/segment to guide acquisition/retention/pricing.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "HBS -- Customer Lifetime Value Course",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "digital-natives",
+      "region": "global",
+      "metric_definition": "CLV:CAC ratio",
+      "methodology_note": "Master Repository benchmark for Digital Natives.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "digital-natives",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- HBS -- Customer Lifetime Value Course."
+      },
+      "economicPattern": "Price Realization (Yield / Rate Optimization)",
+      "economicFormula": "Customers_yr * Δmargin_cust * A * C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Retention Optimization -- Churn rate",
+      "summary": "Churn rate: -15% improvement. Identify churn risk and optimize saves via promos, journeys, and product nudges.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/.../model-makeover-turning-a-telco-...",
+      "publisher": "McKinsey -- Telco Techco Transformation",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "digital-natives",
+      "region": "global",
+      "metric_definition": "Churn rate",
+      "methodology_note": "Master Repository benchmark for Digital Natives.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "digital-natives",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- Telco Techco Transformation."
+      },
+      "economicPattern": "Churn Reduction (Retention / LTV Protection)",
+      "economicFormula": "AtRisk_yr * Δretain * Margin_user_yr * A * C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Campaign Attribution -- Marketing ROI",
+      "summary": "Marketing ROI: +10% improvement. Attribute incremental outcomes to touchpoints across channels.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "Facebook -- Conversion Lift & MMM Guide",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "digital-natives",
+      "region": "global",
+      "metric_definition": "Marketing ROI",
+      "methodology_note": "Master Repository benchmark for Digital Natives.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "digital-natives",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Facebook -- Conversion Lift & MMM Guide."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "AdSpend_yr * Δmisalloc_pct * A * C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Data Marketplace -- Data monetization revenue",
+      "summary": "Data monetization revenue: +5% improvement. Package and exchange governed datasets/data apps with partners/customers.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "Snowflake -- Data Marketplace Impact Study",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "digital-natives",
+      "region": "global",
+      "metric_definition": "Data monetization revenue",
+      "methodology_note": "Master Repository benchmark for Digital Natives.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "digital-natives",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Snowflake -- Data Marketplace Impact Study."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "Deals_yr * ARPA * GM% * A * C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Data Governance -- Compliance cost",
+      "summary": "Compliance cost: -30% improvement. Define ownership/policies and automate compliance across data use.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "Harvard Business Review -- Cost of Poor Data Quality",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "digital-natives",
+      "region": "global",
+      "metric_definition": "Compliance cost",
+      "methodology_note": "Master Repository benchmark for Digital Natives.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "digital-natives",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Harvard Business Review -- Cost of Poor Data Quality."
+      },
+      "economicPattern": "Risk Avoidance (Compliance / Penalties / Outage Impact)",
+      "economicFormula": "Events_yr * Δviolation_rate * $cost_violation * A * C"
+    },
+    {
+      "kind": "kpi",
+      "title": "BI Dashboards -- Report delivery time",
+      "summary": "Report delivery time: -50% improvement. Curate KPI dashboards for execs and teams with trusted data.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "Amazon AWS -- QuickSight Embedded Analytics Case",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "digital-natives",
+      "region": "global",
+      "metric_definition": "Report delivery time",
+      "methodology_note": "Master Repository benchmark for Digital Natives.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "digital-natives",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Amazon AWS -- QuickSight Embedded Analytics Case."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "Viewers_yr * Δhrs_report_viewer * $/hr * A * C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Data Integrations -- Development time",
+      "summary": "Development time: -30% improvement. Build/reconcile governed pipelines/APIs with end-to-end observability.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Technology",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "digital-natives",
+      "region": "global",
+      "metric_definition": "Development time",
+      "methodology_note": "Master Repository benchmark for Digital Natives.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "digital-natives",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Technology."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "Pipelines_yr * Δhrs_per_pipeline * $/hr * A * C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Data Sharing -- Collaboration efficiency",
+      "summary": "Collaboration efficiency: +20% improvement. Productize privacy-preserving data collaborations in product ecosystems.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Technology",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "digital-natives",
+      "region": "global",
+      "metric_definition": "Collaboration efficiency",
+      "methodology_note": "Master Repository benchmark for Digital Natives.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "digital-natives",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Technology."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "PartnerRev_yr * GM% * A * C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Embedded Analytics -- User adoption rate",
+      "summary": "User adoption rate: +20% improvement. In-app dashboards/insights to drive product-led growth and adoption.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "Nucleus Research -- Embedded Analytics ROI Report",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "digital-natives",
+      "region": "global",
+      "metric_definition": "User adoption rate",
+      "methodology_note": "Master Repository benchmark for Digital Natives.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "digital-natives",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Nucleus Research -- Embedded Analytics ROI Report."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "ActiveUsers_yr * Δpaid_attach * Margin_ARPA_yr * A * C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Personalized UX -- Revenue uplift",
+      "summary": "Revenue uplift: +10% improvement. GenAI-augmented UX (search, chat, reco) tailored to user/task.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/...personalization-right-or-wrong",
+      "publisher": "McKinsey -- Next in Personalization Report",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "digital-natives",
+      "region": "global",
+      "metric_definition": "Revenue uplift",
+      "methodology_note": "Master Repository benchmark for Digital Natives.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "digital-natives",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- Next in Personalization Report."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "Tasks_yr * Δsuccess * Margin_task * A * C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Cybersecurity -- Security incidents",
+      "summary": "Security incidents: -80% improvement. Detect/contain threats and enforce least-privilege around data & ML.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "Verizon -- DBIR 2025 Highlights",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "digital-natives",
+      "region": "global",
+      "metric_definition": "Security incidents",
+      "methodology_note": "Master Repository benchmark for Digital Natives.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "digital-natives",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Verizon -- DBIR 2025 Highlights."
+      },
+      "economicPattern": "Risk Avoidance (Compliance / Penalties / Outage Impact)",
+      "economicFormula": "ExpLoss_yr * Δrisk_pct * A * C"
+    }
+  ]
+}

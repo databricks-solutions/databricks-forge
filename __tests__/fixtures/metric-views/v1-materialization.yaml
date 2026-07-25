@@ -1,0 +1,23 @@
+version: "1.1"
+source: samples.tpch.orders
+dimensions:
+  - name: order_month
+    expr: DATE_TRUNC('MONTH', o_orderdate)
+measures:
+  - name: total_revenue
+    expr: SUM(o_totalprice)
+  - name: order_count
+    expr: COUNT(1)
+materialization:
+  schedule: every 6 hours
+  mode: relaxed
+  materialized_views:
+    - name: full_model
+      type: unaggregated
+    - name: monthly_summary
+      type: aggregated
+      dimensions:
+        - order_month
+      measures:
+        - total_revenue
+        - order_count

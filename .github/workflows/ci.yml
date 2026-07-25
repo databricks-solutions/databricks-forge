@@ -1,0 +1,124 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Check public release hygiene
+        run: npm run check:public
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Security audit
+        run: npm audit --audit-level=critical
+
+      - name: Generate Prisma client
+        run: npx prisma generate
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Type check
+        run: npm run typecheck
+
+      - name: Run tests
+        run: npm test
+
+      - name: Run quality benchmark gate
+        run: npm run test:quality
+
+      - name: Build
+        run: |
+          export DATABASE_URL="postgresql://${BUILD_DB_USER}:${BUILD_DB_PASSWORD}@${BUILD_DB_HOST}:${BUILD_DB_PORT}/${BUILD_DB_NAME}"
+          npm run build
+        env:
+          BUILD_DB_USER: fake
+          BUILD_DB_PASSWORD: fake
+          BUILD_DB_HOST: localhost
+          BUILD_DB_PORT: "5432"
+          BUILD_DB_NAME: fake
+
+  migration:
+    # Real-PostgreSQL proof of the safe upgrade path: seed a legacy (pre-PR)
+    # schema with duplicate sequence/lineage rows, run the idempotent repair
+    # twice, then `prisma db push` and assert rows are preserved/deduped/
+    # backfilled and the new constraints are enforced. Secrets-free (fixed
+    # local credentials); the pgvector image supplies the `vector` extension
+    # the schema's embedding column needs.
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: pgvector/pgvector:pg16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: forge_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate Prisma client
+        run: npx prisma generate
+
+      - name: Run DB migration repair integration test
+        run: |
+          export TEST_DATABASE_URL="postgresql://${TEST_DB_USER}:${TEST_DB_PASSWORD}@${TEST_DB_HOST}:${TEST_DB_PORT}/${TEST_DB_NAME}"
+          npm run test:integration
+        env:
+          TEST_DB_USER: postgres
+          TEST_DB_PASSWORD: postgres
+          TEST_DB_HOST: localhost
+          TEST_DB_PORT: "5432"
+          TEST_DB_NAME: forge_test
+
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate Prisma client
+        run: npx prisma generate
+
+      - name: Install Playwright browsers
+        run: npm run test:e2e:install
+
+      - name: Run browser E2E (mocked APIs, no live backend)
+        run: npm run test:e2e
+        env:
+          FORGE_LOCAL_USER_EMAIL: "e2e@example.com"

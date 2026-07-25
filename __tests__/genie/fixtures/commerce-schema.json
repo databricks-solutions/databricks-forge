@@ -1,0 +1,9 @@
+{
+  "domainHint": "sales_orders",
+  "tables": [
+    "samples.commerce.orders",
+    "samples.commerce.order_items",
+    "samples.commerce.customers"
+  ],
+  "conversationSummary": "analyze revenue and customer retention"
+}

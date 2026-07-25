@@ -1,0 +1,10 @@
+{
+  "domainHint": "bakehouse",
+  "tables": [
+    "samples.bakehouse.sales_customers",
+    "samples.bakehouse.sales_transactions",
+    "samples.bakehouse.sales_suppliers",
+    "samples.bakehouse.sales_franchises"
+  ],
+  "conversationSummary": "build a genie space for customer insights"
+}

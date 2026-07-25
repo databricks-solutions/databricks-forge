@@ -1,0 +1,1044 @@
+{
+  "$schema": "master-repository-benchmarks-v2",
+  "industry": "energy-utilities",
+  "industryName": "Energy & Utilities",
+  "generatedAt": "2026-05-14T08:46:04.330Z",
+  "records": [
+    {
+      "kind": "kpi",
+      "title": "Workplace Safety -- Incident rate",
+      "summary": "Incident rate: -20% improvement. Proactively identify hazards and guide safe work with monitoring and procedures.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/energy-utilities",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Energy & Utilities",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "energy-utilities",
+      "region": "global",
+      "metric_definition": "Incident rate",
+      "methodology_note": "Master Repository benchmark for Energy & Utilities.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "energy-utilities",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Energy & Utilities."
+      },
+      "economicPattern": "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
+      "economicFormula": "ΔIncidents_yrCost_incidentAdopt*Capture"
+    },
+    {
+      "kind": "kpi",
+      "title": "Location & Condition Tracking of Installed Base -- Operating efficiency",
+      "summary": "Operating efficiency: +10% improvement. Real-time location/health view of assets to reduce lost assets and failures.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/energy-utilities",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Energy & Utilities",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "energy-utilities",
+      "region": "global",
+      "metric_definition": "Operating efficiency",
+      "methodology_note": "Master Repository benchmark for Energy & Utilities.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "energy-utilities",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Energy & Utilities."
+      },
+      "economicPattern": "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
+      "economicFormula": "ΔLost_assets_yrRepl_costAdopt*Capture"
+    },
+    {
+      "kind": "kpi",
+      "title": "Predictive Maintenance (Uptime & Cost) -- Unplanned downtime",
+      "summary": "Unplanned downtime: -40% improvement. Anticipate failures to cut downtime and optimize OPEX/CAPEX.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/operations/our-insights/manufacturing-analytics-unleashes-productivity-and-profitability",
+      "publisher": "McKinsey -- Manufacturing Analytics Unleashes Productivity and Profitability",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "energy-utilities",
+      "region": "global",
+      "metric_definition": "Unplanned downtime",
+      "methodology_note": "Master Repository benchmark for Energy & Utilities.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "energy-utilities",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- Manufacturing Analytics Unleashes Productivity and Profitability."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "ΔUnplanned_Opex_yrAdoptCapture"
+    },
+    {
+      "kind": "kpi",
+      "title": "Asset Lifecycle Management -- Operating efficiency",
+      "summary": "Operating efficiency: +10% improvement. Optimize plan/build/operate/retire decisions across lifecycle.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/energy-utilities",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Energy & Utilities",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "energy-utilities",
+      "region": "global",
+      "metric_definition": "Operating efficiency",
+      "methodology_note": "Master Repository benchmark for Energy & Utilities.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "energy-utilities",
+        "Cash / Working Capital"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Energy & Utilities."
+      },
+      "economicPattern": "Capex Avoidance (Infrastructure / Tool Consolidation)",
+      "economicFormula": "ΔAnnual_Capex_yrAdoptCapture"
+    },
+    {
+      "kind": "kpi",
+      "title": "Subsurface -- Operating efficiency",
+      "summary": "Operating efficiency: +10% improvement. Integrate seismic/well data to characterize reservoirs.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/energy-utilities",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Energy & Utilities",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "energy-utilities",
+      "region": "global",
+      "metric_definition": "Operating efficiency",
+      "methodology_note": "Master Repository benchmark for Energy & Utilities.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "energy-utilities",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Energy & Utilities."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "ΔProd_boe_yrNetback_boeP_success*Adopt"
+    },
+    {
+      "kind": "kpi",
+      "title": "Field Development -- Operating efficiency",
+      "summary": "Operating efficiency: +10% improvement. Select well locations, pads, and sequencing.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/energy-utilities",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Energy & Utilities",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "energy-utilities",
+      "region": "global",
+      "metric_definition": "Operating efficiency",
+      "methodology_note": "Master Repository benchmark for Energy & Utilities.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "energy-utilities",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Energy & Utilities."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "ΔProd_boe_yrNetback_boeP_success*Adopt"
+    },
+    {
+      "kind": "kpi",
+      "title": "Mining/Drilling & Completions -- Operating efficiency",
+      "summary": "Operating efficiency: +10% improvement. Optimize rate of penetration and NPT.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/energy-utilities",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Energy & Utilities",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "energy-utilities",
+      "region": "global",
+      "metric_definition": "Operating efficiency",
+      "methodology_note": "Master Repository benchmark for Energy & Utilities.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "energy-utilities",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Energy & Utilities."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "ΔRig_days_yrCost_per_rig_dayAdopt*Capture"
+    },
+    {
+      "kind": "kpi",
+      "title": "Production Optimization -- Operating efficiency",
+      "summary": "Operating efficiency: +10% improvement. Maximize throughput and efficiency within constraints.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/energy-utilities",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Energy & Utilities",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "energy-utilities",
+      "region": "global",
+      "metric_definition": "Operating efficiency",
+      "methodology_note": "Master Repository benchmark for Energy & Utilities.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "energy-utilities",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Energy & Utilities."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "ΔThroughput_yrMargin_per_unitAdopt*Capture"
+    },
+    {
+      "kind": "kpi",
+      "title": "Well Abandonment -- Operating efficiency",
+      "summary": "Operating efficiency: +10% improvement. Plan safe, compliant P&A and reporting.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/energy-utilities",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Energy & Utilities",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "energy-utilities",
+      "region": "global",
+      "metric_definition": "Operating efficiency",
+      "methodology_note": "Master Repository benchmark for Energy & Utilities.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "energy-utilities",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Energy & Utilities."
+      },
+      "economicPattern": "Risk Avoidance (Compliance / Penalties / Outage Impact)",
+      "economicFormula": "ΔFindings_yrCost_per_findingAdopt*Capture"
+    },
+    {
+      "kind": "kpi",
+      "title": "CO₂ Capture, EOR & Storage -- Operating efficiency",
+      "summary": "Operating efficiency: +10% improvement. Operate capture/injection with MMV to assure containment.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/energy-utilities",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Energy & Utilities",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "energy-utilities",
+      "region": "global",
+      "metric_definition": "Operating efficiency",
+      "methodology_note": "Master Repository benchmark for Energy & Utilities.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "energy-utilities",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Energy & Utilities."
+      },
+      "economicPattern": "Risk Avoidance (Compliance / Penalties / Outage Impact)",
+      "economicFormula": "ΔLeak_events_yrCost_per_leakAdopt*Capture"
+    },
+    {
+      "kind": "kpi",
+      "title": "H₂ Production & Storage -- Operating efficiency",
+      "summary": "Operating efficiency: +10% improvement. Monitor electrolyzers/compression/storage for yield and cost.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/energy-utilities",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Energy & Utilities",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "energy-utilities",
+      "region": "global",
+      "metric_definition": "Operating efficiency",
+      "methodology_note": "Master Repository benchmark for Energy & Utilities.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "energy-utilities",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Energy & Utilities."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "ΔkWh_yrElec_priceAdopt*Capture"
+    },
+    {
+      "kind": "kpi",
+      "title": "Design Innovation (turbines/panels/electrolyzers) -- Operating efficiency",
+      "summary": "Operating efficiency: +10% improvement. Accelerate design loops with models and generative ideation.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/energy-utilities",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Energy & Utilities",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "energy-utilities",
+      "region": "global",
+      "metric_definition": "Operating efficiency",
+      "methodology_note": "Master Repository benchmark for Energy & Utilities.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "energy-utilities",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Energy & Utilities."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "Eng_hours_saved_yrLoaded_rateAdopt*Capture"
+    },
+    {
+      "kind": "kpi",
+      "title": "Solar/Wind Optimization (angle/pitch/forecast) -- Energy yield",
+      "summary": "Energy yield: +5% improvement. Improve energy yield via tracking/pitch & forecasts.",
+      "source_type": "open_report",
+      "source_url": "https://www.nrel.gov/docs/fy20osti/76626.pdf",
+      "publisher": "NREL -- Solar/Wind AI Optimization Results",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "energy-utilities",
+      "region": "global",
+      "metric_definition": "Energy yield",
+      "methodology_note": "Master Repository benchmark for Energy & Utilities.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "energy-utilities",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- NREL -- Solar/Wind AI Optimization Results."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "ΔMWh_yrMargin_per_MWhAdopt*Capture"
+    },
+    {
+      "kind": "kpi",
+      "title": "H₂ Electrolysis Optimization (T,P, Density) -- Operating efficiency",
+      "summary": "Operating efficiency: +10% improvement. Optimize setpoints vs. degradation and LCOH.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/energy-utilities",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Energy & Utilities",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "energy-utilities",
+      "region": "global",
+      "metric_definition": "Operating efficiency",
+      "methodology_note": "Master Repository benchmark for Energy & Utilities.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "energy-utilities",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Energy & Utilities."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "KgH2_yrΔkWh_per_kgElec_price*Adopt"
+    },
+    {
+      "kind": "kpi",
+      "title": "Nuclear Safety -- Incident rate",
+      "summary": "Incident rate: -20% improvement. Monitor safety margins and cyber/ops compliance.",
+      "source_type": "open_report",
+      "source_url": "https://www.iaea.org/ai-nuclear-safety-report",
+      "publisher": "IAEA -- AI for Nuclear Safety Applications",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "energy-utilities",
+      "region": "global",
+      "metric_definition": "Incident rate",
+      "methodology_note": "Master Repository benchmark for Energy & Utilities.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "energy-utilities",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- IAEA -- AI for Nuclear Safety Applications."
+      },
+      "economicPattern": "Risk Avoidance (Compliance / Penalties / Outage Impact)",
+      "economicFormula": "ΔSafety_events_yrCost_per_eventAdopt*Capture"
+    },
+    {
+      "kind": "kpi",
+      "title": "Asset End-of-Life Mgmt -- Operating efficiency",
+      "summary": "Operating efficiency: +10% improvement. Plan rehab/retire/replace with cost, risk, and ESG.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/energy-utilities",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Energy & Utilities",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "energy-utilities",
+      "region": "global",
+      "metric_definition": "Operating efficiency",
+      "methodology_note": "Master Repository benchmark for Energy & Utilities.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "energy-utilities",
+        "Cash / Working Capital"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Energy & Utilities."
+      },
+      "economicPattern": "Capex Avoidance (Infrastructure / Tool Consolidation)",
+      "economicFormula": "ΔAnnual_Capex_yrAdoptCapture"
+    },
+    {
+      "kind": "kpi",
+      "title": "Load Balancing / Smart Metering -- Energy consumption",
+      "summary": "Energy consumption: -15% improvement. DR/load analytics and volt/VAR optimization.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/energy-utilities",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Energy & Utilities",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "energy-utilities",
+      "region": "global",
+      "metric_definition": "Energy consumption",
+      "methodology_note": "Master Repository benchmark for Energy & Utilities.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "energy-utilities",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Energy & Utilities."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "ΔPeak_MWCap_cost_per_MWyrAdopt*Capture"
+    },
+    {
+      "kind": "kpi",
+      "title": "Wildfire Protection -- Incident rate",
+      "summary": "Incident rate: -25% improvement. Predict and mitigate ignition risk and PSPS.",
+      "source_type": "open_report",
+      "source_url": "https://www.epri.com/research/products/000000003002017002",
+      "publisher": "EPRI -- AI in Wildfire Risk Mitigation",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "energy-utilities",
+      "region": "global",
+      "metric_definition": "Incident rate",
+      "methodology_note": "Master Repository benchmark for Energy & Utilities.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "energy-utilities",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- EPRI -- AI in Wildfire Risk Mitigation."
+      },
+      "economicPattern": "Risk Avoidance (Compliance / Penalties / Outage Impact)",
+      "economicFormula": "ΔIgnitions_yrCost_per_ignitionAdopt*Capture"
+    },
+    {
+      "kind": "kpi",
+      "title": "Grid Modernization / Simulation (EV planning) -- Operating efficiency",
+      "summary": "Operating efficiency: +10% improvement. Simulate DER/EV impacts and control strategies.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/energy-utilities",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Energy & Utilities",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "energy-utilities",
+      "region": "global",
+      "metric_definition": "Operating efficiency",
+      "methodology_note": "Master Repository benchmark for Energy & Utilities.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "energy-utilities",
+        "Cash / Working Capital"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Energy & Utilities."
+      },
+      "economicPattern": "Capex Avoidance (Infrastructure / Tool Consolidation)",
+      "economicFormula": "ΔPlanned_Capex_yrAdoptCapture"
+    },
+    {
+      "kind": "kpi",
+      "title": "Energy Mix Management -- Operating efficiency",
+      "summary": "Operating efficiency: +10% improvement. Optimize portfolio with high VRE shares.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/energy-utilities",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Energy & Utilities",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "energy-utilities",
+      "region": "global",
+      "metric_definition": "Operating efficiency",
+      "methodology_note": "Master Repository benchmark for Energy & Utilities.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "energy-utilities",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Energy & Utilities."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "ΔImbalance_cost_yrAdoptCapture"
+    },
+    {
+      "kind": "kpi",
+      "title": "Skill-Based Scheduling -- FTE productivity",
+      "summary": "FTE productivity: +20% improvement. Assign the right crews to the right jobs.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/operations/our-insights/smart-scheduling-how-to-solve-workforce-planning-challenges-with-ai",
+      "publisher": "McKinsey -- Smart Scheduling with AI",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "energy-utilities",
+      "region": "global",
+      "metric_definition": "FTE productivity",
+      "methodology_note": "Master Repository benchmark for Energy & Utilities.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "energy-utilities",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- Smart Scheduling with AI."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "ΔOvertime_hours_yrOT_premium_per_hrAdopt*Capture"
+    },
+    {
+      "kind": "kpi",
+      "title": "Field / Onsite Ops Assistance -- FTE productivity",
+      "summary": "FTE productivity: +20% improvement. Remote assist and work guidance to boost first-time-fix.",
+      "source_type": "open_report",
+      "source_url": "https://www.servicemax.com/...",
+      "publisher": "ServiceMax -- AI Field Service Benchmark",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "energy-utilities",
+      "region": "global",
+      "metric_definition": "FTE productivity",
+      "methodology_note": "Master Repository benchmark for Energy & Utilities.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "energy-utilities",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- ServiceMax -- AI Field Service Benchmark."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "ΔRepeat_visits_yrCost_per_visitAdopt*Capture"
+    },
+    {
+      "kind": "kpi",
+      "title": "Toolkit / Spares Planning -- Inventory holding days",
+      "summary": "Inventory holding days: -20% improvement. Optimize multi-echelon inventory for uptime.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/energy-utilities",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Energy & Utilities",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "energy-utilities",
+      "region": "global",
+      "metric_definition": "Inventory holding days",
+      "methodology_note": "Master Repository benchmark for Energy & Utilities.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "energy-utilities",
+        "Cash / Working Capital"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Energy & Utilities."
+      },
+      "economicPattern": "Working Capital Improvement (Inventory / AR / AP Efficiency)",
+      "economicFormula": "ΔAvg_inv_$Carry_rateAdopt*Capture"
+    },
+    {
+      "kind": "kpi",
+      "title": "Multi-Stop Route Planning -- Travel time",
+      "summary": "Travel time: -15% improvement. Reduce travel/idle time for crews/inspectors.",
+      "source_type": "open_report",
+      "source_url": "https://developers.google.com/optimization/routing/vrp",
+      "publisher": "Google -- Fleet Routing API Case Study",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "energy-utilities",
+      "region": "global",
+      "metric_definition": "Travel time",
+      "methodology_note": "Master Repository benchmark for Energy & Utilities.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "energy-utilities",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Google -- Fleet Routing API Case Study."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "ΔMiles_yrCost_per_mileAdopt*Capture"
+    },
+    {
+      "kind": "kpi",
+      "title": "Sustainability Reports (Scope 1/2/3) -- FTE productivity",
+      "summary": "FTE productivity: +30% improvement. Automate auditable ESG disclosures.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/featured-insights/mckinsey-explainers/how-generative-ai-is-changing-the-technology-ecosystem",
+      "publisher": "McKinsey -- Generative AI and the Future of Work",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "energy-utilities",
+      "region": "global",
+      "metric_definition": "FTE productivity",
+      "methodology_note": "Master Repository benchmark for Energy & Utilities.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "energy-utilities",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- Generative AI and the Future of Work."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "Reporting_hours_saved_yrLoaded_rateAdopt*Capture"
+    },
+    {
+      "kind": "kpi",
+      "title": "Regulation & Compliance Mgmt -- Operating efficiency",
+      "summary": "Operating efficiency: +10% improvement. Track obligations, evidence, and controls.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/energy-utilities",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Energy & Utilities",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "energy-utilities",
+      "region": "global",
+      "metric_definition": "Operating efficiency",
+      "methodology_note": "Master Repository benchmark for Energy & Utilities.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "energy-utilities",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Energy & Utilities."
+      },
+      "economicPattern": "Risk Avoidance (Compliance / Penalties / Outage Impact)",
+      "economicFormula": "ΔNoncomp_events_yrCost_per_eventAdopt*Capture"
+    },
+    {
+      "kind": "kpi",
+      "title": "Internal & External Filings -- FTE productivity",
+      "summary": "FTE productivity: +30% improvement. Generate filings (permits, ESG, rate cases).",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/featured-insights/mckinsey-explainers/how-generative-ai-is-changing-the-technology-ecosystem",
+      "publisher": "McKinsey -- Generative AI and the Future of Work",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "energy-utilities",
+      "region": "global",
+      "metric_definition": "FTE productivity",
+      "methodology_note": "Master Repository benchmark for Energy & Utilities.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "energy-utilities",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- Generative AI and the Future of Work."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "Filing_hours_saved_yrLoaded_rateAdopt*Capture"
+    },
+    {
+      "kind": "kpi",
+      "title": "Supply Chain -- Cost per unit",
+      "summary": "Cost per unit: -15% improvement. Source spares/services with risk and cost optimization.",
+      "source_type": "open_report",
+      "source_url": "https://aimagazine.com/articles/how-ai-cuts-procurement-costs",
+      "publisher": "BCG -- How AI Cuts Procurement Costs for Retailers",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "energy-utilities",
+      "region": "global",
+      "metric_definition": "Cost per unit",
+      "methodology_note": "Master Repository benchmark for Energy & Utilities.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "energy-utilities",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- BCG -- How AI Cuts Procurement Costs for Retailers."
+      },
+      "economicPattern": "Price Realization (Yield / Rate Optimization)",
+      "economicFormula": "Addressable_spend_yr*ΔPrice_%AdoptCapture"
+    },
+    {
+      "kind": "kpi",
+      "title": "Functions (HR/Finance/Legal/Contracts/IT) -- FTE productivity",
+      "summary": "FTE productivity: +30% improvement. Shared-services analytics and copilots for back-office.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/featured-insights/mckinsey-explainers/how-generative-ai-is-changing-the-technology-ecosystem",
+      "publisher": "McKinsey -- Generative AI and the Future of Work",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "energy-utilities",
+      "region": "global",
+      "metric_definition": "FTE productivity",
+      "methodology_note": "Master Repository benchmark for Energy & Utilities.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "energy-utilities",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- Generative AI and the Future of Work."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "Backoffice_hours_saved_yrLoaded_rateAdopt*Capture"
+    },
+    {
+      "kind": "kpi",
+      "title": "Real-time Demand-Supply Dynamics & Risk -- Forecast accuracy",
+      "summary": "Forecast accuracy: +15% improvement. Nowcasts of demand/supply and VaR.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/energy-utilities",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Energy & Utilities",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "energy-utilities",
+      "region": "global",
+      "metric_definition": "Forecast accuracy",
+      "methodology_note": "Master Repository benchmark for Energy & Utilities.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "energy-utilities",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Energy & Utilities."
+      },
+      "economicPattern": "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
+      "economicFormula": "ΔSettlement_loss_yrAdoptCapture"
+    },
+    {
+      "kind": "kpi",
+      "title": "Transaction Management -- Operating efficiency",
+      "summary": "Operating efficiency: +10% improvement. Contracting, billing, settlements workflow.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/energy-utilities",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Energy & Utilities",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "energy-utilities",
+      "region": "global",
+      "metric_definition": "Operating efficiency",
+      "methodology_note": "Master Repository benchmark for Energy & Utilities.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "energy-utilities",
+        "Cash / Working Capital"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Energy & Utilities."
+      },
+      "economicPattern": "Working Capital Improvement (Inventory / AR / AP Efficiency)",
+      "economicFormula": "(Credit_rev_yr/365)ΔDSO_daysAdopt*Capture"
+    },
+    {
+      "kind": "kpi",
+      "title": "Data Providers / Marketplaces / Platforms -- Operating efficiency",
+      "summary": "Operating efficiency: +10% improvement. Integrate external data suppliers at scale.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/energy-utilities",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Energy & Utilities",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "energy-utilities",
+      "region": "global",
+      "metric_definition": "Operating efficiency",
+      "methodology_note": "Master Repository benchmark for Energy & Utilities.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "energy-utilities",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Energy & Utilities."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "ΔData_Opex_yrAdoptCapture"
+    },
+    {
+      "kind": "kpi",
+      "title": "Contract Management -- Operating efficiency",
+      "summary": "Operating efficiency: +10% improvement. Clause/RFP/renewal analytics and risk.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/energy-utilities",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Energy & Utilities",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "energy-utilities",
+      "region": "global",
+      "metric_definition": "Operating efficiency",
+      "methodology_note": "Master Repository benchmark for Energy & Utilities.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "energy-utilities",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Energy & Utilities."
+      },
+      "economicPattern": "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
+      "economicFormula": "Contract_value_yr*ΔLeakage_%AdoptCapture"
+    },
+    {
+      "kind": "kpi",
+      "title": "Customer 360 (journey & billing accuracy) -- Conversion rate",
+      "summary": "Conversion rate: +10% improvement. Unify customer data for CX, retention, and billing.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/growth-marketing-and-sales/our-insights/the-value-of-getting-personalization-right-or-wrong-is-multiplying",
+      "publisher": "McKinsey -- The value of getting personalization right—or wrong—is multiplying",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "energy-utilities",
+      "region": "global",
+      "metric_definition": "Conversion rate",
+      "methodology_note": "Master Repository benchmark for Energy & Utilities.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "energy-utilities",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The value of getting personalization right—or wrong—is multiplying."
+      },
+      "economicPattern": "Churn Reduction (Retention / LTV Protection)",
+      "economicFormula": "Cust_baseΔChurn_%GM_per_cust_yrAdoptCapture"
+    },
+    {
+      "kind": "kpi",
+      "title": "Contact Center Automation -- Call volume (deflected)",
+      "summary": "Call volume (deflected): -40% improvement. Self-service and agent-assist copilots.",
+      "source_type": "open_report",
+      "source_url": "https://www.gartner.com/en/newsroom/press-releases/2025-03-05-gartner-predicts-agentic-ai-autonomously-resolve-80-percent-customer-service",
+      "publisher": "Gartner -- Agentic AI in Customer Service (Press Release)",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "energy-utilities",
+      "region": "global",
+      "metric_definition": "Call volume (deflected)",
+      "methodology_note": "Master Repository benchmark for Energy & Utilities.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "energy-utilities",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Gartner -- Agentic AI in Customer Service (Press Release)."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "(Deflected_contacts_yr*Cost_per_contact)AdoptCapture"
+    },
+    {
+      "kind": "kpi",
+      "title": "Data Sovereignty & Privacy -- Operating efficiency",
+      "summary": "Operating efficiency: +10% improvement. Enforce residency, consent, and least-privilege.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/energy-utilities",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Energy & Utilities",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "energy-utilities",
+      "region": "global",
+      "metric_definition": "Operating efficiency",
+      "methodology_note": "Master Repository benchmark for Energy & Utilities.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "energy-utilities",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Energy & Utilities."
+      },
+      "economicPattern": "Risk Avoidance (Compliance / Penalties / Outage Impact)",
+      "economicFormula": "ΔPrivacy_incidents_yrCost_per_incidentAdopt*Capture"
+    },
+    {
+      "kind": "kpi",
+      "title": "ICS Security (Safety & Integrity) -- False positive rate",
+      "summary": "False positive rate: -20% improvement. Detect anomalous OT behavior and harden configurations.",
+      "source_type": "open_report",
+      "source_url": "https://csrc.nist.gov/publications/detail/sp/800-82/rev-3/final",
+      "publisher": "NIST -- SP 800-82 Rev.3 Guide to ICS Security",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "energy-utilities",
+      "region": "global",
+      "metric_definition": "False positive rate",
+      "methodology_note": "Master Repository benchmark for Energy & Utilities.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "energy-utilities",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- NIST -- SP 800-82 Rev.3 Guide to ICS Security."
+      },
+      "economicPattern": "Risk Avoidance (Compliance / Penalties / Outage Impact)",
+      "economicFormula": "ΔOT_incidents_yrCost_per_incidentAdopt*Capture"
+    }
+  ]
+}

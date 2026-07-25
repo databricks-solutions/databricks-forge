@@ -1,0 +1,904 @@
+{
+  "$schema": "master-repository-benchmarks-v2",
+  "industry": "consumer-goods",
+  "industryName": "Consumer Goods",
+  "generatedAt": "2026-05-14T08:46:04.335Z",
+  "records": [
+    {
+      "kind": "kpi",
+      "title": "Behavioral analytics -- Conversion rate",
+      "summary": "Conversion rate: +10% improvement. Understand journeys and friction to grow conversion and retention.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/consumer-goods",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Consumer Goods",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "consumer-goods",
+      "region": "global",
+      "metric_definition": "Conversion rate",
+      "methodology_note": "Master Repository benchmark for Consumer Goods.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "consumer-goods",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Consumer Goods."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "(Digital sessions/yr × ΔCVR × AOV × GM% × Adoption% × Capture%)"
+    },
+    {
+      "kind": "kpi",
+      "title": "Trend monitoring -- Operating efficiency",
+      "summary": "Operating efficiency: +10% improvement. Early detection of category, price, and seasonality shifts.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/consumer-goods",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Consumer Goods",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "consumer-goods",
+      "region": "global",
+      "metric_definition": "Operating efficiency",
+      "methodology_note": "Master Repository benchmark for Consumer Goods.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "consumer-goods",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Consumer Goods."
+      },
+      "economicPattern": "Price Realization (Yield / Rate Optimization)",
+      "economicFormula": "(Category sales$/yr × ΔGM% from earlier actions × Adoption% × Capture%)"
+    },
+    {
+      "kind": "kpi",
+      "title": "Shopper insights -- Operating efficiency",
+      "summary": "Operating efficiency: +10% improvement. Build segment, need-state, and occasion understanding to inform 4P.",
+      "source_type": "open_report",
+      "source_url": "https://nielseniq.com/...",
+      "publisher": "NielsenIQ -- 2025 CPG Analytics Guidance",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "consumer-goods",
+      "region": "global",
+      "metric_definition": "Operating efficiency",
+      "methodology_note": "Master Repository benchmark for Consumer Goods.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "consumer-goods",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- NielsenIQ -- 2025 CPG Analytics Guidance."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "(Targeted buyers/yr × ΔConv% × AOV × GM% × Adoption% × Capture%)"
+    },
+    {
+      "kind": "kpi",
+      "title": "Customer data management -- Operating efficiency",
+      "summary": "Operating efficiency: +10% improvement. Create governed 360° profiles for analytics/activation.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/consumer-goods",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Consumer Goods",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "consumer-goods",
+      "region": "global",
+      "metric_definition": "Operating efficiency",
+      "methodology_note": "Master Repository benchmark for Consumer Goods.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "consumer-goods",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Consumer Goods."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "(Campaigns/yr × Avoided rework hrs/campaign × $/hr × Adoption%)"
+    },
+    {
+      "kind": "kpi",
+      "title": "Brand Equity -- Operating efficiency",
+      "summary": "Operating efficiency: +10% improvement. Track equity, consideration, and sentiment to guide investment.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/consumer-goods",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Consumer Goods",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "consumer-goods",
+      "region": "global",
+      "metric_definition": "Operating efficiency",
+      "methodology_note": "Master Repository benchmark for Consumer Goods.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "consumer-goods",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Consumer Goods."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "(Brand spend$/yr × Avoided low-ROI spend% × Adoption% × Capture%)"
+    },
+    {
+      "kind": "kpi",
+      "title": "Marketing Mix -- Operating efficiency",
+      "summary": "Operating efficiency: +10% improvement. Quantify channel ROI and optimize 4P budgets.",
+      "source_type": "open_report",
+      "source_url": "https://facebookexperimental.github.io/Robyn/",
+      "publisher": "Google -- LightweightMMM Results",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "consumer-goods",
+      "region": "global",
+      "metric_definition": "Operating efficiency",
+      "methodology_note": "Master Repository benchmark for Consumer Goods.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "consumer-goods",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Google -- LightweightMMM Results."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "(Total media spend$/yr × ROI lift% × Adoption% × Capture%)"
+    },
+    {
+      "kind": "kpi",
+      "title": "Competitive Intelligence -- Operating efficiency",
+      "summary": "Operating efficiency: +10% improvement. Monitor competitor price, promo, and assortment changes.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/consumer-goods",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Consumer Goods",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "consumer-goods",
+      "region": "global",
+      "metric_definition": "Operating efficiency",
+      "methodology_note": "Master Repository benchmark for Consumer Goods.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "consumer-goods",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Consumer Goods."
+      },
+      "economicPattern": "Price Realization (Yield / Rate Optimization)",
+      "economicFormula": "(At-risk sales$/yr × Retained margin$/sales × Adoption% × Capture%)"
+    },
+    {
+      "kind": "kpi",
+      "title": "Collaborative performance management -- Operating efficiency",
+      "summary": "Operating efficiency: +10% improvement. Shared scorecards with retailers/suppliers to drive JBP outcomes.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/consumer-goods",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Consumer Goods",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "consumer-goods",
+      "region": "global",
+      "metric_definition": "Operating efficiency",
+      "methodology_note": "Master Repository benchmark for Consumer Goods.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "consumer-goods",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Consumer Goods."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "(Joint plans/yr × Meeting hrs saved/plan × $/hr × Adoption%)"
+    },
+    {
+      "kind": "kpi",
+      "title": "RMN effectiveness -- Gross margin",
+      "summary": "Gross margin: +5% improvement. Prove incrementality of retail media and optimize placements.",
+      "source_type": "open_report",
+      "source_url": "https://www.bcg.com/publications/2025/retail-media-network-insights",
+      "publisher": "BCG -- Retail Media Insights 2025",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "consumer-goods",
+      "region": "global",
+      "metric_definition": "Gross margin",
+      "methodology_note": "Master Repository benchmark for Consumer Goods.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "consumer-goods",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- BCG -- Retail Media Insights 2025."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "(RMN spend$/yr × Incremental profit rate × Adoption% × Capture%)"
+    },
+    {
+      "kind": "kpi",
+      "title": "Candidate Screening -- Time-to-hire",
+      "summary": "Time-to-hire: -20% improvement. Prioritize applicants while controlling bias and compliance.",
+      "source_type": "open_report",
+      "source_url": "https://www.shrm.org/...",
+      "publisher": "SHRM -- AI Hiring and Time-to-Fill Study",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "consumer-goods",
+      "region": "global",
+      "metric_definition": "Time-to-hire",
+      "methodology_note": "Master Repository benchmark for Consumer Goods.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "consumer-goods",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- SHRM -- AI Hiring and Time-to-Fill Study."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "(Applicants/yr × Minutes saved/app × $/min × Adoption%)"
+    },
+    {
+      "kind": "kpi",
+      "title": "Workforce Scheduling & Onboarding -- FTE productivity",
+      "summary": "FTE productivity: +20% improvement. Optimize labor to demand; automate onboarding tasks.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/operations/our-insights/smart-scheduling-how-to-solve-workforce-planning-challenges-with-ai",
+      "publisher": "McKinsey -- Smart Scheduling with AI",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "consumer-goods",
+      "region": "global",
+      "metric_definition": "FTE productivity",
+      "methodology_note": "Master Repository benchmark for Consumer Goods.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "consumer-goods",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- Smart Scheduling with AI."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "(Labor hrs/yr × ΔOvertime% × OT premium$/hr × Adoption% × Capture%)"
+    },
+    {
+      "kind": "kpi",
+      "title": "Employee Self Service HR -- FTE productivity",
+      "summary": "FTE productivity: +30% improvement. Employee-facing assistants for leave, benefits, pay, and policy Q&A.",
+      "source_type": "open_report",
+      "source_url": "https://www.accenture.com/us-en/insights/technology/generative-ai-future-of-work",
+      "publisher": "Accenture -- GenAI at Work Survey",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "consumer-goods",
+      "region": "global",
+      "metric_definition": "FTE productivity",
+      "methodology_note": "Master Repository benchmark for Consumer Goods.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "consumer-goods",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Accenture -- GenAI at Work Survey."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "(HR tickets/yr × Deflection% × Cost/ticket × Adoption% × Capture%)"
+    },
+    {
+      "kind": "kpi",
+      "title": "Employee Lifecycle -- Churn rate",
+      "summary": "Churn rate: -15% improvement. Attrition, performance, and mobility analytics.",
+      "source_type": "open_report",
+      "source_url": "https://www.pecan.ai/blog/how-why-churn-analysis-prediction",
+      "publisher": "Pecan AI -- How and Why to Calculate and Predict Customer Churn",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "consumer-goods",
+      "region": "global",
+      "metric_definition": "Churn rate",
+      "methodology_note": "Master Repository benchmark for Consumer Goods.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "consumer-goods",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Pecan AI -- How and Why to Calculate and Predict Customer Churn."
+      },
+      "economicPattern": "Churn Reduction (Retention / LTV Protection)",
+      "economicFormula": "(Employees at-risk/yr × ΔAttrition% × Replacement cost$/emp × Adoption% × Capture%)"
+    },
+    {
+      "kind": "kpi",
+      "title": "Onboarding & knowledge management -- Time-to-productivity",
+      "summary": "Time-to-productivity: -50% improvement. Speed time-to-productivity with tailored learning and SOP retrieval.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-2024",
+      "publisher": "McKinsey -- The State of AI 2024 (GenAI and Onboarding)",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "consumer-goods",
+      "region": "global",
+      "metric_definition": "Time-to-productivity",
+      "methodology_note": "Master Repository benchmark for Consumer Goods.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "consumer-goods",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The State of AI 2024 (GenAI and Onboarding)."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "(New hires/yr × Days to productivity saved × $ value/day × Adoption% × Capture%)"
+    },
+    {
+      "kind": "kpi",
+      "title": "Internal knowledge agents -- FTE productivity",
+      "summary": "FTE productivity: +30% improvement. Tool-using agents that fetch data, draft docs, and execute tasks.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/industries/technology-media-and-telecommunications/our-insights/the-economic-potential-of-generative-ai",
+      "publisher": "McKinsey -- The economic potential of generative AI",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "consumer-goods",
+      "region": "global",
+      "metric_definition": "FTE productivity",
+      "methodology_note": "Master Repository benchmark for Consumer Goods.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "consumer-goods",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The economic potential of generative AI."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "(Tasks/yr × Minutes saved/task × $/min × Adoption% × Capture%)"
+    },
+    {
+      "kind": "kpi",
+      "title": "AI-driven BI -- FTE productivity",
+      "summary": "FTE productivity: +30% improvement. Natural-language BI, auto-insights, and anomaly detection.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/industries/technology-media-and-telecommunications/our-insights/the-economic-potential-of-generative-ai",
+      "publisher": "McKinsey -- The economic potential of generative AI",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "consumer-goods",
+      "region": "global",
+      "metric_definition": "FTE productivity",
+      "methodology_note": "Master Repository benchmark for Consumer Goods.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "consumer-goods",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The economic potential of generative AI."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "(Analyst hrs/yr × %hrs avoided × $/hr × Adoption% × Capture%)"
+    },
+    {
+      "kind": "kpi",
+      "title": "IT augmentation/automation -- FTE productivity",
+      "summary": "FTE productivity: +30% improvement. Automate IT ops, ticket triage, data pipelines, and testing.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/industries/technology-media-and-telecommunications/our-insights/the-economic-potential-of-generative-ai",
+      "publisher": "McKinsey -- The economic potential of generative AI",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "consumer-goods",
+      "region": "global",
+      "metric_definition": "FTE productivity",
+      "methodology_note": "Master Repository benchmark for Consumer Goods.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "consumer-goods",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The economic potential of generative AI."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "(IT tickets/yr × Deflection% × Cost/ticket × Adoption% × Capture%)"
+    },
+    {
+      "kind": "kpi",
+      "title": "Supplier Risk monitoring -- Incident rate",
+      "summary": "Incident rate: -30% improvement. Multi-tier risk scoring and early-warning alerts.",
+      "source_type": "open_report",
+      "source_url": "https://www.resilinc.com/annual-report-2024",
+      "publisher": "Resilinc -- Supply Chain Disruption Stats",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "consumer-goods",
+      "region": "global",
+      "metric_definition": "Incident rate",
+      "methodology_note": "Master Repository benchmark for Consumer Goods.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "consumer-goods",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Resilinc -- Supply Chain Disruption Stats."
+      },
+      "economicPattern": "Risk Avoidance (Compliance / Penalties / Outage Impact)",
+      "economicFormula": "(Disruption events/yr × Avg impact$/event × Prevented% × Adoption% × Capture%)"
+    },
+    {
+      "kind": "kpi",
+      "title": "Logistics & Transport Risk -- Delay incidents",
+      "summary": "Delay incidents: -25% improvement. Predict delays, spoilage, and lane disruptions; mitigate proactively.",
+      "source_type": "open_report",
+      "source_url": "https://www2.deloitte.com/...",
+      "publisher": "Deloitte -- Future of Freight 2025",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "consumer-goods",
+      "region": "global",
+      "metric_definition": "Delay incidents",
+      "methodology_note": "Master Repository benchmark for Consumer Goods.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "consumer-goods",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Deloitte -- Future of Freight 2025."
+      },
+      "economicPattern": "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
+      "economicFormula": "(Shipments/yr × Delay/spoilage rate Δ × Cost/incident × Adoption% × Capture%)"
+    },
+    {
+      "kind": "kpi",
+      "title": "Network simulation -- Operating efficiency",
+      "summary": "Operating efficiency: +10% improvement. Digital twin for supply planning, capacity and policy testing.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/consumer-goods",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Consumer Goods",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "consumer-goods",
+      "region": "global",
+      "metric_definition": "Operating efficiency",
+      "methodology_note": "Master Repository benchmark for Consumer Goods.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "consumer-goods",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Consumer Goods."
+      },
+      "economicPattern": "Risk Avoidance (Compliance / Penalties / Outage Impact)",
+      "economicFormula": "(Avoided expediting$/yr + Avoided stockout penalty$/yr) × Adoption% × Capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Regulatory compliance -- Operating efficiency",
+      "summary": "Operating efficiency: +10% improvement. Demonstrate lawful basis, lineage, DSR fulfillment, and retention.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/consumer-goods",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Consumer Goods",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "consumer-goods",
+      "region": "global",
+      "metric_definition": "Operating efficiency",
+      "methodology_note": "Master Repository benchmark for Consumer Goods.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "consumer-goods",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Consumer Goods."
+      },
+      "economicPattern": "Risk Avoidance (Compliance / Penalties / Outage Impact)",
+      "economicFormula": "(Compliance cases/yr × Cost/case Δ × Adoption% × Capture%)"
+    },
+    {
+      "kind": "kpi",
+      "title": "Demand forecasting & planning -- Forecast accuracy",
+      "summary": "Forecast accuracy: +15% improvement. Improve forecast accuracy and consensus planning.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/consumer-goods",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Consumer Goods",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "consumer-goods",
+      "region": "global",
+      "metric_definition": "Forecast accuracy",
+      "methodology_note": "Master Repository benchmark for Consumer Goods.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "consumer-goods",
+        "Cash / Working Capital"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Consumer Goods."
+      },
+      "economicPattern": "Working Capital Improvement (Inventory / AR / AP Efficiency)",
+      "economicFormula": "(COGS$/yr × Inventory error Δ% × Carry cost% × Adoption% × Capture%)"
+    },
+    {
+      "kind": "kpi",
+      "title": "Inventory control & optimization -- Out-of-stock rate",
+      "summary": "Out-of-stock rate: -10% improvement. Set targets, safety stock, and replenishment to cut OOS/DOH.",
+      "source_type": "open_report",
+      "source_url": "https://www2.deloitte.com/...",
+      "publisher": "Deloitte -- Smart Inventory Optimization in CPG",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "consumer-goods",
+      "region": "global",
+      "metric_definition": "Out-of-stock rate",
+      "methodology_note": "Master Repository benchmark for Consumer Goods.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "consumer-goods",
+        "Cash / Working Capital"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Deloitte -- Smart Inventory Optimization in CPG."
+      },
+      "economicPattern": "Working Capital Improvement (Inventory / AR / AP Efficiency)",
+      "economicFormula": "(Avg inventory$ × DOH reduction% × Carry cost% × Adoption% × Capture%)"
+    },
+    {
+      "kind": "kpi",
+      "title": "SAP Collaboration -- Operating efficiency",
+      "summary": "Operating efficiency: +10% improvement. Integrate ERP signals with analytics and workflows.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/consumer-goods",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Consumer Goods",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "consumer-goods",
+      "region": "global",
+      "metric_definition": "Operating efficiency",
+      "methodology_note": "Master Repository benchmark for Consumer Goods.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "consumer-goods",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Consumer Goods."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "(Process cycles/yr × Minutes saved/cycle × $/min × Adoption% × Capture%)"
+    },
+    {
+      "kind": "kpi",
+      "title": "Supplier data sharing & collaboration -- Operating efficiency",
+      "summary": "Operating efficiency: +10% improvement. Share forecasts, quality, and performance securely with suppliers.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/consumer-goods",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Consumer Goods",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "consumer-goods",
+      "region": "global",
+      "metric_definition": "Operating efficiency",
+      "methodology_note": "Master Repository benchmark for Consumer Goods.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "consumer-goods",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Consumer Goods."
+      },
+      "economicPattern": "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
+      "economicFormula": "(Supplier disputes/yr × Cost/dispute Δ × Adoption% × Capture%)"
+    },
+    {
+      "kind": "kpi",
+      "title": "Data sharing & monetization -- Gross margin",
+      "summary": "Gross margin: +5% improvement. Package privacy-safe insights/products for partners.",
+      "source_type": "open_report",
+      "source_url": "https://www.bcg.com/publications/2025/retail-media-network-insights",
+      "publisher": "BCG -- Retail Media Networks – Margin Impact",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "consumer-goods",
+      "region": "global",
+      "metric_definition": "Gross margin",
+      "methodology_note": "Master Repository benchmark for Consumer Goods.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "consumer-goods",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- BCG -- Retail Media Networks – Margin Impact."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "(Paid subscriptions/yr × ARPA × GM% × Adoption% × Capture%)"
+    },
+    {
+      "kind": "kpi",
+      "title": "Elevate Data Sharing Alliance -- Operating efficiency",
+      "summary": "Operating efficiency: +10% improvement. Establish cross-company clean-room alliance standards and ops.",
+      "source_type": "open_report",
+      "source_url": "https://www.gartner.com/...",
+      "publisher": "Gartner -- Clean Room Adoption Survey",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "consumer-goods",
+      "region": "global",
+      "metric_definition": "Operating efficiency",
+      "methodology_note": "Master Repository benchmark for Consumer Goods.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "consumer-goods",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Gartner -- Clean Room Adoption Survey."
+      },
+      "economicPattern": "Capex Avoidance (Infrastructure / Tool Consolidation)",
+      "economicFormula": "(Partner programs/yr × Setup cost Δ/program × Adoption% × Capture%)"
+    },
+    {
+      "kind": "kpi",
+      "title": "Price analytics -- Gross margin",
+      "summary": "Gross margin: +3% improvement. Measure elasticity, thresholds, and competitive response.",
+      "source_type": "open_report",
+      "source_url": "https://www.bcg.com/publications/2015/retail-pricing-how-retailers-can-improve-promotion-effectiveness",
+      "publisher": "BCG -- How Retailers Can Improve Promotion Effectiveness",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "consumer-goods",
+      "region": "global",
+      "metric_definition": "Gross margin",
+      "methodology_note": "Master Repository benchmark for Consumer Goods.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "consumer-goods",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- BCG -- How Retailers Can Improve Promotion Effectiveness."
+      },
+      "economicPattern": "Price Realization (Yield / Rate Optimization)",
+      "economicFormula": "(Price-managed sales$/yr × ΔPrice% × GM% × Adoption% × Capture%)"
+    },
+    {
+      "kind": "kpi",
+      "title": "Promotion optimization -- Gross margin",
+      "summary": "Gross margin: +3% improvement. Plan mechanics/depth/timing to maximize lift and profit.",
+      "source_type": "open_report",
+      "source_url": "https://www.bcg.com/publications/2015/retail-pricing-how-retailers-can-improve-promotion-effectiveness",
+      "publisher": "BCG -- How Retailers Can Improve Promotion Effectiveness",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "consumer-goods",
+      "region": "global",
+      "metric_definition": "Gross margin",
+      "methodology_note": "Master Repository benchmark for Consumer Goods.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "consumer-goods",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- BCG -- How Retailers Can Improve Promotion Effectiveness."
+      },
+      "economicPattern": "Price Realization (Yield / Rate Optimization)",
+      "economicFormula": "(Promo sales$/yr × ΔPromo GM$/sales × Adoption% × Capture%)"
+    },
+    {
+      "kind": "kpi",
+      "title": "SKU rationalization -- Revenue uplift",
+      "summary": "Revenue uplift: +2% improvement. Prune low-value SKUs while protecting revenue and shelf.",
+      "source_type": "open_report",
+      "source_url": "https://www.bain.com/...",
+      "publisher": "Bain -- SKU Simplification Results",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "consumer-goods",
+      "region": "global",
+      "metric_definition": "Revenue uplift",
+      "methodology_note": "Master Repository benchmark for Consumer Goods.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "consumer-goods",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Bain -- SKU Simplification Results."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "(SKUs removed × Annual cost/SKU × Adoption% × Capture%)"
+    },
+    {
+      "kind": "kpi",
+      "title": "Price pack architecture -- Gross margin",
+      "summary": "Gross margin: +3% improvement. Optimize size/pack/price ladders for margin and reach.",
+      "source_type": "open_report",
+      "source_url": "https://www.bain.com/...",
+      "publisher": "Bain -- Pricing Playbook Results",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "consumer-goods",
+      "region": "global",
+      "metric_definition": "Gross margin",
+      "methodology_note": "Master Repository benchmark for Consumer Goods.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "consumer-goods",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Bain -- Pricing Playbook Results."
+      },
+      "economicPattern": "Price Realization (Yield / Rate Optimization)",
+      "economicFormula": "(Pack-mix sales$/yr × ΔGM% from mix shift × Adoption% × Capture%)"
+    },
+    {
+      "kind": "kpi",
+      "title": "Assortment optimization -- Gross margin",
+      "summary": "Gross margin: +2% improvement. Tailor range by banner, store cluster, and mission.",
+      "source_type": "open_report",
+      "source_url": "https://www.bain.com/...",
+      "publisher": "Bain -- Retail Assortment Simplification",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "consumer-goods",
+      "region": "global",
+      "metric_definition": "Gross margin",
+      "methodology_note": "Master Repository benchmark for Consumer Goods.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "consumer-goods",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Bain -- Retail Assortment Simplification."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "(Store-week opportunities/yr × ΔOOS% × Sales$/store-week × GM% × Adoption% × Capture%)"
+    }
+  ]
+}

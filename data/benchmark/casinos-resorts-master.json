@@ -1,0 +1,1604 @@
+{
+  "$schema": "master-repository-benchmarks-v2",
+  "industry": "casinos-resorts",
+  "industryName": "Casinos & Resorts",
+  "generatedAt": "2026-05-14T08:46:04.344Z",
+  "records": [
+    {
+      "kind": "kpi",
+      "title": "Guest360 -- Revenue uplift",
+      "summary": "Revenue uplift: +10% improvement. Create a unified, real-time guest view.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/...personalization-right-or-wrong",
+      "publisher": "McKinsey -- Next in Personalization Report",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Revenue uplift",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- Next in Personalization Report."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "H_saved_yr×Rate_hr×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Next Best Bet -- Sales uplift",
+      "summary": "Sales uplift: +2% improvement. Recommend the most relevant bets for each guest.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/.../unlocking-the-next-frontier-of-personalized-marketing",
+      "publisher": "McKinsey -- Unlocking Targeted Promotions",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Sales uplift",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- Unlocking Targeted Promotions."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "N_reco_yr×Δtake×(Stake_avg×Hold)×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Responsible Gaming -- Problem gambling incidents",
+      "summary": "Problem gambling incidents: -20% improvement. Proactively detect and intervene on risky behavior.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "UK Gambling Commission -- Responsible Gambling Insights",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Problem gambling incidents",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- UK Gambling Commission -- Responsible Gambling Insights."
+      },
+      "economicPattern": "Risk Avoidance (Compliance / Penalties / Outage Impact)",
+      "economicFormula": "N_cases_yr×Δcase_avoid×Cost_case×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Segmentation -- Conversion rate",
+      "summary": "Conversion rate: +10% improvement. Build actionable guest segments across lifecycle.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Retail",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Conversion rate",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Retail."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "H_seg_saved_yr×Rate_hr×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "(Re)Marketing -- Marketing ROI",
+      "summary": "Marketing ROI: +30% improvement. Orchestrate re-engagement across channels.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/...personalization-right-or-wrong",
+      "publisher": "McKinsey -- Next in Personalization Report",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Marketing ROI",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- Next in Personalization Report."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "N_lapsed_yr×Δreact×GM_per_react×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Detect Fraud At Signup -- Fraudulent signups",
+      "summary": "Fraudulent signups: -50% improvement. Stop fake/abusive accounts at creation.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "Experian -- Identity Fraud Report",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Fraudulent signups",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Experian -- Identity Fraud Report."
+      },
+      "economicPattern": "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
+      "economicFormula": "N_signup_yr×Δfraud_block×Loss_per_acct×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Greater Guest Experience -- Customer satisfaction",
+      "summary": "Customer satisfaction: +20% improvement. Personalize service across property and digital.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Retail",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Customer satisfaction",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Retail."
+      },
+      "economicPattern": "Churn Reduction (Retention / LTV Protection)",
+      "economicFormula": "N_active×Δchurn×GM_LTV×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Cohort Analysis -- LTV per cohort",
+      "summary": "LTV per cohort: +10% improvement. Measure behavior/outcomes by cohorts.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Retail",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "LTV per cohort",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Retail."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "H_cohort_saved_yr×Rate_hr×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Detect Fraud At Withdrawal -- Fraud losses",
+      "summary": "Fraud losses: -50% improvement. Block mule/bonus abuse at cash-out.",
+      "source_type": "open_report",
+      "source_url": "https://www.cognizant.com/.../ai-machine-learning-fraud-detection",
+      "publisher": "Cognizant -- AI Fraud Detection Case Study",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Fraud losses",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Cognizant -- AI Fraud Detection Case Study."
+      },
+      "economicPattern": "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
+      "economicFormula": "N_wd_yr×Δfraud_stop×Loss_per_wd×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Journey Analytics -- Funnel drop-off rate",
+      "summary": "Funnel drop-off rate: -15% improvement. Visualize end-to-end guest journeys.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Retail",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Funnel drop-off rate",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Retail."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "H_journey_saved_yr×Rate_hr×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Pre-VIP Engagement -- VIP conversion rate",
+      "summary": "VIP conversion rate: +20% improvement. Nurture emerging high-value guests.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Retail",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "VIP conversion rate",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Retail."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "N_cand_yr×ΔVIP_conv×ΔGM_VIP_yr×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Toxicity Mitigation -- Toxic incidents",
+      "summary": "Toxic incidents: -80% improvement. Moderate abusive chats/calls.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "Google Jigsaw -- Perspective API Study",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Toxic incidents",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Google Jigsaw -- Perspective API Study."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "N_contacts_yr×Δtox_handle×Cost_per_tox×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Identity Resolution -- Duplicate accounts",
+      "summary": "Duplicate accounts: -90% improvement. Persist identities across channels/devices.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Retail",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Duplicate accounts",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Retail."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "N_dupe_yr×Δdupe_drop×Cost_dupe×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Promotions -- Marketing ROI",
+      "summary": "Marketing ROI: +30% improvement. Manage and distribute promos with control.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/...personalization-right-or-wrong",
+      "publisher": "McKinsey -- Next in Personalization Report",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Marketing ROI",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- Next in Personalization Report."
+      },
+      "economicPattern": "Waste Reduction (Spoilage / Returns / Write-downs)",
+      "economicFormula": "N_promo_yr×Δoverissue×Cost_promo×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Churn Prediction -- Churn rate",
+      "summary": "Churn rate: -15% improvement. Predict lapse risk and intervene.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/.../model-makeover-turning-a-telco-...",
+      "publisher": "McKinsey -- Telco Techco Transformation",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Churn rate",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- Telco Techco Transformation."
+      },
+      "economicPattern": "Churn Reduction (Retention / LTV Protection)",
+      "economicFormula": "N_risk_yr×Δretain×GM_LTV×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Single Wallet -- Customer drop-off (due to friction)",
+      "summary": "Customer drop-off (due to friction): -25% improvement. Seamless funding across products/channels.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Financial Services",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Customer drop-off (due to friction)",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Financial Services."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "N_users_yr×Δactive×GM_user_yr×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Personalization -- Revenue uplift",
+      "summary": "Revenue uplift: +10% improvement. Tailor content, offers, and UX.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/...personalization-right-or-wrong",
+      "publisher": "McKinsey -- Next in Personalization Report",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Revenue uplift",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- Next in Personalization Report."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "N_sessions_yr×Δconv×GM_per_conv×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Early VIP Identification -- VIP conversion rate",
+      "summary": "VIP conversion rate: +20% improvement. Spot rising high-rollers early.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Retail",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "VIP conversion rate",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Retail."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "N_rise_yr×Δhosted×ΔGM_hosted_yr×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Loyalty Programs -- Customer retention",
+      "summary": "Customer retention: +5% improvement. Operate tiers, benefits, and comps.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Financial Services",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Customer retention",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Financial Services."
+      },
+      "economicPattern": "Churn Reduction (Retention / LTV Protection)",
+      "economicFormula": "N_members×Δretain×GM_LTV×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Bet Lines Optimization -- Hold margin",
+      "summary": "Hold margin: +2% improvement. Set profitable, competitive lines.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "NJ DGE -- Gaming Revenue Report",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Hold margin",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- NJ DGE -- Gaming Revenue Report."
+      },
+      "economicPattern": "Price Realization (Yield / Rate Optimization)",
+      "economicFormula": "Handle_pregame_yr×Δhold×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Real Time In Game Lines -- In-play handle",
+      "summary": "In-play handle: +5% improvement. Update in-play odds dynamically.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "Lund University -- In-Play Betting Study",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "In-play handle",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Lund University -- In-Play Betting Study."
+      },
+      "economicPattern": "Price Realization (Yield / Rate Optimization)",
+      "economicFormula": "Handle_inplay_yr×Δhold×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Information Summarization -- Customer satisfaction",
+      "summary": "Customer satisfaction: +10% improvement. Summarize interactions, issues, or policies.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Retail",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Customer satisfaction",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Retail."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "N_int_yr×Min_saved×Rate_min×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Bet Carousels -- Click-through rate (CTR)",
+      "summary": "Click-through rate (CTR): +15% improvement. Curate bet shelves on home screens.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Media",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Click-through rate (CTR)",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Media."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "N_impr_yr×Δbet_rate×(Stake_avg×Hold)×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Risk Profiling -- Fraud losses",
+      "summary": "Fraud losses: -20% improvement. Assess guest/product risk.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "FATF -- Casino Risk-Based Approach Report",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Fraud losses",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- FATF -- Casino Risk-Based Approach Report."
+      },
+      "economicPattern": "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
+      "economicFormula": "N_bets_yr×Δbad_rate×Loss_bad×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Suggested Promotions -- Conversion rate",
+      "summary": "Conversion rate: +3% improvement. Recommend the best offer per guest.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/.../unlocking-the-next-frontier-of-personalized-marketing",
+      "publisher": "McKinsey -- Unlocking Targeted Promotions",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Conversion rate",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- Unlocking Targeted Promotions."
+      },
+      "economicPattern": "Waste Reduction (Spoilage / Returns / Write-downs)",
+      "economicFormula": "N_offers_yr×Δwaste_drop×Cost_offer×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Rated Play -- Comp expense",
+      "summary": "Comp expense: -5% improvement. Accurately rate theo for comps.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Media",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Comp expense",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Media."
+      },
+      "economicPattern": "Waste Reduction (Spoilage / Returns / Write-downs)",
+      "economicFormula": "N_trips_yr×Δovercomp_$×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Informed Bets -- Betting volume",
+      "summary": "Betting volume: +5% improvement. Provide insights to help bettors.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Media",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Betting volume",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Media."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "N_users_yr×Δhandle_user×Hold×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Game Data -- Data errors",
+      "summary": "Data errors: -90% improvement. Centralize game metadata and configs.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Media",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Data errors",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Media."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "H_ops_saved_yr×Rate_hr×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Understanding Lines -- Customer complaints",
+      "summary": "Customer complaints: -20% improvement. Explain line moves and value.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Media",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Customer complaints",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Media."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "N_views_yr×Δbet_rate×(Stake_avg×Hold)×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Optimize Hold and Yield -- Hold percentage",
+      "summary": "Hold percentage: +2% improvement. Balance margin vs. volume.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "NJ DGE -- Gaming Revenue Report",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Hold percentage",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- NJ DGE -- Gaming Revenue Report."
+      },
+      "economicPattern": "Price Realization (Yield / Rate Optimization)",
+      "economicFormula": "Handle_total_yr×Δhold×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Parlay Optimization -- Parlay uptake",
+      "summary": "Parlay uptake: +10% improvement. Suggest profitable parlay combos.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "NJ DGE -- Gaming Revenue Report",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Parlay uptake",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- NJ DGE -- Gaming Revenue Report."
+      },
+      "economicPattern": "Price Realization (Yield / Rate Optimization)",
+      "economicFormula": "Handle_parlay_yr×Δhold×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Dynamic Pricing -- RevPAR (revenue per available room)",
+      "summary": "RevPAR (revenue per available room): +5% improvement. Price rooms, tables, and comps dynamically.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Travel & Hospitality",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "RevPAR (revenue per available room)",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Travel & Hospitality."
+      },
+      "economicPattern": "Price Realization (Yield / Rate Optimization)",
+      "economicFormula": "Roomnights_yr×ΔADR_net×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Offer Optimization -- Campaign conversion rate",
+      "summary": "Campaign conversion rate: +5% improvement. Test and optimize creative, timing, and value.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Retail",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Campaign conversion rate",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Retail."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "N_offers_yr×Δconv×GM_per_conv×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Advertising Optimization -- Advertising ROI",
+      "summary": "Advertising ROI: +20% improvement. Allocate media to highest ROI.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Retail",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Advertising ROI",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Retail."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "Media_spend_yr×Δwaste_share×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Personalization And VIP -- VIP customer retention",
+      "summary": "VIP customer retention: +10% improvement. White-glove personalization for VIPs.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Financial Services",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "VIP customer retention",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Financial Services."
+      },
+      "economicPattern": "Churn Reduction (Retention / LTV Protection)",
+      "economicFormula": "N_VIP×Δretain×GM_VIP_yr×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Convention Offers -- Win rate (group sales)",
+      "summary": "Win rate (group sales): +10% improvement. Price and package group/convention deals.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Travel & Hospitality",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Win rate (group sales)",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Travel & Hospitality."
+      },
+      "economicPattern": "Price Realization (Yield / Rate Optimization)",
+      "economicFormula": "Group_rn_yr×Δrate_net×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Hotel Booking -- Booking conversion rate",
+      "summary": "Booking conversion rate: +10% improvement. Seamless search, book, and upsell.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Travel & Hospitality",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Booking conversion rate",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Travel & Hospitality."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "N_search_yr×Δbook×GM_booking×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Contact Center Deflection -- Call volume (human-assisted)",
+      "summary": "Call volume (human-assisted): -30% improvement. Resolve intents via bots/self-serve.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "Forrester -- TEI of Contact Center Automation",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Call volume (human-assisted)",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Forrester -- TEI of Contact Center Automation."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "N_contacts_yr×Deflect×Cost_contact×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Cross Channel Partnership -- Partnership revenue",
+      "summary": "Partnership revenue: +5% improvement. Coordinate partner offers and tracking.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Travel & Hospitality",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Partnership revenue",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Travel & Hospitality."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "N_leads_yr×Δconv×GM_per_conv×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Optimize Event & Programming -- Event ROI",
+      "summary": "Event ROI: +10% improvement. Plan shows and property programming for ROI.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Media",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Event ROI",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Media."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "N_attend_yr×Δspend×GM_rate×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Revenue Projection -- Forecast error",
+      "summary": "Forecast error: -20% improvement. Forecast gaming/hotel/media revenue.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Travel & Hospitality",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Forecast error",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Travel & Hospitality."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "H_fcst_saved_yr×Rate_hr×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Digital Concierge -- Customer query resolution",
+      "summary": "Customer query resolution: +80% improvement. AI concierge for info and tasks.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Travel & Hospitality",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Customer query resolution",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Travel & Hospitality."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "N_req_yr×Deflect×Cost_req×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Ads Attribution -- Marketing ROI",
+      "summary": "Marketing ROI: +15% improvement. Attribute conversions to media.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Retail",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Marketing ROI",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Retail."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "Media_spend_yr×Δmisalloc×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Staff Optimization -- Staffing cost",
+      "summary": "Staffing cost: -20% improvement. Align staffing with demand.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Cross-Industry",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Staffing cost",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Cross-Industry."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "Labor_hours_yr×Δineff×Rate_hr×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Data and PII Governance -- Compliance incidents",
+      "summary": "Compliance incidents: -50% improvement. Govern sensitive data end-to-end.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Cross-Industry",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Compliance incidents",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Cross-Industry."
+      },
+      "economicPattern": "Risk Avoidance (Compliance / Penalties / Outage Impact)",
+      "economicFormula": "N_inc_yr×Δinc_drop×Cost_inc×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Internal Data Sharing -- Collaboration efficiency",
+      "summary": "Collaboration efficiency: +20% improvement. Safely share data across teams.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Cross-Industry",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Collaboration efficiency",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Cross-Industry."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "N_req_yr×H_saved_req×Rate_hr×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Financial Reporting -- Financial close cycle time",
+      "summary": "Financial close cycle time: -75% improvement. Close and report financials.",
+      "source_type": "open_report",
+      "source_url": "https://daily.financialexecutives.org/...",
+      "publisher": "FEI Daily -- Accelerating the Close Cycle",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Financial close cycle time",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- FEI Daily -- Accelerating the Close Cycle."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "H_close_saved_yr×Rate_hr×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "AI Powered Analytics -- Analysis speed",
+      "summary": "Analysis speed: +30% improvement. Embedded AI for analysis and BI.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "Microsoft -- GitHub Copilot Field Study",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Analysis speed",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Microsoft -- GitHub Copilot Field Study."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "H_BI_saved_yr×Rate_hr×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Fraud Reporting -- Compliance reporting cost",
+      "summary": "Compliance reporting cost: -50% improvement. Produce SARs and fraud KPIs.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "FinCEN -- SAR Automation Brief",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Compliance reporting cost",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- FinCEN -- SAR Automation Brief."
+      },
+      "economicPattern": "Risk Avoidance (Compliance / Penalties / Outage Impact)",
+      "economicFormula": "N_reports_yr×Δnoncomp_drop×Cost_noncomp×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Data Discovery -- Data search time",
+      "summary": "Data search time: -50% improvement. Find and understand enterprise data.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Cross-Industry",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Data search time",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Cross-Industry."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "H_find_saved_yr×Rate_hr×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Cyber Security DASL/Behavior -- Breach detection time",
+      "summary": "Breach detection time: -90% improvement. Monitor data access and anomalies.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "Elastic -- AI Cybersecurity Case",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Breach detection time",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Elastic -- AI Cybersecurity Case."
+      },
+      "economicPattern": "Risk Avoidance (Compliance / Penalties / Outage Impact)",
+      "economicFormula": "N_sec_inc_yr×Δinc_drop×Cost_inc×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "External Data Sharing -- Partnership insights speed",
+      "summary": "Partnership insights speed: +50% improvement. Governed sharing with partners.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Media",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Partnership insights speed",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Media."
+      },
+      "economicPattern": "Risk Avoidance (Compliance / Penalties / Outage Impact)",
+      "economicFormula": "N_share_evt_yr×Δviolation_drop×Cost_violation×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "DSPM Integration -- Data exposure incidents",
+      "summary": "Data exposure incidents: -70% improvement. Integrate data security posture tools.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "IBM -- Data Security Report",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Data exposure incidents",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- IBM -- Data Security Report."
+      },
+      "economicPattern": "Capex Avoidance (Infrastructure / Tool Consolidation)",
+      "economicFormula": "Tool_cost_yr×Δtool_drop×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Empower Your Team -- Employee productivity",
+      "summary": "Employee productivity: +30% improvement. Enable agents with knowledge and insights.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "Microsoft -- GitHub Copilot Field Study",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Employee productivity",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Microsoft -- GitHub Copilot Field Study."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "N_cases_yr×ΔAHT_min×Rate_min×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Banned Players -- Ban enforcement success rate",
+      "summary": "Ban enforcement success rate: +90% improvement. Enforce bans across channels.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "UK Gambling Commission -- Self-Exclusion Impact Report",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Ban enforcement success rate",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- UK Gambling Commission -- Self-Exclusion Impact Report."
+      },
+      "economicPattern": "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
+      "economicFormula": "N_attempt_yr×Δblock×Loss_attempt×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Human Resources -- Attrition rate",
+      "summary": "Attrition rate: -30% improvement. Workforce planning and compliance.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "IBM (via MokaHR) -- Predictive Turnover Analytics",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Attrition rate",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- IBM (via MokaHR) -- Predictive Turnover Analytics."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "N_emp×Δturnover×Cost_turnover×A×C"
+    },
+    {
+      "kind": "kpi",
+      "title": "Procurement Analysis -- Vendor spend",
+      "summary": "Vendor spend: -10% improvement. Analyze vendor spend and savings.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Cross-Industry",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "casinos-resorts",
+      "region": "global",
+      "metric_definition": "Vendor spend",
+      "methodology_note": "Master Repository benchmark for Casinos & Resorts.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "casinos-resorts",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Cross-Industry."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "Spend_yr×Δsavings×A×C"
+    }
+  ]
+}

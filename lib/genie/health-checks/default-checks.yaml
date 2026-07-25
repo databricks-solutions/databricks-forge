@@ -1,0 +1,589 @@
+# Genie Space Health Check -- Default Check Definitions
+#
+# Each check is evaluated deterministically against a SerializedSpace v2 JSON.
+# Users can override thresholds, disable checks, or add custom checks via settings.
+
+categories:
+  data_sources:
+    label: "Data Sources"
+    weight: 25
+  instructions:
+    label: "Instructions"
+    weight: 25
+  semantic_richness:
+    label: "Semantic Richness"
+    weight: 25
+  quality_assurance:
+    label: "Quality Assurance"
+    weight: 25
+
+checks:
+  # ---------------------------------------------------------------------------
+  # Data Sources
+  # ---------------------------------------------------------------------------
+  - id: tables-configured
+    category: data_sources
+    description: "At least one table is configured"
+    severity: critical
+    fixable: false
+    evaluator: count
+    path: "data_sources.tables"
+    params:
+      min: 1
+    quick_win: "Add at least one table to the space."
+
+  - id: table-count-range
+    category: data_sources
+    description: "Table count is within recommended range (1-30)"
+    severity: warning
+    fixable: false
+    evaluator: range
+    path: "data_sources.tables"
+    params:
+      min: 1
+      max: 30
+      warn_above: 15
+
+  - id: tables-have-descriptions
+    category: data_sources
+    description: "Tables have descriptions defined"
+    severity: warning
+    fixable: true
+    fix_strategy: column_intelligence
+    evaluator: ratio
+    path: "data_sources.tables"
+    field: "description"
+    params:
+      min_ratio: 0.8
+
+  - id: columns-have-descriptions
+    category: data_sources
+    description: "Columns have descriptions across all tables"
+    severity: warning
+    fixable: true
+    fix_strategy: column_intelligence
+    evaluator: nested_ratio
+    path: "data_sources.tables[*].column_configs"
+    field: "description"
+    params:
+      min_ratio: 0.5
+
+  - id: entity-matching-configured
+    category: data_sources
+    description: "Filterable columns have entity matching enabled"
+    severity: info
+    fixable: true
+    fix_strategy: entity_matching
+    evaluator: nested_ratio
+    path: "data_sources.tables[*].column_configs"
+    field: "enable_entity_matching"
+    params:
+      min_ratio: 0.2
+
+  - id: table-count-optimal
+    category: data_sources
+    description: "Table count is within optimal range (≤5 recommended)"
+    severity: info
+    fixable: false
+    evaluator: range
+    path: "data_sources.tables"
+    params:
+      min: 1
+      max: 30
+      warn_above: 5
+
+  - id: format-assistance-configured
+    category: data_sources
+    description: "Some columns have format assistance enabled"
+    severity: info
+    fixable: true
+    fix_strategy: column_intelligence
+    evaluator: nested_ratio
+    path: "data_sources.tables[*].column_configs"
+    field: "enable_format_assistance"
+    params:
+      min_ratio: 0.1
+
+  - id: tables-have-column-configs
+    category: data_sources
+    description: "Tables have column configurations defined"
+    severity: warning
+    fixable: true
+    fix_strategy: column_intelligence
+    evaluator: ratio
+    path: "data_sources.tables"
+    field: "column_configs"
+    params:
+      min_ratio: 0.8
+    quick_win: "Use Fix or regenerate with Full Engine to add column descriptions, synonyms, and entity matching."
+
+  - id: metric-views-have-descriptions
+    category: data_sources
+    description: "Metric views have descriptions defined"
+    severity: info
+    fixable: false
+    evaluator: ratio
+    path: "data_sources.metric_views"
+    field: "description"
+    params:
+      min_ratio: 0.8
+
+  - id: metric-views-have-column-configs
+    category: data_sources
+    description: "Metric views have column configurations"
+    severity: info
+    fixable: false
+    evaluator: ratio
+    path: "data_sources.metric_views"
+    field: "column_configs"
+    params:
+      min_ratio: 0.5
+
+  # ---------------------------------------------------------------------------
+  # Instructions
+  # ---------------------------------------------------------------------------
+  - id: text-instruction-exists
+    category: instructions
+    description: "Text instruction is configured"
+    severity: warning
+    fixable: true
+    fix_strategy: instruction_generation
+    evaluator: count
+    path: "instructions.text_instructions"
+    params:
+      min: 1
+      max: 1
+
+  - id: instruction-quality
+    category: instructions
+    description: "Instructions meet quality standards (specificity, structure, clarity)"
+    severity: warning
+    fixable: true
+    fix_strategy: instruction_generation
+    evaluator: instruction_quality
+    path: "instructions.text_instructions"
+    params:
+      min_score: 40
+    quick_win: "Improve instructions with table/column references, SQL examples, headers, and bullet lists. Replace vague terms with specific guidance."
+
+  - id: example-sqls-minimum
+    category: instructions
+    description: "At least 5 example question-SQL pairs exist"
+    severity: critical
+    fixable: true
+    fix_strategy: trusted_assets
+    evaluator: count
+    path: "instructions.example_question_sqls"
+    params:
+      min: 5
+    quick_win: "Add example SQL pairs covering your most common business questions."
+
+  - id: join-specs-for-multi-table
+    category: instructions
+    description: "Join specifications defined for multi-table spaces"
+    severity: critical
+    fixable: true
+    fix_strategy: join_inference
+    evaluator: conditional_count
+    condition_path: "data_sources.tables"
+    condition_min: 2
+    path: "instructions.join_specs"
+    params:
+      min: 1
+    quick_win: "Add join specs so Genie knows how to combine your tables."
+
+  - id: measures-defined
+    category: instructions
+    description: "SQL snippet measures are defined"
+    severity: warning
+    fixable: true
+    fix_strategy: semantic_expressions
+    evaluator: count
+    path: "instructions.sql_snippets.measures"
+    params:
+      min: 1
+
+  - id: filters-defined
+    category: instructions
+    description: "SQL snippet filters are defined"
+    severity: warning
+    fixable: true
+    fix_strategy: semantic_expressions
+    evaluator: count
+    path: "instructions.sql_snippets.filters"
+    params:
+      min: 1
+
+  - id: join-specs-have-comments
+    category: instructions
+    description: "Join specs have comments explaining relationships"
+    severity: info
+    fixable: true
+    fix_strategy: join_inference
+    evaluator: ratio
+    path: "instructions.join_specs"
+    field: "comment"
+    params:
+      min_ratio: 0.5
+
+  - id: example-sqls-have-usage-guidance
+    category: instructions
+    description: "Complex example SQLs have usage guidance"
+    severity: info
+    fixable: true
+    fix_strategy: trusted_assets
+    evaluator: ratio
+    path: "instructions.example_question_sqls"
+    field: "usage_guidance"
+    params:
+      min_ratio: 0.2
+
+  - id: example-sqls-strong
+    category: instructions
+    description: "10+ example SQL pairs for strong coverage"
+    severity: info
+    fixable: true
+    fix_strategy: trusted_assets
+    evaluator: count
+    path: "instructions.example_question_sqls"
+    params:
+      min: 10
+
+  - id: expressions-have-instructions
+    category: instructions
+    description: "Expressions have usage instructions"
+    severity: info
+    fixable: true
+    fix_strategy: semantic_expressions
+    evaluator: ratio
+    path: "instructions.sql_snippets.expressions"
+    field: "instruction"
+    params:
+      min_ratio: 0.3
+
+  # ---------------------------------------------------------------------------
+  # Semantic Richness
+  # ---------------------------------------------------------------------------
+  - id: column-synonyms-defined
+    category: semantic_richness
+    description: "Key columns have synonyms defined"
+    severity: info
+    fixable: true
+    fix_strategy: column_intelligence
+    evaluator: nested_ratio
+    path: "data_sources.tables[*].column_configs"
+    field: "synonyms"
+    params:
+      min_ratio: 0.3
+
+  - id: measures-have-display-names
+    category: semantic_richness
+    description: "Measures have display names"
+    severity: info
+    fixable: true
+    fix_strategy: semantic_expressions
+    evaluator: ratio
+    path: "instructions.sql_snippets.measures"
+    field: "display_name"
+    params:
+      min_ratio: 0.8
+
+  - id: filters-have-synonyms
+    category: semantic_richness
+    description: "Filters have synonyms for user terminology"
+    severity: info
+    fixable: true
+    fix_strategy: semantic_expressions
+    evaluator: ratio
+    path: "instructions.sql_snippets.filters"
+    field: "synonyms"
+    params:
+      min_ratio: 0.5
+
+  - id: expressions-defined
+    category: semantic_richness
+    description: "Reusable expressions are defined"
+    severity: info
+    fixable: true
+    fix_strategy: semantic_expressions
+    evaluator: count
+    path: "instructions.sql_snippets.expressions"
+    params:
+      min: 1
+
+  - id: expressions-have-synonyms
+    category: semantic_richness
+    description: "Expressions have synonyms for user terminology"
+    severity: info
+    fixable: true
+    fix_strategy: semantic_expressions
+    evaluator: ratio
+    path: "instructions.sql_snippets.expressions"
+    field: "synonyms"
+    params:
+      min_ratio: 0.5
+
+  - id: expressions-have-display-names
+    category: semantic_richness
+    description: "Expressions have display names"
+    severity: info
+    fixable: true
+    fix_strategy: semantic_expressions
+    evaluator: ratio
+    path: "instructions.sql_snippets.expressions"
+    field: "display_name"
+    params:
+      min_ratio: 0.8
+
+  - id: measures-have-synonyms
+    category: semantic_richness
+    description: "Measures have synonyms for user terminology"
+    severity: info
+    fixable: true
+    fix_strategy: semantic_expressions
+    evaluator: ratio
+    path: "instructions.sql_snippets.measures"
+    field: "synonyms"
+    params:
+      min_ratio: 0.5
+
+  - id: measures-count-minimum
+    category: semantic_richness
+    description: "At least 2 measures defined for adequate coverage"
+    severity: info
+    fixable: true
+    fix_strategy: semantic_expressions
+    evaluator: count
+    path: "instructions.sql_snippets.measures"
+    params:
+      min: 2
+
+  - id: filters-have-display-names
+    category: semantic_richness
+    description: "Filters have display names"
+    severity: info
+    fixable: true
+    fix_strategy: semantic_expressions
+    evaluator: ratio
+    path: "instructions.sql_snippets.filters"
+    field: "display_name"
+    params:
+      min_ratio: 0.8
+
+  - id: measures-have-comments
+    category: semantic_richness
+    description: "Measures have comments explaining their purpose"
+    severity: info
+    fixable: true
+    fix_strategy: semantic_expressions
+    evaluator: ratio
+    path: "instructions.sql_snippets.measures"
+    field: "comment"
+    params:
+      min_ratio: 0.3
+
+  - id: filters-have-comments
+    category: semantic_richness
+    description: "Filters have comments explaining when to use them"
+    severity: info
+    fixable: true
+    fix_strategy: semantic_expressions
+    evaluator: ratio
+    path: "instructions.sql_snippets.filters"
+    field: "comment"
+    params:
+      min_ratio: 0.3
+
+  # ---------------------------------------------------------------------------
+  # Quality Assurance
+  # ---------------------------------------------------------------------------
+  - id: benchmarks-exist
+    category: quality_assurance
+    description: "Benchmark questions exist (5+ recommended, 10+ strong)"
+    severity: warning
+    fixable: true
+    fix_strategy: benchmark_generation
+    evaluator: count
+    path: "benchmarks.questions"
+    params:
+      min: 5
+    quick_win: "Add benchmark questions to measure and track Genie accuracy."
+
+  - id: sample-questions-defined
+    category: quality_assurance
+    description: "Sample questions are defined for the chat UI"
+    severity: info
+    fixable: true
+    fix_strategy: sample_questions
+    evaluator: count
+    path: "config.sample_questions"
+    params:
+      min: 2
+
+  - id: valid-ids
+    category: quality_assurance
+    description: "All IDs are valid 32-character hex strings"
+    severity: critical
+    fixable: false
+    evaluator: pattern
+    path: "__all_ids__"
+    params:
+      regex: "^[a-f0-9]{32}$"
+
+  - id: no-empty-sql
+    category: quality_assurance
+    description: "No empty SQL fields in snippets"
+    severity: critical
+    fixable: false
+    evaluator: no_empty_field
+    paths:
+      - "instructions.sql_snippets.measures[*].sql"
+      - "instructions.sql_snippets.filters[*].sql"
+      - "instructions.sql_snippets.expressions[*].sql"
+
+  - id: unique-ids
+    category: quality_assurance
+    description: "All IDs within the space are unique"
+    severity: critical
+    fixable: false
+    evaluator: unique
+    path: "__all_ids__"
+
+  - id: benchmarks-minimum-strong
+    category: quality_assurance
+    description: "10+ benchmark questions for strong coverage"
+    severity: info
+    fixable: true
+    fix_strategy: benchmark_generation
+    evaluator: count
+    path: "benchmarks.questions"
+    params:
+      min: 10
+
+  - id: benchmarks-have-answers
+    category: quality_assurance
+    description: "Benchmark questions have SQL answers defined"
+    severity: warning
+    fixable: false
+    evaluator: ratio
+    path: "benchmarks.questions"
+    field: "answer"
+    params:
+      min_ratio: 0.8
+
+  - id: example-sqls-no-empty-sql
+    category: quality_assurance
+    description: "Example SQL pairs have non-empty SQL"
+    severity: critical
+    fixable: false
+    evaluator: no_empty_field
+    paths:
+      - "instructions.example_question_sqls[*].sql"
+
+  - id: example-sqls-no-empty-questions
+    category: quality_assurance
+    description: "Example SQL pairs have non-empty question text"
+    severity: critical
+    fixable: false
+    evaluator: no_empty_field
+    paths:
+      - "instructions.example_question_sqls[*].question"
+
+  - id: join-specs-no-empty-sql
+    category: quality_assurance
+    description: "Join specs have non-empty SQL"
+    severity: critical
+    fixable: false
+    evaluator: no_empty_field
+    paths:
+      - "instructions.join_specs[*].sql"
+
+  - id: benchmarks-no-empty-questions
+    category: quality_assurance
+    description: "Benchmark questions have non-empty question text"
+    severity: critical
+    fixable: false
+    evaluator: no_empty_field
+    paths:
+      - "benchmarks.questions[*].question"
+
+  - id: sql-functions-have-identifiers
+    category: quality_assurance
+    description: "SQL functions have fully-qualified identifiers"
+    severity: warning
+    fixable: false
+    evaluator: ratio
+    path: "instructions.sql_functions"
+    field: "identifier"
+    params:
+      min_ratio: 1.0
+
+  # SQL quality review checks (requires serving-endpoint-review)
+  - id: example-sql-quality
+    category: quality_assurance
+    description: "Example SQL pairs pass LLM quality review"
+    severity: warning
+    fixable: false
+    evaluator: sql_quality
+    paths:
+      - "instructions.example_question_sqls[*].sql"
+    params:
+      min_score: 60
+
+  - id: measure-sql-quality
+    category: quality_assurance
+    description: "Measure SQL expressions pass LLM quality review"
+    severity: warning
+    fixable: false
+    evaluator: sql_quality
+    paths:
+      - "instructions.sql_snippets.measures[*].sql"
+    params:
+      min_score: 60
+
+  - id: filter-sql-quality
+    category: quality_assurance
+    description: "Filter SQL expressions pass LLM quality review"
+    severity: warning
+    fixable: false
+    evaluator: sql_quality
+    paths:
+      - "instructions.sql_snippets.filters[*].sql"
+    params:
+      min_score: 60
+
+  # ---------------------------------------------------------------------------
+  # Maturity / consistency (mirrors upstream IQ Scanner)
+  # ---------------------------------------------------------------------------
+  - id: casing-consistency
+    category: semantic_richness
+    description: "Synonyms, sample questions, and instructions use a dominant casing style"
+    severity: info
+    fixable: true
+    fix_strategy: instruction_generation
+    evaluator: casing_consistency
+    params:
+      min_dominance: 0.6
+    quick_win: "Pick a single casing style for synonyms and example questions, or add an instruction that Genie should match case-insensitively."
+
+  - id: maturity-tier-trusted
+    category: quality_assurance
+    description: "Space meets the 'Trusted' maturity bar (≥4 described tables, ≥3 measures, ≥5 trusted assets, no critical findings)"
+    severity: info
+    fixable: false
+    evaluator: maturity_tier
+    params:
+      min_tier: trusted
+
+  - id: text-instructions-uses-gsl-sections
+    category: instructions
+    description: "Text instructions follow the canonical GSL section schema (PURPOSE, DISAMBIGUATION, DATA QUALITY NOTES, CONSTRAINTS, Instructions you must follow...)"
+    severity: info
+    fixable: true
+    fix_strategy: instruction_generation
+    enabled: false
+    evaluator: pattern
+    path: "instructions.text_instructions[*].content"
+    params:
+      regex: 'PURPOSE[\s\S]*DISAMBIGUATION[\s\S]*DATA QUALITY NOTES[\s\S]*CONSTRAINTS[\s\S]*Instructions you must follow'
+    quick_win: "Re-generate text instructions with the GSL schema (Phase 5)."

@@ -1,0 +1,988 @@
+{
+  "$schema": "master-repository-benchmarks-v2",
+  "industry": "life-sciences",
+  "industryName": "Life Sciences",
+  "generatedAt": "2026-05-14T08:46:04.337Z",
+  "records": [
+    {
+      "kind": "kpi",
+      "title": "Genetic Target Identification -- Operating efficiency",
+      "summary": "Operating efficiency: +10% improvement. Prioritize disease-relevant targets by integrating multi-omics and pathway evidence.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/life-sciences",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Life Sciences",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "life-sciences",
+      "region": "global",
+      "metric_definition": "Operating efficiency",
+      "methodology_note": "Master Repository benchmark for Life Sciences.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "life-sciences",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Life Sciences."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "N_prog/yrΔhrs_prog$hr*Adopt%*Capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "QSAR Modeling (Quantitative Structure Activity Relationship) -- Operating efficiency",
+      "summary": "Operating efficiency: +10% improvement. Predict activity/toxicity from molecular structure.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/life-sciences",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Life Sciences",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "life-sciences",
+      "region": "global",
+      "metric_definition": "Operating efficiency",
+      "methodology_note": "Master Repository benchmark for Life Sciences.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "life-sciences",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Life Sciences."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "N_tests/yrAvoid%$test*Adopt%*Capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Geneformer Modeling (Gene Expressions & Network Biology) -- Operating efficiency",
+      "summary": "Operating efficiency: +10% improvement. Use transformer models on expression matrices to learn cell-state embeddings and perturbation effects.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/life-sciences",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Life Sciences",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "life-sciences",
+      "region": "global",
+      "metric_definition": "Operating efficiency",
+      "methodology_note": "Master Repository benchmark for Life Sciences.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "life-sciences",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Life Sciences."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "N_exp/yrAvoid%$exp*Adopt%*Capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Image Classification (eg. Digital Path.) -- Lab throughput",
+      "summary": "Lab throughput: +20% improvement. Classify pathology slides for diagnosis or biomarker scoring.",
+      "source_type": "open_report",
+      "source_url": "https://www.bu.edu/articles/2023/ai-pathology-diagnostics-improve-throughput/",
+      "publisher": "Boston University -- AI Pathology Diagnostics Study",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "life-sciences",
+      "region": "global",
+      "metric_definition": "Lab throughput",
+      "methodology_note": "Master Repository benchmark for Life Sciences.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "life-sciences",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Boston University -- AI Pathology Diagnostics Study."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "N_cases/yrΔmin_case/60$hr*Adopt%*Capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Chromatography Insights -- Lab re-run rate",
+      "summary": "Lab re-run rate: -30% improvement. Detect peak issues, drift, and optimize methods.",
+      "source_type": "open_report",
+      "source_url": "https://www.nature.com/articles/s41586-023-06326-3",
+      "publisher": "Nature -- AI in Analytical Chemistry",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "life-sciences",
+      "region": "global",
+      "metric_definition": "Lab re-run rate",
+      "methodology_note": "Master Repository benchmark for Life Sciences.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "life-sciences",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Nature -- AI in Analytical Chemistry."
+      },
+      "economicPattern": "Waste Reduction (Spoilage / Returns / Write-downs)",
+      "economicFormula": "N_runs/yrΔfail%$rerun*Adopt%*Capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Clinical Trial Protocol Design -- Time-to-launch",
+      "summary": "Time-to-launch: -20% improvement. Generate/optimize protocols and eligibility with evidence.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/industries/life-sciences/our-insights/state-of-ai-in-life-sciences-2023",
+      "publisher": "McKinsey -- State of AI in Life Sciences 2023",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "life-sciences",
+      "region": "global",
+      "metric_definition": "Time-to-launch",
+      "methodology_note": "Master Repository benchmark for Life Sciences.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "life-sciences",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- State of AI in Life Sciences 2023."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "N_amend/yrΔamend%$amend*Adopt%*Capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Clinical Trial Site Selection -- Recruitment time",
+      "summary": "Recruitment time: -30% improvement. Rank sites/investigators by expected performance and feasibility.",
+      "source_type": "open_report",
+      "source_url": "https://csdd.tufts.edu/clinical-trial-site-selection",
+      "publisher": "Tufts CSDD -- Clinical Trial Optimization Impact",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "life-sciences",
+      "region": "global",
+      "metric_definition": "Recruitment time",
+      "methodology_note": "Master Repository benchmark for Life Sciences.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "life-sciences",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Tufts CSDD -- Clinical Trial Optimization Impact."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "N_trials/yrΔmo_enroll$burn_mo*Adopt%*Capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Drug Repurposing -- Pipeline success rate",
+      "summary": "Pipeline success rate: +5% improvement. Identify new indications for existing assets via network and literature evidence.",
+      "source_type": "open_report",
+      "source_url": "https://www.liebertpub.com/doi/10.1089/adt.2020.102",
+      "publisher": "Assay Drug Dev Tech -- AI Drug Repurposing Study",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "life-sciences",
+      "region": "global",
+      "metric_definition": "Pipeline success rate",
+      "methodology_note": "Master Repository benchmark for Life Sciences.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "life-sciences",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Assay Drug Dev Tech -- AI Drug Repurposing Study."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "N_prog/yrΔhrs_prog$hr*Adopt%*Capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Automate QA of Clinical Data -- Query resolution time",
+      "summary": "Query resolution time: -50% improvement. Detect anomalies, missingness, and protocol deviations in clinical datasets.",
+      "source_type": "open_report",
+      "source_url": "https://techcrunch.com/...",
+      "publisher": "TechCrunch -- AI Clinical Data QA Case",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "life-sciences",
+      "region": "global",
+      "metric_definition": "Query resolution time",
+      "methodology_note": "Master Repository benchmark for Life Sciences.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "life-sciences",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- TechCrunch -- AI Clinical Data QA Case."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "N_queries/yrΔmin_q/60$hr*Adopt%*Capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Modernize Clinical Data Repository -- Analytics productivity",
+      "summary": "Analytics productivity: +30% improvement. Establish scalable, standardized clinical analytics on OMOP.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/featured-insights/mckinsey-explainers/how-generative-ai-is-changing-the-technology-ecosystem",
+      "publisher": "McKinsey -- Generative AI and the Future of Work",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "life-sciences",
+      "region": "global",
+      "metric_definition": "Analytics productivity",
+      "methodology_note": "Master Repository benchmark for Life Sciences.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "life-sciences",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- Generative AI and the Future of Work."
+      },
+      "economicPattern": "Capex Avoidance (Infrastructure / Tool Consolidation)",
+      "economicFormula": "N_sys_offRun$/sys/yrAdopt%*Capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Knowledge Graphs for R&D -- Research productivity",
+      "summary": "Research productivity: +20% improvement. Build a unified graph linking entities across biology and chemistry.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/life-sciences",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Life Sciences",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "life-sciences",
+      "region": "global",
+      "metric_definition": "Research productivity",
+      "methodology_note": "Master Repository benchmark for Life Sciences.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "life-sciences",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Life Sciences."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "N_usersΔhrs_user/yr$hr*Adopt%*Capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Medical Image Processing & Management (Pixels for DICOM) -- Data processing time",
+      "summary": "Data processing time: -30% improvement. Normalize, de-identify, and manage medical images for AI/analysis.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/life-sciences",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Life Sciences",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "life-sciences",
+      "region": "global",
+      "metric_definition": "Data processing time",
+      "methodology_note": "Master Repository benchmark for Life Sciences.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "life-sciences",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Life Sciences."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "N_imgs/yrΔmin_img/60$hr*Adopt%*Capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Omics Data Management -- Analyst efficiency",
+      "summary": "Analyst efficiency: +30% improvement. Curate, QC, and provision multi-omics for analysis at scale.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/featured-insights/mckinsey-explainers/how-generative-ai-is-changing-the-technology-ecosystem",
+      "publisher": "McKinsey -- Generative AI and the Future of Work",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "life-sciences",
+      "region": "global",
+      "metric_definition": "Analyst efficiency",
+      "methodology_note": "Master Repository benchmark for Life Sciences.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "life-sciences",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- Generative AI and the Future of Work."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "N_datasets/yrΔhrs_ds$hr*Adopt%*Capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Research Assistant -- Research productivity",
+      "summary": "Research productivity: +30% improvement. Scientist copilot that answers questions with citations.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/featured-insights/mckinsey-explainers/how-generative-ai-is-changing-the-technology-ecosystem",
+      "publisher": "McKinsey -- Generative AI and the Future of Work",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "life-sciences",
+      "region": "global",
+      "metric_definition": "Research productivity",
+      "methodology_note": "Master Repository benchmark for Life Sciences.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "life-sciences",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- Generative AI and the Future of Work."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "N_usersΔhrs_user/yr$hr*Adopt%*Capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "BioMedical Information Retrieval -- Research productivity",
+      "summary": "Research productivity: +30% improvement. Domain search with semantic retrieval and filtering.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/featured-insights/mckinsey-explainers/how-generative-ai-is-changing-the-technology-ecosystem",
+      "publisher": "McKinsey -- Generative AI and the Future of Work",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "life-sciences",
+      "region": "global",
+      "metric_definition": "Research productivity",
+      "methodology_note": "Master Repository benchmark for Life Sciences.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "life-sciences",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- Generative AI and the Future of Work."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "N_search/yrΔmin_search/60$hr*Adopt%*Capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Automate Reporting (eg., OTIF) -- FTE productivity",
+      "summary": "FTE productivity: +30% improvement. Generate operational KPI reports (e.g., on-time-in-full).",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/featured-insights/mckinsey-explainers/how-generative-ai-is-changing-the-technology-ecosystem",
+      "publisher": "McKinsey -- Generative AI and the Future of Work",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "life-sciences",
+      "region": "global",
+      "metric_definition": "FTE productivity",
+      "methodology_note": "Master Repository benchmark for Life Sciences.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "life-sciences",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- Generative AI and the Future of Work."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "N_reports/yrΔhrs_rep$hr*Adopt%*Capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Inventory Management -- Working capital days",
+      "summary": "Working capital days: -10% improvement. Optimize stock levels and expiries.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/life-sciences",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Life Sciences",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "life-sciences",
+      "region": "global",
+      "metric_definition": "Working capital days",
+      "methodology_note": "Master Repository benchmark for Life Sciences.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "life-sciences",
+        "Cash / Working Capital"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Life Sciences."
+      },
+      "economicPattern": "Working Capital Improvement (Inventory / AR / AP Efficiency)",
+      "economicFormula": "AvgInv$*ΔInv%*Adopt%*Capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Demand Forecasting -- Forecast accuracy",
+      "summary": "Forecast accuracy: +15% improvement. Forecast demand by SKU/channel/region.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/life-sciences",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Life Sciences",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "life-sciences",
+      "region": "global",
+      "metric_definition": "Forecast accuracy",
+      "methodology_note": "Master Repository benchmark for Life Sciences.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "life-sciences",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Life Sciences."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "Units/yr*ΔFill%CM$/unitAdopt%*Capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Distribution Optimization -- Freight cost",
+      "summary": "Freight cost: -10% improvement. Plan shipments, routes, and allocations.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/life-sciences",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Life Sciences",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "life-sciences",
+      "region": "global",
+      "metric_definition": "Freight cost",
+      "methodology_note": "Master Repository benchmark for Life Sciences.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "life-sciences",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Life Sciences."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "N_ship/yrΔ$shipAdopt%*Capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Digital Twins -- Process yield",
+      "summary": "Process yield: +5% improvement. Simulate process/equipment to test scenarios.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/life-sciences",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Life Sciences",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "life-sciences",
+      "region": "global",
+      "metric_definition": "Process yield",
+      "methodology_note": "Master Repository benchmark for Life Sciences.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "life-sciences",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Life Sciences."
+      },
+      "economicPattern": "Waste Reduction (Spoilage / Returns / Write-downs)",
+      "economicFormula": "N_batches/yrΔscrap%$batch*Adopt%*Capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Overall Equipment Effectiveness -- Throughput",
+      "summary": "Throughput: +5% improvement. Monitor OEE and drivers (availability, performance, quality).",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/life-sciences",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Life Sciences",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "life-sciences",
+      "region": "global",
+      "metric_definition": "Throughput",
+      "methodology_note": "Master Repository benchmark for Life Sciences.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "life-sciences",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Life Sciences."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "AvailHrs/yrΔOEECM$/hr*Adopt%*Capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Predictive Maintenance -- Unplanned downtime",
+      "summary": "Unplanned downtime: -40% improvement. Predict failures and schedule interventions.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/operations/our-insights/manufacturing-analytics-unleashes-productivity-and-profitability",
+      "publisher": "McKinsey -- Manufacturing Analytics Unleashes Productivity and Profitability",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "life-sciences",
+      "region": "global",
+      "metric_definition": "Unplanned downtime",
+      "methodology_note": "Master Repository benchmark for Life Sciences.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "life-sciences",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- Manufacturing Analytics Unleashes Productivity and Profitability."
+      },
+      "economicPattern": "Risk Avoidance (Compliance / Penalties / Outage Impact)",
+      "economicFormula": "DowntimeHrs/yrImpact$/hrAdopt%*Capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Data Standardization with OMOP -- Operating efficiency",
+      "summary": "Operating efficiency: +10% improvement. Map heterogeneous clinical/RWD to OMOP.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/life-sciences",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Life Sciences",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "life-sciences",
+      "region": "global",
+      "metric_definition": "Operating efficiency",
+      "methodology_note": "Master Repository benchmark for Life Sciences.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "life-sciences",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Life Sciences."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "N_studies/yrΔhrs_study$hr*Adopt%*Capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Patient Cohorting & Propensity Score Matching -- Bias reduction",
+      "summary": "Bias reduction: +15% improvement. Create comparable cohorts for studies.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/life-sciences",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Life Sciences",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "life-sciences",
+      "region": "global",
+      "metric_definition": "Bias reduction",
+      "methodology_note": "Master Repository benchmark for Life Sciences.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "life-sciences",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Life Sciences."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "N_analyses/yrΔhrs_an$hr*Adopt%*Capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Comparative Effectiveness -- Research productivity",
+      "summary": "Research productivity: +10% improvement. Estimate treatment effects across real-world populations.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/life-sciences",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Life Sciences",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "life-sciences",
+      "region": "global",
+      "metric_definition": "Research productivity",
+      "methodology_note": "Master Repository benchmark for Life Sciences.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "life-sciences",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Life Sciences."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "N_studies/yrΔhrs_study$hr*Adopt%*Capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Clinical Data Abstraction -- Operating efficiency",
+      "summary": "Operating efficiency: +10% improvement. Extract key fields from notes/records.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/life-sciences",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Life Sciences",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "life-sciences",
+      "region": "global",
+      "metric_definition": "Operating efficiency",
+      "methodology_note": "Master Repository benchmark for Life Sciences.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "life-sciences",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Life Sciences."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "N_records/yrΔmin_rec/60$hr*Adopt%*Capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Pharmacovigilance (Drug Safety & AE Detection) -- Signal detection rate",
+      "summary": "Signal detection rate: +15% improvement. Detect, triage, and analyze adverse events.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/life-sciences",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Life Sciences",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "life-sciences",
+      "region": "global",
+      "metric_definition": "Signal detection rate",
+      "methodology_note": "Master Repository benchmark for Life Sciences.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "life-sciences",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Life Sciences."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "N_cases/yrΔhrs_case$hr*Adopt%*Capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Global Customer 360 -- Conversion rate",
+      "summary": "Conversion rate: +10% improvement. Unify HCP/HCO profiles and engagements.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/growth-marketing-and-sales/our-insights/the-value-of-getting-personalization-right-or-wrong-is-multiplying",
+      "publisher": "McKinsey -- The value of getting personalization right—or wrong—is multiplying",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "life-sciences",
+      "region": "global",
+      "metric_definition": "Conversion rate",
+      "methodology_note": "Master Repository benchmark for Life Sciences.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "life-sciences",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The value of getting personalization right—or wrong—is multiplying."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "N_usersΔhrs_user/yr$hr*Adopt%*Capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Brand Analytics (Provider Segmentation, Sales Forecasting) -- Conversion rate",
+      "summary": "Conversion rate: +10% improvement. Segment HCPs and forecast demand.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/growth-marketing-and-sales/our-insights/the-value-of-getting-personalization-right-or-wrong-is-multiplying",
+      "publisher": "McKinsey -- The value of getting personalization right—or wrong—is multiplying",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "life-sciences",
+      "region": "global",
+      "metric_definition": "Conversion rate",
+      "methodology_note": "Master Repository benchmark for Life Sciences.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "life-sciences",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The value of getting personalization right—or wrong—is multiplying."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "N_calls/yrΔRx_callCM$/Rx*Adopt%*Capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Sales Rep / Medical Science Assistant -- FTE productivity",
+      "summary": "FTE productivity: +30% improvement. Copilot for call prep, objection handling, and compliant content.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/featured-insights/mckinsey-explainers/how-generative-ai-is-changing-the-technology-ecosystem",
+      "publisher": "McKinsey -- Generative AI and the Future of Work",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "life-sciences",
+      "region": "global",
+      "metric_definition": "FTE productivity",
+      "methodology_note": "Master Repository benchmark for Life Sciences.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "life-sciences",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- Generative AI and the Future of Work."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "N_repsΔhrs_rep/yr$hr*Adopt%*Capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Next-Best-Action Recommendations / Omnichannel -- Conversion rate",
+      "summary": "Conversion rate: +30% improvement. Recommend personalized next steps across channels.",
+      "source_type": "open_report",
+      "source_url": "https://www.bcg.com/publications/2024/what-consumers-want-from-personalization",
+      "publisher": "BCG -- What Consumers Want from Personalization",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "life-sciences",
+      "region": "global",
+      "metric_definition": "Conversion rate",
+      "methodology_note": "Master Repository benchmark for Life Sciences.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "life-sciences",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- BCG -- What Consumers Want from Personalization."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "N_touches/yr*ΔConv%CM$/convAdopt%*Capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Deliver Digital Health Applications (eg., CGM) -- Adherence rate",
+      "summary": "Adherence rate: +10% improvement. Provide insights and interventions from device/app data.",
+      "source_type": "open_report",
+      "source_url": "https://www.jmir.org/2023/5/ehealth-outcomes",
+      "publisher": "Journal of Medical Internet Research -- Digital Health Intervention Outcomes",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "life-sciences",
+      "region": "global",
+      "metric_definition": "Adherence rate",
+      "methodology_note": "Master Repository benchmark for Life Sciences.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "life-sciences",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Journal of Medical Internet Research -- Digital Health Intervention Outcomes."
+      },
+      "economicPattern": "Churn Reduction (Retention / LTV Protection)",
+      "economicFormula": "ActiveUsers*ΔChurn%GP$/user-yrAdopt%*Capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Support Patient Services (eg., Scheduling, Chatbot) -- Call volume (deflected)",
+      "summary": "Call volume (deflected): -40% improvement. Automate case intake, triage, and scheduling.",
+      "source_type": "open_report",
+      "source_url": "https://www.gartner.com/en/newsroom/press-releases/2025-03-05-gartner-predicts-agentic-ai-autonomously-resolve-80-percent-customer-service",
+      "publisher": "Gartner -- Agentic AI in Customer Service (Press Release)",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "life-sciences",
+      "region": "global",
+      "metric_definition": "Call volume (deflected)",
+      "methodology_note": "Master Repository benchmark for Life Sciences.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "life-sciences",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Gartner -- Agentic AI in Customer Service (Press Release)."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "N_contacts/yr*Deflect%Cost$/contactAdopt%*Capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Automate Adherence Reminders -- Adherence rate",
+      "summary": "Adherence rate: +8% improvement. Trigger personalized reminders and escalation.",
+      "source_type": "open_report",
+      "source_url": "https://www.nature.com/articles/s41591-021-01414-5",
+      "publisher": "Nature Medicine -- AI Adherence Nudges Study",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "life-sciences",
+      "region": "global",
+      "metric_definition": "Adherence rate",
+      "methodology_note": "Master Repository benchmark for Life Sciences.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "life-sciences",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Nature Medicine -- AI Adherence Nudges Study."
+      },
+      "economicPattern": "Churn Reduction (Retention / LTV Protection)",
+      "economicFormula": "N_pat/yr*ΔDisc%GP$/pat-yrAdopt%*Capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Digital Patient 360 -- Operating efficiency",
+      "summary": "Operating efficiency: +10% improvement. Unified, longitudinal patient view for care/support.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook?page=industries/life-sciences",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Life Sciences",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "life-sciences",
+      "region": "global",
+      "metric_definition": "Operating efficiency",
+      "methodology_note": "Master Repository benchmark for Life Sciences.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "life-sciences",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Life Sciences."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "N_usersΔhrs_user/yr$hr*Adopt%*Capture%"
+    }
+  ]
+}

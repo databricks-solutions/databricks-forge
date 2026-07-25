@@ -1,0 +1,952 @@
+/**
+ * Oil & Gas (Integrated / NOC) -- Master Repository Enrichment Data.
+ *
+ * Hand-authored (not XLSX-seeded) enrichment for the `oil-gas-noc` map.
+ * Reuses Master-Repository-grade content for the hydrocarbon value chain and
+ * adds LNG, downstream/petrochemical, hydrocarbon-accounting, and integrated
+ * trading assets that the broader `energy-utilities` map does not carry.
+ *
+ * Each use-case `name` is a verbatim match for a use case in `oil-gas-noc.ts`
+ * (the `reference_use_case_name` FK). `strategicImperative` / `strategicPillar`
+ * match the objective / priority names in that base map. `dataAssetIds`
+ * reference the `ReferenceDataAsset` ids defined below.
+ */
+
+import type { MasterRepoUseCase, ReferenceDataAsset } from "./master-repo-types";
+
+export const OIL_GAS_NOC_USE_CASES: MasterRepoUseCase[] = [
+  // ---- Maximize Production & Recovery :: Subsurface & Reservoir Optimization
+  {
+    name: "Subsurface Interpretation & Reservoir Modelling",
+    description:
+      "Apply ML and physics-informed models to seismic, well logs, and petrophysics to accelerate interpretation and reservoir characterisation.",
+    rationale:
+      "Seismic + well logs + petrophysics are the core signals; reservoir simulation encodes the physics; ML accelerates interpretation and history-matching that is otherwise expert-bound and slow.",
+    modelType: "Advanced — GenAI",
+    kpiTarget: "Finding & development cost",
+    benchmarkImpact: "-20%",
+    benchmarkSource: "McKinsey — The Executive's AI Playbook: Oil & Gas",
+    benchmarkUrl:
+      "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook",
+    strategicImperative: "Maximize Production & Recovery",
+    strategicPillar: "Subsurface & Reservoir Optimization",
+    dataAssetIds: ["A27", "A02", "A06", "A03"],
+    dataAssetCriticality: { A27: "MC", A02: "MC", A06: "VA", A03: "VA" },
+    totalLoeEstimate: "High",
+    mcAccessDifficulty: "High",
+    vaAccessDifficulty: "Medium",
+    economicPatternName: "Capex Avoidance (Infrastructure / Tool Consolidation)",
+    economicImpactCategory: "Cost",
+    economicFormula: "ΔDryHole_yr × Cost_well × Adopt × Capture",
+    economicFormulaDescription:
+      "ΔDryHole_yr = reduction in unsuccessful appraisal/exploration wells per year; Cost_well = fully-loaded well cost ($/well); Adopt = % of prospects evaluated with the new workflow; Capture = % of the modelled de-risking realised.",
+    economicPatternRationale:
+      "Better subsurface interpretation de-risks prospects and reservoir models, avoiding dry-hole and unnecessary appraisal spend.",
+  },
+  {
+    name: "Well Performance Optimization",
+    description:
+      "Use ML on production logs, PVT data, and reservoir simulations to optimise well performance and target interventions.",
+    rationale:
+      "Production allocation + subsurface logs + reservoir models reveal under-performance; intervention history calibrates which actions pay back.",
+    modelType: "Intermediate — Traditional AI",
+    kpiTarget: "Production volume (boe/d)",
+    benchmarkImpact: "+10%",
+    benchmarkSource: "McKinsey — The Executive's AI Playbook: Oil & Gas",
+    benchmarkUrl:
+      "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook",
+    strategicImperative: "Maximize Production & Recovery",
+    strategicPillar: "Subsurface & Reservoir Optimization",
+    dataAssetIds: ["A20", "A27", "A03", "A21"],
+    dataAssetCriticality: { A20: "MC", A27: "MC", A03: "VA", A21: "VA" },
+    totalLoeEstimate: "Medium",
+    mcAccessDifficulty: "Medium",
+    vaAccessDifficulty: "Medium",
+    economicPatternName: "Price Realization (Yield / Rate Optimization)",
+    economicImpactCategory: "Revenue",
+    economicFormula: "Wells × ΔRate_well × Price × Adopt × Capture",
+    economicFormulaDescription:
+      "Wells = under-performing wells addressed; ΔRate_well = incremental production per well (boe/d); Price = realised price ($/boe); Adopt = % of candidate wells treated; Capture = % of modelled uplift sustained.",
+    economicPatternRationale:
+      "Targeted interventions lift production rate on under-performing wells, converting subsurface insight directly into incremental volume and revenue.",
+  },
+  {
+    name: "Drilling & Completions Optimization",
+    description:
+      "Stream real-time drilling data (WITSML) into ML models that optimise parameters, detect dysfunction early, and cut non-productive time.",
+    rationale:
+      "Real-time drilling streams + mud logs + BHA config are the live signals; daily drilling reports and well plans give the baseline to optimise against.",
+    modelType: "Intermediate — Traditional AI",
+    kpiTarget: "Non-productive time (rig)",
+    benchmarkImpact: "-15%",
+    benchmarkSource: "McKinsey — The Executive's AI Playbook: Oil & Gas",
+    benchmarkUrl:
+      "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook",
+    strategicImperative: "Maximize Production & Recovery",
+    strategicPillar: "Subsurface & Reservoir Optimization",
+    dataAssetIds: ["A28", "A27", "A06"],
+    dataAssetCriticality: { A28: "MC", A27: "VA", A06: "VA" },
+    totalLoeEstimate: "Medium",
+    mcAccessDifficulty: "High",
+    vaAccessDifficulty: "Medium",
+    economicPatternName: "Cost Takeout (Labor / Opex Reduction)",
+    economicImpactCategory: "Cost",
+    economicFormula: "Wells_yr × ΔRigDays × Rate_day × Adopt × Capture",
+    economicFormulaDescription:
+      "Wells_yr = wells drilled per year; ΔRigDays = rig days saved per well; Rate_day = day-rate plus spread cost ($/day); Adopt = % of wells using the optimisation; Capture = % of modelled savings realised.",
+    economicPatternRationale:
+      "Real-time optimisation and early dysfunction detection reduce rig days and non-productive time, the dominant cost in well construction.",
+  },
+  // ---- Maximize Production & Recovery :: Production & Hydrocarbon Allocation
+  {
+    name: "Production Optimization",
+    description:
+      "Optimise production processes (well rates, gas lift, separation, compression) using real-time analytics, digital twins, and AI.",
+    rationale:
+      "SCADA/historian telemetry + process parameters define current state; digital twins and setpoint configs enable closed-loop optimisation within safety limits.",
+    modelType: "Intermediate — Traditional AI",
+    kpiTarget: "Production efficiency",
+    benchmarkImpact: "+3%",
+    benchmarkSource: "McKinsey — The Executive's AI Playbook: Oil & Gas",
+    benchmarkUrl:
+      "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook",
+    strategicImperative: "Maximize Production & Recovery",
+    strategicPillar: "Production & Hydrocarbon Allocation",
+    dataAssetIds: ["A03", "A20", "A06"],
+    dataAssetCriticality: { A03: "MC", A20: "MC", A06: "VA" },
+    totalLoeEstimate: "Medium",
+    mcAccessDifficulty: "Medium",
+    vaAccessDifficulty: "Medium",
+    economicPatternName: "Price Realization (Yield / Rate Optimization)",
+    economicImpactCategory: "Revenue",
+    economicFormula: "Volume_yr × ΔEff × Price × Adopt × Capture",
+    economicFormulaDescription:
+      "Volume_yr = annual production (boe); ΔEff = efficiency/throughput gain (%); Price = realised price ($/boe); Adopt = % of assets covered; Capture = % of modelled gain sustained.",
+    economicPatternRationale:
+      "Closed-loop production optimisation lifts throughput and efficiency per asset, realised as incremental volume.",
+  },
+  {
+    name: "Hydrocarbon Accounting & Allocation",
+    description:
+      "Automate volumetric allocation and reconciliation across wells, fields, and commingled streams for partners, regulators, and PSC/royalty settlement.",
+    rationale:
+      "Metered volumes + allocation factors + well tests drive the allocation; partner/PSC equity defines settlement; reconciliation adjustments close the loop with ERP.",
+    modelType: "Basic-ML",
+    kpiTarget: "Reconciliation variance",
+    benchmarkImpact: "-50%",
+    benchmarkSource: "Databricks — Production Accounting Modernisation",
+    benchmarkUrl: "https://www.databricks.com/solutions/industries/oil-and-gas",
+    strategicImperative: "Maximize Production & Recovery",
+    strategicPillar: "Production & Hydrocarbon Allocation",
+    dataAssetIds: ["A21", "A20", "A26"],
+    dataAssetCriticality: { A21: "MC", A20: "MC", A26: "VA" },
+    totalLoeEstimate: "Medium",
+    mcAccessDifficulty: "Medium",
+    vaAccessDifficulty: "Low",
+    economicPatternName: "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+    economicImpactCategory: "Productivity / Capacity",
+    economicFormula: "Cycles_yr × Hrs_cycle × Rate_hr × Adopt × Capture",
+    economicFormulaDescription:
+      "Cycles_yr = allocation/reconciliation cycles per year; Hrs_cycle = analyst hours saved per cycle; Rate_hr = fully-loaded labour rate; Adopt = % of fields automated; Capture = % of effort actually removed.",
+    economicPatternRationale:
+      "Automated allocation removes manual reconciliation effort and shortens close cycles, freeing production-accounting capacity and reducing disputes.",
+  },
+  // ---- Asset Integrity, Safety & Environment :: Asset Integrity & Predictive Maintenance
+  {
+    name: "Predictive Maintenance for Energy Assets",
+    description:
+      "Predict equipment failures across rotating and static assets using ML on vibration, thermal, acoustic, and process signatures.",
+    rationale:
+      "Historian + condition monitoring + maintenance history are the core signals and labels; digital twins encode failure physics; asset registry ties it together.",
+    modelType: "Intermediate — Traditional AI",
+    kpiTarget: "Unplanned downtime",
+    benchmarkImpact: "-40%",
+    benchmarkSource:
+      "McKinsey — Manufacturing Analytics Unleashes Productivity and Profitability",
+    benchmarkUrl:
+      "https://www.mckinsey.com/capabilities/operations/our-insights/manufacturing-analytics-unleashes-productivity-and-profitability",
+    strategicImperative: "Asset Integrity, Safety & Environment",
+    strategicPillar: "Asset Integrity & Predictive Maintenance",
+    dataAssetIds: ["A03", "A04", "A02", "A01", "A06"],
+    dataAssetCriticality: { A03: "MC", A04: "MC", A02: "MC", A01: "VA", A06: "VA" },
+    totalLoeEstimate: "Medium",
+    mcAccessDifficulty: "Medium",
+    vaAccessDifficulty: "Medium",
+    economicPatternName: "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
+    economicImpactCategory: "Risk / Loss Avoidance",
+    economicFormula: "ΔDowntime_hrs × Cost_hr × Adopt × Capture",
+    economicFormulaDescription:
+      "ΔDowntime_hrs = unplanned downtime hours avoided per year; Cost_hr = deferred-production + repair cost per hour; Adopt = % of critical assets instrumented; Capture = % of predictable failures acted on in time.",
+    economicPatternRationale:
+      "Condition-based maintenance converts unplanned failures into planned interventions, avoiding downtime and catastrophic-failure cost.",
+  },
+  {
+    name: "Pipeline & Asset Integrity Management",
+    description:
+      "Fuse inline-inspection, corrosion/CP data, and geospatial context to predict integrity threats and prioritise inspection and repair.",
+    rationale:
+      "Inline inspection + corrosion/CP readings are the integrity signals; pipeline GIS topology localises threats; repair history calibrates risk.",
+    modelType: "Intermediate — Traditional AI",
+    kpiTarget: "Loss of primary containment events",
+    benchmarkImpact: "-30%",
+    benchmarkSource: "Databricks — Pipeline Integrity Analytics",
+    benchmarkUrl: "https://www.databricks.com/solutions/industries/oil-and-gas",
+    strategicImperative: "Asset Integrity, Safety & Environment",
+    strategicPillar: "Asset Integrity & Predictive Maintenance",
+    dataAssetIds: ["A22", "A07", "A03", "A02"],
+    dataAssetCriticality: { A22: "MC", A07: "MC", A03: "VA", A02: "VA" },
+    totalLoeEstimate: "High",
+    mcAccessDifficulty: "High",
+    vaAccessDifficulty: "Medium",
+    economicPatternName: "Risk Avoidance (Compliance / Penalties / Outage Impact)",
+    economicImpactCategory: "Risk / Loss Avoidance",
+    economicFormula: "P_event × Cost_event × ΔRisk × Adopt",
+    economicFormulaDescription:
+      "P_event = baseline annual probability of a containment event; Cost_event = expected cost (remediation + penalty + downtime); ΔRisk = proportional risk reduction from predictive prioritisation; Adopt = % of network covered.",
+    economicPatternRationale:
+      "Predictive threat prioritisation reduces the probability and impact of leaks/ruptures and optimises where inspection spend goes.",
+  },
+  // ---- Asset Integrity, Safety & Environment :: Process Safety & Environmental Compliance
+  {
+    name: "Safety Event Prediction",
+    description:
+      "Use ML on operational telemetry to predict safety incidents and provide advance warning for preventive intervention.",
+    rationale:
+      "SCADA/DCS telemetry + HSE incident history train models that flag precursors; risk indicators turn predictions into actionable alerts.",
+    modelType: "Intermediate — Traditional AI",
+    kpiTarget: "Tier 1/2 process-safety events",
+    benchmarkImpact: "-25%",
+    benchmarkSource: "NOV — Predicting Well-Bore Influx Events",
+    benchmarkUrl: "https://www.databricks.com/customers",
+    strategicImperative: "Asset Integrity, Safety & Environment",
+    strategicPillar: "Process Safety & Environmental Compliance",
+    dataAssetIds: ["A03", "A23", "A25"],
+    dataAssetCriticality: { A03: "MC", A23: "MC", A25: "VA" },
+    totalLoeEstimate: "Medium",
+    mcAccessDifficulty: "Medium",
+    vaAccessDifficulty: "Medium",
+    economicPatternName: "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
+    economicImpactCategory: "Risk / Loss Avoidance",
+    economicFormula: "ΔIncidents_yr × Cost_incident × Adopt × Capture",
+    economicFormulaDescription:
+      "ΔIncidents_yr = Tier 1/2 events avoided per year; Cost_incident = fully-loaded incident cost (HSE + downtime + liability); Adopt = % of operations monitored; Capture = % of predicted events successfully intervened.",
+    economicPatternRationale:
+      "Early prediction of dangerous events enables preventive action, avoiding process-safety incidents and their human and financial cost.",
+  },
+  {
+    name: "Methane & Emissions Monitoring (MMV)",
+    description:
+      "Continuously monitor methane leaks, flaring, and emissions using CEMS, satellite/drone imagery, and sensor networks with auditable MMV trails.",
+    rationale:
+      "Emissions readings + methane detection + satellite imagery localise and quantify leaks; compliance thresholds and EMS turn detections into regulator-ready evidence.",
+    modelType: "Intermediate — Traditional AI",
+    kpiTarget: "Methane intensity",
+    benchmarkImpact: "-30%",
+    benchmarkSource: "OGMP 2.0 / IEA — Methane Abatement",
+    benchmarkUrl: "https://www.iea.org/reports/global-methane-tracker",
+    strategicImperative: "Asset Integrity, Safety & Environment",
+    strategicPillar: "Process Safety & Environmental Compliance",
+    dataAssetIds: ["A24", "A05", "A03"],
+    dataAssetCriticality: { A24: "MC", A05: "MC", A03: "VA" },
+    totalLoeEstimate: "Medium",
+    mcAccessDifficulty: "Medium",
+    vaAccessDifficulty: "Low",
+    economicPatternName: "Risk Avoidance (Compliance / Penalties / Outage Impact)",
+    economicImpactCategory: "Risk / Loss Avoidance",
+    economicFormula: "Gas_lost_yr × Price_gas + Penalty_avoided × Adopt",
+    economicFormulaDescription:
+      "Gas_lost_yr = methane volume recovered by faster leak response (mmscf/yr); Price_gas = gas value ($/mmscf); Penalty_avoided = expected regulatory penalty avoided; Adopt = % of facilities monitored.",
+    economicPatternRationale:
+      "Continuous MMV reduces methane intensity (recovering saleable gas) and avoids regulatory penalties under tightening disclosure regimes.",
+  },
+  // ---- LNG & Value-Chain Optimization :: Liquefaction & Regasification
+  {
+    name: "LNG Train Throughput & Efficiency Optimization",
+    description:
+      "Optimise liquefaction-train performance and predict availability using historian telemetry, ambient conditions, and digital twins.",
+    rationale:
+      "Train process telemetry + refrigerant/compressor data are the optimisation signals; ambient conditions constrain capacity; digital twins enable what-if and availability prediction.",
+    modelType: "Intermediate — Traditional AI",
+    kpiTarget: "Train availability",
+    benchmarkImpact: "+5%",
+    benchmarkSource: "Databricks — LNG Operations Optimisation",
+    benchmarkUrl: "https://www.databricks.com/solutions/industries/oil-and-gas",
+    strategicImperative: "LNG & Value-Chain Optimization",
+    strategicPillar: "Liquefaction & Regasification",
+    dataAssetIds: ["A12", "A03", "A06"],
+    dataAssetCriticality: { A12: "MC", A03: "MC", A06: "VA" },
+    totalLoeEstimate: "High",
+    mcAccessDifficulty: "Medium",
+    vaAccessDifficulty: "Medium",
+    economicPatternName: "Price Realization (Yield / Rate Optimization)",
+    economicImpactCategory: "Revenue",
+    economicFormula: "Capacity_yr × ΔThroughput × Margin_t × Adopt × Capture",
+    economicFormulaDescription:
+      "Capacity_yr = nameplate LNG capacity (tonnes/yr); ΔThroughput = throughput/availability gain (%); Margin_t = margin per tonne LNG ($/t); Adopt = % of trains covered; Capture = % of modelled gain sustained.",
+    economicPatternRationale:
+      "Higher train throughput and availability convert directly into incremental LNG tonnes at margin, the core value lever for an LNG business.",
+  },
+  // ---- LNG & Value-Chain Optimization :: Shipping & Cargo Optimization
+  {
+    name: "Cargo & Shipping Scheduling Optimization",
+    description:
+      "Optimise LNG fleet scheduling, voyage routing, and boil-off management across cargoes and contracts.",
+    rationale:
+      "Vessel telemetry/AIS + voyage and cargo schedules drive scheduling; boil-off rates and weather/route forecasts refine the optimisation and delivered margin.",
+    modelType: "Intermediate — Traditional AI",
+    kpiTarget: "Fleet utilisation",
+    benchmarkImpact: "+8%",
+    benchmarkSource: "Databricks — Maritime & Cargo Optimisation",
+    benchmarkUrl: "https://www.databricks.com/solutions/industries/oil-and-gas",
+    strategicImperative: "LNG & Value-Chain Optimization",
+    strategicPillar: "Shipping & Cargo Optimization",
+    dataAssetIds: ["A13", "A14", "A10"],
+    dataAssetCriticality: { A13: "MC", A14: "MC", A10: "VA" },
+    totalLoeEstimate: "Medium",
+    mcAccessDifficulty: "Medium",
+    vaAccessDifficulty: "Low",
+    economicPatternName: "Cost Takeout (Labor / Opex Reduction)",
+    economicImpactCategory: "Cost",
+    economicFormula: "Cargoes_yr × ΔCost_cargo × Adopt × Capture",
+    economicFormulaDescription:
+      "Cargoes_yr = cargoes delivered per year; ΔCost_cargo = boil-off + demurrage + voyage cost saved per cargo; Adopt = % of cargoes optimised; Capture = % of modelled savings realised.",
+    economicPatternRationale:
+      "Optimised scheduling and routing raise fleet utilisation and cut boil-off and demurrage, improving delivered margin per cargo.",
+  },
+  // ---- Downstream & Petrochemical Yield :: Refinery & Petrochemical Optimization
+  {
+    name: "Refinery Yield & Blend Optimization",
+    description:
+      "Optimise unit yields, product blending, and energy use across the refinery and petrochemical complex.",
+    rationale:
+      "Unit process telemetry + LIMS quality results constrain the optimisation; blend recipes and LP planning models define the decision space for margin per barrel.",
+    modelType: "Intermediate — Traditional AI",
+    kpiTarget: "Margin per barrel",
+    benchmarkImpact: "+2%",
+    benchmarkSource: "McKinsey — Refining Advanced Analytics",
+    benchmarkUrl:
+      "https://www.mckinsey.com/industries/oil-and-gas/our-insights",
+    strategicImperative: "Downstream & Petrochemical Yield",
+    strategicPillar: "Refinery & Petrochemical Optimization",
+    dataAssetIds: ["A03", "A29", "A30"],
+    dataAssetCriticality: { A03: "MC", A29: "MC", A30: "VA" },
+    totalLoeEstimate: "High",
+    mcAccessDifficulty: "Medium",
+    vaAccessDifficulty: "Medium",
+    economicPatternName: "Price Realization (Yield / Rate Optimization)",
+    economicImpactCategory: "Revenue",
+    economicFormula: "Throughput_yr × ΔMargin_bbl × Adopt × Capture",
+    economicFormulaDescription:
+      "Throughput_yr = refinery/complex throughput (bbl/yr); ΔMargin_bbl = margin uplift per barrel from yield/blend/energy optimisation ($/bbl); Adopt = % of units covered; Capture = % of modelled uplift sustained.",
+    economicPatternRationale:
+      "Yield and blend optimisation raises margin per barrel and reduces quality give-away and energy use across the complex.",
+  },
+  {
+    name: "Turnaround & Reliability Planning",
+    description:
+      "Use maintenance, inspection, and reliability data to optimise turnaround scope, scheduling, and execution.",
+    rationale:
+      "Turnaround scope/schedule + inspection & reliability data + work orders define the event; historical turnaround performance calibrates duration and cost.",
+    modelType: "Basic-ML",
+    kpiTarget: "Turnaround cost & duration",
+    benchmarkImpact: "-15%",
+    benchmarkSource: "Databricks — Turnaround Optimisation",
+    benchmarkUrl: "https://www.databricks.com/solutions/industries/oil-and-gas",
+    strategicImperative: "Downstream & Petrochemical Yield",
+    strategicPillar: "Refinery & Petrochemical Optimization",
+    dataAssetIds: ["A02", "A22", "A26"],
+    dataAssetCriticality: { A02: "MC", A22: "MC", A26: "VA" },
+    totalLoeEstimate: "Medium",
+    mcAccessDifficulty: "Medium",
+    vaAccessDifficulty: "Low",
+    economicPatternName: "Cost Takeout (Labor / Opex Reduction)",
+    economicImpactCategory: "Cost",
+    economicFormula: "TAR_yr × ΔCost_tar × Adopt × Capture",
+    economicFormulaDescription:
+      "TAR_yr = turnarounds per year; ΔCost_tar = cost + deferred-production savings per turnaround from optimised scope/schedule; Adopt = % of turnarounds covered; Capture = % of modelled savings realised.",
+    economicPatternRationale:
+      "Optimised turnaround scope and scheduling shorten the most expensive planned events and reduce unplanned shutdowns.",
+  },
+  // ---- Integrated Trading & Commercial :: Trading, Supply & Risk
+  {
+    name: "Integrated Trading & Supply Analytics",
+    description:
+      "Provide real-time analytics for crude, products, gas, LNG, and carbon trading by fusing market and physical/operational signals.",
+    rationale:
+      "Market prices/curves + physical positions are the trading inputs; freight, inventory, and operational availability connect the paper and physical books.",
+    modelType: "Intermediate — Traditional AI",
+    kpiTarget: "Trading P&L",
+    benchmarkImpact: "+5%",
+    benchmarkSource: "Databricks — Commodity Trading Analytics",
+    benchmarkUrl: "https://www.databricks.com/solutions/industries/oil-and-gas",
+    strategicImperative: "Integrated Trading & Commercial",
+    strategicPillar: "Trading, Supply & Risk",
+    dataAssetIds: ["A14", "A15", "A13", "A21"],
+    dataAssetCriticality: { A14: "MC", A15: "MC", A13: "VA", A21: "VA" },
+    totalLoeEstimate: "Medium",
+    mcAccessDifficulty: "Medium",
+    vaAccessDifficulty: "Medium",
+    economicPatternName: "Price Realization (Yield / Rate Optimization)",
+    economicImpactCategory: "Revenue",
+    economicFormula: "Volume_traded × ΔMargin × Adopt × Capture",
+    economicFormulaDescription:
+      "Volume_traded = volume transacted per year; ΔMargin = margin improvement per unit from better-informed decisions; Adopt = % of desks/flows covered; Capture = % of modelled improvement realised.",
+    economicPatternRationale:
+      "Fusing physical and market signals into one decision plane improves trading and scheduling decisions, lifting P&L and reducing imbalance.",
+  },
+  {
+    name: "Commodity Risk & Exposure Management",
+    description:
+      "Aggregate and quantify market, credit, and operational exposure across the physical and paper book with scenario and VaR analytics.",
+    rationale:
+      "Positions/trades + market & volatility curves drive VaR; counterparty/credit data and risk limits frame exposure and breach detection.",
+    modelType: "Basic-ML",
+    kpiTarget: "VaR / exposure accuracy",
+    benchmarkImpact: "-40%",
+    benchmarkSource: "Databricks — Risk Analytics Modernisation",
+    benchmarkUrl: "https://www.databricks.com/solutions/industries/financial-services",
+    strategicImperative: "Integrated Trading & Commercial",
+    strategicPillar: "Trading, Supply & Risk",
+    dataAssetIds: ["A15", "A14", "A26"],
+    dataAssetCriticality: { A15: "MC", A14: "MC", A26: "VA" },
+    totalLoeEstimate: "Medium",
+    mcAccessDifficulty: "Medium",
+    vaAccessDifficulty: "Low",
+    economicPatternName: "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+    economicImpactCategory: "Productivity / Capacity",
+    economicFormula: "Reports_yr × Hrs_report × Rate_hr × Adopt × Capture",
+    economicFormulaDescription:
+      "Reports_yr = exposure/VaR reporting cycles per year; Hrs_report = analyst hours saved per cycle through automation; Rate_hr = fully-loaded labour rate; Adopt = % of books covered; Capture = % of effort removed.",
+    economicPatternRationale:
+      "Automated, accurate exposure aggregation shortens risk reporting cycles and reduces limit breaches, freeing risk-analyst capacity.",
+  },
+  // ---- Energy Transition & Corporate :: Decarbonization & New Energy
+  {
+    name: "ESG & Emissions Reporting",
+    description:
+      "Automate Scope 1/2/3 emissions tracking and ESG reporting with audit-grade disclosures aligned to CSRD, SEC, ISSB, and OGMP 2.0.",
+    rationale:
+      "Emissions + energy consumption + supply-chain footprint feed the disclosure; ESG metrics and disclosure templates produce regulator-ready output with lineage.",
+    modelType: "Basic-ML",
+    kpiTarget: "Scope 1/2/3 reporting effort",
+    benchmarkImpact: "-70%",
+    benchmarkSource: "Databricks — Sustainability Reporting Acceleration",
+    benchmarkUrl: "https://www.databricks.com/solutions/industries/oil-and-gas",
+    strategicImperative: "Energy Transition & Corporate",
+    strategicPillar: "Decarbonization & New Energy",
+    dataAssetIds: ["A24", "A26", "A16"],
+    dataAssetCriticality: { A24: "MC", A26: "MC", A16: "VA" },
+    totalLoeEstimate: "Medium",
+    mcAccessDifficulty: "Medium",
+    vaAccessDifficulty: "Low",
+    economicPatternName: "Cost Takeout (Labor / Opex Reduction)",
+    economicImpactCategory: "Cost",
+    economicFormula: "Reports_yr × Hrs_report × Rate_hr × Adopt × Capture",
+    economicFormulaDescription:
+      "Reports_yr = disclosure cycles per year (annual + interim + regional); Hrs_report = manual hours saved per cycle; Rate_hr = fully-loaded labour rate; Adopt = % of reporting entities automated; Capture = % of manual effort removed.",
+    economicPatternRationale:
+      "Integrated, lineage-backed pipelines replace manual spreadsheet ESG reporting, cutting effort 60-80% while improving defensibility.",
+  },
+  {
+    name: "CCUS & Hydrogen Optimization",
+    description:
+      "Monitor and optimise CO2 capture, injection, and storage (MMV) and hydrogen production (electrolyser telemetry).",
+    rationale:
+      "CO2 injection & plume monitoring plus containment/geochemistry assure storage; electrolyser telemetry and process T/P/density optimise hydrogen efficiency.",
+    modelType: "Intermediate — Traditional AI",
+    kpiTarget: "Hydrogen production efficiency",
+    benchmarkImpact: "+10%",
+    benchmarkSource: "NREL — Hydrogen Systems Analysis",
+    benchmarkUrl: "https://www.nrel.gov/hydrogen/",
+    strategicImperative: "Energy Transition & Corporate",
+    strategicPillar: "Decarbonization & New Energy",
+    dataAssetIds: ["A31", "A32", "A03"],
+    dataAssetCriticality: { A31: "MC", A32: "MC", A03: "VA" },
+    totalLoeEstimate: "High",
+    mcAccessDifficulty: "High",
+    vaAccessDifficulty: "Medium",
+    economicPatternName: "Price Realization (Yield / Rate Optimization)",
+    economicImpactCategory: "Revenue",
+    economicFormula: "Capacity_yr × ΔEff × Value_unit × Adopt × Capture",
+    economicFormulaDescription:
+      "Capacity_yr = hydrogen/CCUS throughput per year; ΔEff = efficiency gain (%); Value_unit = value per unit (H2 $/kg or CO2 $/t stored & credited); Adopt = % of assets covered; Capture = % of modelled gain sustained.",
+    economicPatternRationale:
+      "Optimised new-energy assets improve hydrogen production efficiency and assure CO2 containment, protecting the value of transition investment.",
+  },
+  // ---- Energy Transition & Corporate :: Corporate, Finance & Protection
+  {
+    name: "Integrated Financial Planning & Forecasting",
+    description:
+      "AI-driven forecasting that fuses operational metrics with market indicators and macro scenarios to replace static budgets.",
+    rationale:
+      "Financial actuals + operational metrics + market indicators feed the forecast; budget plans and scenario definitions frame the planning cycle.",
+    modelType: "Intermediate — Traditional AI",
+    kpiTarget: "Forecast accuracy",
+    benchmarkImpact: "+15%",
+    benchmarkSource: "Databricks — FP&A Modernisation",
+    benchmarkUrl: "https://www.databricks.com/solutions",
+    strategicImperative: "Energy Transition & Corporate",
+    strategicPillar: "Corporate, Finance & Protection",
+    dataAssetIds: ["A26", "A14", "A20"],
+    dataAssetCriticality: { A26: "MC", A14: "MC", A20: "VA" },
+    totalLoeEstimate: "Medium",
+    mcAccessDifficulty: "Low",
+    vaAccessDifficulty: "Medium",
+    economicPatternName: "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+    economicImpactCategory: "Productivity / Capacity",
+    economicFormula: "Cycles_yr × Hrs_cycle × Rate_hr × Adopt × Capture",
+    economicFormulaDescription:
+      "Cycles_yr = planning/reforecast cycles per year; Hrs_cycle = analyst hours saved per cycle; Rate_hr = fully-loaded labour rate; Adopt = % of planning entities covered; Capture = % of effort removed.",
+    economicPatternRationale:
+      "Dynamic, scenario-aware forecasting shortens reforecast cycles and improves accuracy, enabling better capital allocation.",
+  },
+  {
+    name: "OT/IT Cyber & Critical-Infrastructure Protection",
+    description:
+      "ML-driven threat detection across OT and IT estates and critical control systems, honouring data-sovereignty constraints.",
+    rationale:
+      "SIEM logs + OT network telemetry + IAM are the detection signals; threat intelligence and asset/control-system inventory contextualise alerts.",
+    modelType: "Intermediate — Traditional AI",
+    kpiTarget: "Mean time to detect/respond (cyber)",
+    benchmarkImpact: "-50%",
+    benchmarkSource: "Databricks — Cybersecurity Lakehouse",
+    benchmarkUrl: "https://www.databricks.com/solutions/industries/cybersecurity",
+    strategicImperative: "Energy Transition & Corporate",
+    strategicPillar: "Corporate, Finance & Protection",
+    dataAssetIds: ["A33", "A34", "A25"],
+    dataAssetCriticality: { A33: "MC", A34: "MC", A25: "VA" },
+    totalLoeEstimate: "High",
+    mcAccessDifficulty: "Medium",
+    vaAccessDifficulty: "Medium",
+    economicPatternName: "Risk Avoidance (Compliance / Penalties / Outage Impact)",
+    economicImpactCategory: "Risk / Loss Avoidance",
+    economicFormula: "P_breach × Cost_breach × ΔRisk × Adopt",
+    economicFormulaDescription:
+      "P_breach = baseline annual probability of a material OT/IT breach; Cost_breach = expected cost (downtime + remediation + regulatory + reputational); ΔRisk = proportional risk reduction from faster detection/response; Adopt = % of estate covered.",
+    economicPatternRationale:
+      "Faster threat detection and response across OT/IT reduces the probability and impact of breaches against critical national infrastructure.",
+  },
+];
+
+export const OIL_GAS_NOC_DATA_ASSETS: ReferenceDataAsset[] = [
+  {
+    id: "A01",
+    name: "Asset Master & Hierarchy Registry",
+    description:
+      "Golden records for wells, platforms, facilities, equipment, serials, and location/BOM hierarchy enabling traceability and cost attribution.",
+    systemLocation: "EAM/CMMS/MDM",
+    assetFamily: "Operations & Asset",
+    easeOfAccess: "High",
+    lakeflowConnect: "Low",
+    ucFederation: "Low",
+    lakebridgeMigrate: "Low",
+    bespoke: "High",
+    accessRationale: "Master data typically in EAM/CMMS/MDM; commonly extracted via batch/bespoke export.",
+    systemKind: "CMMS / EAM",
+  },
+  {
+    id: "A02",
+    name: "Work Orders & Maintenance History",
+    description:
+      "Corrective/preventive work orders, failure codes, MTBF/MTTR, and technician notes for reliability analytics.",
+    systemLocation: "EAM/CMMS",
+    assetFamily: "Operations & Asset",
+    easeOfAccess: "High",
+    lakeflowConnect: "Low",
+    ucFederation: "Low",
+    lakebridgeMigrate: "Low",
+    bespoke: "High",
+    accessRationale: "Maintenance records in EAM/CMMS; commonly accessed via batch extract.",
+    systemKind: "CMMS / EAM",
+  },
+  {
+    id: "A03",
+    name: "SCADA/DCS & Historian Time-Series",
+    description:
+      "High-frequency telemetry (pressures, temperatures, flows, vibration) for control, alarms, and anomaly detection.",
+    systemLocation: "SCADA/DCS Historian",
+    assetFamily: "Operations & Asset",
+    easeOfAccess: "Medium",
+    lakeflowConnect: "Low",
+    ucFederation: "Low",
+    lakebridgeMigrate: "Low",
+    bespoke: "High",
+    accessRationale: "Process historians (PI, etc.) typically integrated via connectors or bespoke streaming.",
+    systemKind: "SCADA / Historian",
+  },
+  {
+    id: "A04",
+    name: "Condition Monitoring Signals",
+    description:
+      "Vibration, acoustic, ultrasonic, and thermography streams for rotating-equipment health.",
+    systemLocation: "Edge/Condition Monitoring",
+    assetFamily: "Operations & Asset",
+    easeOfAccess: "Medium",
+    lakeflowConnect: "Low",
+    ucFederation: "Low",
+    lakebridgeMigrate: "Low",
+    bespoke: "High",
+    accessRationale: "Condition-monitoring platforms feed via edge gateways; commonly bespoke ingestion.",
+    systemKind: "Observability",
+  },
+  {
+    id: "A05",
+    name: "Drone/Satellite/IR Inspection & Emissions Media",
+    description:
+      "Geo-tagged imagery, video, point clouds, and IR/optical-gas-imaging media for defect detection and methane/leak monitoring.",
+    systemLocation: "DAM/Object Store in Data Lake",
+    assetFamily: "Operations & Asset",
+    easeOfAccess: "Low",
+    lakeflowConnect: "High",
+    ucFederation: "High",
+    lakebridgeMigrate: "Low",
+    bespoke: "Low",
+    accessRationale: "Media typically lands in cloud object storage (ADLS/S3/GCS), accessible via Lakeflow or UC federation.",
+    systemKind: "Data Lake",
+  },
+  {
+    id: "A06",
+    name: "Digital Twins & Engineering Models",
+    description:
+      "CAD/CAE, simulation, FEA/CFD, and physics twins for wells, facilities, and what-if analysis.",
+    systemLocation: "PLM/Simulation Platform",
+    assetFamily: "Operations & Asset",
+    easeOfAccess: "High",
+    lakeflowConnect: "Low",
+    ucFederation: "Low",
+    lakebridgeMigrate: "Low",
+    bespoke: "High",
+    accessRationale: "Engineering/simulation platforms; typically bespoke export of model outputs.",
+    systemKind: "PLM / PDM",
+  },
+  {
+    id: "A07",
+    name: "GIS Network & Pipeline Topology",
+    description:
+      "As-built/operational topology, pipelines, feeders, facilities, connectivity, and spatial constraints.",
+    systemLocation: "Enterprise GIS",
+    assetFamily: "Network & Spatial",
+    easeOfAccess: "Medium",
+    lakeflowConnect: "Low",
+    ucFederation: "High",
+    lakebridgeMigrate: "Low",
+    bespoke: "Low",
+    accessRationale: "GIS (Esri, etc.) commonly federated or exported as spatial datasets.",
+    systemKind: "Data Warehouse",
+  },
+  {
+    id: "A10",
+    name: "Weather & Environmental Forecasts",
+    description:
+      "Numerical weather prediction, marine/route forecasts, and environmental indices for operations and voyage planning.",
+    systemLocation: "External Data Provider",
+    assetFamily: "External & Market",
+    easeOfAccess: "High",
+    lakeflowConnect: "High",
+    ucFederation: "High",
+    lakebridgeMigrate: "Low",
+    bespoke: "Low",
+    accessRationale: "Third-party weather APIs/feeds ingested via Lakeflow or marketplace shares.",
+    systemKind: "Data Lake",
+  },
+  {
+    id: "A12",
+    name: "LNG Train & Plant Telemetry",
+    description:
+      "Liquefaction train process telemetry — refrigerant loops, compressor data, throughput, specific energy, and availability.",
+    systemLocation: "Plant Historian/DCS",
+    assetFamily: "LNG Value Chain",
+    easeOfAccess: "Medium",
+    lakeflowConnect: "Low",
+    ucFederation: "Low",
+    lakebridgeMigrate: "Low",
+    bespoke: "High",
+    accessRationale: "LNG plant historians/DCS; integrated via process-historian connectors or bespoke streaming.",
+    systemKind: "SCADA / Historian",
+  },
+  {
+    id: "A13",
+    name: "Vessel Telemetry, AIS & Voyage Data",
+    description:
+      "Vessel position/AIS, voyage and charter data, cargo schedules, and boil-off rates for fleet optimisation.",
+    systemLocation: "Shipping/Fleet Management System",
+    assetFamily: "LNG Value Chain",
+    easeOfAccess: "Medium",
+    lakeflowConnect: "High",
+    ucFederation: "Low",
+    lakebridgeMigrate: "Low",
+    bespoke: "Low",
+    accessRationale: "Fleet-management systems and AIS providers expose APIs/feeds ingestible via Lakeflow.",
+    systemKind: "Order Management",
+  },
+  {
+    id: "A14",
+    name: "Market Prices & Commodity Curves",
+    description:
+      "Crude, products, gas, LNG, freight, and carbon prices plus forward curves and volatility for trading and planning.",
+    systemLocation: "Market Data Feeds",
+    assetFamily: "External & Market",
+    easeOfAccess: "High",
+    lakeflowConnect: "High",
+    ucFederation: "High",
+    lakebridgeMigrate: "Low",
+    bespoke: "Low",
+    accessRationale: "Market-data vendors (Platts, ICE, etc.) ingested via API/feed or marketplace shares.",
+    systemKind: "Data Lake",
+  },
+  {
+    id: "A15",
+    name: "Trading Positions & ETRM Book",
+    description:
+      "Physical and paper positions, trades, counterparty/credit data, and risk limits across the trading book.",
+    systemLocation: "Trading Platform / ETRM",
+    assetFamily: "Trading & Commercial",
+    easeOfAccess: "Medium",
+    lakeflowConnect: "Low",
+    ucFederation: "High",
+    lakebridgeMigrate: "Low",
+    bespoke: "Low",
+    accessRationale: "ETRM systems commonly federated via JDBC/UC federation or exported to the lakehouse.",
+    systemKind: "Data Warehouse",
+  },
+  {
+    id: "A16",
+    name: "Supply Chain & Procurement Data",
+    description:
+      "Suppliers, materials, spend, logistics, and supply-chain footprint for cost and Scope 3 analytics.",
+    systemLocation: "ERP/Procurement",
+    assetFamily: "Corporate & Finance",
+    easeOfAccess: "High",
+    lakeflowConnect: "High",
+    ucFederation: "High",
+    lakebridgeMigrate: "Low",
+    bespoke: "Low",
+    accessRationale: "ERP/procurement (SAP, etc.) accessible via Lakeflow connectors or UC federation.",
+    systemKind: "ERP",
+  },
+  {
+    id: "A20",
+    name: "Production Allocation & Volumes",
+    description:
+      "Allocated and metered production volumes, well tests, and deferment by well/field/stream.",
+    systemLocation: "Production Allocation System",
+    assetFamily: "Subsurface & Production",
+    easeOfAccess: "Medium",
+    lakeflowConnect: "Low",
+    ucFederation: "Low",
+    lakebridgeMigrate: "Low",
+    bespoke: "High",
+    accessRationale: "Production-allocation systems; commonly batch-extracted or federated.",
+    systemKind: "Data Warehouse",
+  },
+  {
+    id: "A21",
+    name: "Hydrocarbon Accounting & Metering",
+    description:
+      "Custody-transfer metering, allocation factors, partner/PSC equity, and reconciliation adjustments.",
+    systemLocation: "Hydrocarbon Accounting System",
+    assetFamily: "Subsurface & Production",
+    easeOfAccess: "Medium",
+    lakeflowConnect: "Low",
+    ucFederation: "Low",
+    lakebridgeMigrate: "Low",
+    bespoke: "High",
+    accessRationale: "Hydrocarbon-accounting systems; commonly bespoke export or federation.",
+    systemKind: "Data Warehouse",
+  },
+  {
+    id: "A22",
+    name: "Inspection & Integrity Data",
+    description:
+      "Inline-inspection (smart-pig) results, corrosion and cathodic-protection readings, and integrity threat assessments.",
+    systemLocation: "Pipeline Integrity Management System",
+    assetFamily: "Network & Spatial",
+    easeOfAccess: "Medium",
+    lakeflowConnect: "Low",
+    ucFederation: "Low",
+    lakebridgeMigrate: "Low",
+    bespoke: "High",
+    accessRationale: "Integrity-management systems; commonly bespoke export of inspection datasets.",
+    systemKind: "Data Warehouse",
+  },
+  {
+    id: "A23",
+    name: "HSE Incidents & Safety Records",
+    description:
+      "Incident reports, near-misses, permits-to-work, and process-safety event history for risk and safety analytics.",
+    systemLocation: "HSE/EHS System",
+    assetFamily: "HSE & Compliance",
+    easeOfAccess: "High",
+    lakeflowConnect: "Low",
+    ucFederation: "Low",
+    lakebridgeMigrate: "Low",
+    bespoke: "High",
+    accessRationale: "HSE/EHS systems; commonly batch-extracted or federated.",
+    systemKind: "Data Warehouse",
+  },
+  {
+    id: "A24",
+    name: "Emissions & Environmental Monitoring",
+    description:
+      "CEMS readings, methane/leak detection, flaring and venting volumes, and compliance thresholds.",
+    systemLocation: "Environmental Management System / CEMS",
+    assetFamily: "HSE & Compliance",
+    easeOfAccess: "Medium",
+    lakeflowConnect: "Low",
+    ucFederation: "Low",
+    lakebridgeMigrate: "Low",
+    bespoke: "High",
+    accessRationale: "CEMS/EMS feeds; commonly bespoke ingestion or edge gateways.",
+    systemKind: "Observability",
+  },
+  {
+    id: "A25",
+    name: "Documents: P&IDs / Procedures / Safety Cases",
+    description:
+      "Controlled engineering documents, P&IDs, operating procedures, safety cases, and as-builts for context and RAG.",
+    systemLocation: "EDMS/ECM",
+    assetFamily: "Documents & Knowledge",
+    easeOfAccess: "Medium",
+    lakeflowConnect: "High",
+    ucFederation: "Low",
+    lakebridgeMigrate: "Low",
+    bespoke: "Low",
+    accessRationale: "Document/content-management stores; files ingestible to volumes via Lakeflow.",
+    systemKind: "EDMS",
+  },
+  {
+    id: "A26",
+    name: "ERP Financials & Cost",
+    description:
+      "Financial actuals, costs, budgets, and master data for hydrocarbon accounting, planning, and ESG roll-ups.",
+    systemLocation: "ERP",
+    assetFamily: "Corporate & Finance",
+    easeOfAccess: "High",
+    lakeflowConnect: "High",
+    ucFederation: "High",
+    lakebridgeMigrate: "Low",
+    bespoke: "Low",
+    accessRationale: "ERP (SAP, Oracle) accessible via Lakeflow connectors or UC federation.",
+    systemKind: "ERP",
+  },
+  {
+    id: "A27",
+    name: "Subsurface Data & Models",
+    description:
+      "Seismic volumes, well logs, petrophysical interpretations, and RESQML reservoir models.",
+    systemLocation: "Petrotechnical Data Store",
+    assetFamily: "Subsurface & Production",
+    easeOfAccess: "Low",
+    lakeflowConnect: "Low",
+    ucFederation: "Low",
+    lakebridgeMigrate: "Low",
+    bespoke: "High",
+    accessRationale: "Large petrotechnical/subsurface stores; bespoke integration of seismic/log/model data.",
+    systemKind: "Data Lake",
+  },
+  {
+    id: "A28",
+    name: "Real-Time Drilling Streams (WITSML)",
+    description:
+      "Real-time drilling streams (WITSML), mud logs, bottom-hole-assembly config, and daily drilling reports.",
+    systemLocation: "WITSML Store / Drilling Data Aggregator",
+    assetFamily: "Subsurface & Production",
+    easeOfAccess: "Low",
+    lakeflowConnect: "Low",
+    ucFederation: "Low",
+    lakebridgeMigrate: "Low",
+    bespoke: "High",
+    accessRationale: "WITSML aggregators; commonly bespoke streaming ingestion.",
+    systemKind: "SCADA / Historian",
+  },
+  {
+    id: "A29",
+    name: "Lab Quality Results (LIMS)",
+    description:
+      "Laboratory assay and product-quality results (crude assays, product specs) for blending and yield optimisation.",
+    systemLocation: "LIMS",
+    assetFamily: "Downstream & Petrochemical",
+    easeOfAccess: "Medium",
+    lakeflowConnect: "Low",
+    ucFederation: "Low",
+    lakebridgeMigrate: "Low",
+    bespoke: "High",
+    accessRationale: "LIMS systems; commonly federated or batch-extracted.",
+    systemKind: "QMS / LIMS",
+  },
+  {
+    id: "A30",
+    name: "Refinery Planning & LP Models",
+    description:
+      "Refinery/petrochemical planning, linear-programming models, blend recipes, and yield/energy metrics.",
+    systemLocation: "Refinery Planning System",
+    assetFamily: "Downstream & Petrochemical",
+    easeOfAccess: "Medium",
+    lakeflowConnect: "Low",
+    ucFederation: "Low",
+    lakebridgeMigrate: "Low",
+    bespoke: "High",
+    accessRationale: "Planning/LP systems (e.g. PIMS); commonly bespoke export of model inputs/outputs.",
+    systemKind: "Data Warehouse",
+  },
+  {
+    id: "A31",
+    name: "CCS / CO2 Injection & MMV",
+    description:
+      "CO2 injection rates, plume monitoring, containment geochemistry, and measurement/monitoring/verification records.",
+    systemLocation: "CCS Monitoring System",
+    assetFamily: "New Energy & Transition",
+    easeOfAccess: "Low",
+    lakeflowConnect: "Low",
+    ucFederation: "Low",
+    lakebridgeMigrate: "Low",
+    bespoke: "High",
+    accessRationale: "CCS monitoring systems; bespoke ingestion of injection/monitoring datasets.",
+    systemKind: "Observability",
+  },
+  {
+    id: "A32",
+    name: "Hydrogen Process Telemetry",
+    description:
+      "Electrolyser-stack telemetry, temperature/pressure/density, and hydrogen-production efficiency metrics.",
+    systemLocation: "Hydrogen Plant SCADA",
+    assetFamily: "New Energy & Transition",
+    easeOfAccess: "Medium",
+    lakeflowConnect: "Low",
+    ucFederation: "Low",
+    lakebridgeMigrate: "Low",
+    bespoke: "High",
+    accessRationale: "Hydrogen-plant SCADA/historian; integrated via connectors or bespoke streaming.",
+    systemKind: "SCADA / Historian",
+  },
+  {
+    id: "A33",
+    name: "Security & SIEM Logs",
+    description:
+      "Security event logs, SIEM telemetry, and threat-intelligence feeds across IT and OT estates.",
+    systemLocation: "SIEM / Security Platform",
+    assetFamily: "Cyber & Protection",
+    easeOfAccess: "High",
+    lakeflowConnect: "High",
+    ucFederation: "Low",
+    lakebridgeMigrate: "Low",
+    bespoke: "Low",
+    accessRationale: "SIEM/security platforms expose log streams ingestible via Lakeflow / cybersecurity lakehouse patterns.",
+    systemKind: "SIEM / Security",
+  },
+  {
+    id: "A34",
+    name: "OT Network & Identity (IAM)",
+    description:
+      "OT network telemetry, control-system inventory, and identity/access (IAM) data for threat detection.",
+    systemLocation: "OT Security Platform / Identity Provider",
+    assetFamily: "Cyber & Protection",
+    easeOfAccess: "Medium",
+    lakeflowConnect: "Low",
+    ucFederation: "Low",
+    lakebridgeMigrate: "Low",
+    bespoke: "High",
+    accessRationale: "OT-security and IAM systems; commonly federated or bespoke export.",
+    systemKind: "SIEM / Security",
+  },
+];

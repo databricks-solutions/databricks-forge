@@ -1,0 +1,1324 @@
+{
+  "$schema": "master-repository-benchmarks-v2",
+  "industry": "insurance",
+  "industryName": "Insurance",
+  "generatedAt": "2026-05-14T08:46:04.342Z",
+  "records": [
+    {
+      "kind": "kpi",
+      "title": "Distribution Platform Accelerator -- Lead conversion rate",
+      "summary": "Lead conversion rate: +15% improvement. Grow and govern multi-channel distribution with faster onboarding, pipeline transparency, and smart routing.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/...personalization-right-or-wrong",
+      "publisher": "McKinsey -- Next in Personalization Report",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Lead conversion rate",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- Next in Personalization Report."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "Sub_yrΔbindPremAdoptCap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Producer Analysis -- Producer productivity",
+      "summary": "Producer productivity: +10% improvement. Benchmark producer productivity, mix, loss ratios, and compliance.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Insurance",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Producer productivity",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Insurance."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "AnalystHrs_yrΔhrs%Cost_hrAdoptCap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Client New/Lost Business -- Retention rate",
+      "summary": "Retention rate: +5% improvement. Detect at-risk accounts and recapture lost business with timely offers.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Insurance",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Retention rate",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Insurance."
+      },
+      "economicPattern": "Churn Reduction (Retention / LTV Protection)",
+      "economicFormula": "InforcePrem_yr*Δret%*CM%AdoptCap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Carrier Market Analysis -- Win rate",
+      "summary": "Win rate: +5% improvement. Compare carrier appetite, pricing, hit/close rates, and profitability.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Insurance",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Win rate",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Insurance."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "Sub_yrΔcloseRev_per_bindAdoptCap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Policy/Exposure Ingestion -- Processing time",
+      "summary": "Processing time: -60% improvement. Automate ingestion of schedules/apps to cut cycle time and errors.",
+      "source_type": "open_report",
+      "source_url": "https://nividous.com/...",
+      "publisher": "Nividous -- IDP Automation Stats",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Processing time",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Nividous -- IDP Automation Stats."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "Docs_yrΔtouch_minCost_minAdoptCap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Smart Underwriting Triage -- Underwriting processing time",
+      "summary": "Underwriting processing time: -80% improvement. Route submissions by risk/complexity and prioritize high-LTV.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "Yahoo Finance -- Indico Data AI Submission Triage",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Underwriting processing time",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Yahoo Finance -- Indico Data AI Submission Triage."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "Sub_yrΔbindPremAdoptCap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Reporting -- Reporting cycle time",
+      "summary": "Reporting cycle time: -30% improvement. Standardized MI packs across growth, loss, and expense.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Insurance",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Reporting cycle time",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Insurance."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "ReportHrs_yrΔhrs%Cost_hrAdoptCap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Customer segmentation -- Campaign conversion rate",
+      "summary": "Campaign conversion rate: +10% improvement. Build segments for value, risk, and needs-based marketing.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Insurance",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Campaign conversion rate",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Insurance."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "Leads_yrΔconvPremAdoptCap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Prospecting & Campaigns -- Marketing ROI",
+      "summary": "Marketing ROI: +30% improvement. Always-on, compliant campaigns across channels.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/...personalization-right-or-wrong",
+      "publisher": "McKinsey -- Next in Personalization Report",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Marketing ROI",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- Next in Personalization Report."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "Prospects_yrΔquoteΔbindPremAdopt*Cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Hyper-personalized insurance -- Customer acquisition cost",
+      "summary": "Customer acquisition cost: -50% improvement. Offers/coverage tailored to behavior, context, and life events.",
+      "source_type": "open_report",
+      "source_url": "https://agentblog.nationwide.com/...personalization-in-insurance-marketing...",
+      "publisher": "Nationwide (quoting McKinsey) -- Personalization in Insurance Marketing",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Customer acquisition cost",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Nationwide (quoting McKinsey) -- Personalization in Insurance Marketing."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "Offers_yrΔtakePremAdoptCap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Cross Sell and Up Sell -- Cross-sell rate",
+      "summary": "Cross-sell rate: +20% improvement. Next-best-offer at renewal and service moments.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/.../experience-led-growth-a-new-way-to-create-value",
+      "publisher": "McKinsey -- Experience-led Growth (CX Outperformers)",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Cross-sell rate",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- Experience-led Growth (CX Outperformers)."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "Cust_yrΔattachPrem_addAdoptCap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Churn Prediction -- Churn rate",
+      "summary": "Churn rate: -15% improvement. Predict lapse/attrition and trigger save plays.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/.../model-makeover-turning-a-telco-...",
+      "publisher": "McKinsey -- Model makeover: Telco to Techco (Analytics)",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Churn rate",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- Model makeover: Telco to Techco (Analytics)."
+      },
+      "economicPattern": "Churn Reduction (Retention / LTV Protection)",
+      "economicFormula": "InforcePrem_yr*Δret%*CM%AdoptCap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Microinsurance for online purchases -- Attachment rate",
+      "summary": "Attachment rate: +20% improvement. Embedded micro-covers at checkout.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Insurance",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Attachment rate",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Insurance."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "Checkouts_yrΔattachPrem_microAdoptCap"
+    },
+    {
+      "kind": "kpi",
+      "title": "On-demand insurance for devices -- Customer uptake",
+      "summary": "Customer uptake: +15% improvement. Contextual, episodic device protection.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Insurance",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Customer uptake",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Insurance."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "Events_yrΔattachPrem_onAdoptCap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Behavior-based insurance -- Accident frequency",
+      "summary": "Accident frequency: -25% improvement. Price/reward safe behaviors (auto, health, cyber).",
+      "source_type": "open_report",
+      "source_url": "https://www.carriermanagement.com/news/2024/04/17/261173.htm",
+      "publisher": "Carrier Management -- Allstate Drivewise Telematics Results",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Accident frequency",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Carrier Management -- Allstate Drivewise Telematics Results."
+      },
+      "economicPattern": "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
+      "economicFormula": "Exp_yrΔEL_per_expAdopt*Cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Usage-based insurance (UBI) -- Accident frequency",
+      "summary": "Accident frequency: -19% improvement. Rating and discounts based on actual usage/driving.",
+      "source_type": "open_report",
+      "source_url": "https://www.phly.com/...telematics-reducing-accidents...",
+      "publisher": "Philadelphia Insurance -- PHLYTRAC Telematics Program Data",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Accident frequency",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Philadelphia Insurance -- PHLYTRAC Telematics Program Data."
+      },
+      "economicPattern": "Price Realization (Yield / Rate Optimization)",
+      "economicFormula": "Prem_yr*Δrate%AdoptCap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Parametric insurance -- Claim payout time",
+      "summary": "Claim payout time: -90% improvement. Trigger-based payouts using objective indices.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Insurance",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Claim payout time",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Insurance."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "Claims_yrΔadjCostAdopt*Cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Data Protection & Privacy -- Compliance incidents",
+      "summary": "Compliance incidents: -50% improvement. Governance over data usage, minimization, and AI transparency.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Cross-Industry",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Compliance incidents",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Cross-Industry."
+      },
+      "economicPattern": "Risk Avoidance (Compliance / Penalties / Outage Impact)",
+      "economicFormula": "PrivacyCost_yr*Δrisk%AdoptCap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Risk Management & Reporting -- Risk reporting time",
+      "summary": "Risk reporting time: -30% improvement. Enterprise risk dashboards, limits, and ORSA support.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Insurance",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Risk reporting time",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Insurance."
+      },
+      "economicPattern": "Risk Avoidance (Compliance / Penalties / Outage Impact)",
+      "economicFormula": "ERMCost_yr*Δrisk%AdoptCap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Customer Protection & Transparency -- Customer complaints",
+      "summary": "Customer complaints: -20% improvement. Clear notices, explainability, and complaint tracking.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Insurance",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Customer complaints",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Insurance."
+      },
+      "economicPattern": "Risk Avoidance (Compliance / Penalties / Outage Impact)",
+      "economicFormula": "ConductCost_yr*Δrisk%AdoptCap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Regulator Engagement & Updates -- Regulatory reporting time",
+      "summary": "Regulatory reporting time: -40% improvement. Timely filings, exams support, and data calls.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Insurance",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Regulatory reporting time",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Insurance."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "RegHrs_yrΔhrs%Cost_hrAdoptCap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Regulatory Risk Data Mgmt (Integrated Risk & Finance) -- Compliance cost",
+      "summary": "Compliance cost: -37% improvement. Unify risk/finance for IFRS17/LDTI/CECL.",
+      "source_type": "open_report",
+      "source_url": "https://www.avatier.com/blog/regulatory-reporting-ai/",
+      "publisher": "Avatier -- Compliance Automation Case Study",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Compliance cost",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Avatier -- Compliance Automation Case Study."
+      },
+      "economicPattern": "Risk Avoidance (Compliance / Penalties / Outage Impact)",
+      "economicFormula": "RemedCost_yr*Δrisk%AdoptCap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Risk Modeling & Analytics -- Model development time",
+      "summary": "Model development time: -30% improvement. Portfolio, peril, and stress models with monitoring.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Insurance",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Model development time",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Insurance."
+      },
+      "economicPattern": "Risk Avoidance (Compliance / Penalties / Outage Impact)",
+      "economicFormula": "ModelErrCost_yr*Δrisk%AdoptCap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Risk & Capital Planning (LDTI/IFRS17, CECL/IFRS9) -- Close cycle time",
+      "summary": "Close cycle time: -75% improvement. Capital and reserves under evolving standards.",
+      "source_type": "open_report",
+      "source_url": "https://daily.financialexecutives.org/...",
+      "publisher": "FEI Daily -- Accelerating the Close Cycle",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Close cycle time",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- FEI Daily -- Accelerating the Close Cycle."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "CloseHrs_yrΔhrs%Cost_hrAdoptCap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Investment Risk Analytics -- Economic capital",
+      "summary": "Economic capital: -10% improvement. ALM, stress testing, and RBC asset factors.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Insurance",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Economic capital",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Insurance."
+      },
+      "economicPattern": "Price Realization (Yield / Rate Optimization)",
+      "economicFormula": "AUM_$ΔyieldAdopt*Cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Claims Ingestion -- Claims intake processing time",
+      "summary": "Claims intake processing time: -60% improvement. Automate FNOL/doc intake and indexing.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "Guidewire -- AI FNOL Case Study",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Claims intake processing time",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Guidewire -- AI FNOL Case Study."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "ClaimDocs_yrΔtouch_minCost_minAdoptCap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Smart Claims Triage -- Claims cycle time",
+      "summary": "Claims cycle time: -20% improvement. Early severity/complexity/fraud routing.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- Insurance Claims Automation Outlook",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Claims cycle time",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- Insurance Claims Automation Outlook."
+      },
+      "economicPattern": "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
+      "economicFormula": "ClaimsPaid_yr*Δleak%AdoptCap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Claims Analytics -- Claims leakage",
+      "summary": "Claims leakage: -10% improvement. Leakage, indemnity, cycle time, provider performance.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- Insurance Claims Automation Outlook",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Claims leakage",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- Insurance Claims Automation Outlook."
+      },
+      "economicPattern": "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
+      "economicFormula": "ClaimsPaid_yr*Δleak%AdoptCap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Fraud Models -- Fraud losses",
+      "summary": "Fraud losses: -40% improvement. Detect application/claim fraud and collusion.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "NAIC -- State of Insurance Fraud Report",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Fraud losses",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- NAIC -- State of Insurance Fraud Report."
+      },
+      "economicPattern": "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
+      "economicFormula": "FraudLoss_yr*Δprevent%AdoptCap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Frequency / Severity of Losses -- Loss ratio",
+      "summary": "Loss ratio: -5% improvement. GLMs and credibility analyses for pricing and reserving.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "Verisk -- Predictive Analytics in Rating",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Loss ratio",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Verisk -- Predictive Analytics in Rating."
+      },
+      "economicPattern": "Price Realization (Yield / Rate Optimization)",
+      "economicFormula": "Prem_yr*ΔrateAdeq%AdoptCap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Subrogation & Litigation Models -- Subrogation recoveries",
+      "summary": "Subrogation recoveries: +10% improvement. Identify recovery potential and litigation propensity.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "Shift Technology -- Subrogation AI Case",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Subrogation recoveries",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Shift Technology -- Subrogation AI Case."
+      },
+      "economicPattern": "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
+      "economicFormula": "SubroBase_yr*Δrecovery%AdoptCap"
+    },
+    {
+      "kind": "kpi",
+      "title": "User & Entity Behavior Analytics -- Security incident detection rate",
+      "summary": "Security incident detection rate: +30% improvement. Detect anomalous user/entity behavior.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "MITRE -- Insider Threats Detection Guide",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Security incident detection rate",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- MITRE -- Insider Threats Detection Guide."
+      },
+      "economicPattern": "Risk Avoidance (Compliance / Penalties / Outage Impact)",
+      "economicFormula": "SecLoss_yr*Δrisk%AdoptCap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Threat Hunting & Advanced Detection -- Mean time to detect (MTTD)",
+      "summary": "Mean time to detect (MTTD): -50% improvement. Continuous hunts + automated investigations.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "MITRE -- Cyber Threat Hunting Fundamentals",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Mean time to detect (MTTD)",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- MITRE -- Cyber Threat Hunting Fundamentals."
+      },
+      "economicPattern": "Risk Avoidance (Compliance / Penalties / Outage Impact)",
+      "economicFormula": "BreachCost_yr*Δrisk%AdoptCap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Network Analysis & Inventory -- Incident response time",
+      "summary": "Incident response time: -40% improvement. Map assets, exposures, and vulnerabilities.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Cross-Industry",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Incident response time",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Cross-Industry."
+      },
+      "economicPattern": "Risk Avoidance (Compliance / Penalties / Outage Impact)",
+      "economicFormula": "OutageCost_yr*Δrisk%AdoptCap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Phishing & Email Security -- Phishing incidents",
+      "summary": "Phishing incidents: -80% improvement. Detect/mitigate phishing and business email compromise.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "Verizon -- DBIR 2025 Insights",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Phishing incidents",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Verizon -- DBIR 2025 Insights."
+      },
+      "economicPattern": "Risk Avoidance (Compliance / Penalties / Outage Impact)",
+      "economicFormula": "PhishLoss_yr*Δprevent%AdoptCap"
+    },
+    {
+      "kind": "kpi",
+      "title": "SIEM Augmentation -- False positive alerts",
+      "summary": "False positive alerts: -70% improvement. AI-driven alert triage and response orchestration.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "Gartner -- Innovation Insight for XDR",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "False positive alerts",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Gartner -- Innovation Insight for XDR."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "Alerts_yrΔtriage_minCost_minAdoptCap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Financial Projections & Reporting -- Financial close cycle time",
+      "summary": "Financial close cycle time: -75% improvement. Forecast premiums, losses, expenses, and earnings.",
+      "source_type": "open_report",
+      "source_url": "https://daily.financialexecutives.org/...",
+      "publisher": "FEI Daily -- Accelerating the Close Cycle",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Financial close cycle time",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- FEI Daily -- Accelerating the Close Cycle."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "FPnA_Hrs_yrΔhrs%Cost_hrAdoptCap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Operational Dashboarding -- Analysis time",
+      "summary": "Analysis time: -30% improvement. Real-time KPIs across underwriting, claims, and service.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Insurance",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Analysis time",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Insurance."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "OpsRptHrs_yrΔhrs%Cost_hrAdoptCap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Performance reporting & analysis -- Report turnaround time",
+      "summary": "Report turnaround time: -30% improvement. Productivity, SLAs, and balanced scorecards.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Insurance",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Report turnaround time",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Insurance."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "ScoreHrs_yrΔhrs%Cost_hrAdoptCap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Expense & Cost management -- Operating expense",
+      "summary": "Operating expense: -10% improvement. Track OpEx/claims expense and unit costs.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Insurance",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Operating expense",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Insurance."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "ContSpend_yr*Δsave%AdoptCap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Intelligent Document Processing -- Document processing time",
+      "summary": "Document processing time: -60% improvement. Classify/extract/validate from unstructured content.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "Everest Group -- IDP Market Report",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Document processing time",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Everest Group -- IDP Market Report."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "Docs_yrΔtouch_minCost_minAdoptCap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Customer Onboarding -- Onboarding time",
+      "summary": "Onboarding time: -32% improvement. KYC, consent capture, and frictionless activation.",
+      "source_type": "open_report",
+      "source_url": "https://www.encompasscorporation.com/...",
+      "publisher": "Encompass/Chartis -- Reducing Client Onboarding Time",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Onboarding time",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Encompass/Chartis -- Reducing Client Onboarding Time."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "Applicants_yrΔcompletePremAdoptCap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Workforce analytics -- Attrition rate",
+      "summary": "Attrition rate: -30% improvement. Staffing, skills, and productivity optimization.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "IBM (via MokaHR) -- Predictive Turnover Analytics",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Attrition rate",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- IBM (via MokaHR) -- Predictive Turnover Analytics."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "FTE_baseΔFTE%Cost_FTEAdoptCap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Branch Network Optimization -- Branch operating cost",
+      "summary": "Branch operating cost: -30% improvement. Footprint, hours, and staffing vs. demand.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "Bain (American Banker) -- Branch Network Transformation",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Branch operating cost",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Bain (American Banker) -- Branch Network Transformation."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "BranchCost_yr*Δcost%AdoptCap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Complaint management -- Customer complaints",
+      "summary": "Customer complaints: -15% improvement. Capture, resolve, and analyze complaint themes.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Insurance",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Customer complaints",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Insurance."
+      },
+      "economicPattern": "Risk Avoidance (Compliance / Penalties / Outage Impact)",
+      "economicFormula": "ComplCost_yr*Δescal%AdoptCap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Intelligent IVR / Chatbots -- Call volume (human-assisted)",
+      "summary": "Call volume (human-assisted): -30% improvement. Deflect, resolve, and assist with natural language.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "Gartner -- Top 10 Strategic Tech Trends: AI in Customer Service",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Call volume (human-assisted)",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Gartner -- Top 10 Strategic Tech Trends: AI in Customer Service."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "Calls_yrDeflect%AHT_minCost_minAdopt*Cap"
+    },
+    {
+      "kind": "kpi",
+      "title": "Contact Center AI -- Average handle time",
+      "summary": "Average handle time: -20% improvement. Agent assist, QA automation, and knowledge surfacing.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "Forrester -- Total Economic Impact of Contact-Center AI",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "insurance",
+      "region": "global",
+      "metric_definition": "Average handle time",
+      "methodology_note": "Master Repository benchmark for Insurance.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "insurance",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Forrester -- Total Economic Impact of Contact-Center AI."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "Calls_yrΔAHT_minCost_minAdoptCap"
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+site_name: Databricks Forge
+site_description: Turn Unity Catalog metadata into business value in days, not quarters
+site_url: https://databricks-solutions.github.io/databricks-forge/
+repo_url: https://github.com/databricks-solutions/databricks-forge
+repo_name: databricks-solutions/databricks-forge
+use_directory_urls: false
+
+theme:
+  name: material
+  logo: images/databricks-icon.svg
+  favicon: images/databricks-icon.svg
+  palette:
+    - scheme: default
+      primary: red
+      accent: deep orange
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: red
+      accent: deep orange
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - toc.integrate
+
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Quick Start: quickstart.md
+      - Deployment: DEPLOYMENT.md
+  - User Guide: USER_GUIDE.md
+  - Features:
+      - Ask Forge: ask-forge.md
+      - Business Value: BUSINESS_VALUE.md
+      - Estate Intelligence: estate-analysis.md
+      - Knowledge Base: SKILLS_KNOWLEDGE_BASE.md
+  - Release Notes:
+      - 2026-03-14: release-notes/RELEASE_NOTES_2026_03_14.md
+      - 2026-03-13: release-notes/RELEASE_NOTES_2026_03_13.md
+      - 2026-03-12: release-notes/RELEASE_NOTES_2026_03_12.md
+      - 2026-03-11: release-notes/RELEASE_NOTES_2026_03_11.md
+      - 2026-03-10: release-notes/RELEASE_NOTES_2026_03_10.md
+      - 2026-03-09: release-notes/RELEASE_NOTES_2026_03_09.md
+      - 2026-03-07: release-notes/RELEASE_NOTES_2026_03_07.md
+      - 2026-03-06: release-notes/RELEASE_NOTES_2026_03_06.md
+      - 2026-03-05: release-notes/RELEASE_NOTES_2026_03_05.md
+      - 2026-03-04: release-notes/RELEASE_NOTES_2026_03_04.md
+      - 2026-02-27: release-notes/RELEASE_NOTES_2026-02-27.md
+      - 2026-02-25: release-notes/RELEASE_NOTES_2026-02-25.md
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true

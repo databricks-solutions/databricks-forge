@@ -1,0 +1,29 @@
+# Dev-only files -- not needed at runtime on Databricks Apps
+#
+# IMPORTANT: keep .git/ excluded. databricks sync mirrors the entire repo
+# to the workspace and `databricks apps deploy --source-code-path` enforces
+# a 10 MB per-file limit when packaging. Git pack files routinely exceed
+# this on active forks and break the deploy.
+.git/
+node_modules/
+.next/
+.venv-docs/
+*.tsbuildinfo
+__tests__/
+docs/
+.cursor/
+.github/
+.databricks/
+coverage/
+RELEASE_NOTES_*.md
+AGENTS.md
+*.test.ts
+*.test.tsx
+.DS_Store
+.prettierrc
+.prettierignore
+.env.local.example
+.env
+.deploy-pkg/
+.deploy-pkg-ze/
+*.md

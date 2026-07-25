@@ -1,0 +1,932 @@
+{
+  "$schema": "master-repository-benchmarks-v2",
+  "industry": "capital-markets",
+  "industryName": "Capital Markets",
+  "generatedAt": "2026-05-14T08:46:04.340Z",
+  "records": [
+    {
+      "kind": "kpi",
+      "title": "Market Intelligence -- Research analysis time",
+      "summary": "Research analysis time: -30% improvement. Consolidated view of markets, sectors, and issuers to surface actionable signals for sales, trading, and research.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-executives-ai-playbook",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Financial Services",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "capital-markets",
+      "region": "global",
+      "metric_definition": "Research analysis time",
+      "methodology_note": "Master Repository benchmark for Capital Markets.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "capital-markets",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Financial Services."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "(Opps/yr × Δwin% × avg_fee$) × adoption% × capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Backtesting -- Strategy testing time",
+      "summary": "Strategy testing time: -70% improvement. Evaluate strategies across regimes with robust slippage/latency-aware simulations.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Financial Services",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "capital-markets",
+      "region": "global",
+      "metric_definition": "Strategy testing time",
+      "methodology_note": "Master Repository benchmark for Capital Markets.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "capital-markets",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Financial Services."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "(Dev_hrs_saved/yr × loaded_rate$) × adoption% × capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Portfolio construction & Optimization -- Risk-adjusted return",
+      "summary": "Risk-adjusted return: +5% improvement. Build efficient portfolios under constraints and client objectives.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Financial Services",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "capital-markets",
+      "region": "global",
+      "metric_definition": "Risk-adjusted return",
+      "methodology_note": "Master Repository benchmark for Capital Markets.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "capital-markets",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Financial Services."
+      },
+      "economicPattern": "Price Realization (Yield / Rate Optimization)",
+      "economicFormula": "AUM_in_scope$ × Δfee_bps × adoption% × capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Alternative Data & ESG Analytics -- Excess return (alpha)",
+      "summary": "Excess return (alpha): +1% improvement. Harvest alpha and risk insights from non-traditional sources with auditability.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Financial Services",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "capital-markets",
+      "region": "global",
+      "metric_definition": "Excess return (alpha)",
+      "methodology_note": "Master Repository benchmark for Capital Markets.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "capital-markets",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Financial Services."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "(AltData_spend$/yr × %spend_avoided) × adoption% × capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Personalized Investment Advice -- Client retention rate",
+      "summary": "Client retention rate: +5% improvement. Tailors advice to client goals, suitability, and preferences with explainability.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Financial Services",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "capital-markets",
+      "region": "global",
+      "metric_definition": "Client retention rate",
+      "methodology_note": "Master Repository benchmark for Capital Markets.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "capital-markets",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Financial Services."
+      },
+      "economicPattern": "Churn Reduction (Retention / LTV Protection)",
+      "economicFormula": "(Clients/yr × Δretention% × avg_rev_per_client$) × adoption% × capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Sales & Trading Intelligences -- Share-of-wallet",
+      "summary": "Share-of-wallet: +5% improvement. Surfaces client opportunities and execution improvements to boost wallet share.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Financial Services",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "capital-markets",
+      "region": "global",
+      "metric_definition": "Share-of-wallet",
+      "methodology_note": "Master Repository benchmark for Capital Markets.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "capital-markets",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Financial Services."
+      },
+      "economicPattern": "Revenue Uplift (Conversion / Attach / Cross-sell)",
+      "economicFormula": "(Client_flow$/yr × Δshare% × take_rate_bps) × adoption% × capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "M&A Automation and Integration -- Due diligence time",
+      "summary": "Due diligence time: -50% improvement. Automates diligence, clause extraction, and post-merger data mapping.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Cross-Industry",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "capital-markets",
+      "region": "global",
+      "metric_definition": "Due diligence time",
+      "methodology_note": "Master Repository benchmark for Capital Markets.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "capital-markets",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Cross-Industry."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "(FTE_hrs_saved/yr × loaded_rate$) × adoption% × capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Real-Time Market Analysis -- Reaction time to market events",
+      "summary": "Reaction time to market events: -90% improvement. Monitors moves and drivers across assets and venues with alerting.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Financial Services",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "capital-markets",
+      "region": "global",
+      "metric_definition": "Reaction time to market events",
+      "methodology_note": "Master Repository benchmark for Capital Markets.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "capital-markets",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Financial Services."
+      },
+      "economicPattern": "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
+      "economicFormula": "(Incidents_avoided/yr × avg_loss_per_incident$) × adoption% × capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Transaction Cost Analysis (TCA) -- Execution cost",
+      "summary": "Execution cost: -10% improvement. Quantifies execution quality and optimizes routing/algo selection.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Financial Services",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "capital-markets",
+      "region": "global",
+      "metric_definition": "Execution cost",
+      "methodology_note": "Master Repository benchmark for Capital Markets.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "capital-markets",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Financial Services."
+      },
+      "economicPattern": "Price Realization (Yield / Rate Optimization)",
+      "economicFormula": "(Notional_covered$/yr × Δcost_bps) × adoption% × capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Predictive Analytics and Forecasting -- Forecast accuracy",
+      "summary": "Forecast accuracy: +15% improvement. Forecast returns/volatility/flows for risk and alpha.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Financial Services",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "capital-markets",
+      "region": "global",
+      "metric_definition": "Forecast accuracy",
+      "methodology_note": "Master Repository benchmark for Capital Markets.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "capital-markets",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Financial Services."
+      },
+      "economicPattern": "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
+      "economicFormula": "(Risk_limits$/yr × Δbreach_rate × avg_breach_loss$) × adoption% × capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Algorithmic Trading -- Trade latency",
+      "summary": "Trade latency: -95% improvement. Designs and orchestrates low-latency strategies with risk controls.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Financial Services",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "capital-markets",
+      "region": "global",
+      "metric_definition": "Trade latency",
+      "methodology_note": "Master Repository benchmark for Capital Markets.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "capital-markets",
+        "Revenue"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Financial Services."
+      },
+      "economicPattern": "Price Realization (Yield / Rate Optimization)",
+      "economicFormula": "(Notional_algo$/yr × Δedge_bps) × adoption% × capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Market Risk -- VaR coverage",
+      "summary": "VaR coverage: +10% improvement. Daily VaR/stress and sensitivities for portfolios.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Financial Services",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "capital-markets",
+      "region": "global",
+      "metric_definition": "VaR coverage",
+      "methodology_note": "Master Repository benchmark for Capital Markets.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "capital-markets",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Financial Services."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "(Risk_FTE_hrs_saved/yr × loaded_rate$) × adoption% × capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Credit Risk -- Default rate",
+      "summary": "Default rate: -15% improvement. Probability of default/LGD/EAD and limit setting.",
+      "source_type": "open_report",
+      "source_url": "https://smartdev.com/ai-credit-evaluation...",
+      "publisher": "SmartDev -- AI Credit Evaluation (Zest AI case)",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "capital-markets",
+      "region": "global",
+      "metric_definition": "Default rate",
+      "methodology_note": "Master Repository benchmark for Capital Markets.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "capital-markets",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- SmartDev -- AI Credit Evaluation (Zest AI case)."
+      },
+      "economicPattern": "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
+      "economicFormula": "(EAD$/yr × Δloss_rate) × adoption% × capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Counterparty Risk -- Exposure limit breaches",
+      "summary": "Exposure limit breaches: -20% improvement. PFE/wrong-way risk and concentration monitoring.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Financial Services",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "capital-markets",
+      "region": "global",
+      "metric_definition": "Exposure limit breaches",
+      "methodology_note": "Master Repository benchmark for Capital Markets.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "capital-markets",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Financial Services."
+      },
+      "economicPattern": "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
+      "economicFormula": "(Counterparty_exposure$/yr × Δloss_rate) × adoption% × capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "User & Entity Behavior Analytics -- Security incident detection rate",
+      "summary": "Security incident detection rate: +30% improvement. Detect anomalous employee/client behaviors.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Cross-Industry",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "capital-markets",
+      "region": "global",
+      "metric_definition": "Security incident detection rate",
+      "methodology_note": "Master Repository benchmark for Capital Markets.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "capital-markets",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Cross-Industry."
+      },
+      "economicPattern": "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
+      "economicFormula": "(Incidents_avoided/yr × avg_loss_per_incident$) × adoption% × capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Threat Hunting & Advanced Detection -- Mean time to detect (MTTD)",
+      "summary": "Mean time to detect (MTTD): -50% improvement. Proactive hunts for novel TTPs across estate.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Cross-Industry",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "capital-markets",
+      "region": "global",
+      "metric_definition": "Mean time to detect (MTTD)",
+      "methodology_note": "Master Repository benchmark for Capital Markets.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "capital-markets",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Cross-Industry."
+      },
+      "economicPattern": "Risk Avoidance (Compliance / Penalties / Outage Impact)",
+      "economicFormula": "(High_impact_incidents_avoided/yr × avg_incident_cost$) × adoption% × capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Network Analysis & Inventory -- Incident response time",
+      "summary": "Incident response time: -40% improvement. Topology, dependency, and exposure mapping.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Cross-Industry",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "capital-markets",
+      "region": "global",
+      "metric_definition": "Incident response time",
+      "methodology_note": "Master Repository benchmark for Capital Markets.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "capital-markets",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Cross-Industry."
+      },
+      "economicPattern": "Risk Avoidance (Compliance / Penalties / Outage Impact)",
+      "economicFormula": "(Outage_hrs_avoided/yr × cost_per_outage_hr$) × adoption% × capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Phishing & Email Security -- Phishing incidents",
+      "summary": "Phishing incidents: -80% improvement. Detects and remediates phishing and BEC.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "Verizon -- DBIR Insights (Phishing)",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "capital-markets",
+      "region": "global",
+      "metric_definition": "Phishing incidents",
+      "methodology_note": "Master Repository benchmark for Capital Markets.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "capital-markets",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Verizon -- DBIR Insights (Phishing)."
+      },
+      "economicPattern": "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
+      "economicFormula": "(BEC_events_prevented/yr × avg_loss_per_BEC$) × adoption% × capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "SIEM Augmentation -- False positive alerts",
+      "summary": "False positive alerts: -70% improvement. Prioritizes/triages alerts with summaries and enrichment.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "Rapid7 -- AI in Security Operations",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "capital-markets",
+      "region": "global",
+      "metric_definition": "False positive alerts",
+      "methodology_note": "Master Repository benchmark for Capital Markets.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "capital-markets",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Rapid7 -- AI in Security Operations."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "(Analyst_hrs_saved/yr × loaded_rate$) × adoption% × capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Card Transaction Fraud Prevention -- Fraudulent transactions",
+      "summary": "Fraudulent transactions: -50% improvement. Real-time fraud scoring and interdiction.",
+      "source_type": "open_report",
+      "source_url": "https://www.cognizant.com/.../ai-machine-learning-fraud-detection",
+      "publisher": "Cognizant -- AI Check Fraud Case Study",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "capital-markets",
+      "region": "global",
+      "metric_definition": "Fraudulent transactions",
+      "methodology_note": "Master Repository benchmark for Capital Markets.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "capital-markets",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Cognizant -- AI Check Fraud Case Study."
+      },
+      "economicPattern": "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
+      "economicFormula": "(Card_txn$/yr × Δfraud_rate) × adoption% × capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Application Fraud -- Fraudulent applications",
+      "summary": "Fraudulent applications: -50% improvement. Detects first-party/third-party synthetic applications.",
+      "source_type": "open_report",
+      "source_url": "https://www.cognizant.com/.../ai-machine-learning-fraud-detection",
+      "publisher": "Cognizant -- AI Check Fraud Case Study",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "capital-markets",
+      "region": "global",
+      "metric_definition": "Fraudulent applications",
+      "methodology_note": "Master Repository benchmark for Capital Markets.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "capital-markets",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Cognizant -- AI Check Fraud Case Study."
+      },
+      "economicPattern": "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
+      "economicFormula": "(Apps/yr × Δapproval_fraud% × avg_loss_per_fraud_app$) × adoption% × capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Identity Theft -- Account takeover losses",
+      "summary": "Account takeover losses: -40% improvement. Flags account takeover and impersonation.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Financial Services",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "capital-markets",
+      "region": "global",
+      "metric_definition": "Account takeover losses",
+      "methodology_note": "Master Repository benchmark for Capital Markets.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "capital-markets",
+        "Risk / Loss Avoidance"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Financial Services."
+      },
+      "economicPattern": "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
+      "economicFormula": "(ATO_events_prevented/yr × avg_loss_per_ATO$) × adoption% × capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Transaction monitoring -- False positive rate",
+      "summary": "False positive rate: -50% improvement. AML typologies and suspicious activity detection.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Financial Services",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "capital-markets",
+      "region": "global",
+      "metric_definition": "False positive rate",
+      "methodology_note": "Master Repository benchmark for Capital Markets.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "capital-markets",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Financial Services."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "(Alert_hours_saved/yr × loaded_rate$) × adoption% × capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Screening (KYC) -- False positive alerts",
+      "summary": "False positive alerts: -70% improvement. Real-time/entity-level screening with case management.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Financial Services",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "capital-markets",
+      "region": "global",
+      "metric_definition": "False positive alerts",
+      "methodology_note": "Master Repository benchmark for Capital Markets.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "capital-markets",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Financial Services."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "(Cases/yr × Δtime_per_case_hr × loaded_rate$) × adoption% × capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Credit Recognition (CECL) -- Charge-off rate",
+      "summary": "Charge-off rate: -10% improvement. Lifetime loss estimation and provisioning.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Financial Services",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "capital-markets",
+      "region": "global",
+      "metric_definition": "Charge-off rate",
+      "methodology_note": "Master Repository benchmark for Capital Markets.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "capital-markets",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Financial Services."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "(Close_days_saved/yr × Finance_FTE_per_day × loaded_day_rate$) × adoption% × capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Model Risk Management -- Model review time",
+      "summary": "Model review time: -50% improvement. Inventory, validation, monitoring and lineage.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Cross-Industry",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "capital-markets",
+      "region": "global",
+      "metric_definition": "Model review time",
+      "methodology_note": "Master Repository benchmark for Capital Markets.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "capital-markets",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Cross-Industry."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "(Validation_hrs_saved/yr × loaded_rate$) × adoption% × capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Financial Projections & Reporting -- Financial close cycle time",
+      "summary": "Financial close cycle time: -75% improvement. Top-down/bottom-up forecasts and close packs.",
+      "source_type": "open_report",
+      "source_url": "https://daily.financialexecutives.org/...",
+      "publisher": "FEI Daily -- Accelerating the Close Cycle",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "capital-markets",
+      "region": "global",
+      "metric_definition": "Financial close cycle time",
+      "methodology_note": "Master Repository benchmark for Capital Markets.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "capital-markets",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- FEI Daily -- Accelerating the Close Cycle."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "(FP&A_hrs_saved/yr × loaded_rate$) × adoption% × capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Operational Dashboarding -- Analysis time",
+      "summary": "Analysis time: -30% improvement. Cross-functional KPIs for technology and operations.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Cross-Industry",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "capital-markets",
+      "region": "global",
+      "metric_definition": "Analysis time",
+      "methodology_note": "Master Repository benchmark for Capital Markets.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "capital-markets",
+        "Productivity / Capacity"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Cross-Industry."
+      },
+      "economicPattern": "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
+      "economicFormula": "(Ops_hrs_saved/yr × loaded_rate$) × adoption% × capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Performance reporting and analysis -- Report production time",
+      "summary": "Report production time: -30% improvement. GIPS/attribution and client performance packs.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Financial Services",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "capital-markets",
+      "region": "global",
+      "metric_definition": "Report production time",
+      "methodology_note": "Master Repository benchmark for Capital Markets.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "capital-markets",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Financial Services."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "(Reports/yr × Δhrs_per_report × loaded_rate$) × adoption% × capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Expense and Cost management -- Operating expense",
+      "summary": "Operating expense: -10% improvement. Optimize vendor, market data, and technology spend.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "McKinsey -- The Executive’s AI Playbook—Cross-Industry",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "capital-markets",
+      "region": "global",
+      "metric_definition": "Operating expense",
+      "methodology_note": "Master Repository benchmark for Capital Markets.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "capital-markets",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- McKinsey -- The Executive’s AI Playbook—Cross-Industry."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "(Addressable_spend$/yr × %savings_realized) × adoption% × capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Intelligent Document Processing -- Document processing time",
+      "summary": "Document processing time: -60% improvement. Automates intake, classification, and extraction from docs.",
+      "source_type": "open_report",
+      "source_url": "https://nividous.com/...",
+      "publisher": "Nividous -- IDP Automation Stats",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "capital-markets",
+      "region": "global",
+      "metric_definition": "Document processing time",
+      "methodology_note": "Master Repository benchmark for Capital Markets.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "capital-markets",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Nividous -- IDP Automation Stats."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "(Docs/yr × Δmins_per_doc/60 × loaded_rate$) × adoption% × capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Customer Onboarding (AML/KYC) -- Onboarding time",
+      "summary": "Onboarding time: -32% improvement. Digital KYC with verification and risk scoring.",
+      "source_type": "open_report",
+      "source_url": "https://www.encompasscorporation.com/...",
+      "publisher": "Encompass/Chartis -- Reducing Client Onboarding Time",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "capital-markets",
+      "region": "global",
+      "metric_definition": "Onboarding time",
+      "methodology_note": "Master Repository benchmark for Capital Markets.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "capital-markets",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- Encompass/Chartis -- Reducing Client Onboarding Time."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "(Onboards/yr × Δhrs_per_onboard × loaded_rate$) × adoption% × capture%"
+    },
+    {
+      "kind": "kpi",
+      "title": "Workforce Analytics -- Attrition rate",
+      "summary": "Attrition rate: -30% improvement. Headcount, productivity, and skills insights.",
+      "source_type": "open_report",
+      "source_url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights",
+      "publisher": "IBM (via MokaHR) -- Predictive Turnover Analytics",
+      "published_at": "2024-06-01T00:00:00Z",
+      "industry": "capital-markets",
+      "region": "global",
+      "metric_definition": "Attrition rate",
+      "methodology_note": "Master Repository benchmark for Capital Markets.",
+      "license_class": "citation_required",
+      "confidence": 0.6,
+      "ttl_days": 365,
+      "tags": [
+        "master-repo",
+        "kpi",
+        "capital-markets",
+        "Cost"
+      ],
+      "provenance": {
+        "source_class": "master_repository",
+        "notes": "Sourced from Master Repository XLSX -- IBM (via MokaHR) -- Predictive Turnover Analytics."
+      },
+      "economicPattern": "Cost Takeout (Labor / Opex Reduction)",
+      "economicFormula": "(Overstaffed_FTE_avoided × loaded_FTE_cost$) × adoption% × capture%"
+    }
+  ]
+}

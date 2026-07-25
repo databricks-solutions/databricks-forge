@@ -1,0 +1,61 @@
+name: docs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/**"
+      - "mkdocs.yml"
+      - "requirements-docs.txt"
+      - "WHY_FORGE.md"
+      - "QUICKSTART.md"
+      - "ASK_FORGE.md"
+      - "ESTATE_ANALYSIS.md"
+      - "SUPPORT.md"
+      - "SECURITY.md"
+      - "CONTRIBUTING.md"
+  pull_request:
+    branches: [main]
+    paths:
+      - "docs/**"
+      - "mkdocs.yml"
+      - "requirements-docs.txt"
+      - "WHY_FORGE.md"
+      - "QUICKSTART.md"
+      - "ASK_FORGE.md"
+      - "ESTATE_ANALYSIS.md"
+      - "SUPPORT.md"
+      - "SECURITY.md"
+      - "CONTRIBUTING.md"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - run: pip install -r requirements-docs.txt
+
+      - run: mkdocs build --strict
+
+  deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - run: pip install -r requirements-docs.txt
+
+      - run: mkdocs gh-deploy --force

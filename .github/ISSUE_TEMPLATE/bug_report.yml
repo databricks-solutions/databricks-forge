@@ -1,0 +1,89 @@
+name: Bug Report
+description: Report a bug in Databricks Forge AI
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug. Please fill out the sections below so we can reproduce and fix the issue.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: A clear description of the bug.
+      placeholder: What happened?
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: Minimal steps to reproduce the behavior.
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What you expected to happen.
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: What actually happened. Include error messages or screenshots if possible.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected Area
+      description: Which part of the application is affected?
+      options:
+        - Pipeline (use case discovery)
+        - Genie Engine (space generation)
+        - Estate Scan (environment intelligence)
+        - AI Comments (catalog documentation)
+        - Ask Forge (assistant)
+        - Export (Excel / PDF / PPTX / notebook)
+        - Business Value Analysis
+        - Health Check
+        - Settings / Configuration
+        - Deployment
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Forge Version
+      description: "Version from Settings > About or the sidebar footer (e.g. 0.24.0)."
+      placeholder: "0.24.0"
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Any relevant environment details.
+      placeholder: |
+        - Databricks workspace region: ...
+        - Browser: ...
+        - Deployment method: Databricks Apps / local dev
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant Logs
+      description: Paste any relevant log output (browser console, server logs).
+      render: shell
