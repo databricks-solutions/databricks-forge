@@ -15,9 +15,17 @@ import { logger } from "@/lib/logger";
 export interface TestResult {
   question: string;
   status: GenieConversationMessage["status"];
+  outcome: "passed" | "clarification" | "failed";
   sql?: string;
   textResponse?: string;
   error?: string;
+}
+
+function outcomeOf(message: GenieConversationMessage): TestResult["outcome"] {
+  if (message.status !== "COMPLETED") return "failed";
+  if (message.sql?.trim()) return "passed";
+  if (message.textResponse?.trim()) return "clarification";
+  return "failed";
 }
 
 export async function POST(
@@ -33,7 +41,6 @@ export async function POST(
 
     const guard = await loadRunOrRespond(request, runId, "edit");
     if (!guard.ok) return guard.response;
-    const run = guard.value.run;
 
     const body = (await request.json()) as {
       spaceId: string;
@@ -65,6 +72,7 @@ export async function POST(
         results.push({
           question,
           status: msg.status,
+          outcome: outcomeOf(msg),
           sql: msg.sql,
           textResponse: msg.textResponse,
           error: msg.error,
@@ -73,12 +81,15 @@ export async function POST(
         results.push({
           question,
           status: "FAILED",
+          outcome: "failed",
           error: err instanceof Error ? err.message : String(err),
         });
       }
     }
 
-    const passed = results.filter((r) => r.status === "COMPLETED").length;
+    const passed = results.filter((r) => r.outcome === "passed").length;
+    const clarifications = results.filter((r) => r.outcome === "clarification").length;
+    const failed = results.length - passed - clarifications;
 
     logger.info("Genie Space test complete", {
       runId,
@@ -91,7 +102,7 @@ export async function POST(
       spaceId: body.spaceId,
       domain: decodedDomain,
       results,
-      summary: { passed, total: results.length },
+      summary: { passed, clarifications, failed, total: results.length },
     });
   } catch (error) {
     const message = error instanceof Error ? error.message : "Unknown error";

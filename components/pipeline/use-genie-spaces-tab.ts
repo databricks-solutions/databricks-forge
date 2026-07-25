@@ -11,6 +11,10 @@ import type {
 import type { UseCase } from "@/lib/domain/types";
 import type { TrashPreview } from "./genie-trash-preview";
 import type { DeployStatus } from "./genie-recommendation-row";
+import {
+  classifyGenieSmokeTestSummary,
+  type GenieSmokeTestSummary,
+} from "./genie-smoke-test-summary";
 
 interface UseGenieSpacesTabParams {
   runId: string;
@@ -18,6 +22,15 @@ interface UseGenieSpacesTabParams {
   completedDomainNames: string[];
   engineEnabled: boolean;
   refreshKey: number;
+}
+
+export interface GenieSmokeTestResult {
+  question: string;
+  status: string;
+  outcome: "passed" | "clarification" | "failed";
+  sql?: string;
+  textResponse?: string;
+  error?: string;
 }
 
 export function useGenieSpacesTab({
@@ -41,9 +54,7 @@ export function useGenieSpacesTab({
   const [trashPreviewLoading, setTrashPreviewLoading] = useState(false);
   const [dropAssetsChecked, setDropAssetsChecked] = useState(true);
   const [testingDomain, setTestingDomain] = useState<string | null>(null);
-  const [testResults, setTestResults] = useState<
-    { question: string; status: string; sql?: string; error?: string }[] | null
-  >(null);
+  const [testResults, setTestResults] = useState<GenieSmokeTestResult[] | null>(null);
   const [deployModalOpen, setDeployModalOpen] = useState(false);
   const [deployModalDomains, setDeployModalDomains] = useState<GenieEngineRecommendation[]>([]);
   const [regeneratingDomain, setRegeneratingDomain] = useState<string | null>(null);
@@ -289,13 +300,18 @@ export function useGenieSpacesTab({
           body: JSON.stringify({ spaceId: tracking.spaceId, questions: sampleQuestions }),
         },
       );
-      const data = await res.json();
+      const data = (await res.json()) as {
+        error?: string;
+        results: GenieSmokeTestResult[];
+        summary: GenieSmokeTestSummary;
+      };
       if (!res.ok) {
         toast.error(data.error || "Test failed");
         return;
       }
       setTestResults(data.results);
-      toast.success(`Test complete: ${data.summary.passed}/${data.summary.total} passed`);
+      const notification = classifyGenieSmokeTestSummary(data.summary);
+      toast[notification.tone](notification.message);
     } catch {
       toast.error("Failed to test Genie Space");
     } finally {

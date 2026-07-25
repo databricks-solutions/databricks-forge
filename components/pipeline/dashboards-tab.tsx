@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/accordion";
 import { toast } from "sonner";
 import type { DashboardRecommendation, TrackedDashboard } from "@/lib/dashboard/types";
+import { findTrackedDashboardForDomain } from "@/lib/dashboard/domain-groups";
 import type { DashboardDesignV2 } from "@/lib/dashboard/design-ir";
 import { DashboardDeployModal } from "./dashboard-deploy-modal";
 
@@ -178,9 +179,9 @@ export function DashboardsTab({ runId }: DashboardsTabProps) {
   // -------------------------------------------------------------------------
 
   function getTrackedStatus(domain: string): TrackedDashboard | undefined {
-    return tracked.find(
-      (t) => t.domain.toLowerCase() === domain.toLowerCase() && t.status !== "trashed",
-    );
+    // Same resolution the deploy route uses, so a dashboard tracked under a
+    // pre-canonicalization alias still shows as deployed here.
+    return findTrackedDashboardForDomain(tracked, domain);
   }
 
   function toggleSelect(domain: string) {

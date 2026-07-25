@@ -193,6 +193,139 @@ describe("dashboard deployment validation gate", () => {
     );
   });
 
+  it("reuses a pre-canonicalization tracked dashboard instead of creating a duplicate", async () => {
+    // Rows tracked before dashboard domains were canonicalized still carry the
+    // raw alias ("Procurement"), while the recommendation now resolves to the
+    // canonical bucket ("Supply Chain"). Matching only on the literal label
+    // would deploy a second Lakeview dashboard for the same run+domain.
+    const rec = recommendation("valid");
+    rec.domain = "Supply Chain";
+    rec.title = "Supply Chain dashboard";
+    mocks.getRecommendations.mockResolvedValue([rec]);
+    mocks.listTrackedDashboards.mockResolvedValue([
+      {
+        id: "tracked-legacy",
+        dashboardId: "dash-legacy",
+        runId,
+        domain: "Procurement",
+        title: "Procurement dashboard",
+        status: "created",
+      },
+    ]);
+    mocks.deployLifecycle.mockResolvedValue({
+      dashboardId: "dash-legacy",
+      displayName: "Supply Chain dashboard",
+      action: "updated",
+      publicationStatus: "draft",
+      readBack: { datasetCount: 0, widgetCount: 0, contractOk: true },
+      evidence: [],
+    });
+
+    const response = await POST(
+      new Request(`http://localhost/api/runs/${runId}/dashboard-engine/Supply%20Chain/deploy`, {
+        method: "POST",
+        body: JSON.stringify({}),
+      }) as never,
+      { params: Promise.resolve({ runId, domain: "Supply%20Chain" }) },
+    );
+
+    expect(response.status).toBe(200);
+    await expect(response.json()).resolves.toMatchObject({
+      success: true,
+      action: "updated",
+      dashboardId: "dash-legacy",
+    });
+    expect(mocks.deployLifecycle).toHaveBeenCalledWith(
+      expect.objectContaining({ mode: "update", dashboardId: "dash-legacy" }),
+      expect.anything(),
+    );
+    expect(mocks.trackUpdated).toHaveBeenCalledWith(
+      expect.objectContaining({ id: "tracked-legacy" }),
+    );
+    expect(mocks.trackCreated).not.toHaveBeenCalled();
+  });
+
+  it("prefers an exact tracked domain match over an alias-canonical match", async () => {
+    const rec = recommendation("valid");
+    rec.domain = "Supply Chain";
+    mocks.getRecommendations.mockResolvedValue([rec]);
+    mocks.listTrackedDashboards.mockResolvedValue([
+      {
+        id: "tracked-legacy",
+        dashboardId: "dash-legacy",
+        runId,
+        domain: "Inventory",
+        title: "Inventory dashboard",
+        status: "created",
+      },
+      {
+        id: "tracked-canonical",
+        dashboardId: "dash-canonical",
+        runId,
+        domain: "Supply Chain",
+        title: "Supply Chain dashboard",
+        status: "created",
+      },
+    ]);
+    mocks.deployLifecycle.mockResolvedValue({
+      dashboardId: "dash-canonical",
+      displayName: "Sales dashboard",
+      action: "updated",
+      publicationStatus: "draft",
+      readBack: { datasetCount: 0, widgetCount: 0, contractOk: true },
+      evidence: [],
+    });
+
+    const response = await POST(
+      new Request(`http://localhost/api/runs/${runId}/dashboard-engine/Supply%20Chain/deploy`, {
+        method: "POST",
+        body: JSON.stringify({}),
+      }) as never,
+      { params: Promise.resolve({ runId, domain: "Supply%20Chain" }) },
+    );
+
+    expect(response.status).toBe(200);
+    expect(mocks.deployLifecycle).toHaveBeenCalledWith(
+      expect.objectContaining({ mode: "update", dashboardId: "dash-canonical" }),
+      expect.anything(),
+    );
+    expect(mocks.trackUpdated).toHaveBeenCalledWith(
+      expect.objectContaining({ id: "tracked-canonical" }),
+    );
+  });
+
+  it("ignores trashed tracked rows when resolving the canonical domain target", async () => {
+    const rec = recommendation("valid");
+    rec.domain = "Supply Chain";
+    mocks.getRecommendations.mockResolvedValue([rec]);
+    mocks.listTrackedDashboards.mockResolvedValue([
+      {
+        id: "tracked-trashed",
+        dashboardId: "dash-trashed",
+        runId,
+        domain: "Procurement",
+        title: "Procurement dashboard",
+        status: "trashed",
+      },
+    ]);
+
+    const response = await POST(
+      new Request(`http://localhost/api/runs/${runId}/dashboard-engine/Supply%20Chain/deploy`, {
+        method: "POST",
+        body: JSON.stringify({}),
+      }) as never,
+      { params: Promise.resolve({ runId, domain: "Supply%20Chain" }) },
+    );
+
+    expect(response.status).toBe(200);
+    expect(mocks.deployLifecycle).toHaveBeenCalledWith(
+      expect.objectContaining({ mode: "create" }),
+      expect.anything(),
+    );
+    expect(mocks.trackCreated).toHaveBeenCalled();
+    expect(mocks.trackUpdated).not.toHaveBeenCalled();
+  });
+
   it("deploys current valid provenance when optional SQL review was skipped", async () => {
     mocks.getRecommendations.mockResolvedValue([recommendation("valid")]);
 

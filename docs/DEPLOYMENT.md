@@ -156,6 +156,82 @@ environment variables at runtime.
 | `serving-endpoint` | Serving Endpoint | `databricks-claude-sonnet-4-6` | CAN_QUERY |
 | `serving-endpoint-fast` | Serving Endpoint | `databricks-claude-sonnet-4-6` | CAN_QUERY |
 
+### Startup endpoint validation
+
+Before Next.js starts, `scripts/validate-endpoints.mjs` probes configured Model
+Serving endpoints and records one of three states:
+
+- `completed` -- every probe produced a definitive available or unavailable
+  result. Runtime admission keeps only known model endpoints, applies
+  `DATABRICKS_ALLOWED_MODELS` to exact configured endpoint names, and then
+  marks admitted endpoints outside the validated set unavailable. Startup
+  fails if no runtime-admitted required endpoint was validated as usable.
+- `auth_skipped` -- the startup probe could not obtain suitable credentials,
+  or Databricks rejected the probe for authentication/authorization. Configured
+  candidates are preserved for runtime failover and startup continues.
+- `not_run` -- there were no configured probe candidates, the probe transport
+  was indeterminate, or the validator itself could not complete. Runtime
+  candidates are preserved and startup continues.
+
+Unknown model names are never admitted. If an explicit allowed-model list
+matches none of the otherwise admitted configured endpoints, Forge emits a
+warning and retains the first configured known endpoint so the application has
+a bounded fallback instead of an empty pool.
+
+#### What the required-role gate actually covers
+
+The startup gate is an **LLM chat/review** gate. It requires at least one
+*admitted required* endpoint -- one of `DATABRICKS_SERVING_ENDPOINT`,
+`DATABRICKS_SERVING_ENDPOINT_FAST`, or `DATABRICKS_REVIEW_ENDPOINT` -- to
+survive both known-model admission and the validated set. The dedicated
+reasoning-2, generation, SQL, and lightweight endpoints are optional: their
+absence degrades routing breadth but never blocks startup.
+
+Two consequences are load-bearing:
+
+- **`DATABRICKS_ALLOWED_MODELS` must retain at least one required LLM
+  endpoint.** The allowlist is matched against exact configured endpoint names.
+  An allowlist that keeps only optional-role or non-chat endpoints leaves zero
+  usable required endpoints and aborts startup under `completed` validation.
+- **The embedding endpoint is outside this gate and outside the chat pool.**
+  `DATABRICKS_EMBEDDING_ENDPOINT` *is* probed for existence by
+  `scripts/validate-endpoints.mjs` -- the probe is a plain
+  `GET /api/2.0/serving-endpoints/{name}` reachability check, identical for
+  every endpoint -- so the embedding endpoint can appear in
+  `FORGE_VALIDATED_ENDPOINTS`. It is nevertheless **never** admitted to the
+  chat/review model pool, never routed by `resolveEndpoint`, and never counted
+  toward `usableRequiredCount`. A configured embedding endpoint therefore cannot
+  satisfy the required-role gate, and a missing or unreachable embedding
+  endpoint cannot fail startup. Embedding readiness is a separate concern that
+  surfaces at first embedding or vector-search call, not at boot. Do not read
+  the startup gate as a guarantee that embeddings are usable.
+
+`GET /api/health` never exposes endpoint names. Unauthenticated callers get the
+coarse liveness view only: overall `status` plus `endpointValidation.state` and
+`endpointValidation.status`. Authenticated callers additionally get the
+operational diagnostics -- configured/available/unavailable counts and an
+`exhausted` flag when no pooled endpoint is currently available. The endpoint
+contribution to overall health is identical for both, including the fatal `503`:
+
+| Condition | Status | HTTP |
+| --- | --- | --- |
+| `completed`, a required endpoint admitted, pool non-empty | healthy | 200 |
+| `completed`, a required endpoint admitted, pool exhausted at runtime | degraded | 200 |
+| `completed`, no admitted required endpoint usable | unhealthy | 503 |
+| `auth_skipped` or `not_run` | degraded | 200 |
+
+Only the startup admission failure is fatal, because only that is fixable by a
+restart. Endpoints that validated at startup and were later rotated out by
+runtime `404` / `RESOURCE_DOES_NOT_EXIST` handling report **degraded**, not
+`503`: a restart cannot bring a deleted endpoint back, and returning `503` would
+put the container into a restart loop while the app is still serving every
+non-LLM surface. In that exhausted state `resolveEndpoint` raises
+`NoAvailableEndpointError` rather than routing to a known-dead endpoint.
+`auth_skipped` and `not_run` are degraded rather than successful validation:
+configured candidates are preserved and runtime failover determines actual
+usability. Database and warehouse failures are combined with this model status
+to produce the overall health result.
+
 ### User authorization scopes
 
 The script configures these OAuth scopes so the app can act on behalf of the
@@ -261,6 +337,11 @@ needed -- the platform handles containerisation.
      make this succeed on first deploy
    - Optionally grants the `LAKEBASE_BOOTSTRAP_USER` the same Postgres
      role as the SP so they can open the SQL Editor against the database
+   - Validates configured Model Serving endpoints; a definitive result with no
+     usable runtime-admitted required chat/review endpoint aborts startup, while
+     authentication-skipped or indeterminate validation starts in degraded
+     mode. The embedding endpoint is probed for reachability but is not part of
+     this gate
    - Starts the Next.js standalone server on `DATABRICKS_APP_PORT`
 
 ---

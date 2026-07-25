@@ -93,6 +93,7 @@ import {
   formatSqlExecutorDiagnostic,
   isRepairableSqlExecutorDiagnostic,
 } from "./executor-diagnostic";
+import { isDashboardValidationDeployable } from "./deployability";
 
 const TEMPERATURE = 0.3;
 
@@ -123,7 +124,10 @@ function getGenieOutputsForDomain(
 } | null {
   if (!genieRecommendations) return null;
 
-  const rec = genieRecommendations.find((r) => r.domain.toLowerCase() === domain.toLowerCase());
+  const domainKey = normalizeDashboardDomain(domain);
+  const rec = genieRecommendations.find(
+    (recommendation) => normalizeDashboardDomain(recommendation.domain) === domainKey,
+  );
   if (!rec) return null;
 
   try {
@@ -651,6 +655,16 @@ async function validateRequiredDataset(
     sqlExecutor: deps.sql,
   });
   evidence.push(...execution.evidence.map((item) => ({ ...item, artifactRef })));
+  if (lint && execution.ok) {
+    evidence.push(
+      evidencePassed(
+        "dataset_static",
+        "STATIC_LINT_PASSED",
+        `Dataset "${dataset.name}" passed mandatory EXPLAIN and bounded execution after advisory static analysis.`,
+        { artifactRef },
+      ),
+    );
+  }
   if (
     !execution.ok &&
     !executionRepairAttempted &&
@@ -1095,6 +1109,27 @@ async function processDomain(
     recommendation.changeSummary = emptyImproveDiff
       ? `Reuse "${existingDashboard.displayName}" without mutation.`
       : `Add ${improveDiff.addDatasets.length} datasets, ${improveDiff.addWidgets.length} widgets, and ${improveDiff.addFilters.length} filters to "${existingDashboard.displayName}".`;
+  }
+  if (!isDashboardValidationDeployable(recommendation)) {
+    const evidence = [
+      ...(recommendation.validationEvidence ?? []),
+      evidenceFailed(
+        "dashboard_provenance",
+        "VALIDATION_PROVENANCE_INCOMPLETE",
+        `Dashboard recommendation for domain "${group.domain}" did not contain complete deployable validation provenance.`,
+        { artifactRef: `domain:${group.domain}` },
+      ),
+    ];
+    log.warn("Dashboard Engine: recommendation has incomplete validation provenance", {
+      domain: group.domain,
+      validationEvidence: evidence,
+    });
+    return {
+      failure: {
+        domain: group.domain,
+        evidence,
+      },
+    };
   }
   return { recommendation };
 }

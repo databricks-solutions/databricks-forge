@@ -36,7 +36,7 @@ runDashboardRecommendations(ctx, runId)
     │
     ├── runDashboardEngine(input)
     │     │
-    │     ├── Group use cases by domain
+    │     ├── Group use cases by canonical Genie domain
     │     │
     │     ├── For each domain:
     │     │     ├── LLM call → DashboardDesignV2
@@ -50,6 +50,25 @@ runDashboardRecommendations(ctx, runId)
     │
     └── saveDashboardRecommendations()
 ```
+
+Domain selection uses the same canonical normalization as Genie. Customer,
+client, consumer, and CRM labels converge on `Customer Insights`; sales,
+revenue, order, and commerce converge on `Sales Analytics`; supply, supplier,
+vendor, inventory, and procurement converge on `Supply Chain`; finance,
+billing, payment, and invoice converge on `Finance`; and marketing, campaign,
+and attribution converge on `Marketing`. Other labels are title-cased.
+Dashboard grouping, explicit domain filters, persisted manifest lookup, and
+manual regeneration all compare the normalized key, so equivalent labels
+cannot split a Genie domain or bypass manifest coverage.
+
+**Upgrade note.** Recommendations and tracked dashboards written before this
+normalization still hold raw alias domains such as `Procurement`. Filtered
+regeneration therefore replaces the trimmed requested aliases *and* the
+canonical domain they collapse into, so alias rows cannot survive while the
+canonical re-insert still satisfies the run+domain unique constraint. Deployment
+resolves its tracked target by exact label first and by canonical key second, so
+a pre-change tracked dashboard is updated in place rather than duplicated. No
+backfill migration is required.
 
 ### Ad-hoc Mode
 
@@ -90,6 +109,13 @@ invalid domains retain structured validation failures. A mixed run completes
 with partial success using the normal `completed` status plus
 `validationFailures`; a run with failures and no valid recommendations fails.
 
+`validationStatus = "valid"` has one meaning in persisted recommendations:
+the complete current provenance already passes
+`isDashboardValidationDeployable()`. The engine checks this invariant before a
+recommendation reaches persistence, and deployment checks it again after
+loading. A status string without the current validator version, timestamp, and
+required passed evidence is not deployable.
+
 ---
 
 ## Lakeview Assembler
@@ -109,6 +135,17 @@ Every page uses the 12-column `GRID_V1` contract:
 - **"Trends & Analysis"** section with charts on the 12-column grid
 - **"Details"** section with table widgets
 - **Global filters** on a separate page (`PAGE_TYPE_GLOBAL_FILTERS`)
+
+The serialized contract has two explicit modes:
+
+- `forge-assembled` is the default for pipeline and ad-hoc recommendations. It
+  enforces Forge's generated grid, counter aggregation, query-field, filter,
+  and encoding conventions.
+- `imported-lakeview` accepts the native parameter-filter binding shape used by
+  the prebuilt WAF Lakeview JSON while retaining structural, dataset,
+  reference, layout, and binding checks. It is a narrow compatibility mode
+  used only by `POST /api/assessment/dashboard`; other dashboard generation
+  and deployment must not opt into it.
 
 ---
 
@@ -139,7 +176,8 @@ contract validation remain mandatory in both modes.
 4. Select create versus update before mutation. Typed improvements bind the
    exact discovered dashboard ID, verify its live fingerprint immediately
    before update, and never create a duplicate on conflict.
-5. Create/update an unpublished draft using the caller's OBO token.
+5. Create/update an unpublished draft using app M2M for the
+   server-controlled `/Shared/Forge Dashboards/` destination.
 6. When `FORGE_DASHBOARD_DRAFT_READBACK=true`, fetch the draft, verify ID,
    display name, destination, warehouse, counts, and serialized contract.
 7. Publish only after successful read-back, then fetch and verify observed
@@ -156,6 +194,16 @@ Publication failure returns `502`, retains the valid draft ID, and persists
 draft, and does not publish. Activities represent persisted outcomes:
 `dashboard_draft_deployed`, `dashboard_readback_failed`,
 `dashboard_published`, `dashboard_publish_failed`, and `dashboard_improved`.
+
+`POST /api/dashboard/generate` handles the same typed lifecycle failures for
+its app-M2M deployment. A read-back mismatch records `dashboard_draft_deployed`
+plus `dashboard_readback_failed` against the created dashboard ID with caller
+identity, evidence stage, and failed evidence codes only, then returns `422`
+with the evidence. An observed-but-untrackable mutation returns `502` with no
+audit, because there is no dashboard ID to attribute. A publication request
+with draft read-back disabled returns `409` before mutation. Ad-hoc dashboards
+have no run scope, so these branches log audit events without writing tracked
+rows or recommendation publication state.
 
 The Lakeview API client lives in `lib/dbx/dashboards.ts`.
 
@@ -193,12 +241,14 @@ owner-plus-ACL authorization.
 
 Dashboard API identity is explicit and stable for the whole lifecycle:
 
-- pipeline and WAF assets deployed under the server-controlled
-  `/Shared/Forge Dashboards/` path are app-owned; create/update, draft
-  read-back, publish, and publication read-back all use app M2M
-  (`getAppHeaders`) with no OBO fallback;
-- external/user-owned discovery and live-base verification use the exact
-  request OBO token with no app fallback;
+- pipeline, ad-hoc, and workspace-shared WAF assets deployed under the
+  server-controlled `/Shared/Forge Dashboards/` path are Forge-owned;
+  create/update, draft read-back, publish, and publication read-back all use
+  app M2M (`getAppHeaders`) with no OBO fallback;
+- external/user-owned discovery, improvement base reads, and live-fingerprint
+  verification use the exact request OBO token with no app fallback; after
+  that user-scoped verification, the Forge-owned shared-path deployment
+  mutation still uses app M2M;
 - `embed_credentials` defaults to `false`;
 - app M2M permission failures retain the bounded Databricks diagnostic instead
   of being reported as the known Apps OBO `dashboards`-scope limitation.

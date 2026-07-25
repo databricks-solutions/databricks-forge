@@ -15,6 +15,10 @@ import type { GenieSpaceResponse, GenieListResponse } from "@/lib/genie/types";
 import type { GenieAuthMode } from "@/lib/settings";
 import { enforceConstraints, cleanConfig } from "./genie-cleanup";
 import { sanitizeIds } from "./genie-id-sanitizer";
+import {
+  parseGenieConversationResponse,
+  type GenieConversationApiResponse,
+} from "./genie-conversation";
 
 /**
  * Resolve auth headers based on the deploy auth mode (defaults to OBO).
@@ -584,23 +588,19 @@ async function pollMessageCompletion(
       throw new Error(`Genie get message failed (${response.status}): ${text}`);
     }
 
-    const msg = (await response.json()) as {
+    const msg = (await response.json()) as GenieConversationApiResponse & {
       id: string;
       status: string;
-      query_result?: { query_text?: string };
-      error?: { message?: string };
-      content?: string;
     };
 
     if (terminalStatuses.has(msg.status)) {
+      const parsed = parseGenieConversationResponse(msg);
       return {
         question: "",
         conversationId,
         messageId,
         status: msg.status as GenieConversationMessage["status"],
-        sql: msg.query_result?.query_text,
-        textResponse: msg.content,
-        error: msg.error?.message,
+        ...parsed,
       };
     }
 

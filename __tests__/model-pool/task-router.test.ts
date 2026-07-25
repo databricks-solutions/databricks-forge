@@ -19,7 +19,7 @@ vi.mock("@/lib/logger", () => ({
 }));
 
 import { resolveEndpoint, getFallbacksForTier } from "@/lib/dbx/task-router";
-import { resetModelPool } from "@/lib/dbx/model-registry";
+import { markEndpointUnavailable, resetModelPool } from "@/lib/dbx/model-registry";
 import { resetPoolRateLimiter } from "@/lib/dbx/rate-limiter";
 import type { TaskTier } from "@/lib/dbx/model-registry";
 
@@ -30,6 +30,8 @@ const ENV_KEYS = [
   "DATABRICKS_SERVING_ENDPOINT_REASONING_2",
   "DATABRICKS_SERVING_ENDPOINT_GENERATION",
   "DATABRICKS_SERVING_ENDPOINT_SQL",
+  "FORGE_ENDPOINT_VALIDATION_STATE",
+  "FORGE_VALIDATED_ENDPOINTS",
 ] as const;
 
 function saveEnv(): Record<string, string | undefined> {
@@ -95,6 +97,54 @@ describe("task-router", () => {
 
       const sql = resolveEndpoint("sql");
       expect(sql).toMatch(/gpt-5|codex/); // gpt-class for sql
+    });
+  });
+
+  describe("Known-unavailable endpoint routing", () => {
+    it("never returns a startup-invalidated raw env endpoint when an admitted one is available", () => {
+      process.env.DATABRICKS_SERVING_ENDPOINT = "databricks-claude-opus-4-7";
+      process.env.DATABRICKS_SERVING_ENDPOINT_FAST = "databricks-claude-sonnet-4-6";
+      process.env.FORGE_ENDPOINT_VALIDATION_STATE = "completed";
+      process.env.FORGE_VALIDATED_ENDPOINTS = "databricks-claude-sonnet-4-6";
+      resetModelPool();
+
+      // No pooled endpoint serves the reasoning tier once opus is invalidated,
+      // so the legacy env fallback would otherwise hand back the dead endpoint.
+      const resolved = resolveEndpoint("reasoning");
+
+      expect(resolved).not.toBe("databricks-claude-opus-4-7");
+      expect(resolved).toBe("databricks-claude-sonnet-4-6");
+    });
+
+    it("never returns an endpoint invalidated by runtime rotation", () => {
+      process.env.DATABRICKS_SERVING_ENDPOINT = "databricks-claude-opus-4-7";
+      process.env.DATABRICKS_SERVING_ENDPOINT_FAST = "databricks-claude-sonnet-4-6";
+      resetModelPool();
+      markEndpointUnavailable("databricks-claude-opus-4-7");
+
+      const resolved = resolveEndpoint("reasoning");
+
+      expect(resolved).not.toBe("databricks-claude-opus-4-7");
+      expect(resolved).toBe("databricks-claude-sonnet-4-6");
+    });
+
+    it("fails loudly instead of routing to a dead endpoint when the pool is exhausted", () => {
+      process.env.DATABRICKS_SERVING_ENDPOINT = "databricks-claude-opus-4-7";
+      resetModelPool();
+      markEndpointUnavailable("databricks-claude-opus-4-7");
+
+      expect(() => resolveEndpoint("reasoning")).toThrowError(
+        /no available model serving endpoint/i,
+      );
+    });
+
+    it("still resolves a custom endpoint the pool has no availability knowledge about", () => {
+      process.env.DATABRICKS_SERVING_ENDPOINT = "customer-private-endpoint";
+      resetModelPool();
+
+      // Unknown models are never admitted to the pool, so availability is
+      // unknown rather than false and legacy behaviour must be preserved.
+      expect(resolveEndpoint("reasoning")).toBe("customer-private-endpoint");
     });
   });
 

@@ -251,6 +251,31 @@ describe("semantic assets before dashboards", () => {
     expect(events).toEqual(["genie:manifest-persisted", "manifest:load", "dashboard:start"]);
   });
 
+  it("resolves use-case and persisted manifest domains through normalized Genie names", async () => {
+    const supplyChainManifest = { ...manifest, domain: "Supply Chain" };
+    const normalizedContext = {
+      ...context,
+      useCases: [
+        { id: "uc-1", domain: "Procurement", subdomain: "Sourcing", tablesInvolved: [] },
+        { id: "uc-2", domain: "Inventory", subdomain: "Stock", tablesInvolved: [] },
+      ],
+    } as unknown as PipelineContext;
+    mocks.loadGenieRecommendations.mockResolvedValue([
+      {
+        domain: "Procurement",
+        semanticAssetManifest: JSON.stringify(supplyChainManifest),
+      },
+    ]);
+
+    await runDashboardRecommendations(normalizedContext, "run-1");
+
+    expect(mocks.runDashboardEngine).toHaveBeenCalledWith(
+      expect.objectContaining({
+        semanticManifests: { Procurement: supplyChainManifest },
+      }),
+    );
+  });
+
   it("fails closed before Dashboard when persisted manifests are absent", async () => {
     mocks.loadGenieRecommendations.mockResolvedValue([]);
 

@@ -60,6 +60,10 @@
 
 set -euo pipefail
 
+# Absolute directory of this script, so sibling helpers resolve correctly no
+# matter which working directory the operator invoked deploy.sh from.
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 # -------------------------------------------------------------------------
 # Defaults
 # -------------------------------------------------------------------------
@@ -466,28 +470,13 @@ fi
 # differences silently.
 # -------------------------------------------------------------------------
 
+source "$SCRIPT_DIR/scripts/deploy-endpoint-selection.sh"
+
 # Check if a serving endpoint exists. Returns 0 if available, 1 otherwise.
 probe_endpoint() {
   local name="$1"
   if [ -z "$name" ]; then return 1; fi
   databricks serving-endpoints get "$name" --output json &>/dev/null
-}
-
-# Given a space-separated list of endpoint names, return the first available.
-# If none are available (or probing fails), returns the first name as fallback.
-# Usage: resolve_with_fallback "model-a model-b model-c"
-resolve_with_fallback() {
-  local chain="$1"
-  local first=""
-  for candidate in $chain; do
-    if [ -z "$first" ]; then first="$candidate"; fi
-    if probe_endpoint "$candidate"; then
-      echo "$candidate"
-      return 0
-    fi
-  done
-  echo "$first"
-  return 1
 }
 
 # Probe all endpoint roles and resolve to best available.
@@ -501,63 +490,72 @@ probe_and_resolve_endpoints() {
 
   printf "\n  Probing model availability...\n"
 
-  local resolved="" preferred="" label="" did_fallback=false
+  local resolved="" preferred="" label="" selection_status=0 did_fallback=false
 
   # Helper: probe a role and print status
-  # Usage: probe_role "Label" "user_override" "fallback chain" VARNAME
+  # Usage: probe_role "Label" "required|optional" "user_override" "fallback chain" VARNAME
   probe_role() {
     local role_label="$1"
-    local user_override="$2"
-    local chain="$3"
-    local varname="$4"
+    local requirement="$2"
+    local user_override="$3"
+    local chain="$4"
+    local varname="$5"
 
     if [ -n "$user_override" ]; then
       printf "  %-20s %s (user override)\n" "$role_label:" "$user_override"
-      eval "$varname=\"$user_override\""
+      assign_endpoint_var "$varname" "$user_override"
       return
     fi
 
     preferred="${chain%% *}"
-    if probe_endpoint "$preferred"; then
-      printf "  %-20s %s\n" "$role_label:" "$preferred"
-      eval "$varname=\"$preferred\""
+    if resolved=$(select_endpoint_for_role "$requirement" "$chain"); then
+      selection_status=0
     else
-      resolved=$(resolve_with_fallback "$chain")
+      selection_status=$?
+    fi
+
+    if [ "$selection_status" -eq 0 ]; then
       if [ "$resolved" != "$preferred" ]; then
         printf "  %-20s %s → %s\n" "$role_label:" "$preferred" "$resolved"
         did_fallback=true
       else
-        printf "  %-20s %s (probe failed, using default)\n" "$role_label:" "$preferred"
+        printf "  %-20s %s\n" "$role_label:" "$preferred"
       fi
-      eval "$varname=\"$resolved\""
+      assign_endpoint_var "$varname" "$resolved"
+    elif [ "$selection_status" -eq 2 ]; then
+      printf "  %-20s %s (all probes failed; retaining required-role default)\n" "$role_label:" "$preferred"
+      assign_endpoint_var "$varname" "$resolved"
+    else
+      printf "  %-20s %s (all probes failed; optional role not bound)\n" "$role_label:" "$preferred"
+      assign_endpoint_var "$varname" ""
     fi
   }
 
-  probe_role "Primary" "$ARG_ENDPOINT" \
+  probe_role "Primary" "required" "$ARG_ENDPOINT" \
     "databricks-claude-opus-4-7 databricks-claude-opus-4-6 databricks-claude-opus-4-5 databricks-gpt-5-4 databricks-claude-sonnet-4-6" \
     ENDPOINT
 
-  probe_role "Fast" "$ARG_FAST_ENDPOINT" \
+  probe_role "Fast" "required" "$ARG_FAST_ENDPOINT" \
     "databricks-claude-sonnet-4-6 databricks-claude-sonnet-4-5 databricks-gemini-3-flash databricks-gemini-3-1-flash-lite" \
     FAST_ENDPOINT
 
-  probe_role "Review" "$ARG_REVIEW_ENDPOINT" \
+  probe_role "Review" "required" "$ARG_REVIEW_ENDPOINT" \
     "databricks-gpt-5-4 databricks-claude-opus-4-7 databricks-claude-opus-4-6 databricks-claude-sonnet-4-6" \
     REVIEW_ENDPOINT
 
-  probe_role "Embedding" "$ARG_EMBEDDING_ENDPOINT" \
+  probe_role "Embedding" "required" "$ARG_EMBEDDING_ENDPOINT" \
     "databricks-qwen3-embedding-0-6b" \
     EMBEDDING_ENDPOINT
 
-  probe_role "Reasoning2" "$ARG_REASONING_ENDPOINT_2" \
+  probe_role "Reasoning2" "optional" "$ARG_REASONING_ENDPOINT_2" \
     "databricks-gemini-3-flash databricks-gemini-3-1-flash-lite databricks-llama-4-maverick" \
     REASONING_ENDPOINT_2
 
-  probe_role "Generation" "$ARG_GENERATION_ENDPOINT" \
+  probe_role "Generation" "optional" "$ARG_GENERATION_ENDPOINT" \
     "databricks-llama-4-maverick databricks-gemini-3-flash databricks-gemini-3-1-flash-lite databricks-claude-sonnet-4-6" \
     GENERATION_ENDPOINT
 
-  probe_role "Lightweight" "$ARG_LIGHTWEIGHT_ENDPOINT" \
+  probe_role "Lightweight" "optional" "$ARG_LIGHTWEIGHT_ENDPOINT" \
     "databricks-gemini-3-1-flash-lite databricks-gemini-3-flash databricks-claude-sonnet-4-5" \
     LIGHTWEIGHT_ENDPOINT
 
@@ -1078,9 +1076,12 @@ r.on('close',()=>console.log([...seen].join('\n')));
   cp scripts/provision-lakebase.mjs "$DEPLOY_PKG/scripts/"
   cp scripts/seed-benchmarks.mjs "$DEPLOY_PKG/scripts/"
   cp scripts/validate-endpoints.mjs "$DEPLOY_PKG/scripts/"
+  cp "$SCRIPT_DIR/scripts/check-endpoint-readiness.mjs" "$DEPLOY_PKG/scripts/"
   cp scripts/db-preflight.mjs "$DEPLOY_PKG/scripts/"
   cp scripts/db/repair.mjs "$DEPLOY_PKG/scripts/db/"
   cp scripts/db/repair-sql.mjs "$DEPLOY_PKG/scripts/db/"
+  mkdir -p "$DEPLOY_PKG/lib/dbx"
+  cp "$SCRIPT_DIR/lib/dbx/model-admission.mjs" "$DEPLOY_PKG/lib/dbx/"
 
   # -- Copy prisma schema + write production config -------------------------
   mkdir -p "$DEPLOY_PKG/prisma"

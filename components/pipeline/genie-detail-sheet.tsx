@@ -23,6 +23,7 @@ import { GenieIcon, ExternalLinkIcon } from "./genie-spaces-icons";
 import { StatBadge } from "./genie-spaces-stats";
 import { GenieDetailAccordion } from "./genie-detail-accordion";
 import type { DeployStatus } from "./genie-recommendation-row";
+import type { GenieSmokeTestResult } from "./use-genie-spaces-tab";
 
 interface GenieDetailSheetProps {
   open: boolean;
@@ -33,7 +34,7 @@ interface GenieDetailSheetProps {
   tracking: TrackedGenieSpace | undefined;
   useCases: UseCase[];
   loadingUseCases: boolean;
-  testResults: { question: string; status: string; sql?: string; error?: string }[] | null;
+  testResults: GenieSmokeTestResult[] | null;
   testingDomain: string | null;
   regeneratingDomain: string | null;
   trashingDomain: string | null;
@@ -170,12 +171,18 @@ export function GenieDetailSheet({
                 <div className="flex items-center gap-2">
                   <Badge
                     className={
-                      r.status === "COMPLETED"
+                      r.outcome === "passed"
                         ? "bg-green-500/10 text-green-600"
-                        : "bg-red-500/10 text-red-600"
+                        : r.outcome === "clarification"
+                          ? "bg-amber-500/10 text-amber-700 dark:text-amber-400"
+                          : "bg-red-500/10 text-red-600"
                     }
                   >
-                    {r.status === "COMPLETED" ? "Pass" : "Fail"}
+                    {r.outcome === "passed"
+                      ? "Pass"
+                      : r.outcome === "clarification"
+                        ? "Clarification"
+                        : "Fail"}
                   </Badge>
                   <span className="text-xs">{r.question}</span>
                 </div>
@@ -183,6 +190,11 @@ export function GenieDetailSheet({
                   <pre className="mt-1 max-h-24 overflow-auto rounded bg-muted/50 p-1.5 font-mono text-[10px]">
                     {r.sql}
                   </pre>
+                )}
+                {r.outcome === "clarification" && r.textResponse && (
+                  <p className="mt-1 text-[10px] text-amber-700 dark:text-amber-400">
+                    {r.textResponse}
+                  </p>
                 )}
                 {r.error && <p className="mt-1 text-[10px] text-destructive">{r.error}</p>}
               </div>

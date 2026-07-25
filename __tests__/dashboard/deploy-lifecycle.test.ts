@@ -3,6 +3,7 @@ import {
   DashboardDraftReadBackDisabledError,
   DashboardMutationUntrackableError,
   DashboardReadBackValidationError,
+  DashboardSerializationContractError,
   deployDashboardDraftAndVerify,
   type DashboardDeployDependencies,
 } from "@/lib/dashboard/deploy-lifecycle";
@@ -94,6 +95,81 @@ describe("deployDashboardDraftAndVerify", () => {
   afterEach(() => {
     vi.unstubAllEnvs();
   });
+
+  it.each([
+    ["null", "null"],
+    ["a JSON primitive number", "5"],
+    ["a JSON primitive string", '"serialized"'],
+    ["a JSON array", "[]"],
+    ["unparseable JSON", "{not-json"],
+  ])(
+    "rejects %s serialized input as a structured contract error before mutation",
+    async (_label, payload) => {
+      const { deps, calls } = dependencies();
+
+      const deployment = deployDashboardDraftAndVerify(
+        {
+          mode: "create",
+          displayName: "Sales",
+          serializedDashboard: payload,
+          warehouseId: "warehouse-1",
+          publish: false,
+          auth: { mode: "user", oboToken: OBO_TOKEN },
+        },
+        deps,
+      );
+
+      await expect(deployment).rejects.toBeInstanceOf(DashboardSerializationContractError);
+      await expect(deployment).rejects.toMatchObject({
+        code: "DASHBOARD_SERIALIZATION_INVALID",
+        evidence: [
+          expect.objectContaining({
+            stage: "dashboard_contract",
+            status: "failed",
+            code: "DASHBOARD_SERIALIZATION_INVALID",
+          }),
+        ],
+      });
+      expect(calls).toEqual([]);
+    },
+  );
+
+  it.each([
+    ["null", "null"],
+    ["a JSON primitive number", "5"],
+    ["unparseable JSON", "{not-json"],
+  ])(
+    "converts %s read-back serialized input into structured read-back evidence",
+    async (_label, payload) => {
+      const { deps } = dependencies(payload);
+
+      const deployment = deployDashboardDraftAndVerify(
+        {
+          mode: "create",
+          displayName: "Sales",
+          serializedDashboard: serializedDashboard(),
+          warehouseId: "warehouse-1",
+          parentPath: "/Shared/Forge Dashboards/",
+          publish: true,
+          auth: { mode: "user", oboToken: OBO_TOKEN },
+        },
+        deps,
+      );
+
+      await expect(deployment).rejects.toBeInstanceOf(DashboardReadBackValidationError);
+      await expect(deployment).rejects.toMatchObject({
+        evidence: expect.arrayContaining([
+          expect.objectContaining({
+            stage: "dashboard_read_back",
+            status: "failed",
+            code: "DASHBOARD_READ_BACK_FAILED",
+            message: expect.stringContaining("DASHBOARD_SERIALIZATION_INVALID"),
+          }),
+        ]),
+      });
+      expect(deps.publishDashboard).not.toHaveBeenCalled();
+    },
+  );
 
   it("uses an explicit draft-only legacy path while read-back rollout is disabled", async () => {
     vi.stubEnv("FORGE_DASHBOARD_DRAFT_READBACK", "false");

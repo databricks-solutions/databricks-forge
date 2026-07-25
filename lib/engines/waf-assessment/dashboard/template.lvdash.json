@@ -6905,7 +6905,8 @@
           }
         }
       ],
-      "pageType": "PAGE_TYPE_CANVAS"
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
     },
     {
       "name": "warehouse_queries",
@@ -9119,10 +9120,6 @@
                     {
                       "name": "utilization_status",
                       "expression": "`utilization_status`"
-                    },
-                    {
-                      "name": "utilization_status_associativity",
-                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
                     }
                   ],
                   "disaggregated": false
@@ -9157,7 +9154,7 @@
           "widget": {
             "name": "802f4158",
             "multilineTextboxSpec": {
-              "lines": [""]
+              "lines": ["---"]
             }
           },
           "position": {

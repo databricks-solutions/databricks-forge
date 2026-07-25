@@ -1,10 +1,13 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 const mocks = vi.hoisted(() => ({
   requireUser: vi.fn(),
   listDashboards: vi.fn(),
-  deployLifecycle: vi.fn(),
-  buildDashboard: vi.fn(),
+  createDashboard: vi.fn(),
+  updateDashboard: vi.fn(),
+  getDashboard: vi.fn(),
+  publishDashboard: vi.fn(),
+  getPublishedDashboard: vi.fn(),
   logActivity: vi.fn(),
 }));
 
@@ -22,15 +25,12 @@ vi.mock("@/lib/dbx/client", () => ({
 }));
 vi.mock("@/lib/dbx/dashboards", () => ({
   listDashboards: mocks.listDashboards,
+  createDashboard: mocks.createDashboard,
+  updateDashboard: mocks.updateDashboard,
+  getDashboard: mocks.getDashboard,
+  publishDashboard: mocks.publishDashboard,
+  getPublishedDashboard: mocks.getPublishedDashboard,
   DEFAULT_DASHBOARD_PARENT_PATH: "/Shared/Forge Dashboards/",
-}));
-vi.mock("@/lib/dashboard/deploy-lifecycle", () => ({
-  deployDashboardDraftAndVerify: mocks.deployLifecycle,
-  dashboardDeployDependencies: {},
-}));
-vi.mock("@/lib/engines/waf-assessment/dashboard/builder", () => ({
-  WAF_DASHBOARD_DISPLAY_NAME: "Forge WAF Assessment",
-  buildWafDashboardJson: mocks.buildDashboard,
 }));
 vi.mock("@/lib/lakebase/activity-log", () => ({ logActivity: mocks.logActivity }));
 vi.mock("@/lib/logger", () => ({
@@ -45,26 +45,38 @@ vi.mock("@/lib/api-utils", () => ({
 }));
 
 import { POST } from "@/app/api/assessment/dashboard/route";
+import { buildWafDashboardJson } from "@/lib/engines/waf-assessment/dashboard/builder";
 
 beforeEach(() => {
   vi.clearAllMocks();
+  vi.stubEnv("FORGE_DASHBOARD_DRAFT_READBACK", "false");
   mocks.requireUser.mockResolvedValue({
     email: "waf-user@example.com",
   });
   mocks.listDashboards.mockResolvedValue([]);
-  mocks.buildDashboard.mockResolvedValue('{"datasets":[],"pages":[]}');
-  mocks.deployLifecycle.mockResolvedValue({
-    dashboardId: "waf-dash-1",
+  mocks.createDashboard.mockResolvedValue({
+    dashboard_id: "waf-dash-1",
     displayName: "Forge WAF Assessment",
-    action: "created",
-    publicationStatus: "draft",
-    readBack: { datasetCount: 0, widgetCount: 0, contractOk: true },
-    evidence: [],
+    display_name: "Forge WAF Assessment",
+    warehouse_id: "warehouse-1",
+    parent_path: "/Shared/Forge Dashboards/",
   });
+  mocks.updateDashboard.mockResolvedValue({
+    dashboard_id: "existing-waf",
+    display_name: "Forge WAF Assessment",
+    warehouse_id: "warehouse-1",
+    parent_path: "/Shared/Forge Dashboards/",
+  });
+  mocks.publishDashboard.mockResolvedValue(undefined);
+  mocks.getPublishedDashboard.mockResolvedValue(null);
+});
+
+afterEach(() => {
+  vi.unstubAllEnvs();
 });
 
 describe("WAF dashboard lifecycle route", () => {
-  it("creates an app-owned verified draft after user authorization with server parent path", async () => {
+  it("runs the real WAF builder output through lifecycle pre-validation before creating", async () => {
     const response = await POST(
       new Request("http://localhost/api/assessment/dashboard", {
         method: "POST",
@@ -73,20 +85,17 @@ describe("WAF dashboard lifecycle route", () => {
     );
 
     expect(response.status).toBe(200);
-    expect(mocks.deployLifecycle).toHaveBeenCalledWith(
-      {
-        mode: "create",
-        dashboardId: undefined,
+    expect(mocks.createDashboard).toHaveBeenCalledOnce();
+    expect(mocks.createDashboard).toHaveBeenCalledWith(
+      expect.objectContaining({
         displayName: "Forge WAF Assessment",
-        serializedDashboard: '{"datasets":[],"pages":[]}',
         warehouseId: "warehouse-1",
         parentPath: "/Shared/Forge Dashboards/",
-        publish: false,
-        embedCredentials: false,
         auth: { mode: "app" },
-      },
-      {},
+      }),
     );
+    const serializedDashboard = mocks.createDashboard.mock.calls[0][0].serializedDashboard;
+    expect(JSON.parse(serializedDashboard)).toEqual(JSON.parse(await buildWafDashboardJson()));
     await expect(response.json()).resolves.toMatchObject({
       success: true,
       dashboardId: "waf-dash-1",
@@ -109,7 +118,7 @@ describe("WAF dashboard lifecycle route", () => {
         lifecycle_state: "ACTIVE",
       },
     ]);
-    mocks.deployLifecycle.mockRejectedValueOnce(new Error("update denied"));
+    mocks.updateDashboard.mockRejectedValueOnce(new Error("update denied"));
 
     const response = await POST(
       new Request("http://localhost/api/assessment/dashboard", {
@@ -119,30 +128,25 @@ describe("WAF dashboard lifecycle route", () => {
     );
 
     expect(response.status).toBe(500);
-    expect(mocks.deployLifecycle).toHaveBeenCalledOnce();
-    expect(mocks.deployLifecycle).toHaveBeenCalledWith(
-      expect.objectContaining({ mode: "update", dashboardId: "existing-waf" }),
-      {},
+    expect(mocks.updateDashboard).toHaveBeenCalledOnce();
+    expect(mocks.updateDashboard).toHaveBeenCalledWith(
+      "existing-waf",
+      expect.objectContaining({ displayName: "Forge WAF Assessment" }),
     );
+    expect(mocks.createDashboard).not.toHaveBeenCalled();
   });
 
   it("returns retained draft details when explicit publication fails", async () => {
-    mocks.deployLifecycle.mockResolvedValueOnce({
-      dashboardId: "waf-dash-1",
-      displayName: "Forge WAF Assessment",
-      action: "created",
-      publicationStatus: "publish_failed",
-      readBack: { datasetCount: 0, widgetCount: 0, contractOk: true },
-      evidence: [
-        {
-          stage: "dashboard_publication",
-          status: "failed",
-          code: "DASHBOARD_PUBLICATION_FAILED",
-          message: "published state missing",
-        },
-      ],
-      publishError: "published state missing",
+    vi.stubEnv("FORGE_DASHBOARD_DRAFT_READBACK", "true");
+    const serializedDashboard = await buildWafDashboardJson();
+    mocks.getDashboard.mockResolvedValueOnce({
+      dashboard_id: "waf-dash-1",
+      display_name: "Forge WAF Assessment",
+      warehouse_id: "warehouse-1",
+      parent_path: "/Shared/Forge Dashboards/",
+      serialized_dashboard: serializedDashboard,
     });
+    mocks.publishDashboard.mockRejectedValueOnce(new Error("published state missing"));
 
     const response = await POST(
       new Request("http://localhost/api/assessment/dashboard", {

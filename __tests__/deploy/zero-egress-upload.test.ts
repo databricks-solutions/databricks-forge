@@ -183,14 +183,18 @@ describe("deploy.sh zero-egress package assembly", () => {
     const archiveIndex = assembly.indexOf('create_zero_egress_archive "$bundle_path"');
 
     expect(archiveIndex).toBeGreaterThan(0);
-    const copiedScripts = new Set<string>();
+    const copiedProjectFiles = new Set<string>();
     for (const match of assembly
       .slice(0, archiveIndex)
-      .matchAll(/cp\s+(scripts\/[\w./-]+)\s+"\$DEPLOY_PKG\/(scripts(?:\/db)?)\/"/g)) {
-      copiedScripts.add(`${match[2]}/${basename(match[1])}`);
+      .matchAll(
+        /cp\s+"?(?:\$SCRIPT_DIR\/)?((?:scripts|lib)\/[\w./-]+)"?\s+"\$DEPLOY_PKG\/((?:scripts(?:\/db)?)|(?:lib\/dbx))\/"/g,
+      )) {
+      copiedProjectFiles.add(`${match[2]}/${basename(match[1])}`);
     }
 
     expect([...requiredScripts].sort()).toEqual([
+      "lib/dbx/model-admission.mjs",
+      "scripts/check-endpoint-readiness.mjs",
       "scripts/db-preflight.mjs",
       "scripts/db/repair-sql.mjs",
       "scripts/db/repair.mjs",
@@ -199,8 +203,55 @@ describe("deploy.sh zero-egress package assembly", () => {
       "scripts/validate-endpoints.mjs",
     ]);
     for (const script of requiredScripts) {
-      expect(copiedScripts, `${script} must be copied to the same bundle path`).toContain(script);
+      expect(copiedProjectFiles, `${script} must be copied to the same bundle path`).toContain(
+        script,
+      );
     }
+    expect(assembly).toContain(
+      'cp "$SCRIPT_DIR/lib/dbx/model-admission.mjs" "$DEPLOY_PKG/lib/dbx/"',
+    );
+  });
+
+  it("copies the endpoint-admission helper and module from the script directory, not the caller cwd", () => {
+    const assembly = extractFunction("assemble_zero_egress");
+    const copyLines = assembly
+      .split("\n")
+      .map((line) => line.trim())
+      .filter((line) =>
+        /^(?:mkdir -p "\$DEPLOY_PKG\/lib\/dbx"|cp .*(?:check-endpoint-readiness|model-admission)\.mjs)/.test(
+          line,
+        ),
+      );
+
+    expect(copyLines).toHaveLength(3);
+
+    const fixtureDir = mkdtempSync(join(tmpdir(), "forge-pkg-copy-"));
+    const bundleDir = join(fixtureDir, "bundle");
+    const unrelatedCwd = join(fixtureDir, "cwd");
+    execFileSync("mkdir", ["-p", join(bundleDir, "scripts"), unrelatedCwd]);
+    const harnessPath = join(fixtureDir, "harness.sh");
+    writeFileSync(
+      harnessPath,
+      [
+        "#!/usr/bin/env bash",
+        "set -euo pipefail",
+        `SCRIPT_DIR="${repoRoot}"`,
+        `DEPLOY_PKG="${bundleDir}"`,
+        ...copyLines,
+        "",
+      ].join("\n"),
+      "utf8",
+    );
+
+    const result = spawnSync("bash", [harnessPath], { cwd: unrelatedCwd, encoding: "utf8" });
+
+    expect(result.stderr).not.toContain("No such file");
+    expect(result.status).toBe(0);
+    // The bundle-relative destinations are the deployed invocation contract:
+    // start.sh runs `node scripts/check-endpoint-readiness.mjs`, which imports
+    // `../lib/dbx/model-admission.mjs`.
+    expect(existsSync(join(bundleDir, "scripts/check-endpoint-readiness.mjs"))).toBe(true);
+    expect(existsSync(join(bundleDir, "lib/dbx/model-admission.mjs"))).toBe(true);
   });
 
   it("bundles the external runtime dependencies used by database preflight", () => {

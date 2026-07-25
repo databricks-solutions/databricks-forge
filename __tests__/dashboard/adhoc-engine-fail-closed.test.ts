@@ -1,5 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { DashboardValidationError, runAdHocDashboardEngine } from "@/lib/dashboard/adhoc-engine";
+import { isDashboardValidationDeployable } from "@/lib/dashboard/deployability";
 import type { DashboardDesignV2 } from "@/lib/dashboard/design-ir";
 import type { DashboardDesign, DashboardEngineDeps } from "@/lib/dashboard/types";
 import type { SqlExecutor, SqlResult } from "@/lib/ports/sql-executor";
@@ -188,7 +189,7 @@ describe("runAdHocDashboardEngine fail-closed validation", () => {
     ]);
   });
 
-  it("generates and deploys valid provenance when optional SQL review is disabled", async () => {
+  it("deploys Forge-owned dashboards to the canonical path with app auth and no OBO token", async () => {
     const sql = sqlExecutorWith({
       columns: [{ name: "total", typeName: "DECIMAL(18,2)", position: 0 }],
       rows: [["1"]],
@@ -198,7 +199,6 @@ describe("runAdHocDashboardEngine fail-closed validation", () => {
     const output = await runAdHocDashboardEngine({
       tables: ["main.sales.orders"],
       deploy: true,
-      oboToken: "obo-token",
       deps: depsFor(validDesign, sql),
     });
 
@@ -208,8 +208,113 @@ describe("runAdHocDashboardEngine fail-closed validation", () => {
         code: "LLM_REVIEW_DISABLED",
       }),
     );
-    expect(mocks.createDashboard).toHaveBeenCalledOnce();
+    expect(mocks.createDashboard).toHaveBeenCalledWith(
+      expect.objectContaining({
+        parentPath: "/Shared/Forge Dashboards/",
+        auth: { mode: "app" },
+      }),
+    );
     expect(output.dashboardId).toBe("dash-1");
+  });
+
+  it("returns deployable generation-only provenance after a missing-GROUP-BY advisory", async () => {
+    const advisoryDesign: DashboardDesign = {
+      ...validDesign,
+      datasets: [
+        {
+          ...validDesign.datasets[0],
+          sql: "SELECT 'USD' AS currency, SUM(amount) AS total FROM main.sales.orders",
+        },
+      ],
+    };
+    const sql = sqlExecutorWith({
+      columns: [
+        { name: "currency", typeName: "STRING", position: 0 },
+        { name: "total", typeName: "DECIMAL(18,2)", position: 1 },
+      ],
+      rows: [["USD", "1"]],
+      totalRowCount: 1,
+    });
+
+    const output = await runAdHocDashboardEngine({
+      tables: ["main.sales.orders"],
+      deps: depsFor(advisoryDesign, sql),
+    });
+
+    expect(output.recommendation.validationEvidence).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          code: "MISSING_GROUP_BY_LINT_ADVISORY",
+          status: "skipped",
+        }),
+        expect.objectContaining({
+          code: "STATIC_LINT_PASSED",
+          status: "passed",
+          artifactRef: "dataset:sales_kpi",
+        }),
+      ]),
+    );
+    expect(isDashboardValidationDeployable(output.recommendation)).toBe(true);
+  });
+
+  it("rejects generation-only output when valid status has incomplete provenance", async () => {
+    const sql = sqlExecutorWith({
+      columns: [{ name: "total", typeName: "DECIMAL(18,2)", position: 0 }],
+      rows: [["1"]],
+      totalRowCount: 1,
+    });
+    const toISOString = vi.spyOn(Date.prototype, "toISOString").mockReturnValue("not-a-date");
+
+    try {
+      await expect(
+        runAdHocDashboardEngine({
+          tables: ["main.sales.orders"],
+          deps: depsFor(validDesign, sql),
+        }),
+      ).rejects.toMatchObject({
+        name: "DashboardValidationError",
+        evidence: expect.arrayContaining([
+          expect.objectContaining({
+            stage: "dashboard_provenance",
+            status: "failed",
+            code: "VALIDATION_PROVENANCE_INCOMPLETE",
+          }),
+        ]),
+      });
+    } finally {
+      toISOString.mockRestore();
+    }
+  });
+
+  it("blocks deployment when valid status has incomplete provenance", async () => {
+    const sql = sqlExecutorWith({
+      columns: [{ name: "total", typeName: "DECIMAL(18,2)", position: 0 }],
+      rows: [["1"]],
+      totalRowCount: 1,
+    });
+    const toISOString = vi.spyOn(Date.prototype, "toISOString").mockReturnValue("not-a-date");
+
+    try {
+      await expect(
+        runAdHocDashboardEngine({
+          tables: ["main.sales.orders"],
+          deploy: true,
+          deps: depsFor(validDesign, sql),
+        }),
+      ).rejects.toMatchObject({
+        name: "DashboardValidationError",
+        evidence: expect.arrayContaining([
+          expect.objectContaining({
+            stage: "dashboard_provenance",
+            status: "failed",
+            code: "VALIDATION_PROVENANCE_INCOMPLETE",
+          }),
+        ]),
+      });
+    } finally {
+      toISOString.mockRestore();
+    }
+    expect(mocks.createDashboard).not.toHaveBeenCalled();
   });
 
   it("normalizes fabricated V2 semantic source metadata to table provenance", async () => {

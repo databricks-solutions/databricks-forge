@@ -10,7 +10,12 @@
  */
 
 import type { TaskTier } from "./model-registry";
-import { getModelPool, getEndpointsForTier, isMultiEndpointPool } from "./model-registry";
+import {
+  getModelPool,
+  getEndpointsForTier,
+  isEndpointAvailable,
+  isMultiEndpointPool,
+} from "./model-registry";
 import { getPoolRateLimiter } from "./rate-limiter";
 import { getServingEndpoint, getFastServingEndpoint, getReviewEndpoint } from "./client";
 import { logger } from "@/lib/logger";
@@ -22,7 +27,7 @@ export type { TaskTier } from "./model-registry";
 // Legacy tier mapping (when pool has a single endpoint or no pool configured)
 // ---------------------------------------------------------------------------
 
-function legacyResolve(tier: TaskTier): string {
+function legacyEnvEndpoint(tier: TaskTier): string {
   switch (tier) {
     case "reasoning":
     case "generation":
@@ -33,6 +38,56 @@ function legacyResolve(tier: TaskTier): string {
     case "sql":
       return getReviewEndpoint();
   }
+}
+
+/**
+ * Raised when every admitted endpoint is known unavailable. Returning a dead
+ * endpoint instead would guarantee a downstream 404, so callers get an explicit
+ * failure they can surface or retry against a different tier.
+ */
+export class NoAvailableEndpointError extends Error {
+  readonly tier: TaskTier;
+
+  constructor(tier: TaskTier) {
+    super(
+      `No available Model Serving endpoint for tier "${tier}". Every admitted endpoint is marked unavailable.`,
+    );
+    this.name = "NoAvailableEndpointError";
+    this.tier = tier;
+  }
+}
+
+/**
+ * Legacy env resolution, guarded by pool availability.
+ *
+ * `isEndpointAvailable` returns true for endpoints the pool has no knowledge of
+ * (custom or unknown model names are never admitted), so legacy single-endpoint
+ * deployments keep working unchanged. It only returns false for an admitted
+ * endpoint that startup validation or runtime 404 rotation has invalidated --
+ * and in that case routing to it is a guaranteed failure, so we rotate through
+ * the admitted available endpoints instead using the same tier-then-any
+ * preference order as the multi-endpoint path.
+ */
+function legacyResolve(tier: TaskTier): { chosen: string; source: string } {
+  const envEndpoint = legacyEnvEndpoint(tier);
+  if (isEndpointAvailable(envEndpoint)) return { chosen: envEndpoint, source: "legacy" };
+
+  const limiter = getPoolRateLimiter();
+  const tierNames = getEndpointsForTier(tier).map((ep) => ep.name);
+  const anyNames = getModelPool()
+    .filter((ep) => ep.available)
+    .map((ep) => ep.name);
+
+  for (const [candidates, source] of [
+    [tierNames, "legacy-rotated-tier"],
+    [anyNames, "legacy-rotated-any"],
+  ] as const) {
+    if (candidates.length === 0) continue;
+    const best = limiter.bestAvailable(candidates);
+    return { chosen: best ?? candidates[0], source };
+  }
+
+  throw new NoAvailableEndpointError(tier);
 }
 
 // ---------------------------------------------------------------------------
@@ -55,13 +110,12 @@ export function resolveEndpoint(tier: TaskTier): string {
   let source: string;
 
   if (!isMultiEndpointPool()) {
-    chosen = legacyResolve(tier);
-    source = "legacy";
+    ({ chosen, source } = legacyResolve(tier));
   } else {
     const candidates = getEndpointsForTier(tier);
     if (candidates.length === 0) {
-      chosen = legacyResolve(tier);
-      source = "legacy-no-candidates";
+      ({ chosen, source } = legacyResolve(tier));
+      source = `${source}-no-candidates`;
     } else {
       const limiter = getPoolRateLimiter();
       const tierNames = candidates.map((c) => c.name);
@@ -85,8 +139,8 @@ export function resolveEndpoint(tier: TaskTier): string {
           chosen = fallback;
           source = "blocked-any";
         } else {
-          chosen = legacyResolve(tier);
-          source = "legacy-all-blocked";
+          ({ chosen, source } = legacyResolve(tier));
+          source = `${source}-all-blocked`;
         }
       }
     }

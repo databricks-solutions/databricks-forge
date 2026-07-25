@@ -19,6 +19,13 @@ const deployScript = readFileSync(deployPath, "utf8");
 function writeSourceableDeployScript(fixtureDir: string): string {
   const sourceablePath = join(fixtureDir, "deploy-functions.sh");
   writeFileSync(sourceablePath, deployScript.replace(/\nmain\s*$/, "\n"));
+  // deploy.sh resolves sibling helpers from its own directory, so the fixture
+  // must mirror the real on-disk layout rather than rely on the caller cwd.
+  mkdirSync(join(fixtureDir, "scripts"), { recursive: true });
+  copyFileSync(
+    join(repoRoot, "scripts/deploy-endpoint-selection.sh"),
+    join(fixtureDir, "scripts/deploy-endpoint-selection.sh"),
+  );
   return sourceablePath;
 }
 

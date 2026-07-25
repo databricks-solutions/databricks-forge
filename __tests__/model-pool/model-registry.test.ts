@@ -33,6 +33,8 @@ const ENV_KEYS = [
   "DATABRICKS_SERVING_ENDPOINT_SQL",
   "DATABRICKS_SERVING_ENDPOINT_LIGHTWEIGHT",
   "DATABRICKS_ALLOWED_MODELS",
+  "FORGE_ENDPOINT_VALIDATION_STATE",
+  "FORGE_VALIDATED_ENDPOINTS",
 ] as const;
 
 function saveEnv(): Record<string, string | undefined> {
@@ -155,6 +157,39 @@ describe("model-registry", () => {
       const pool = getModelPool();
       expect(pool).toHaveLength(1);
       expect(pool[0].name).toBe("databricks-claude-opus-4-6");
+    });
+  });
+
+  describe("Startup validation contract", () => {
+    it("marks every configured endpoint unavailable for a completed empty allowlist", () => {
+      process.env.DATABRICKS_SERVING_ENDPOINT = "databricks-claude-opus-4-7";
+      process.env.DATABRICKS_SERVING_ENDPOINT_FAST = "databricks-claude-sonnet-4-6";
+      process.env.FORGE_ENDPOINT_VALIDATION_STATE = "completed";
+      process.env.FORGE_VALIDATED_ENDPOINTS = "";
+
+      const pool = getModelPool();
+
+      expect(pool).toHaveLength(2);
+      expect(pool.every((endpoint) => endpoint.available === false)).toBe(true);
+      expect(getEndpointsForTier("reasoning")).toEqual([]);
+    });
+
+    it("preserves configured candidates when startup validation was auth_skipped", () => {
+      process.env.DATABRICKS_SERVING_ENDPOINT = "databricks-claude-opus-4-7";
+      process.env.DATABRICKS_SERVING_ENDPOINT_FAST = "databricks-claude-sonnet-4-6";
+      process.env.FORGE_ENDPOINT_VALIDATION_STATE = "auth_skipped";
+      process.env.FORGE_VALIDATED_ENDPOINTS =
+        "databricks-claude-opus-4-7,databricks-claude-sonnet-4-6";
+
+      expect(getModelPool().every((endpoint) => endpoint.available)).toBe(true);
+    });
+
+    it("ignores a validation allowlist when validation did not run", () => {
+      process.env.DATABRICKS_SERVING_ENDPOINT = "databricks-claude-opus-4-7";
+      process.env.FORGE_ENDPOINT_VALIDATION_STATE = "not_run";
+      process.env.FORGE_VALIDATED_ENDPOINTS = "";
+
+      expect(getModelPool()[0].available).toBe(true);
     });
   });
 
