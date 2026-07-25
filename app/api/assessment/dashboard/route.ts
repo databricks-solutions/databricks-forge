@@ -62,6 +62,7 @@ export async function POST(request: NextRequest) {
         publish: shouldPublish,
         embedCredentials,
         auth: { mode: "app" },
+        contractValidation: { mode: "imported-lakeview" },
       },
       dashboardDeployDependencies,
     );

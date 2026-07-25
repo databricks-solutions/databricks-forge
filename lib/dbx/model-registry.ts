@@ -14,6 +14,7 @@
  */
 
 import { logger } from "@/lib/logger";
+import { findKnownModelKey, runtimeEndpointAdmission } from "@/lib/dbx/model-admission.mjs";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -171,11 +172,8 @@ const KNOWN_MODELS: Record<string, ModelTemplate> = {
 };
 
 function templateFor(name: string): ModelTemplate | null {
-  const lower = name.toLowerCase();
-  for (const [key, tmpl] of Object.entries(KNOWN_MODELS)) {
-    if (lower === key || lower.includes(key)) return tmpl;
-  }
-  return null;
+  const key = findKnownModelKey(name);
+  return key ? (KNOWN_MODELS[key] ?? null) : null;
 }
 
 // ---------------------------------------------------------------------------
@@ -196,23 +194,29 @@ let _pool: ModelEndpoint[] | null = null;
  *   DATABRICKS_SERVING_ENDPOINT_SQL         → dedicated SQL/codex
  */
 function buildPool(): ModelEndpoint[] {
-  const seen = new Set<string>();
   const pool: ModelEndpoint[] = [];
+  const admission = runtimeEndpointAdmission(process.env);
 
-  const add = (name: string | undefined) => {
-    if (!name) return;
-    const key = name.toLowerCase();
-    if (seen.has(key)) return;
-    const tmpl = templateFor(name);
-    if (!tmpl) {
-      logger.warn("Skipping unknown model — add to KNOWN_MODELS before use", {
-        endpoint: name,
-      });
-      return;
-    }
-    seen.add(key);
+  for (const name of admission.rejected) {
+    logger.warn("Skipping unknown model — add to KNOWN_MODELS before use", {
+      endpoint: name,
+    });
+  }
+  if (admission.allowlistFallback) {
+    logger.warn(
+      "DATABRICKS_ALLOWED_MODELS filtered out all endpoints — falling back to first configured",
+      {
+        allowlist: process.env.DATABRICKS_ALLOWED_MODELS,
+        poolSize: admission.admitted.length,
+      },
+    );
+  }
+
+  for (const admitted of admission.admitted) {
+    const tmpl = templateFor(admitted.name);
+    if (!tmpl) continue;
     pool.push({
-      name,
+      name: admitted.name,
       tiers: tmpl.tiers,
       maxConcurrent: tmpl.maxConcurrent,
       priority: tmpl.priority,
@@ -222,58 +226,10 @@ function buildPool(): ModelEndpoint[] {
       defaultMaxTokens: tmpl.defaultMaxTokens,
       available: true,
     });
-  };
-
-  // Primary endpoints (legacy env vars)
-  add(process.env.DATABRICKS_SERVING_ENDPOINT);
-  add(process.env.DATABRICKS_SERVING_ENDPOINT_FAST);
-  add(process.env.DATABRICKS_REVIEW_ENDPOINT);
-
-  // Extended pool endpoints (new env vars)
-  add(process.env.DATABRICKS_SERVING_ENDPOINT_REASONING_2);
-  add(process.env.DATABRICKS_SERVING_ENDPOINT_GENERATION);
-  add(process.env.DATABRICKS_SERVING_ENDPOINT_SQL);
-  add(process.env.DATABRICKS_SERVING_ENDPOINT_LIGHTWEIGHT);
-
-  if (pool.length === 0) {
-    const def = "databricks-claude-opus-4-7";
-    add(def);
   }
 
-  const filtered = applyAllowlist(pool);
-  applyStartupValidation(filtered);
-  return filtered;
-}
-
-/**
- * Filter pool to only customer-approved models when DATABRICKS_ALLOWED_MODELS
- * is set. If the allowlist would result in an empty pool, fall back to the
- * first configured endpoint with a warning.
- */
-function applyAllowlist(pool: ModelEndpoint[]): ModelEndpoint[] {
-  const raw = process.env.DATABRICKS_ALLOWED_MODELS;
-  if (!raw) return pool;
-
-  const allowed = new Set(
-    raw
-      .split(",")
-      .map((s) => s.trim().toLowerCase())
-      .filter(Boolean),
-  );
-
-  if (allowed.size === 0) return pool;
-
-  const filtered = pool.filter((ep) => allowed.has(ep.name.toLowerCase()));
-
-  if (filtered.length === 0) {
-    logger.warn(
-      "DATABRICKS_ALLOWED_MODELS filtered out all endpoints — falling back to first configured",
-      { allowlist: raw, poolSize: pool.length },
-    );
-    return pool.slice(0, 1);
-  }
-
-  return filtered;
+  applyStartupValidation(pool);
+  return pool;
 }
 
 /**
@@ -282,17 +238,16 @@ function applyAllowlist(pool: ModelEndpoint[]): ModelEndpoint[] {
  * endpoint NOT in the validated list is marked unavailable.
  */
 function applyStartupValidation(pool: ModelEndpoint[]): void {
+  if (process.env.FORGE_ENDPOINT_VALIDATION_STATE !== "completed") return;
+
   const raw = process.env.FORGE_VALIDATED_ENDPOINTS;
-  if (!raw) return;
 
   const validated = new Set(
-    raw
+    (raw ?? "")
       .split(",")
       .map((s) => s.trim().toLowerCase())
       .filter(Boolean),
   );
-
-  if (validated.size === 0) return;
 
   let markedCount = 0;
   for (const ep of pool) {
@@ -305,11 +260,10 @@ function applyStartupValidation(pool: ModelEndpoint[]): void {
   if (markedCount > 0) {
     const stillAvailable = pool.filter((ep) => ep.available);
     if (stillAvailable.length === 0) {
-      logger.warn(
-        "Startup validation marked ALL endpoints unavailable — resetting to assume all available",
-        { validated: raw, poolSize: pool.length },
-      );
-      for (const ep of pool) ep.available = true;
+      logger.error("Startup validation marked all configured endpoints unavailable", {
+        validated: raw,
+        poolSize: pool.length,
+      });
     } else {
       logger.info(
         `Startup validation: ${markedCount} endpoint(s) marked unavailable, ${stillAvailable.length} active`,

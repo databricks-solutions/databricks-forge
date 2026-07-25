@@ -53,8 +53,29 @@ This app runs as a **Databricks App**. Authentication is automatic:
 - Review endpoint (`serving-endpoint-review`) defaults to `databricks-gpt-5-4` for LLM-as-reviewer SQL quality checks.
 - Extended model pool endpoints (`serving-endpoint-reasoning-2`, `serving-endpoint-generation`, `serving-endpoint-sql`, `serving-endpoint-lightweight`) are optional; when configured via deploy.sh, they enable multi-model parallel routing.
 - `--lightweight-endpoint` binds a fast classification/lightweight model (e.g. `databricks-gemini-3-1-flash-lite` or `databricks-claude-sonnet-4-6`) for high-throughput tasks.
-- `DATABRICKS_ALLOWED_MODELS` restricts the pool to customer-approved models only.
-- Model availability failover: `deploy.sh` probes endpoints and selects the best available per role; `scripts/validate-endpoints.mjs` re-validates at startup; runtime 404s trigger automatic endpoint rotation. Use `--skip-probe` to bypass deploy-time probing.
+- Runtime model admission accepts only known model names, then applies
+  `DATABRICKS_ALLOWED_MODELS` to exact configured endpoint names. If the
+  allowlist matches none, Forge warning-falls back to the first configured
+  known endpoint instead of starting with an empty pool.
+- Model availability failover: `deploy.sh` probes endpoints and selects the
+  best available per role; `scripts/validate-endpoints.mjs` re-validates at
+  startup with state `completed`, `auth_skipped`, or `not_run`; runtime 404s
+  trigger automatic endpoint rotation. `completed` prunes unavailable
+  endpoints and aborts startup when no admitted required endpoint is usable.
+  `auth_skipped`/`not_run` preserve candidates, allow startup, and make
+  `/api/health` degraded. Use `--skip-probe` to bypass deploy-time probing.
+- The required-role startup gate covers **chat/review** endpoints only
+  (`DATABRICKS_SERVING_ENDPOINT`, `_FAST`, `DATABRICKS_REVIEW_ENDPOINT`), so
+  `DATABRICKS_ALLOWED_MODELS` must retain at least one of them.
+  `DATABRICKS_EMBEDDING_ENDPOINT` is probed for reachability but is never
+  admitted to the chat pool, never routed by `resolveEndpoint`, and never
+  counts toward the gate — embedding readiness is separate and surfaces at
+  first embedding call. See `docs/DEPLOYMENT.md`.
+- Only startup admission failure is fatal (`503`). Endpoints admitted at
+  startup and later rotated out by runtime 404 handling report **degraded**
+  with `endpointValidation.exhausted`, because a restart cannot recover a
+  deleted endpoint. In that state `resolveEndpoint` raises
+  `NoAvailableEndpointError` instead of returning a known-dead endpoint.
 - **Lakebase is auto-provisioned by `deploy.sh`** (no flags required). The script (1) discovers an existing `postgres` resource on the app and reuses it, or (2) auto-creates a per-app Lakebase project (named after `--app-name`, sanitized to `[a-z0-9-]{1,63}`), default `databricks_postgres` database, and waits for the endpoint to become `ACTIVE`. Override the project ID with `--lakebase-project-id`. Bind an existing project with `--lakebase-branch` + `--lakebase-database`. Per-app isolation: each `--app-name` deploys to its own Databricks App AND its own Lakebase project.
 - **SP grant bootstrap (`bootstrap_lakebase_sp_grants` in `deploy.sh`)** runs after `configure_app` and before `prepare_app_yaml`. As the project owner, it installs `pgvector` + `databricks_auth` extensions, ensures the SP DB role exists, grants `CONNECT` + `USAGE`/`CREATE` on `public` + table/sequence privileges + `ALTER DEFAULT PRIVILEGES`, and transfers ownership of any pre-existing `public.*` tables to the SP. Idempotent; re-deploys re-assert the grants. If the deploying user is **not** the project owner (a teammate re-deploying), the step skip-warns rather than failing — the original deploy already applied the grants. This is what makes `start.sh`'s `prisma db push` (running as the SP) succeed on first deploy.
 - **Deployer-as-bootstrap-user default.** When `deploy.sh` auto-provisions the project AND `--lakebase-bootstrap-user` is unset, the deploying user's email is used as `LAKEBASE_BOOTSTRAP_USER` so they automatically get a Databricks OAuth role on the new database (SQL Editor access without an extra flag). Opt out with `--lakebase-bootstrap-user ""`.
@@ -254,6 +275,11 @@ Key modules:
 Data model: `GenieEngineConfig`, `GenieEnginePassOutputs`, `SerializedSpace`,
 `GenieSpaceRecommendation`, `GenieEngineRecommendation` (see `lib/genie/types.ts`).
 
+Genie conversation smoke tests pass only when the response reaches
+`COMPLETED` and contains nonblank executable SQL. A completed text-only
+response is a distinct nonpassing `clarification` outcome; all non-completed,
+empty, and error responses are `failed`.
+
 ## Metric View + Dashboard Validation Contract
 
 Release 1 makes metric-view and Lakeview recommendations fail closed with
@@ -267,6 +293,26 @@ durable validation evidence.
 - Dashboard assembly uses the 12-column `GRID_V1` contract on every page.
   Every dataset executes and its returned aliases/types must satisfy widget
   bindings before the recommendation is persisted or deployed.
+- Dashboard domains use the canonical Genie normalizer for grouping, explicit
+  filters, persisted semantic-manifest lookup, and manual regeneration.
+  Equivalent customer/sales/supply-chain/finance/marketing labels therefore
+  converge on one domain key. Filtered manual regeneration replaces the trimmed
+  raw request labels **and** the canonical domains they collapse into, so rows
+  persisted before canonicalization are cleared while the canonical re-insert
+  still satisfies the run+domain unique constraint. Deployment resolves its
+  tracked dashboard by exact domain first and canonical key second, so a
+  pre-change tracked asset is updated in place instead of duplicated.
+- `POST /api/dashboard/generate` (ad-hoc, app M2M) logs the same
+  persisted-outcome audit trail as the run-scoped deploy route:
+  `dashboard_draft_deployed` for the verified draft, then
+  `dashboard_published` or `dashboard_publish_failed` for the observed
+  publication outcome, each with caller identity and safe metadata only. Typed
+  lifecycle failures mirror the run-scoped route's structured responses --
+  read-back mismatch logs `dashboard_draft_deployed` plus
+  `dashboard_readback_failed` for the known dashboard ID and returns `422`,
+  an untrackable observed mutation returns `502` unaudited, and disabled draft
+  read-back returns `409`. Ad-hoc dashboards are not run-scoped, so these
+  branches write no tracking row or recommendation publication state.
 - `ForgeMetricViewProposal` and `ForgeDashboardRecommendation` persist owner,
   validator version, status, evidence, and validation timestamp.
 - `/api/metric-views` lists only caller-owned plus
@@ -283,8 +329,13 @@ durable validation evidence.
 - `isMetricViewValidationDeployable()` is the single provenance gate: exact
   validator version, parseable timestamp, and passed static/create/atomic
   measure probe/cleanup evidence are all required.
-- Dashboard run routes use `loadRunOrRespond`; deployment returns `422` unless
-  the recommendation is `valid` with non-empty passing evidence.
+- Persisted `validationStatus = "valid"` is an invariant that the full current
+  provenance already passes the corresponding deployability gate. Dashboard
+  run routes use `loadRunOrRespond`; deployment rechecks the invariant and
+  returns `422` for stale, incomplete, legacy, or evidence-free provenance.
+- Dashboard contract validation defaults to `forge-assembled`. The narrower
+  `imported-lakeview` mode supports native parameter-filter bindings and is
+  used only by the prebuilt WAF dashboard route.
 - Factory reset explicitly deletes metric-view proposals so standalone
   `runId = null` rows cannot survive. Run cascades remove dashboard records.
 - Activity actions: `metric_view_validated`,
@@ -330,8 +381,9 @@ domains may persist alongside structured failures; a zero-valid result fails.
 Typed `improve` proposals bind a base definition/design, additive diff, exact
 existing FQN/dashboard ID, and live fingerprint. Deployment updates that exact
 asset or returns a conflict; it never creates a duplicate. User-owned metric
-view mutations and external Lakeview discovery/live-base reads use
-request-captured OBO credentials. Forge-owned Lakeview deployments under
+view mutations and external/user-owned Lakeview discovery, improvement reads,
+and live-base verification use request-captured OBO credentials. Forge-owned
+pipeline, ad-hoc, and workspace-shared WAF dashboard deployments under
 `/Shared/Forge Dashboards/` use explicit app M2M identity consistently for
 create/update/read-back/publish/publication read-back; they never fall back
 between identities. Dashboard owners come from `requireUser`, run-scoped reads
@@ -854,7 +906,9 @@ handlers also call `requireUser` for explicit `user.email` access):
   dashboard + Genie space (drives Generate vs Open toggles)
 - `POST /api/assessment/dashboard` -- create or update the
   `/Shared/Forge Dashboards/...` Lakeview dashboard; `parentPath` is
-  hard-coded server-side (NEVER honors a client-supplied path)
+  hard-coded server-side (NEVER honors a client-supplied path). This is the
+  only route allowed to use the `imported-lakeview` dashboard contract; its
+  full deployment lifecycle uses app M2M.
 - `POST /api/assessment/genie` -- create or update the
   `/Shared/Forge Genie Spaces/...` Genie space; same `parentPath`
   lockdown; merges live `serialized_space` to preserve user edits
@@ -1018,12 +1072,12 @@ Demo-mode UC objects (catalogs/schemas dropped via
 | Validation         | `lib/validation.ts` -- Zod schemas, SQL identifier safety   |
 | Fetch timeouts     | `lib/dbx/fetch-with-timeout.ts` -- AbortController wrappers |
 | Error boundaries   | `app/error.tsx`, `app/global-error.tsx`, `app/not-found.tsx` |
-| Health check       | `GET /api/health` -- DB + warehouse connectivity            |
+| Health check       | `GET /api/health` -- unauthenticated callers get status plus coarse endpoint-validation `state`/`status`; DB, warehouse, pool counts, and memory are authenticated-only |
 | Security headers   | Via `next.config.ts` `headers()` function                   |
 | Versioning         | `package.json` version in `/api/health`, sidebar, run metadata |
 | Model routing      | `resolveEndpoint(tier)` routes all LLM calls via `lib/dbx/task-router.ts`; 5 tiers (reasoning, generation, classification, sql, lightweight); queue-depth-aware routing across model pool |
-| Model pool         | `lib/dbx/model-registry.ts` -- declares endpoints, capabilities, concurrency caps; auto-discovers from env vars; `DATABRICKS_ALLOWED_MODELS` restricts pool; performance bundle models: `databricks-gemini-3-1-flash-lite` (pri 0, classification+lightweight), `databricks-llama-4-maverick` (pri 0, generation+classification), `databricks-gemini-3-flash` (pri 1, generation+classification+lightweight) |
-| Model failover     | Three-layer availability failover: (1) `deploy.sh` probes endpoints via CLI with per-role fallback chains (`--skip-probe` to bypass); (2) `scripts/validate-endpoints.mjs` probes at startup, sets `FORGE_VALIDATED_ENDPOINTS`; (3) runtime 404/RESOURCE_DOES_NOT_EXIST triggers `markEndpointUnavailable()` and immediate endpoint rotation via `lib/toolkit/llm-cache.ts`. `/api/health` exposes pool availability. |
+| Model pool         | `lib/dbx/model-registry.ts` -- known-model admission, exact-name customer allowlist, capabilities, concurrency caps, and env discovery; an empty allowlist match warning-falls back to the first configured known endpoint |
+| Model failover     | Three layers: deploy-time selection; startup validation (`completed` prunes/fail-closes, `auth_skipped`/`not_run` preserve candidates and degrade health); runtime 404/RESOURCE_DOES_NOT_EXIST rotation. `/api/health` exposes coarse state to anyone and pool counts to authenticated callers. |
 | Quality presets    | `lib/genie/quality-presets.ts` -- Speed/Balanced/Premium presets controlling `GenerationBudget` (target counts, domain concurrency, review surfaces, maxTokens); wired into `engine.ts`, `adhoc-engine.ts`, settings UI |
 | SQL review         | `getReviewEndpoint()` routes SQL quality review to dedicated review model (`databricks-gpt-5-4` via `serving-endpoint-review`); `lib/ai/sql-reviewer.ts` provides `reviewSql()`, `reviewAndFixSql()`, `reviewBatch()`; opt-in per surface via `isReviewEnabled()` |
 | Embeddings         | `lib/embeddings/client.ts` -- `databricks-qwen3-embedding-0-6b` (1024-dim) via `getEmbeddingEndpoint()`; batched (16/req) with 429/5xx retry |
@@ -1065,9 +1119,17 @@ original paths for backward compatibility.
 - **SQL quality rules** -- all SQL-generating prompts must import rules from `lib/ai/sql-rules.ts` (never inline ad-hoc rules)
 - **Privacy** -- only metadata (schemas, table/column names) is read; no row-level data access
 - **Model pool backward compat** -- if only legacy env vars are set (`DATABRICKS_SERVING_ENDPOINT`, `_FAST`, `_REVIEW`), the app runs with a single-to-three endpoint pool identical to pre-pool behavior
-- **Model availability failover** -- three-layer defense: deploy-time probing in `deploy.sh` selects best available models per role; startup-time validation via `scripts/validate-endpoints.mjs` prunes unavailable endpoints from the pool; runtime 404/RESOURCE_DOES_NOT_EXIST from `model-serving.ts` calls `markEndpointUnavailable()` and triggers immediate endpoint rotation in `llm-cache.ts`. The `available` flag on `ModelEndpoint` is permanent per process; restart to re-probe.
+- **Model availability failover** -- three-layer defense: deploy-time probing
+  selects per-role models; startup validation prunes only in `completed` state
+  and fails startup if no runtime-admitted required endpoint survives, while
+  `auth_skipped`/`not_run` preserve candidates and degrade health; runtime
+  404/RESOURCE_DOES_NOT_EXIST rotates endpoints. The `available` flag is
+  permanent per process; restart to re-probe.
 - **Generation budgets** -- all Genie Engine passes respect the `GenerationBudget` from `lib/genie/quality-presets.ts`; target counts, maxTokens, and review surfaces are never hardcoded in pass code; `config.qualityPreset` (default: `"balanced"`) drives the budget
 - **Genie Conversation API MUST use OBO tokens** -- `startConversation`, `pollMessageCompletion`, `sendFollowUp`, and any new Genie Conversation API call MUST authenticate as the logged-in user via OBO token, NEVER as the service principal (`getAppHeaders()`). The Genie API returns 404 `RESOURCE_DOES_NOT_EXIST` when called with SP credentials because the SP does not own the space. Every API route that calls these functions MUST capture the OBO token from `request.headers.get("x-forwarded-access-token")` and pass it through. Use `resolveHeaders(undefined, oboToken)` or pass `oboToken` as a parameter. If a function runs in a background task (fire-and-forget), capture the OBO token while still in request context and thread it through the entire call chain.
+- **Genie smoke pass is SQL-only** -- pass requires `COMPLETED` plus nonblank
+  executable SQL. Text-only clarification is a distinct nonpassing
+  `clarification`, not a pass or generic failure.
 - **User isolation is mandatory** -- every list/read API route MUST resolve the user via `requireUser` (the `proxy.ts` edge entry point enforces this) AND scope the underlying Prisma query by `ownerEmail` ∪ `listAccessibleIds(user.email, "<resourceType>")`. Per-resource detail/mutation routes MUST go through one of the `loadXxxOrRespond` guards in `lib/auth/route-guards.ts` so authorization is consistent. New embedding kinds MUST register a scope mapping in `lib/embeddings/kind-scope.ts`. Background jobs MUST capture `ownerEmail` and `oboToken` in request context and thread them into the engine entrypoint -- never resolve identity from an injected service-principal context.
 
 ## New Feature Integration Checklist

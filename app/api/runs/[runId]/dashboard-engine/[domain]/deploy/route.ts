@@ -42,6 +42,7 @@ import { assembleLakeviewDashboard } from "@/lib/dashboard/assembler";
 import { artifactFingerprint } from "@/lib/toolkit/artifact-fingerprint";
 import { fingerprintSerializedDashboard } from "@/lib/dashboard/live-artifact";
 import { isDashboardScopeUnsupportedError } from "@/lib/dbx/dashboard-capability";
+import { findTrackedDashboardForDomain } from "@/lib/dashboard/domain-groups";
 
 function unsupportedScopeResponse(partial?: {
   dashboardId?: string;
@@ -197,14 +198,19 @@ export async function POST(
     const embedCredentials = body.embedCredentials === true;
     const serializedDashboard = rec.serializedDashboard;
 
-    // Check if there's already a tracked dashboard for this run+domain
+    // Check if there's already a tracked dashboard for this run+domain.
+    // Rows tracked before dashboard domains were canonicalized still carry the
+    // raw alias ("Procurement"), while the recommendation now resolves to the
+    // canonical bucket ("Supply Chain"). An exact label match wins so current
+    // rows keep their behavior; only when none exists does the canonical key
+    // adopt a pre-change row, which is then updated in place instead of
+    // deploying a duplicate Lakeview dashboard for the same domain.
     const tracked = await listTrackedDashboards(runId);
-    const trackedForDomain = tracked.find(
-      (t) => t.domain.toLowerCase() === decodedDomain.toLowerCase() && t.status !== "trashed",
-    );
+    const activeTracked = tracked.filter((t) => t.status !== "trashed");
+    const trackedForDomain = findTrackedDashboardForDomain(activeTracked, decodedDomain);
     const exactImprovementTarget = isImprovement ? rec.existingAssetId : undefined;
     const existing = exactImprovementTarget
-      ? tracked.find((t) => t.dashboardId === exactImprovementTarget && t.status !== "trashed")
+      ? activeTracked.find((t) => t.dashboardId === exactImprovementTarget)
       : trackedForDomain;
 
     const mode = exactImprovementTarget || existing ? "update" : "create";

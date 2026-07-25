@@ -332,7 +332,7 @@ describe("runDashboardEngine fail-closed validation", () => {
     expect(output.recommendations).toHaveLength(0);
     expect(output.validationFailures).toContainEqual(
       expect.objectContaining({
-        domain: "Sales",
+        domain: "Sales Analytics",
         evidence: expect.arrayContaining([
           expect.objectContaining({ status: "failed", code: "SQL_EXECUTION_FAILED" }),
         ]),
@@ -386,6 +386,15 @@ describe("runDashboardEngine fail-closed validation", () => {
         code: "MISSING_GROUP_BY_LINT_ADVISORY",
       }),
     );
+    expect(output.recommendations[0].validationEvidence).toContainEqual(
+      expect.objectContaining({
+        stage: "dataset_static",
+        status: "passed",
+        code: "STATIC_LINT_PASSED",
+        artifactRef: "dataset:sales_kpi",
+      }),
+    );
+    expect(isDashboardValidationDeployable(output.recommendations[0])).toBe(true);
   });
 
   it("fails genuinely invalid mixed aggregate SQL through the executor with advisory evidence", async () => {
@@ -1009,38 +1018,68 @@ describe("runDashboardEngine fail-closed validation", () => {
     );
   });
 
-  it("adapts current serialized Genie snippets and reaches the LLM with normalized filters", async () => {
+  it("returns a structured failure instead of valid status for incomplete provenance", async () => {
     const { logger } = loggerWithEvidence();
-    const input = makeInput(
-      validDesign,
-      sqlExecutorWith(vi.fn().mockResolvedValue(result)),
-      logger,
-    );
-    const serializedSpace = readFileSync(
-      join(process.cwd(), "__tests__/fixtures/genie-serialized-space-current.json"),
-      "utf8",
-    );
-    input.genieRecommendations = [
-      {
-        domain: "Sales",
-        serializedSpace,
-      } as never,
-    ];
-    const chat = input.deps?.llm?.chat as ReturnType<typeof vi.fn>;
+    const toISOString = vi.spyOn(Date.prototype, "toISOString").mockReturnValue("not-a-date");
 
-    const output = await runDashboardEngine(input);
+    try {
+      const output = await runDashboardEngine(
+        makeInput(validDesign, sqlExecutorWith(vi.fn().mockResolvedValue(result)), logger),
+      );
 
-    expect(output.validationFailures).toEqual([]);
-    expect(output.recommendations).toHaveLength(1);
-    expect(chat).toHaveBeenCalledOnce();
-    const prompt = chat.mock.calls[0][0].messages[1].content as string;
-    expect(prompt).toContain("- Total Revenue: SUM(main.sales.orders.amount)");
-    expect(prompt).toContain("- Order Category: main.sales.orders.category");
-    expect(prompt).toContain("- Order Date: main.sales.orders.event_date");
-    expect(prompt).toContain("- Order Date (`main.sales.orders.event_date` in , type: STRING)");
-    expect(prompt).not.toContain("malformed");
-    expect(prompt).not.toContain("undefined");
+      expect(output.recommendations).toEqual([]);
+      expect(output.validationFailures).toEqual([
+        {
+          domain: "Sales Analytics",
+          evidence: expect.arrayContaining([
+            expect.objectContaining({
+              stage: "dashboard_provenance",
+              status: "failed",
+              code: "VALIDATION_PROVENANCE_INCOMPLETE",
+            }),
+          ]),
+        },
+      ]);
+    } finally {
+      toISOString.mockRestore();
+    }
   });
+
+  it.each(["Sales", "Sales Analytics"])(
+    "lets raw Sales use cases consume %s Genie recommendation snippets",
+    async (recommendationDomain) => {
+      const { logger } = loggerWithEvidence();
+      const input = makeInput(
+        validDesign,
+        sqlExecutorWith(vi.fn().mockResolvedValue(result)),
+        logger,
+      );
+      const serializedSpace = readFileSync(
+        join(process.cwd(), "__tests__/fixtures/genie-serialized-space-current.json"),
+        "utf8",
+      );
+      input.genieRecommendations = [
+        {
+          domain: recommendationDomain,
+          serializedSpace,
+        } as never,
+      ];
+      const chat = input.deps?.llm?.chat as ReturnType<typeof vi.fn>;
+
+      const output = await runDashboardEngine(input);
+
+      expect(output.validationFailures).toEqual([]);
+      expect(output.recommendations).toHaveLength(1);
+      expect(chat).toHaveBeenCalledOnce();
+      const prompt = chat.mock.calls[0][0].messages[1].content as string;
+      expect(prompt).toContain("- Total Revenue: SUM(main.sales.orders.amount)");
+      expect(prompt).toContain("- Order Category: main.sales.orders.category");
+      expect(prompt).toContain("- Order Date: main.sales.orders.event_date");
+      expect(prompt).toContain("- Order Date (`main.sales.orders.event_date` in , type: STRING)");
+      expect(prompt).not.toContain("malformed");
+      expect(prompt).not.toContain("undefined");
+    },
+  );
 
   it("logs bounded diagnostic metadata without SQL, prompts, tokens, messages, or causes", async () => {
     const { logger } = loggerWithEvidence();
@@ -1069,7 +1108,7 @@ describe("runDashboardEngine fail-closed validation", () => {
     expect(logger.error).toHaveBeenCalledWith(
       "Dashboard Engine: domain failed",
       expect.objectContaining({
-        domain: "Sales",
+        domain: "Sales Analytics",
         errorName: "Error",
         errorCategory: "runtime",
         safeSummary: "Dashboard domain generation failed.",

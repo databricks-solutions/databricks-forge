@@ -14,7 +14,10 @@ import {
   type ValidationEvidence,
 } from "@/lib/validation/evidence";
 import { isDashboardDraftReadBackEnabled } from "@/lib/config/semantic-uplift-flags";
-import { validateSerializedDashboard } from "./contract-validator";
+import {
+  validateSerializedDashboard,
+  type DashboardContractValidationMode,
+} from "./contract-validator";
 import { isDashboardScopeUnsupportedError } from "@/lib/dbx/dashboard-capability";
 import type {
   LakeviewDashboardResponse,
@@ -32,6 +35,7 @@ export interface DeployDashboardOptions {
   publish: boolean;
   embedCredentials?: boolean;
   auth: DashboardAuth;
+  contractValidation?: DashboardContractValidationMode;
 }
 
 export interface DeployDashboardResult {
@@ -151,17 +155,53 @@ export class DashboardMutationUntrackableError extends Error {
   }
 }
 
-function parseSerializedDashboard(value: string): SerializedLakeviewDashboard {
-  const parsed = JSON.parse(value) as Partial<SerializedLakeviewDashboard>;
-  if (!Array.isArray(parsed.datasets) || !Array.isArray(parsed.pages)) {
-    throw new Error("Serialized dashboard must contain datasets and pages arrays");
+/**
+ * Raised when a serialized dashboard payload is not a structurally usable
+ * Lakeview object. Unparseable text, `null`, JSON primitives, and arrays all
+ * surface here as coded contract evidence instead of an incidental `TypeError`
+ * from property access on a non-object.
+ */
+export class DashboardSerializationContractError extends Error {
+  readonly code = "DASHBOARD_SERIALIZATION_INVALID";
+  readonly evidence: ValidationEvidence[];
+
+  constructor(reason: string) {
+    super(`DASHBOARD_SERIALIZATION_INVALID: ${reason}`);
+    this.name = "DashboardSerializationContractError";
+    this.evidence = [
+      evidenceFailed("dashboard_contract", "DASHBOARD_SERIALIZATION_INVALID", this.message),
+    ];
   }
-  for (const page of parsed.pages) {
-    if (!page || !Array.isArray(page.layout)) {
-      throw new Error("Serialized dashboard pages must contain layout arrays");
+}
+
+function parseSerializedDashboard(value: string): SerializedLakeviewDashboard {
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(value) as unknown;
+  } catch (error) {
+    throw new DashboardSerializationContractError(
+      `Serialized dashboard is not valid JSON (${failureMessage(error)})`,
+    );
+  }
+  if (typeof parsed !== "object" || parsed === null || Array.isArray(parsed)) {
+    throw new DashboardSerializationContractError(
+      "Serialized dashboard must be a JSON object with datasets and pages arrays",
+    );
+  }
+  const dashboard = parsed as Partial<SerializedLakeviewDashboard>;
+  if (!Array.isArray(dashboard.datasets) || !Array.isArray(dashboard.pages)) {
+    throw new DashboardSerializationContractError(
+      "Serialized dashboard must contain datasets and pages arrays",
+    );
+  }
+  for (const page of dashboard.pages) {
+    if (!page || typeof page !== "object" || !Array.isArray(page.layout)) {
+      throw new DashboardSerializationContractError(
+        "Serialized dashboard pages must contain layout arrays",
+      );
     }
   }
-  return parsed as SerializedLakeviewDashboard;
+  return dashboard as SerializedLakeviewDashboard;
 }
 
 function counts(dashboard: SerializedLakeviewDashboard): {
@@ -211,7 +251,8 @@ export async function deployDashboardDraftAndVerify(
 
   const expectedDashboard = parseSerializedDashboard(options.serializedDashboard);
   const expectedCounts = counts(expectedDashboard);
-  const expectedContract = validateSerializedDashboard(expectedDashboard);
+  const contractValidation = options.contractValidation ?? { mode: "forge-assembled" };
+  const expectedContract = validateSerializedDashboard(expectedDashboard, contractValidation);
   if (!expectedContract.valid) {
     throw new Error(
       `Dashboard failed mandatory contract validation: ${expectedContract.errors
@@ -361,7 +402,7 @@ export async function deployDashboardDraftAndVerify(
       );
     }
 
-    const contract = validateSerializedDashboard(readBackDashboard);
+    const contract = validateSerializedDashboard(readBackDashboard, contractValidation);
     evidence.push(...contract.evidence);
     if (!contract.valid) {
       throw new Error(

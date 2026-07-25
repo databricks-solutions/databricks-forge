@@ -43,11 +43,15 @@ export async function POST(
     }
 
     let domains: string[] | undefined;
+    let hasExplicitDomainFilter = false;
     try {
       const body = await request.json();
-      if (Array.isArray(body?.domains) && body.domains.length > 0) {
-        domains = body.domains.filter((d: unknown) => typeof d === "string" && d.length > 0);
-        if (domains!.length === 0) domains = undefined;
+      if (Array.isArray(body?.domains)) {
+        hasExplicitDomainFilter = true;
+        domains = body.domains.filter(
+          (d: unknown): d is string =>
+            typeof d === "string" && normalizeDashboardDomain(d).length > 0,
+        );
       }
     } catch {
       // No body or invalid JSON -- regenerate all domains
@@ -105,6 +109,34 @@ export async function POST(
       }
     }
     const requiredDomainGroups = selectDashboardDomainGroups(useCases, domains);
+    if (hasExplicitDomainFilter && (domains!.length === 0 || requiredDomainGroups.length === 0)) {
+      return NextResponse.json(
+        {
+          error:
+            domains!.length > 0
+              ? `No dashboard domains match the requested filters: ${domains!.join(", ")}`
+              : "No valid dashboard domain filters were provided",
+          code: "NO_MATCHING_DASHBOARD_DOMAINS",
+          domains,
+        },
+        { status: 422 },
+      );
+    }
+    // `saveDashboardRecommendations` deletes by the persisted `domain` column
+    // literally, so the replace set must cover both vocabularies. Rows written
+    // before domain canonicalization still hold the raw alias ("Procurement",
+    // "Inventory"), and the re-insert now uses the canonical label they collapse
+    // into ("Supply Chain"). Sending the trimmed raw aliases clears those
+    // upgrade leftovers; sending the canonical label keeps the re-insert from
+    // colliding on the run+domain unique constraint.
+    const replaceDomains = hasExplicitDomainFilter
+      ? [
+          ...new Set([
+            ...domains!.map((requested) => requested.trim()).filter(Boolean),
+            ...requiredDomainGroups.map((group) => group.domain),
+          ]),
+        ]
+      : undefined;
     const missingManifestDomains = missingDashboardManifestDomains(
       requiredDomainGroups,
       semanticManifests,
@@ -158,7 +190,14 @@ export async function POST(
           await saveDashboardRecommendations(
             runId,
             result.recommendations,
-            domains,
+            replaceDomains
+              ? [
+                  ...new Set([
+                    ...replaceDomains,
+                    ...result.recommendations.map((recommendation) => recommendation.domain),
+                  ]),
+                ]
+              : undefined,
             run.ownerEmail,
           );
         }

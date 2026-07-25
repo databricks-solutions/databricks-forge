@@ -8,7 +8,20 @@ import type { LakeviewPosition, LakeviewWidget, SerializedLakeviewDashboard } fr
 import { getWidgetVersion, isSupportedWidgetType } from "./widget-registry";
 import { classifyWidgetExpression } from "./expressions";
 
+export type DashboardContractValidationMode =
+  | { mode: "forge-assembled" }
+  | { mode: "imported-lakeview" };
+
 export type DashboardContractErrorCode =
+  | "DASHBOARD_INVALID"
+  | "DASHBOARD_DATASETS_INVALID"
+  | "DASHBOARD_PAGES_INVALID"
+  | "DATASET_INVALID"
+  | "PAGE_INVALID"
+  | "PAGE_LAYOUT_INVALID"
+  | "LAYOUT_ITEM_INVALID"
+  | "WIDGET_INVALID"
+  | "QUERY_INVALID"
   | "PAGE_NAME_DUPLICATE"
   | "LAYOUT_VERSION_MISSING"
   | "LAYOUT_VERSION_INVALID"
@@ -50,9 +63,30 @@ const FILTER_TYPES = new Set([
 ]);
 
 type UnknownRecord = Record<string, unknown>;
+type DashboardContractMode = DashboardContractValidationMode["mode"];
 
 function isRecord(value: unknown): value is UnknownRecord {
   return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+function queryFields(query: unknown): UnknownRecord[] {
+  if (!isRecord(query) || !isRecord(query.query) || !Array.isArray(query.query.fields)) return [];
+  return query.query.fields.filter(isRecord);
+}
+
+function queryParameters(query: unknown): UnknownRecord[] {
+  if (!isRecord(query) || !isRecord(query.query) || !Array.isArray(query.query.parameters)) {
+    return [];
+  }
+  return query.query.parameters.filter(isRecord);
+}
+
+function parameterNames(parameters: UnknownRecord[], key: "name" | "keyword"): Set<string> {
+  const names = new Set<string>();
+  for (const parameter of parameters) {
+    if (typeof parameter[key] === "string") names.add(parameter[key]);
+  }
+  return names;
 }
 
 function collectFieldNames(value: unknown, names: Set<string>): void {
@@ -111,7 +145,11 @@ function validateQueryEncodingFields(
   const encodedFields = filterFieldsByQuery ? null : encodedFieldNames(spec.encodings);
 
   for (const [queryIndex, query] of (widget.queries ?? []).entries()) {
-    const actualFields = new Set(query.query.fields.map((field) => field.name));
+    const actualFields = new Set(
+      queryFields(query)
+        .map((field) => field.name)
+        .filter((name): name is string => typeof name === "string"),
+    );
     const expectedFields =
       filterFieldsByQuery?.get(query.name) ?? encodedFields ?? new Set<string>();
     if (hasSameFieldNames(actualFields, expectedFields)) continue;
@@ -123,6 +161,30 @@ function validateQueryEncodingFields(
         ? `Filter query "${query.name}" fields must exactly match its encoding fields.`
         : `Query "${query.name}" fields must exactly match the widget encoding fields.`,
       suggestedFix: "Use the same field names in each query and its corresponding widget encoding.",
+    });
+  }
+}
+
+function validateImportedQueryParameters(
+  widget: LakeviewWidget["widget"],
+  path: string,
+  datasetParameters: Map<string, Set<string>>,
+  addError: (error: DashboardContractError) => void,
+): void {
+  for (const [queryIndex, query] of (widget.queries ?? []).entries()) {
+    const parameters = queryParameters(query);
+    if (parameters.length === 0) continue;
+    const declaredNames = datasetParameters.get(query.query.datasetName) ?? new Set<string>();
+
+    parameters.forEach((parameter, parameterIndex) => {
+      const keyword = parameter.keyword;
+      if (typeof keyword === "string" && declaredNames.has(keyword)) return;
+      addError({
+        path: `${path}.queries[${queryIndex}].query.parameters[${parameterIndex}]`,
+        code: "PARAM_FILTER_MISMATCH",
+        message: `Query parameter keyword "${String(keyword)}" is not declared by dataset "${query.query.datasetName}".`,
+        suggestedFix: "Bind query parameters to a parameter declared on the referenced dataset.",
+      });
     });
   }
 }
@@ -146,18 +208,72 @@ function rectanglesOverlap(left: LakeviewPosition, right: LakeviewPosition): boo
   );
 }
 
-function hasValidPosition(position: LakeviewPosition): boolean {
+function hasValidPosition(position: unknown): position is LakeviewPosition {
+  if (!isRecord(position)) return false;
+  const { x, y, width, height } = position;
   return (
-    Number.isInteger(position.x) &&
-    Number.isInteger(position.y) &&
-    Number.isInteger(position.width) &&
-    Number.isInteger(position.height) &&
-    position.x >= 0 &&
-    position.y >= 0 &&
-    position.width > 0 &&
-    position.height > 0 &&
-    position.x + position.width <= GRID_COLUMNS
+    typeof x === "number" &&
+    typeof y === "number" &&
+    typeof width === "number" &&
+    typeof height === "number" &&
+    Number.isInteger(x) &&
+    Number.isInteger(y) &&
+    Number.isInteger(width) &&
+    Number.isInteger(height) &&
+    x >= 0 &&
+    y >= 0 &&
+    width > 0 &&
+    height > 0 &&
+    x + width <= GRID_COLUMNS
   );
+}
+
+function isImportedParameterFilter(widget: UnknownRecord): boolean {
+  const spec = widget.spec;
+  if (
+    !isRecord(spec) ||
+    typeof spec.widgetType !== "string" ||
+    !FILTER_TYPES.has(spec.widgetType) ||
+    !isRecord(spec.encodings) ||
+    !Array.isArray(spec.encodings.fields) ||
+    spec.encodings.fields.length === 0 ||
+    !spec.encodings.fields.every(
+      (field) =>
+        isRecord(field) &&
+        typeof field.parameterName === "string" &&
+        typeof field.queryName === "string",
+    ) ||
+    !Array.isArray(widget.queries) ||
+    widget.queries.length === 0
+  ) {
+    return false;
+  }
+
+  const queries = widget.queries.filter(
+    (query): query is UnknownRecord =>
+      isRecord(query) &&
+      typeof query.name === "string" &&
+      isRecord(query.query) &&
+      query.query.fields === undefined &&
+      Array.isArray(query.query.parameters) &&
+      query.query.parameters.length > 0,
+  );
+  if (queries.length !== widget.queries.length) return false;
+
+  const queriesByName = new Map(queries.map((query) => [query.name as string, query]));
+  return spec.encodings.fields.every((field) => {
+    if (
+      !isRecord(field) ||
+      typeof field.queryName !== "string" ||
+      typeof field.parameterName !== "string"
+    ) {
+      return false;
+    }
+    const query = queriesByName.get(field.queryName);
+    return (
+      query !== undefined && parameterNames(queryParameters(query), "name").has(field.parameterName)
+    );
+  });
 }
 
 function validateScaleTypes(
@@ -207,9 +323,10 @@ function validateTemporalExpressionScale(
     return;
   }
   const xField = (widget.queries ?? [])
-    .flatMap((query) => query.query.fields)
+    .flatMap((query) => queryFields(query))
     .find((field) => field.name === xEncoding.fieldName);
-  if (classifyWidgetExpression(xField?.expression ?? "")?.kind !== "date_trunc") return;
+  const expression = typeof xField?.expression === "string" ? xField.expression : "";
+  if (classifyWidgetExpression(expression)?.kind !== "date_trunc") return;
   if (xEncoding.scale.type === "temporal" || !SCALE_TYPES.has(xEncoding.scale.type)) return;
 
   addError({
@@ -223,6 +340,7 @@ function validateTemporalExpressionScale(
 function validateFilterBindings(
   widget: LakeviewWidget["widget"],
   path: string,
+  mode: DashboardContractMode,
   addError: (error: DashboardContractError) => void,
 ): void {
   const spec = widget.spec;
@@ -247,10 +365,25 @@ function validateFilterBindings(
       return;
     }
 
-    const queryFields = new Set(
-      queriesByName.get(queryName)!.query.fields.map((item) => item.name),
+    const boundQuery = queriesByName.get(queryName)!;
+    const boundQueryFields = new Set(
+      queryFields(boundQuery)
+        .map((item) => item.name)
+        .filter((name): name is string => typeof name === "string"),
     );
-    if (typeof fieldName !== "string" || !queryFields.has(fieldName)) {
+    const parameterName = field.parameterName;
+    if (mode === "imported-lakeview" && typeof parameterName === "string") {
+      const boundParameters = parameterNames(queryParameters(boundQuery), "name");
+      if (boundParameters.has(parameterName)) return;
+      addError({
+        path: `${fieldPath}.parameterName`,
+        code: "PARAM_FILTER_MISMATCH",
+        message: `Filter parameter "${parameterName}" is not exposed by query "${queryName}".`,
+        suggestedFix: "Use the same parameter name in the filter encoding and its bound query.",
+      });
+      return;
+    }
+    if (typeof fieldName !== "string" || !boundQueryFields.has(fieldName)) {
       addError({
         path: `${fieldPath}.fieldName`,
         code: "PARAM_FILTER_MISMATCH",
@@ -263,35 +396,119 @@ function validateFilterBindings(
 
 export function validateSerializedDashboard(
   dashboard: SerializedLakeviewDashboard,
+  validation: DashboardContractValidationMode = { mode: "forge-assembled" },
 ): DashboardContractResult {
   const errors: DashboardContractError[] = [];
   const addError = (error: DashboardContractError) => errors.push(error);
-  const datasetNames = new Set(dashboard.datasets.map((dataset) => dataset.name));
+  const root = isRecord(dashboard) ? dashboard : null;
+  if (!root) {
+    addError({
+      path: "$",
+      code: "DASHBOARD_INVALID",
+      message: "Serialized dashboard must be an object.",
+      suggestedFix: "Provide a serialized Lakeview dashboard object.",
+    });
+  }
+
+  const datasetValues = root?.datasets;
+  if (!Array.isArray(datasetValues)) {
+    addError({
+      path: "datasets",
+      code: "DASHBOARD_DATASETS_INVALID",
+      message: "Serialized dashboard datasets must be an array.",
+      suggestedFix: "Provide a datasets array, even when it is empty.",
+    });
+  }
+  const datasets = Array.isArray(datasetValues) ? datasetValues : [];
+  const datasetNames = new Set<string>();
+  const datasetParameters = new Map<string, Set<string>>();
+  datasets.forEach((dataset, datasetIndex) => {
+    if (!isRecord(dataset) || typeof dataset.name !== "string") {
+      addError({
+        path: `datasets[${datasetIndex}]`,
+        code: "DATASET_INVALID",
+        message: "Dashboard datasets require a string name.",
+        suggestedFix: "Provide a valid Lakeview dataset object with a string name.",
+      });
+      return;
+    }
+    datasetNames.add(dataset.name);
+    datasetParameters.set(
+      dataset.name,
+      parameterNames(
+        Array.isArray(dataset.parameters) ? dataset.parameters.filter(isRecord) : [],
+        "keyword",
+      ),
+    );
+  });
+
+  const pageValues = root?.pages;
+  if (!Array.isArray(pageValues)) {
+    addError({
+      path: "pages",
+      code: "DASHBOARD_PAGES_INVALID",
+      message: "Serialized dashboard pages must be an array.",
+      suggestedFix: "Provide a pages array, even when it is empty.",
+    });
+  }
+  const pages = Array.isArray(pageValues) ? pageValues : [];
   const pageNames = new Set<string>();
   const widgetNames = new Set<string>();
-  const filteredDatasetNames = new Set(
-    dashboard.pages.flatMap((page) =>
-      page.layout.flatMap((item) =>
-        item.widget.spec && FILTER_TYPES.has(item.widget.spec.widgetType)
-          ? (item.widget.queries ?? []).map((query) => query.query.datasetName)
-          : [],
-      ),
-    ),
-  );
+  const filteredDatasetNames = new Set<string>();
+  for (const page of pages) {
+    if (!isRecord(page) || !Array.isArray(page.layout)) continue;
+    for (const item of page.layout) {
+      if (!isRecord(item) || !isRecord(item.widget) || !isRecord(item.widget.spec)) continue;
+      if (
+        typeof item.widget.spec.widgetType !== "string" ||
+        !FILTER_TYPES.has(item.widget.spec.widgetType) ||
+        !Array.isArray(item.widget.queries)
+      ) {
+        continue;
+      }
+      for (const query of item.widget.queries) {
+        if (
+          isRecord(query) &&
+          isRecord(query.query) &&
+          typeof query.query.datasetName === "string"
+        ) {
+          filteredDatasetNames.add(query.query.datasetName);
+        }
+      }
+    }
+  }
 
-  dashboard.pages.forEach((page, pageIndex) => {
+  pages.forEach((pageValue, pageIndex) => {
     const pagePath = `pages[${pageIndex}]`;
-    if (pageNames.has(page.name)) {
+    if (!isRecord(pageValue)) {
+      addError({
+        path: pagePath,
+        code: "PAGE_INVALID",
+        message: "Dashboard pages must be objects.",
+        suggestedFix: "Provide a valid Lakeview page object.",
+      });
+      return;
+    }
+    const page = pageValue;
+    if (typeof page.name !== "string") {
+      addError({
+        path: `${pagePath}.name`,
+        code: "PAGE_INVALID",
+        message: "Dashboard pages require a string name.",
+        suggestedFix: "Provide a unique string page name.",
+      });
+    } else if (pageNames.has(page.name)) {
       addError({
         path: `${pagePath}.name`,
         code: "PAGE_NAME_DUPLICATE",
         message: `Page name "${page.name}" is duplicated.`,
         suggestedFix: "Assign a unique name to every page.",
       });
+    } else {
+      pageNames.add(page.name);
     }
-    pageNames.add(page.name);
 
-    const layoutVersion = (page as unknown as { layoutVersion?: unknown }).layoutVersion;
+    const layoutVersion: unknown = page.layoutVersion;
     if (layoutVersion === undefined || layoutVersion === null || layoutVersion === "") {
       addError({
         path: `${pagePath}.layoutVersion`,
@@ -308,18 +525,53 @@ export function validateSerializedDashboard(
       });
     }
 
-    page.layout.forEach((layoutItem, widgetIndex) => {
+    if (!Array.isArray(page.layout)) {
+      addError({
+        path: `${pagePath}.layout`,
+        code: "PAGE_LAYOUT_INVALID",
+        message: "Dashboard page layout must be an array.",
+        suggestedFix: "Provide a layout array, even when it is empty.",
+      });
+      return;
+    }
+
+    const overlapCandidates: Array<{
+      widgetIndex: number;
+      position: LakeviewPosition;
+      widgetName: string;
+    }> = [];
+    page.layout.forEach((layoutValue, widgetIndex) => {
       const widgetPath = `${pagePath}.layout[${widgetIndex}].widget`;
+      if (!isRecord(layoutValue)) {
+        addError({
+          path: `${pagePath}.layout[${widgetIndex}]`,
+          code: "LAYOUT_ITEM_INVALID",
+          message: "Dashboard layout items must be objects.",
+          suggestedFix: "Provide a widget and position for every layout item.",
+        });
+        return;
+      }
+      const layoutItem = layoutValue;
+      if (!isRecord(layoutItem.widget)) {
+        addError({
+          path: widgetPath,
+          code: "WIDGET_INVALID",
+          message: "Dashboard layout items require a widget object.",
+          suggestedFix: "Provide a valid Lakeview widget object.",
+        });
+        return;
+      }
       const widget = layoutItem.widget;
-      if (!WIDGET_ID_PATTERN.test(widget.name)) {
+      const widgetName = typeof widget.name === "string" ? widget.name : String(widget.name);
+      if (typeof widget.name !== "string" || !WIDGET_ID_PATTERN.test(widget.name)) {
         addError({
           path: `${widgetPath}.name`,
           code: "WIDGET_ID_INVALID",
-          message: `Widget identifier "${widget.name}" is invalid.`,
+          message: `Widget identifier "${widgetName}" is invalid.`,
           suggestedFix: "Use 1-60 lowercase letters, digits, underscores, or hyphens.",
         });
       }
-      if (widgetNames.has(widget.name)) {
+      if (typeof widget.name === "string" && widgetNames.has(widget.name)) {
         addError({
           path: `${widgetPath}.name`,
           code: "WIDGET_ID_DUPLICATE",
@@ -327,7 +579,7 @@ export function validateSerializedDashboard(
           suggestedFix: "Assign a unique identifier to every widget.",
         });
       }
-      widgetNames.add(widget.name);
+      if (typeof widget.name === "string") widgetNames.add(widget.name);
 
       if (!hasValidPosition(layoutItem.position)) {
         addError({
@@ -335,6 +587,12 @@ export function validateSerializedDashboard(
           code: "GRID_BOUNDS",
           message: "Widget position must fit within the 12-column GRID_V1 layout.",
           suggestedFix: "Use non-negative integer coordinates and keep x + width at or below 12.",
+        });
+      } else {
+        overlapCandidates.push({
+          widgetIndex,
+          position: layoutItem.position,
+          widgetName,
         });
       }
 
@@ -352,10 +610,12 @@ export function validateSerializedDashboard(
       }
 
       if (!isTextWidget) {
-        const spec = widget.spec;
-        const expectedVersion = spec ? getWidgetVersion(spec.widgetType) : null;
+        const spec = isRecord(widget.spec) ? widget.spec : null;
+        const expectedVersion =
+          spec && typeof spec.widgetType === "string" ? getWidgetVersion(spec.widgetType) : null;
         if (
           !spec ||
+          typeof spec.widgetType !== "string" ||
           !isSupportedWidgetType(spec.widgetType) ||
           expectedVersion === null ||
           spec.version !== expectedVersion
@@ -363,9 +623,10 @@ export function validateSerializedDashboard(
           addError({
             path: `${widgetPath}.spec`,
             code: "WIDGET_VERSION_MISMATCH",
-            message: spec
-              ? `Widget "${spec.widgetType}" must use registered version ${String(expectedVersion)}.`
-              : "Non-text widgets require a registered widget spec.",
+            message:
+              spec && typeof spec.widgetType === "string"
+                ? `Widget "${spec.widgetType}" must use registered version ${String(expectedVersion)}.`
+                : "Non-text widgets require a registered widget spec.",
             suggestedFix: "Use the widget type and version from WIDGET_REGISTRY.",
           });
         }
@@ -385,48 +646,97 @@ export function validateSerializedDashboard(
           });
         }
 
-        for (const [queryIndex, query] of (widget.queries ?? []).entries()) {
-          if (!datasetNames.has(query.query.datasetName)) {
+        const queryValues =
+          widget.queries === undefined ? [] : Array.isArray(widget.queries) ? widget.queries : null;
+        if (queryValues === null) {
+          addError({
+            path: `${widgetPath}.queries`,
+            code: "QUERY_INVALID",
+            message: "Widget queries must be an array.",
+            suggestedFix: "Provide a valid array of Lakeview widget queries.",
+          });
+        }
+        const validQueries: UnknownRecord[] = [];
+        for (const [queryIndex, queryValue] of (queryValues ?? []).entries()) {
+          if (!isRecord(queryValue) || !isRecord(queryValue.query)) {
+            addError({
+              path: `${widgetPath}.queries[${queryIndex}].query`,
+              code: "QUERY_INVALID",
+              message: "Widget queries require a query object.",
+              suggestedFix: "Provide a datasetName and a fields or parameters binding.",
+            });
+            continue;
+          }
+          const query = queryValue;
+          const queryBody = query.query;
+          validQueries.push(query);
+          if (
+            typeof queryBody.datasetName !== "string" ||
+            !datasetNames.has(queryBody.datasetName)
+          ) {
             addError({
               path: `${widgetPath}.queries[${queryIndex}].query.datasetName`,
               code: "DATASET_MISSING",
-              message: `Dataset "${query.query.datasetName}" does not exist.`,
+              message: `Dataset "${String(queryBody.datasetName)}" does not exist.`,
               suggestedFix: "Reference a dataset declared in dashboard.datasets.",
             });
           }
           if (
+            validation.mode === "forge-assembled" &&
             spec?.widgetType === "counter" &&
-            query.query.disaggregated === filteredDatasetNames.has(query.query.datasetName)
+            queryBody.disaggregated === filteredDatasetNames.has(String(queryBody.datasetName))
           ) {
             addError({
               path: `${widgetPath}.queries[${queryIndex}].query.disaggregated`,
               code: "COUNTER_DISAGGREGATION",
-              message: filteredDatasetNames.has(query.query.datasetName)
+              message: filteredDatasetNames.has(String(queryBody.datasetName))
                 ? "Counters on filtered datasets must remain aggregated."
                 : "Counters on unfiltered datasets must use a disaggregated query.",
               suggestedFix: `Set disaggregated to ${String(
-                !filteredDatasetNames.has(query.query.datasetName),
+                !filteredDatasetNames.has(String(queryBody.datasetName)),
               )}.`,
             });
           }
         }
 
+        const validatedWidget = {
+          ...widget,
+          queries: validQueries,
+        } as unknown as LakeviewWidget["widget"];
+        const importedParameterFilter =
+          validation.mode === "imported-lakeview" && isImportedParameterFilter(widget);
         if (spec) {
-          validateQueryEncodingFields(widget, widgetPath, addError);
+          if (importedParameterFilter) {
+            validateImportedQueryParameters(
+              validatedWidget,
+              widgetPath,
+              datasetParameters,
+              addError,
+            );
+          } else {
+            validateQueryEncodingFields(validatedWidget, widgetPath, addError);
+          }
           validateScaleTypes(spec.encodings, `${widgetPath}.spec`, addError);
-          validateTemporalExpressionScale(widget, `${widgetPath}.spec`, addError);
+          validateTemporalExpressionScale(validatedWidget, `${widgetPath}.spec`, addError);
         }
-        validateFilterBindings(widget, widgetPath, addError);
+        validateFilterBindings(
+          validatedWidget,
+          widgetPath,
+          importedParameterFilter ? "imported-lakeview" : "forge-assembled",
+          addError,
+        );
       }
     });
 
-    for (let left = 0; left < page.layout.length; left += 1) {
-      for (let right = left + 1; right < page.layout.length; right += 1) {
-        if (rectanglesOverlap(page.layout[left].position, page.layout[right].position)) {
+    for (let left = 0; left < overlapCandidates.length; left += 1) {
+      for (let right = left + 1; right < overlapCandidates.length; right += 1) {
+        if (
+          rectanglesOverlap(overlapCandidates[left].position, overlapCandidates[right].position)
+        ) {
           addError({
-            path: `${pagePath}.layout[${right}].position`,
+            path: `${pagePath}.layout[${overlapCandidates[right].widgetIndex}].position`,
             code: "GRID_OVERLAP",
-            message: `Widgets "${page.layout[left].widget.name}" and "${page.layout[right].widget.name}" overlap.`,
+            message: `Widgets "${overlapCandidates[left].widgetName}" and "${overlapCandidates[right].widgetName}" overlap.`,
             suggestedFix: "Move or resize widgets so their x and y intervals do not overlap.",
           });
         }

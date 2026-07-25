@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { validateSerializedDashboard } from "@/lib/dashboard/contract-validator";
 import type { LakeviewWidgetSpec, SerializedLakeviewDashboard } from "@/lib/dashboard/types";
+import { buildWafDashboardJson } from "@/lib/engines/waf-assessment/dashboard/builder";
 
 function makeValidDashboard(): SerializedLakeviewDashboard {
   return {
@@ -50,7 +51,241 @@ function errorCodes(dashboard: SerializedLakeviewDashboard): string[] {
   return validateSerializedDashboard(dashboard).errors.map((error) => error.code);
 }
 
+function validateMalformedImported(dashboard: unknown) {
+  let result: ReturnType<typeof validateSerializedDashboard> | undefined;
+  expect(() => {
+    result = validateSerializedDashboard(dashboard as SerializedLakeviewDashboard, {
+      mode: "imported-lakeview",
+    });
+  }).not.toThrow();
+  expect(result).toBeDefined();
+  return result!;
+}
+
 describe("validateSerializedDashboard", () => {
+  it.each([
+    ["absent datasets", { pages: [] }, "datasets", "DASHBOARD_DATASETS_INVALID"],
+    ["non-array datasets", { datasets: {}, pages: [] }, "datasets", "DASHBOARD_DATASETS_INVALID"],
+    ["absent pages", { datasets: [] }, "pages", "DASHBOARD_PAGES_INVALID"],
+    ["non-array pages", { datasets: [], pages: {} }, "pages", "DASHBOARD_PAGES_INVALID"],
+  ])("returns structured errors for %s", (_name, dashboard, path, code) => {
+    const result = validateMalformedImported(dashboard);
+
+    expect(result.valid).toBe(false);
+    expect(result.errors).toContainEqual(expect.objectContaining({ path, code }));
+  });
+
+  it("returns a structured error when an imported page has no layout", () => {
+    const result = validateMalformedImported({
+      datasets: [],
+      pages: [{ name: "overview", layoutVersion: "GRID_V1" }],
+    });
+
+    expect(result.errors).toContainEqual(
+      expect.objectContaining({ path: "pages[0].layout", code: "PAGE_LAYOUT_INVALID" }),
+    );
+  });
+
+  it("returns a structured error when an imported layout item has no position", () => {
+    const dashboard = cloneDashboard() as unknown as {
+      pages: Array<{ layout: Array<{ position?: unknown }> }>;
+    };
+    delete dashboard.pages[0].layout[0].position;
+
+    const result = validateMalformedImported(dashboard);
+
+    expect(result.errors).toContainEqual(
+      expect.objectContaining({ path: "pages[0].layout[0].position", code: "GRID_BOUNDS" }),
+    );
+  });
+
+  it("returns a structured error when an imported query has no query body", () => {
+    const dashboard = cloneDashboard() as unknown as {
+      pages: Array<{ layout: Array<{ widget: { queries: Array<{ query?: unknown }> } }> }>;
+    };
+    delete dashboard.pages[0].layout[0].widget.queries[0].query;
+
+    const result = validateMalformedImported(dashboard);
+
+    expect(result.errors).toContainEqual(
+      expect.objectContaining({
+        path: "pages[0].layout[0].widget.queries[0].query",
+        code: "QUERY_INVALID",
+      }),
+    );
+  });
+
+  it("validates the imported WAF dashboard parameter bindings without throwing", async () => {
+    const dashboard = JSON.parse(await buildWafDashboardJson()) as SerializedLakeviewDashboard;
+
+    expect(() =>
+      validateSerializedDashboard(dashboard, { mode: "imported-lakeview" }),
+    ).not.toThrow();
+    expect(validateSerializedDashboard(dashboard, { mode: "imported-lakeview" })).toMatchObject({
+      valid: true,
+      errors: [],
+    });
+  });
+
+  it("returns a structured error for an imported query parameter with no dataset binding", async () => {
+    const dashboard = JSON.parse(await buildWafDashboardJson()) as SerializedLakeviewDashboard;
+    const globalFilter = dashboard.pages.find((page) => page.name === "global_filters")!;
+    const query = globalFilter.layout[0].widget.queries![0].query as unknown as {
+      parameters: Array<{ name: string; keyword: string }>;
+    };
+    query.parameters[0].keyword = "missing_parameter";
+
+    const result = validateSerializedDashboard(dashboard, { mode: "imported-lakeview" });
+
+    expect(result.valid).toBe(false);
+    expect(result.errors).toContainEqual(
+      expect.objectContaining({
+        code: "PARAM_FILTER_MISMATCH",
+        path: expect.stringContaining(".query.parameters[0]"),
+      }),
+    );
+  });
+
+  it("keeps field-to-encoding validation for imported visualization queries", () => {
+    const dashboard = cloneDashboard();
+    const encodings = dashboard.pages[0].layout[0].widget.spec!.encodings as {
+      value: { fieldName: string };
+    };
+    encodings.value.fieldName = "missing";
+
+    const result = validateSerializedDashboard(dashboard, { mode: "imported-lakeview" });
+
+    expect(result.valid).toBe(false);
+    expect(result.errors).toContainEqual(
+      expect.objectContaining({ code: "FIELD_ENCODING_MISMATCH" }),
+    );
+  });
+
+  it("rejects imported hybrid filter queries with both fields and parameters", () => {
+    const dashboard = cloneDashboard();
+    const dataset = dashboard.datasets[0] as unknown as {
+      parameters: Array<{ keyword: string }>;
+    };
+    dataset.parameters = [{ keyword: "date_range" }];
+    const widget = dashboard.pages[0].layout[0].widget;
+    widget.spec = {
+      version: 2,
+      widgetType: "filter-date-range-picker",
+      encodings: {
+        fields: [{ parameterName: "date_range", queryName: "main_query" }],
+      } as unknown as LakeviewWidgetSpec["encodings"],
+      frame: { showTitle: true, title: "Date Range" },
+    };
+    (
+      widget.queries![0].query as unknown as {
+        parameters: Array<{ name: string; keyword: string }>;
+      }
+    ).parameters = [{ name: "date_range", keyword: "date_range" }];
+    widget.queries![0].query.disaggregated = false;
+
+    const result = validateSerializedDashboard(dashboard, { mode: "imported-lakeview" });
+
+    expect(result.valid).toBe(false);
+    expect(result.errors).toContainEqual(
+      expect.objectContaining({ code: "PARAM_FILTER_MISMATCH" }),
+    );
+  });
+
+  it("rejects missing and extra unencoded fields on imported ordinary filters", () => {
+    const missingField = cloneDashboard();
+    const missingWidget = missingField.pages[0].layout[0].widget;
+    missingWidget.spec = {
+      version: 2,
+      widgetType: "filter-single-select",
+      encodings: {
+        fields: [{ fieldName: "missing", displayName: "Missing", queryName: "main_query" }],
+      },
+      frame: { showTitle: true, title: "Filter" },
+    };
+    missingWidget.queries![0].query.disaggregated = false;
+
+    const extraField = cloneDashboard();
+    const extraWidget = extraField.pages[0].layout[0].widget;
+    extraWidget.spec = {
+      version: 2,
+      widgetType: "filter-single-select",
+      encodings: {
+        fields: [{ fieldName: "total", displayName: "Total", queryName: "main_query" }],
+      },
+      frame: { showTitle: true, title: "Filter" },
+    };
+    extraWidget.queries![0].query.fields.push({
+      name: "unencoded",
+      expression: "`unencoded`",
+    });
+    extraWidget.queries![0].query.disaggregated = false;
+
+    for (const dashboard of [missingField, extraField]) {
+      const result = validateSerializedDashboard(dashboard, { mode: "imported-lakeview" });
+      expect(result.valid).toBe(false);
+      expect(result.errors).toContainEqual(
+        expect.objectContaining({ code: "PARAM_FILTER_MISMATCH" }),
+      );
+    }
+  });
+
+  it("rejects the AI/BI associativity artifact on imported filters in both modes", () => {
+    // `COUNT_IF(`associative_filter_predicate_group`)` is an AI/BI editor-internal
+    // expression. `associative_filter_predicate_group` is not a real dataset
+    // column, so re-executing an exported dashboard that carries it fails with
+    // UNRESOLVED_COLUMN. It is rejected as an unencoded extra field rather than
+    // tolerated, and the rejection is NOT relaxed for imported dashboards.
+    for (const mode of ["forge-assembled", "imported-lakeview"] as const) {
+      const dashboard = cloneDashboard();
+      const widget = dashboard.pages[0].layout[0].widget;
+      widget.spec = {
+        version: 2,
+        widgetType: "filter-multi-select",
+        encodings: {
+          fields: [{ fieldName: "total", displayName: "Total", queryName: "main_query" }],
+        },
+        frame: { showTitle: true, title: "Total" },
+      };
+      widget.queries![0].query.fields.push({
+        name: "total_associativity",
+        expression: "COUNT_IF(`associative_filter_predicate_group`)",
+      });
+      widget.queries![0].query.disaggregated = false;
+
+      const result = validateSerializedDashboard(dashboard, { mode });
+
+      expect(result.valid).toBe(false);
+      expect(result.errors).toContainEqual(
+        expect.objectContaining({ code: "PARAM_FILTER_MISMATCH" }),
+      );
+    }
+  });
+
+  it("keeps the shipped WAF template free of AI/BI export artifacts", async () => {
+    const raw = await buildWafDashboardJson();
+
+    // The exported template originally carried an associativity field and an
+    // invisible `lines: [""]` separator widget. Both are export artifacts, not
+    // deployable Lakeview content, so the template itself is corrected rather
+    // than the validator being weakened to accept them.
+    expect(raw).not.toContain("associative_filter_predicate_group");
+    expect(raw).not.toContain("_associativity");
+
+    const dashboard = JSON.parse(raw) as SerializedLakeviewDashboard;
+    const textLines = dashboard.pages.flatMap((page) =>
+      page.layout.flatMap((item) => item.widget.multilineTextboxSpec?.lines ?? []),
+    );
+    expect(textLines.length).toBeGreaterThan(0);
+    for (const lines of dashboard.pages.flatMap((page) =>
+      page.layout.flatMap((item) =>
+        item.widget.multilineTextboxSpec ? [item.widget.multilineTextboxSpec.lines] : [],
+      ),
+    )) {
+      expect(lines.some((line) => line.trim().length > 0)).toBe(true);
+    }
+    expect(validateSerializedDashboard(dashboard, { mode: "imported-lakeview" }).valid).toBe(true);
+  });
+
   it("accepts a valid GRID_V1 dashboard", () => {
     const result = validateSerializedDashboard(makeValidDashboard());
 

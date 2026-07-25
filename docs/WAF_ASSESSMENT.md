@@ -194,6 +194,61 @@ truth for control metadata. It currently includes:
 | `/api/assessment/qualitative` | GET / POST / DELETE | List, upsert, or remove a workspace qualitative response |
 | `/api/assessment/ignored` | GET / POST / DELETE | List, add, or remove a workspace control exclusion |
 
+### Workspace-shared Lakeview dashboard
+
+`POST /api/assessment/dashboard` builds or updates the WAF dashboard at the
+server-controlled `/Shared/Forge Dashboards/` destination. This prebuilt
+artifact uses native Lakeview parameter-filter bindings, so it is validated
+with the narrow `imported-lakeview` contract mode. That compatibility mode is
+WAF-only: Forge-generated pipeline and ad-hoc dashboards use the stricter
+default `forge-assembled` contract.
+
+The WAF dashboard is Forge-owned. Create/update, draft read-back, optional
+publish, and publication read-back all use the app service principal's M2M
+identity; the route never accepts a client-supplied destination and does not
+fall back to a user's OBO token. Assessment SQL itself continues to run as the
+logged-in user through OBO.
+
+#### Corrected AI/BI export artifacts in the bundled template
+
+`template.lvdash.json` was exported from a live AI/BI workspace, so it captured
+two editor-internal artifacts that are not deployable Lakeview content. Both are
+corrected in the template rather than tolerated by relaxing the validator, and
+this is an intentional, documented behavior change from the raw export:
+
+1. **Associative filter field removed.** The `utilization_status` multi-select
+   filter query carried a second field,
+   `utilization_status_associativity`, whose expression was
+   ``COUNT_IF(`associative_filter_predicate_group`)``.
+   `associative_filter_predicate_group` is an AI/BI editor-internal pseudo
+   column, not a column of the `cluster_efficiency` dataset, so a dashboard
+   deployed with it through the Lakeview API fails at query execution with
+   `UNRESOLVED_COLUMN`. The field was not encoded by the widget either, so it
+   also violated the filter field-to-encoding contract. It is removed, and the
+   contract validator continues to reject the shape in **both**
+   `forge-assembled` and `imported-lakeview` modes. The `imported-lakeview`
+   mode was deliberately **not** widened to accept unencoded extra filter
+   fields, because doing so would have blanket-weakened every imported hybrid
+   filter rather than admitting one proven-valid shape.
+
+   *Behavior change:* the deployed WAF dashboard no longer dims filter options
+   that match no rows under the other active filters (AI/BI "associative"
+   filter behavior). Filtering, selection, and every widget bound to
+   `cluster_efficiency` are unaffected. If Databricks later documents a
+   supported serialized form for associativity, restore it by adding the
+   field to *both* the query and the widget encoding so the existing contract
+   is satisfied without a validator exemption.
+
+2. **Invisible separator widget corrected.** A text widget on the
+   `cluster_efficiency` page serialized as `"lines": [""]`, which renders
+   nothing and fails the contract rule that a text widget must contain visible
+   content. It now serializes as `"lines": ["---"]`, preserving the intended
+   horizontal separator. The visible/non-empty text-spec rule itself is
+   unchanged.
+
+`layoutVersion: "GRID_V1"` was also added to the page that omitted it, matching
+every other page in the template and the mandatory `GRID_V1` page contract.
+
 ---
 
 ## UI

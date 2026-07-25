@@ -32,6 +32,7 @@ import { parseLLMJson } from "@/lib/toolkit/parse-llm-json";
 import { fetchTableInfoBatch, fetchColumnsBatch } from "@/lib/queries/metadata";
 import { reviewAndFixSql as defaultReviewAndFixSql } from "@/lib/ai/sql-reviewer";
 import { dashboardDeployDependencies, deployDashboardDraftAndVerify } from "./deploy-lifecycle";
+import { DEFAULT_DASHBOARD_PARENT_PATH } from "@/lib/dbx/dashboards";
 import {
   resolveEndpoint,
   getConfig,
@@ -39,7 +40,7 @@ import {
 } from "@/lib/dbx/client";
 import { createScopedLogger } from "@/lib/logger";
 import { databricksSqlExecutor } from "@/lib/ports/defaults/databricks-sql-executor";
-import { DASHBOARD_VALIDATOR_VERSION } from "@/lib/validation/evidence";
+import { DASHBOARD_VALIDATOR_VERSION, evidenceFailed } from "@/lib/validation/evidence";
 import { DashboardValidationError } from "./errors";
 import { isDashboardValidationDeployable } from "./deployability";
 export { DashboardValidationError } from "./errors";
@@ -56,8 +57,6 @@ export interface AdHocDashboardInput {
   deploy?: boolean;
   publish?: boolean;
   embedCredentials?: boolean;
-  /** Request-captured user token required for user-owned dashboard deployment. */
-  oboToken?: string;
   /** Injectable dependencies for portability and testing. */
   deps?: DashboardEngineDeps;
 }
@@ -253,7 +252,6 @@ export async function runAdHocDashboardEngine(
     deploy = false,
     publish = false,
     embedCredentials = false,
-    oboToken,
   } = input;
 
   log.info("Ad-hoc Dashboard Engine starting", {
@@ -382,6 +380,23 @@ export async function runAdHocDashboardEngine(
   recommendation.validatorVersion = DASHBOARD_VALIDATOR_VERSION;
   recommendation.validationEvidence = validation.evidence;
   recommendation.validatedAt = new Date().toISOString();
+  if (!isDashboardValidationDeployable(recommendation)) {
+    const evidence = [
+      ...(recommendation.validationEvidence ?? []),
+      evidenceFailed(
+        "dashboard_provenance",
+        "VALIDATION_PROVENANCE_INCOMPLETE",
+        `Dashboard recommendation for domain "${domain}" did not contain complete deployable validation provenance.`,
+        { artifactRef: `domain:${domain}` },
+      ),
+    ];
+    log.warn("Ad-hoc Dashboard Engine: recommendation has incomplete validation provenance", {
+      validationEvidence: evidence,
+    });
+    throw new DashboardValidationError("Dashboard recommendation is not deployable", [
+      { domain, evidence },
+    ]);
+  }
 
   log.info("Ad-hoc Dashboard Engine: design complete", {
     datasets: recommendation.datasetCount,
@@ -391,15 +406,6 @@ export async function runAdHocDashboardEngine(
   if (!deploy) {
     return { recommendation };
   }
-  if (!isDashboardValidationDeployable(recommendation)) {
-    throw new DashboardValidationError("Dashboard recommendation is not deployable", [
-      { domain, evidence: recommendation.validationEvidence ?? [] },
-    ]);
-  }
-  if (!oboToken) {
-    throw new Error("User authorization is required for ad-hoc dashboard deployment");
-  }
-
   const config = getConfig();
   const deployResult = await deployDashboardDraftAndVerify(
     {
@@ -407,9 +413,10 @@ export async function runAdHocDashboardEngine(
       displayName: recommendation.title,
       serializedDashboard: recommendation.serializedDashboard,
       warehouseId: config.warehouseId,
+      parentPath: DEFAULT_DASHBOARD_PARENT_PATH,
       publish,
       embedCredentials,
-      auth: { mode: "user", oboToken },
+      auth: { mode: "app" },
     },
     dashboardDeployDependencies,
   );
