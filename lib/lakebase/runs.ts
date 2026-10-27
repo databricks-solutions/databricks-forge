@@ -82,7 +82,7 @@ function dbRowToRun(row: {
       depthConfig: genOpts.depthConfig,
       generationPath: row.generationPath ?? "./forge_gen/",
       languages: parseJSON<string[]>(row.languages, ["English"]),
-      aiModel: row.aiModel ?? "databricks-claude-opus-4-7",
+      aiModel: row.aiModel ?? "databricks-claude-opus-5-5",
       estateScanEnabled: genOpts.estateScanEnabled,
       assetDiscoveryEnabled: genOpts.assetDiscoveryEnabled,
       fabricScanId: genOpts.fabricScanId,

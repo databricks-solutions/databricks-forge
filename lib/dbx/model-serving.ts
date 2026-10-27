@@ -138,6 +138,112 @@ function isEndpointNotFoundResponse(status: number, body: string): boolean {
   return false;
 }
 
+/**
+ * Detect whether an HTTP 400 response was triggered by an unsupported
+ * `temperature` parameter on a reasoning/hybrid model.
+ */
+function isUnsupportedTemperatureError(status: number, body: string): boolean {
+  if (status !== 400) return false;
+  return /\btemperature\b/i.test(body);
+}
+
+/**
+ * Detect whether an HTTP 403 response indicates the workspace has enabled
+ * "Enforce Unity Gateway" (which disables legacy `/serving-endpoints/databricks-*`).
+ */
+function isUnityGatewayEnforcedError(status: number, body: string): boolean {
+  if (status !== 403) return false;
+  return /use Unity Gateway|disabled for this workspace/i.test(body);
+}
+
+/**
+ * Resolve a configured endpoint name (e.g. `databricks-claude-opus-5-5`) to a
+ * three-part Unity Gateway model service name (e.g. `system.ai.claude-opus-5-5`).
+ */
+export function resolveUnityGatewayModelName(endpoint: string): string {
+  const trimmed = endpoint.trim();
+  if (trimmed.split(".").length === 3) {
+    return trimmed;
+  }
+  if (trimmed.toLowerCase() === "databricks-gemini-4-argon") {
+    return "system.ai.databricks-gemini-4-argon";
+  }
+  if (trimmed.toLowerCase().startsWith("databricks-")) {
+    return `system.ai.${trimmed.slice("databricks-".length)}`;
+  }
+  return `system.ai.${trimmed}`;
+}
+
+function shouldUseUnityGateway(endpoint: string): boolean {
+  const mode = (process.env.FORGE_AI_GATEWAY_MODE ?? "auto").trim().toLowerCase();
+  if (mode === "unity_gateway") return true;
+  if (mode === "serving_endpoints") return false;
+  return endpoint.trim().split(".").length === 3;
+}
+
+/**
+ * Build the wire URL and request payload for:
+ *   - Unity Gateway (`/ai-gateway/mlflow/v1/chat/completions` or `/responses`)
+ *   - Model Serving Chat Completions (`/serving-endpoints/{endpoint}/invocations`)
+ *   - Model Serving OpenAI Responses API (`/serving-endpoints/responses` for GPT-6.1 Sol / 6 Sol / 6 Luna)
+ */
+function buildWireRequest(
+  host: string,
+  options: ChatCompletionOptions,
+  caps: ReturnType<typeof getModelCapabilities>,
+  clampedMaxTokens: number,
+  stream: boolean,
+  forceUnityGateway = false,
+): { url: string; body: Record<string, unknown> } {
+  const apiStyle = caps.apiStyle ?? "chat_completions";
+  const useGateway = forceUnityGateway || shouldUseUnityGateway(options.endpoint);
+  const gatewayModel = resolveUnityGatewayModelName(options.endpoint);
+
+  if (apiStyle === "responses") {
+    const body: Record<string, unknown> = {
+      model: useGateway ? gatewayModel : options.endpoint,
+      input: options.messages.map((m) => ({ role: m.role, content: m.content })),
+      max_output_tokens: clampedMaxTokens,
+    };
+    if (stream) {
+      body.stream = true;
+    }
+    if (caps.supportsTemperature && options.temperature !== undefined) {
+      body.temperature = options.temperature;
+    }
+    if (options.responseFormat === "json_object" && supportsJsonResponseFormat(options.endpoint)) {
+      body.text = { format: { type: "json_object" } };
+    }
+    return {
+      url: useGateway
+        ? `${host}/ai-gateway/mlflow/v1/responses`
+        : `${host}/serving-endpoints/responses`,
+      body,
+    };
+  }
+
+  const body: Record<string, unknown> = {
+    ...(useGateway ? { model: gatewayModel } : {}),
+    messages: options.messages,
+    max_tokens: clampedMaxTokens,
+  };
+  if (stream) {
+    body.stream = true;
+  }
+  if (caps.supportsTemperature) {
+    body.temperature = options.temperature ?? 0.3;
+  }
+  if (options.responseFormat === "json_object" && supportsJsonResponseFormat(options.endpoint)) {
+    body.response_format = { type: "json_object" };
+  }
+  return {
+    url: useGateway
+      ? `${host}/ai-gateway/mlflow/v1/chat/completions`
+      : `${host}/serving-endpoints/${options.endpoint}/invocations`,
+    body,
+  };
+}
+
 // ---------------------------------------------------------------------------
 // Chat Completions (non-streaming)
 // ---------------------------------------------------------------------------
@@ -145,8 +251,8 @@ function isEndpointNotFoundResponse(status: number, body: string): boolean {
 /**
  * Send a chat completion request to a Databricks Model Serving endpoint.
  *
- * Uses the OpenAI-compatible `/serving-endpoints/{endpoint}/invocations`
- * path with the chat completions payload format.
+ * Uses `/serving-endpoints/{endpoint}/invocations` (Chat Completions) or
+ * `/serving-endpoints/responses` (Responses API for GPT-6.1 Sol / 6 Sol / 6 Luna).
  *
  * All calls pass through the global rate limiter to prevent 429 storms.
  */
@@ -154,18 +260,9 @@ export async function chatCompletion(
   options: ChatCompletionOptions,
 ): Promise<ChatCompletionResponse> {
   const { host } = getConfig();
-  const url = `${host}/serving-endpoints/${options.endpoint}/invocations`;
 
   const headers = await getAppHeaders();
   const caps = getModelCapabilities(options.endpoint);
-
-  const body: Record<string, unknown> = {
-    messages: options.messages,
-  };
-
-  if (caps.supportsTemperature) {
-    body.temperature = options.temperature ?? 0.3;
-  }
 
   const requestedMaxTokens = options.maxTokens ?? caps.defaultMaxTokens;
   const clamped = Math.min(requestedMaxTokens, caps.maxOutputTokens);
@@ -177,11 +274,13 @@ export async function chatCompletion(
       cap: caps.maxOutputTokens,
     });
   }
-  body.max_tokens = clamped;
+
+  const { url, body } = buildWireRequest(host, options, caps, clamped, false);
 
   logger.info("LLM call", {
     fn: "chatCompletion",
     endpoint: options.endpoint,
+    apiStyle: caps.apiStyle ?? "chat_completions",
     maxTokens: clamped,
     jsonMode: options.responseFormat === "json_object",
     supportsJson: caps.supportsJsonMode,
@@ -189,16 +288,12 @@ export async function chatCompletion(
     maxOutputTokens: caps.maxOutputTokens,
   });
 
-  if (options.responseFormat === "json_object" && supportsJsonResponseFormat(options.endpoint)) {
-    body.response_format = { type: "json_object" };
-  }
-
   const limiter = getPoolRateLimiter();
   await limiter.acquire(options.endpoint);
   const tracingActive = isMlflowTracingEnabled();
   const traceStart = tracingActive ? Date.now() : 0;
   try {
-    const resp = await fetchWithTimeout(
+    let resp = await fetchWithTimeout(
       url,
       {
         method: "POST",
@@ -208,6 +303,49 @@ export async function chatCompletion(
       LLM_TIMEOUT_MS,
       options.signal,
     );
+
+    if (!resp.ok) {
+      const errText = await resp.text();
+      if ("temperature" in body && isUnsupportedTemperatureError(resp.status, errText)) {
+        logger.warn(
+          "Endpoint rejected temperature parameter (400) — retrying without temperature",
+          {
+            endpoint: options.endpoint,
+          },
+        );
+        delete body.temperature;
+        resp = await fetchWithTimeout(
+          url,
+          {
+            method: "POST",
+            headers,
+            body: JSON.stringify(body),
+          },
+          LLM_TIMEOUT_MS,
+          options.signal,
+        );
+      } else if (
+        !shouldUseUnityGateway(options.endpoint) &&
+        isUnityGatewayEnforcedError(resp.status, errText)
+      ) {
+        logger.warn("Workspace enforces Unity Gateway (403) — retrying via /ai-gateway/mlflow/v1", {
+          endpoint: options.endpoint,
+        });
+        const gwReq = buildWireRequest(host, options, caps, clamped, false, true);
+        resp = await fetchWithTimeout(
+          gwReq.url,
+          {
+            method: "POST",
+            headers,
+            body: JSON.stringify(gwReq.body),
+          },
+          LLM_TIMEOUT_MS,
+          options.signal,
+        );
+      } else {
+        resp = new Response(errText, { status: resp.status, headers: resp.headers });
+      }
+    }
 
     if (!resp.ok) {
       const text = await resp.text();
@@ -306,19 +444,9 @@ export async function chatCompletionStream(
   onChunk?: StreamCallback,
 ): Promise<ChatCompletionResponse> {
   const { host } = getConfig();
-  const url = `${host}/serving-endpoints/${options.endpoint}/invocations`;
 
   const headers = await getAppHeaders();
   const caps = getModelCapabilities(options.endpoint);
-
-  const body: Record<string, unknown> = {
-    messages: options.messages,
-    stream: true,
-  };
-
-  if (caps.supportsTemperature) {
-    body.temperature = options.temperature ?? 0.3;
-  }
 
   const requestedMaxTokens = options.maxTokens ?? caps.defaultMaxTokens;
   const clamped = Math.min(requestedMaxTokens, caps.maxOutputTokens);
@@ -330,16 +458,13 @@ export async function chatCompletionStream(
       cap: caps.maxOutputTokens,
     });
   }
-  body.max_tokens = clamped;
 
-  if (options.responseFormat === "json_object" && supportsJsonResponseFormat(options.endpoint)) {
-    body.response_format = { type: "json_object" };
-  }
+  const { url, body } = buildWireRequest(host, options, caps, clamped, true);
 
   const limiter = getPoolRateLimiter();
   await limiter.acquire(options.endpoint);
   try {
-    const resp = await fetchWithTimeout(
+    let resp = await fetchWithTimeout(
       url,
       {
         method: "POST",
@@ -349,6 +474,48 @@ export async function chatCompletionStream(
       LLM_STREAM_TIMEOUT_MS,
       options.signal,
     );
+
+    if (!resp.ok) {
+      const errText = await resp.text();
+      if ("temperature" in body && isUnsupportedTemperatureError(resp.status, errText)) {
+        logger.warn(
+          "Endpoint rejected temperature parameter (400, stream) — retrying without temperature",
+          { endpoint: options.endpoint },
+        );
+        delete body.temperature;
+        resp = await fetchWithTimeout(
+          url,
+          {
+            method: "POST",
+            headers,
+            body: JSON.stringify(body),
+          },
+          LLM_STREAM_TIMEOUT_MS,
+          options.signal,
+        );
+      } else if (
+        !shouldUseUnityGateway(options.endpoint) &&
+        isUnityGatewayEnforcedError(resp.status, errText)
+      ) {
+        logger.warn(
+          "Workspace enforces Unity Gateway (403, stream) — retrying via /ai-gateway/mlflow/v1",
+          { endpoint: options.endpoint },
+        );
+        const gwReq = buildWireRequest(host, options, caps, clamped, true, true);
+        resp = await fetchWithTimeout(
+          gwReq.url,
+          {
+            method: "POST",
+            headers,
+            body: JSON.stringify(gwReq.body),
+          },
+          LLM_STREAM_TIMEOUT_MS,
+          options.signal,
+        );
+      } else {
+        resp = new Response(errText, { status: resp.status, headers: resp.headers });
+      }
+    }
 
     if (!resp.ok) {
       const text = await resp.text();
@@ -426,12 +593,57 @@ async function parseSSEStream(
             model = parsed.model;
           }
 
+          // Responses API SSE events (e.g. GPT-6.1 Sol, GPT-6 Sol, GPT-6 Luna)
+          if (parsed.type === "response.output_text.delta" && typeof parsed.delta === "string") {
+            content += parsed.delta;
+            onChunk?.(parsed.delta);
+          } else if (
+            (parsed.type === "response.completed" || parsed.type === "response.incomplete") &&
+            parsed.response &&
+            typeof parsed.response === "object"
+          ) {
+            const respObj = parsed.response as Record<string, unknown>;
+            if (typeof respObj.model === "string") model = respObj.model;
+            if (respObj.status === "incomplete") finishReason = "length";
+            else if (respObj.status === "completed") finishReason = "stop";
+            if (!content) {
+              const extracted = extractResponsesOutputText(respObj);
+              if (extracted) {
+                content += extracted;
+                onChunk?.(extracted);
+              }
+            }
+            if (respObj.usage && typeof respObj.usage === "object") {
+              usage = parseUsageObject(respObj.usage as Record<string, unknown>);
+            }
+          }
+
           const choice = parsed.choices?.[0];
           if (choice) {
-            const delta = choice.delta?.content;
-            if (delta) {
-              content += delta;
-              onChunk?.(delta);
+            const rawDelta = choice.delta?.content;
+            const deltaText =
+              typeof rawDelta === "string"
+                ? rawDelta
+                : Array.isArray(rawDelta)
+                  ? rawDelta
+                      .filter(
+                        (b: unknown) =>
+                          typeof b === "string" ||
+                          (b &&
+                            typeof b === "object" &&
+                            ((b as Record<string, unknown>).type === "text" ||
+                              (b as Record<string, unknown>).type === "output_text")),
+                      )
+                      .map((b: unknown) =>
+                        typeof b === "string"
+                          ? b
+                          : String((b as Record<string, unknown>).text ?? ""),
+                      )
+                      .join("")
+                  : "";
+            if (deltaText) {
+              content += deltaText;
+              onChunk?.(deltaText);
             }
             if (choice.finish_reason) {
               finishReason = choice.finish_reason;
@@ -439,12 +651,8 @@ async function parseSSEStream(
           }
 
           // Usage stats are sent in the final chunk
-          if (parsed.usage) {
-            usage = {
-              promptTokens: parsed.usage.prompt_tokens ?? 0,
-              completionTokens: parsed.usage.completion_tokens ?? 0,
-              totalTokens: parsed.usage.total_tokens ?? 0,
-            };
+          if (parsed.usage && typeof parsed.usage === "object") {
+            usage = parseUsageObject(parsed.usage as Record<string, unknown>);
           }
         } catch {
           // Skip malformed SSE data lines
@@ -475,9 +683,10 @@ export function extractContentText(raw: unknown): string {
   if (typeof raw === "string") return raw;
 
   if (Array.isArray(raw)) {
-    // Prefer explicit {type:"text"} blocks, skip reasoning blocks
+    // Prefer explicit {type:"text"} or {type:"output_text"} blocks, skip reasoning blocks
     const textBlocks = raw.filter(
-      (p: Record<string, unknown>) => p?.type === "text" || typeof p === "string",
+      (p: Record<string, unknown>) =>
+        p?.type === "text" || p?.type === "output_text" || typeof p === "string",
     );
     const joined = textBlocks
       .map((p: unknown) =>
@@ -498,27 +707,55 @@ export function extractContentText(raw: unknown): string {
   return raw != null ? String(raw) : "";
 }
 
+function parseUsageObject(rawUsage: Record<string, unknown>): TokenUsage {
+  const promptTokens = Number(rawUsage.prompt_tokens ?? rawUsage.input_tokens ?? 0) || 0;
+  const completionTokens = Number(rawUsage.completion_tokens ?? rawUsage.output_tokens ?? 0) || 0;
+  const totalTokens = Number(rawUsage.total_tokens ?? promptTokens + completionTokens) || 0;
+  return { promptTokens, completionTokens, totalTokens };
+}
+
+function extractResponsesOutputText(data: Record<string, unknown>): string {
+  if (typeof data.output_text === "string" && data.output_text) {
+    return data.output_text;
+  }
+  if (Array.isArray(data.output)) {
+    const parts: string[] = [];
+    for (const item of data.output as Array<Record<string, unknown>>) {
+      if (item?.type === "message" && Array.isArray(item.content)) {
+        const text = extractContentText(item.content);
+        if (text) parts.push(text);
+      } else if (item?.type === "output_text" && typeof item.text === "string") {
+        parts.push(item.text);
+      }
+    }
+    if (parts.length > 0) return parts.join("");
+  }
+  return "";
+}
+
 function parseCompletionResponse(data: Record<string, unknown>): ChatCompletionResponse {
-  const choices = data.choices as Array<{
-    message?: { content?: unknown };
-    finish_reason?: string;
-  }>;
-
-  const content = extractContentText(choices?.[0]?.message?.content);
-  const finishReason = choices?.[0]?.finish_reason ?? null;
-  const model = (data.model as string) ?? "";
-
-  const rawUsage = data.usage as
-    | { prompt_tokens?: number; completion_tokens?: number; total_tokens?: number }
+  const choices = data.choices as
+    | Array<{
+        message?: { content?: unknown };
+        finish_reason?: string;
+      }>
     | undefined;
 
-  const usage: TokenUsage | null = rawUsage
-    ? {
-        promptTokens: rawUsage.prompt_tokens ?? 0,
-        completionTokens: rawUsage.completion_tokens ?? 0,
-        totalTokens: rawUsage.total_tokens ?? 0,
-      }
-    : null;
+  const isResponsesPayload = !choices && (Array.isArray(data.output) || "output_text" in data);
+  const content = isResponsesPayload
+    ? extractResponsesOutputText(data)
+    : extractContentText(choices?.[0]?.message?.content);
+
+  let finishReason: string | null = choices?.[0]?.finish_reason ?? null;
+  if (isResponsesPayload && !finishReason) {
+    if (data.status === "incomplete") finishReason = "length";
+    else if (data.status === "completed") finishReason = "stop";
+  }
+
+  const model = (data.model as string) ?? "";
+
+  const rawUsage = data.usage as Record<string, unknown> | undefined;
+  const usage: TokenUsage | null = rawUsage ? parseUsageObject(rawUsage) : null;
 
   return { content, usage, model, finishReason };
 }

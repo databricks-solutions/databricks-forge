@@ -109,7 +109,7 @@ describe("CreateRunSchema", () => {
       businessName: "Acme",
       ucMetadata: "cat.schema",
     });
-    expect(result.aiModel).toBe("databricks-claude-opus-4-7");
+    expect(result.aiModel).toBe("databricks-claude-opus-5-5");
     expect(result.operation).toBe("Discover Usecases");
     expect(result.languages).toEqual(["English"]);
   });

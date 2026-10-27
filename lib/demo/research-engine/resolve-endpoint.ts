@@ -10,8 +10,17 @@ import { getModelPool } from "@/lib/dbx/model-registry";
 import { resolveEndpoint } from "@/lib/dbx/client";
 import type { TaskTier } from "@/lib/dbx/model-registry";
 
-const PREFERRED = "databricks-claude-opus-4-7";
-const FALLBACKS = ["databricks-claude-opus-4-6", "databricks-gpt-5-4"] as const;
+const PREFERRED = "databricks-claude-opus-5-5";
+const FALLBACKS = [
+  "databricks-claude-opus-5",
+  "databricks-claude-opus-4-8",
+  "databricks-claude-opus-4-7",
+  "databricks-claude-opus-4-6",
+  "databricks-gpt-6-1-sol",
+  "databricks-gpt-6-sol",
+  "databricks-gpt-6-1-terra",
+  "databricks-gpt-5-4",
+] as const;
 
 let _reasoningCached: string | null = null;
 
