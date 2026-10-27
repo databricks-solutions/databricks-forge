@@ -38,7 +38,7 @@ export const ENERGY_UTILITIES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "ΔIncidents_yrCost_incidentAdopt*Capture",
+    economicFormula: "ΔIncidents_yr * Cost_incident * Adopt% * Capture%",
     economicFormulaDescription:
       "ΔIncidents_yr=(Incidents_base−Incidents_new) per year from HSE/OSHA logs; Cost_incident=$/incident (medical+indemnity+lost time, exclude insurance premium changes); Adopt=% of work hours covered; Capture=% realized after process adoption.",
     economicPatternRationale:
@@ -73,7 +73,7 @@ export const ENERGY_UTILITIES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "ΔLost_assets_yrRepl_costAdopt*Capture",
+    economicFormula: "ΔLost_assets_yr * Repl_cost * Adopt% * Capture%",
     economicFormulaDescription:
       "ΔLost_assets_yr=(Units_lost_base−Units_lost_new) per year from CMMS/EAM + inventory write-offs; Repl_cost=$/unit replacement (incl. procurement+install, exclude depreciation); Adopt=% of installed base instrumented; Capture=% of actionable recoveries.",
     economicPatternRationale:
@@ -108,7 +108,7 @@ export const ENERGY_UTILITIES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Cost Takeout (Labor / Opex Reduction)",
     economicImpactCategory: "Cost",
-    economicFormula: "ΔUnplanned_Opex_yrAdoptCapture",
+    economicFormula: "ΔUnplanned_Opex_yr * Adopt% * Capture%",
     economicFormulaDescription:
       "ΔUnplanned_Opex_yr=(Unplanned_maint_cost_base−new) per year from work orders (labor+parts+contractor); Adopt=% critical assets covered; Capture=% of recommendations executed. Boundary: excludes revenue from avoided downtime (avoid double count with throughput cases).",
     economicPatternRationale:
@@ -142,7 +142,7 @@ export const ENERGY_UTILITIES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Capex Avoidance (Infrastructure / Tool Consolidation)",
     economicImpactCategory: "Cash / Working Capital",
-    economicFormula: "ΔAnnual_Capex_yrAdoptCapture",
+    economicFormula: "ΔAnnual_Capex_yr * Adopt% * Capture%",
     economicFormulaDescription:
       "ΔAnnual_Capex_yr=(Capex_plan_base−new) $/year from approved capital plan (deferrals/avoids); Adopt=% of asset classes using lifecycle model; Capture=% of recommendations approved. Boundary: excludes Opex savings (counted elsewhere).",
     economicPatternRationale:
@@ -173,7 +173,7 @@ export const ENERGY_UTILITIES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Revenue Uplift (Conversion / Attach / Cross-sell)",
     economicImpactCategory: "Revenue",
-    economicFormula: "ΔProd_boe_yrNetback_boeP_success*Adopt",
+    economicFormula: "ΔProd_boe_yr * Netback_boe * P_success * Adopt",
     economicFormulaDescription:
       "ΔProd_boe_yr=incremental produced boe per year vs base forecast; Netback_boe=$ contribution/boe (price−variable lifting−transport); P_success=probability uplift is realized (0–1, conservative); Adopt=% of assets using models.",
     economicPatternRationale:
@@ -206,7 +206,7 @@ export const ENERGY_UTILITIES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Revenue Uplift (Conversion / Attach / Cross-sell)",
     economicImpactCategory: "Revenue",
-    economicFormula: "ΔProd_boe_yrNetback_boeP_success*Adopt",
+    economicFormula: "ΔProd_boe_yr * Netback_boe * P_success * Adopt",
     economicFormulaDescription:
       "ΔProd_boe_yr=incremental annual production from improved development plan; Netback_boe=$/boe contribution; P_success=probability of achieving uplift; Adopt=% of wells/projects planned with AI. Boundary: excludes capex reductions (tracked under capex pattern if used).",
     economicPatternRationale:
@@ -238,7 +238,7 @@ export const ENERGY_UTILITIES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Cost Takeout (Labor / Opex Reduction)",
     economicImpactCategory: "Cost",
-    economicFormula: "ΔRig_days_yrCost_per_rig_dayAdopt*Capture",
+    economicFormula: "ΔRig_days_yr * Cost_per_rig_day * Adopt% * Capture%",
     economicFormulaDescription:
       "ΔRig_days_yr=(Rig_days_base−new) per year from daily reports; Cost_per_rig_day=$/day all-in (rig+services, exclude capex); Adopt=% wells using optimization; Capture=% of actionable recommendations implemented.",
     economicPatternRationale:
@@ -270,7 +270,7 @@ export const ENERGY_UTILITIES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Revenue Uplift (Conversion / Attach / Cross-sell)",
     economicImpactCategory: "Revenue",
-    economicFormula: "ΔThroughput_yrMargin_per_unitAdopt*Capture",
+    economicFormula: "ΔThroughput_yr * Margin_per_unit * Adopt% * Capture%",
     economicFormulaDescription:
       "ΔThroughput_yr=(Units_out_new−base) per year (boe, MMCF, bbl, tonnes, etc.) from historian/SCADA; Margin_per_unit=$ variable contribution; Adopt=% of controlled assets; Capture=% achieved vs recommended. Boundary: excludes maintenance cost savings.",
     economicPatternRationale:
@@ -303,7 +303,7 @@ export const ENERGY_UTILITIES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "High",
     economicPatternName: "Risk Avoidance (Compliance / Penalties / Outage Impact)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "ΔFindings_yrCost_per_findingAdopt*Capture",
+    economicFormula: "ΔFindings_yr * Cost_per_finding * Adopt% * Capture%",
     economicFormulaDescription:
       "ΔFindings_yr=(Compliance_findings_base−new) per year from regulator/internal audits; Cost_per_finding=$ (rework+delay+legal/consulting, exclude catastrophic events); Adopt=% of P&A jobs using system; Capture=% of issues prevented.",
     economicPatternRationale:
@@ -335,7 +335,7 @@ export const ENERGY_UTILITIES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Risk Avoidance (Compliance / Penalties / Outage Impact)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "ΔLeak_events_yrCost_per_leakAdopt*Capture",
+    economicFormula: "ΔLeak_events_yr * Cost_per_leak * Adopt% * Capture%",
     economicFormulaDescription:
       "ΔLeak_events_yr=(Leak_events_base−new) per year from MMV/incident records; Cost_per_leak=$ (remediation+penalties+monitoring escalation, exclude reputational impacts); Adopt=% of sites covered; Capture=% of detected issues mitigated in time.",
     economicPatternRationale:
@@ -367,7 +367,7 @@ export const ENERGY_UTILITIES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Cost Takeout (Labor / Opex Reduction)",
     economicImpactCategory: "Cost",
-    economicFormula: "ΔkWh_yrElec_priceAdopt*Capture",
+    economicFormula: "Δk * Wh_yr * Elec_price * Adopt% * Capture%",
     economicFormulaDescription:
       "ΔkWh_yr=(kWh_base−new) per year from meters/SCADA; Elec_price=$/kWh blended variable rate; Adopt=% of production volume under control; Capture=% of recommended efficiency gains realized. Boundary: excludes hydrogen price uplift.",
     economicPatternRationale:
@@ -399,7 +399,7 @@ export const ENERGY_UTILITIES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
     economicImpactCategory: "Productivity / Capacity",
-    economicFormula: "Eng_hours_saved_yrLoaded_rateAdopt*Capture",
+    economicFormula: "Eng_hours_saved_yr * Loaded_rate * Adopt% * Capture%",
     economicFormulaDescription:
       "Eng_hours_saved_yr=annual engineering hours avoided vs baseline from PLM/time tracking; Loaded_rate=$/hour fully burdened; Adopt=% of design teams using tools; Capture=% realized (capacity redeployed or cost avoided). Assumption: count only hours tied to reduced external spend or backfill.",
     economicPatternRationale:
@@ -430,7 +430,7 @@ export const ENERGY_UTILITIES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Revenue Uplift (Conversion / Attach / Cross-sell)",
     economicImpactCategory: "Revenue",
-    economicFormula: "ΔMWh_yrMargin_per_MWhAdopt*Capture",
+    economicFormula: "ΔMWh_yr * Margin_per_MWh * Adopt% * Capture%",
     economicFormulaDescription:
       "ΔMWh_yr=(MWh_new−base) per year from revenue meter; Margin_per_MWh=$ contribution (PPA/price−variable O&M/curtailment costs); Adopt=% capacity under optimization; Capture=% realized vs forecast.",
     economicPatternRationale:
@@ -461,7 +461,7 @@ export const ENERGY_UTILITIES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Cost Takeout (Labor / Opex Reduction)",
     economicImpactCategory: "Cost",
-    economicFormula: "KgH2_yrΔkWh_per_kgElec_price*Adopt",
+    economicFormula: "Kg * H2_yr * Δk * Wh_per_kg * Elec_price * Adopt",
     economicFormulaDescription:
       "KgH2_yr=annual hydrogen output; ΔkWh_per_kg=(kWh/kg_base−new); Elec_price=$/kWh; Adopt=% of electrolyzers under control. Boundary: excludes capex-life extension unless separately quantified.",
     economicPatternRationale:
@@ -494,7 +494,7 @@ export const ENERGY_UTILITIES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Risk Avoidance (Compliance / Penalties / Outage Impact)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "ΔSafety_events_yrCost_per_eventAdopt*Capture",
+    economicFormula: "ΔSafety_events_yr * Cost_per_event * Adopt% * Capture%",
     economicFormulaDescription:
       "ΔSafety_events_yr=(Events_base−new) per year from NRC/INPO/internal logs; Cost_per_event=$ (investigation+repair+replacement power+penalties if applicable); Adopt=% systems monitored; Capture=% of actionable alerts acted upon.",
     economicPatternRationale:
@@ -527,7 +527,7 @@ export const ENERGY_UTILITIES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Capex Avoidance (Infrastructure / Tool Consolidation)",
     economicImpactCategory: "Cash / Working Capital",
-    economicFormula: "ΔAnnual_Capex_yrAdoptCapture",
+    economicFormula: "ΔAnnual_Capex_yr * Adopt% * Capture%",
     economicFormulaDescription:
       "ΔAnnual_Capex_yr=(Capex_base−new) $/year from asset replacement plan; Adopt=% asset categories using EOL model; Capture=% of recommended timing changes approved. Boundary: excludes Opex/insurance impacts.",
     economicPatternRationale:
@@ -560,7 +560,7 @@ export const ENERGY_UTILITIES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Cost Takeout (Labor / Opex Reduction)",
     economicImpactCategory: "Cost",
-    economicFormula: "ΔPeak_MWCap_cost_per_MWyrAdopt*Capture",
+    economicFormula: "ΔPeak_MWCap_cost_per_MWyr * Adopt% * Capture%",
     economicFormulaDescription:
       "ΔPeak_MW=(Peak_MW_base−new) annual coincident peak reduction from AMI/SCADA; Cap_cost_per_MWyr=$/MW-year capacity or demand charge; Adopt=% customers/feeders covered; Capture=% sustained during peak windows. Boundary: exclude energy-loss MWh unless separately tracked.",
     economicPatternRationale:
@@ -592,7 +592,7 @@ export const ENERGY_UTILITIES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Risk Avoidance (Compliance / Penalties / Outage Impact)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "ΔIgnitions_yrCost_per_ignitionAdopt*Capture",
+    economicFormula: "ΔIgnitions_yr * Cost_per_ignition * Adopt% * Capture%",
     economicFormulaDescription:
       "ΔIgnitions_yr=(Ignitions_base−new) per year attributed to utility assets; Cost_per_ignition=$ (claims+repairs+legal+penalties+restoration, exclude reputational); Adopt=% high-risk circuits covered; Capture=% mitigation actions completed.",
     economicPatternRationale:
@@ -625,7 +625,7 @@ export const ENERGY_UTILITIES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Capex Avoidance (Infrastructure / Tool Consolidation)",
     economicImpactCategory: "Cash / Working Capital",
-    economicFormula: "ΔPlanned_Capex_yrAdoptCapture",
+    economicFormula: "ΔPlanned_Capex_yr * Adopt% * Capture%",
     economicFormulaDescription:
       "ΔPlanned_Capex_yr=(Capex_plan_base−new) $/year from T&D plan; Adopt=% planning regions using simulation; Capture=% of plan changes approved. Assumption: count only deferrals/avoids with approved plan revision.",
     economicPatternRationale:
@@ -657,7 +657,7 @@ export const ENERGY_UTILITIES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Cost Takeout (Labor / Opex Reduction)",
     economicImpactCategory: "Cost",
-    economicFormula: "ΔImbalance_cost_yrAdoptCapture",
+    economicFormula: "ΔImbalance_cost_yr * Adopt% * Capture%",
     economicFormulaDescription:
       "ΔImbalance_cost_yr=(Imbalance+fuel+uplift_cost_base−new) per year from market settlement and fuel records; Adopt=% portfolio under optimizer; Capture=% realized vs recommended actions. Boundary: excludes long-term price effects.",
     economicPatternRationale:
@@ -690,7 +690,7 @@ export const ENERGY_UTILITIES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
     economicImpactCategory: "Productivity / Capacity",
-    economicFormula: "ΔOvertime_hours_yrOT_premium_per_hrAdopt*Capture",
+    economicFormula: "ΔOvertime_hours_yr * OT_premium_per_hr * Adopt% * Capture%",
     economicFormulaDescription:
       "ΔOvertime_hours_yr=(OT_hours_base−new) per year from payroll/WFM; OT_premium_per_hr=$ incremental over straight-time; Adopt=% work orders scheduled via optimizer; Capture=% of schedule adhered. Boundary: excludes productivity gains already counted elsewhere.",
     economicPatternRationale:
@@ -721,7 +721,7 @@ export const ENERGY_UTILITIES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Cost Takeout (Labor / Opex Reduction)",
     economicImpactCategory: "Cost",
-    economicFormula: "ΔRepeat_visits_yrCost_per_visitAdopt*Capture",
+    economicFormula: "ΔRepeat_visits_yr * Cost_per_visit * Adopt% * Capture%",
     economicFormulaDescription:
       "ΔRepeat_visits_yr=(Repeat_visits_base−new) per year from work orders; Cost_per_visit=$ (labor+truck+fuel+dispatch, exclude parts); Adopt=% jobs using guidance; Capture=% of avoided repeats realized.",
     economicPatternRationale:
@@ -752,7 +752,7 @@ export const ENERGY_UTILITIES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "High",
     economicPatternName: "Working Capital Improvement (Inventory / AR / AP Efficiency)",
     economicImpactCategory: "Cash / Working Capital",
-    economicFormula: "ΔAvg_inv_$Carry_rateAdopt*Capture",
+    economicFormula: "ΔAvg_inv_$ * Carry_rate * Adopt% * Capture%",
     economicFormulaDescription:
       "ΔAvg_inv_$=(Avg_inventory_base−new) $ average on-hand from ERP/EAM; Carry_rate=annual carrying % (capital+storage+obsolescence); Adopt=% SKUs/locations optimized; Capture=% achieved after policy changes. Boundary: excludes outage avoidance unless quantified separately.",
     economicPatternRationale:
@@ -783,7 +783,7 @@ export const ENERGY_UTILITIES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Cost Takeout (Labor / Opex Reduction)",
     economicImpactCategory: "Cost",
-    economicFormula: "ΔMiles_yrCost_per_mileAdopt*Capture",
+    economicFormula: "ΔMiles_yr * Cost_per_mile * Adopt% * Capture%",
     economicFormulaDescription:
       "ΔMiles_yr=(Miles_base−new) per year from telematics; Cost_per_mile=$ variable vehicle cost (fuel+maint, optionally labor if included elsewhere—choose one); Adopt=% routes optimized; Capture=% adherence to routes.",
     economicPatternRationale:
@@ -816,7 +816,7 @@ export const ENERGY_UTILITIES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Cost Takeout (Labor / Opex Reduction)",
     economicImpactCategory: "Cost",
-    economicFormula: "Reporting_hours_saved_yrLoaded_rateAdopt*Capture",
+    economicFormula: "Reporting_hours_saved_yr * Loaded_rate * Adopt% * Capture%",
     economicFormulaDescription:
       "Reporting_hours_saved_yr=annual hours avoided in data collection/consolidation/audit prep; Loaded_rate=$/hr (internal+external contractors if tracked); Adopt=% reporting entities covered; Capture=% realized. Boundary: excludes avoided penalties (track separately if applicable).",
     economicPatternRationale:
@@ -849,7 +849,7 @@ export const ENERGY_UTILITIES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Risk Avoidance (Compliance / Penalties / Outage Impact)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "ΔNoncomp_events_yrCost_per_eventAdopt*Capture",
+    economicFormula: "ΔNoncomp_events_yr * Cost_per_event * Adopt% * Capture%",
     economicFormulaDescription:
       "ΔNoncomp_events_yr=(Events_base−new) per year from compliance system/audits; Cost_per_event=$ (penalties+remediation+consulting, exclude catastrophic); Adopt=% obligations in tool; Capture=% control execution.",
     economicPatternRationale:
@@ -880,7 +880,7 @@ export const ENERGY_UTILITIES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Cost Takeout (Labor / Opex Reduction)",
     economicImpactCategory: "Cost",
-    economicFormula: "Filing_hours_saved_yrLoaded_rateAdopt*Capture",
+    economicFormula: "Filing_hours_saved_yr * Loaded_rate * Adopt% * Capture%",
     economicFormulaDescription:
       "Filing_hours_saved_yr=annual drafting/review hours avoided from legal/regulatory trackers; Loaded_rate=$/hr (include outside counsel if measured); Adopt=% filings using automation; Capture=% realized. Boundary: excludes approval-driven delays.",
     economicPatternRationale:
@@ -911,7 +911,7 @@ export const ENERGY_UTILITIES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Price Realization (Yield / Rate Optimization)",
     economicImpactCategory: "Cost",
-    economicFormula: "Addressable_spend_yr*ΔPrice_%AdoptCapture",
+    economicFormula: "Addressable_spend_yr * ΔPrice_% * Adopt% * Capture%",
     economicFormulaDescription:
       "Addressable_spend_yr=$/year spend in targeted categories from ERP; ΔPrice_%=(Price_base−new)/Price_base; Adopt=% spend routed through optimizer; Capture=% savings realized in contracts/invoices. Boundary: exclude inventory carrying benefits (tracked under WC).",
     economicPatternRationale:
@@ -943,7 +943,7 @@ export const ENERGY_UTILITIES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
     economicImpactCategory: "Productivity / Capacity",
-    economicFormula: "Backoffice_hours_saved_yrLoaded_rateAdopt*Capture",
+    economicFormula: "Backoffice_hours_saved_yr * Loaded_rate * Adopt% * Capture%",
     economicFormulaDescription:
       "Backoffice_hours_saved_yr=annual time avoided on tickets, reconciliations, drafting, reporting from workflow tools; Loaded_rate=$/hr fully burdened; Adopt=% users/processes using copilots; Capture=% realized (cost avoided or capacity redeployed).",
     economicPatternRationale:
@@ -975,7 +975,7 @@ export const ENERGY_UTILITIES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "ΔSettlement_loss_yrAdoptCapture",
+    economicFormula: "ΔSettlement_loss_yr * Adopt% * Capture%",
     economicFormulaDescription:
       "ΔSettlement_loss_yr=(Imbalance+hedge_slippage+forecast_error_cost_base−new) per year from settlements/risk P&L; Adopt=% volume using signals; Capture=% adherence to recommended actions. Boundary: exclude long-horizon strategy gains.",
     economicPatternRationale:
@@ -1005,7 +1005,7 @@ export const ENERGY_UTILITIES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "High",
     economicPatternName: "Working Capital Improvement (Inventory / AR / AP Efficiency)",
     economicImpactCategory: "Cash / Working Capital",
-    economicFormula: "(Credit_rev_yr/365)ΔDSO_daysAdopt*Capture",
+    economicFormula: "(Credit_rev_yr/365) * ΔDSO_days * Adopt% * Capture%",
     economicFormulaDescription:
       "Credit_rev_yr=$/year credit sales from GL; ΔDSO_days=(DSO_base−new) from AR aging; Adopt=% invoices/contracts on workflow; Capture=% realized (net of policy effects). Boundary: excludes bad-debt reduction unless separately measured.",
     economicPatternRationale:
@@ -1038,7 +1038,7 @@ export const ENERGY_UTILITIES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Cost Takeout (Labor / Opex Reduction)",
     economicImpactCategory: "Cost",
-    economicFormula: "ΔData_Opex_yrAdoptCapture",
+    economicFormula: "ΔData_Opex_yr * Adopt% * Capture%",
     economicFormulaDescription:
       "ΔData_Opex_yr=(Data_integration+license_admin_cost_base−new) $/year from IT/finance; Adopt=% data feeds through platform; Capture=% realized after decommissioning duplicates. Assumption: count only costs from systems actually retired.",
     economicPatternRationale:
@@ -1068,7 +1068,7 @@ export const ENERGY_UTILITIES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "Contract_value_yr*ΔLeakage_%AdoptCapture",
+    economicFormula: "Contract_value_yr * ΔLeakage_% * Adopt% * Capture%",
     economicFormulaDescription:
       "Contract_value_yr=$/year value of managed contracts (revenue or spend) from CLM; ΔLeakage_%=reduction in measured leakage (missed escalators, discounts, noncompliance); Adopt=% contracts analyzed; Capture=% enforced in executed terms/invoicing.",
     economicPatternRationale:
@@ -1099,7 +1099,7 @@ export const ENERGY_UTILITIES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Churn Reduction (Retention / LTV Protection)",
     economicImpactCategory: "Revenue",
-    economicFormula: "Cust_baseΔChurn_%GM_per_cust_yrAdoptCapture",
+    economicFormula: "Cust_base * ΔChurn_% * GM_per_cust_yr * Adopt% * Capture%",
     economicFormulaDescription:
       "Cust_base=# customers in scope; ΔChurn_%=(Churn_base−new) annual; GM_per_cust_yr=$ gross margin per retained customer per year; Adopt=% segments using 360 insights; Capture=% of retention actions executed. Boundary: excludes billing error recoveries (track separately if chosen).",
     economicPatternRationale:
@@ -1128,7 +1128,7 @@ export const ENERGY_UTILITIES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
     economicImpactCategory: "Productivity / Capacity",
-    economicFormula: "(Deflected_contacts_yr*Cost_per_contact)AdoptCapture",
+    economicFormula: "(Deflected_contacts_yr * Cost_per_contact) * Adopt% * Capture%",
     economicFormulaDescription:
       "Deflected_contacts_yr=# contacts avoided per year from CCaaS; Cost_per_contact=$ fully loaded per call/chat; Adopt=% customers/queues enabled; Capture=% sustained (quality/containment). Boundary: excludes retention uplift unless separately measured.",
     economicPatternRationale:
@@ -1160,7 +1160,7 @@ export const ENERGY_UTILITIES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Risk Avoidance (Compliance / Penalties / Outage Impact)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "ΔPrivacy_incidents_yrCost_per_incidentAdopt*Capture",
+    economicFormula: "ΔPrivacy_incidents_yr * Cost_per_incident * Adopt% * Capture%",
     economicFormulaDescription:
       "ΔPrivacy_incidents_yr=(Incidents_base−new) per year from security/privacy logs; Cost_per_incident=$ (forensics+notification+fines+legal, exclude brand); Adopt=% data domains covered; Capture=% control effectiveness.",
     economicPatternRationale:
@@ -1191,7 +1191,7 @@ export const ENERGY_UTILITIES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "High",
     economicPatternName: "Risk Avoidance (Compliance / Penalties / Outage Impact)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "ΔOT_incidents_yrCost_per_incidentAdopt*Capture",
+    economicFormula: "ΔOT_incidents_yr * Cost_per_incident * Adopt% * Capture%",
     economicFormulaDescription:
       "ΔOT_incidents_yr=(OT_security_events_base−new) per year from SOC/OT monitoring; Cost_per_incident=$ (outage cost+recovery+replacement power+investigation); Adopt=% OT assets monitored; Capture=% mitigations applied.",
     economicPatternRationale:

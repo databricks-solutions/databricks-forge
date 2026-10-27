@@ -36,7 +36,7 @@ export const LIFE_SCIENCES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
     economicImpactCategory: "Productivity / Capacity",
-    economicFormula: "N_prog/yrΔhrs_prog$hr*Adopt%*Capture%",
+    economicFormula: "N_prog/yr * Δhrs_prog$hr * Adopt% * Capture%",
     economicFormulaDescription:
       "N_prog/yr = discovery programs/year using target selection (portfolio/R&D tracker); Δhrs_prog = scientist hours avoided per program vs baseline target review (time study); $hr = fully loaded scientist $/hour (HR/FP&A); Adopt% = % programs using the AI workflow; Capture% = % of theoretical time savings realized net of rework/QA.",
     economicPatternRationale:
@@ -69,7 +69,7 @@ export const LIFE_SCIENCES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Cost Takeout (Labor / Opex Reduction)",
     economicImpactCategory: "Cost",
-    economicFormula: "N_tests/yrAvoid%$test*Adopt%*Capture%",
+    economicFormula: "N_tests/yr * Avoid%$test * Adopt% * Capture%",
     economicFormulaDescription:
       "N_tests/yr = assay/tox tests run per year for screened compounds (LIMS/finance); Avoid% = % tests avoided due to reliable in-silico triage vs baseline; $test = average fully loaded $ per test (lab cost accounting/vendor invoices); Adopt% = % of programs applying QSAR gating; Capture% = % of avoided tests not replaced by other work.",
     economicPatternRationale:
@@ -103,7 +103,7 @@ export const LIFE_SCIENCES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Cost Takeout (Labor / Opex Reduction)",
     economicImpactCategory: "Cost",
-    economicFormula: "N_exp/yrAvoid%$exp*Adopt%*Capture%",
+    economicFormula: "N_exp/yr * Avoid%$exp * Adopt% * Capture%",
     economicFormulaDescription:
       "N_exp/yr = wet-lab experiments/year in scope (ELN/LIMS); Avoid% = % experiments avoided or consolidated due to better prioritization; $exp = average fully loaded $ per experiment (reagents + labor + core fees); Adopt% = % projects using embeddings for prioritization; Capture% = % of avoided work not reintroduced elsewhere.",
     economicPatternRationale:
@@ -133,7 +133,7 @@ export const LIFE_SCIENCES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
     economicImpactCategory: "Productivity / Capacity",
-    economicFormula: "N_cases/yrΔmin_case/60$hr*Adopt%*Capture%",
+    economicFormula: "N_cases/yr * Δmin_case/60$hr * Adopt% * Capture%",
     economicFormulaDescription:
       "N_cases/yr = pathology cases/year processed (LIS); Δmin_case = minutes of pathologist/technician time saved per case vs baseline (time study); $hr = loaded clinical labor $/hour; Adopt% = % cases using AI-assisted workflow; Capture% = realized time freed (net of confirmation reads).",
     economicPatternRationale:
@@ -163,7 +163,7 @@ export const LIFE_SCIENCES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Waste Reduction (Spoilage / Returns / Write-downs)",
     economicImpactCategory: "Cost",
-    economicFormula: "N_runs/yrΔfail%$rerun*Adopt%*Capture%",
+    economicFormula: "N_runs/yr * Δfail%$rerun * Adopt% * Capture%",
     economicFormulaDescription:
       "N_runs/yr = chromatography runs/year (CDS/LIMS); Δfail% = reduction in failed/out-of-spec runs vs baseline; $rerun = average cost per rerun (instrument time + labor + consumables); Adopt% = % methods/instruments monitored by AI; Capture% = % failures truly avoided (not deferred).",
     economicPatternRationale:
@@ -196,7 +196,7 @@ export const LIFE_SCIENCES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "High",
     economicPatternName: "Cost Takeout (Labor / Opex Reduction)",
     economicImpactCategory: "Cost",
-    economicFormula: "N_amend/yrΔamend%$amend*Adopt%*Capture%",
+    economicFormula: "N_amend/yr * Δamend%$amend * Adopt% * Capture%",
     economicFormulaDescription:
       "N_amend/yr = protocol amendments/year (CTMS/clinical ops); Δamend% = % reduction in amendments vs baseline for in-scope trials; $amend = average fully loaded cost per amendment (ops + vendors + sites) from trial budgets; Adopt% = % trials using AI protocol support; Capture% = % of prevented amendments not replaced by other scope.",
     economicPatternRationale:
@@ -227,7 +227,7 @@ export const LIFE_SCIENCES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
     economicImpactCategory: "Productivity / Capacity",
-    economicFormula: "N_trials/yrΔmo_enroll$burn_mo*Adopt%*Capture%",
+    economicFormula: "N_trials/yr * Δmo_enroll$burn_mo * Adopt% * Capture%",
     economicFormulaDescription:
       "N_trials/yr = trials/year in scope (portfolio/CTMS); Δmo_enroll = months of enrollment duration reduced vs baseline; $burn_mo = monthly trial operating burn (CRO + internal clinical ops) from budgets; Adopt% = % trials using AI site ranking; Capture% = % of planned acceleration realized (net of delays elsewhere).",
     economicPatternRationale:
@@ -260,7 +260,7 @@ export const LIFE_SCIENCES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
     economicImpactCategory: "Productivity / Capacity",
-    economicFormula: "N_prog/yrΔhrs_prog$hr*Adopt%*Capture%",
+    economicFormula: "N_prog/yr * Δhrs_prog$hr * Adopt% * Capture%",
     economicFormulaDescription:
       "N_prog/yr = repurposing assessments/year (R&D planning); Δhrs_prog = hours avoided per assessment (literature + target/indication triage); $hr = loaded translational/clinical scientist $/hour; Adopt% = % assessments using AI workflows; Capture% = % savings net of validation work.",
     economicPatternRationale:
@@ -291,7 +291,7 @@ export const LIFE_SCIENCES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Cost Takeout (Labor / Opex Reduction)",
     economicImpactCategory: "Cost",
-    economicFormula: "N_queries/yrΔmin_q/60$hr*Adopt%*Capture%",
+    economicFormula: "N_queries/yr * Δmin_q/60$hr * Adopt% * Capture%",
     economicFormulaDescription:
       "N_queries/yr = data queries/year (EDC/CTMS); Δmin_q = minutes avoided per query (triage, drafting, follow-up) vs baseline; $hr = loaded data management $/hour; Adopt% = % studies using automated QA; Capture% = % time savings realized (net of false positives).",
     economicPatternRationale:
@@ -323,7 +323,7 @@ export const LIFE_SCIENCES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Capex Avoidance (Infrastructure / Tool Consolidation)",
     economicImpactCategory: "Cost",
-    economicFormula: "N_sys_offRun$/sys/yrAdopt%*Capture%",
+    economicFormula: "N_sys_off * Run$/sys/yr * Adopt% * Capture%",
     economicFormulaDescription:
       "N_sys_off = number of legacy marts/tools decommissioned (IT app portfolio); Run$/sys/yr = annual run-rate per system (licenses + infra + support); Adopt% = % of analytics migrated to OMOP platform; Capture% = % of run-rate actually eliminable (contract/people constraints).",
     economicPatternRationale:
@@ -355,7 +355,7 @@ export const LIFE_SCIENCES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
     economicImpactCategory: "Productivity / Capacity",
-    economicFormula: "N_usersΔhrs_user/yr$hr*Adopt%*Capture%",
+    economicFormula: "N_users * Δhrs_user/yr$hr * Adopt% * Capture%",
     economicFormulaDescription:
       "N_users = R&D users in scope (IAM/HR); Δhrs_user/yr = hours saved per user per year finding/connecting entities vs baseline; $hr = loaded scientist $/hour; Adopt% = % users actively using the graph; Capture% = realized time freed net of learning/curation overhead.",
     economicPatternRationale:
@@ -385,7 +385,7 @@ export const LIFE_SCIENCES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Cost Takeout (Labor / Opex Reduction)",
     economicImpactCategory: "Cost",
-    economicFormula: "N_imgs/yrΔmin_img/60$hr*Adopt%*Capture%",
+    economicFormula: "N_imgs/yr * Δmin_img/60$hr * Adopt% * Capture%",
     economicFormulaDescription:
       "N_imgs/yr = DICOM images/studies processed per year (PACS/VNA); Δmin_img = minutes of manual processing/de-ID avoided per image/study; $hr = loaded imaging ops/IT $/hour; Adopt% = % images through automated pipeline; Capture% = % labor actually reduced (vs shifted).",
     economicPatternRationale:
@@ -416,7 +416,7 @@ export const LIFE_SCIENCES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
     economicImpactCategory: "Productivity / Capacity",
-    economicFormula: "N_datasets/yrΔhrs_ds$hr*Adopt%*Capture%",
+    economicFormula: "N_datasets/yr * Δhrs_ds$hr * Adopt% * Capture%",
     economicFormulaDescription:
       "N_datasets/yr = omics datasets onboarded/year (data catalog/LIMS); Δhrs_ds = hours avoided per dataset in QC, harmonization, and provisioning vs baseline; $hr = loaded bioinformatics/data eng $/hour; Adopt% = % datasets using standard pipeline; Capture% = % savings net of exceptions.",
     economicPatternRationale:
@@ -447,7 +447,7 @@ export const LIFE_SCIENCES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
     economicImpactCategory: "Productivity / Capacity",
-    economicFormula: "N_usersΔhrs_user/yr$hr*Adopt%*Capture%",
+    economicFormula: "N_users * Δhrs_user/yr$hr * Adopt% * Capture%",
     economicFormulaDescription:
       "N_users = eligible knowledge workers (R&D/clinical/medical); Δhrs_user/yr = hours saved per user per year on search/summarize tasks (survey/time study); $hr = loaded labor $/hour; Adopt% = % active weekly users; Capture% = % of saved time redirected to productive work.",
     economicPatternRationale:
@@ -477,7 +477,7 @@ export const LIFE_SCIENCES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "High",
     economicPatternName: "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
     economicImpactCategory: "Productivity / Capacity",
-    economicFormula: "N_search/yrΔmin_search/60$hr*Adopt%*Capture%",
+    economicFormula: "N_search/yr * Δmin_search/60$hr * Adopt% * Capture%",
     economicFormulaDescription:
       "N_search/yr = biomedical searches/year (search logs); Δmin_search = minutes saved per search vs baseline tools; $hr = loaded user $/hour; Adopt% = % searches routed through semantic retrieval; Capture% = % savings net of follow-up verification.",
     economicPatternRationale:
@@ -509,7 +509,7 @@ export const LIFE_SCIENCES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Cost Takeout (Labor / Opex Reduction)",
     economicImpactCategory: "Cost",
-    economicFormula: "N_reports/yrΔhrs_rep$hr*Adopt%*Capture%",
+    economicFormula: "N_reports/yr * Δhrs_rep$hr * Adopt% * Capture%",
     economicFormulaDescription:
       "N_reports/yr = recurring reports/year (BI ops/ops calendar); Δhrs_rep = analyst hours avoided per report vs baseline; $hr = loaded analyst $/hour; Adopt% = % reports automated; Capture% = % manual effort actually eliminated (net of QA).",
     economicPatternRationale:
@@ -540,7 +540,7 @@ export const LIFE_SCIENCES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Working Capital Improvement (Inventory / AR / AP Efficiency)",
     economicImpactCategory: "Cash / Working Capital",
-    economicFormula: "AvgInv$*ΔInv%*Adopt%*Capture%",
+    economicFormula: "Avg * Inv$ * ΔInv% * Adopt% * Capture%",
     economicFormulaDescription:
       "AvgInv$ = average on-hand inventory value (ERP); ΔInv% = % reduction in average inventory vs baseline without service degradation (policy-defined); Adopt% = % SKUs/locations under optimized parameters; Capture% = % of reduction sustained (net of safety stock constraints).",
     economicPatternRationale:
@@ -571,7 +571,7 @@ export const LIFE_SCIENCES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Revenue Uplift (Conversion / Attach / Cross-sell)",
     economicImpactCategory: "Revenue",
-    economicFormula: "Units/yr*ΔFill%CM$/unitAdopt%*Capture%",
+    economicFormula: "Units/yr * ΔFill% * CM$/unit * Adopt% * Capture%",
     economicFormulaDescription:
       "Units/yr = baseline demand units/year (order history); ΔFill% = improvement in fill-rate/availability vs baseline; CM$/unit = contribution margin per unit sold (FP&A); Adopt% = % demand covered by improved forecast process; Capture% = % of availability improvement converting to shipped sales.",
     economicPatternRationale:
@@ -602,7 +602,7 @@ export const LIFE_SCIENCES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Cost Takeout (Labor / Opex Reduction)",
     economicImpactCategory: "Cost",
-    economicFormula: "N_ship/yrΔ$shipAdopt%*Capture%",
+    economicFormula: "N_ship/yr * Δ$ship * Adopt% * Capture%",
     economicFormulaDescription:
       "N_ship/yr = shipments/year (TMS/ERP); Δ$ship = average logistics cost reduction per shipment (freight + handling) vs baseline; Adopt% = % lanes/regions optimized; Capture% = % of modeled savings realized (carrier constraints).",
     economicPatternRationale:
@@ -633,7 +633,7 @@ export const LIFE_SCIENCES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Waste Reduction (Spoilage / Returns / Write-downs)",
     economicImpactCategory: "Cost",
-    economicFormula: "N_batches/yrΔscrap%$batch*Adopt%*Capture%",
+    economicFormula: "N_batches/yr * Δscrap%$batch * Adopt% * Capture%",
     economicFormulaDescription:
       "N_batches/yr = batches/year in scope (MES); Δscrap% = reduction in scrap/reject rate vs baseline; $batch = average variable cost per batch at risk (COGS model); Adopt% = % lines/processes with digital twin usage; Capture% = % scrap reduction sustained post-deployment.",
     economicPatternRationale:
@@ -663,7 +663,7 @@ export const LIFE_SCIENCES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "High",
     economicPatternName: "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
     economicImpactCategory: "Productivity / Capacity",
-    economicFormula: "AvailHrs/yrΔOEECM$/hr*Adopt%*Capture%",
+    economicFormula: "Avail * Hrs/yr * ΔOEECM$/hr * Adopt% * Capture%",
     economicFormulaDescription:
       "AvailHrs/yr = scheduled production hours/year (MES); ΔOEE = OEE improvement vs baseline (fraction points); CM$/hr = contribution margin of incremental output per hour (FP&A); Adopt% = % assets with OEE analytics in use; Capture% = % of capacity gain that converts to saleable output.",
     economicPatternRationale:
@@ -693,7 +693,7 @@ export const LIFE_SCIENCES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "High",
     economicPatternName: "Risk Avoidance (Compliance / Penalties / Outage Impact)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "DowntimeHrs/yrImpact$/hrAdopt%*Capture%",
+    economicFormula: "Downtime * Hrs/yr * Impact$/hr * Adopt% * Capture%",
     economicFormulaDescription:
       "DowntimeHrs/yr = unplanned downtime hours avoided per year (CMMS/MES); Impact$/hr = financial impact per downtime hour (lost contribution or overtime/expedite cost, FP&A); Adopt% = % critical assets covered; Capture% = % predicted events successfully prevented.",
     economicPatternRationale:
@@ -725,7 +725,7 @@ export const LIFE_SCIENCES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
     economicImpactCategory: "Productivity / Capacity",
-    economicFormula: "N_studies/yrΔhrs_study$hr*Adopt%*Capture%",
+    economicFormula: "N_studies/yr * Δhrs_study$hr * Adopt% * Capture%",
     economicFormulaDescription:
       "N_studies/yr = studies/analyses onboarded per year (analytics intake); Δhrs_study = hours avoided in data wrangling and mapping per study vs baseline; $hr = loaded data/biostats $/hour; Adopt% = % studies using OMOP standards; Capture% = % effort reduction realized net of edge cases.",
     economicPatternRationale:
@@ -756,7 +756,7 @@ export const LIFE_SCIENCES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "High",
     economicPatternName: "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
     economicImpactCategory: "Productivity / Capacity",
-    economicFormula: "N_analyses/yrΔhrs_an$hr*Adopt%*Capture%",
+    economicFormula: "N_analyses/yr * Δhrs_an$hr * Adopt% * Capture%",
     economicFormulaDescription:
       "N_analyses/yr = cohort/PSM analyses per year (HEOR/real-world evidence tracker); Δhrs_an = analyst hours avoided per analysis vs baseline; $hr = loaded HEOR/biostats $/hour; Adopt% = % analyses using automated tooling; Capture% = % savings net of validation.",
     economicPatternRationale:
@@ -787,7 +787,7 @@ export const LIFE_SCIENCES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "High",
     economicPatternName: "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
     economicImpactCategory: "Productivity / Capacity",
-    economicFormula: "N_studies/yrΔhrs_study$hr*Adopt%*Capture%",
+    economicFormula: "N_studies/yr * Δhrs_study$hr * Adopt% * Capture%",
     economicFormulaDescription:
       "N_studies/yr = comparative effectiveness studies/year; Δhrs_study = hours avoided in model setup, checks, and reporting vs baseline; $hr = loaded HEOR/biostats $/hour; Adopt% = % studies using standardized AI/automation; Capture% = % time savings realized (net of peer review).",
     economicPatternRationale:
@@ -817,7 +817,7 @@ export const LIFE_SCIENCES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Cost Takeout (Labor / Opex Reduction)",
     economicImpactCategory: "Cost",
-    economicFormula: "N_records/yrΔmin_rec/60$hr*Adopt%*Capture%",
+    economicFormula: "N_records/yr * Δmin_rec/60$hr * Adopt% * Capture%",
     economicFormulaDescription:
       "N_records/yr = records abstracted/year (RWE ops); Δmin_rec = minutes avoided per record vs manual abstraction baseline; $hr = loaded abstractor/clin reviewer $/hour; Adopt% = % record types using AI extraction; Capture% = % manual effort removed after QC sampling.",
     economicPatternRationale:
@@ -848,7 +848,7 @@ export const LIFE_SCIENCES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Cost Takeout (Labor / Opex Reduction)",
     economicImpactCategory: "Cost",
-    economicFormula: "N_cases/yrΔhrs_case$hr*Adopt%*Capture%",
+    economicFormula: "N_cases/yr * Δhrs_case$hr * Adopt% * Capture%",
     economicFormulaDescription:
       "N_cases/yr = safety cases/year (PV system); Δhrs_case = hours avoided per case in intake/triage/coding vs baseline; $hr = loaded PV ops $/hour (or vendor $/hour equivalent); Adopt% = % cases using AI assistance; Capture% = % of savings net of audit/QC requirements.",
     economicPatternRationale:
@@ -880,7 +880,7 @@ export const LIFE_SCIENCES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
     economicImpactCategory: "Productivity / Capacity",
-    economicFormula: "N_usersΔhrs_user/yr$hr*Adopt%*Capture%",
+    economicFormula: "N_users * Δhrs_user/yr$hr * Adopt% * Capture%",
     economicFormulaDescription:
       "N_users = commercial/medical users (CRM/IAM); Δhrs_user/yr = hours saved per user/year on customer data gathering and reconciliation; $hr = loaded rep/analyst/medical $/hour; Adopt% = % users actively using 360 view; Capture% = % time saved not replaced by other admin tasks.",
     economicPatternRationale:
@@ -913,7 +913,7 @@ export const LIFE_SCIENCES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Revenue Uplift (Conversion / Attach / Cross-sell)",
     economicImpactCategory: "Revenue",
-    economicFormula: "N_calls/yrΔRx_callCM$/Rx*Adopt%*Capture%",
+    economicFormula: "N_calls/yr * ΔRx_call * CM$/Rx * Adopt% * Capture%",
     economicFormulaDescription:
       "N_calls/yr = incremental/redirected targeted calls per year (CRM); ΔRx_call = incremental prescriptions (or equivalent demand unit) per targeted call vs baseline mix (test/control); CM$/Rx = contribution margin per prescription/unit (FP&A); Adopt% = % field effort guided by analytics; Capture% = % of modeled lift realized (compliance/coverage).",
     economicPatternRationale:
@@ -944,7 +944,7 @@ export const LIFE_SCIENCES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
     economicImpactCategory: "Productivity / Capacity",
-    economicFormula: "N_repsΔhrs_rep/yr$hr*Adopt%*Capture%",
+    economicFormula: "N_reps * Δhrs_rep/yr$hr * Adopt% * Capture%",
     economicFormulaDescription:
       "N_reps = reps/MSLs in scope (HR/CRM); Δhrs_rep/yr = hours saved per rep/year on prep, notes, and content retrieval; $hr = loaded field labor $/hour; Adopt% = % active users; Capture% = % of saved time redeployed to customer-facing work.",
     economicPatternRationale:
@@ -975,7 +975,7 @@ export const LIFE_SCIENCES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Revenue Uplift (Conversion / Attach / Cross-sell)",
     economicImpactCategory: "Revenue",
-    economicFormula: "N_touches/yr*ΔConv%CM$/convAdopt%*Capture%",
+    economicFormula: "N_touches/yr * ΔConv% * CM$/conv * Adopt% * Capture%",
     economicFormulaDescription:
       "N_touches/yr = targeted touches/year (CRM/MA); ΔConv% = incremental conversion rate vs baseline (e.g., to appointment, script, or action) from experiments; CM$/conv = contribution margin per converted outcome (FP&A-defined); Adopt% = % touches driven by NBA; Capture% = realized lift net of channel constraints.",
     economicPatternRationale:
@@ -1004,7 +1004,7 @@ export const LIFE_SCIENCES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Churn Reduction (Retention / LTV Protection)",
     economicImpactCategory: "Revenue",
-    economicFormula: "ActiveUsers*ΔChurn%GP$/user-yrAdopt%*Capture%",
+    economicFormula: "Active * Users * ΔChurn% * GP$/user-yr * Adopt% * Capture%",
     economicFormulaDescription:
       "ActiveUsers = average active users/year (app analytics); ΔChurn% = reduction in annual churn vs baseline; GP$/user-yr = gross profit per retained user-year (finance); Adopt% = % users exposed to AI features; Capture% = % retention lift sustained (net of seasonality).",
     economicPatternRationale:
@@ -1035,7 +1035,7 @@ export const LIFE_SCIENCES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
     economicImpactCategory: "Productivity / Capacity",
-    economicFormula: "N_contacts/yr*Deflect%Cost$/contactAdopt%*Capture%",
+    economicFormula: "N_contacts/yr * Deflect% * Cost$/contact * Adopt% * Capture%",
     economicFormulaDescription:
       "N_contacts/yr = patient service contacts/year (CRM/CCaaS); Deflect% = % contacts resolved via automation vs baseline; Cost$/contact = fully loaded cost per contact (labor + telephony/vendor); Adopt% = % contact types routed to automation; Capture% = % deflection that truly avoids agent work (not recontact).",
     economicPatternRationale:
@@ -1065,7 +1065,7 @@ export const LIFE_SCIENCES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Churn Reduction (Retention / LTV Protection)",
     economicImpactCategory: "Revenue",
-    economicFormula: "N_pat/yr*ΔDisc%GP$/pat-yrAdopt%*Capture%",
+    economicFormula: "N_pat/yr * ΔDisc% * GP$/pat-yr * Adopt% * Capture%",
     economicFormulaDescription:
       "N_pat/yr = patients enrolled in adherence program per year (hub/PSP); ΔDisc% = reduction in annual discontinuation vs baseline; GP$/pat-yr = gross profit per patient-year on therapy (finance); Adopt% = % patients receiving automated nudges; Capture% = % adherence improvement converting to paid therapy time.",
     economicPatternRationale:
@@ -1097,7 +1097,7 @@ export const LIFE_SCIENCES_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
     economicImpactCategory: "Productivity / Capacity",
-    economicFormula: "N_usersΔhrs_user/yr$hr*Adopt%*Capture%",
+    economicFormula: "N_users * Δhrs_user/yr$hr * Adopt% * Capture%",
     economicFormulaDescription:
       "N_users = care/support users (hub, nurse case mgmt, PSP); Δhrs_user/yr = hours saved per user/year locating patient history across systems; $hr = loaded care/support labor $/hour; Adopt% = % users adopting the 360 view; Capture% = % time savings realized net of documentation requirements.",
     economicPatternRationale:

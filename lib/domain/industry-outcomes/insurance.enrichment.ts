@@ -35,7 +35,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Revenue Uplift (Conversion / Attach / Cross-sell)",
     economicImpactCategory: "Revenue",
-    economicFormula: "Sub_yrΔbindPremAdoptCap",
+    economicFormula: "Sub_yr * Δbind * Prem * Adopt% * Cap%",
     economicFormulaDescription:
       "Sub_yr=submissions/quotes per year (CRM/AMS); Δbind=bind rate improvement vs baseline (pp); Prem=avg written premium per bound policy per year ($/policy-yr); Adopt=% submissions routed via platform; Cap=% of modeled uplift realized (excludes price changes).",
     economicPatternRationale:
@@ -65,7 +65,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
     economicImpactCategory: "Productivity / Capacity",
-    economicFormula: "AnalystHrs_yrΔhrs%Cost_hrAdoptCap",
+    economicFormula: "Analyst * Hrs_yr * Δhrs% * Cost_hr * Adopt% * Cap%",
     economicFormulaDescription:
       "AnalystHrs_yr=hours/year spent producing producer scorecards (BI/ops logs); Δhrs%=reduction in manual analysis time vs baseline; Cost_hr=fully loaded labor cost per hour ($/hr); Adopt=% teams using standardized analytics; Cap=% of time converted to avoided overtime/contractor or avoided hires (Assumption: Cap is conservative).",
     economicPatternRationale:
@@ -95,7 +95,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Churn Reduction (Retention / LTV Protection)",
     economicImpactCategory: "Revenue",
-    economicFormula: "InforcePrem_yr*Δret%*CM%AdoptCap",
+    economicFormula: "Inforce * Prem_yr * Δret% * CM% * Adopt% * Cap%",
     economicFormulaDescription:
       "InforcePrem_yr=annual premium up for renewal/in-force ($/yr, policy admin); Δret%=increase in retention/recapture rate vs baseline (pp); CM%=contribution margin on retained premium (% of premium, excludes fixed overhead); Adopt=% accounts covered by model + outreach; Cap=% of predicted lift realized (excludes cross-sell counted elsewhere).",
     economicPatternRationale:
@@ -125,7 +125,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Revenue Uplift (Conversion / Attach / Cross-sell)",
     economicImpactCategory: "Revenue",
-    economicFormula: "Sub_yrΔcloseRev_per_bindAdoptCap",
+    economicFormula: "Sub_yr * Δclose * Rev_per_bind * Adopt% * Cap%",
     economicFormulaDescription:
       "Sub_yr=submissions per year (CRM/AMS); Δclose=close/bind rate improvement vs baseline (pp); Rev_per_bind=net revenue per bound policy-year (commission or underwriting margin proxy, $/policy-yr); Adopt=% submissions influenced by carrier insights; Cap=% realized (excludes rate changes).",
     economicPatternRationale:
@@ -156,7 +156,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "High",
     economicPatternName: "Cost Takeout (Labor / Opex Reduction)",
     economicImpactCategory: "Cost",
-    economicFormula: "Docs_yrΔtouch_minCost_minAdoptCap",
+    economicFormula: "Docs_yr * Δtouch_min * Cost_min * Adopt% * Cap%",
     economicFormulaDescription:
       "Docs_yr=documents/schedules ingested per year (intake logs); Δtouch_min=manual minutes avoided per doc vs baseline; Cost_min=fully loaded cost per minute ($/min); Adopt=% of intake volume through automation; Cap=% sustainable (Assumption: only Cap% translates to avoided overtime/temps).",
     economicPatternRationale:
@@ -187,7 +187,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Revenue Uplift (Conversion / Attach / Cross-sell)",
     economicImpactCategory: "Revenue",
-    economicFormula: "Sub_yrΔbindPremAdoptCap",
+    economicFormula: "Sub_yr * Δbind * Prem * Adopt% * Cap%",
     economicFormulaDescription:
       "Sub_yr=submissions/year; Δbind=bind improvement from faster right-sizing/prioritization (pp); Prem=avg written premium per bound policy-year; Adopt=% submissions triaged by model; Cap=% realized (excludes cost savings and pricing changes).",
     economicPatternRationale:
@@ -217,7 +217,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "High",
     economicPatternName: "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
     economicImpactCategory: "Productivity / Capacity",
-    economicFormula: "ReportHrs_yrΔhrs%Cost_hrAdoptCap",
+    economicFormula: "Report * Hrs_yr * Δhrs% * Cost_hr * Adopt% * Cap%",
     economicFormulaDescription:
       "ReportHrs_yr=hours/year spent building MI packs (FP&A/BI time logs); Δhrs%=time reduction vs baseline; Cost_hr=loaded cost/hr; Adopt=% functions using standard packs; Cap=% converted to avoided overtime/contractor (Assumption: conservative capture).",
     economicPatternRationale:
@@ -247,7 +247,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Revenue Uplift (Conversion / Attach / Cross-sell)",
     economicImpactCategory: "Revenue",
-    economicFormula: "Leads_yrΔconvPremAdoptCap",
+    economicFormula: "Leads_yr * Δconv * Prem * Adopt% * Cap%",
     economicFormulaDescription:
       "Leads_yr=marketable leads/contacts per year (CRM/marketing); Δconv=incremental conversion rate vs baseline targeting (pp); Prem=avg premium per new bound policy-year; Adopt=% campaigns using segmentation; Cap=% incremental policies attributed to segmentation (excludes personalization/cross-sell rows).",
     economicPatternRationale:
@@ -279,7 +279,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Revenue Uplift (Conversion / Attach / Cross-sell)",
     economicImpactCategory: "Revenue",
-    economicFormula: "Prospects_yrΔquoteΔbindPremAdopt*Cap",
+    economicFormula: "Prospects_yr * Δquote * Δbind * Prem * Adopt% * Cap%",
     economicFormulaDescription:
       "Prospects_yr=prospects touched/year; Δquote=lift in quote/request rate vs baseline (pp); Δbind=bind rate on incremental quotes (pp or baseline bind); Prem=avg premium per policy-year; Adopt=% outreach using AI orchestration; Cap=% increment attributed (excludes segmentation-only lift).",
     economicPatternRationale:
@@ -311,7 +311,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Revenue Uplift (Conversion / Attach / Cross-sell)",
     economicImpactCategory: "Revenue",
-    economicFormula: "Offers_yrΔtakePremAdoptCap",
+    economicFormula: "Offers_yr * Δtake * Prem * Adopt% * Cap%",
     economicFormulaDescription:
       "Offers_yr=personalized offers presented/year (digital/CRM); Δtake=incremental take-up vs generic offer (pp); Prem=avg premium per accepted offer (policy-year); Adopt=% journeys using personalization; Cap=% incremental policies attributed (excludes cross-sell engine row).",
     economicPatternRationale:
@@ -342,7 +342,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Revenue Uplift (Conversion / Attach / Cross-sell)",
     economicImpactCategory: "Revenue",
-    economicFormula: "Cust_yrΔattachPrem_addAdoptCap",
+    economicFormula: "Cust_yr * Δattach * Prem_add * Adopt% * Cap%",
     economicFormulaDescription:
       "Cust_yr=eligible customers engaged/year; Δattach=incremental add-on product attach rate vs baseline (pp); Prem_add=avg annual premium of incremental product ($/policy-yr); Adopt=% interactions using NBA; Cap=% incremental attach attributed (excludes personalization row).",
     economicPatternRationale:
@@ -374,7 +374,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Churn Reduction (Retention / LTV Protection)",
     economicImpactCategory: "Revenue",
-    economicFormula: "InforcePrem_yr*Δret%*CM%AdoptCap",
+    economicFormula: "Inforce * Prem_yr * Δret% * CM% * Adopt% * Cap%",
     economicFormulaDescription:
       "InforcePrem_yr=annual premium at risk ($/yr); Δret%=incremental retention from save plays (pp); CM%=contribution margin on retained premium; Adopt=% of book scored + actioned; Cap=% realized (excludes cross-sell).",
     economicPatternRationale:
@@ -404,7 +404,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "High",
     economicPatternName: "Revenue Uplift (Conversion / Attach / Cross-sell)",
     economicImpactCategory: "Revenue",
-    economicFormula: "Checkouts_yrΔattachPrem_microAdoptCap",
+    economicFormula: "Checkouts_yr * Δattach * Prem_micro * Adopt% * Cap%",
     economicFormulaDescription:
       "Checkouts_yr=eligible checkout events/year (partner data); Δattach=incremental micro-cover attach rate vs baseline (pp); Prem_micro=avg annualized premium equivalent per micro-policy ($/policy-yr); Adopt=% partner traffic with offer enabled; Cap=% realized after cancellations/chargebacks (Assumption: conservative Cap).",
     economicPatternRationale:
@@ -434,7 +434,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Revenue Uplift (Conversion / Attach / Cross-sell)",
     economicImpactCategory: "Revenue",
-    economicFormula: "Events_yrΔattachPrem_onAdoptCap",
+    economicFormula: "Events_yr * Δattach * Prem_on * Adopt% * Cap%",
     economicFormulaDescription:
       "Events_yr=eligible device events/year (activations, travel, repair, etc.); Δattach=incremental attach vs baseline (pp); Prem_on=annualized premium equivalent per on-demand policy; Adopt=% events with offer surfaced; Cap=% realized net of early cancels (Assumption: conservative).",
     economicPatternRationale:
@@ -465,7 +465,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "Exp_yrΔEL_per_expAdopt*Cap",
+    economicFormula: "Exp_yr * ΔEL_per_exp * Adopt% * Cap%",
     economicFormulaDescription:
       "Exp_yr=exposure units per year (policy-years, miles, members); ΔEL_per_exp=decrease in expected loss cost per exposure-unit vs baseline ($/unit-yr); Adopt=% exposures in behavior program; Cap=% realized (excludes premium uplift/price effects).",
     economicPatternRationale:
@@ -496,7 +496,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Price Realization (Yield / Rate Optimization)",
     economicImpactCategory: "Revenue",
-    economicFormula: "Prem_yr*Δrate%AdoptCap",
+    economicFormula: "Prem_yr * Δrate% * Adopt% * Cap%",
     economicFormulaDescription:
       "Prem_yr=premium on UBI-eligible book per year ($/yr); Δrate%=net rate adequacy improvement vs baseline (improved indicated premium ÷ earned premium - 1); Adopt=% of book priced with UBI signals; Cap=% realized after regulatory/competitive constraints (Assumption: conservative Cap).",
     economicPatternRationale:
@@ -525,7 +525,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Cost Takeout (Labor / Opex Reduction)",
     economicImpactCategory: "Cost",
-    economicFormula: "Claims_yrΔadjCostAdopt*Cap",
+    economicFormula: "Claims_yr * Δadj * Cost * Adopt% * Cap%",
     economicFormulaDescription:
       "Claims_yr=parametric claims/events per year; ΔadjCost=claims adjustment/handling cost avoided per event vs traditional ($/claim); Adopt=% eligible covers using parametric triggers; Cap=% sustainable savings (excludes reduced loss ratio from disputes).",
     economicPatternRationale:
@@ -554,7 +554,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "High",
     economicPatternName: "Risk Avoidance (Compliance / Penalties / Outage Impact)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "PrivacyCost_yr*Δrisk%AdoptCap",
+    economicFormula: "Privacy * Cost_yr * Δrisk% * Adopt% * Cap%",
     economicFormulaDescription:
       "PrivacyCost_yr=baseline expected annual cost of privacy/data incidents ($/yr: response, legal, fines, notification); Δrisk%=reduction vs baseline from controls; Adopt=% systems/datasets governed; Cap=% realized (excludes cybersecurity outage impacts).",
     economicPatternRationale:
@@ -584,7 +584,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Risk Avoidance (Compliance / Penalties / Outage Impact)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "ERMCost_yr*Δrisk%AdoptCap",
+    economicFormula: "ERMCost_yr * Δrisk% * Adopt% * Cap%",
     economicFormulaDescription:
       "ERMCost_yr=baseline expected annual cost from key risk events (limit breaches, model governance failures, operational losses) ($/yr); Δrisk%=reduction via earlier detection/escalation; Adopt=% risk domains onboarded; Cap=% realized (Assumption: conservative based on backtests).",
     economicPatternRationale:
@@ -613,7 +613,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Risk Avoidance (Compliance / Penalties / Outage Impact)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "ConductCost_yr*Δrisk%AdoptCap",
+    economicFormula: "Conduct * Cost_yr * Δrisk% * Adopt% * Cap%",
     economicFormulaDescription:
       "ConductCost_yr=baseline annual cost of conduct issues (complaint remediation, fines, legal, refunds) ($/yr); Δrisk%=reduction from clearer comms/monitoring; Adopt=% products/journeys covered; Cap=% realized (excludes contact center productivity benefits).",
     economicPatternRationale:
@@ -642,7 +642,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
     economicImpactCategory: "Productivity / Capacity",
-    economicFormula: "RegHrs_yrΔhrs%Cost_hrAdoptCap",
+    economicFormula: "Reg * Hrs_yr * Δhrs% * Cost_hr * Adopt% * Cap%",
     economicFormulaDescription:
       "RegHrs_yr=hours/year preparing filings/exam responses (compliance logs); Δhrs%=time reduction vs baseline; Cost_hr=loaded cost/hr; Adopt=% regulatory artifacts supported by platform; Cap=% converted to avoided contractors/overtime (Assumption: conservative).",
     economicPatternRationale:
@@ -674,7 +674,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "High",
     economicPatternName: "Risk Avoidance (Compliance / Penalties / Outage Impact)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "RemedCost_yr*Δrisk%AdoptCap",
+    economicFormula: "Remed * Cost_yr * Δrisk% * Adopt% * Cap%",
     economicFormulaDescription:
       "RemedCost_yr=baseline annual cost of control issues (audit findings remediation, restatement work, regulator remediation) ($/yr); Δrisk%=reduction from integrated lineage/controls; Adopt=% processes under integrated model; Cap=% realized (excludes labor saved in close counted elsewhere).",
     economicPatternRationale:
@@ -704,7 +704,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "High",
     economicPatternName: "Risk Avoidance (Compliance / Penalties / Outage Impact)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "ModelErrCost_yr*Δrisk%AdoptCap",
+    economicFormula: "Model * Err * Cost_yr * Δrisk% * Adopt% * Cap%",
     economicFormulaDescription:
       "ModelErrCost_yr=baseline expected annual cost from model error (rate inadequacy adjustments, reserve surprises, accumulation) ($/yr, actuarial attribution); Δrisk%=reduction from improved monitoring/models; Adopt=% portfolios covered; Cap=% realized (Assumption: conservative).",
     economicPatternRationale:
@@ -735,7 +735,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
     economicImpactCategory: "Productivity / Capacity",
-    economicFormula: "CloseHrs_yrΔhrs%Cost_hrAdoptCap",
+    economicFormula: "Close * Hrs_yr * Δhrs% * Cost_hr * Adopt% * Cap%",
     economicFormulaDescription:
       "CloseHrs_yr=hours/year for quarterly/annual reserve & capital runs (actuarial/finance logs); Δhrs%=cycle time reduction vs baseline; Cost_hr=loaded cost/hr; Adopt=% of standard runs automated; Cap=% captured as avoided contractors/overtime (Assumption: conservative).",
     economicPatternRationale:
@@ -764,7 +764,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Price Realization (Yield / Rate Optimization)",
     economicImpactCategory: "Revenue",
-    economicFormula: "AUM_$ΔyieldAdopt*Cap",
+    economicFormula: "AUM_$ * Δyield * Adopt% * Cap%",
     economicFormulaDescription:
       "AUM_$=investable assets under analytics scope ($); Δyield=net annual yield improvement (bps as decimal) after risk constraints; Adopt=% portfolio decisions using tool; Cap=% of theoretical improvement realized net of transaction limits (Assumption: conservative).",
     economicPatternRationale:
@@ -793,7 +793,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "High",
     economicPatternName: "Cost Takeout (Labor / Opex Reduction)",
     economicImpactCategory: "Cost",
-    economicFormula: "ClaimDocs_yrΔtouch_minCost_minAdoptCap",
+    economicFormula: "Claim * Docs_yr * Δtouch_min * Cost_min * Adopt% * Cap%",
     economicFormulaDescription:
       "ClaimDocs_yr=claim docs/FNOL items per year; Δtouch_min=manual minutes avoided per item; Cost_min=loaded cost per minute; Adopt=% intake automated; Cap=% sustained (Assumption: conservative capture as avoided temps/overtime).",
     economicPatternRationale:
@@ -824,7 +824,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "High",
     economicPatternName: "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "ClaimsPaid_yr*Δleak%AdoptCap",
+    economicFormula: "Claims * Paid_yr * Δleak% * Adopt% * Cap%",
     economicFormulaDescription:
       "ClaimsPaid_yr=annual indemnity + LAE paid on triaged population ($/yr); Δleak%=reduction in leakage from better routing/handling (pp); Adopt=% claims triaged by model; Cap=% realized net of control constraints (excludes fraud savings counted in Fraud Models).",
     economicPatternRationale:
@@ -854,7 +854,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "ClaimsPaid_yr*Δleak%AdoptCap",
+    economicFormula: "Claims * Paid_yr * Δleak% * Adopt% * Cap%",
     economicFormulaDescription:
       "ClaimsPaid_yr=annual paid losses + LAE in scope ($/yr); ΔAttachment Δleak%=reduction vs baseline from actions (provider steering, guideline adherence) (pp); Adopt=% lines/teams using analytics; Cap=% realized and attributable (excludes triage/fraud-specific savings).",
     economicPatternRationale:
@@ -884,7 +884,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "High",
     economicPatternName: "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "FraudLoss_yr*Δprevent%AdoptCap",
+    economicFormula: "Fraud * Loss_yr * Δprevent% * Adopt% * Cap%",
     economicFormulaDescription:
       "FraudLoss_yr=baseline annual fraud loss paid or written off ($/yr, SIU finance); Δprevent%=incremental % prevented vs baseline controls; Adopt=% claims/apps scored and actioned; Cap=% net realized after false-positive handling and recoveries (excludes general leakage).",
     economicPatternRationale:
@@ -913,7 +913,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Price Realization (Yield / Rate Optimization)",
     economicImpactCategory: "Revenue",
-    economicFormula: "Prem_yr*ΔrateAdeq%AdoptCap",
+    economicFormula: "Prem_yr * Δrate * Adeq% * Adopt% * Cap%",
     economicFormulaDescription:
       "Prem_yr=annual premium for lines priced with model ($/yr); ΔrateAdeq%=improvement in indicated vs charged premium due to better loss cost estimates; Adopt=% of book using updated indications; Cap=% realized after regulatory/competitive constraints (Assumption: conservative).",
     economicPatternRationale:
@@ -943,7 +943,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "High",
     economicPatternName: "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "SubroBase_yr*Δrecovery%AdoptCap",
+    economicFormula: "Subro * Base_yr * Δrecovery% * Adopt% * Cap%",
     economicFormulaDescription:
       "SubroBase_yr=baseline annual recoverable amount pursued ($/yr, claims/subro ledger); Δrecovery%=incremental recovery rate vs baseline (pp); Adopt=% claims screened with model; Cap=% realized net of collectability and legal constraints (excludes fraud recoveries).",
     economicPatternRationale:
@@ -971,7 +971,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Risk Avoidance (Compliance / Penalties / Outage Impact)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "SecLoss_yr*Δrisk%AdoptCap",
+    economicFormula: "Sec * Loss_yr * Δrisk% * Adopt% * Cap%",
     economicFormulaDescription:
       "SecLoss_yr=baseline expected annual loss from account compromise/misuse (write-offs, response cost) ($/yr, security + finance); Δrisk%=reduction from UEBA detection; Adopt=% identities/systems monitored; Cap=% realized (Assumption: conservative).",
     economicPatternRationale:
@@ -998,7 +998,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "High",
     economicPatternName: "Risk Avoidance (Compliance / Penalties / Outage Impact)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "BreachCost_yr*Δrisk%AdoptCap",
+    economicFormula: "Breach * Cost_yr * Δrisk% * Adopt% * Cap%",
     economicFormulaDescription:
       "BreachCost_yr=baseline expected annual cost of material security incidents ($/yr); Δrisk%=reduction from faster detection/response; Adopt=% environments covered; Cap=% realized net of residual risk (Assumption: conservative).",
     economicPatternRationale:
@@ -1024,7 +1024,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Risk Avoidance (Compliance / Penalties / Outage Impact)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "OutageCost_yr*Δrisk%AdoptCap",
+    economicFormula: "Outage * Cost_yr * Δrisk% * Adopt% * Cap%",
     economicFormulaDescription:
       "OutageCost_yr=baseline expected annual cost of outages/security events tied to unknown assets (downtime, response, lost productivity) ($/yr); Δrisk%=reduction from improved visibility; Adopt=% network/cloud assets inventoried; Cap=% realized (Assumption: conservative).",
     economicPatternRationale:
@@ -1051,7 +1051,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "High",
     economicPatternName: "Risk Avoidance (Compliance / Penalties / Outage Impact)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "PhishLoss_yr*Δprevent%AdoptCap",
+    economicFormula: "Phish * Loss_yr * Δprevent% * Adopt% * Cap%",
     economicFormulaDescription:
       "PhishLoss_yr=baseline annual loss from phishing/BEC (wire fraud, recovery costs) ($/yr); Δprevent%=incremental % prevented vs baseline controls; Adopt=% mailboxes/users covered; Cap=% realized net of residual exposure (Assumption: conservative).",
     economicPatternRationale:
@@ -1078,7 +1078,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "High",
     economicPatternName: "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
     economicImpactCategory: "Productivity / Capacity",
-    economicFormula: "Alerts_yrΔtriage_minCost_minAdoptCap",
+    economicFormula: "Alerts_yr * Δtriage_min * Cost_min * Adopt% * Cap%",
     economicFormulaDescription:
       "Alerts_yr=actionable alerts per year (SIEM); Δtriage_min=minutes avoided per alert via AI triage/orchestration; Cost_min=loaded SOC cost per minute; Adopt=% alerts processed via AI; Cap=% realized as avoided overtime/contractors (Assumption: conservative).",
     economicPatternRationale:
@@ -1108,7 +1108,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
     economicImpactCategory: "Productivity / Capacity",
-    economicFormula: "FPnA_Hrs_yrΔhrs%Cost_hrAdoptCap",
+    economicFormula: "FPn * A_Hrs_yr * Δhrs% * Cost_hr * Adopt% * Cap%",
     economicFormulaDescription:
       "FPnA_Hrs_yr=hours/year building forecasts/scenarios (FP&A logs); Δhrs%=reduction vs baseline; Cost_hr=loaded cost/hr; Adopt=% cycles using automated forecasting; Cap=% captured as avoided overtime/contractor (Assumption: conservative).",
     economicPatternRationale:
@@ -1137,7 +1137,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "High",
     economicPatternName: "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
     economicImpactCategory: "Productivity / Capacity",
-    economicFormula: "OpsRptHrs_yrΔhrs%Cost_hrAdoptCap",
+    economicFormula: "Ops * Rpt * Hrs_yr * Δhrs% * Cost_hr * Adopt% * Cap%",
     economicFormulaDescription:
       "OpsRptHrs_yr=hours/year compiling operational KPI updates (ops/BI); Δhrs%=time avoided vs baseline; Cost_hr=loaded cost/hr; Adopt=% stakeholders using dashboards; Cap=% captured (Assumption: conservative).",
     economicPatternRationale:
@@ -1165,7 +1165,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
     economicImpactCategory: "Productivity / Capacity",
-    economicFormula: "ScoreHrs_yrΔhrs%Cost_hrAdoptCap",
+    economicFormula: "Score * Hrs_yr * Δhrs% * Cost_hr * Adopt% * Cap%",
     economicFormulaDescription:
       "ScoreHrs_yr=hours/year producing scorecards (ops/HR analytics); Δhrs%=reduction vs baseline; Cost_hr=loaded cost/hr; Adopt=% orgs using standard analytics; Cap=% captured as avoided contractor/overtime (Assumption: conservative).",
     economicPatternRationale:
@@ -1192,7 +1192,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Cost Takeout (Labor / Opex Reduction)",
     economicImpactCategory: "Cost",
-    economicFormula: "ContSpend_yr*Δsave%AdoptCap",
+    economicFormula: "Cont * Spend_yr * Δsave% * Adopt% * Cap%",
     economicFormulaDescription:
       "ContSpend_yr=controllable expense pool in scope per year ($/yr, GL); Δsave%=sustained reduction vs baseline run-rate attributable to insights (pp); Adopt=% categories actively managed with tool; Cap=% realized net of one-time deferrals (Assumption: conservative).",
     economicPatternRationale:
@@ -1221,7 +1221,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "High",
     economicPatternName: "Cost Takeout (Labor / Opex Reduction)",
     economicImpactCategory: "Cost",
-    economicFormula: "Docs_yrΔtouch_minCost_minAdoptCap",
+    economicFormula: "Docs_yr * Δtouch_min * Cost_min * Adopt% * Cap%",
     economicFormulaDescription:
       "Docs_yr=documents processed/year; Δtouch_min=manual minutes avoided per doc; Cost_min=loaded cost/min; Adopt=% document volume through IDP; Cap=% realized as avoided temps/overtime (Assumption: conservative; excludes error-loss reduction).",
     economicPatternRationale:
@@ -1252,7 +1252,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Revenue Uplift (Conversion / Attach / Cross-sell)",
     economicImpactCategory: "Revenue",
-    economicFormula: "Applicants_yrΔcompletePremAdoptCap",
+    economicFormula: "Applicants_yr * Δcomplete * Prem * Adopt% * Cap%",
     economicFormulaDescription:
       "Applicants_yr=started applications/year; Δcomplete=incremental completion/activation rate vs baseline (pp); Prem=avg annual premium for newly onboarded customers ($/policy-yr); Adopt=% journeys using AI-assisted onboarding; Cap=% incremental binds attributed (excludes marketing uplift).",
     economicPatternRationale:
@@ -1279,7 +1279,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Cost Takeout (Labor / Opex Reduction)",
     economicImpactCategory: "Cost",
-    economicFormula: "FTE_baseΔFTE%Cost_FTEAdoptCap",
+    economicFormula: "FTE_base * ΔFTE% * Cost_FTE * Adopt% * Cap%",
     economicFormulaDescription:
       "FTE_base=baseline average FTE in scope (HR); ΔFTE%=avoidable incremental FTE vs baseline plan from better allocation/forecasting; Cost_FTE=fully loaded annual cost per FTE ($/FTE-yr); Adopt=% functions using analytics; Cap=% realized (Assumption: focus on avoided hires/contractors, not layoffs).",
     economicPatternRationale:
@@ -1309,7 +1309,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Cost Takeout (Labor / Opex Reduction)",
     economicImpactCategory: "Cost",
-    economicFormula: "BranchCost_yr*Δcost%AdoptCap",
+    economicFormula: "Branch * Cost_yr * Δcost% * Adopt% * Cap%",
     economicFormulaDescription:
       "BranchCost_yr=annual branch operating cost in scope (rent, utilities, staffing) ($/yr); Δcost%=sustainable reduction vs baseline from optimization; Adopt=% locations governed by recommendations; Cap=% realized net of contractual constraints (Assumption: conservative).",
     economicPatternRationale:
@@ -1337,7 +1337,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Risk Avoidance (Compliance / Penalties / Outage Impact)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "ComplCost_yr*Δescal%AdoptCap",
+    economicFormula: "Compl * Cost_yr * Δescal% * Adopt% * Cap%",
     economicFormulaDescription:
       "ComplCost_yr=annual cost of complaint handling + remediation in scope ($/yr); Δescal%=reduction in escalations/regulator referrals vs baseline (pp); Adopt=% complaints routed/assisted by system; Cap=% realized (excludes contact center handle-time savings).",
     economicPatternRationale:
@@ -1366,7 +1366,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "High",
     economicPatternName: "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
     economicImpactCategory: "Productivity / Capacity",
-    economicFormula: "Calls_yrDeflect%AHT_minCost_minAdopt*Cap",
+    economicFormula: "Calls_yr * Deflect% * AHT_min * Cost_min * Adopt% * Cap%",
     economicFormulaDescription:
       "Calls_yr=inbound contacts/year; Deflect%=share fully resolved without agent (incremental vs baseline); AHT_min=avg agent handle time avoided per deflected contact (min); Cost_min=loaded agent cost/min; Adopt=% channels covered; Cap=% realized as avoided overtime/temps (Assumption: conservative).",
     economicPatternRationale:
@@ -1394,7 +1394,7 @@ export const INSURANCE_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "High",
     economicPatternName: "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
     economicImpactCategory: "Productivity / Capacity",
-    economicFormula: "Calls_yrΔAHT_minCost_minAdoptCap",
+    economicFormula: "Calls_yr * ΔAHT_min * Cost_min * Adopt% * Cap%",
     economicFormulaDescription:
       "Calls_yr=agent-handled contacts/year; ΔAHT_min=average handle time reduction vs baseline (minutes/contact); Cost_min=loaded agent cost/min; Adopt=% calls with AI assist/auto-QA; Cap=% captured as avoided overtime/temps or avoided hires (Assumption: conservative).",
     economicPatternRationale:

@@ -34,7 +34,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
     economicImpactCategory: "Productivity / Capacity",
-    economicFormula: "Contacts_yrΔAHT_min/60AgentCost_hr*Adopt%*Capture%",
+    economicFormula: "Contacts_yr * ΔAHT_min/60 * Agent * Cost_hr * Adopt% * Capture%",
     economicFormulaDescription:
       "Contacts_yr = eligible handled contacts per year (CCaaS/CRM); ΔAHT_min = baseline–improved avg handle time in minutes; AgentCost_hr = fully loaded agent cost per hour; Adopt% = % contacts where script used; Capture% = % time savings realized as avoided overtime/temps (exclude CSAT-driven churn).",
     economicPatternRationale:
@@ -67,7 +67,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Churn Reduction (Retention / LTV Protection)",
     economicImpactCategory: "Revenue",
-    economicFormula: "AtRiskSubs_yrΔSaveRateMargin_sub_yr*Adopt%*Capture%",
+    economicFormula: "At * Risk * Subs_yr * ΔSave * Rate * Margin_sub_yr * Adopt% * Capture%",
     economicFormulaDescription:
       "AtRiskSubs_yr = customers contacted/treated due to model per year (CRM); ΔSaveRate = (save rate with AI)–(baseline save rate); Margin_sub_yr = annual gross margin per retained subscriber (finance); Adopt% = % eligible journeys using model; Capture% = % saves attributable to AI (exclude NBO uplift counted elsewhere).",
     economicPatternRationale:
@@ -101,7 +101,8 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
     economicImpactCategory: "Productivity / Capacity",
-    economicFormula: "BillInqContacts_yrΔDeflectRateCost_contact*Adopt%*Capture%",
+    economicFormula:
+      "Bill * Inq * Contacts_yr * ΔDeflect * Rate * Cost_contact * Adopt% * Capture%",
     economicFormulaDescription:
       "BillInqContacts_yr = billing inquiry contacts per year (contact center); ΔDeflectRate = increase in self-serve resolution rate vs baseline; Cost_contact = average cost per assisted contact; Adopt% = % billing journeys using bill explainer; Capture% = % cost avoided (exclude leakage recovery counted in revenue assurance).",
     economicPatternRationale:
@@ -134,7 +135,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Revenue Uplift (Conversion / Attach / Cross-sell)",
     economicImpactCategory: "Revenue",
-    economicFormula: "NewOrders_yrΔCompletionRateMargin_newsub_yr*Adopt%*Capture%",
+    economicFormula: "New * Orders_yr * ΔCompletion * Rate * Margin_newsub_yr * Adopt% * Capture%",
     economicFormulaDescription:
       "NewOrders_yr = initiated new orders per year (order mgmt); ΔCompletionRate = (completed activations/order) improvement vs baseline; Margin_newsub_yr = first-year gross margin per activated customer; Adopt% = % onboarding flows optimized by AI; Capture% = % incremental completions attributable to AI (exclude time-to-bill cash benefits counted elsewhere).",
     economicPatternRationale:
@@ -168,7 +169,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Revenue Uplift (Conversion / Attach / Cross-sell)",
     economicImpactCategory: "Revenue",
-    economicFormula: "EligiblePros_yrΔWinRateMargin_sub_yr*Adopt%*Capture%",
+    economicFormula: "Eligible * Pros_yr * ΔWin * Rate * Margin_sub_yr * Adopt% * Capture%",
     economicFormulaDescription:
       "EligiblePros_yr = prospects evaluated per year (CRM); ΔWinRate = win-rate lift vs baseline targeting; Margin_sub_yr = annual gross margin per acquired subscriber; Adopt% = % campaigns using buyout model; Capture% = % wins incremental to AI (exclude offer optimization uplift counted in NBO).",
     economicPatternRationale:
@@ -202,7 +203,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Revenue Uplift (Conversion / Attach / Cross-sell)",
     economicImpactCategory: "Revenue",
-    economicFormula: "OfferImpr_yrΔConvRateMargin_offer_yr*Adopt%*Capture%",
+    economicFormula: "Offer * Impr_yr * ΔConv * Rate * Margin_offer_yr * Adopt% * Capture%",
     economicFormulaDescription:
       "OfferImpr_yr = offer impressions/messages per year (marketing); ΔConvRate = conversion lift vs baseline; Margin_offer_yr = annualized gross margin from accepted offer (e.g., add-on, upgrade); Adopt% = % channels/campaigns using NBO; Capture% = net incremental conversions (exclude churn saves counted in retention use cases).",
     economicPatternRationale:
@@ -233,7 +234,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Churn Reduction (Retention / LTV Protection)",
     economicImpactCategory: "Revenue",
-    economicFormula: "AffectedSubs_yrΔChurnRateMargin_sub_yr*Adopt%*Capture%",
+    economicFormula: "Affected * Subs_yr * ΔChurn * Rate * Margin_sub_yr * Adopt% * Capture%",
     economicFormulaDescription:
       "AffectedSubs_yr = customers experiencing notifiable outages per year (NOC/CRM); ΔChurnRate = churn-rate reduction vs baseline for outage-impacted cohort; Margin_sub_yr = annual gross margin per subscriber; Adopt% = % outages with proactive comms; Capture% = % churn reduction attributable to comms (exclude call deflection benefits counted elsewhere).",
     economicPatternRationale:
@@ -263,7 +264,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Churn Reduction (Retention / LTV Protection)",
     economicImpactCategory: "Revenue",
-    economicFormula: "NegSentSubs_yrΔChurnRateMargin_sub_yr*Adopt%*Capture%",
+    economicFormula: "Neg * Sent * Subs_yr * ΔChurn * Rate * Margin_sub_yr * Adopt% * Capture%",
     economicFormulaDescription:
       "NegSentSubs_yr = customers flagged negative per year (speech/text analytics); ΔChurnRate = churn reduction vs baseline for flagged customers after intervention; Margin_sub_yr = annual gross margin per subscriber; Adopt% = % queues/teams using sentiment signals; Capture% = % churn reduction attributable to sentiment prioritization.",
     economicPatternRationale:
@@ -295,7 +296,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Price Realization (Yield / Rate Optimization)",
     economicImpactCategory: "Revenue",
-    economicFormula: "Recos_yrΔMargin_plan_yrAdopt%*Capture%",
+    economicFormula: "Recos_yr * ΔMargin_plan_yr * Adopt% * Capture%",
     economicFormulaDescription:
       "Recos_yr = customers receiving plan recommendation per year (digital/care); ΔMargin_plan_yr = (recommended plan margin – current plan margin) annualized; Adopt% = % eligible interactions with recommender; Capture% = acceptance rate of recommended plan attributable to AI (exclude add-on attach counted in NBO).",
     economicPatternRationale:
@@ -326,7 +327,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Price Realization (Yield / Rate Optimization)",
     economicImpactCategory: "Revenue",
-    economicFormula: "Quotes_yrΔPrice_or_Discount$BaseMargin*Adopt%*Capture%",
+    economicFormula: "Quotes_yr * ΔPrice_or_Discount$ * Base * Margin * Adopt% * Capture%",
     economicFormulaDescription:
       "Quotes_yr = quotes issued per year (CPQ); ΔPrice_or_Discount = improvement in net price realization vs baseline (e.g., discount reduction as %); $BaseMargin = baseline annual gross margin dollars on quoted deals; Adopt% = % quotes using AI guidance; Capture% = % improvement retained after approvals (exclude volume conversion lift counted in onboarding/acquisition).",
     economicPatternRationale:
@@ -358,7 +359,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "High",
     economicPatternName: "Cost Takeout (Labor / Opex Reduction)",
     economicImpactCategory: "Cost",
-    economicFormula: "MACD_yrΔHandle_min/60OpsCost_hr*Adopt%*Capture%",
+    economicFormula: "MACD_yr * ΔHandle_min/60 * Ops * Cost_hr * Adopt% * Capture%",
     economicFormulaDescription:
       "MACD_yr = MACD transactions per year (OSS/BSS); ΔHandle_min = minutes saved per transaction vs baseline; OpsCost_hr = fully loaded ops labor cost per hour; Adopt% = % MACD automated; Capture% = % time converted to avoided labor/overtime (exclude revenue leakage impacts).",
     economicPatternRationale:
@@ -389,7 +390,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
     economicImpactCategory: "Productivity / Capacity",
-    economicFormula: "WISMO_yrΔDeflectRateCost_contact*Adopt%*Capture%",
+    economicFormula: "WISMO_yr * ΔDeflect * Rate * Cost_contact * Adopt% * Capture%",
     economicFormulaDescription:
       "WISMO_yr = order-status inquiry contacts per year (care); ΔDeflectRate = increase in self-serve/automated resolution vs baseline; Cost_contact = avg cost per assisted status contact; Adopt% = % orders with proactive tracking; Capture% = % contact reduction attributable to tracking (exclude activation fallout improvements).",
     economicPatternRationale:
@@ -424,7 +425,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Revenue Uplift (Conversion / Attach / Cross-sell)",
     economicImpactCategory: "Revenue",
-    economicFormula: "SMB_Targets_yrΔConvRateMargin_offer_yr*Adopt%*Capture%",
+    economicFormula: "SMB_Targets_yr * ΔConv * Rate * Margin_offer_yr * Adopt% * Capture%",
     economicFormulaDescription:
       "SMB_Targets_yr = SMB customers reached per year (CRM); ΔConvRate = conversion lift vs baseline; Margin_offer_yr = annualized gross margin from accepted SMB offer; Adopt% = % channels using SMB propensity; Capture% = incremental conversions net of cannibalization.",
     economicPatternRationale:
@@ -455,7 +456,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "Bills_yrΔErrorRateCost_error*Adopt%*Capture%",
+    economicFormula: "Bills_yr * ΔError * Rate * Cost_error * Adopt% * Capture%",
     economicFormulaDescription:
       "Bills_yr = bills issued per year (billing); ΔErrorRate = reduction in bill error incidence vs baseline; Cost_error = average cost per error (credits, rework labor, dispute handling); Adopt% = % billing runs audited; Capture% = % errors avoided attributable to AI (exclude revenue leakage recovery counted in RA/leakage).",
     economicPatternRationale:
@@ -486,7 +487,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Cost Takeout (Labor / Opex Reduction)",
     economicImpactCategory: "Cost",
-    economicFormula: "SaveActions_yrΔWasteRateCost_action*Adopt%*Capture%",
+    economicFormula: "Save * Actions_yr * ΔWaste * Rate * Cost_action * Adopt% * Capture%",
     economicFormulaDescription:
       "SaveActions_yr = retention offers/interventions executed per year (CRM); ΔWasteRate = reduction in low-propensity/wasted actions vs baseline; Cost_action = average cost per save action (discounts, credits, outreach); Adopt% = % programs using risk scores; Capture% = % spend reduction not offset by lower saves (do not count retained revenue here).",
     economicPatternRationale:
@@ -517,7 +518,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "BillableUsage_$yrΔLeakageRateAdopt%*Capture%",
+    economicFormula: "Billable * Usage_$yr * ΔLeakage * Rate * Adopt% * Capture%",
     economicFormulaDescription:
       "BillableUsage_$yr = annual billable usage/revenue base subject to leakage (billing/RA); ΔLeakageRate = reduction in leakage % vs baseline; Adopt% = % leakage controls using AI; Capture% = % of detected leakage actually remediated and collectible (exclude bad debt).",
     economicPatternRationale:
@@ -549,7 +550,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Cost Takeout (Labor / Opex Reduction)",
     economicImpactCategory: "Cost",
-    economicFormula: "WholesaleLines_yrΔLabor_min/60OpsCost_hr*Adopt%*Capture%",
+    economicFormula: "Wholesale * Lines_yr * ΔLabor_min/60 * Ops * Cost_hr * Adopt% * Capture%",
     economicFormulaDescription:
       "WholesaleLines_yr = wholesale lines processed per year (wholesale OSS); ΔLabor_min = minutes saved per line vs baseline; OpsCost_hr = fully loaded ops cost per hour; Adopt% = % waves automated; Capture% = % time savings realized as avoided labor/contractor spend (exclude customer churn impacts).",
     economicPatternRationale:
@@ -580,7 +581,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "Orders_yrΔBadOrderRateCost_badorder*Adopt%*Capture%",
+    economicFormula: "Orders_yr * ΔBad * Order * Rate * Cost_badorder * Adopt% * Capture%",
     economicFormulaDescription:
       "Orders_yr = orders captured per year (sales/order mgmt); ΔBadOrderRate = reduction in invalid/incomplete orders vs baseline; Cost_badorder = avg cost of rework/fallout (labor, truck roll, credits); Adopt% = % channels with validation; Capture% = % reduction attributable to AI (exclude improved conversion counted in onboarding).",
     economicPatternRationale:
@@ -611,7 +612,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Working Capital Improvement (Inventory / AR / AP Efficiency)",
     economicImpactCategory: "Cash / Working Capital",
-    economicFormula: "Activations_yrΔDaysToBill/365ARPU_yr*Adopt%*Capture%",
+    economicFormula: "Activations_yr * ΔDays * To * Bill/365 * ARPU_yr * Adopt% * Capture%",
     economicFormulaDescription:
       "Activations_yr = successful activations per year (OSS/BSS); ΔDaysToBill = reduction in days from activation to first bill; ARPU_yr = annual revenue per subscriber (or first-year revenue); Adopt% = % activations orchestrated by AI; Capture% = % cycle-time reduction attributable to AI (cash timing only; exclude fallout conversion).",
     economicPatternRationale:
@@ -643,7 +644,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "ProvEvents_yrΔMisconfigRateCost_incident*Adopt%*Capture%",
+    economicFormula: "Prov * Events_yr * ΔMisconfig * Rate * Cost_incident * Adopt% * Capture%",
     economicFormulaDescription:
       "ProvEvents_yr = provisioning/config changes per year (OSS); ΔMisconfigRate = reduction vs baseline; Cost_incident = avg cost per misconfig incident (NOC labor, credits, SLA penalties); Adopt% = % changes validated by AI; Capture% = % incidents avoided attributable to AI.",
     economicPatternRationale:
@@ -674,7 +675,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "High",
     economicPatternName: "Risk Avoidance (Compliance / Penalties / Outage Impact)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "Incidents_yrΔMinutesImpact_per_min*Adopt%*Capture%",
+    economicFormula: "Incidents_yr * ΔMinutes * Impact_per_min * Adopt% * Capture%",
     economicFormulaDescription:
       "Incidents_yr = degradations/incidents per year (NOC); ΔMinutes = reduction in time-to-detect+resolve minutes; Impact_per_min = $ impact per minute (credits, SLA penalties, lost usage, NOC surge); Adopt% = % domains covered; Capture% = % reduction attributable to AI (exclude capex effects).",
     economicPatternRationale:
@@ -704,7 +705,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Cost Takeout (Labor / Opex Reduction)",
     economicImpactCategory: "Cost",
-    economicFormula: "Reports_yrΔPrep_min/60AnalystCost_hr*Adopt%*Capture%",
+    economicFormula: "Reports_yr * ΔPrep_min/60 * Analyst * Cost_hr * Adopt% * Capture%",
     economicFormulaDescription:
       "Reports_yr = client reports produced per year (managed services); ΔPrep_min = minutes saved per report vs baseline; AnalystCost_hr = fully loaded analyst cost per hour; Adopt% = % reports automated; Capture% = % time savings realized as avoided labor/overtime.",
     economicPatternRationale:
@@ -732,7 +733,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "High",
     economicPatternName: "Working Capital Improvement (Inventory / AR / AP Efficiency)",
     economicImpactCategory: "Cash / Working Capital",
-    economicFormula: "Inventory_$*CarryCost%*ΔInvRed%*Adopt%*Capture%",
+    economicFormula: "Inventory_$ * Carry * Cost% * ΔInv * Red% * Adopt% * Capture%",
     economicFormulaDescription:
       "Inventory_$ = average inventory value ($) (ERP); CarryCost% = annual carrying cost rate; ΔInvRed% = % reduction in excess/safety stock from better visibility; Adopt% = % asset classes covered; Capture% = % reduction sustained after governance (exclude capex deferral).",
     economicPatternRationale:
@@ -764,7 +765,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Working Capital Improvement (Inventory / AR / AP Efficiency)",
     economicImpactCategory: "Cash / Working Capital",
-    economicFormula: "Revenue_$yrΔDSO/365WACC%*Adopt%*Capture%",
+    economicFormula: "Revenue_$yr * ΔDSO/365 * WACC% * Adopt% * Capture%",
     economicFormulaDescription:
       "Revenue_$yr = annual billed revenue in scope (finance); ΔDSO = reduction in days sales outstanding; WACC% = annual cost of capital; Adopt% = % O2C flows optimized; Capture% = % DSO reduction attributable to AI (cash financing benefit only).",
     economicPatternRationale:
@@ -793,7 +794,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "High",
     economicPatternName: "Risk Avoidance (Compliance / Penalties / Outage Impact)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "Events_yrΔMTTR_minImpact_per_min*Adopt%*Capture%",
+    economicFormula: "Events_yr * ΔMTTR_min * Impact_per_min * Adopt% * Capture%",
     economicFormulaDescription:
       "Events_yr = performance degradation events per year (NPM); ΔMTTR_min = reduction in mean time to repair; Impact_per_min = $ impact per minute (credits, penalties, ops surge); Adopt% = % network coverage; Capture% = % improvement attributable to AI (exclude energy/capex).",
     economicPatternRationale:
@@ -824,7 +825,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "High",
     economicPatternName: "Risk Avoidance (Compliance / Penalties / Outage Impact)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "Anoms_yrΔEscalationRateCost_majorIncident*Adopt%*Capture%",
+    economicFormula: "Anoms_yr * ΔEscalation * Rate * Cost_major * Incident * Adopt% * Capture%",
     economicFormulaDescription:
       "Anoms_yr = detected anomalies per year (NOC analytics); ΔEscalationRate = reduction in anomalies escalating to major incidents; Cost_majorIncident = average cost per major incident; Adopt% = % signals covered; Capture% = % reduction attributable to AI.",
     economicPatternRationale:
@@ -853,7 +854,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     mcAccessDifficulty: "Medium",
     economicPatternName: "Capex Avoidance (Infrastructure / Tool Consolidation)",
     economicImpactCategory: "Cash / Working Capital",
-    economicFormula: "PlannedCapex_$yr*ΔOverbuild%*Adopt%*Capture%",
+    economicFormula: "Planned * Capex_$yr * ΔOverbuild% * Adopt% * Capture%",
     economicFormulaDescription:
       "PlannedCapex_$yr = annual capacity-related capex plan (finance); ΔOverbuild% = % capex avoided from better forecasting (net of underbuild risk); Adopt% = % regions/technologies using forecast; Capture% = % avoided capex actually deferred/cancelled.",
     economicPatternRationale:
@@ -882,7 +883,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Risk Avoidance (Compliance / Penalties / Outage Impact)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "Faults_yrΔCustomerImpact_minImpact_per_min*Adopt%*Capture%",
+    economicFormula: "Faults_yr * ΔCustomer * Impact_min * Impact_per_min * Adopt% * Capture%",
     economicFormulaDescription:
       "Faults_yr = fault events per year (OSS/NOC); ΔCustomerImpact_min = reduction in customer-impact minutes per fault; Impact_per_min = $ impact per minute (credits, penalties, truck rolls triggered); Adopt% = % assets covered; Capture% = % prevention attributable to AI.",
     economicPatternRationale:
@@ -909,7 +910,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     mcAccessDifficulty: "Medium",
     economicPatternName: "Risk Avoidance (Compliance / Penalties / Outage Impact)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "SLA_yrΔPenaltyRateAvgPenalty_$*Adopt%*Capture%",
+    economicFormula: "SLA_yr * ΔPenalty * Rate * Avg * Penalty_$ * Adopt% * Capture%",
     economicFormulaDescription:
       "SLA_yr = SLA measurement periods/contracts per year; ΔPenaltyRate = reduction in penalty-triggering/reporting errors vs baseline; AvgPenalty_$ = average penalty/dispute cost per event; Adopt% = % SLAs reported via AI; Capture% = % penalties avoided attributable to AI (exclude service improvements).",
     economicPatternRationale:
@@ -938,7 +939,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     mcAccessDifficulty: "Medium",
     economicPatternName: "Price Realization (Yield / Rate Optimization)",
     economicImpactCategory: "Revenue",
-    economicFormula: "SliceUnits_yrΔPrice_unitMargin%*Adopt%*Capture%",
+    economicFormula: "Slice * Units_yr * ΔPrice_unit * Margin% * Adopt% * Capture%",
     economicFormulaDescription:
       "SliceUnits_yr = billable slice units per year (e.g., GB, sites, devices) (BSS); ΔPrice_unit = premium price realized per unit vs baseline; Margin% = gross margin % on slice revenue; Adopt% = % eligible customers/slices enabled; Capture% = % premium retained after costs/discounts.",
     economicPatternRationale:
@@ -971,7 +972,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Cost Takeout (Labor / Opex Reduction)",
     economicImpactCategory: "Cost",
-    economicFormula: "LegacyLines_yrΔOpex_line_yrAdopt%*Capture%",
+    economicFormula: "Legacy * Lines_yr * ΔOpex_line_yr * Adopt% * Capture%",
     economicFormulaDescription:
       "LegacyLines_yr = legacy lines/sites migrated per year; ΔOpex_line_yr = annual Opex reduction per migrated line/site (maintenance, power, leases); Adopt% = % footprint decisions using AI; Capture% = % savings realized after implementation (exclude capex effects).",
     economicPatternRationale:
@@ -1001,7 +1002,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Cost Takeout (Labor / Opex Reduction)",
     economicImpactCategory: "Cost",
-    economicFormula: "WorkOrders_yrΔHours/WOFieldCost_hr*Adopt%*Capture%",
+    economicFormula: "Work * Orders_yr * ΔHours/WOField * Cost_hr * Adopt% * Capture%",
     economicFormulaDescription:
       "WorkOrders_yr = field work orders per year (FSM/EAM); ΔHours/WO = reduction in hours per work order vs baseline; FieldCost_hr = fully loaded field labor cost; Adopt% = % workflows using AI planning; Capture% = % time savings realized as lower contractor/overtime spend.",
     economicPatternRationale:
@@ -1030,7 +1031,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "High",
     economicPatternName: "Cost Takeout (Labor / Opex Reduction)",
     economicImpactCategory: "Cost",
-    economicFormula: "kWh_yr*ΔkWh%Cost_kWhAdopt%*Capture%",
+    economicFormula: "k * Wh_yr * Δk * Wh% * Cost_k * Wh * Adopt% * Capture%",
     economicFormulaDescription:
       "kWh_yr = annual energy consumption in scope (utility/network); ΔkWh% = % reduction vs baseline from optimization; Cost_kWh = blended energy cost per kWh; Adopt% = % sites/equipment under AI control; Capture% = % savings retained after rebound/seasonality adjustments.",
     economicPatternRationale:
@@ -1062,7 +1063,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Revenue Uplift (Conversion / Attach / Cross-sell)",
     economicImpactCategory: "Revenue",
-    economicFormula: "DataUnits_yrPrice_unitGM_unit*Adopt%*Capture%",
+    economicFormula: "Data * Units_yr * Price_unit * GM_unit * Adopt% * Capture%",
     economicFormulaDescription:
       "DataUnits_yr = data product units sold per year (subscriptions, reports, API calls); Price_unit = realized price per unit; GM_unit = gross margin per unit ($) or margin % converted to $; Adopt% = % portfolio using AI packaging; Capture% = conservative sell-through attributable to AI (exclude core connectivity revenue).",
     economicPatternRationale:
@@ -1095,7 +1096,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Waste Reduction (Spoilage / Returns / Write-downs)",
     economicImpactCategory: "Cost",
-    economicFormula: "Visits_yrΔRepeatRateCost_visit*Adopt%*Capture%",
+    economicFormula: "Visits_yr * ΔRepeat * Rate * Cost_visit * Adopt% * Capture%",
     economicFormulaDescription:
       "Visits_yr = technician visits per year (FSM); ΔRepeatRate = reduction in repeat/return visits vs baseline; Cost_visit = average cost per visit (labor, vehicle, parts); Adopt% = % visits with AI insights; Capture% = % repeat reduction attributable to AI (exclude dispatch routing gains).",
     economicPatternRationale:
@@ -1127,7 +1128,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Cost Takeout (Labor / Opex Reduction)",
     economicImpactCategory: "Cost",
-    economicFormula: "Assets_yrΔUnplannedRateCost_unplanned*Adopt%*Capture%",
+    economicFormula: "Assets_yr * ΔUnplanned * Rate * Cost_unplanned * Adopt% * Capture%",
     economicFormulaDescription:
       "Assets_yr = maintainable assets covered per year (EAM); ΔUnplannedRate = reduction in unplanned maintenance events vs baseline; Cost_unplanned = avg cost per unplanned event (labor premium, parts expedite, outage response); Adopt% = % assets with predictive models; Capture% = % reduction realized operationally.",
     economicPatternRationale:
@@ -1159,7 +1160,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
     economicImpactCategory: "Productivity / Capacity",
-    economicFormula: "FieldQueries_yrΔSearch_min/60FieldCost_hr*Adopt%*Capture%",
+    economicFormula: "Field * Queries_yr * ΔSearch_min/60 * Field * Cost_hr * Adopt% * Capture%",
     economicFormulaDescription:
       "FieldQueries_yr = knowledge queries per year (KMS); ΔSearch_min = minutes saved per query vs baseline; FieldCost_hr = fully loaded field tech cost per hour; Adopt% = % teams using interface; Capture% = % time saved not reallocated to additional work.",
     economicPatternRationale:
@@ -1191,7 +1192,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
     economicImpactCategory: "Productivity / Capacity",
-    economicFormula: "Dispatches_yrΔTravel_min/60FieldCost_hr*Adopt%*Capture%",
+    economicFormula: "Dispatches_yr * ΔTravel_min/60 * Field * Cost_hr * Adopt% * Capture%",
     economicFormulaDescription:
       "Dispatches_yr = dispatched jobs per year (FSM); ΔTravel_min = travel minutes saved per job vs baseline; FieldCost_hr = fully loaded field cost per hour; Adopt% = % dispatches optimized; Capture% = % savings realized as reduced overtime/contractor usage (exclude repeat-visit savings).",
     economicPatternRationale:
@@ -1222,7 +1223,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
     economicImpactCategory: "Productivity / Capacity",
-    economicFormula: "RM_Cases_yrΔReview_min/60FieldCost_hr*Adopt%*Capture%",
+    economicFormula: "RM_Cases_yr * ΔReview_min/60 * Field * Cost_hr * Adopt% * Capture%",
     economicFormulaDescription:
       "RM_Cases_yr = repair/maintenance cases per year (EAM/FSM); ΔReview_min = minutes saved reviewing history vs baseline; FieldCost_hr = fully loaded tech/engineer cost per hour; Adopt% = % cases with summaries; Capture% = % time savings realized.",
     economicPatternRationale:
@@ -1253,7 +1254,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
     economicImpactCategory: "Productivity / Capacity",
-    economicFormula: "SiteVisits_yrΔDoc_min/60FieldCost_hr*Adopt%*Capture%",
+    economicFormula: "Site * Visits_yr * ΔDoc_min/60 * Field * Cost_hr * Adopt% * Capture%",
     economicFormulaDescription:
       "SiteVisits_yr = visits requiring close-out notes per year; ΔDoc_min = documentation minutes saved vs baseline; FieldCost_hr = fully loaded technician cost per hour; Adopt% = % visits using capture; Capture% = % time savings realized (exclude quality-driven rework avoided).",
     economicPatternRationale:
@@ -1284,7 +1285,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "SIMEvents_yrΔFraudRateLoss_fraud*$Adopt%*Capture%",
+    economicFormula: "SIMEvents_yr * ΔFraud * Rate * Loss_fraud * $ * Adopt% * Capture%",
     economicFormulaDescription:
       "SIMEvents_yr = SIM swap/number change events per year (IAM/BSS); ΔFraudRate = reduction in fraudulent swaps vs baseline; Loss_fraud$ = average loss per fraud event (credits, chargebacks, ops); Adopt% = % events scored; Capture% = % blocked fraud that would have resulted in loss.",
     economicPatternRationale:
@@ -1317,7 +1318,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "High",
     economicPatternName: "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "FraudTx_yrΔFraudRateLoss_tx$*Adopt%*Capture%",
+    economicFormula: "Fraud * Tx_yr * ΔFraud * Rate * Loss_tx$ * Adopt% * Capture%",
     economicFormulaDescription:
       "FraudTx_yr = transactions/events evaluated per year (payments/orders); ΔFraudRate = reduction vs baseline; Loss_tx$ = avg loss per fraudulent transaction; Adopt% = % channels in scope; Capture% = % prevented losses realized net of false positives.",
     economicPatternRationale:
@@ -1347,7 +1348,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Risk Avoidance (Compliance / Penalties / Outage Impact)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "AttackMin_yr*ΔMitigated%Impact_per_minAdopt%*Capture%",
+    economicFormula: "Attack * Min_yr * ΔMitigated% * Impact_per_min * Adopt% * Capture%",
     economicFormulaDescription:
       "AttackMin_yr = minutes of attack exposure per year (SOC/NOC); ΔMitigated% = increase in mitigated minutes vs baseline; Impact_per_min = $ impact per minute (lost traffic, penalties, ops surge); Adopt% = % traffic protected; Capture% = % benefit attributable to AI.",
     economicPatternRationale:
@@ -1376,7 +1377,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "High",
     economicPatternName: "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "LoginEvents_yrΔATORateLoss_ATO$*Adopt%*Capture%",
+    economicFormula: "Login * Events_yr * ΔATORate * Loss_ATO$ * Adopt% * Capture%",
     economicFormulaDescription:
       "LoginEvents_yr = account access events per year (IAM); ΔATORate = reduction in successful takeovers vs baseline; Loss_ATO$ = avg loss per ATO (fraud, credits, support, legal); Adopt% = % channels monitored; Capture% = % prevented ATMs leading to actual loss.",
     economicPatternRationale:
@@ -1407,7 +1408,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "Signups_yrΔFraudRateLoss_signup$*Adopt%*Capture%",
+    economicFormula: "Signups_yr * ΔFraud * Rate * Loss_signup$ * Adopt% * Capture%",
     economicFormulaDescription:
       "Signups_yr = new account applications per year (sales/BSS); ΔFraudRate = reduction in fraudulent signups vs baseline; Loss_signup$ = expected loss per fraud account (device loss, bad debt, collections); Adopt% = % signups screened; Capture% = % losses actually avoided net of false declines.",
     economicPatternRationale:
@@ -1437,7 +1438,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Risk Avoidance (Compliance / Penalties / Outage Impact)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "ExpFine_$yr*ΔNonComp%*Adopt%*Capture%",
+    economicFormula: "Exp * Fine_$yr * ΔNon * Comp% * Adopt% * Capture%",
     economicFormulaDescription:
       "ExpFine_$yr = expected annual privacy compliance cost exposure ($) (legal/risk), including fines + remediation probability-weighted; ΔNonComp% = reduction in noncompliance risk vs baseline; Adopt% = % data domains under controls; Capture% = % risk reduction attributable to AI controls. Assumption: ExpFine_$yr based on internal risk register, not maximum statutory fines.",
     economicPatternRationale:
@@ -1466,7 +1467,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     mcAccessDifficulty: "Medium",
     economicPatternName: "Risk Avoidance (Compliance / Penalties / Outage Impact)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "SecInc_yr*ΔImpact$*Adopt%*Capture%",
+    economicFormula: "Sec * Inc_yr * ΔImpact$ * Adopt% * Capture%",
     economicFormulaDescription:
       "SecInc_yr = security incidents per year (SOC); ΔImpact$ = reduction in avg incident cost vs baseline (containment, downtime, legal); Adopt% = % environment covered; Capture% = % improvement attributable to AI (exclude incident-response orchestration counted separately).",
     economicPatternRationale:
@@ -1496,7 +1497,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Cost Takeout (Labor / Opex Reduction)",
     economicImpactCategory: "Cost",
-    economicFormula: "AML_Cases_yrΔReview_min/60AnalystCost_hr*Adopt%*Capture%",
+    economicFormula: "AML_Cases_yr * ΔReview_min/60 * Analyst * Cost_hr * Adopt% * Capture%",
     economicFormulaDescription:
       "AML_Cases_yr = alerts/cases reviewed per year (compliance); ΔReview_min = minutes saved per case via better triage; AnalystCost_hr = fully loaded compliance analyst cost; Adopt% = % workflows using AI; Capture% = % savings realized (exclude avoided fines unless separately evidenced).",
     economicPatternRationale:
@@ -1525,7 +1526,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Risk Avoidance (Compliance / Penalties / Outage Impact)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "QoS_Reports_yrΔPenaltyRateAvgPenalty_$*Adopt%*Capture%",
+    economicFormula: "Qo * S_Reports_yr * ΔPenalty * Rate * Avg * Penalty_$ * Adopt% * Capture%",
     economicFormulaDescription:
       "QoS_Reports_yr = reporting periods/contracts per year; ΔPenaltyRate = reduction in penalty/dispute events due to accurate reporting/early warning; AvgPenalty_$ = avg cost per penalty/dispute; Adopt% = % customers with AI dashboards; Capture% = % avoided costs attributable to reporting (exclude actual QoS improvements).",
     economicPatternRationale:
@@ -1552,7 +1553,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Low",
     economicPatternName: "Risk Avoidance (Compliance / Penalties / Outage Impact)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "Offboards_yr*ΔResidualAccess%*ExpLoss_event$*Adopt%*Capture%",
+    economicFormula: "Offboards_yr * ΔResidual * Access% * Exp * Loss_event$ * Adopt% * Capture%",
     economicFormulaDescription:
       "Offboards_yr = employee offboarding events per year (HR/IAM); ΔResidualAccess% = reduction in accounts with lingering access vs baseline; ExpLoss_event$ = expected loss per residual-access incident (probability-weighted); Adopt% = % systems integrated; Capture% = % reduction attributable to automation.",
     economicPatternRationale:
@@ -1578,7 +1579,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     mcAccessDifficulty: "High",
     economicPatternName: "Cost Takeout (Labor / Opex Reduction)",
     economicImpactCategory: "Cost",
-    economicFormula: "ESG_Reports_yrΔPrep_min/60AnalystCost_hr*Adopt%*Capture%",
+    economicFormula: "ESG_Reports_yr * ΔPrep_min/60 * Analyst * Cost_hr * Adopt% * Capture%",
     economicFormulaDescription:
       "ESG_Reports_yr = ESG reporting cycles/artifacts per year (sustainability/finance); ΔPrep_min = minutes saved per report (data gathering, narrative); AnalystCost_hr = fully loaded analyst cost; Adopt% = % ESG metrics automated; Capture% = % time savings realized.",
     economicPatternRationale:
@@ -1607,7 +1608,8 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "High",
     economicPatternName: "Risk Avoidance (Compliance / Penalties / Outage Impact)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "NetAnoms_yrΔEscalationRateCost_majorIncident*Adopt%*Capture%",
+    economicFormula:
+      "Net * Anoms_yr * ΔEscalation * Rate * Cost_major * Incident * Adopt% * Capture%",
     economicFormulaDescription:
       "NetAnoms_yr = network anomaly detections per year (NPM/SIEM); ΔEscalationRate = reduction in anomalies escalating to major incidents; Cost_majorIncident = avg cost per major incident; Adopt% = % network monitored; Capture% = % prevention attributable to AI.",
     economicPatternRationale:
@@ -1634,7 +1636,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "High",
     economicPatternName: "Productivity Capacity (Time-to-Decision / Ticket Deflection)",
     economicImpactCategory: "Productivity / Capacity",
-    economicFormula: "Alerts_yrΔTriage_min/60SecAnalystCost_hr*Adopt%*Capture%",
+    economicFormula: "Alerts_yr * ΔTriage_min/60 * Sec * Analyst * Cost_hr * Adopt% * Capture%",
     economicFormulaDescription:
       "Alerts_yr = security alerts per year (SIEM); ΔTriage_min = minutes saved per alert via enrichment; SecAnalystCost_hr = fully loaded security analyst cost; Adopt% = % alerts enriched; Capture% = % time savings realized (exclude avoided breach impact counted elsewhere).",
     economicPatternRationale:
@@ -1662,7 +1664,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "High",
     economicPatternName: "Risk Avoidance (Compliance / Penalties / Outage Impact)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "SecInc_yrΔContain_minImpact_per_min*Adopt%*Capture%",
+    economicFormula: "Sec * Inc_yr * ΔContain_min * Impact_per_min * Adopt% * Capture%",
     economicFormulaDescription:
       "SecInc_yr = incidents handled per year (SOC); ΔContain_min = reduction in minutes to contain; Impact_per_min = $ impact per minute of active incident (downtime, data loss exposure, labor surge); Adopt% = % incident types automated; Capture% = % time reduction attributable to orchestration.",
     economicPatternRationale:
@@ -1693,7 +1695,7 @@ export const COMMUNICATIONS_USE_CASES: MasterRepoUseCase[] = [
     vaAccessDifficulty: "Medium",
     economicPatternName: "Risk Avoidance (Compliance / Penalties / Outage Impact)",
     economicImpactCategory: "Risk / Loss Avoidance",
-    economicFormula: "IoTInc_yr*ΔImpact$*Adopt%*Capture%",
+    economicFormula: "Io * TInc_yr * ΔImpact$ * Adopt% * Capture%",
     economicFormulaDescription:
       "IoTInc_yr = IoT-related security incidents per year (SOC); ΔImpact$ = reduction in avg incident cost vs baseline (service disruption, remediation, penalties); Adopt% = % IoT fleet monitored; Capture% = % reduction attributable to AI (exclude general network security benefits counted elsewhere).",
     economicPatternRationale:
