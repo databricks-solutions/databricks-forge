@@ -27,6 +27,7 @@ import { logActivity } from "@/lib/lakebase/activity-log";
 import { logger } from "@/lib/logger";
 import { safeErrorMessage } from "@/lib/error-utils";
 import { requireUser, ForgeAuthError } from "@/lib/auth/route-user";
+import { runWithDatabricksAuthContext } from "@/lib/dbx/auth-context";
 
 // ---------------------------------------------------------------------------
 // GET -- poll sync job status
@@ -95,7 +96,12 @@ export async function POST(request: NextRequest) {
   const jobId = uuidv4();
   startSyncJob(jobId);
 
-  runSync(jobId, user.email).catch((err) => {
+  const runTask = () => runSync(jobId, user.email);
+  const executeSync = user.oboToken
+    ? () => runWithDatabricksAuthContext({ oboToken: user.oboToken }, runTask)
+    : runTask;
+
+  executeSync().catch((err) => {
     failSyncJob(jobId, safeErrorMessage(err));
   });
 

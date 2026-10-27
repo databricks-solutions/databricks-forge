@@ -7,6 +7,7 @@
 
 import type { Logger } from "@/lib/ports/logger";
 import type { ResearchSource, DemoScope } from "../../types";
+import { safePublicFetch } from "@/lib/resilient-fetch";
 import { fromStructuredDate, fromUrl, fromTextBody } from "../date-extraction";
 
 const IR_PATHS = [
@@ -517,11 +518,14 @@ async function timedFetch(
     const timeout = setTimeout(() => controller.abort(), timeoutMs);
     const combined = signal ? AbortSignal.any([signal, controller.signal]) : controller.signal;
 
-    const resp = await fetchFn(url, {
-      headers: { "User-Agent": "DatabricksForge/1.0" },
-      signal: combined,
-      redirect: "follow",
-    });
+    const resp = await safePublicFetch(
+      url,
+      {
+        headers: { "User-Agent": "DatabricksForge/1.0" },
+        signal: combined,
+      },
+      fetchFn,
+    );
     clearTimeout(timeout);
     return resp;
   } catch {

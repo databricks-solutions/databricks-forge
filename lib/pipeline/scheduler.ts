@@ -15,6 +15,7 @@ import { withPrisma } from "@/lib/prisma";
 import { logger } from "@/lib/logger";
 import { logActivity } from "@/lib/lakebase/activity-log";
 import { getCap } from "@/lib/quotas";
+import { consumeQueuedOboToken } from "@/lib/auth/queued-token-store";
 
 const log = logger;
 
@@ -105,7 +106,8 @@ async function tick(): Promise<void> {
           userId: owner,
           resourceId: runId,
         });
-        starter.start(runId, { ownerEmail: owner, oboToken: null }).catch((err) => {
+        const oboToken = consumeQueuedOboToken(runId);
+        starter.start(runId, { ownerEmail: owner, oboToken }).catch((err) => {
           log.error("Promoted pipeline crashed", {
             runId,
             error: err instanceof Error ? err.message : String(err),

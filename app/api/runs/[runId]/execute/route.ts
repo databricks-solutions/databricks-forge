@@ -17,6 +17,7 @@ import { recordUsage } from "@/lib/lakebase/usage";
 import { updateRunStatus } from "@/lib/lakebase/runs";
 import { logActivity } from "@/lib/lakebase/activity-log";
 import { notifyScheduler, getQueuePosition } from "@/lib/pipeline/scheduler";
+import { stashQueuedOboToken } from "@/lib/auth/queued-token-store";
 
 export async function POST(
   request: NextRequest,
@@ -52,6 +53,7 @@ export async function POST(
 
     if (isResume && runRow.status === "failed") {
       if (!quota.allowed) {
+        stashQueuedOboToken(runId, oboToken);
         await updateRunStatus(
           runId,
           "queued",
@@ -84,6 +86,7 @@ export async function POST(
     }
 
     if (!quota.allowed) {
+      stashQueuedOboToken(runId, oboToken);
       await updateRunStatus(
         runId,
         "queued",

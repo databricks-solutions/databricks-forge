@@ -12,6 +12,7 @@ import TurndownService from "turndown";
 import type { Logger } from "@/lib/ports/logger";
 import type { LLMClient } from "@/lib/ports/llm-client";
 import type { ResearchSource, DemoScope } from "../../types";
+import { safePublicFetch } from "@/lib/resilient-fetch";
 import { runStrategicCrawl } from "./strategic-crawl";
 import {
   fromStructuredDate,
@@ -67,11 +68,14 @@ export async function runWebsiteScrape(
 
       const combined = signal ? AbortSignal.any([signal, controller.signal]) : controller.signal;
 
-      const response = await fetchFn(url, {
-        headers: { "User-Agent": "DatabricksForge/1.0" },
-        signal: combined,
-        redirect: "follow",
-      });
+      const response = await safePublicFetch(
+        url,
+        {
+          headers: { "User-Agent": "DatabricksForge/1.0" },
+          signal: combined,
+        },
+        fetchFn,
+      );
       clearTimeout(timeout);
 
       if (!response.ok) {

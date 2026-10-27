@@ -47,6 +47,25 @@ const FLUSH_SIZE = 20;
 let buffer: PromptLogEntry[] = [];
 let flushTimer: ReturnType<typeof setTimeout> | null = null;
 
+/**
+ * Redact opt-in sampled table rows (`---BEGIN SAMPLE DATA--- ... ---END SAMPLE DATA---`
+ * or `### SAMPLE DATA ...`) before persisting `renderedPrompt` to Lakebase,
+ * enforcing the privacy invariant that row-level sample data is never persisted.
+ */
+export function redactSampleDataFromPrompt(prompt: string): string {
+  if (!prompt) return prompt;
+  return prompt
+    .replace(
+      /---\s*BEGIN\s+SAMPLE\s+DATA\s*---[\s\S]*?---\s*END\s+SAMPLE\s+DATA\s*---/gi,
+      (match) => `[REDACTED SAMPLE DATA: ${match.length} chars]`,
+    )
+    .replace(
+      /(###\s+SAMPLE\s+DATA\b[^\n]*\n)([\s\S]*?)(?=\n###\s+|\n---\n|$)/gi,
+      (_full, header: string, body: string) =>
+        `${header}[REDACTED SAMPLE DATA: ${body.trim().length} chars]\n`,
+    );
+}
+
 function scheduleFlush(): void {
   if (flushTimer) return;
   flushTimer = setTimeout(() => {
@@ -95,7 +114,10 @@ async function flushBuffer(): Promise<void> {
  * reduce DB round-trips. Designed to be called fire-and-forget.
  */
 export function insertPromptLog(entry: PromptLogEntry): void {
-  buffer.push(entry);
+  buffer.push({
+    ...entry,
+    renderedPrompt: redactSampleDataFromPrompt(entry.renderedPrompt),
+  });
   if (buffer.length >= FLUSH_SIZE) {
     flushBuffer();
   } else {
