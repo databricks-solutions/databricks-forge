@@ -101,6 +101,7 @@ describe("GET /api/health endpoint validation state", () => {
   });
 
   it("reports completed validation counts to authenticated callers without degrading a usable pool", async () => {
+    process.env.DATABRICKS_SERVING_ENDPOINT = "databricks-claude-opus-4-7";
     process.env.FORGE_ENDPOINT_VALIDATION_STATE = "completed";
     process.env.FORGE_VALIDATED_ENDPOINTS = "databricks-claude-opus-4-7,databricks-gpt-5-4";
 
@@ -119,6 +120,7 @@ describe("GET /api/health endpoint validation state", () => {
   });
 
   it("hides pool counts from unauthenticated callers on a healthy deployment", async () => {
+    process.env.DATABRICKS_SERVING_ENDPOINT = "databricks-claude-opus-4-7";
     process.env.FORGE_ENDPOINT_VALIDATION_STATE = "completed";
     process.env.FORGE_VALIDATED_ENDPOINTS = "databricks-claude-opus-4-7,databricks-gpt-5-4";
 
