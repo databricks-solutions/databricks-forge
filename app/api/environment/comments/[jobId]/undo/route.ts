@@ -21,9 +21,10 @@ export async function POST(
     if (!guard.ok) return guard.response;
 
     const body = await request.json();
-    const { proposalIds, all } = body as {
+    const { proposalIds, all, force } = body as {
       proposalIds?: string[];
       all?: boolean;
+      force?: boolean;
     };
 
     const allProposals = await getProposalsForJob(jobId);
@@ -42,16 +43,17 @@ export async function POST(
       return NextResponse.json({ error: "No applied proposals to undo" }, { status: 400 });
     }
 
-    const result = await undoProposals(jobId, toUndo);
+    const result = await undoProposals(jobId, toUndo, undefined, undefined, { force });
 
     logActivity("undone_comments", {
       resourceId: jobId,
-      metadata: { undone: result.applied, failed: result.failed },
+      metadata: { undone: result.applied, failed: result.failed, skipped: result.skipped },
     });
 
     return NextResponse.json({
       undone: result.applied,
       failed: result.failed,
+      skipped: result.skipped,
       errors: result.errors,
     });
   } catch (error) {

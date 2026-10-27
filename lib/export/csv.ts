@@ -3,6 +3,7 @@
  */
 
 import type { PipelineRun, UseCase } from "@/lib/domain/types";
+import { sanitizeSpreadsheetString } from "./sanitize-cell";
 
 const CSV_HEADERS = [
   "No",
@@ -29,11 +30,12 @@ const CSV_HEADERS = [
   "Feedback",
 ];
 
-function escapeCsvField(value: string): string {
-  if (value.includes(",") || value.includes('"') || value.includes("\n")) {
-    return `"${value.replace(/"/g, '""')}"`;
+export function escapeCsvField(value: string): string {
+  const safe = sanitizeSpreadsheetString(value);
+  if (safe.includes(",") || safe.includes('"') || safe.includes("\n") || safe.includes("\r")) {
+    return `"${safe.replace(/"/g, '""')}"`;
   }
-  return value;
+  return safe;
 }
 
 export function generateCsv(_run: PipelineRun, useCases: UseCase[]): Buffer {

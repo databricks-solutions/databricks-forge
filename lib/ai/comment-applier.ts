@@ -378,6 +378,34 @@ export async function applyProposals(
 // Undo proposals
 // ---------------------------------------------------------------------------
 
+export interface UndoOptions {
+  /**
+   * Optional map of live Unity Catalog comments keyed by `tableFqn.toLowerCase()`
+   * (for table comments) or `${tableFqn.toLowerCase()}::${columnName.toLowerCase()}`
+   * (for column comments). When provided and `force !== true`, any proposal whose
+   * live UC comment no longer matches the applied comment (`editedComment ?? proposedComment`)
+   * is skipped so external user edits in UC are never overwritten.
+   */
+  liveComments?: Map<string, string | null>;
+  /** When true, overwrite live UC comments even if they drifted after apply. */
+  force?: boolean;
+}
+
+function hasCommentDrifted(
+  proposal: CommentProposal,
+  liveComments?: Map<string, string | null>,
+  force?: boolean,
+): boolean {
+  if (force || !liveComments) return false;
+  const key = proposal.columnName
+    ? `${proposal.tableFqn.toLowerCase()}::${proposal.columnName.toLowerCase()}`
+    : proposal.tableFqn.toLowerCase();
+  if (!liveComments.has(key)) return false;
+  const live = (liveComments.get(key) ?? "").trim();
+  const applied = (proposal.editedComment ?? proposal.proposedComment ?? "").trim();
+  return live !== applied;
+}
+
 /**
  * Undo previously applied proposals by restoring original comments.
  *
@@ -389,6 +417,7 @@ export async function undoProposals(
   proposals: CommentProposal[],
   tableTypes?: Map<string, string>,
   onProgress?: (undone: number, total: number) => void,
+  options?: UndoOptions,
 ): Promise<ApplyResult> {
   const result: ApplyResult = { applied: 0, failed: 0, skipped: 0, errors: [] };
   let completed = 0;
@@ -403,26 +432,54 @@ export async function undoProposals(
       // --- 1. Table-level comment ---
       const tableProposal = tableProposals.find((p) => !p.columnName);
       if (tableProposal) {
-        try {
-          await executeSQL(buildTableCommentDDL(tableFqn, tableProposal.originalComment));
-          await markProposalsUndone([tableProposal.id]);
-          result.applied++;
-        } catch (err) {
-          const msg = err instanceof Error ? err.message : String(err);
-          result.failed++;
+        if (hasCommentDrifted(tableProposal, options?.liveComments, options?.force)) {
+          result.skipped++;
           result.errors.push({
             proposalId: tableProposal.id,
             tableFqn,
             columnName: null,
-            error: msg,
+            error:
+              "Skipped undo: comment was modified in Unity Catalog after apply (pass force=true to overwrite).",
           });
+        } else {
+          try {
+            await executeSQL(buildTableCommentDDL(tableFqn, tableProposal.originalComment));
+            await markProposalsUndone([tableProposal.id]);
+            result.applied++;
+          } catch (err) {
+            const msg = err instanceof Error ? err.message : String(err);
+            result.failed++;
+            result.errors.push({
+              proposalId: tableProposal.id,
+              tableFqn,
+              columnName: null,
+              error: msg,
+            });
+          }
         }
         completed++;
         onProgress?.(completed, total);
       }
 
       // --- 2. Column-level comments (batched) ---
-      const columnProposals = tableProposals.filter((p) => p.columnName);
+      const allColumnProposals = tableProposals.filter((p) => p.columnName);
+      const columnProposals: CommentProposal[] = [];
+      for (const cp of allColumnProposals) {
+        if (hasCommentDrifted(cp, options?.liveComments, options?.force)) {
+          result.skipped++;
+          result.errors.push({
+            proposalId: cp.id,
+            tableFqn,
+            columnName: cp.columnName,
+            error:
+              "Skipped undo: column comment was modified in Unity Catalog after apply (pass force=true to overwrite).",
+          });
+          completed++;
+          onProgress?.(completed, total);
+        } else {
+          columnProposals.push(cp);
+        }
+      }
       if (columnProposals.length === 0) return;
 
       const columns = columnProposals.map((p) => ({
