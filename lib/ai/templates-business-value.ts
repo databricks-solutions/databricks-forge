@@ -87,13 +87,13 @@ Return a JSON array, one object per use case:
 [
   {
     "use_case_id": "...",
-    "value_low": 50000,
-    "value_mid": 200000,
-    "value_high": 500000,
-    "value_type": "cost_savings",
+    "value_low": 63000,
+    "value_mid": 126000,
+    "value_high": 220000,
+    "value_type": "risk_reduction",
     "confidence": "medium",
     "rationale": "One-sentence justification with reference to industry benchmark or calculation basis",
-    "assumptions": ["Assumes 5% error rate reduction", "Based on 2M transactions/year"],
+    "assumptions": ["Assumes 15% fraud loss reduction on $2M baseline", "Based on 60% adoption and 70% realization cap"],
     "industry_benchmark": "Industry average: 1-3% fraud loss rate (Nilson Report)",
     "economic_pattern_name": "Loss Avoidance (Fraud / Shrink / Leakage / Errors)",
     "economic_impact_category": "Risk / Loss Avoidance",

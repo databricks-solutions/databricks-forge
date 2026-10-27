@@ -25,9 +25,11 @@ import { logger as fallbackLogger } from "@/lib/logger";
 import { upsertValueEstimates, getValueEstimatesForRun } from "@/lib/lakebase/value-estimates";
 import {
   ECONOMIC_PATTERNS,
+  evaluateEconomicFormula,
   isEconomicImpactCategory,
   isEconomicPatternName,
   LEGACY_VALUE_TYPE_MAP,
+  normalizeValueEstimateBounds,
 } from "@/lib/domain/economic-patterns";
 import { getMasterRepoEnrichment } from "@/lib/domain/industry-outcomes/master-repo-registry";
 import { resolveIndustryId } from "@/lib/domain/industry-outcomes";
@@ -536,11 +538,18 @@ async function runFinancialQuantification(
           e.economic_pattern_name && isEconomicPatternName(e.economic_pattern_name)
             ? e.economic_pattern_name
             : null;
+        const evaluatedMid = evaluateEconomicFormula(patternName, e.economic_formula_vars ?? null);
+        const bounds = normalizeValueEstimateBounds({
+          valueLow: e.value_low,
+          valueMid: e.value_mid,
+          valueHigh: e.value_high,
+          evaluatedMid,
+        });
         return {
           useCaseId: e.use_case_id,
-          valueLow: Math.max(0, e.value_low ?? 0),
-          valueMid: Math.max(0, e.value_mid ?? 0),
-          valueHigh: Math.max(0, e.value_high ?? 0),
+          valueLow: bounds.valueLow,
+          valueMid: bounds.valueMid,
+          valueHigh: bounds.valueHigh,
           valueType,
           confidence: (e.confidence || "medium") as ValueConfidence,
           rationale: e.rationale,

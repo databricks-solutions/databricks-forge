@@ -220,3 +220,113 @@ export function isEconomicPatternName(value: string): value is EconomicPatternNa
 export function isEconomicImpactCategory(value: string): value is EconomicImpactCategory {
   return (ECONOMIC_IMPACT_CATEGORIES as readonly string[]).includes(value);
 }
+
+const PERCENT_KEY_RE =
+  /(?:pct|%|adopt|capture|cap|prob|rate_pct|lift|delta_conv|delta_churn|cost_of_capital)$/i;
+const DAYS_KEY_RE = /days/i;
+
+function parseFormulaVarValue(key: string, raw: number | string): number | null {
+  let num: number;
+  if (typeof raw === "number") {
+    num = raw;
+  } else if (typeof raw === "string") {
+    const trimmed = raw.trim();
+    const hasPercentSign = trimmed.endsWith("%");
+    const cleaned = trimmed.replace(/[$,%\s]/g, "");
+    num = Number(cleaned);
+    if (!Number.isFinite(num)) return null;
+    if (hasPercentSign) {
+      num = num / 100;
+    }
+  } else {
+    return null;
+  }
+
+  if (!Number.isFinite(num) || num <= 0) return null;
+
+  if (DAYS_KEY_RE.test(key) && num <= 365) {
+    return num / 365;
+  }
+
+  if (PERCENT_KEY_RE.test(key) && num > 1 && num <= 100) {
+    return num / 100;
+  }
+
+  return num;
+}
+
+/**
+ * Deterministically evaluate the product of `economicFormulaVars` for a
+ * canonical economic pattern. Returns `null` when fewer than 2 valid numeric
+ * variables are present.
+ */
+export function evaluateEconomicFormula(
+  patternName: string | null | undefined,
+  vars: Record<string, number | string> | null | undefined,
+): number | null {
+  if (!vars || typeof vars !== "object") return null;
+  const entries = Object.entries(vars);
+  if (entries.length < 2) return null;
+
+  let product = 1;
+  let validCount = 0;
+
+  for (const [key, rawVal] of entries) {
+    const parsed = parseFormulaVarValue(key, rawVal);
+    if (parsed === null) return null;
+    product *= parsed;
+    validCount++;
+  }
+
+  if (validCount < 2 || !Number.isFinite(product) || product <= 0) {
+    return null;
+  }
+
+  return Math.round(product);
+}
+
+/**
+ * Normalize `(valueLow, valueMid, valueHigh)` so that:
+ *   1. All values are non-negative finite numbers.
+ *   2. When `evaluatedMid` is available from `evaluateEconomicFormula`, `valueMid`
+ *      is anchored to `evaluatedMid` (and `valueLow`/`valueHigh` scale proportionally
+ *      if the LLM's `valueMid` drifted by >10%).
+ *   3. `0 <= valueLow <= valueMid <= valueHigh` holds strictly.
+ */
+export function normalizeValueEstimateBounds(input: {
+  valueLow?: number | null;
+  valueMid?: number | null;
+  valueHigh?: number | null;
+  evaluatedMid?: number | null;
+}): { valueLow: number; valueMid: number; valueHigh: number } {
+  let low = Math.max(0, Number(input.valueLow ?? 0) || 0);
+  let mid = Math.max(0, Number(input.valueMid ?? 0) || 0);
+  let high = Math.max(0, Number(input.valueHigh ?? 0) || 0);
+
+  const evalMid = input.evaluatedMid;
+  if (typeof evalMid === "number" && Number.isFinite(evalMid) && evalMid > 0) {
+    if (mid > 0) {
+      const drift = Math.abs(mid - evalMid) / evalMid;
+      if (drift > 0.1) {
+        const ratioLow = low > 0 && low < mid ? low / mid : 0.5;
+        const ratioHigh = high > mid ? high / mid : 1.75;
+        mid = Math.round(evalMid);
+        low = Math.round(mid * ratioLow);
+        high = Math.round(mid * ratioHigh);
+      } else {
+        mid = Math.round(evalMid);
+      }
+    } else {
+      mid = Math.round(evalMid);
+      if (low === 0) low = Math.round(mid * 0.5);
+      if (high === 0) high = Math.round(mid * 1.75);
+    }
+  }
+
+  const sorted = [low, mid, high].sort((a, b) => a - b);
+  return {
+    valueLow: sorted[0],
+    valueMid: sorted[1],
+    valueHigh: sorted[2],
+  };
+}
