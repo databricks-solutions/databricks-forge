@@ -2805,6 +2805,9 @@ main() {
 
   if [ "$ARG_ZERO_EGRESS" = "true" ]; then
     assemble_zero_egress
+    # Re-run prepare_app_yaml after assemble_zero_egress in case any subshell
+    # during assembly triggered the EXIT trap on Bash 3.2.
+    prepare_app_yaml
     # Patch app.yaml command from scripts/start.sh to bootstrap.sh
     python3 -c "
 from pathlib import Path
