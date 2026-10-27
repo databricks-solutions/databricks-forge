@@ -58,3 +58,36 @@ export async function requirePortfolioAccess(request: Request): Promise<Portfoli
 
   return { ok: true, user };
 }
+
+/**
+ * Require an authenticated organisation administrator (via `isPortfolioAdmin`),
+ * independent of whether the Portfolio UI tab is enabled. Used for privileged
+ * workspace-wide operations such as factory reset, schema migration, and
+ * cross-tenant embedding backfill.
+ */
+export async function requireOrgAdmin(request: Request): Promise<PortfolioGuardResult> {
+  let user: ForgeUser;
+  try {
+    user = await requireUser(request);
+  } catch (e) {
+    if (e instanceof ForgeAuthError) {
+      return { ok: false, response: NextResponse.json({ error: e.message }, { status: e.status }) };
+    }
+    throw e;
+  }
+
+  if (!(await isPortfolioAdmin(user.email))) {
+    return {
+      ok: false,
+      response: NextResponse.json(
+        {
+          error: "Forbidden. Organisation administrator privileges are required for this action.",
+          reason: "not_allowlisted",
+        },
+        { status: 403 },
+      ),
+    };
+  }
+
+  return { ok: true, user };
+}

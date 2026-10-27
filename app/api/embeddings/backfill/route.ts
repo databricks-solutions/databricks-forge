@@ -11,12 +11,16 @@
  * The response streams progress as JSON objects.
  */
 
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { safeErrorMessage } from "@/lib/error-utils";
 import { isEmbeddingEnabled } from "@/lib/embeddings/config";
 import { apiLogger } from "@/lib/logger";
+import { requireOrgAdmin } from "@/lib/auth/portfolio-guard";
 
-export async function POST() {
+export async function POST(request: NextRequest) {
+  const guard = await requireOrgAdmin(request);
+  if (!guard.ok) return guard.response;
+
   const log = apiLogger("/api/embeddings/backfill", "POST");
 
   if (!isEmbeddingEnabled()) {

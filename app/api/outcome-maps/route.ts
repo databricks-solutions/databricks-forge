@@ -8,15 +8,24 @@
 import { NextRequest, NextResponse } from "next/server";
 import { ensureMigrated } from "@/lib/lakebase/schema";
 import { listOutcomeMaps, createOutcomeMap } from "@/lib/lakebase/outcome-maps";
-import { getCurrentUserEmail } from "@/lib/dbx/client";
+import { requireUser, ForgeAuthError } from "@/lib/auth/route-user";
 import type { IndustryOutcome } from "@/lib/domain/industry-outcomes";
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
+    try {
+      await requireUser(request);
+    } catch (e) {
+      if (e instanceof ForgeAuthError) {
+        return NextResponse.json({ error: e.message }, { status: e.status });
+      }
+      throw e;
+    }
+
     await ensureMigrated();
     const maps = await listOutcomeMaps();
     return NextResponse.json(maps, {
-      headers: { "Cache-Control": "public, s-maxage=120, stale-while-revalidate=300" },
+      headers: { "Cache-Control": "private, no-store" },
     });
   } catch (err) {
     return NextResponse.json(
@@ -28,6 +37,16 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
+    let user;
+    try {
+      user = await requireUser(request);
+    } catch (e) {
+      if (e instanceof ForgeAuthError) {
+        return NextResponse.json({ error: e.message }, { status: e.status });
+      }
+      throw e;
+    }
+
     await ensureMigrated();
 
     const body = await request.json();
@@ -47,13 +66,12 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "rawMarkdown is required" }, { status: 400 });
     }
 
-    const userEmail = await getCurrentUserEmail();
     const record = await createOutcomeMap({
       industryId: parsedOutcome.id,
       name: parsedOutcome.name,
       rawMarkdown,
       parsedOutcome,
-      createdBy: userEmail,
+      createdBy: user.email,
     });
 
     return NextResponse.json(record, { status: 201 });

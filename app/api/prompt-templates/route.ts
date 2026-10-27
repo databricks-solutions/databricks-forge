@@ -9,9 +9,19 @@ import { NextRequest, NextResponse } from "next/server";
 import { logger } from "@/lib/logger";
 import { getPromptTemplatesBatch } from "@/lib/lakebase/prompt-templates";
 import { ensureMigrated } from "@/lib/lakebase/schema";
+import { requireUser, ForgeAuthError } from "@/lib/auth/route-user";
 
 export async function GET(request: NextRequest) {
   try {
+    try {
+      await requireUser(request);
+    } catch (e) {
+      if (e instanceof ForgeAuthError) {
+        return NextResponse.json({ error: e.message }, { status: e.status });
+      }
+      throw e;
+    }
+
     await ensureMigrated();
     const { searchParams } = new URL(request.url);
     const hashesParam = searchParams.get("hashes");

@@ -2,9 +2,19 @@ import { NextResponse } from "next/server";
 import { isDemoModeEnabled } from "@/lib/demo/config";
 import { executeSQL } from "@/lib/dbx/sql";
 import { validateIdentifier, IdentifierValidationError } from "@/lib/validation";
+import { requireUser, ForgeAuthError } from "@/lib/auth/route-user";
 import { logger } from "@/lib/logger";
 
 export async function POST(request: Request) {
+  try {
+    await requireUser(request);
+  } catch (e) {
+    if (e instanceof ForgeAuthError) {
+      return NextResponse.json({ error: e.message }, { status: e.status });
+    }
+    throw e;
+  }
+
   if (!(await isDemoModeEnabled())) {
     return NextResponse.json({ error: "Demo mode is not enabled" }, { status: 404 });
   }
