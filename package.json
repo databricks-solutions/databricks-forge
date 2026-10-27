@@ -35,7 +35,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "db:preflight": "node scripts/db-preflight.mjs",
-    "test": "vitest run",
+    "test": "prisma generate && vitest run",
     "test:quality": "vitest run __tests__/genie/quality-evaluation.test.ts",
     "test:integration": "vitest run __tests__/db/migration-integration.test.ts",
     "test:watch": "vitest",

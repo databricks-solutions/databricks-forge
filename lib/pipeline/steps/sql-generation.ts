@@ -879,11 +879,13 @@ async function generateSqlForUseCase(
       diag.executionFixed = true;
       currentSql = fixedSql;
     } else {
-      log.warn("SQL fix failed, returning original SQL", {
+      log.warn("SQL fix failed after EXPLAIN error, marking SQL generation failed", {
         fn: "generateSqlForUseCase",
         errorCategory: "llm_error",
         useCaseId: uc.id,
+        executionError,
       });
+      return { sql: null, diag };
     }
   }
 

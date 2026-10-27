@@ -6,7 +6,7 @@ const files = execFileSync("git", ["ls-files", "-co", "--exclude-standard", "-z"
   .split("\0")
   .filter(Boolean);
 
-const forbiddenPaths = [".superpowers/", ".claude/", "docs/superpowers/"];
+const forbiddenPaths = [".superpowers/", ".claude/", "docs/superpowers/", "docs/audit/"];
 const historicalPrefix = "docs/release-notes/";
 const activeTextExtensions = /\.(?:md|json|ya?ml|mjs|cjs|js|jsx|ts|tsx|sh|txt)$/;
 const internalRegistry = ["npm-proxy.dev", "databricks.com"].join(".");

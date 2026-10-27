@@ -13,6 +13,7 @@ import { cachedChatCompletion } from "@/lib/toolkit/llm-cache";
 import { parseLLMJson } from "@/lib/toolkit/parse-llm-json";
 import { buildTokenAwareBatches, estimateTokens } from "@/lib/toolkit/token-budget";
 import { resolveEndpoint } from "@/lib/dbx/client";
+import { stripDelimiterMarkers } from "@/lib/toolkit/untrusted-data";
 import { logger } from "@/lib/logger";
 import type { ChatMessage } from "@/lib/dbx/model-serving";
 import type { DataTier, TableRole, NamingSignals } from "./types";
@@ -100,7 +101,7 @@ function renderTableForClassifier(t: ClassifierInput): string {
 
   const parts = [`- ${t.fqn}: [${cols}${extra}]`];
 
-  if (t.comment) parts.push(`  comment: "${t.comment}"`);
+  if (t.comment) parts.push(`  comment: "${stripDelimiterMarkers(t.comment)}"`);
   if (t.tags.length > 0) parts.push(`  tags: [${t.tags.join(", ")}]`);
 
   const hints: string[] = [];
