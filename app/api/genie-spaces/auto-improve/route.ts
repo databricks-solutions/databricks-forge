@@ -68,16 +68,19 @@ export async function POST(request: NextRequest) {
       try {
         const result = await runAutoImproveLoop(
           config,
-          async (checkIds) => {
-            const space = await getGenieSpace(spaceId);
+          async (checkIds, targetSpaceId) => {
+            const effectiveSpaceId = targetSpaceId || spaceId;
+            const filteredChecks = checkIds.filter((id) => id !== "benchmarks-exist");
+            if (filteredChecks.length === 0) return [];
+            const space = await getGenieSpace(effectiveSpaceId);
             if (!space?.serialized_space) return [];
             const fixResult = await runFixes({
-              checkIds,
+              checkIds: filteredChecks,
               serializedSpace: space.serialized_space,
-              spaceId,
+              spaceId: effectiveSpaceId,
             });
             if (fixResult.changes.length > 0) {
-              await updateGenieSpace(spaceId, {
+              await updateGenieSpace(effectiveSpaceId, {
                 serializedSpace: JSON.stringify(fixResult.updatedSpace),
                 oboToken,
               });

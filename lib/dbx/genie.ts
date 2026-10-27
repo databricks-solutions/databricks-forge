@@ -292,6 +292,7 @@ export function sanitizeSerializedSpace(raw: string): string {
       "synonyms",
       "usage_guidance",
       "comment",
+      "evaluation_note",
     ]);
     function coerceStringArrays(obj: unknown): unknown {
       if (obj == null) return obj;

@@ -160,18 +160,20 @@ export async function createDevSpaces(
   };
 }
 
-async function promoteWorkingToBest(ids: ThreeSpaceIds): Promise<void> {
+async function promoteWorkingToBest(ids: ThreeSpaceIds, oboToken?: string): Promise<void> {
   const working = await getGenieSpace(ids.devWorking);
   await updateGenieSpace(ids.devBest, {
     serializedSpace: working.serialized_space ?? "{}",
+    oboToken,
   });
   logger.info("Promoted dev-working to dev-best", { devBest: ids.devBest });
 }
 
-async function rollbackWorkingFromBest(ids: ThreeSpaceIds): Promise<void> {
+async function rollbackWorkingFromBest(ids: ThreeSpaceIds, oboToken?: string): Promise<void> {
   const best = await getGenieSpace(ids.devBest);
   await updateGenieSpace(ids.devWorking, {
     serializedSpace: best.serialized_space ?? "{}",
+    oboToken,
   });
   logger.info("Rolled back dev-working from dev-best", { devWorking: ids.devWorking });
 }
@@ -299,173 +301,131 @@ export async function runAutoImproveLoop(
     devSpaces,
   });
 
-  for (let i = 1; i <= maxIterations; i++) {
-    if (signal?.aborted) return buildResult("aborted");
+  let initialPassRate = -1;
+  let bestPassRate = -1;
 
-    const iterStart = Date.now();
-
-    onProgress?.({
-      phase: "benchmark",
-      iteration: i,
-      maxIterations,
-      passRate: previousPassRate >= 0 ? previousPassRate : 0,
-      targetScore,
-      message: enableThreeGateEval
-        ? `Running three-gate eval (iteration ${i}/${maxIterations})...`
-        : `Running eval benchmarks (iteration ${i}/${maxIterations})...`,
-    });
-
-    // -------------------- Eval (three-gate or single-shot) --------------------
-    let evalResult: EvalRunResult;
-    let sliceScore: number | undefined;
-    let p0Score: number | undefined;
-    let gateAbandoned: AutoImproveIteration["gateAbandoned"];
-
-    if (enableThreeGateEval) {
-      const allQuestionIds = collectQuestionIds(evalOptions, hardestQuestionIds);
-      const outcome: ThreeGateOutcome = await runThreeGateEval({
-        spaceId: benchmarkSpaceId,
-        evalOptions,
-        allQuestionIds,
-        hardestQuestionIds,
-      });
-      if (outcome.status === "abandoned") {
-        const gateResult = outcome.gate === "slice" ? outcome.sliceResult : outcome.p0Result;
-        evalResult = gateResult ?? emptyEval(benchmarkSpaceId);
-        sliceScore = outcome.sliceResult?.accuracy;
-        p0Score = outcome.p0Result?.accuracy;
-        gateAbandoned = { gate: outcome.gate, reason: outcome.reason };
-        logger.warn("[auto-improve] three-gate abandoned iteration", {
-          iteration: i,
-          gate: outcome.gate,
-          reason: outcome.reason,
-        });
-      } else {
-        evalResult = outcome.fullResult;
-        sliceScore = outcome.sliceResult.accuracy;
-        p0Score = outcome.p0Result?.accuracy;
+  const finalizeAndBuildResult = async (
+    stoppedReason: AutoImproveResult["stoppedReason"],
+  ): Promise<AutoImproveResult> => {
+    if (devSpaces) {
+      if (bestPassRate > initialPassRate && initialPassRate >= 0) {
+        try {
+          const bestConfig = await getDevBestConfig(devSpaces);
+          await updateGenieSpace(spaceId, { serializedSpace: bestConfig, oboToken });
+          logger.info("Promoted dev-best configuration to production space", {
+            spaceId,
+            initialPassRate,
+            bestPassRate,
+          });
+        } catch (err) {
+          logger.warn("Failed to promote dev-best to production space", {
+            spaceId,
+            error: err instanceof Error ? err.message : String(err),
+          });
+        }
       }
-    } else {
-      evalResult = await runEval(benchmarkSpaceId, evalOptions);
+      await cleanupDevSpaces(devSpaces);
     }
-    const passRate = evalResult.accuracy;
+    return buildResult(stoppedReason);
+  };
 
-    // -------------------- Multi-axis judges --------------------
-    let judgeAggregate: number | undefined;
-    let judgeByAxis: Record<string, number> | undefined;
-    if (enableMultiAxisJudges && evalResult.results.length > 0 && !gateAbandoned) {
-      try {
-        const sample = evalResult.results.slice(0, 20).map((r) => ({
-          question: r.question,
-          expectedSql: r.expectedSql,
-          actualSql: r.actualSql,
-        }));
-        const judgeResult = await scoreAnswerBatch(sample);
-        judgeAggregate = judgeResult.aggregate;
-        judgeByAxis = judgeResult.byJudge;
-      } catch (err) {
-        logger.warn("[auto-improve] multi-axis judge scoring failed", {
-          iteration: i,
-          error: err instanceof Error ? err.message : String(err),
-        });
-      }
-    }
+  try {
+    for (let i = 1; i <= maxIterations; i++) {
+      if (signal?.aborted) return await finalizeAndBuildResult("aborted");
 
-    // Refresh the "hardest" set for next iteration's P0 gate.
-    hardestQuestionIds = pickHardestQuestionIds(evalResult, 10);
+      const iterStart = Date.now();
 
-    logger.info("Auto-improve eval run", {
-      iteration: i,
-      passRate,
-      sliceScore,
-      p0Score,
-      judgeAggregate,
-      numCorrect: evalResult.numCorrect,
-      numQuestions: evalResult.numQuestions,
-      gateAbandoned: gateAbandoned?.gate,
-    });
-
-    if (passRate >= targetScore) {
-      if (devSpaces && passRate > (previousPassRate >= 0 ? previousPassRate : -1)) {
-        await promoteWorkingToBest(devSpaces);
-      }
-      const completeIter: AutoImproveIteration = {
+      onProgress?.({
+        phase: "benchmark",
         iteration: i,
-        evalResult,
+        maxIterations,
+        passRate: previousPassRate >= 0 ? previousPassRate : 0,
+        targetScore,
+        message: enableThreeGateEval
+          ? `Running three-gate eval (iteration ${i}/${maxIterations})...`
+          : `Running eval benchmarks (iteration ${i}/${maxIterations})...`,
+      });
+
+      // -------------------- Eval (three-gate or single-shot) --------------------
+      let evalResult: EvalRunResult;
+      let sliceScore: number | undefined;
+      let p0Score: number | undefined;
+      let gateAbandoned: AutoImproveIteration["gateAbandoned"];
+
+      if (enableThreeGateEval) {
+        const allQuestionIds = collectQuestionIds(evalOptions, hardestQuestionIds);
+        const outcome: ThreeGateOutcome = await runThreeGateEval({
+          spaceId: benchmarkSpaceId,
+          evalOptions,
+          allQuestionIds,
+          hardestQuestionIds,
+        });
+        if (outcome.status === "abandoned") {
+          const gateResult = outcome.gate === "slice" ? outcome.sliceResult : outcome.p0Result;
+          evalResult = gateResult ?? emptyEval(benchmarkSpaceId);
+          sliceScore = outcome.sliceResult?.accuracy;
+          p0Score = outcome.p0Result?.accuracy;
+          gateAbandoned = { gate: outcome.gate, reason: outcome.reason };
+          logger.warn("[auto-improve] three-gate abandoned iteration", {
+            iteration: i,
+            gate: outcome.gate,
+            reason: outcome.reason,
+          });
+        } else {
+          evalResult = outcome.fullResult;
+          sliceScore = outcome.sliceResult.accuracy;
+          p0Score = outcome.p0Result?.accuracy;
+        }
+      } else {
+        evalResult = await runEval(benchmarkSpaceId, evalOptions);
+      }
+      const passRate = evalResult.accuracy;
+      if (initialPassRate < 0) {
+        initialPassRate = passRate;
+        bestPassRate = passRate;
+      }
+
+      // -------------------- Multi-axis judges --------------------
+      let judgeAggregate: number | undefined;
+      let judgeByAxis: Record<string, number> | undefined;
+      if (enableMultiAxisJudges && evalResult.results.length > 0 && !gateAbandoned) {
+        try {
+          const sample = evalResult.results.slice(0, 20).map((r) => ({
+            question: r.question,
+            expectedSql: r.expectedSql,
+            actualSql: r.actualSql,
+          }));
+          const judgeResult = await scoreAnswerBatch(sample);
+          judgeAggregate = judgeResult.aggregate;
+          judgeByAxis = judgeResult.byJudge;
+        } catch (err) {
+          logger.warn("[auto-improve] multi-axis judge scoring failed", {
+            iteration: i,
+            error: err instanceof Error ? err.message : String(err),
+          });
+        }
+      }
+
+      // Refresh the "hardest" set for next iteration's P0 gate.
+      hardestQuestionIds = pickHardestQuestionIds(evalResult, 10);
+
+      logger.info("Auto-improve eval run", {
+        iteration: i,
         passRate,
-        fixCheckIds: [],
-        strategiesApplied: [],
-        durationMs: Date.now() - iterStart,
         sliceScore,
         p0Score,
         judgeAggregate,
-        judgeByAxis,
-        gateAbandoned,
-      };
-      iterations.push(completeIter);
-      await maybePersistIteration({
-        persistHistory,
-        sessionId,
-        ownerEmail,
-        workingSpaceId: benchmarkSpaceId,
-        bestSpaceId: devSpaces?.devBest,
-        iter: completeIter,
-        reasonStopped: "target_reached",
+        numCorrect: evalResult.numCorrect,
+        numQuestions: evalResult.numQuestions,
+        gateAbandoned: gateAbandoned?.gate,
       });
 
-      onProgress?.({
-        phase: "complete",
-        iteration: i,
-        maxIterations,
-        passRate,
-        targetScore,
-        message: `Target score reached! ${passRate}% >= ${targetScore}%`,
-      });
-
-      return buildResult("target_reached");
-    }
-
-    // Track patches applied by *previous* iteration that may have caused a
-    // regression -- mark them DOA so they aren't reattempted.
-    if (previousPassRate >= 0 && passRate < previousPassRate && persistHistory) {
-      const lastIter = iterations[iterations.length - 1];
-      if (lastIter && lastIter.fixCheckIds.length > 0) {
-        for (const checkId of lastIter.fixCheckIds) {
-          const sig = computePatchSignature({
-            strategy: lastIter.strategiesApplied.find((s) => s) ?? checkId,
-            targetFieldPath: checkId,
-            delta: { iteration: lastIter.iteration },
-          });
-          await recordDoa({
-            sessionId,
-            signature: sig,
-            strategy: lastIter.strategiesApplied[0],
-            reason: `regression_iter_${i}_passRate_${previousPassRate}_to_${passRate}`,
-            ownerEmail,
-          });
+      if (passRate >= targetScore) {
+        if (devSpaces && passRate > bestPassRate) {
+          await promoteWorkingToBest(devSpaces, oboToken);
+          bestPassRate = passRate;
         }
-        logger.info("[auto-improve] recorded DOA signatures for regressing patches", {
-          sessionId,
-          regressingIteration: lastIter.iteration,
-          checkIds: lastIter.fixCheckIds,
-        });
-      }
-    }
-
-    if (previousPassRate >= 0 && passRate <= previousPassRate) {
-      stagnationCount++;
-
-      if (devSpaces && passRate < previousPassRate) {
-        await rollbackWorkingFromBest(devSpaces);
-        logger.info("Regression detected, rolled back to dev-best", {
-          iteration: i,
-          passRate,
-          previousPassRate,
-        });
-      }
-
-      if (stagnationCount >= MAX_STAGNATION) {
-        const stallIter: AutoImproveIteration = {
+        const completeIter: AutoImproveIteration = {
           iteration: i,
           evalResult,
           passRate,
@@ -478,15 +438,15 @@ export async function runAutoImproveLoop(
           judgeByAxis,
           gateAbandoned,
         };
-        iterations.push(stallIter);
+        iterations.push(completeIter);
         await maybePersistIteration({
           persistHistory,
           sessionId,
           ownerEmail,
           workingSpaceId: benchmarkSpaceId,
           bestSpaceId: devSpaces?.devBest,
-          iter: stallIter,
-          reasonStopped: "no_improvement",
+          iter: completeIter,
+          reasonStopped: "target_reached",
         });
 
         onProgress?.({
@@ -495,94 +455,225 @@ export async function runAutoImproveLoop(
           maxIterations,
           passRate,
           targetScore,
-          message: `No improvement after ${MAX_STAGNATION} iterations. Stopping at ${passRate}%.`,
+          message: `Target score reached! ${passRate}% >= ${targetScore}%`,
         });
 
-        return buildResult("no_improvement");
+        return await finalizeAndBuildResult("target_reached");
       }
-    } else {
-      if (devSpaces && previousPassRate >= 0) {
-        await promoteWorkingToBest(devSpaces);
+
+      // Track patches applied by *previous* iteration that may have caused a
+      // regression -- mark them DOA so they aren't reattempted.
+      if (previousPassRate >= 0 && passRate < previousPassRate && persistHistory) {
+        const lastIter = iterations[iterations.length - 1];
+        if (lastIter && lastIter.fixCheckIds.length > 0) {
+          for (const checkId of lastIter.fixCheckIds) {
+            const sig = computePatchSignature({
+              strategy: lastIter.strategiesApplied.find((s) => s) ?? checkId,
+              targetFieldPath: checkId,
+              delta: { iteration: lastIter.iteration },
+            });
+            await recordDoa({
+              sessionId,
+              signature: sig,
+              strategy: lastIter.strategiesApplied[0],
+              reason: `regression_iter_${i}_passRate_${previousPassRate}_to_${passRate}`,
+              ownerEmail,
+            });
+          }
+          logger.info("[auto-improve] recorded DOA signatures for regressing patches", {
+            sessionId,
+            regressingIteration: lastIter.iteration,
+            checkIds: lastIter.fixCheckIds,
+          });
+        }
       }
-      stagnationCount = 0;
-    }
-    previousPassRate = passRate;
 
-    if (i === maxIterations) {
-      const finalIter: AutoImproveIteration = {
-        iteration: i,
-        evalResult,
-        passRate,
-        fixCheckIds: [],
-        strategiesApplied: [],
-        durationMs: Date.now() - iterStart,
-        sliceScore,
-        p0Score,
-        judgeAggregate,
-        judgeByAxis,
-        gateAbandoned,
-      };
-      iterations.push(finalIter);
-      await maybePersistIteration({
-        persistHistory,
-        sessionId,
-        ownerEmail,
-        workingSpaceId: benchmarkSpaceId,
-        bestSpaceId: devSpaces?.devBest,
-        iter: finalIter,
-        reasonStopped: "max_iterations",
-      });
-      break;
-    }
+      if (previousPassRate >= 0 && passRate <= previousPassRate) {
+        stagnationCount++;
 
-    onProgress?.({
-      phase: "analyze",
-      iteration: i,
-      maxIterations,
-      passRate,
-      targetScore,
-      message: `Analyzing ${evalResult.results.filter((r) => r.assessment !== "GOOD").length} failures and planning fixes...`,
-    });
+        if (devSpaces && passRate < previousPassRate) {
+          await rollbackWorkingFromBest(devSpaces, oboToken);
+          logger.info("Regression detected, rolled back to dev-best", {
+            iteration: i,
+            passRate,
+            previousPassRate,
+          });
+        }
 
-    const feedbackEntries: FeedbackEntry[] = evalResult.results.map((r) => ({
-      question: r.question,
-      assessment: r.assessment as GenieEvalAssessment,
-      assessmentReasons: r.assessmentReasons,
-    }));
+        if (stagnationCount >= MAX_STAGNATION) {
+          const stallIter: AutoImproveIteration = {
+            iteration: i,
+            evalResult,
+            passRate,
+            fixCheckIds: [],
+            strategiesApplied: [],
+            durationMs: Date.now() - iterStart,
+            sliceScore,
+            p0Score,
+            judgeAggregate,
+            judgeByAxis,
+            gateAbandoned,
+          };
+          iterations.push(stallIter);
+          await maybePersistIteration({
+            persistHistory,
+            sessionId,
+            ownerEmail,
+            workingSpaceId: benchmarkSpaceId,
+            bestSpaceId: devSpaces?.devBest,
+            iter: stallIter,
+            reasonStopped: "no_improvement",
+          });
 
-    const allCheckIds = analyzeFeedbackForFixes(feedbackEntries);
+          onProgress?.({
+            phase: "complete",
+            iteration: i,
+            maxIterations,
+            passRate,
+            targetScore,
+            message: `No improvement after ${MAX_STAGNATION} iterations. Stopping at ${passRate}%.`,
+          });
 
-    // Drop any candidate patch already in this session's DOA buffer.
-    let patchesDropped = 0;
-    let checkIds = allCheckIds;
-    if (allCheckIds.length > 0 && persistHistory) {
-      const candidates = allCheckIds.map((id) => ({
-        checkId: id,
-        signature: computePatchSignature({
-          strategy: id,
-          targetFieldPath: id,
-          delta: { iteration: i },
-        }),
-      }));
-      const { kept, dropped } = filterCandidatesByDoa(sessionId, candidates);
-      patchesDropped = dropped.length;
-      checkIds = kept.map((c) => c.checkId);
-      if (dropped.length > 0) {
-        logger.info("[auto-improve] DOA buffer filtered patches", {
+          return await finalizeAndBuildResult("no_improvement");
+        }
+      } else {
+        if (devSpaces && previousPassRate >= 0 && passRate > bestPassRate) {
+          await promoteWorkingToBest(devSpaces, oboToken);
+          bestPassRate = passRate;
+        }
+        stagnationCount = 0;
+      }
+      previousPassRate = passRate;
+
+      if (i === maxIterations) {
+        const finalIter: AutoImproveIteration = {
           iteration: i,
-          dropped: dropped.length,
-          kept: kept.length,
+          evalResult,
+          passRate,
+          fixCheckIds: [],
+          strategiesApplied: [],
+          durationMs: Date.now() - iterStart,
+          sliceScore,
+          p0Score,
+          judgeAggregate,
+          judgeByAxis,
+          gateAbandoned,
+        };
+        iterations.push(finalIter);
+        await maybePersistIteration({
+          persistHistory,
+          sessionId,
+          ownerEmail,
+          workingSpaceId: benchmarkSpaceId,
+          bestSpaceId: devSpaces?.devBest,
+          iter: finalIter,
+          reasonStopped: "max_iterations",
         });
+        break;
       }
-    }
 
-    if (checkIds.length === 0) {
-      const noFixIter: AutoImproveIteration = {
+      onProgress?.({
+        phase: "analyze",
+        iteration: i,
+        maxIterations,
+        passRate,
+        targetScore,
+        message: `Analyzing ${evalResult.results.filter((r) => r.assessment !== "GOOD").length} failures and planning fixes...`,
+      });
+
+      const feedbackEntries: FeedbackEntry[] = evalResult.results.map((r) => ({
+        question: r.question,
+        assessment: r.assessment as GenieEvalAssessment,
+        assessmentReasons: r.assessmentReasons,
+      }));
+
+      // Exclude `benchmarks-exist` so auto-improve never mutates the benchmark
+      // evaluation oracle mid-loop.
+      const allCheckIds = analyzeFeedbackForFixes(feedbackEntries).filter(
+        (id) => id !== "benchmarks-exist",
+      );
+
+      // Drop any candidate patch already in this session's DOA buffer.
+      let patchesDropped = 0;
+      let checkIds = allCheckIds;
+      if (allCheckIds.length > 0 && persistHistory) {
+        const candidates = allCheckIds.map((id) => ({
+          checkId: id,
+          signature: computePatchSignature({
+            strategy: id,
+            targetFieldPath: id,
+            delta: { iteration: i },
+          }),
+        }));
+        const { kept, dropped } = filterCandidatesByDoa(sessionId, candidates);
+        patchesDropped = dropped.length;
+        checkIds = kept.map((c) => c.checkId);
+        if (dropped.length > 0) {
+          logger.info("[auto-improve] DOA buffer filtered patches", {
+            iteration: i,
+            dropped: dropped.length,
+            kept: kept.length,
+          });
+        }
+      }
+
+      if (checkIds.length === 0) {
+        const noFixIter: AutoImproveIteration = {
+          iteration: i,
+          evalResult,
+          passRate,
+          fixCheckIds: [],
+          strategiesApplied: [],
+          durationMs: Date.now() - iterStart,
+          sliceScore,
+          p0Score,
+          judgeAggregate,
+          judgeByAxis,
+          patchesDropped,
+          gateAbandoned,
+        };
+        iterations.push(noFixIter);
+        await maybePersistIteration({
+          persistHistory,
+          sessionId,
+          ownerEmail,
+          workingSpaceId: benchmarkSpaceId,
+          bestSpaceId: devSpaces?.devBest,
+          iter: noFixIter,
+          reasonStopped: patchesDropped > 0 ? "all_patches_doa" : "no_actionable_failures",
+        });
+        break;
+      }
+
+      onProgress?.({
+        phase: "fix",
+        iteration: i,
+        maxIterations,
+        passRate,
+        targetScore,
+        message: `Applying ${checkIds.length} fix strategies...`,
+      });
+
+      const strategiesApplied = await applyFixes(checkIds, benchmarkSpaceId);
+
+      if (indexingWaitMs > 0 && i < maxIterations) {
+        onProgress?.({
+          phase: "indexing",
+          iteration: i,
+          maxIterations,
+          passRate,
+          targetScore,
+          message: `Waiting ${Math.round(indexingWaitMs / 1000)}s for Genie indexing...`,
+        });
+        await waitForIndexing(indexingWaitMs, signal);
+      }
+
+      const iteration: AutoImproveIteration = {
         iteration: i,
         evalResult,
         passRate,
-        fixCheckIds: [],
-        strategiesApplied: [],
+        fixCheckIds: checkIds,
+        strategiesApplied,
         durationMs: Date.now() - iterStart,
         sliceScore,
         p0Score,
@@ -591,89 +682,45 @@ export async function runAutoImproveLoop(
         patchesDropped,
         gateAbandoned,
       };
-      iterations.push(noFixIter);
+      iterations.push(iteration);
       await maybePersistIteration({
         persistHistory,
         sessionId,
         ownerEmail,
         workingSpaceId: benchmarkSpaceId,
         bestSpaceId: devSpaces?.devBest,
-        iter: noFixIter,
-        reasonStopped: patchesDropped > 0 ? "all_patches_doa" : "no_actionable_failures",
+        iter: iteration,
+        reasonStopped: null,
       });
-      break;
+
+      logger.info("Auto-improve iteration complete", {
+        iteration: i,
+        passRate,
+        checkIds,
+        strategiesApplied,
+        patchesDropped,
+        durationMs: iteration.durationMs,
+      });
     }
+
+    const finalScore = iterations.length > 0 ? iterations[iterations.length - 1].passRate : 0;
 
     onProgress?.({
-      phase: "fix",
-      iteration: i,
+      phase: "complete",
+      iteration: maxIterations,
       maxIterations,
-      passRate,
+      passRate: finalScore,
       targetScore,
-      message: `Applying ${checkIds.length} fix strategies...`,
+      message: `Max iterations reached. Final score: ${finalScore}%.`,
     });
 
-    const strategiesApplied = await applyFixes(checkIds, benchmarkSpaceId);
-
-    if (indexingWaitMs > 0 && i < maxIterations) {
-      onProgress?.({
-        phase: "indexing",
-        iteration: i,
-        maxIterations,
-        passRate,
-        targetScore,
-        message: `Waiting ${Math.round(indexingWaitMs / 1000)}s for Genie indexing...`,
-      });
-      await waitForIndexing(indexingWaitMs, signal);
+    return await finalizeAndBuildResult("max_iterations");
+  } catch (err) {
+    if (devSpaces) {
+      await cleanupDevSpaces(devSpaces);
     }
-
-    const iteration: AutoImproveIteration = {
-      iteration: i,
-      evalResult,
-      passRate,
-      fixCheckIds: checkIds,
-      strategiesApplied,
-      durationMs: Date.now() - iterStart,
-      sliceScore,
-      p0Score,
-      judgeAggregate,
-      judgeByAxis,
-      patchesDropped,
-      gateAbandoned,
-    };
-    iterations.push(iteration);
-    await maybePersistIteration({
-      persistHistory,
-      sessionId,
-      ownerEmail,
-      workingSpaceId: benchmarkSpaceId,
-      bestSpaceId: devSpaces?.devBest,
-      iter: iteration,
-      reasonStopped: null,
-    });
-
-    logger.info("Auto-improve iteration complete", {
-      iteration: i,
-      passRate,
-      checkIds,
-      strategiesApplied,
-      patchesDropped,
-      durationMs: iteration.durationMs,
-    });
+    throw err;
   }
-
-  const finalScore = iterations.length > 0 ? iterations[iterations.length - 1].passRate : 0;
-
-  onProgress?.({
-    phase: "complete",
-    iteration: maxIterations,
-    maxIterations,
-    passRate: finalScore,
-    targetScore,
-    message: `Max iterations reached. Final score: ${finalScore}%.`,
-  });
-
-  return buildResult("max_iterations");
 }
 
 // ---------------------------------------------------------------------------
