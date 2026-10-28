@@ -9,6 +9,7 @@
 
 import { createHash } from "crypto";
 import { logger } from "@/lib/logger";
+import { stripDelimiterMarkers, wrapUntrustedBlock } from "@/lib/toolkit/untrusted-data";
 
 import { BUSINESS_CONTEXT_WORKER_PROMPT } from "./templates-business-context";
 import { FILTER_BUSINESS_TABLES_PROMPT } from "./templates-filtering";
@@ -203,6 +204,9 @@ const USER_INPUT_VARIABLES = new Set([
   "additional_context_section",
   "focus_areas_instruction",
   "business_domains",
+  "tables_markdown",
+  "schema_markdown",
+  "pbi_context",
 ]);
 
 /**
@@ -211,24 +215,24 @@ const USER_INPUT_VARIABLES = new Set([
  * clearly delineated block that the LLM can distinguish from instructions.
  */
 function sanitiseUserInput(value: string): string {
-  // Strip any attempt to close/spoof our delimiters (exact and whitespace variants)
-  const cleaned = value
-    .replace(/---\s*BEGIN\s+USER\s+DATA\s*---/gi, "")
-    .replace(/---\s*END\s+USER\s+DATA\s*---/gi, "");
-  return `---BEGIN USER DATA---\n${cleaned}\n---END USER DATA---`;
+  return wrapUntrustedBlock("USER DATA", value);
 }
 
 /**
  * Load and format a prompt template by replacing {placeholder} variables.
  *
- * User-supplied variables are wrapped with delimiter markers for safety.
+ * User-supplied variables are wrapped with delimiter markers for safety, and
+ * all variables have spoofed delimiter markers stripped so embedded metadata
+ * cannot break out of a delimiter block.
  */
 export function formatPrompt(key: PromptKey, variables: Record<string, string>): string {
   let prompt: string = PROMPT_TEMPLATES[key];
 
   for (const [varName, value] of Object.entries(variables)) {
-    const safeValue = USER_INPUT_VARIABLES.has(varName) ? sanitiseUserInput(value) : value;
-    prompt = prompt.replace(new RegExp(`\\{${varName}\\}`, "g"), safeValue);
+    const safeValue = USER_INPUT_VARIABLES.has(varName)
+      ? sanitiseUserInput(value)
+      : stripDelimiterMarkers(value);
+    prompt = prompt.replace(new RegExp(`\\{${varName}\\}`, "g"), () => safeValue);
   }
 
   // Warn on any remaining {placeholder} patterns that were not substituted.
