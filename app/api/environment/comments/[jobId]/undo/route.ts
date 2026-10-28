@@ -8,7 +8,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { loadCommentJobOrRespond } from "@/lib/auth/route-guards";
 import { safeErrorMessage } from "@/lib/error-utils";
 import { getProposalsForJob } from "@/lib/lakebase/comment-proposals";
-import { undoProposals } from "@/lib/ai/comment-applier";
+import { fetchLiveCommentsForProposals, undoProposals } from "@/lib/ai/comment-applier";
 import { logActivity } from "@/lib/lakebase/activity-log";
 
 export async function POST(
@@ -43,7 +43,11 @@ export async function POST(
       return NextResponse.json({ error: "No applied proposals to undo" }, { status: 400 });
     }
 
-    const result = await undoProposals(jobId, toUndo, undefined, undefined, { force });
+    const liveComments = force ? undefined : await fetchLiveCommentsForProposals(toUndo);
+    const result = await undoProposals(jobId, toUndo, undefined, undefined, {
+      force,
+      liveComments,
+    });
 
     logActivity("undone_comments", {
       resourceId: jobId,

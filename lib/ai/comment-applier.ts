@@ -391,6 +391,46 @@ export interface UndoOptions {
   force?: boolean;
 }
 
+/**
+ * Fetch current Unity Catalog table and column comments for the given proposals
+ * so `undoProposals` can detect whether a steward edited a comment in UC after
+ * Forge applied its proposal.
+ */
+export async function fetchLiveCommentsForProposals(
+  proposals: CommentProposal[],
+): Promise<Map<string, string | null>> {
+  const liveComments = new Map<string, string | null>();
+  if (proposals.length === 0) return liveComments;
+
+  const tableFqns = [...new Set(proposals.map((p) => p.tableFqn))];
+  const hasTableProposals = proposals.some((p) => !p.columnName);
+  const hasColumnProposals = proposals.some((p) => !!p.columnName);
+
+  try {
+    const { fetchTableInfoBatch, fetchColumnsBatch } = await import("@/lib/queries/metadata");
+    const [tables, columns] = await Promise.all([
+      hasTableProposals ? fetchTableInfoBatch(tableFqns) : Promise.resolve([]),
+      hasColumnProposals ? fetchColumnsBatch(tableFqns) : Promise.resolve([]),
+    ]);
+
+    for (const t of tables) {
+      liveComments.set(t.fqn.toLowerCase(), t.comment ?? null);
+    }
+    for (const c of columns) {
+      liveComments.set(
+        `${c.tableFqn.toLowerCase()}::${c.columnName.toLowerCase()}`,
+        c.comment ?? null,
+      );
+    }
+  } catch (err) {
+    logger.warn("[comment-applier] Failed to fetch live UC comments for drift check (non-fatal)", {
+      error: err instanceof Error ? err.message : String(err),
+    });
+  }
+
+  return liveComments;
+}
+
 function hasCommentDrifted(
   proposal: CommentProposal,
   liveComments?: Map<string, string | null>,
@@ -423,6 +463,11 @@ export async function undoProposals(
   let completed = 0;
   const total = proposals.length;
 
+  const effectiveLiveComments =
+    options && !options.force && !options.liveComments
+      ? await fetchLiveCommentsForProposals(proposals)
+      : options?.liveComments;
+
   const tableGroups = groupByTable(proposals);
 
   await mapWithConcurrency(
@@ -432,7 +477,7 @@ export async function undoProposals(
       // --- 1. Table-level comment ---
       const tableProposal = tableProposals.find((p) => !p.columnName);
       if (tableProposal) {
-        if (hasCommentDrifted(tableProposal, options?.liveComments, options?.force)) {
+        if (hasCommentDrifted(tableProposal, effectiveLiveComments, options?.force)) {
           result.skipped++;
           result.errors.push({
             proposalId: tableProposal.id,
@@ -465,7 +510,7 @@ export async function undoProposals(
       const allColumnProposals = tableProposals.filter((p) => p.columnName);
       const columnProposals: CommentProposal[] = [];
       for (const cp of allColumnProposals) {
-        if (hasCommentDrifted(cp, options?.liveComments, options?.force)) {
+        if (hasCommentDrifted(cp, effectiveLiveComments, options?.force)) {
           result.skipped++;
           result.errors.push({
             proposalId: cp.id,
