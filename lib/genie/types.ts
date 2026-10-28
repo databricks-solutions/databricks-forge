@@ -392,6 +392,7 @@ export interface BenchmarkQuestion {
   id: string;
   question: string[];
   answer?: { format: string; content: string[] }[];
+  evaluation_note?: string[];
 }
 
 // ---------------------------------------------------------------------------

@@ -17,8 +17,8 @@ import { logger } from "@/lib/logger";
 // Constraints
 // ---------------------------------------------------------------------------
 
-/** Genie API caps the number of tables per space. */
-export const MAX_TABLES_PER_SPACE = 50;
+/** Genie API caps the number of tables per space at 30 (matching assembler.ts). */
+export const MAX_TABLES_PER_SPACE = 30;
 
 /**
  * Genie API caps each individual string field in the payload. Anything longer
@@ -152,6 +152,15 @@ function isBenchmarkQuestionAnswerable(item: unknown): boolean {
       question.some((q) => typeof q === "string" && q.trim().length > 0)) ||
     (typeof question === "string" && question.trim().length > 0);
   if (!hasQuestion) return false;
+
+  // Agent-mode benchmark questions may specify `evaluation_note` with an empty
+  // SQL `answer.content: []`. Preserve them when `evaluation_note` is non-empty.
+  const evalNote = item.evaluation_note;
+  const hasEvalNote =
+    (Array.isArray(evalNote) &&
+      evalNote.some((n) => typeof n === "string" && n.trim().length > 0)) ||
+    (typeof evalNote === "string" && evalNote.trim().length > 0);
+  if (hasEvalNote) return true;
 
   const answer = item.answer;
   if (!Array.isArray(answer) || answer.length === 0) {
