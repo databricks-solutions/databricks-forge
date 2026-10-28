@@ -23,7 +23,7 @@
  */
 
 import { withPrisma } from "@/lib/prisma";
-import { cancelAllPipelines } from "@/lib/pipeline/engine";
+import { cancelAllPipelines, cancelPipeline } from "@/lib/pipeline/engine";
 import { logger } from "@/lib/logger";
 
 export async function deleteAllData(): Promise<void> {
@@ -156,6 +156,32 @@ export async function deleteUserData(ownerEmail: string): Promise<void> {
     throw new Error("ownerEmail is required for user-scoped data deletion");
   }
 
+  // Cancel any in-flight or queued pipeline runs owned by this user before
+  // deleting their ForgeRun rows so background workers do not continue writing.
+  try {
+    const userRuns = await withPrisma((p) =>
+      p.forgeRun.findMany({
+        where: { ownerEmail: normalized },
+        select: { runId: true },
+      }),
+    );
+    if (Array.isArray(userRuns)) {
+      for (const { runId } of userRuns) {
+        try {
+          await cancelPipeline(runId);
+        } catch (err) {
+          logger.warn("[reset] User pipeline cancel failed (continuing)", {
+            runId,
+            ownerEmail: normalized,
+            error: err instanceof Error ? err.message : String(err),
+          });
+        }
+      }
+    }
+  } catch {
+    // non-fatal
+  }
+
   try {
     const { cleanupDemoSession } = await import("@/lib/demo/cleanup");
     const { databricksSqlExecutor } = await import("@/lib/ports/defaults/databricks-sql-executor");
@@ -193,6 +219,7 @@ export async function deleteUserData(ownerEmail: string): Promise<void> {
       prisma.forgeMetricViewProposal.deleteMany({ where: { ownerEmail: normalized } }),
       prisma.forgeQualityMetric.deleteMany({ where: { ownerEmail: normalized } }),
       prisma.forgeCommentJob.deleteMany({ where: { ownerEmail: normalized } }),
+      prisma.forgeOutcomeMap.deleteMany({ where: { createdBy: normalized } }),
       prisma.forgeDocument.deleteMany({ where: { ownerEmail: normalized } }),
       prisma.forgeConversation.deleteMany({ where: { userId: normalized } }),
       prisma.forgeAssistantLog.deleteMany({ where: { userId: normalized } }),

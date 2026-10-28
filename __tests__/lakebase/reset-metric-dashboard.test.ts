@@ -2,10 +2,15 @@ import { describe, expect, it, vi } from "vitest";
 
 const mocks = vi.hoisted(() => ({
   metricDeleteMany: vi.fn(async () => ({ count: 1 })),
+  outcomeMapDeleteMany: vi.fn(async () => ({ count: 1 })),
+  cancelPipeline: vi.fn(async () => true),
   transaction: vi.fn(async (operations: Promise<unknown>[]) => Promise.all(operations)),
 }));
 
-vi.mock("@/lib/pipeline/engine", () => ({ cancelAllPipelines: vi.fn(async () => 0) }));
+vi.mock("@/lib/pipeline/engine", () => ({
+  cancelAllPipelines: vi.fn(async () => 0),
+  cancelPipeline: mocks.cancelPipeline,
+}));
 vi.mock("@/lib/demo/cleanup", () => ({ cleanupDemoSession: vi.fn() }));
 vi.mock("@/lib/ports/defaults/databricks-sql-executor", () => ({
   databricksSqlExecutor: {},
@@ -26,11 +31,16 @@ vi.mock("@/lib/prisma", () => ({
       {
         $transaction: mocks.transaction,
         $executeRawUnsafe: vi.fn(async () => 0),
+        forgeRun: {
+          findMany: vi.fn(async () => [{ runId: "run-u1" }]),
+          deleteMany: vi.fn(async () => ({ count: 1 })),
+        },
         forgeDemoSession: {
           findMany: vi.fn(async () => []),
           deleteMany: vi.fn(async () => ({ count: 0 })),
         },
         forgeMetricViewProposal: { deleteMany: mocks.metricDeleteMany },
+        forgeOutcomeMap: { deleteMany: mocks.outcomeMapDeleteMany },
       },
       {
         get(target, property) {
@@ -43,12 +53,21 @@ vi.mock("@/lib/prisma", () => ({
   },
 }));
 
-import { deleteAllData } from "@/lib/lakebase/reset";
+import { deleteAllData, deleteUserData } from "@/lib/lakebase/reset";
 
 describe("factory reset metric/dashboard lifecycle", () => {
   it("explicitly deletes standalone metric-view proposals", async () => {
     await deleteAllData();
 
     expect(mocks.metricDeleteMany).toHaveBeenCalledTimes(1);
+  });
+
+  it("deleteUserData cancels user pipeline runs and deletes user-created outcome maps", async () => {
+    await deleteUserData("Alice@Example.com");
+
+    expect(mocks.cancelPipeline).toHaveBeenCalledWith("run-u1");
+    expect(mocks.outcomeMapDeleteMany).toHaveBeenCalledWith({
+      where: { createdBy: "alice@example.com" },
+    });
   });
 });
