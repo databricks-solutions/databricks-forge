@@ -9,10 +9,20 @@
 
 import { NextRequest } from "next/server";
 import { importNotebook } from "@/lib/dbx/workspace";
+import { requireUser, ForgeAuthError } from "@/lib/auth/route-user";
 import { logger } from "@/lib/logger";
 
 export async function POST(req: NextRequest) {
   try {
+    try {
+      await requireUser(req);
+    } catch (e) {
+      if (e instanceof ForgeAuthError) {
+        return Response.json({ error: e.message }, { status: e.status });
+      }
+      throw e;
+    }
+
     const body = await req.json();
     const sql = body.sql as string;
     const target = body.target as "notebook" | "dashboard" | "genie";

@@ -6,10 +6,20 @@
 
 import { NextRequest } from "next/server";
 import { validateSql } from "@/lib/assistant/sql-proposer";
+import { requireUser, ForgeAuthError } from "@/lib/auth/route-user";
 import { logger } from "@/lib/logger";
 
 export async function POST(req: NextRequest) {
   try {
+    try {
+      await requireUser(req);
+    } catch (e) {
+      if (e instanceof ForgeAuthError) {
+        return Response.json({ valid: false, error: e.message }, { status: e.status });
+      }
+      throw e;
+    }
+
     const body = await req.json();
     const sql = body.sql as string;
 

@@ -81,7 +81,9 @@ export type ActivityAction =
   | "dashboard_readback_failed"
   | "dashboard_published"
   | "dashboard_publish_failed"
-  | "dashboard_improved";
+  | "dashboard_improved"
+  | "factory_reset"
+  | "user_data_deleted";
 
 export interface ActivityLogEntry {
   activityId: string;

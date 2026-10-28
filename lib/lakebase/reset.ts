@@ -23,7 +23,7 @@
  */
 
 import { withPrisma } from "@/lib/prisma";
-import { cancelAllPipelines } from "@/lib/pipeline/engine";
+import { cancelAllPipelines, cancelPipeline } from "@/lib/pipeline/engine";
 import { logger } from "@/lib/logger";
 
 export async function deleteAllData(): Promise<void> {
@@ -144,4 +144,172 @@ export async function deleteAllData(): Promise<void> {
   } catch {
     // demo config module unavailable in tests / partial builds — non-fatal
   }
+}
+
+/**
+ * Delete only the data owned by a specific user (`ownerEmail`), preserving
+ * all other users' resources and workspace-shared configuration.
+ */
+export async function deleteUserData(ownerEmail: string): Promise<void> {
+  const normalized = ownerEmail.toLowerCase().trim();
+  if (!normalized) {
+    throw new Error("ownerEmail is required for user-scoped data deletion");
+  }
+
+  // Cancel any in-flight or queued pipeline runs owned by this user before
+  // deleting their ForgeRun rows so background workers do not continue writing,
+  // and purge all pgvector embeddings belonging to this user's resources.
+  try {
+    const safeFind = async <T>(fn: () => Promise<T[]>): Promise<T[]> => {
+      try {
+        const res = await fn();
+        return Array.isArray(res) ? res : [];
+      } catch {
+        return [];
+      }
+    };
+    const [userRuns, userScans, userDocs, userMaps, userSessions] = await withPrisma((p) =>
+      Promise.all([
+        safeFind(() =>
+          p.forgeRun.findMany({
+            where: { ownerEmail: normalized },
+            select: { runId: true },
+          }),
+        ),
+        safeFind(() =>
+          p.forgeEnvironmentScan.findMany({
+            where: { ownerEmail: normalized },
+            select: { scanId: true },
+          }),
+        ),
+        safeFind(() =>
+          p.forgeDocument.findMany({
+            where: { ownerEmail: normalized },
+            select: { id: true },
+          }),
+        ),
+        safeFind(() =>
+          p.forgeOutcomeMap.findMany({
+            where: { createdBy: { equals: normalized, mode: "insensitive" } },
+            select: { id: true },
+          }),
+        ),
+        safeFind(() =>
+          p.forgeDemoSession.findMany({
+            where: { ownerEmail: normalized },
+            select: { id: true },
+          }),
+        ),
+      ]),
+    );
+
+    if (Array.isArray(userRuns)) {
+      for (const { runId } of userRuns) {
+        try {
+          await cancelPipeline(runId);
+        } catch (err) {
+          logger.warn("[reset] User pipeline cancel failed (continuing)", {
+            runId,
+            ownerEmail: normalized,
+            error: err instanceof Error ? err.message : String(err),
+          });
+        }
+      }
+    }
+
+    try {
+      const {
+        deleteEmbeddingsByRun,
+        deleteEmbeddingsByScan,
+        deleteEmbeddingsBySource,
+      } = await import("@/lib/embeddings/store");
+
+      if (Array.isArray(userRuns)) {
+        for (const { runId } of userRuns) {
+          await deleteEmbeddingsByRun(runId).catch(() => 0);
+        }
+      }
+      if (Array.isArray(userScans)) {
+        for (const { scanId } of userScans) {
+          await deleteEmbeddingsByScan(scanId).catch(() => 0);
+        }
+      }
+      const sourceIds = [
+        ...(Array.isArray(userDocs) ? userDocs.map((d) => d.id) : []),
+        ...(Array.isArray(userMaps) ? userMaps.map((m) => m.id) : []),
+        ...(Array.isArray(userSessions) ? userSessions.map((s) => s.id) : []),
+      ];
+      for (const sourceId of sourceIds) {
+        await deleteEmbeddingsBySource(sourceId).catch(() => 0);
+      }
+    } catch {
+      // Embeddings store unavailable in partial test environments — non-fatal
+    }
+  } catch {
+    // non-fatal
+  }
+
+  try {
+    const { cleanupDemoSession } = await import("@/lib/demo/cleanup");
+    const { databricksSqlExecutor } = await import("@/lib/ports/defaults/databricks-sql-executor");
+    const sessions = await withPrisma((p) =>
+      p.forgeDemoSession.findMany({
+        where: { ownerEmail: normalized },
+        select: { id: true },
+      }),
+    );
+    for (const { id: sessionId } of sessions) {
+      try {
+        await cleanupDemoSession(sessionId, databricksSqlExecutor);
+      } catch (err) {
+        logger.warn("[reset] User demo session cleanup failed (continuing)", {
+          sessionId,
+          ownerEmail: normalized,
+          error: err instanceof Error ? err.message : String(err),
+        });
+      }
+    }
+  } catch {
+    // non-fatal
+  }
+
+  await withPrisma(async (prisma) => {
+    try {
+      await prisma.$executeRawUnsafe(
+        `DELETE FROM forge_embeddings WHERE LOWER(metadata_json->>'ownerEmail') = $1`,
+        normalized,
+      );
+    } catch {
+      // forge_embeddings table may not exist yet
+    }
+
+    await prisma.$transaction([
+      prisma.forgeFabricMigration.deleteMany({ where: { ownerEmail: normalized } }),
+      prisma.forgeConnection.deleteMany({ where: { ownerEmail: normalized } }),
+      prisma.forgeDataGapAnalysis.deleteMany({ where: { ownerEmail: normalized } }),
+      prisma.forgeEstateSynthesis.deleteMany({ where: { ownerEmail: normalized } }),
+      prisma.forgeEstateProgram.deleteMany({ where: { ownerEmail: normalized } }),
+      prisma.forgeEnvironmentScan.deleteMany({ where: { ownerEmail: normalized } }),
+      prisma.forgeStrategyDocument.deleteMany({ where: { ownerEmail: normalized } }),
+      prisma.forgeRun.deleteMany({ where: { ownerEmail: normalized } }),
+      prisma.forgeMetricViewProposal.deleteMany({ where: { ownerEmail: normalized } }),
+      prisma.forgeQualityMetric.deleteMany({ where: { ownerEmail: normalized } }),
+      prisma.forgeCommentJob.deleteMany({ where: { ownerEmail: normalized } }),
+      prisma.forgeOutcomeMap.deleteMany({
+        where: { createdBy: { equals: normalized, mode: "insensitive" } },
+      }),
+      prisma.forgeDocument.deleteMany({ where: { ownerEmail: normalized } }),
+      prisma.forgeConversation.deleteMany({ where: { userId: normalized } }),
+      prisma.forgeAssistantLog.deleteMany({ where: { userId: normalized } }),
+      prisma.forgeMetadataGenieSpace.deleteMany({ where: { ownerEmail: normalized } }),
+      prisma.forgeGenieSpace.deleteMany({ where: { ownerEmail: normalized } }),
+      prisma.forgeDemoSession.deleteMany({ where: { ownerEmail: normalized } }),
+      prisma.forgeSpaceBenchmarkRun.deleteMany({ where: { ownerEmail: normalized } }),
+      prisma.forgeSpaceHealthScore.deleteMany({ where: { ownerEmail: normalized } }),
+      prisma.forgeWafAssessment.deleteMany({ where: { ownerEmail: normalized } }),
+      prisma.forgeResourceAcl.deleteMany({
+        where: { OR: [{ grantedBy: normalized }, { viewerEmail: normalized }] },
+      }),
+    ]);
+  });
 }

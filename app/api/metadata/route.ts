@@ -21,9 +21,19 @@ import {
   MetadataError,
 } from "@/lib/queries/metadata";
 import { validateIdentifier, IdentifierValidationError } from "@/lib/validation";
+import { requireUser, ForgeAuthError } from "@/lib/auth/route-user";
 
 export async function GET(request: NextRequest) {
   try {
+    try {
+      await requireUser(request);
+    } catch (e) {
+      if (e instanceof ForgeAuthError) {
+        return NextResponse.json({ error: e.message }, { status: e.status });
+      }
+      throw e;
+    }
+
     const { searchParams } = new URL(request.url);
     const type = searchParams.get("type") ?? "catalogs";
     const catalogRaw = searchParams.get("catalog");
