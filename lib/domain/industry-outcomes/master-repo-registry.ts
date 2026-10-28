@@ -46,9 +46,23 @@ import {
   REAL_MONEY_GAMING_DATA_ASSETS,
 } from "./real-money-gaming.enrichment";
 import { MINING_USE_CASES, MINING_DATA_ASSETS } from "./mining.enrichment";
+import {
+  WATER_UTILITIES_USE_CASES,
+  WATER_UTILITIES_DATA_ASSETS,
+} from "./water-utilities.enrichment";
+import { RAIL_TRANSPORT_USE_CASES, RAIL_TRANSPORT_DATA_ASSETS } from "./rail-transport.enrichment";
+import {
+  AUTOMOTIVE_MOBILITY_USE_CASES,
+  AUTOMOTIVE_MOBILITY_DATA_ASSETS,
+} from "./automotive-mobility.enrichment";
+import { SUPERANNUATION_USE_CASES, SUPERANNUATION_DATA_ASSETS } from "./superannuation.enrichment";
+import {
+  CONSTRUCTION_INFRASTRUCTURE_USE_CASES,
+  CONSTRUCTION_INFRASTRUCTURE_DATA_ASSETS,
+} from "./construction-infrastructure.enrichment";
 
 const REGISTRY = new Map<string, MasterRepoEnrichment>([
-  // Canonical v2 industries (15)
+  // Canonical v2 industries (22)
   ["banking", { useCases: BANKING_USE_CASES, dataAssets: BANKING_DATA_ASSETS }],
   [
     "capital-markets",
@@ -68,6 +82,10 @@ const REGISTRY = new Map<string, MasterRepoEnrichment>([
     { useCases: ENERGY_UTILITIES_USE_CASES, dataAssets: ENERGY_UTILITIES_DATA_ASSETS },
   ],
   ["oil-gas-noc", { useCases: OIL_GAS_NOC_USE_CASES, dataAssets: OIL_GAS_NOC_DATA_ASSETS }],
+  [
+    "water-utilities",
+    { useCases: WATER_UTILITIES_USE_CASES, dataAssets: WATER_UTILITIES_DATA_ASSETS },
+  ],
   [
     "communications",
     { useCases: COMMUNICATIONS_USE_CASES, dataAssets: COMMUNICATIONS_DATA_ASSETS },
@@ -89,7 +107,25 @@ const REGISTRY = new Map<string, MasterRepoEnrichment>([
     "real-money-gaming",
     { useCases: REAL_MONEY_GAMING_USE_CASES, dataAssets: REAL_MONEY_GAMING_DATA_ASSETS },
   ],
-  // Handcrafted (non-master-repo) industry
+  [
+    "rail-transport",
+    { useCases: RAIL_TRANSPORT_USE_CASES, dataAssets: RAIL_TRANSPORT_DATA_ASSETS },
+  ],
+  [
+    "automotive-mobility",
+    { useCases: AUTOMOTIVE_MOBILITY_USE_CASES, dataAssets: AUTOMOTIVE_MOBILITY_DATA_ASSETS },
+  ],
+  [
+    "superannuation",
+    { useCases: SUPERANNUATION_USE_CASES, dataAssets: SUPERANNUATION_DATA_ASSETS },
+  ],
+  [
+    "construction-infrastructure",
+    {
+      useCases: CONSTRUCTION_INFRASTRUCTURE_USE_CASES,
+      dataAssets: CONSTRUCTION_INFRASTRUCTURE_DATA_ASSETS,
+    },
+  ],
   ["mining", { useCases: MINING_USE_CASES, dataAssets: MINING_DATA_ASSETS }],
 ]);
 
