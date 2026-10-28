@@ -28,6 +28,7 @@ interface HealthThresholds {
   smallFileBytes: number;
   highPartitionCount: number;
   veryLargeRowCount: number;
+  minFilesForOptimize: number;
 }
 
 function readIntEnv(name: string, fallback: number): number {
@@ -45,13 +46,16 @@ export const HEALTH_THRESHOLDS: HealthThresholds = {
   smallFileBytes: readIntEnv("FORGE_HEALTH_SMALL_FILE_BYTES", 33_554_432),
   highPartitionCount: readIntEnv("FORGE_HEALTH_HIGH_PARTITION_COUNT", 100),
   veryLargeRowCount: readIntEnv("FORGE_HEALTH_VERY_LARGE_ROW_COUNT", 1_000_000_000),
+  minFilesForOptimize: readIntEnv("FORGE_HEALTH_MIN_FILES_FOR_OPTIMIZE", 8),
 };
 
 const HEALTH_RULES: HealthRule[] = [
   {
     id: "no_optimize_30d",
     deduction: 15,
-    check: (_, h) => {
+    check: (d, h) => {
+      if (d.tableType === "VIEW" || d.tableType === "METRIC_VIEW") return false;
+      if (d.numFiles != null && d.numFiles < HEALTH_THRESHOLDS.minFilesForOptimize) return false;
       if (!h || !h.lastOptimizeTimestamp) return true;
       return daysSince(h.lastOptimizeTimestamp) > HEALTH_THRESHOLDS.optimizeWindowDays;
     },
@@ -62,7 +66,15 @@ const HEALTH_RULES: HealthRule[] = [
   {
     id: "no_vacuum_30d",
     deduction: 15,
-    check: (_, h) => {
+    check: (d, h) => {
+      if (d.tableType === "VIEW" || d.tableType === "METRIC_VIEW") return false;
+      if (
+        d.numFiles != null &&
+        d.numFiles < HEALTH_THRESHOLDS.minFilesForOptimize &&
+        (!h || (h.totalWriteOps <= 2 && h.totalMergeOps === 0))
+      ) {
+        return false;
+      }
       if (!h || !h.lastVacuumTimestamp) return true;
       return daysSince(h.lastVacuumTimestamp) > HEALTH_THRESHOLDS.vacuumWindowDays;
     },
@@ -73,7 +85,8 @@ const HEALTH_RULES: HealthRule[] = [
     id: "small_file_problem",
     deduction: 20,
     check: (d) => {
-      if (!d.sizeInBytes || !d.numFiles || d.numFiles === 0) return false;
+      if (!d.sizeInBytes || !d.numFiles || d.numFiles < HEALTH_THRESHOLDS.minFilesForOptimize)
+        return false;
       const avgFileSize = d.sizeInBytes / d.numFiles;
       return avgFileSize < HEALTH_THRESHOLDS.smallFileBytes;
     },

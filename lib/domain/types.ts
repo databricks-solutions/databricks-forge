@@ -389,6 +389,7 @@ export interface TableInfo {
   fqn: string; // catalog.schema.table
   tableType: string;
   dataSourceFormat?: string | null;
+  owner?: string | null;
   comment: string | null;
   discoveredVia?: "selected" | "lineage";
 }

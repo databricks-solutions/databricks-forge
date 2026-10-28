@@ -164,6 +164,46 @@ describe("estate-synthesis findings", () => {
   it("computeValueAtRisk returns null without a data-gap signal", () => {
     expect(computeValueAtRisk(input({ tables: [] }))).toBeNull();
   });
+
+  it("emits governance_risk, fragmentation, and well_architected_gap with sourced/benchmark evidence", () => {
+    const inp = input({
+      tables: [
+        table({
+          fqn: "cat.sch.t1",
+          comment: "doc",
+          governanceScore: 55,
+          healthScore: 85,
+          lastWriteAt: recent,
+        }),
+      ],
+      analyticsMaturityScore: 52,
+      insights: [
+        {
+          insightType: "redundancy",
+          tableFqn: "cat.sch.t1",
+          payloadJson: JSON.stringify({
+            tableA: "cat.sch.t1",
+            tableB: "staging.sch.t1",
+            similarityPercent: 95,
+          }),
+          severity: "high",
+        },
+        {
+          insightType: "data_product",
+          tableFqn: null,
+          payloadJson: JSON.stringify({ name: "Grid Reliability Product" }),
+          severity: "info",
+        },
+      ],
+    });
+    const scores = computeEstateScores(inp, NOW);
+    const findings = buildFindings(inp, scores);
+    expect(findings.some((f) => f.kind === "governance_risk")).toBe(true);
+    expect(findings.some((f) => f.kind === "fragmentation")).toBe(true);
+    expect(findings.some((f) => f.kind === "well_architected_gap")).toBe(true);
+    const qr = findings.find((f) => f.kind === "query_ready_domain");
+    expect(qr?.evidence.some((e) => e.tier === "sourced")).toBe(true);
+  });
 });
 
 describe("runEstateSynthesis engine (DI)", () => {

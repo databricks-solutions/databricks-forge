@@ -146,6 +146,26 @@ describe("computeTableHealth", () => {
     expect(result.healthScore).toBeLessThanOrEqual(100);
     expect(result.tableFqn).toBe("catalog.schema.test_table");
   });
+
+  it("does not penalise small few-file tables or views for missing OPTIMIZE/VACUUM", () => {
+    const old = new Date(Date.now() - 60 * 86_400_000).toISOString();
+    const smallTable = makeDetail({ numFiles: 2, sizeInBytes: 5_000_000 });
+    const lowChurnHistory = makeHistory({
+      lastOptimizeTimestamp: old,
+      lastVacuumTimestamp: old,
+      totalWriteOps: 1,
+      totalMergeOps: 0,
+    });
+    const smallResult = computeTableHealth(smallTable, lowChurnHistory);
+    expect(smallResult.issues).not.toContain("No OPTIMIZE run in the last 30 days");
+    expect(smallResult.issues).not.toContain("No VACUUM run in the last 30 days");
+    expect(smallResult.healthScore).toBe(100);
+
+    const viewDetail = makeDetail({ tableType: "VIEW", numFiles: null });
+    const viewResult = computeTableHealth(viewDetail, null);
+    expect(viewResult.issues).not.toContain("No OPTIMIZE run in the last 30 days");
+    expect(viewResult.issues).not.toContain("No VACUUM run in the last 30 days");
+  });
 });
 
 describe("computeAllTableHealth", () => {

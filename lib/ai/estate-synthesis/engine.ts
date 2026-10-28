@@ -65,10 +65,13 @@ export async function runEstateSynthesis(
   }
 
   // --- Evidence tiering: attach the strongest finding evidence to the brief ---
-  brief.evidence = findings
+  const primaryEvidence = findings
     .flatMap((f) => f.evidence)
-    .filter((e) => e.tier === "sourced" || e.tier === "benchmark")
-    .slice(0, 8);
+    .filter((e) => e.tier === "sourced" || e.tier === "benchmark");
+  const inferredEvidence = findings
+    .flatMap((f) => f.evidence)
+    .filter((e) => e.tier === "inferred");
+  brief.evidence = [...primaryEvidence, ...inferredEvidence].slice(0, 8);
   passResults.evidenceTiering = "success";
 
   log.info("[estate-synthesis] Synthesis complete", {

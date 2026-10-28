@@ -37,6 +37,7 @@ import {
 } from "@/lib/toolkit/column-budget";
 import { createScopedLogger } from "@/lib/logger";
 import { parseExcludedString, parsePatternsString, globMatch } from "@/lib/domain/scope-selection";
+import { getIndustryOutcome, resolveIndustryId } from "@/lib/domain/industry-outcomes";
 import type {
   EnvironmentScan,
   TableDetail,
@@ -45,6 +46,28 @@ import type {
   LineageDirection,
 } from "@/lib/domain/types";
 import type { DiscoveryResult } from "@/lib/discovery/types";
+
+/**
+ * Infer a canonical industry ID from an explicit override or from catalog/schema
+ * tokens in `ucMetadata` (e.g. `workshop_demo.energy_utilities` -> `energy-utilities`).
+ */
+export function inferIndustryIdFromScope(
+  ucMetadata: string,
+  explicitIndustryId?: string | null,
+): string | undefined {
+  if (explicitIndustryId && explicitIndustryId.trim()) {
+    return resolveIndustryId(explicitIndustryId.trim()) ?? explicitIndustryId.trim();
+  }
+  const tokens = ucMetadata
+    .split(/[,.\s]+/)
+    .map((t) => t.trim().toLowerCase().replace(/_/g, "-"))
+    .filter(Boolean);
+  for (const token of tokens) {
+    const outcome = getIndustryOutcome(token);
+    if (outcome) return outcome.id;
+  }
+  return undefined;
+}
 
 export type StandaloneScanTerminalReason = "no_access" | "no_tables";
 
@@ -108,6 +131,13 @@ export async function runStandaloneEnrichment(
     /** Lineage walk direction. Default "upstream". */
     lineageDirection?: LineageDirection;
     /**
+     * Promote out-of-scope lineage-discovered tables into first-class scan
+     * tables (ForgeTableDetail). Default false so upstream staging/scratch
+     * tables outside the selected catalog/schema do not pollute domain,
+     * governance, and quality rollups while lineage edges are still captured.
+     */
+    expandLineageTables?: boolean;
+    /**
      * Estate-program scans remain hidden as `running` after their final data
      * save. The orchestrator atomically completes the scope, attaches the scan,
      * and flips it to `complete` only if this attempt still owns the scope.
@@ -117,6 +147,7 @@ export async function runStandaloneEnrichment(
 ): Promise<void> {
   const startTime = Date.now();
   const scopes = parseUCMetadata(ucMetadata);
+  const effectiveIndustryId = inferIndustryIdFromScope(ucMetadata, opts.industryId);
   const colBudget = resolveColumnBudget();
   const log = createScopedLogger({
     origin: "EstateScan",
@@ -249,43 +280,41 @@ export async function runStandaloneEnrichment(
     const excludedPaths = parseExcludedString(excludedScope);
     const exPatterns = parsePatternsString(exclusionPatternsStr);
     const inPatterns = parsePatternsString(opts.inclusionPatterns);
+    const excludedSchemaSet = new Set(
+      excludedPaths.filter((p) => p.split(".").length === 2).map((p) => p.toLowerCase()),
+    );
+    const excludedTableSet = new Set(
+      excludedPaths.filter((p) => p.split(".").length >= 3).map((p) => p.toLowerCase()),
+    );
+    const isTableExcluded = (fqn: string): boolean => {
+      const lower = fqn.toLowerCase();
+      if (excludedTableSet.has(lower)) return true;
+      const parts = lower.split(".");
+      const schemaPath = `${parts[0]}.${parts[1]}`;
+      if (excludedSchemaSet.has(schemaPath)) return true;
+      if (exPatterns.length > 0) {
+        const [cat, sch, tbl] = parts;
+        if (
+          exPatterns.some(
+            (p) => globMatch(p, cat) || globMatch(p, sch) || (tbl && globMatch(p, tbl)),
+          )
+        )
+          return true;
+      }
+      // Inclusion patterns: when present, a table must match at least one
+      // pattern on some segment, else it is dropped (exclusion still wins).
+      if (inPatterns.length > 0) {
+        const [cat, sch, tbl] = parts;
+        const kept = inPatterns.some(
+          (p) => globMatch(p, cat) || globMatch(p, sch) || (tbl && globMatch(p, tbl)),
+        );
+        if (!kept) return true;
+      }
+      return false;
+    };
 
     if (excludedPaths.length > 0 || exPatterns.length > 0 || inPatterns.length > 0) {
-      const excludedSchemaSet = new Set(
-        excludedPaths.filter((p) => p.split(".").length === 2).map((p) => p.toLowerCase()),
-      );
-      const excludedTableSet = new Set(
-        excludedPaths.filter((p) => p.split(".").length >= 3).map((p) => p.toLowerCase()),
-      );
-
       const beforeCount = allTables.length;
-      const isTableExcluded = (fqn: string): boolean => {
-        const lower = fqn.toLowerCase();
-        if (excludedTableSet.has(lower)) return true;
-        const parts = lower.split(".");
-        const schemaPath = `${parts[0]}.${parts[1]}`;
-        if (excludedSchemaSet.has(schemaPath)) return true;
-        if (exPatterns.length > 0) {
-          const [cat, sch, tbl] = parts;
-          if (
-            exPatterns.some(
-              (p) => globMatch(p, cat) || globMatch(p, sch) || (tbl && globMatch(p, tbl)),
-            )
-          )
-            return true;
-        }
-        // Inclusion patterns: when present, a table must match at least one
-        // pattern on some segment, else it is dropped (exclusion still wins).
-        if (inPatterns.length > 0) {
-          const [cat, sch, tbl] = parts;
-          const kept = inPatterns.some(
-            (p) => globMatch(p, cat) || globMatch(p, sch) || (tbl && globMatch(p, tbl)),
-          );
-          if (!kept) return true;
-        }
-        return false;
-      };
-
       const excludedFqns = new Set<string>();
       for (let i = allTables.length - 1; i >= 0; i--) {
         if (isTableExcluded(allTables[i].fqn)) {
@@ -358,6 +387,12 @@ export async function runStandaloneEnrichment(
       });
     }
 
+    const expandLineageTables =
+      opts.expandLineageTables ?? process.env.FORGE_SCAN_EXPAND_LINEAGE_TABLES === "true";
+    const promotedLineageTables = expandLineageTables
+      ? lineageGraph.discoveredTables.filter((fqn) => !isTableExcluded(fqn))
+      : [];
+
     const expandedTables: Array<{
       fqn: string;
       discoveredVia: "selected" | "lineage";
@@ -370,7 +405,7 @@ export async function runStandaloneEnrichment(
         tableType: tableTypeLookup.get(fqn) ?? "TABLE",
         dataSourceFormat: formatLookup.get(fqn) ?? null,
       })),
-      ...lineageGraph.discoveredTables.map((fqn) => ({
+      ...promotedLineageTables.map((fqn) => ({
         fqn,
         discoveredVia: "lineage" as const,
         tableType: "TABLE",
@@ -378,13 +413,12 @@ export async function runStandaloneEnrichment(
       })),
     ];
 
-    // Fetch metadata for lineage-discovered tables so they get correct
-    // tableType + dataSourceFormat (used to skip unnecessary DESCRIBE ops)
-    if (lineageGraph.discoveredTables.length > 0) {
+    // Fetch metadata for lineage-discovered tables when promoted into expandedTables
+    if (promotedLineageTables.length > 0) {
       try {
         const [lineageInfos, lineageCols] = await Promise.all([
-          fetchTableInfoBatch(lineageGraph.discoveredTables),
-          fetchColumnsBatch(lineageGraph.discoveredTables),
+          fetchTableInfoBatch(promotedLineageTables),
+          fetchColumnsBatch(promotedLineageTables),
         ]);
         allColumns.push(...lineageCols);
 
@@ -427,15 +461,21 @@ export async function runStandaloneEnrichment(
       });
     });
 
-    // Merge table comments into enrichment details
+    // Merge table comments and owners from information_schema into enrichment details
     const commentLookup = new Map<string, string>();
+    const ownerLookup = new Map<string, string>();
     for (const t of allTables) {
       if (t.comment) commentLookup.set(t.fqn, t.comment);
+      if (t.owner) ownerLookup.set(t.fqn, t.owner);
     }
     for (const [fqn, result] of enrichmentResults) {
       if (result.detail && !result.detail.comment) {
         const comment = commentLookup.get(fqn);
         if (comment) result.detail.comment = comment;
+      }
+      if (result.detail && !result.detail.owner) {
+        const owner = ownerLookup.get(fqn);
+        if (owner) result.detail.owner = owner;
       }
     }
 
@@ -626,7 +666,7 @@ export async function runStandaloneEnrichment(
         // Ground intelligence in the estate's industry (previously only the
         // pipeline path threaded this). Sub-vertical and organisation context
         // are transient prompt grounding only; they are not copied to scan rows.
-        industryId: opts.industryId,
+        industryId: effectiveIndustryId,
         subVertical: opts.subVertical,
         orgContext: opts.orgContext,
         onProgress: (pass) => {
@@ -726,7 +766,7 @@ export async function runStandaloneEnrichment(
         {
           endpoint: resolveEndpoint("classification"),
           log,
-          industryId: opts.industryId,
+          industryId: effectiveIndustryId,
           subVertical: opts.subVertical,
           orgContext: opts.orgContext,
         },
@@ -908,6 +948,7 @@ export async function runStandaloneEnrichment(
         });
       }
       for (const gap of intelligenceResult.governanceGaps) {
+        if (gap.gaps.length === 0 && gap.overallScore >= 85) continue;
         llmInsightRecords.push({
           insightType: "governance_gap",
           tableFqn: gap.tableFqn,
@@ -972,6 +1013,64 @@ export async function runStandaloneEnrichment(
       allColumnTags,
       ownerEmail,
     );
+
+    // Phase 8: Auto-compute Data Gap Analysis (writes dataAssetId back onto
+    // ForgeTableDetail) and State-of-the-Nation Synthesis when not deferred.
+    if (!opts.deferCompletion && ownerEmail) {
+      if (effectiveIndustryId) {
+        try {
+          updateScanProgress(scanId, {
+            phase: "saving",
+            message: `Computing ${effectiveIndustryId} Reference Data Asset coverage & value-at-risk...`,
+          });
+          const { computeEstateDataGap } = await import(
+            "@/lib/engines/data-gap-analysis/estate-data-gap"
+          );
+          await computeEstateDataGap({
+            scanId,
+            industryId: effectiveIndustryId,
+            ownerEmail,
+          });
+        } catch (gapErr) {
+          log.warn("Auto data-gap analysis failed (non-fatal)", {
+            fn: "runStandaloneEnrichment",
+            scanId,
+            industryId: effectiveIndustryId,
+            error: gapErr instanceof Error ? gapErr.message : String(gapErr),
+          });
+        }
+      }
+
+      try {
+        updateScanProgress(scanId, {
+          phase: "saving",
+          message: "Synthesising consultant-grade State of the Nation brief...",
+        });
+        const { buildSynthesisInputForScan } = await import(
+          "@/lib/ai/estate-synthesis/build-input"
+        );
+        const { runEstateSynthesis } = await import("@/lib/ai/estate-synthesis/engine");
+        const { saveEstateSynthesis } = await import("@/lib/lakebase/estate-synthesis");
+        const synthInput = await buildSynthesisInputForScan(scanId, ownerEmail, {
+          industryId: effectiveIndustryId ?? null,
+        });
+        if (synthInput) {
+          const synthResult = await runEstateSynthesis(synthInput);
+          await saveEstateSynthesis({
+            scanId,
+            ownerEmail,
+            industryId: synthInput.industryId ?? null,
+            result: synthResult,
+          });
+        }
+      } catch (synthErr) {
+        log.warn("Auto estate synthesis failed (non-fatal)", {
+          fn: "runStandaloneEnrichment",
+          scanId,
+          error: synthErr instanceof Error ? synthErr.message : String(synthErr),
+        });
+      }
+    }
 
     // Generate vector embeddings for semantic search (best-effort, non-blocking)
     try {
