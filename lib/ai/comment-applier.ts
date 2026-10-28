@@ -378,6 +378,74 @@ export async function applyProposals(
 // Undo proposals
 // ---------------------------------------------------------------------------
 
+export interface UndoOptions {
+  /**
+   * Optional map of live Unity Catalog comments keyed by `tableFqn.toLowerCase()`
+   * (for table comments) or `${tableFqn.toLowerCase()}::${columnName.toLowerCase()}`
+   * (for column comments). When provided and `force !== true`, any proposal whose
+   * live UC comment no longer matches the applied comment (`editedComment ?? proposedComment`)
+   * is skipped so external user edits in UC are never overwritten.
+   */
+  liveComments?: Map<string, string | null>;
+  /** When true, overwrite live UC comments even if they drifted after apply. */
+  force?: boolean;
+}
+
+/**
+ * Fetch current Unity Catalog table and column comments for the given proposals
+ * so `undoProposals` can detect whether a steward edited a comment in UC after
+ * Forge applied its proposal.
+ */
+export async function fetchLiveCommentsForProposals(
+  proposals: CommentProposal[],
+): Promise<Map<string, string | null>> {
+  const liveComments = new Map<string, string | null>();
+  if (proposals.length === 0) return liveComments;
+
+  const tableFqns = [...new Set(proposals.map((p) => p.tableFqn))];
+  const hasTableProposals = proposals.some((p) => !p.columnName);
+  const hasColumnProposals = proposals.some((p) => !!p.columnName);
+
+  try {
+    const { fetchTableInfoBatch, fetchColumnsBatch } = await import("@/lib/queries/metadata");
+    const [tables, columns] = await Promise.all([
+      hasTableProposals ? fetchTableInfoBatch(tableFqns) : Promise.resolve([]),
+      hasColumnProposals ? fetchColumnsBatch(tableFqns) : Promise.resolve([]),
+    ]);
+
+    for (const t of tables) {
+      liveComments.set(t.fqn.toLowerCase(), t.comment ?? null);
+    }
+    for (const c of columns) {
+      liveComments.set(
+        `${c.tableFqn.toLowerCase()}::${c.columnName.toLowerCase()}`,
+        c.comment ?? null,
+      );
+    }
+  } catch (err) {
+    logger.warn("[comment-applier] Failed to fetch live UC comments for drift check (non-fatal)", {
+      error: err instanceof Error ? err.message : String(err),
+    });
+  }
+
+  return liveComments;
+}
+
+function hasCommentDrifted(
+  proposal: CommentProposal,
+  liveComments?: Map<string, string | null>,
+  force?: boolean,
+): boolean {
+  if (force || !liveComments) return false;
+  const key = proposal.columnName
+    ? `${proposal.tableFqn.toLowerCase()}::${proposal.columnName.toLowerCase()}`
+    : proposal.tableFqn.toLowerCase();
+  if (!liveComments.has(key)) return false;
+  const live = (liveComments.get(key) ?? "").trim();
+  const applied = (proposal.editedComment ?? proposal.proposedComment ?? "").trim();
+  return live !== applied;
+}
+
 /**
  * Undo previously applied proposals by restoring original comments.
  *
@@ -389,10 +457,16 @@ export async function undoProposals(
   proposals: CommentProposal[],
   tableTypes?: Map<string, string>,
   onProgress?: (undone: number, total: number) => void,
+  options?: UndoOptions,
 ): Promise<ApplyResult> {
   const result: ApplyResult = { applied: 0, failed: 0, skipped: 0, errors: [] };
   let completed = 0;
   const total = proposals.length;
+
+  const effectiveLiveComments =
+    options && !options.force && !options.liveComments
+      ? await fetchLiveCommentsForProposals(proposals)
+      : options?.liveComments;
 
   const tableGroups = groupByTable(proposals);
 
@@ -403,26 +477,54 @@ export async function undoProposals(
       // --- 1. Table-level comment ---
       const tableProposal = tableProposals.find((p) => !p.columnName);
       if (tableProposal) {
-        try {
-          await executeSQL(buildTableCommentDDL(tableFqn, tableProposal.originalComment));
-          await markProposalsUndone([tableProposal.id]);
-          result.applied++;
-        } catch (err) {
-          const msg = err instanceof Error ? err.message : String(err);
-          result.failed++;
+        if (hasCommentDrifted(tableProposal, effectiveLiveComments, options?.force)) {
+          result.skipped++;
           result.errors.push({
             proposalId: tableProposal.id,
             tableFqn,
             columnName: null,
-            error: msg,
+            error:
+              "Skipped undo: comment was modified in Unity Catalog after apply (pass force=true to overwrite).",
           });
+        } else {
+          try {
+            await executeSQL(buildTableCommentDDL(tableFqn, tableProposal.originalComment));
+            await markProposalsUndone([tableProposal.id]);
+            result.applied++;
+          } catch (err) {
+            const msg = err instanceof Error ? err.message : String(err);
+            result.failed++;
+            result.errors.push({
+              proposalId: tableProposal.id,
+              tableFqn,
+              columnName: null,
+              error: msg,
+            });
+          }
         }
         completed++;
         onProgress?.(completed, total);
       }
 
       // --- 2. Column-level comments (batched) ---
-      const columnProposals = tableProposals.filter((p) => p.columnName);
+      const allColumnProposals = tableProposals.filter((p) => p.columnName);
+      const columnProposals: CommentProposal[] = [];
+      for (const cp of allColumnProposals) {
+        if (hasCommentDrifted(cp, effectiveLiveComments, options?.force)) {
+          result.skipped++;
+          result.errors.push({
+            proposalId: cp.id,
+            tableFqn,
+            columnName: cp.columnName,
+            error:
+              "Skipped undo: column comment was modified in Unity Catalog after apply (pass force=true to overwrite).",
+          });
+          completed++;
+          onProgress?.(completed, total);
+        } else {
+          columnProposals.push(cp);
+        }
+      }
       if (columnProposals.length === 0) return;
 
       const columns = columnProposals.map((p) => ({
