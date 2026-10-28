@@ -62,12 +62,12 @@ describe("factory reset metric/dashboard lifecycle", () => {
     expect(mocks.metricDeleteMany).toHaveBeenCalledTimes(1);
   });
 
-  it("deleteUserData cancels user pipeline runs and deletes user-created outcome maps", async () => {
+  it("deleteUserData cancels user pipeline runs, purges user embeddings, and deletes user-created outcome maps case-insensitively", async () => {
     await deleteUserData("Alice@Example.com");
 
     expect(mocks.cancelPipeline).toHaveBeenCalledWith("run-u1");
     expect(mocks.outcomeMapDeleteMany).toHaveBeenCalledWith({
-      where: { createdBy: "alice@example.com" },
+      where: { createdBy: { equals: "alice@example.com", mode: "insensitive" } },
     });
   });
 });
