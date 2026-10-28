@@ -1768,6 +1768,8 @@ export async function cancelPipeline(runId: string): Promise<boolean> {
   });
 
   if (queuedCancelled) {
+    const { consumeQueuedOboTokenAsync } = await import("@/lib/auth/queued-token-store");
+    await consumeQueuedOboTokenAsync(runId).catch(() => null);
     createScopedLogger({ origin: "DiscoveryRun", module: "pipeline/engine", runId }).info(
       "Queued pipeline cancelled",
     );

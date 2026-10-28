@@ -167,19 +167,92 @@ export function assertSafePublicUrl(rawUrl: string): URL {
   return parsed;
 }
 
+export type DnsLookupFn = (hostname: string) => Promise<Array<{ address: string }>>;
+
+/**
+ * Validate `assertSafePublicUrl(rawUrl)` AND resolve DNS records for non-IP
+ * hostnames to block DNS-rebinding or public hostnames that resolve to
+ * loopback, RFC1918 private, link-local, or cloud metadata (`169.254.169.254`)
+ * addresses.
+ */
+export async function assertSafePublicUrlWithDns(
+  rawUrl: string,
+  dnsLookup?: DnsLookupFn,
+  allowUnresolvableInTestMock = false,
+): Promise<URL> {
+  const parsed = assertSafePublicUrl(rawUrl);
+  const host = parsed.hostname.replace(/^\[|\]$/g, "").toLowerCase();
+  const isIpv4Literal = /^\d+\.\d+\.\d+\.\d+$/.test(host);
+  const isIpv6Literal = host.includes(":");
+  if (isIpv4Literal || isIpv6Literal) {
+    return parsed;
+  }
+
+  let lookupFn = dnsLookup;
+  if (
+    !lookupFn &&
+    typeof process !== "undefined" &&
+    typeof process.getBuiltinModule === "function"
+  ) {
+    const dnsPromises = process.getBuiltinModule("node:dns/promises") as
+      | {
+          lookup: (
+            hostname: string,
+            options: { all: true },
+          ) => Promise<Array<{ address: string }>>;
+        }
+      | undefined;
+    if (dnsPromises?.lookup) {
+      lookupFn = (h: string) => dnsPromises.lookup(h, { all: true });
+    }
+  }
+
+  if (lookupFn) {
+    let records: Array<{ address: string }>;
+    try {
+      records = await lookupFn(host);
+    } catch (err) {
+      if (allowUnresolvableInTestMock) return parsed;
+      throw new SsrfBlockedError(
+        rawUrl,
+        `DNS resolution failed for ${host}: ${err instanceof Error ? err.message : String(err)}`,
+      );
+    }
+    if (!records || records.length === 0) {
+      if (allowUnresolvableInTestMock) return parsed;
+      throw new SsrfBlockedError(rawUrl, `DNS resolution returned no records for ${host}`);
+    }
+    for (const rec of records) {
+      if (isPrivateOrReservedIp(rec.address)) {
+        throw new SsrfBlockedError(
+          rawUrl,
+          `hostname ${host} resolved to private or reserved IP ${rec.address}`,
+        );
+      }
+    }
+  }
+
+  return parsed;
+}
+
 const MAX_SAFE_REDIRECTS = 4;
 
 /**
  * Perform an outbound HTTP fetch that validates the initial URL and every
- * redirect hop against `assertSafePublicUrl`, preventing open-redirect SSRF
- * pivots into internal VPC / cloud metadata endpoints.
+ * redirect hop against `assertSafePublicUrlWithDns` (including DNS resolution),
+ * preventing open-redirect and DNS-rebinding SSRF pivots into internal VPC /
+ * cloud metadata endpoints.
  */
 export async function safePublicFetch(
   url: string,
   init?: RequestInit,
   fetchFn: typeof fetch = fetch,
+  dnsLookup?: DnsLookupFn,
 ): Promise<Response> {
-  let currentUrl = assertSafePublicUrl(url).href;
+  const allowMockDnsFallback = fetchFn !== fetch && !dnsLookup;
+  let currentUrl = (
+    await assertSafePublicUrlWithDns(url, dnsLookup, allowMockDnsFallback)
+  ).href;
 
   for (let hop = 0; hop <= MAX_SAFE_REDIRECTS; hop++) {
     const resp = await fetchFn(currentUrl, {
@@ -191,7 +264,9 @@ export async function safePublicFetch(
       const location = resp.headers.get("location");
       if (!location) return resp;
       const nextUrl = new URL(location, currentUrl).href;
-      currentUrl = assertSafePublicUrl(nextUrl).href;
+      currentUrl = (
+        await assertSafePublicUrlWithDns(nextUrl, dnsLookup, allowMockDnsFallback)
+      ).href;
       continue;
     }
 

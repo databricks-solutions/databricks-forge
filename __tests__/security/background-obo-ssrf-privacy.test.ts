@@ -1,6 +1,7 @@
 import { describe, expect, it, vi, beforeEach } from "vitest";
 import {
   assertSafePublicUrl,
+  assertSafePublicUrlWithDns,
   isPrivateOrReservedIp,
   safePublicFetch,
   SsrfBlockedError,
@@ -10,6 +11,8 @@ import {
   stashQueuedOboToken,
   consumeQueuedOboToken,
   clearQueuedOboTokens,
+  encryptQueuedOboEnvelope,
+  decryptQueuedOboEnvelope,
 } from "@/lib/auth/queued-token-store";
 
 const mockRetrieveContext = vi.fn();
@@ -79,6 +82,25 @@ describe("PR-03 SSRF guard, queued OBO store, sample-data redaction & RAG sessio
       ).rejects.toThrow(SsrfBlockedError);
       expect(fakeFetch).toHaveBeenCalledTimes(1);
     });
+
+    it("blocks public hostnames whose DNS records resolve to private or metadata IPs", async () => {
+      const fakeFetch = vi.fn(async () => new Response("ok", { status: 200 }));
+      await expect(
+        assertSafePublicUrlWithDns("https://rebind.attacker.example/api", async () => [
+          { address: "169.254.169.254" },
+        ]),
+      ).rejects.toThrow(SsrfBlockedError);
+
+      await expect(
+        safePublicFetch(
+          "https://rebind.attacker.example/api",
+          undefined,
+          fakeFetch as unknown as typeof fetch,
+          async () => [{ address: "10.24.0.8" }],
+        ),
+      ).rejects.toThrow(SsrfBlockedError);
+      expect(fakeFetch).not.toHaveBeenCalled();
+    });
   });
 
   describe("redactSampleDataFromPrompt", () => {
@@ -101,10 +123,19 @@ describe("PR-03 SSRF guard, queued OBO store, sample-data redaction & RAG sessio
   });
 
   describe("queued OBO token store", () => {
-    it("stashes and consumes an OBO token exactly once", () => {
+    it("stashes and consumes an OBO token exactly once and encrypts cross-instance envelopes", () => {
       stashQueuedOboToken("run-1", "obo-secret-123");
       expect(consumeQueuedOboToken("run-1")).toBe("obo-secret-123");
       expect(consumeQueuedOboToken("run-1")).toBeNull();
+
+      const expiresAt = Date.now() + 60_000;
+      const encrypted = encryptQueuedOboEnvelope("obo-cross-instance-xyz", expiresAt);
+      expect(encrypted).not.toContain("obo-cross-instance-xyz");
+      const decrypted = decryptQueuedOboEnvelope(encrypted);
+      expect(decrypted).toEqual({
+        oboToken: "obo-cross-instance-xyz",
+        expiresAt,
+      });
     });
   });
 
