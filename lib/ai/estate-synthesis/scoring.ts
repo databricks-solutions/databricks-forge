@@ -236,17 +236,33 @@ export function buildFindings(input: EstateSynthesisInput, scores: EstateScores)
   }
 
   // --- Well-Architected / Analytics Maturity gap ---
-  if (
-    (input.waf && input.waf.overallScore < 70) ||
-    (input.analyticsMaturityScore != null && input.analyticsMaturityScore < 65)
-  ) {
-    const maturity = scores.analyticsMaturity;
+  const hasLowWaf = input.waf != null && input.waf.overallScore < 70;
+  const hasLowMaturity =
+    input.analyticsMaturityScore != null && input.analyticsMaturityScore < 65;
+  if (hasLowWaf || hasLowMaturity) {
+    const wafScore = hasLowWaf ? clamp(input.waf!.overallScore) : null;
+    const maturity = hasLowMaturity ? scores.analyticsMaturity : null;
+    const effectiveScore =
+      wafScore != null && maturity != null
+        ? Math.min(wafScore, maturity)
+        : (wafScore ?? maturity ?? 0);
+    const title =
+      wafScore != null && maturity == null
+        ? `Well-Architected posture is ${wafScore}/100`
+        : maturity != null && wafScore == null
+          ? `Analytics & platform maturity is ${maturity}/100`
+          : `Well-Architected (${wafScore}/100) & analytics maturity (${maturity}/100) lag target`;
+    const summary =
+      wafScore != null && maturity == null
+        ? `Workspace Well-Architected assessment score (${wafScore}/100) is below the 70/100 target bar, indicating platform and governance remediation opportunities.`
+        : `Semantic and BI layer coverage (${maturity ?? wafScore}/100) lags behind the underlying data foundation, limiting governed self-serve adoption.`;
+
     findings.push({
       id: "well_architected_gap",
       kind: "well_architected_gap",
-      severity: maturity < 40 ? "high" : "medium",
-      title: `Analytics & platform maturity is ${maturity}/100`,
-      summary: `Semantic and BI layer coverage (${maturity}/100) lags behind the underlying data foundation, limiting governed self-serve adoption.`,
+      severity: effectiveScore < 40 ? "high" : "medium",
+      title,
+      summary,
       evidence: [
         ev("benchmark", {
           claim: "Target analytics & Lakehouse maturity for self-serve estates.",

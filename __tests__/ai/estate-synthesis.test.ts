@@ -203,6 +203,17 @@ describe("estate-synthesis findings", () => {
     expect(findings.some((f) => f.kind === "well_architected_gap")).toBe(true);
     const qr = findings.find((f) => f.kind === "query_ready_domain");
     expect(qr?.evidence.some((e) => e.tier === "sourced")).toBe(true);
+
+    // When WAF is low but analyticsMaturityScore is null, report the WAF score (not 0/100)
+    const wafOnlyInput = input({
+      tables: [table({ fqn: "cat.sch.t1", comment: "doc", governanceScore: 80, healthScore: 85 })],
+      analyticsMaturityScore: null,
+      waf: { overallScore: 58 },
+    });
+    const wafOnlyFindings = buildFindings(wafOnlyInput, computeEstateScores(wafOnlyInput, NOW));
+    const wafFinding = wafOnlyFindings.find((f) => f.kind === "well_architected_gap");
+    expect(wafFinding?.title).toContain("58/100");
+    expect(wafFinding?.title).not.toContain("0/100");
   });
 });
 
