@@ -5,6 +5,25 @@ All notable changes to Databricks Forge will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-10-28
+
+### Added
+
+- 2026 frontier model catalog (`databricks-claude-opus-5-5`, `databricks-claude-sonnet-5-5`, `databricks-gpt-6-1-sol`, `databricks-gpt-6-sol`, `databricks-gpt-6-luna`, `databricks-gemini-3-5-flash-lite`) with OpenAI Responses API (`/serving-endpoints/responses`) and Unity Gateway (`/ai-gateway/mlflow/v1`) auto-routing.
+- Master Repository v2 enrichments for `water-utilities`, `rail-transport`, `automotive-mobility`, `superannuation`, and `construction-infrastructure` (22/22 industries).
+- Automatic post-scan Data Gap Analysis, `dataAssetId` writeback onto `ForgeTableDetail`, and State-of-the-Nation synthesis with benchmark Value-at-Risk.
+
+### Changed
+
+- Model serving omits `temperature` for reasoning/hybrid frontier endpoints (`supportsTemperature: false`) with automatic HTTP 400 retry fallback.
+- Standalone estate scans record upstream lineage edges without promoting out-of-scope staging tables into `ForgeTableDetail` by default, backfill table owners from `DESCRIBE TABLE EXTENDED` and `information_schema.tables`, and gate `OPTIMIZE`/`VACUUM` health penalties on file count and write churn.
+- Business Value quantification enforces formula-variable evaluation parity and scopes portfolio totals (`totalUseCases`, `totalEstimatedValue`, `deliveredValue`, `byPhase`) to the latest completed run.
+
+### Security
+
+- Enforced org-admin and owner authorization guards on workspace reset, migrations, embedding backfills, custom outcome maps, and demo cleanup.
+- Added DNS-resolving SSRF protection (`assertSafePublicUrlWithDns` / `safePublicFetch`), AES-256-GCM cross-instance queued OBO token persistence, sample-data redaction before prompt/trace logging, untrusted prompt delimiter sanitization, spreadsheet formula-injection escaping, and UC comment drift detection on undo.
+
 ## [1.0.4] - 2026-07-25
 
 ### Added
