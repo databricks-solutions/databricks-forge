@@ -90,7 +90,16 @@ function sanitize(value: unknown, depth = 0): unknown {
     return out;
   }
   if (typeof value === "string") {
-    return value.length > 8000 ? `${value.slice(0, 8000)}…[truncated]` : value;
+    const redacted = value
+      .replace(
+        /---\s*BEGIN\s+SAMPLE\s+DATA\s*---[\s\S]*?---\s*END\s+SAMPLE\s+DATA\s*---/gi,
+        "[REDACTED SAMPLE DATA]",
+      )
+      .replace(
+        /(###\s+SAMPLE\s+DATA\b[^\n]*\n)([\s\S]*?)(?=\n###\s+|\n---\n|$)/gi,
+        "$1[REDACTED SAMPLE DATA]\n",
+      );
+    return redacted.length > 8000 ? `${redacted.slice(0, 8000)}…[truncated]` : redacted;
   }
   return value;
 }

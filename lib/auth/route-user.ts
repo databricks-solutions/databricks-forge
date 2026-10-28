@@ -120,8 +120,14 @@ export async function getUserOrNull(req?: Request): Promise<ForgeUser | null> {
   const asUser = readAsUserOverride(req ?? null);
   if (asUser) email = asUser;
 
-  if (!email) {
-    email = process.env.FORGE_LOCAL_USER_EMAIL ?? null;
+  if (
+    !email &&
+    process.env.FORGE_LOCAL_USER_EMAIL &&
+    (isDev() ||
+      !process.env.DATABRICKS_CLIENT_ID ||
+      process.env.FORGE_ALLOW_PROD_SINGLE_USER_OVERRIDE === "true")
+  ) {
+    email = process.env.FORGE_LOCAL_USER_EMAIL;
   }
 
   if (!email) return null;

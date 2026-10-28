@@ -33,6 +33,7 @@ export interface EvidenceLinkingInput {
   customerName: string;
   industryId: string;
   sessionId?: string;
+  ownerEmail?: string | null;
   executiveBrief?: ExecutiveBrief | null;
   companyProfile?: ResearchEngineResult["companyProfile"];
   demoNarrative?: ResearchEngineResult["demoNarrative"];
@@ -45,6 +46,12 @@ export interface EvidenceLinkingOutput {
   demoNarrative?: ResearchEngineResult["demoNarrative"];
   personaTalkTracks?: PersonaTalkTrack[] | null;
   stats: { attempted: number; attached: number; downgraded: number };
+}
+
+interface LinkingScope {
+  customerName: string;
+  sessionId?: string;
+  ownerEmail?: string | null;
 }
 
 /** Build a retrieval query for an evidence claim. */
@@ -60,8 +67,9 @@ function buildQuery(ev: Evidence, customerName: string): string {
 /** Try to attach a real quote. Returns the (possibly rewritten) evidence. */
 async function tryAttachQuote(
   ev: Evidence,
-  customerName: string,
+  scope: LinkingScope,
 ): Promise<{ evidence: Evidence; attached: boolean; downgraded: boolean }> {
+  const { customerName, sessionId, ownerEmail } = scope;
   // Only process sourced-tier evidence that's missing a quote.
   if (ev.tier !== "sourced") return { evidence: ev, attached: false, downgraded: false };
   if (ev.quote && ev.quote.trim().length >= 20 && ev.sourceUrl) {
@@ -70,16 +78,18 @@ async function tryAttachQuote(
 
   const query = buildQuery(ev, customerName);
   try {
-    const chunks = await retrieveContext(query, {
+    const rawChunks = await retrieveContext(query, {
       kinds: ["company_research"],
       topK: TOP_K,
       minScore: MIN_SCORE,
       metadataFilter: { customerName },
+      userEmail: ownerEmail ?? undefined,
       // Activate the retriever's freshness multiplier + provenance weights
       // for company_research. Without this, a 2016 annual report can win
       // on pure cosine similarity even when a 2024 report is indexed.
       enforceSourcePriority: true,
     });
+    const chunks = sessionId ? rawChunks.filter((c) => c.sourceId === sessionId) : rawChunks;
 
     if (chunks.length > 0) {
       const top = chunks[0];
@@ -128,7 +138,7 @@ async function tryAttachQuote(
 
 async function processArray(
   arr: Evidence[] | undefined,
-  customerName: string,
+  scope: LinkingScope,
   stats: { attempted: number; attached: number; downgraded: number },
 ): Promise<Evidence[] | undefined> {
   if (!arr || arr.length === 0) return arr;
@@ -139,7 +149,7 @@ async function processArray(
       continue;
     }
     stats.attempted++;
-    const { evidence, attached, downgraded } = await tryAttachQuote(ev, customerName);
+    const { evidence, attached, downgraded } = await tryAttachQuote(ev, scope);
     if (attached) stats.attached++;
     if (downgraded) stats.downgraded++;
     out.push(evidence);
@@ -149,13 +159,13 @@ async function processArray(
 
 async function processSingle(
   ev: Evidence | undefined,
-  customerName: string,
+  scope: LinkingScope,
   stats: { attempted: number; attached: number; downgraded: number },
 ): Promise<Evidence | undefined> {
   if (!ev) return ev;
   if (ev.tier !== "sourced") return ev;
   stats.attempted++;
-  const { evidence, attached, downgraded } = await tryAttachQuote(ev, customerName);
+  const { evidence, attached, downgraded } = await tryAttachQuote(ev, scope);
   if (attached) stats.attached++;
   if (downgraded) stats.downgraded++;
   return evidence;
@@ -165,13 +175,17 @@ export async function runEvidenceLinking(
   input: EvidenceLinkingInput,
   logger: Logger,
 ): Promise<EvidenceLinkingOutput> {
-  const { customerName } = input;
+  const scope: LinkingScope = {
+    customerName: input.customerName,
+    sessionId: input.sessionId,
+    ownerEmail: input.ownerEmail,
+  };
   const stats = { attempted: 0, attached: 0, downgraded: 0 };
 
   // --- Executive Brief ---
   let executiveBrief = input.executiveBrief ?? null;
   if (executiveBrief && Array.isArray(executiveBrief.evidence)) {
-    const linked = await processArray(executiveBrief.evidence, customerName, stats);
+    const linked = await processArray(executiveBrief.evidence, scope, stats);
     executiveBrief = { ...executiveBrief, evidence: linked ?? [] };
   }
 
@@ -181,19 +195,19 @@ export async function runEvidenceLinking(
     const statedPriorities = await Promise.all(
       (companyProfile.statedPriorities ?? []).map(async (p) => ({
         ...p,
-        evidence: await processSingle(p.evidence, customerName, stats),
+        evidence: await processSingle(p.evidence, scope, stats),
       })),
     );
     const inferredPriorities = await Promise.all(
       (companyProfile.inferredPriorities ?? []).map(async (p) => ({
         ...p,
-        evidenceObj: await processSingle(p.evidenceObj, customerName, stats),
+        evidenceObj: await processSingle(p.evidenceObj, scope, stats),
       })),
     );
     const strategicGaps = await Promise.all(
       (companyProfile.strategicGaps ?? []).map(async (g) => ({
         ...g,
-        evidence: await processSingle(g.evidence, customerName, stats),
+        evidence: await processSingle(g.evidence, scope, stats),
       })),
     );
     companyProfile = {
@@ -210,7 +224,7 @@ export async function runEvidenceLinking(
     const moments = await Promise.all(
       demoNarrative.killerMoments.map(async (m) => ({
         ...m,
-        evidence: await processArray(m.evidence, customerName, stats),
+        evidence: await processArray(m.evidence, scope, stats),
       })),
     );
     demoNarrative = { ...demoNarrative, killerMoments: moments };
@@ -224,10 +238,10 @@ export async function runEvidenceLinking(
         const threeObjections = await Promise.all(
           (t.threeObjections ?? []).map(async (o) => ({
             ...o,
-            proofToUse: (await processSingle(o.proofToUse, customerName, stats)) ?? o.proofToUse,
+            proofToUse: (await processSingle(o.proofToUse, scope, stats)) ?? o.proofToUse,
           })),
         );
-        const evidence = (await processArray(t.evidence, customerName, stats)) ?? [];
+        const evidence = (await processArray(t.evidence, scope, stats)) ?? [];
         return { ...t, threeObjections, evidence };
       }),
     );

@@ -172,8 +172,13 @@ export async function fetchSampleData(
     });
   }
 
+  const markdown =
+    sections.length > 1
+      ? `---BEGIN SAMPLE DATA---\n${sections.join("\n")}\n---END SAMPLE DATA---`
+      : "";
+
   return {
-    markdown: sections.length > 1 ? sections.join("\n") : "",
+    markdown,
     structured,
     tablesSampled,
     tablesSkipped,

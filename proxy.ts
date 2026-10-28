@@ -49,10 +49,14 @@ function readEmailFromHeaders(req: NextRequest): string | null {
     if (fallback) return fallback.toLowerCase().trim();
   }
 
-  // Production fallback: still honour the env var if explicitly set (rare,
-  // intentional admin scenarios). Production deploys without the proxy
-  // header should fail 401.
-  if (process.env.FORGE_LOCAL_USER_EMAIL) {
+  // Production fallback: only honour FORGE_LOCAL_USER_EMAIL when not running
+  // as a multi-tenant Databricks App (where DATABRICKS_CLIENT_ID is injected),
+  // or when FORGE_ALLOW_PROD_SINGLE_USER_OVERRIDE=true is explicitly set.
+  if (
+    process.env.FORGE_LOCAL_USER_EMAIL &&
+    (!process.env.DATABRICKS_CLIENT_ID ||
+      process.env.FORGE_ALLOW_PROD_SINGLE_USER_OVERRIDE === "true")
+  ) {
     return process.env.FORGE_LOCAL_USER_EMAIL.toLowerCase().trim();
   }
 

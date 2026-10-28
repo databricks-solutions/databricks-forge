@@ -8,6 +8,7 @@
 
 import TurndownService from "turndown";
 import { logger } from "@/lib/logger";
+import { safePublicFetch } from "@/lib/resilient-fetch";
 
 const FETCH_TIMEOUT_MS = 15_000;
 const MAX_HTML_BYTES = 2 * 1024 * 1024; // 2 MB cap on raw HTML
@@ -81,14 +82,13 @@ export async function fetchAndConvertSource(url: string): Promise<string | null>
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
 
-    const response = await fetch(url, {
+    const response = await safePublicFetch(url, {
       signal: controller.signal,
       headers: {
         "User-Agent": "Mozilla/5.0 (compatible; DatabricksForgeBot/1.0; +https://databricks.com)",
         Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
         "Accept-Language": "en-US,en;q=0.9",
       },
-      redirect: "follow",
     });
 
     clearTimeout(timer);

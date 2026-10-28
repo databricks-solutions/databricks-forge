@@ -77,6 +77,7 @@ import { logActivity } from "@/lib/lakebase/activity-log";
 import { flushPromptLogs } from "@/lib/lakebase/prompt-logs";
 import { logMemoryUsage } from "@/lib/pipeline/memory-monitor";
 import { registerPipelineStarter, notifyScheduler } from "@/lib/pipeline/scheduler";
+import { runWithDatabricksAuthContext } from "@/lib/dbx/auth-context";
 
 // ---------------------------------------------------------------------------
 // Step definitions with progress percentages
@@ -241,6 +242,15 @@ export interface PipelineRunOptions {
  * Progress is tracked in Lakebase so the frontend can poll.
  */
 export async function startPipeline(runId: string, opts: PipelineRunOptions = {}): Promise<void> {
+  if (opts.oboToken) {
+    return runWithDatabricksAuthContext({ oboToken: opts.oboToken }, () =>
+      startPipelineInner(runId, opts),
+    );
+  }
+  return startPipelineInner(runId, opts);
+}
+
+async function startPipelineInner(runId: string, opts: PipelineRunOptions = {}): Promise<void> {
   const controller = new AbortController();
   activePipelineRuns.set(runId, controller);
   const log = createScopedLogger({ origin: "DiscoveryRun", module: "pipeline/engine", runId });
@@ -847,6 +857,15 @@ export async function startPipeline(runId: string, opts: PipelineRunOptions = {}
  * so that expensive early steps are not re-run.
  */
 export async function resumePipeline(runId: string, opts: PipelineRunOptions = {}): Promise<void> {
+  if (opts.oboToken) {
+    return runWithDatabricksAuthContext({ oboToken: opts.oboToken }, () =>
+      resumePipelineInner(runId, opts),
+    );
+  }
+  return resumePipelineInner(runId, opts);
+}
+
+async function resumePipelineInner(runId: string, opts: PipelineRunOptions = {}): Promise<void> {
   const controller = new AbortController();
   activePipelineRuns.set(runId, controller);
   const log = createScopedLogger({
@@ -1749,6 +1768,8 @@ export async function cancelPipeline(runId: string): Promise<boolean> {
   });
 
   if (queuedCancelled) {
+    const { consumeQueuedOboTokenAsync } = await import("@/lib/auth/queued-token-store");
+    await consumeQueuedOboTokenAsync(runId).catch(() => null);
     createScopedLogger({ origin: "DiscoveryRun", module: "pipeline/engine", runId }).info(
       "Queued pipeline cancelled",
     );
