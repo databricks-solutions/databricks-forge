@@ -23,6 +23,49 @@ export function computeOverallScore(priorityScore: number, feasibilityScore: num
 }
 
 /**
+ * Deterministically compute the Value / Priority score from its 4 weighted sub-factors:
+ *   ROI (60%) + Strategic Alignment (25%) + Time to Value (7.5%) + Reusability (7.5%)
+ */
+export function computePriorityScoreFromFactors(factors: {
+  roi: number;
+  strategic_alignment: number;
+  time_to_value: number;
+  reusability: number;
+}): number {
+  const raw =
+    factors.roi * 0.6 +
+    factors.strategic_alignment * 0.25 +
+    factors.time_to_value * 0.075 +
+    factors.reusability * 0.075;
+  return Number(Math.max(0, Math.min(1, raw)).toFixed(3));
+}
+
+/**
+ * Deterministically compute the Feasibility score as the unweighted mean of its 8 sub-factors.
+ */
+export function computeFeasibilityScoreFromFactors(factors: {
+  data_availability: number;
+  data_accessibility: number;
+  architecture_fitness: number;
+  team_skills: number;
+  domain_knowledge: number;
+  people_allocation: number;
+  budget_allocation: number;
+  time_to_production: number;
+}): number {
+  const sum =
+    factors.data_availability +
+    factors.data_accessibility +
+    factors.architecture_fitness +
+    factors.team_skills +
+    factors.domain_knowledge +
+    factors.people_allocation +
+    factors.budget_allocation +
+    factors.time_to_production;
+  return Number(Math.max(0, Math.min(1, sum / 8)).toFixed(3));
+}
+
+/**
  * Score tier classification for UI display.
  */
 export type ScoreTier = "high" | "medium" | "low";

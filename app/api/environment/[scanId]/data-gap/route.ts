@@ -15,6 +15,7 @@ import { apiLogger } from "@/lib/logger";
 import { loadScanOrRespond } from "@/lib/auth/route-guards";
 import { getLatestDataGapAnalysisForScan } from "@/lib/lakebase/data-gap-analyses";
 import { computeEstateDataGap } from "@/lib/engines/data-gap-analysis/estate-data-gap";
+import { inferIndustryIdFromScope } from "@/lib/pipeline/standalone-scan";
 import { withPrisma } from "@/lib/prisma";
 import { logActivity } from "@/lib/lakebase/activity-log";
 
@@ -23,9 +24,12 @@ async function resolveIndustry(scanId: string, explicit?: string | null): Promis
   return withPrisma(async (prisma) => {
     const scan = await prisma.forgeEnvironmentScan.findUnique({
       where: { scanId },
-      select: { program: { select: { industryId: true } } },
+      select: { ucPath: true, program: { select: { industryId: true } } },
     });
-    return scan?.program?.industryId ?? null;
+    return (
+      scan?.program?.industryId ??
+      (scan?.ucPath ? (inferIndustryIdFromScope(scan.ucPath) ?? null) : null)
+    );
   });
 }
 

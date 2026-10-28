@@ -140,13 +140,14 @@ function renderProductTable(t: TableInput): string {
   return `- ${t.fqn}${t.detail?.owner ? ` (owner: ${t.detail.owner})` : ""}`;
 }
 
-function renderGovernanceTable(
+function detectGovernanceGapCodes(
   t: TableInput,
   sensitiveTableSet: Set<string>,
   lineagedTables: Set<string>,
-): string {
+  generatedDescriptions?: Map<string, string>,
+): string[] {
   const gaps: string[] = [];
-  if (!t.comment) gaps.push("no_description");
+  if (!t.comment && !generatedDescriptions?.get(t.fqn)) gaps.push("no_description");
   if (!t.detail?.owner) gaps.push("no_owner");
   if (t.tags.length === 0) gaps.push("no_tags");
   if (
@@ -159,15 +160,29 @@ function renderGovernanceTable(
   }
   if (!lineagedTables.has(t.fqn)) gaps.push("no_lineage");
   if (t.history) {
+    const numFiles = t.detail?.numFiles ?? null;
+    const needsFileCompaction = numFiles == null || numFiles >= 8;
+    const hasHighChurn =
+      needsFileCompaction || t.history.totalWriteOps > 2 || t.history.totalMergeOps > 0;
     const dOptimize = t.history.lastOptimizeTimestamp
       ? daysSince(t.history.lastOptimizeTimestamp)
       : 999;
     const dVacuum = t.history.lastVacuumTimestamp ? daysSince(t.history.lastVacuumTimestamp) : 999;
     const dWrite = t.history.lastWriteTimestamp ? daysSince(t.history.lastWriteTimestamp) : 999;
-    if (dOptimize > 30) gaps.push("stale_optimize");
-    if (dVacuum > 30) gaps.push("stale_vacuum");
+    if (needsFileCompaction && dOptimize > 30) gaps.push("stale_optimize");
+    if (hasHighChurn && dVacuum > 30) gaps.push("stale_vacuum");
     if (dWrite > 90) gaps.push("stale_data");
   }
+  return gaps;
+}
+
+function renderGovernanceTable(
+  t: TableInput,
+  sensitiveTableSet: Set<string>,
+  lineagedTables: Set<string>,
+  generatedDescriptions?: Map<string, string>,
+): string {
+  const gaps = detectGovernanceGapCodes(t, sensitiveTableSet, lineagedTables, generatedDescriptions);
   return `- ${t.fqn}: detected_gaps=[${gaps.join(",")}]`;
 }
 
@@ -373,6 +388,7 @@ export async function runIntelligenceLayer(
       result.sensitivities,
       result.domains,
       opts,
+      result.generatedDescriptions,
     );
     passResults["governance"] = "success";
     progress("governance", 100);
@@ -803,12 +819,102 @@ async function passDataProducts(
 // Post-Pass: Governance Gap Analysis
 // ---------------------------------------------------------------------------
 
+const DETERMINISTIC_GAP_METADATA: Record<
+  string,
+  {
+    deduction: number;
+    category: string;
+    severity: "critical" | "high" | "medium" | "low";
+    detail: string;
+    recommendation: string;
+  }
+> = {
+  no_description: {
+    deduction: 15,
+    category: "documentation",
+    severity: "medium",
+    detail: "Table lacks a business description or comment.",
+    recommendation: "Apply an AI-generated or steward-approved table comment.",
+  },
+  no_owner: {
+    deduction: 15,
+    category: "ownership",
+    severity: "medium",
+    detail: "No explicit data owner assigned in Unity Catalog.",
+    recommendation: "Assign a domain steward or team group as table owner.",
+  },
+  no_tags: {
+    deduction: 10,
+    category: "tagging",
+    severity: "low",
+    detail: "No Unity Catalog governance tags applied.",
+    recommendation: "Add domain, tier, and sensitivity tags in Unity Catalog.",
+  },
+  pii_untagged: {
+    deduction: 25,
+    category: "sensitivity",
+    severity: "critical",
+    detail: "Sensitive/PII columns detected without a corresponding PII/sensitivity tag.",
+    recommendation: "Tag the table and columns as PII and enforce column masking / ABAC.",
+  },
+  no_lineage: {
+    deduction: 10,
+    category: "lineage",
+    severity: "low",
+    detail: "No upstream or downstream table lineage recorded.",
+    recommendation: "Verify ingestion pipeline lineage in Unity Catalog.",
+  },
+  stale_optimize: {
+    deduction: 10,
+    category: "maintenance",
+    severity: "low",
+    detail: "Multi-file Delta table has not been OPTIMIZEd in the last 30 days.",
+    recommendation: "Enable Predictive Optimization or schedule regular OPTIMIZE.",
+  },
+  stale_vacuum: {
+    deduction: 10,
+    category: "maintenance",
+    severity: "low",
+    detail: "Delta table with write churn has not been VACUUMed in the last 30 days.",
+    recommendation: "Enable Predictive Optimization or schedule regular VACUUM.",
+  },
+  stale_data: {
+    deduction: 15,
+    category: "maintenance",
+    severity: "medium",
+    detail: "No write activity recorded in the last 90 days.",
+    recommendation: "Confirm whether the table is archival/static or if an upstream job is stalled.",
+  },
+};
+
+function buildDeterministicGovernanceGap(fqn: string, gapCodes: string[]): GovernanceGap {
+  let score = 100;
+  const gaps: GovernanceGap["gaps"] = [];
+  for (const code of gapCodes) {
+    const meta = DETERMINISTIC_GAP_METADATA[code];
+    if (!meta) continue;
+    score -= meta.deduction;
+    gaps.push({
+      category: meta.category as GovernanceGap["gaps"][number]["category"],
+      severity: meta.severity,
+      detail: meta.detail,
+      recommendation: meta.recommendation,
+    });
+  }
+  return {
+    tableFqn: fqn,
+    overallScore: Math.max(0, score),
+    gaps,
+  };
+}
+
 async function passGovernanceGaps(
   tables: TableInput[],
   lineageGraph: LineageGraph,
   sensitivities: SensitivityClassification[],
   _domains: DataDomain[],
   options: IntelligenceOptions,
+  generatedDescriptions?: Map<string, string>,
 ): Promise<GovernanceGap[]> {
   const allGaps: GovernanceGap[] = [];
   const sensitiveTableSet = new Set(sensitivities.map((s) => s.tableFqn));
@@ -817,10 +923,24 @@ async function passGovernanceGaps(
     ...lineageGraph.edges.map((e) => e.targetTableFqn),
   ]);
 
-  const renderGov = (t: TableInput) => renderGovernanceTable(t, sensitiveTableSet, lineagedTables);
+  const gapCodesByFqn = new Map<string, string[]>();
+  for (const t of tables) {
+    gapCodesByFqn.set(
+      t.fqn,
+      detectGovernanceGapCodes(t, sensitiveTableSet, lineagedTables, generatedDescriptions),
+    );
+  }
 
+  const renderGov = (t: TableInput) =>
+    renderGovernanceTable(t, sensitiveTableSet, lineagedTables, generatedDescriptions);
+
+  const tablesWithGaps = tables.filter((t) => (gapCodesByFqn.get(t.fqn)?.length ?? 0) > 0);
   const base = basePromptTokens("ENV_GOVERNANCE_GAPS_PROMPT");
-  const batches = buildTokenAwareBatches(tables, renderGov, base);
+  const batches = buildTokenAwareBatches(
+    tablesWithGaps.length > 0 ? tablesWithGaps : tables,
+    renderGov,
+    base,
+  );
 
   for (const batch of batches) {
     const tableList = batch.map(renderGov).join("\n");
@@ -836,6 +956,16 @@ async function passGovernanceGaps(
       options.log!,
     );
     allGaps.push(...parsed);
+  }
+
+  // Backfill any tables omitted by the LLM (including gap-free tables with score 100)
+  // so 100% of tables receive a governanceScore on the world model.
+  const scoredFqns = new Set(allGaps.map((g) => g.tableFqn.toLowerCase()));
+  for (const t of tables) {
+    if (!scoredFqns.has(t.fqn.toLowerCase())) {
+      const codes = gapCodesByFqn.get(t.fqn) ?? [];
+      allGaps.push(buildDeterministicGovernanceGap(t.fqn, codes));
+    }
   }
 
   return allGaps;

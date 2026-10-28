@@ -11,10 +11,40 @@ import { getEnvironmentScan, updateDetailDataAssets } from "@/lib/lakebase/envir
 import { saveDataGapAnalysis } from "@/lib/lakebase/data-gap-analyses";
 import { getMasterRepoEnrichment } from "@/lib/domain/industry-outcomes/master-repo-registry";
 import { resolveIndustryId } from "@/lib/domain/industry-outcomes";
+import type { MasterRepoUseCase } from "@/lib/domain/industry-outcomes/master-repo-types";
 import { logger } from "@/lib/logger";
 import { runDataGapAnalysis } from "./engine";
 import { classifyEstateTablesToAssets, type EstateClassifierDeps } from "./estate-classifier";
-import type { DataGapResult } from "./types";
+import type { DataGapInput, DataGapResult } from "./types";
+
+const BENCHMARK_BASELINE_USD = 2_500_000;
+
+/**
+ * Build deterministic Master Repo benchmark value estimates for standalone
+ * estate scans where no Discovery / Business Value pipeline run has produced
+ * customer-specific ForgeValueEstimate rows yet.
+ */
+export function buildBenchmarkEstimatesFromMasterRepo(
+  useCases: readonly MasterRepoUseCase[],
+): NonNullable<DataGapInput["useCaseValueEstimates"]> {
+  return useCases.map((uc, idx) => {
+    const match = uc.benchmarkImpact?.match(/(\d+(?:\.\d+)?)/);
+    const rawPct = match ? parseFloat(match[1]) : 12;
+    const pct = Number.isFinite(rawPct) ? Math.min(Math.max(rawPct, 5), 50) : 12;
+    const valueMid = Math.round(BENCHMARK_BASELINE_USD * (pct / 100));
+    const valueLow = Math.round(valueMid * 0.5);
+    const valueHigh = Math.round(valueMid * 1.6);
+    return {
+      useCaseId: `benchmark:${idx + 1}`,
+      name: uc.name,
+      referenceUseCaseName: uc.name,
+      valueLow,
+      valueMid,
+      valueHigh,
+      economicImpactCategory: uc.economicImpactCategory ?? "Cost",
+    };
+  });
+}
 
 export interface ComputeEstateDataGapInput {
   scanId: string;
@@ -53,7 +83,11 @@ export async function computeEstateDataGap(
   let newlyClassified: Array<{ fqn: string; dataAssetId: string; dataAssetName: string }> = [];
   if (unclassified.length > 0) {
     newlyClassified = await classifyEstateTablesToAssets(
-      unclassified.map((d) => ({ fqn: d.tableFqn, dataDomain: d.dataDomain, comment: d.comment })),
+      unclassified.map((d) => ({
+        fqn: d.tableFqn,
+        dataDomain: d.dataDomain,
+        comment: d.comment ?? d.generatedDescription,
+      })),
       enrichment.dataAssets,
       deps,
     );
@@ -70,9 +104,12 @@ export async function computeEstateDataGap(
     dataAssetId: c.dataAssetId,
   }));
 
+  const useCaseValueEstimates = buildBenchmarkEstimatesFromMasterRepo(enrichment.useCases);
+
   const result = runDataGapAnalysis({
     industryId: resolvedId,
     classifiedTables,
+    useCaseValueEstimates,
   });
   if (!result) return null;
 

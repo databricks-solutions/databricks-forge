@@ -412,13 +412,18 @@ export function mergeTableComments(tables: TableInfo[], comments: Map<string, st
 export async function fetchTableTypes(
   catalog: string,
   schema?: string,
-): Promise<{ types: Map<string, string>; formats: Map<string, string> }> {
+): Promise<{
+  types: Map<string, string>;
+  formats: Map<string, string>;
+  owners: Map<string, string>;
+}> {
   const types = new Map<string, string>();
   const formats = new Map<string, string>();
+  const owners = new Map<string, string>();
   try {
     const safeCatalog = validateIdentifier(catalog, "catalog");
     let sql = `
-      SELECT table_catalog, table_schema, table_name, table_type, data_source_format
+      SELECT table_catalog, table_schema, table_name, table_type, data_source_format, table_owner
       FROM \`${safeCatalog}\`.information_schema.tables
       WHERE table_schema NOT IN ('information_schema', 'default')
     `;
@@ -434,9 +439,11 @@ export async function fetchTableTypes(
       const tbl = row[2] ?? "";
       const typ = row[3] ?? "TABLE";
       const fmt = row[4] ?? null;
+      const own = row[5] ?? null;
       const fqn = `${cat}.${sch}.${tbl}`;
       types.set(fqn, typ);
       if (fmt) formats.set(fqn, fmt);
+      if (own) owners.set(fqn, own);
     }
 
     logger.info("[metadata] Fetched table types", {
@@ -445,6 +452,7 @@ export async function fetchTableTypes(
       total: types.size,
       views: Array.from(types.values()).filter((t) => t === "VIEW").length,
       deltaCount: Array.from(formats.values()).filter((f) => f.toUpperCase() === "DELTA").length,
+      ownersCount: owners.size,
     });
   } catch (error) {
     logger.warn("[metadata] Failed to fetch table types, continuing without", {
@@ -452,19 +460,26 @@ export async function fetchTableTypes(
       error: error instanceof Error ? error.message : String(error),
     });
   }
-  return { types, formats };
+  return { types, formats, owners };
 }
 
 /**
  * Merge table types and formats into a list of TableInfo objects in-place.
- * Updates the `tableType` and `dataSourceFormat` fields.
+ * Updates the `tableType`, `dataSourceFormat`, and `owner` fields.
  */
 export function mergeTableTypes(
   tables: TableInfo[],
-  typesOrResult: Map<string, string> | { types: Map<string, string>; formats: Map<string, string> },
+  typesOrResult:
+    | Map<string, string>
+    | {
+        types: Map<string, string>;
+        formats: Map<string, string>;
+        owners?: Map<string, string>;
+      },
 ): void {
   const types = typesOrResult instanceof Map ? typesOrResult : typesOrResult.types;
   const formats = typesOrResult instanceof Map ? null : typesOrResult.formats;
+  const owners = typesOrResult instanceof Map ? null : (typesOrResult.owners ?? null);
   for (const table of tables) {
     const type = types.get(table.fqn);
     if (type) {
@@ -474,6 +489,12 @@ export function mergeTableTypes(
       const format = formats.get(table.fqn);
       if (format) {
         table.dataSourceFormat = format;
+      }
+    }
+    if (owners) {
+      const owner = owners.get(table.fqn);
+      if (owner) {
+        table.owner = owner;
       }
     }
   }

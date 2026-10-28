@@ -696,6 +696,9 @@ export async function enrichTablesInBatches(
         effectiveDetail.createdBy = extended.createdBy;
         effectiveDetail.lastAccess = extended.lastAccess;
         effectiveDetail.isManagedLocation = extended.isManagedLocation;
+        if (!effectiveDetail.owner && extended.owner) {
+          effectiveDetail.owner = extended.owner;
+        }
 
         // Override isManaged heuristic with ground truth when available
         if (extended.isManagedLocation != null) {

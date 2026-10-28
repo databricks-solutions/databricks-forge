@@ -5,6 +5,7 @@
 
 import { getEnvironmentScan, getAggregateForExcel } from "@/lib/lakebase/environment-scans";
 import { getLatestDataGapAnalysisForScan } from "@/lib/lakebase/data-gap-analyses";
+import { inferIndustryIdFromScope } from "@/lib/pipeline/standalone-scan";
 import { withPrisma } from "@/lib/prisma";
 import type { EstateSynthesisInput, SynthTable, SynthInsight } from "./types";
 
@@ -63,7 +64,7 @@ export async function buildSynthesisInputForScan(
     }
   }
 
-  // Industry from explicit option or the owning estate.
+  // Industry from explicit option, the owning estate, or inferred from ucPath.
   let industryId = opts.industryId ?? null;
   let industryName: string | null = null;
   if (!industryId && scan.programId) {
@@ -74,6 +75,9 @@ export async function buildSynthesisInputForScan(
       }),
     );
     industryId = program?.industryId ?? null;
+  }
+  if (!industryId && scan.ucPath) {
+    industryId = inferIndustryIdFromScope(scan.ucPath) ?? null;
   }
 
   // Data-gap signal (if a prior analysis exists).

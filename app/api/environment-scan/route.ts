@@ -73,6 +73,8 @@ export async function POST(request: NextRequest) {
         : undefined;
     const lineageEnabled =
       typeof body.lineageEnabled === "boolean" ? body.lineageEnabled : undefined;
+    const expandLineageTables =
+      typeof body.expandLineageTables === "boolean" ? body.expandLineageTables : undefined;
     const lineageDirection =
       body.lineageDirection === "upstream" ||
       body.lineageDirection === "both" ||
@@ -112,7 +114,14 @@ export async function POST(request: NextRequest) {
         exclusionPatterns,
         user.email,
         user.oboToken,
-        { industryId, subVertical, inclusionPatterns, lineageEnabled, lineageDirection },
+        {
+          industryId,
+          subVertical,
+          inclusionPatterns,
+          lineageEnabled,
+          lineageDirection,
+          expandLineageTables,
+        },
       ).catch((error) => {
         log.error("Standalone scan failed", {
           scanId,

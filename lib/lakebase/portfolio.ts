@@ -79,28 +79,42 @@ export async function getPortfolioData(
         : { runId: "__no_run__" }
       : {};
 
-    const latestRun = await prisma.forgeRun.findFirst({
-      where: {
-        status: "completed",
-        synthesisJson: { not: null },
-        ...runIdScope,
-      },
-      orderBy: { completedAt: "desc" },
-      select: { runId: true, synthesisJson: true },
-    });
+    const latestRun =
+      (await prisma.forgeRun.findFirst({
+        where: {
+          status: "completed",
+          synthesisJson: { not: null },
+          ...runIdScope,
+        },
+        orderBy: { completedAt: "desc" },
+        select: { runId: true, synthesisJson: true },
+      })) ??
+      (await prisma.forgeRun.findFirst({
+        where: {
+          status: "completed",
+          ...runIdScope,
+        },
+        orderBy: { completedAt: "desc" },
+        select: { runId: true, synthesisJson: true },
+      }));
+
+    // Scope portfolio headline metrics to the latest completed run (matching
+    // byDomain and getPortfolioUseCases) so repeat runs on the same catalog
+    // never double- or triple-count totalEstimatedValue.
+    const activeScope = latestRun ? { runId: latestRun.runId } : useCaseScope;
 
     const totalUseCases = await prisma.forgeUseCase.count({
-      where: useCaseScope,
+      where: activeScope,
     });
 
     const valueAgg = await prisma.forgeValueEstimate.aggregate({
-      where: useCaseScope,
+      where: activeScope,
       _sum: { valueLow: true, valueMid: true, valueHigh: true },
     });
 
     const stageGroups = await prisma.forgeUseCaseTracking.groupBy({
       by: ["stage"],
-      where: useCaseScope,
+      where: activeScope,
       _count: { _all: true },
     });
     const byStage: Record<TrackingStage, number> = {
@@ -116,7 +130,7 @@ export async function getPortfolioData(
 
     const phaseGroups = await prisma.forgeRoadmapPhase.groupBy({
       by: ["phase"],
-      where: useCaseScope,
+      where: activeScope,
       _count: { _all: true },
     });
     const byPhase: Record<RoadmapPhase, { count: number; valueMid: number }> = {
@@ -149,6 +163,17 @@ export async function getPortfolioData(
         select: { useCaseId: true, valueMid: true },
       });
       const valueByUc = new Map(domainEstimates.map((e) => [e.useCaseId, e.valueMid]));
+
+      const phaseAssignments = await prisma.forgeRoadmapPhase.findMany({
+        where: { runId: latestRun.runId },
+        select: { useCaseId: true, phase: true },
+      });
+      for (const pa of phaseAssignments) {
+        const phase = pa.phase as RoadmapPhase;
+        if (byPhase[phase]) {
+          byPhase[phase].valueMid += valueByUc.get(pa.useCaseId) ?? 0;
+        }
+      }
       const domainValueMap = new Map<string, number>();
       for (const uc of domainUseCases) {
         if (!uc.domain) continue;
@@ -170,7 +195,7 @@ export async function getPortfolioData(
     }
 
     const deliveredAgg = await prisma.forgeValueCapture.aggregate({
-      where: useCaseScope,
+      where: activeScope,
       _sum: { amount: true },
     });
 
