@@ -195,7 +195,7 @@ export async function getPortfolioData(
     }
 
     const deliveredAgg = await prisma.forgeValueCapture.aggregate({
-      where: useCaseScope,
+      where: activeScope,
       _sum: { amount: true },
     });
 
