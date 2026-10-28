@@ -26,7 +26,7 @@ model ForgeRun {
   businessPriorities String?   @map("business_priorities")
   strategicGoals     String?   @map("strategic_goals")
   businessDomains    String?   @map("business_domains")
-  aiModel            String?   @default("databricks-claude-opus-4-7") @map("ai_model")
+  aiModel            String?   @default("databricks-claude-opus-5-5") @map("ai_model")
   languages          String?   @default("[\"English\"]")
   generationOptions  String?   @default("[\"SQL Code\"]") @map("generation_options")
   generationPath     String?   @default("./forge_gen/") @map("generation_path")

@@ -74,12 +74,12 @@ describe("task-router", () => {
 
   describe("Single endpoint mode", () => {
     it("when pool has 1 endpoint, all tiers resolve to it", () => {
-      // No env vars -> default pool of 1 (databricks-claude-opus-4-7)
+      // No env vars -> default pool of 1 (databricks-claude-opus-5-5)
       const tiers: TaskTier[] = ["reasoning", "generation", "classification", "sql", "lightweight"];
       const results = tiers.map((t) => resolveEndpoint(t));
       const unique = new Set(results);
       expect(unique.size).toBe(1);
-      expect(unique.has("databricks-claude-opus-4-7")).toBe(true);
+      expect(unique.has("databricks-claude-opus-5-5")).toBe(true);
     });
   });
 

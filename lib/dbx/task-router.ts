@@ -177,16 +177,23 @@ export function getFallbacksForTier(tier: TaskTier, currentEndpoint: string): st
  * Critical customer-facing data — we trade throughput for consistency and
  * judgment quality.
  */
-const PREMIUM_REASONING = "databricks-claude-opus-4-7";
+const PREMIUM_REASONING = "databricks-claude-opus-5-5";
 
 /**
- * Ordered Opus / GPT fallbacks if the canonical premium model is not in
+ * Ordered Opus / GPT-6 / GPT-5 fallbacks if the canonical premium model is not in
  * the pool or has been marked unavailable. Falls through to the regular
  * reasoning-tier resolver if none of these are present.
  */
 const PREMIUM_FALLBACKS = [
+  "databricks-claude-opus-5",
+  "databricks-claude-opus-4-8",
+  "databricks-claude-opus-4-7",
   "databricks-claude-opus-4-6",
   "databricks-claude-opus-4-5",
+  "databricks-gpt-6-1-sol",
+  "databricks-gpt-6-1-terra",
+  "databricks-gpt-6-astra",
+  "databricks-gpt-6-sol",
   "databricks-gpt-5-4",
 ] as const;
 

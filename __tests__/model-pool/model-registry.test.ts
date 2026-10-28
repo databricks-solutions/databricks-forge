@@ -78,7 +78,7 @@ describe("model-registry", () => {
     it("when no env vars set, pool has 1 endpoint (hardcoded default)", () => {
       const pool = getModelPool();
       expect(pool).toHaveLength(1);
-      expect(pool[0].name).toBe("databricks-claude-opus-4-7");
+      expect(pool[0].name).toBe("databricks-claude-opus-5-5");
     });
   });
 
@@ -320,85 +320,125 @@ describe("model-registry", () => {
   });
 
   describe("getModelCapabilities", () => {
-    it("returns correct capabilities for GPT-5.4 (supportsJsonMode: true, 128K output)", () => {
-      process.env.DATABRICKS_SERVING_ENDPOINT = "databricks-gpt-5-4";
-      const caps = getModelCapabilities("databricks-gpt-5-4");
+    it("returns correct capabilities for GPT-6.1 Sol (Responses API, supportsJsonMode: true, supportsTemperature: false, 128K output)", () => {
+      process.env.DATABRICKS_REVIEW_ENDPOINT = "databricks-gpt-6-1-sol";
+      const caps = getModelCapabilities("databricks-gpt-6-1-sol");
       expect(caps.supportsJsonMode).toBe(true);
-      expect(caps.supportsTemperature).toBe(true);
+      expect(caps.supportsTemperature).toBe(false);
+      expect(caps.apiStyle).toBe("responses");
       expect(caps.maxOutputTokens).toBe(128_000);
       expect(caps.defaultMaxTokens).toBe(16_384);
     });
 
-    it("returns correct capabilities for Claude Opus 4.6 (supportsJsonMode: false, supportsTemperature: true)", () => {
-      process.env.DATABRICKS_SERVING_ENDPOINT = "databricks-claude-opus-4-6";
-      const caps = getModelCapabilities("databricks-claude-opus-4-6");
-      expect(caps.supportsJsonMode).toBe(false);
-      expect(caps.supportsTemperature).toBe(true);
-      expect(caps.maxOutputTokens).toBe(32_000);
-      expect(caps.defaultMaxTokens).toBe(8_192);
+    it("returns correct capabilities for GPT-6 Sol and GPT-6 Luna (Responses API, supportsTemperature: false)", () => {
+      const sol = getModelCapabilities("databricks-gpt-6-sol");
+      expect(sol.supportsJsonMode).toBe(true);
+      expect(sol.supportsTemperature).toBe(false);
+      expect(sol.apiStyle).toBe("responses");
+
+      const luna = getModelCapabilities("databricks-gpt-6-luna");
+      expect(luna.supportsJsonMode).toBe(true);
+      expect(luna.supportsTemperature).toBe(false);
+      expect(luna.apiStyle).toBe("responses");
+      expect(luna.defaultMaxTokens).toBe(8_192);
     });
 
-    it("returns supportsTemperature: false for Claude Opus 4.7 (rejects the param)", () => {
-      process.env.DATABRICKS_SERVING_ENDPOINT = "databricks-claude-opus-4-7";
-      const caps = getModelCapabilities("databricks-claude-opus-4-7");
+    it("returns correct capabilities for GPT-5.4 (supportsJsonMode: true, supportsTemperature: false, 128K output)", () => {
+      process.env.DATABRICKS_SERVING_ENDPOINT = "databricks-gpt-5-4";
+      const caps = getModelCapabilities("databricks-gpt-5-4");
+      expect(caps.supportsJsonMode).toBe(true);
       expect(caps.supportsTemperature).toBe(false);
-      expect(caps.supportsJsonMode).toBe(false);
-      expect(caps.maxOutputTokens).toBe(32_000);
-      expect(caps.defaultMaxTokens).toBe(8_192);
+      expect(caps.apiStyle).toBe("chat_completions");
+      expect(caps.maxOutputTokens).toBe(128_000);
+      expect(caps.defaultMaxTokens).toBe(16_384);
     });
 
-    it("returns correct capabilities for Claude Sonnet 4.6 (supportsTemperature: true)", () => {
-      process.env.DATABRICKS_SERVING_ENDPOINT = "databricks-claude-sonnet-4-6";
-      const caps = getModelCapabilities("databricks-claude-sonnet-4-6");
-      expect(caps.supportsJsonMode).toBe(false);
-      expect(caps.supportsTemperature).toBe(true);
-      expect(caps.maxOutputTokens).toBe(32_000);
-      expect(caps.defaultMaxTokens).toBe(8_192);
+    it("returns supportsTemperature: false for Claude Opus 5.5, 5, 4.8, 4.7, and 4.6", () => {
+      for (const model of [
+        "databricks-claude-opus-5-5",
+        "databricks-claude-opus-5",
+        "databricks-claude-opus-4-8",
+        "databricks-claude-opus-4-7",
+        "databricks-claude-opus-4-6",
+      ]) {
+        const caps = getModelCapabilities(model);
+        expect(caps.supportsTemperature).toBe(false);
+        expect(caps.supportsJsonMode).toBe(false);
+        expect(caps.maxOutputTokens).toBe(32_000);
+        expect(caps.defaultMaxTokens).toBe(8_192);
+      }
     });
 
-    it("returns correct capabilities for Gemini Flash Lite (raised to 32_768)", () => {
-      process.env.DATABRICKS_SERVING_ENDPOINT_LIGHTWEIGHT = "databricks-gemini-3-1-flash-lite";
-      const caps = getModelCapabilities("databricks-gemini-3-1-flash-lite");
-      expect(caps.supportsJsonMode).toBe(false);
-      expect(caps.supportsTemperature).toBe(true);
-      expect(caps.maxOutputTokens).toBe(32_768);
-      expect(caps.defaultMaxTokens).toBe(4_096);
+    it("returns supportsTemperature: false for Claude Sonnet 5.5, 5, and 4.6", () => {
+      for (const model of [
+        "databricks-claude-sonnet-5-5",
+        "databricks-claude-sonnet-5",
+        "databricks-claude-sonnet-4-6",
+      ]) {
+        const caps = getModelCapabilities(model);
+        expect(caps.supportsJsonMode).toBe(false);
+        expect(caps.supportsTemperature).toBe(false);
+        expect(caps.maxOutputTokens).toBe(32_000);
+        expect(caps.defaultMaxTokens).toBe(8_192);
+      }
     });
 
-    it("returns correct capabilities for Gemini 3 Flash (raised to 32_768)", () => {
-      process.env.DATABRICKS_SERVING_ENDPOINT_GENERATION = "databricks-gemini-3-flash";
-      const caps = getModelCapabilities("databricks-gemini-3-flash");
-      expect(caps.supportsJsonMode).toBe(false);
-      expect(caps.supportsTemperature).toBe(true);
-      expect(caps.maxOutputTokens).toBe(32_768);
-      expect(caps.defaultMaxTokens).toBe(4_096);
+    it("returns correct capabilities for Gemini 3.5 Flash Lite and 3.1 Flash Lite (supportsTemperature: false)", () => {
+      const caps35 = getModelCapabilities("databricks-gemini-3-5-flash-lite");
+      expect(caps35.supportsJsonMode).toBe(false);
+      expect(caps35.supportsTemperature).toBe(false);
+      expect(caps35.maxOutputTokens).toBe(65_536);
+      expect(caps35.defaultMaxTokens).toBe(4_096);
+
+      const caps31 = getModelCapabilities("databricks-gemini-3-1-flash-lite");
+      expect(caps31.supportsJsonMode).toBe(false);
+      expect(caps31.supportsTemperature).toBe(false);
+      expect(caps31.maxOutputTokens).toBe(32_768);
+      expect(caps31.defaultMaxTokens).toBe(4_096);
     });
 
-    it("returns correct capabilities for Llama 4 Maverick (8192 output)", () => {
+    it("returns correct capabilities for Gemini 3.8 Flash and Gemini 3 Flash", () => {
+      const caps38 = getModelCapabilities("databricks-gemini-3-8-flash");
+      expect(caps38.supportsJsonMode).toBe(false);
+      expect(caps38.supportsTemperature).toBe(false);
+      expect(caps38.maxOutputTokens).toBe(65_536);
+      expect(caps38.defaultMaxTokens).toBe(8_192);
+
+      const caps3 = getModelCapabilities("databricks-gemini-3-flash");
+      expect(caps3.supportsJsonMode).toBe(false);
+      expect(caps3.supportsTemperature).toBe(false);
+      expect(caps3.maxOutputTokens).toBe(32_768);
+      expect(caps3.defaultMaxTokens).toBe(4_096);
+    });
+
+    it("returns correct capabilities for Llama 4 Maverick (8192 output, supportsTemperature: false)", () => {
       process.env.DATABRICKS_SERVING_ENDPOINT_GENERATION = "databricks-llama-4-maverick";
       const caps = getModelCapabilities("databricks-llama-4-maverick");
       expect(caps.supportsJsonMode).toBe(false);
-      expect(caps.supportsTemperature).toBe(true);
+      expect(caps.supportsTemperature).toBe(false);
       expect(caps.maxOutputTokens).toBe(8_192);
       expect(caps.defaultMaxTokens).toBe(4_096);
     });
 
-    it("returns conservative defaults for unknown endpoints (supportsTemperature: true)", () => {
+    it("returns conservative defaults for unknown endpoints (supportsTemperature: false)", () => {
       const caps = getModelCapabilities("totally-unknown-model");
       expect(caps.supportsJsonMode).toBe(false);
-      expect(caps.supportsTemperature).toBe(true);
+      expect(caps.supportsTemperature).toBe(false);
+      expect(caps.apiStyle).toBe("chat_completions");
       expect(caps.maxOutputTokens).toBe(8_192);
       expect(caps.defaultMaxTokens).toBe(4_096);
     });
 
-    it("pool endpoints include supportsJsonMode, supportsTemperature, maxOutputTokens, defaultMaxTokens fields", () => {
-      process.env.DATABRICKS_SERVING_ENDPOINT = "databricks-gpt-5-4";
-      process.env.DATABRICKS_SERVING_ENDPOINT_FAST = "databricks-claude-sonnet-4-6";
+    it("pool endpoints include supportsJsonMode, supportsTemperature, apiStyle, maxOutputTokens, defaultMaxTokens fields", () => {
+      process.env.DATABRICKS_SERVING_ENDPOINT = "databricks-gpt-6-1-sol";
+      process.env.DATABRICKS_SERVING_ENDPOINT_FAST = "databricks-claude-sonnet-5-5";
 
       const pool = getModelPool();
       for (const ep of pool) {
         expect(typeof ep.supportsJsonMode).toBe("boolean");
         expect(typeof ep.supportsTemperature).toBe("boolean");
+        expect(ep.supportsTemperature).toBe(false);
+        expect(["chat_completions", "responses"]).toContain(ep.apiStyle);
         expect(typeof ep.maxOutputTokens).toBe("number");
         expect(ep.maxOutputTokens).toBeGreaterThan(0);
         expect(typeof ep.defaultMaxTokens).toBe("number");

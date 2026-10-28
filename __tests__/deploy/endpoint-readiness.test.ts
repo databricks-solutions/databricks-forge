@@ -28,6 +28,21 @@ describe("runtime endpoint admission contract", () => {
     ).toEqual([customName]);
   });
 
+  it("disambiguates 2026 prefix model names (opus-5-5 vs opus-5, sonnet-5-5 vs sonnet-5, gpt-6-1-sol) and system.ai names", () => {
+    expect(findKnownModelKey("databricks-claude-opus-5-5")).toBe("databricks-claude-opus-5-5");
+    expect(findKnownModelKey("databricks-claude-opus-5")).toBe("databricks-claude-opus-5");
+    expect(findKnownModelKey("custom-databricks-claude-opus-5-5-endpoint")).toBe(
+      "databricks-claude-opus-5-5",
+    );
+    expect(findKnownModelKey("databricks-claude-sonnet-5-5")).toBe("databricks-claude-sonnet-5-5");
+    expect(findKnownModelKey("databricks-claude-sonnet-5")).toBe("databricks-claude-sonnet-5");
+    expect(findKnownModelKey("databricks-gpt-6-1-sol")).toBe("databricks-gpt-6-1-sol");
+    expect(findKnownModelKey("databricks-gpt-6-sol")).toBe("databricks-gpt-6-sol");
+    expect(findKnownModelKey("databricks-gpt-6-luna")).toBe("databricks-gpt-6-luna");
+    expect(findKnownModelKey("system.ai.gpt-6-1-sol")).toBe("databricks-gpt-6-1-sol");
+    expect(findKnownModelKey("system.ai.claude-opus-5-5")).toBe("databricks-claude-opus-5-5");
+  });
+
   it("matches registry fallback when an allowlist filters every admitted endpoint", () => {
     expect(
       runtimeAdmittedEndpointNames({
@@ -66,7 +81,7 @@ describe("runtime endpoint admission contract", () => {
 
     // With no chat endpoint configured, admission falls back to the default
     // required chat model, which the validated set does not contain.
-    expect(runtimeAdmittedEndpointNames(env)).toEqual(["databricks-claude-opus-4-7"]);
+    expect(runtimeAdmittedEndpointNames(env)).toEqual(["databricks-claude-opus-5-5"]);
     expect(evaluateEndpointReadiness(env)).toMatchObject({
       shouldStart: false,
       usableRequiredCount: 0,

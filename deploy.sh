@@ -69,14 +69,14 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # -------------------------------------------------------------------------
 APP_NAME="databricks-forge"
 APP_DESC="Discover AI-powered use cases from Unity Catalog metadata"
-DEFAULT_ENDPOINT="databricks-claude-opus-4-7"
-DEFAULT_FAST_ENDPOINT="databricks-claude-sonnet-4-6"
+DEFAULT_ENDPOINT="databricks-claude-opus-5-5"
+DEFAULT_FAST_ENDPOINT="databricks-claude-sonnet-5-5"
 DEFAULT_EMBEDDING_ENDPOINT="databricks-qwen3-embedding-0-6b"
-DEFAULT_REVIEW_ENDPOINT="databricks-gpt-5-4"
-DEFAULT_REASONING_ENDPOINT_2="databricks-gemini-3-flash"
-DEFAULT_GENERATION_ENDPOINT="databricks-llama-4-maverick"
+DEFAULT_REVIEW_ENDPOINT="databricks-gpt-6-1-sol"
+DEFAULT_REASONING_ENDPOINT_2="databricks-gpt-6-sol"
+DEFAULT_GENERATION_ENDPOINT="databricks-gpt-6-luna"
 DEFAULT_SQL_ENDPOINT=""
-DEFAULT_LIGHTWEIGHT_ENDPOINT="databricks-gemini-3-1-flash-lite"
+DEFAULT_LIGHTWEIGHT_ENDPOINT="databricks-gemini-3-5-flash-lite"
 
 # -------------------------------------------------------------------------
 # State (populated during execution)
@@ -147,10 +147,10 @@ Options:
                          (default: databricks-forge)
   --warehouse NAME        SQL Warehouse name (skips interactive prompt)
   --profile NAME         Databricks CLI profile name
-  --endpoint NAME             Premium model endpoint    (default: databricks-claude-opus-4-7)
-  --fast-endpoint NAME        Fast model endpoint       (default: databricks-claude-sonnet-4-6)
+  --endpoint NAME             Premium model endpoint    (default: databricks-claude-opus-5-5)
+  --fast-endpoint NAME        Fast model endpoint       (default: databricks-claude-sonnet-5-5)
   --embedding-endpoint NAME   Embedding model endpoint  (default: databricks-qwen3-embedding-0-6b)
-  --review-endpoint NAME      Review model endpoint     (default: databricks-gpt-5-4)
+  --review-endpoint NAME      Review model endpoint     (default: databricks-gpt-6-1-sol)
   --reasoning-endpoint-2 NAME Optional second reasoning model for parallel routing
   --generation-endpoint NAME  Optional generation model endpoint
   --sql-endpoint NAME         Optional SQL/codex model endpoint
@@ -532,31 +532,31 @@ probe_and_resolve_endpoints() {
   }
 
   probe_role "Primary" "required" "$ARG_ENDPOINT" \
-    "databricks-claude-opus-4-7 databricks-claude-opus-4-6 databricks-claude-opus-4-5 databricks-gpt-5-4 databricks-claude-sonnet-4-6" \
+    "databricks-claude-opus-5-5 databricks-claude-opus-5 databricks-claude-opus-4-8 databricks-claude-opus-4-7 databricks-claude-opus-4-6 databricks-gpt-6-1-sol databricks-gpt-6-sol databricks-gpt-6-1-terra databricks-gpt-5-4 databricks-claude-sonnet-5-5 databricks-claude-sonnet-4-6" \
     ENDPOINT
 
   probe_role "Fast" "required" "$ARG_FAST_ENDPOINT" \
-    "databricks-claude-sonnet-4-6 databricks-claude-sonnet-4-5 databricks-gemini-3-flash databricks-gemini-3-1-flash-lite" \
+    "databricks-claude-sonnet-5-5 databricks-claude-sonnet-5 databricks-claude-sonnet-4-6 databricks-gpt-6-luna databricks-gemini-3-8-flash databricks-gemini-3-5-flash databricks-gemini-3-flash databricks-gemini-3-5-flash-lite databricks-gemini-3-1-flash-lite" \
     FAST_ENDPOINT
 
   probe_role "Review" "required" "$ARG_REVIEW_ENDPOINT" \
-    "databricks-gpt-5-4 databricks-claude-opus-4-7 databricks-claude-opus-4-6 databricks-claude-sonnet-4-6" \
+    "databricks-gpt-6-1-sol databricks-gpt-6-sol databricks-gpt-6-1-terra databricks-gpt-6-luna databricks-gpt-5-4 databricks-claude-opus-5-5 databricks-claude-opus-4-7 databricks-claude-sonnet-5-5 databricks-claude-sonnet-4-6" \
     REVIEW_ENDPOINT
 
   probe_role "Embedding" "required" "$ARG_EMBEDDING_ENDPOINT" \
-    "databricks-qwen3-embedding-0-6b" \
+    "databricks-qwen3-embedding-0-6b databricks-gte-large-en" \
     EMBEDDING_ENDPOINT
 
   probe_role "Reasoning2" "optional" "$ARG_REASONING_ENDPOINT_2" \
-    "databricks-gemini-3-flash databricks-gemini-3-1-flash-lite databricks-llama-4-maverick" \
+    "databricks-gpt-6-sol databricks-gpt-6-1-terra databricks-gemini-4-argon databricks-gemini-3-8-flash databricks-claude-opus-5 databricks-claude-opus-4-7 databricks-gemini-3-flash" \
     REASONING_ENDPOINT_2
 
   probe_role "Generation" "optional" "$ARG_GENERATION_ENDPOINT" \
-    "databricks-llama-4-maverick databricks-gemini-3-flash databricks-gemini-3-1-flash-lite databricks-claude-sonnet-4-6" \
+    "databricks-gpt-6-luna databricks-gemini-3-8-flash databricks-llama-4-maverick databricks-gemini-3-5-flash databricks-gemini-3-flash databricks-claude-sonnet-5-5 databricks-claude-sonnet-4-6" \
     GENERATION_ENDPOINT
 
   probe_role "Lightweight" "optional" "$ARG_LIGHTWEIGHT_ENDPOINT" \
-    "databricks-gemini-3-1-flash-lite databricks-gemini-3-flash databricks-claude-sonnet-4-5" \
+    "databricks-gemini-3-5-flash-lite databricks-gpt-6-luna databricks-claude-haiku-5-5 databricks-gemini-3-1-flash-lite databricks-gemini-3-8-flash databricks-claude-haiku-4-5 databricks-gemini-3-flash" \
     LIGHTWEIGHT_ENDPOINT
 
   if [ -n "$ARG_SQL_ENDPOINT" ]; then
@@ -2413,36 +2413,33 @@ wait_for_deployment_readiness() {
   while [ "$attempts" -lt "$max_attempts" ]; do
     deployment_json="$(databricks apps get-deployment \
       "$APP_NAME" "$deployment_id" --output json 2>/dev/null || true)"
-    if [ -n "$deployment_json" ]; then
-      deployment_state="$(printf '%s' "$deployment_json" | python3 -c '
-import json, sys
-data = json.load(sys.stdin)
-status = data.get("status", "UNKNOWN")
-print(status.get("state", "UNKNOWN") if isinstance(status, dict) else status)
-' 2>/dev/null || echo "UNKNOWN")"
-    fi
-
     app_json="$(databricks apps get "$APP_NAME" --output json 2>/dev/null || true)"
-    if [ -n "$app_json" ]; then
-      active_deployment_id="$(printf '%s' "$app_json" | python3 -c '
-import json, sys
-data = json.load(sys.stdin)
-active = data.get("active_deployment") or {}
-print(active.get("deployment_id") or active.get("deploymentId") or "")
-' 2>/dev/null || true)"
-      active_deployment_state="$(printf '%s' "$app_json" | python3 -c '
-import json, sys
-data = json.load(sys.stdin)
-active = data.get("active_deployment") or {}
-status = active.get("status", "UNKNOWN")
-print(status.get("state", "UNKNOWN") if isinstance(status, dict) else status)
-' 2>/dev/null || echo "UNKNOWN")"
-      app_state="$(printf '%s' "$app_json" | python3 -c '
-import json, sys
-data = json.load(sys.stdin)
-status = data.get("app_status", "UNKNOWN")
-print(status.get("state", "UNKNOWN") if isinstance(status, dict) else status)
-' 2>/dev/null || echo "UNKNOWN")"
+
+    if [ -n "$deployment_json" ] || [ -n "$app_json" ]; then
+      local parsed_states
+      parsed_states="$(DEP_JSON="$deployment_json" APP_JSON="$app_json" python3 -c '
+import json, os
+def parse(raw):
+  try:
+    return json.loads(raw) if raw else {}
+  except Exception:
+    return {}
+dep = parse(os.environ.get("DEP_JSON", ""))
+app = parse(os.environ.get("APP_JSON", ""))
+dep_status = dep.get("status", "UNKNOWN")
+dep_state = dep_status.get("state", "UNKNOWN") if isinstance(dep_status, dict) else (dep_status or "UNKNOWN")
+active = app.get("active_deployment") or {}
+active_id = active.get("deployment_id") or active.get("deploymentId") or ""
+act_status = active.get("status", "UNKNOWN")
+act_state = act_status.get("state", "UNKNOWN") if isinstance(act_status, dict) else (act_status or "UNKNOWN")
+app_status = app.get("app_status", "UNKNOWN")
+app_state = app_status.get("state", "UNKNOWN") if isinstance(app_status, dict) else (app_status or "UNKNOWN")
+print(f"{dep_state}\t{active_id}\t{act_state}\t{app_state}")
+' 2>/dev/null || printf 'UNKNOWN\t\tUNKNOWN\tUNKNOWN\n')"
+      IFS=$'\t' read -r deployment_state active_deployment_id active_deployment_state app_state <<< "$parsed_states"
+      deployment_state="${deployment_state:-UNKNOWN}"
+      active_deployment_state="${active_deployment_state:-UNKNOWN}"
+      app_state="${app_state:-UNKNOWN}"
     fi
 
     case "$deployment_state" in
@@ -2808,6 +2805,9 @@ main() {
 
   if [ "$ARG_ZERO_EGRESS" = "true" ]; then
     assemble_zero_egress
+    # Re-run prepare_app_yaml after assemble_zero_egress in case any subshell
+    # during assembly triggered the EXIT trap on Bash 3.2.
+    prepare_app_yaml
     # Patch app.yaml command from scripts/start.sh to bootstrap.sh
     python3 -c "
 from pathlib import Path

@@ -26,8 +26,11 @@ import { findKnownModelKey, runtimeEndpointAdmission } from "@/lib/dbx/model-adm
  */
 export type TaskTier = "reasoning" | "generation" | "classification" | "sql" | "lightweight";
 
+/** Wire API protocol required by the model on Databricks FMAPI. */
+export type ModelApiStyle = "chat_completions" | "responses";
+
 export interface ModelEndpoint {
-  /** Serving endpoint name (e.g. "databricks-claude-opus-4-7"). */
+  /** Serving endpoint name (e.g. "databricks-claude-opus-5-5"). */
   name: string;
   /** Task tiers this endpoint is suitable for (ordered by preference). */
   tiers: TaskTier[];
@@ -38,19 +41,19 @@ export interface ModelEndpoint {
   /** Whether the model supports response_format: json_object on Databricks FMAPI. */
   supportsJsonMode: boolean;
   /**
-   * Whether the model accepts the `temperature` request parameter. Some
-   * reasoning models (e.g. Claude Opus 4.7) reject it with HTTP 400. When
-   * false, the wire layer omits `temperature` from the request body and
-   * the model uses its server-side default (typically 1.0).
+   * Whether the model accepts the `temperature` request parameter. Modern
+   * reasoning and hybrid models (Claude 5.x, Opus 4.7+, GPT-6.x, GPT-5.x,
+   * Gemini 4 / 3.5+) reject or disallow `temperature` (returning HTTP 400).
+   * Defaults to false so `temperature` is omitted unless explicitly supported.
    */
   supportsTemperature: boolean;
+  /** Wire API format ("chat_completions" or "responses"). */
+  apiStyle: ModelApiStyle;
   /** Maximum output tokens the model can generate per request. */
   maxOutputTokens: number;
   /**
-   * Default value sent on the wire as `max_tokens` when the caller does not
-   * specify one. Closes the Claude Sonnet 4 footgun where omitting
-   * `max_tokens` silently truncates at 1,000 tokens, and ensures predictable
-   * output budgets for every endpoint.
+   * Default value sent on the wire as `max_tokens` (or `max_output_tokens`)
+   * when the caller does not specify one.
    */
   defaultMaxTokens: number;
   /**
@@ -72,31 +75,36 @@ interface ModelTemplate {
   maxConcurrent: number;
   priority: number;
   supportsJsonMode: boolean;
-  /** Defaults to true — only set false when the model explicitly rejects `temperature`. */
+  /**
+   * Defaults to false — modern reasoning/hybrid models reject `temperature`
+   * with HTTP 400 and all FMAPI models have a server-side default when omitted.
+   */
   supportsTemperature?: boolean;
+  /** Defaults to "chat_completions". Models like GPT-6.1 Sol / 6 Sol / 6 Luna use "responses". */
+  apiStyle?: ModelApiStyle;
   maxOutputTokens: number;
-  /** Per-model default for `max_tokens` when the caller omits it. */
+  /** Per-model default for `max_tokens` / `max_output_tokens` when omitted. */
   defaultMaxTokens: number;
 }
 
 /**
- * Verified model capabilities from Databricks documentation.
+ * Verified model capabilities from Databricks documentation (Oct 2026).
  *
  * Sources:
- *   - https://docs.databricks.com/en/machine-learning/foundation-model-apis/supported-models.html
+ *   - https://docs.databricks.com/aws/en/machine-learning/foundation-model-apis/supported-models
  *   - https://docs.databricks.com/aws/en/machine-learning/foundation-model-apis/limits
  *   - https://docs.databricks.com/aws/en/machine-learning/model-serving/query-reason-models
+ *   - https://docs.databricks.com/aws/en/machine-learning/model-serving/query-openai-responses
  *
  * Only models listed here are admitted to the pool. Unknown models are
- * rejected at startup with a warning log. To onboard a new model, add its
- * verified config here first.
+ * rejected at startup with a warning log.
  *
- * NOTE: Codex models (GPT-5.1 Codex Mini, GPT-5.2 Codex, GPT-5.3 Codex)
- * require the Responses API (/serving-endpoints/responses) which is only
- * available via AI Gateway (beta). They are intentionally excluded.
+ * NOTE: Claude Fable 5 / 5.1 retain prompts and responses for 30 days with
+ * Anthropic as a subprocessor and are intentionally excluded from default admission.
  */
 const KNOWN_MODELS: Record<string, ModelTemplate> = {
-  "databricks-claude-opus-4-7": {
+  // ---- Anthropic Claude 5.x & 4.x -----------------------------------------
+  "databricks-claude-opus-5-5": {
     tiers: ["reasoning"],
     maxConcurrent: 6,
     priority: 1,
@@ -105,68 +113,279 @@ const KNOWN_MODELS: Record<string, ModelTemplate> = {
     maxOutputTokens: 32_000,
     defaultMaxTokens: 8_192,
   },
-  "databricks-claude-opus-4-6": {
+  "databricks-claude-opus-5": {
     tiers: ["reasoning"],
     maxConcurrent: 6,
     priority: 2,
     supportsJsonMode: false,
+    supportsTemperature: false,
+    maxOutputTokens: 32_000,
+    defaultMaxTokens: 8_192,
+  },
+  "databricks-claude-opus-4-8": {
+    tiers: ["reasoning"],
+    maxConcurrent: 6,
+    priority: 3,
+    supportsJsonMode: false,
+    supportsTemperature: false,
+    maxOutputTokens: 32_000,
+    defaultMaxTokens: 8_192,
+  },
+  "databricks-claude-opus-4-7": {
+    tiers: ["reasoning"],
+    maxConcurrent: 6,
+    priority: 4,
+    supportsJsonMode: false,
+    supportsTemperature: false,
+    maxOutputTokens: 32_000,
+    defaultMaxTokens: 8_192,
+  },
+  "databricks-claude-opus-4-6": {
+    tiers: ["reasoning"],
+    maxConcurrent: 6,
+    priority: 5,
+    supportsJsonMode: false,
+    supportsTemperature: false,
     maxOutputTokens: 32_000,
     defaultMaxTokens: 8_192,
   },
   "databricks-claude-opus-4-5": {
     tiers: ["reasoning"],
     maxConcurrent: 6,
-    priority: 3,
+    priority: 6,
     supportsJsonMode: false,
+    supportsTemperature: false,
+    maxOutputTokens: 32_000,
+    defaultMaxTokens: 8_192,
+  },
+  "databricks-claude-sonnet-5-5": {
+    tiers: ["generation", "classification"],
+    maxConcurrent: 8,
+    priority: 1,
+    supportsJsonMode: false,
+    supportsTemperature: false,
+    maxOutputTokens: 32_000,
+    defaultMaxTokens: 8_192,
+  },
+  "databricks-claude-sonnet-5": {
+    tiers: ["generation", "classification"],
+    maxConcurrent: 8,
+    priority: 2,
+    supportsJsonMode: false,
+    supportsTemperature: false,
     maxOutputTokens: 32_000,
     defaultMaxTokens: 8_192,
   },
   "databricks-claude-sonnet-4-6": {
     tiers: ["generation", "classification"],
     maxConcurrent: 8,
-    priority: 1,
+    priority: 3,
     supportsJsonMode: false,
+    supportsTemperature: false,
     maxOutputTokens: 32_000,
     defaultMaxTokens: 8_192,
   },
   "databricks-claude-sonnet-4-5": {
     tiers: ["classification", "lightweight"],
     maxConcurrent: 8,
+    priority: 4,
+    supportsJsonMode: false,
+    supportsTemperature: false,
+    maxOutputTokens: 32_000,
+    defaultMaxTokens: 8_192,
+  },
+  "databricks-claude-haiku-5-5": {
+    tiers: ["classification", "lightweight"],
+    maxConcurrent: 8,
+    priority: 1,
+    supportsJsonMode: false,
+    supportsTemperature: false,
+    maxOutputTokens: 32_000,
+    defaultMaxTokens: 4_096,
+  },
+  "databricks-claude-haiku-4-5": {
+    tiers: ["classification", "lightweight"],
+    maxConcurrent: 8,
     priority: 2,
     supportsJsonMode: false,
+    supportsTemperature: false,
     maxOutputTokens: 32_000,
+    defaultMaxTokens: 4_096,
+  },
+
+  // ---- OpenAI GPT-6.1, GPT-6 & GPT-5.x ------------------------------------
+  "databricks-gpt-6-1-sol": {
+    tiers: ["sql", "reasoning", "generation"],
+    maxConcurrent: 6,
+    priority: 1,
+    supportsJsonMode: true,
+    supportsTemperature: false,
+    apiStyle: "responses",
+    maxOutputTokens: 128_000,
+    defaultMaxTokens: 16_384,
+  },
+  "databricks-gpt-6-1-terra": {
+    tiers: ["sql", "reasoning", "generation"],
+    maxConcurrent: 6,
+    priority: 1,
+    supportsJsonMode: true,
+    supportsTemperature: false,
+    apiStyle: "chat_completions",
+    maxOutputTokens: 128_000,
+    defaultMaxTokens: 16_384,
+  },
+  "databricks-gpt-6-astra": {
+    tiers: ["reasoning", "sql", "generation"],
+    maxConcurrent: 6,
+    priority: 1,
+    supportsJsonMode: true,
+    supportsTemperature: false,
+    apiStyle: "chat_completions",
+    maxOutputTokens: 128_000,
+    defaultMaxTokens: 16_384,
+  },
+  "databricks-gpt-6-sol": {
+    tiers: ["sql", "reasoning", "generation"],
+    maxConcurrent: 6,
+    priority: 2,
+    supportsJsonMode: true,
+    supportsTemperature: false,
+    apiStyle: "responses",
+    maxOutputTokens: 128_000,
+    defaultMaxTokens: 16_384,
+  },
+  "databricks-gpt-6-luna": {
+    tiers: ["generation", "classification", "lightweight", "sql"],
+    maxConcurrent: 8,
+    priority: 1,
+    supportsJsonMode: true,
+    supportsTemperature: false,
+    apiStyle: "responses",
+    maxOutputTokens: 128_000,
     defaultMaxTokens: 8_192,
   },
   "databricks-gpt-5-4": {
     tiers: ["sql", "generation", "reasoning"],
     maxConcurrent: 4,
-    priority: 1,
+    priority: 3,
     supportsJsonMode: true,
+    supportsTemperature: false,
+    apiStyle: "chat_completions",
     maxOutputTokens: 128_000,
     defaultMaxTokens: 16_384,
+  },
+  "databricks-gpt-5-4-mini": {
+    tiers: ["sql", "generation", "classification"],
+    maxConcurrent: 8,
+    priority: 3,
+    supportsJsonMode: true,
+    supportsTemperature: false,
+    apiStyle: "chat_completions",
+    maxOutputTokens: 128_000,
+    defaultMaxTokens: 8_192,
+  },
+  "databricks-gpt-5-4-nano": {
+    tiers: ["classification", "lightweight"],
+    maxConcurrent: 8,
+    priority: 2,
+    supportsJsonMode: true,
+    supportsTemperature: false,
+    apiStyle: "chat_completions",
+    maxOutputTokens: 128_000,
+    defaultMaxTokens: 4_096,
+  },
+
+  // ---- Google Gemini 4 & 3.x ----------------------------------------------
+  "databricks-gemini-4-argon": {
+    tiers: ["reasoning", "generation"],
+    maxConcurrent: 6,
+    priority: 2,
+    supportsJsonMode: false,
+    supportsTemperature: false,
+    maxOutputTokens: 65_536,
+    defaultMaxTokens: 8_192,
+  },
+  "databricks-gemini-3-8-flash": {
+    tiers: ["generation", "classification", "lightweight", "reasoning"],
+    maxConcurrent: 8,
+    priority: 1,
+    supportsJsonMode: false,
+    supportsTemperature: false,
+    maxOutputTokens: 65_536,
+    defaultMaxTokens: 8_192,
+  },
+  "databricks-gemini-3-7-flash": {
+    tiers: ["generation", "classification", "lightweight", "reasoning"],
+    maxConcurrent: 8,
+    priority: 2,
+    supportsJsonMode: false,
+    supportsTemperature: false,
+    maxOutputTokens: 65_536,
+    defaultMaxTokens: 8_192,
+  },
+  "databricks-gemini-3-6-flash": {
+    tiers: ["generation", "classification", "lightweight"],
+    maxConcurrent: 8,
+    priority: 2,
+    supportsJsonMode: false,
+    supportsTemperature: false,
+    maxOutputTokens: 65_536,
+    defaultMaxTokens: 8_192,
+  },
+  "databricks-gemini-3-5-flash": {
+    tiers: ["generation", "classification", "lightweight"],
+    maxConcurrent: 8,
+    priority: 3,
+    supportsJsonMode: false,
+    supportsTemperature: false,
+    maxOutputTokens: 65_536,
+    defaultMaxTokens: 8_192,
+  },
+  "databricks-gemini-3-5-flash-lite": {
+    tiers: ["generation", "classification", "lightweight"],
+    maxConcurrent: 8,
+    priority: 0,
+    supportsJsonMode: false,
+    supportsTemperature: false,
+    maxOutputTokens: 65_536,
+    defaultMaxTokens: 4_096,
+  },
+  "databricks-gemini-3-1-pro": {
+    tiers: ["reasoning", "generation"],
+    maxConcurrent: 6,
+    priority: 3,
+    supportsJsonMode: false,
+    supportsTemperature: false,
+    maxOutputTokens: 65_536,
+    defaultMaxTokens: 8_192,
   },
   "databricks-gemini-3-1-flash-lite": {
     tiers: ["generation", "classification", "lightweight"],
     maxConcurrent: 8,
     priority: 0,
     supportsJsonMode: false,
+    supportsTemperature: false,
     maxOutputTokens: 32_768,
     defaultMaxTokens: 4_096,
   },
+  "databricks-gemini-3-flash": {
+    tiers: ["generation", "classification", "lightweight", "reasoning"],
+    maxConcurrent: 8,
+    priority: 1,
+    supportsJsonMode: false,
+    supportsTemperature: false,
+    maxOutputTokens: 32_768,
+    defaultMaxTokens: 4_096,
+  },
+
+  // ---- Meta Llama 4 -------------------------------------------------------
   "databricks-llama-4-maverick": {
     tiers: ["generation", "classification"],
     maxConcurrent: 6,
     priority: 1,
     supportsJsonMode: false,
+    supportsTemperature: false,
     maxOutputTokens: 8_192,
-    defaultMaxTokens: 4_096,
-  },
-  "databricks-gemini-3-flash": {
-    tiers: ["generation", "classification", "lightweight"],
-    maxConcurrent: 8,
-    priority: 1,
-    supportsJsonMode: false,
-    maxOutputTokens: 32_768,
     defaultMaxTokens: 4_096,
   },
 };
@@ -221,7 +440,8 @@ function buildPool(): ModelEndpoint[] {
       maxConcurrent: tmpl.maxConcurrent,
       priority: tmpl.priority,
       supportsJsonMode: tmpl.supportsJsonMode,
-      supportsTemperature: tmpl.supportsTemperature ?? true,
+      supportsTemperature: tmpl.supportsTemperature ?? false,
+      apiStyle: tmpl.apiStyle ?? "chat_completions",
       maxOutputTokens: tmpl.maxOutputTokens,
       defaultMaxTokens: tmpl.defaultMaxTokens,
       available: true,
@@ -361,7 +581,8 @@ export function resetModelPool(): void {
 /** Safe defaults for models not in the pool (unknown endpoint fallback). */
 const UNKNOWN_CAPS = {
   supportsJsonMode: false,
-  supportsTemperature: true,
+  supportsTemperature: false,
+  apiStyle: "chat_completions" as ModelApiStyle,
   maxOutputTokens: 8_192,
   defaultMaxTokens: 4_096,
 } as const;
@@ -376,6 +597,7 @@ const UNKNOWN_CAPS = {
 export function getModelCapabilities(endpoint: string): {
   supportsJsonMode: boolean;
   supportsTemperature: boolean;
+  apiStyle: ModelApiStyle;
   maxOutputTokens: number;
   defaultMaxTokens: number;
 } {
@@ -385,6 +607,7 @@ export function getModelCapabilities(endpoint: string): {
     return {
       supportsJsonMode: ep.supportsJsonMode,
       supportsTemperature: ep.supportsTemperature,
+      apiStyle: ep.apiStyle,
       maxOutputTokens: ep.maxOutputTokens,
       defaultMaxTokens: ep.defaultMaxTokens,
     };
@@ -393,7 +616,8 @@ export function getModelCapabilities(endpoint: string): {
   if (tmpl)
     return {
       supportsJsonMode: tmpl.supportsJsonMode,
-      supportsTemperature: tmpl.supportsTemperature ?? true,
+      supportsTemperature: tmpl.supportsTemperature ?? false,
+      apiStyle: tmpl.apiStyle ?? "chat_completions",
       maxOutputTokens: tmpl.maxOutputTokens,
       defaultMaxTokens: tmpl.defaultMaxTokens,
     };

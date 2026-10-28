@@ -165,7 +165,7 @@ export function getConfig(): DatabricksConfig {
   return _config;
 }
 
-const DEFAULT_SERVING_ENDPOINT = "databricks-claude-opus-4-7";
+const DEFAULT_SERVING_ENDPOINT = "databricks-claude-opus-5-5";
 /**
  * Returns the Model Serving endpoint name.
  *

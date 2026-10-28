@@ -50,9 +50,9 @@ This app runs as a **Databricks App**. Authentication is automatic:
 - `DATABRICKS_APP_PORT` controls the listen port (fallback: 3000).
 - SQL Warehouse is bound as an app resource (no hardcoded warehouse IDs).
 - Embedding endpoint (`serving-endpoint-embedding`) defaults to `databricks-qwen3-embedding-0-6b`.
-- Review endpoint (`serving-endpoint-review`) defaults to `databricks-gpt-5-4` for LLM-as-reviewer SQL quality checks.
+- Review endpoint (`serving-endpoint-review`) defaults to `databricks-gpt-6-1-sol` for LLM-as-reviewer SQL quality checks.
 - Extended model pool endpoints (`serving-endpoint-reasoning-2`, `serving-endpoint-generation`, `serving-endpoint-sql`, `serving-endpoint-lightweight`) are optional; when configured via deploy.sh, they enable multi-model parallel routing.
-- `--lightweight-endpoint` binds a fast classification/lightweight model (e.g. `databricks-gemini-3-1-flash-lite` or `databricks-claude-sonnet-4-6`) for high-throughput tasks.
+- `--lightweight-endpoint` binds a fast classification/lightweight model (e.g. `databricks-gemini-3-5-flash-lite`, `databricks-gpt-6-luna`, or `databricks-claude-haiku-5-5`) for high-throughput tasks.
 - Runtime model admission accepts only known model names, then applies
   `DATABRICKS_ALLOWED_MODELS` to exact configured endpoint names. If the
   allowlist matches none, Forge warning-falls back to the first configured

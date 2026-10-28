@@ -187,24 +187,27 @@ describe("deploy helper sourcing and assignment safety", () => {
 
 describe("deploy model defaults", () => {
   it("keeps deploy defaults and fallback chains compatible with the model registry", () => {
-    expect(deploy).toContain('DEFAULT_ENDPOINT="databricks-claude-opus-4-7"');
-    expect(deploy).toContain('DEFAULT_REVIEW_ENDPOINT="databricks-gpt-5-4"');
-    expect(deploy).toContain('DEFAULT_REASONING_ENDPOINT_2="databricks-gemini-3-flash"');
+    expect(deploy).toContain('DEFAULT_ENDPOINT="databricks-claude-opus-5-5"');
+    expect(deploy).toContain('DEFAULT_FAST_ENDPOINT="databricks-claude-sonnet-5-5"');
+    expect(deploy).toContain('DEFAULT_REVIEW_ENDPOINT="databricks-gpt-6-1-sol"');
+    expect(deploy).toContain('DEFAULT_REASONING_ENDPOINT_2="databricks-gpt-6-sol"');
+    expect(deploy).toContain('DEFAULT_GENERATION_ENDPOINT="databricks-gpt-6-luna"');
+    expect(deploy).toContain('DEFAULT_LIGHTWEIGHT_ENDPOINT="databricks-gemini-3-5-flash-lite"');
 
     expect(deploy).toContain(
-      '"databricks-claude-opus-4-7 databricks-claude-opus-4-6 databricks-claude-opus-4-5 databricks-gpt-5-4 databricks-claude-sonnet-4-6"',
+      '"databricks-claude-opus-5-5 databricks-claude-opus-5 databricks-claude-opus-4-8 databricks-claude-opus-4-7 databricks-claude-opus-4-6 databricks-gpt-6-1-sol databricks-gpt-6-sol databricks-gpt-6-1-terra databricks-gpt-5-4 databricks-claude-sonnet-5-5 databricks-claude-sonnet-4-6"',
     );
     expect(deploy).toContain(
-      '"databricks-gpt-5-4 databricks-claude-opus-4-7 databricks-claude-opus-4-6 databricks-claude-sonnet-4-6"',
-    );
-    expect(deploy).not.toMatch(
-      /databricks-claude-opus-4-8|databricks-gpt-5-5|databricks-gemini-3-5-flash/,
+      '"databricks-gpt-6-1-sol databricks-gpt-6-sol databricks-gpt-6-1-terra databricks-gpt-6-luna databricks-gpt-5-4 databricks-claude-opus-5-5 databricks-claude-opus-4-7 databricks-claude-sonnet-5-5 databricks-claude-sonnet-4-6"',
     );
 
     for (const model of [
-      "databricks-claude-opus-4-7",
-      "databricks-gpt-5-4",
-      "databricks-gemini-3-flash",
+      "databricks-claude-opus-5-5",
+      "databricks-claude-sonnet-5-5",
+      "databricks-gpt-6-1-sol",
+      "databricks-gpt-6-sol",
+      "databricks-gpt-6-luna",
+      "databricks-gemini-3-5-flash-lite",
     ]) {
       expect(registry).toContain(`"${model}"`);
     }
@@ -212,15 +215,15 @@ describe("deploy model defaults", () => {
 
   it("documents the same primary and review defaults everywhere", () => {
     expect(deploy).toContain(
-      "--endpoint NAME             Premium model endpoint    (default: databricks-claude-opus-4-7)",
+      "--endpoint NAME             Premium model endpoint    (default: databricks-claude-opus-5-5)",
     );
     expect(deploy).toContain(
-      "--review-endpoint NAME      Review model endpoint     (default: databricks-gpt-5-4)",
+      "--review-endpoint NAME      Review model endpoint     (default: databricks-gpt-6-1-sol)",
     );
-    expect(envExample).toContain("# Primary model (defaults to databricks-claude-opus-4-7)");
-    expect(envExample).toContain("# DATABRICKS_REVIEW_ENDPOINT=databricks-gpt-5-4");
+    expect(envExample).toContain("# Primary model (defaults to databricks-claude-opus-5-5)");
+    expect(envExample).toContain("# DATABRICKS_REVIEW_ENDPOINT=databricks-gpt-6-1-sol");
     expect(docs).toContain(
-      "Review endpoint (`serving-endpoint-review`) defaults to `databricks-gpt-5-4`",
+      "Review endpoint (`serving-endpoint-review`) defaults to `databricks-gpt-6-1-sol`",
     );
   });
 
