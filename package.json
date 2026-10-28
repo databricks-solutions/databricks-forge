@@ -60,7 +60,7 @@
     "@hookform/resolvers": "^5.2.2",
     "@prisma/adapter-pg": "7.5.0",
     "@prisma/client": "7.5.0",
-    "@tailwindcss/typography": "^0.5.19",
+    "@tailwindcss/typography": "^0.5.20",
     "@xyflow/react": "^12.10.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
